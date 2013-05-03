@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using FACCTS.Controls;
 using FACCTS.Controls.ViewModels;
+using FACCTS.Services.Logger;
 
 namespace FACCTS
 {
@@ -68,6 +69,13 @@ namespace FACCTS
         protected override void BuildUp(object instance)
         {
             container.SatisfyImportsOnce(instance);
+        }
+
+        protected override void OnUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
+        {
+            base.OnUnhandledException(sender, e);
+            ILogger logger = MefServiceLocator.Instance.GetInstance<ILogger>();
+            logger.Fatal("An unhandled Exception occured: ", e.Exception);
         }
     }
 }
