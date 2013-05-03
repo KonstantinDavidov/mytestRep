@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACCTS.Services", "FACCTS.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACCTS.Controls", "FACCTS.Controls\FACCTS.Controls.csproj", "{DC7BAC51-E892-43EB-A29B-8B1BF9AE0AAE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ClickOnce", "ClickOnce", "{4E07E117-15F1-49B2-9CCA-5F190C62E3AC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
