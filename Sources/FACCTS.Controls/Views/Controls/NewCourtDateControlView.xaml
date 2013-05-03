@@ -63,7 +63,7 @@
 						<RowDefinition Height="Auto"/>
 					</Grid.RowDefinitions>
 					<TextBlock HorizontalAlignment="Left" Grid.RowSpan="2" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1" Text="Compliance with"/>
-					<CheckBox Content="Permanent" Grid.Column="1"/>
+					<CheckBox Content="Permanent" Grid.Column="1" IsChecked="True"/>
 					<CheckBox Content="CC / CV" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2"/>
 					<CheckBox Content="CS" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="3"/>
 					<CheckBox Content="SS" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="4"/>
@@ -71,7 +71,7 @@
 					<RadioButton Content="Other (specify)" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2" IsThreeState="True" Style="{DynamicResource RadioButtonCheckBoxStyle}"/>
 					<TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Row="1" Grid.Column="3"/>
 					<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Other Issue" VerticalAlignment="Top" Grid.Row="2"/>
-					<TextBox Grid.ColumnSpan="4" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Row="2" Grid.Column="1"/>
+					<TextBox Grid.ColumnSpan="4" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Row="2" Grid.Column="1"/>
 				</Grid>
 			</GroupBox>
 			<GroupBox Header="Additional Appearance" Grid.Row="2" VerticalAlignment="Top">
@@ -82,7 +82,7 @@
                         <ColumnDefinition Width="Auto"/>
 						<ColumnDefinition/>
 					</Grid.ColumnDefinitions>
-					<RadioButton Content="Protected" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{DynamicResource RadioButtonCheckBoxStyle}"/>
+					<RadioButton Content="Protected" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{DynamicResource RadioButtonCheckBoxStyle}" IsChecked="True"/>
 					<RadioButton Content="Restrained" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Style="{DynamicResource RadioButtonCheckBoxStyle}"/>
 					<RadioButton Content="Other" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Style="{DynamicResource RadioButtonCheckBoxStyle}"/>
 					<TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="3"/>
