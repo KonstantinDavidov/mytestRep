@@ -3,10 +3,11 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:xctk="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
 	mc:Ignorable="d"
 	x:Class="FACCTS.Controls.NewCourtDateControlView"
 	x:Name="UserControl"
-	d:DesignWidth="640" d:DesignHeight="480" Background="{DynamicResource ControlBackgroundBrush}" Width="480" Height="240">
+	d:DesignWidth="640" d:DesignHeight="480" Background="{DynamicResource ControlBackgroundBrush}" Width="500" Height="240">
 
 	<Grid x:Name="LayoutRoot">
 		<Grid>
@@ -26,7 +27,7 @@
 						<ColumnDefinition Width="150"/>
 						<ColumnDefinition Width="Auto"/>
 						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition Width="80"/>
 						<ColumnDefinition Width="Auto"/>
 						<ColumnDefinition Width="80"/>
 					</Grid.ColumnDefinitions>
@@ -37,7 +38,7 @@
 					<TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="Date:"/>
 					<DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1"/>
 					<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="2">Time:</TextBlock>
-					<TextBox TextWrapping="Wrap" Text="TextBox" Margin="0" Grid.Column="3"/>
+					<xctk:DateTimeUpDown Format="FullDateTime" Grid.Column="3"/>
 					<TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="4">Dept.:</TextBlock>
 					<ComboBox Grid.ColumnSpan="2" VerticalAlignment="Center" Grid.Column="5"/>
 					<ComboBox VerticalAlignment="Top" Grid.Row="1"/>
@@ -49,9 +50,9 @@
 				<Button Content="Add Court Date"/>
 			</UniformGrid>
 			<GroupBox Header="Issues to be Addressed" Grid.Row="1" VerticalAlignment="Top">
-				<Grid HorizontalAlignment="Left">
+				<Grid x:Name="grid" HorizontalAlignment="Left">
 					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="Auto"/>
+						<ColumnDefinition x:Name="FirstColumn" Width="Auto"/>
 						<ColumnDefinition Width="Auto"/>
 						<ColumnDefinition Width="Auto"/>
 						<ColumnDefinition/>
@@ -71,21 +72,22 @@
 					<RadioButton Content="Other (specify)" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2" IsThreeState="True" Style="{DynamicResource RadioButtonCheckBoxStyle}"/>
 					<TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Row="1" Grid.Column="3"/>
 					<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Other Issue" VerticalAlignment="Top" Grid.Row="2"/>
-					<TextBox Grid.ColumnSpan="4" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Row="2" Grid.Column="1"/>
+					<TextBox Grid.ColumnSpan="4" HorizontalAlignment="Stretch" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="2" Grid.Column="1"/>
 				</Grid>
 			</GroupBox>
 			<GroupBox Header="Additional Appearance" Grid.Row="2" VerticalAlignment="Top">
 				<Grid>
 					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="{Binding ColumnDefinitions[0].ActualWidth, ElementName=grid, Mode=OneWay}"/>
 						<ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
                         <ColumnDefinition Width="Auto"/>
 						<ColumnDefinition/>
 					</Grid.ColumnDefinitions>
-					<RadioButton Content="Protected" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{DynamicResource RadioButtonCheckBoxStyle}" IsChecked="True"/>
-					<RadioButton Content="Restrained" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" Style="{DynamicResource RadioButtonCheckBoxStyle}"/>
-					<RadioButton Content="Other" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Style="{DynamicResource RadioButtonCheckBoxStyle}"/>
-					<TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="3"/>
+					<RadioButton Content="Protected" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{DynamicResource RadioButtonCheckBoxStyle}" IsChecked="True" Grid.Column="1"/>
+					<RadioButton Content="Restrained" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Style="{DynamicResource RadioButtonCheckBoxStyle}"/>
+					<RadioButton Content="Other" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="3" Style="{DynamicResource RadioButtonCheckBoxStyle}"/>
+					<TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="4"/>
 				</Grid>
 			</GroupBox>
 		</Grid>
