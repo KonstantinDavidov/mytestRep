@@ -34,6 +34,10 @@
     <Reference Include="Caliburn.Micro">
       <HintPath>..\packages\Caliburn.Micro.1.5.1\lib\net45\Caliburn.Micro.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -72,6 +76,12 @@
     <Compile Include="Views\ReissuanceDialogView.xaml.cs">
       <DependentUpon>ReissuanceDialogView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\ShowExceptionControlView.xaml.cs">
+      <DependentUpon>ShowExceptionControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShowExceptionDialogView.xaml.cs">
+      <DependentUpon>ShowExceptionDialogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserLoginDialogView.xaml.cs">
       <DependentUpon>UserLoginDialogView.xaml</DependentUpon>
     </Compile>
@@ -99,6 +109,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\ReissuanceDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\ShowExceptionControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ShowExceptionDialogView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
