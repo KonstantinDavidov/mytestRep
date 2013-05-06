@@ -69,8 +69,8 @@
     <Compile Include="Views\UserLoginDialogView.xaml.cs">
       <DependentUpon>UserLoginDialogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\UserLoginView.xaml.cs">
-      <DependentUpon>UserLoginView.xaml</DependentUpon>
+    <Compile Include="Views\Controls\UserLoginControlView.xaml.cs">
+      <DependentUpon>UserLoginControlView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewCourtDateDialogView.xaml.cs">
       <DependentUpon>NewCourtDateDialogView.xaml</DependentUpon>
@@ -92,7 +92,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\UserLoginView.xaml">
+    <Page Include="Views\Controls\UserLoginControlView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
