@@ -44,16 +44,12 @@ namespace FACCTS
 
         }
 
-        private Assembly[] _assemblies;
+        
         protected override IEnumerable<System.Reflection.Assembly> SelectAssemblies()
         {
-            if (_assemblies == null)
-            {
-                _assemblies = AppDomain.CurrentDomain.GetAssemblies()
+            return AppDomain.CurrentDomain.GetAssemblies()
                     .Where(a => a.GetAssemblyName().StartsWith("FACCTS"))
                     .ToArray();
-            }
-            return _assemblies;
         }
 
         protected override object GetInstance(Type serviceType, string key)

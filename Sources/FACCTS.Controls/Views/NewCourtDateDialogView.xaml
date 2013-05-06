@@ -4,7 +4,7 @@
 	xmlns:local="clr-namespace:FACCTS.Controls"
 	x:Class="FACCTS.Controls.NewCourtDateDialogView"
 	x:Name="Window"
-	Title="New Court Date" ResizeMode="NoResize" SizeToContent="WidthAndHeight">
+	Title="New Court Date" ResizeMode="NoResize" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterScreen">
 
 	<Grid x:Name="LayoutRoot">
 		<local:NewCourtDateControlView HorizontalAlignment="Left" VerticalAlignment="Top"/>
