@@ -66,6 +66,12 @@
     <Compile Include="Views\Controls\NewCourtDateControlView.xaml.cs">
       <DependentUpon>NewCourtDateControlView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\ReissuanceControlView.xaml.cs">
+      <DependentUpon>ReissuanceControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReissuanceDialogView.xaml.cs">
+      <DependentUpon>ReissuanceDialogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserLoginDialogView.xaml.cs">
       <DependentUpon>UserLoginDialogView.xaml</DependentUpon>
     </Compile>
@@ -85,6 +91,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Controls\NewCourtDateControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\ReissuanceControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ReissuanceDialogView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
