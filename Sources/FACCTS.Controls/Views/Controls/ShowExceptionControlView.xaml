@@ -26,7 +26,7 @@
 					<Path Fill="#FFE2FF00" Data="F1 M145.742,55.559L54.742,146.559 145.742,237.559 236.742,146.559 145.742,55.559z M160.122,97.934L149.42,180.2 142.063,180.2 131.362,97.934 160.122,97.934z M145.742,200.934C141.31,200.934 137.716,197.34 137.716,192.908 137.716,188.475 141.31,184.882 145.742,184.882 150.174,184.882 153.768,188.475 153.768,192.908 153.768,197.34 150.174,200.934 145.742,200.934z" Height="70" Stretch="Fill" Width="70" />
 				</Canvas>
 			</ContentControl>
-			<TextBox Grid.ColumnSpan="2" TextWrapping="Wrap" Text="TextBox" Grid.Row="1" IsReadOnly="True"/>
+			<TextBox Grid.ColumnSpan="2" TextWrapping="Wrap" Text="{Binding ExceptionContent, Mode=OneWay}" Grid.Row="1" IsReadOnly="True"/>
 			<Button Content="OK" HorizontalAlignment="Right" VerticalAlignment="Top" Width="75" Grid.Row="2" Grid.Column="1" IsDefault="True"/>
 		</Grid>
 	</Border>

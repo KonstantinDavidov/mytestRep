@@ -7,6 +7,6 @@
              d:DesignHeight="300" d:DesignWidth="300"
         Title="{Binding Name, Mode=OneWay}">
     <Grid>
-            
+        <Button x:Name="GenerateException" Width="100" Height="23" Content="Generate Exception"/>
     </Grid>
 </Window>

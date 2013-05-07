@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using FACCTS.Controls;
 using FACCTS.Controls.ViewModels;
 using FACCTS.Services.Logger;
+using System.Dynamic;
+using System.Windows;
 
 namespace FACCTS
 {
@@ -38,6 +40,7 @@ namespace FACCTS
 
             batch.AddExportedValue<IWindowManager>(new WindowManager());
             batch.AddExportedValue<IEventAggregator>(new EventAggregator());
+            batch.AddExportedValue<ILogger>(new Logger());
             batch.AddExportedValue(container);
             MefServiceLocator.Initialize(() => container);
             container.Compose(batch);
@@ -72,6 +75,9 @@ namespace FACCTS
             base.OnUnhandledException(sender, e);
             ILogger logger = MefServiceLocator.Instance.GetInstance<ILogger>();
             logger.Fatal("An unhandled Exception occured: ", e.Exception);
+            dynamic settings = new ExpandoObject();
+            settings.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            MefServiceLocator.Instance.GetInstance<IWindowManager>().ShowDialog(new ShowExceptionDialogViewModel(e.Exception), settings);
         }
     }
 }
