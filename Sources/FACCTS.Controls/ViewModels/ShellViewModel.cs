@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Caliburn.Micro.ReactiveUI;
+using FACCTS.Services;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,8 @@ namespace FACCTS.Controls.ViewModels
         {
             get { return _name; }
         }
+
+        
 
         public void GenerateException()
         {

@@ -15,7 +15,7 @@ namespace FACCTS.Controls
 	/// <summary>
 	/// Interaction logic for ShowExceptionDialogView.xaml
 	/// </summary>
-	public partial class ShowExceptionDialogView : Window
+    public partial class ShowExceptionDialogView : Window
 	{
 		public ShowExceptionDialogView()
 		{

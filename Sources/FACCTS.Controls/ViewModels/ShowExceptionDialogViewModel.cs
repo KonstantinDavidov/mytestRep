@@ -31,7 +31,7 @@ namespace FACCTS.Controls.ViewModels
         }
 
         private Exception _exception;
-        protected Exception Exception 
+        public Exception Exception 
         {
             get
             {
