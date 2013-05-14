@@ -75,11 +75,9 @@ namespace FACCTS
             base.OnUnhandledException(sender, e);
             ILogger logger = MefServiceLocator.Instance.GetInstance<ILogger>();
             logger.Fatal("An unhandled Exception occured: ", e.Exception);
-            dynamic settings = new ExpandoObject();
-            settings.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            var vm = MefServiceLocator.Instance.GetInstance<ShowExceptionDialogViewModel>();
+            var vm = MefServiceLocator.Instance.GetInstance<IShowExceptionDialogViewModel>();
             vm.Exception = e.Exception;
-            MefServiceLocator.Instance.GetInstance<IWindowManager>().ShowDialog(vm, settings);
+            MefServiceLocator.Instance.GetInstance<IWindowManager>().ShowDialog(vm);
             e.Handled = true;
         }
     }

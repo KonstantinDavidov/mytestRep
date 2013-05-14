@@ -4,7 +4,7 @@
 	xmlns:local="clr-namespace:FACCTS.Controls" xmlns:cal="http://www.caliburnproject.org"
 	 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	x:Class="FACCTS.Controls.ShowExceptionDialogView"
+	x:Class="FACCTS.Controls.Views.ShowExceptionDialogView"
 	xmlns:vm="clr-namespace:FACCTS.Controls.ViewModels"
 	x:Name="Window"
 	mc:Ignorable="d" 

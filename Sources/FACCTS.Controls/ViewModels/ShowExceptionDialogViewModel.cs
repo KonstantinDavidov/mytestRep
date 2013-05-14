@@ -9,20 +9,32 @@ using System.Threading.Tasks;
 using ReactiveUI;
 using ReactiveUI.Routing;
 using ReactiveUI.Xaml;
+using System.Windows.Input;
 
 namespace FACCTS.Controls.ViewModels
 {
-    [Export(typeof(ShowExceptionDialogViewModel))]
-    public class ShowExceptionDialogViewModel : ViewModelBase
+    public interface IShowExceptionDialogViewModel
+    {
+        Exception Exception { get; set; }
+        string ExceptionContent { get; }
+    }
+
+    [Export(typeof(IShowExceptionDialogViewModel))]
+    public class ShowExceptionDialogViewModel : ViewModelBase, IShowExceptionDialogViewModel
     {
         public ShowExceptionDialogViewModel() : base()
         {
             this.Name = "An Exception occured!";
-            var whenExceptionChanged = this.ObservableForProperty(x => x.Exception)
-                .Select(x => x.Value)
-                .Where(e => e != null)
-                .Select(e => e.Message);
-            whenExceptionChanged.ToProperty(this, x => x.ExceptionContent);
+            this.WhenAny(x => x.Exception, x => x.Value)
+                .Subscribe(x => 
+                    {
+                        if (x != null)
+                        {
+                            this.ExceptionContent = string.Format("An exception {0} occured: {1}", x.GetType().Name, x.Message);
+                        }
+                    });
+                
+           
         }
 
         public ShowExceptionDialogViewModel(Exception ex) : this()
@@ -54,6 +66,11 @@ namespace FACCTS.Controls.ViewModels
             {
                 this.RaiseAndSetIfChanged(ref _exceptionContent, value);
             }
+        }
+
+        public void Close()
+        {
+            this.TryClose(true);
         }
     }
 }
