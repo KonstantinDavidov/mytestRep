@@ -24,7 +24,7 @@ namespace FACCTS.Controls.ViewModels
     {
         public ShowExceptionDialogViewModel() : base()
         {
-            this.Name = "An Exception occured!";
+            this.DisplayName = "An Exception occured!";
             this.WhenAny(x => x.Exception, x => x.Value)
                 .Subscribe(x => 
                     {

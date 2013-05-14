@@ -9,7 +9,7 @@
 	x:Name="Window"
 	mc:Ignorable="d" 
 	d:DataContext="{d:DesignInstance Type=vm:ShowExceptionDialogViewModel, IsDesignTimeCreatable=True}"
-	Title="{Binding Name, Mode=OneWay}"
+	Title="{Binding DisplayName, Mode=OneWay}"
 	WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="WidthAndHeight" cal:Bind.AtDesignTime="True" >
 	<local:ShowExceptionControlView/>
 </Window>

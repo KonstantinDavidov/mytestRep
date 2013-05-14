@@ -19,22 +19,6 @@ namespace FACCTS.Controls.ViewModels
             
         }
 
-        private string _name;
-        public virtual string Name 
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                if (_name == value)
-                    return;
-
-                _name = value;
-            }
-        }
-
         [Import]
         public IWindowManager WindowManager { get; protected set; }
 
