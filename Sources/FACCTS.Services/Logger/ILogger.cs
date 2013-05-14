@@ -14,5 +14,6 @@ namespace FACCTS.Services.Logger
         void Fatal(string message, Exception ex);
         void Info(string message);
         void Warn(string message);
+        event EventHandler<ShowDialogEventArgs> ErrorDialogShowing;
     }
 }

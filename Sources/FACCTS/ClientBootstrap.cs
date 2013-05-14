@@ -40,19 +40,31 @@ namespace FACCTS
 
             batch.AddExportedValue<IWindowManager>(new WindowManager());
             batch.AddExportedValue<IEventAggregator>(new EventAggregator());
-            batch.AddExportedValue<ILogger>(new Logger());
+           // batch.AddExportedValue<ILogger>(new Logger());
             batch.AddExportedValue(container);
             MefServiceLocator.Initialize(() => container);
             container.Compose(batch);
 
+            ILogger logger = MefServiceLocator.Instance.GetInstance<ILogger>();
+            logger.ErrorDialogShowing += ShowLoggerDialog;
+
+        }
+
+        private void ShowLoggerDialog(object sender, ShowDialogEventArgs e)
+        {
+            var vm = MefServiceLocator.Instance.GetInstance<IShowExceptionDialogViewModel>();
+            vm.Exception = e.Exception;
+            MefServiceLocator.Instance.GetInstance<IWindowManager>().ShowDialog(vm);
         }
 
         
         protected override IEnumerable<System.Reflection.Assembly> SelectAssemblies()
         {
-            return AppDomain.CurrentDomain.GetAssemblies()
-                    .Where(a => a.GetAssemblyName().StartsWith("FACCTS"))
-                    .ToArray();
+            Assembly assembly = Assembly.GetExecutingAssembly();
+            AssemblyName[] anames = assembly.GetReferencedAssemblies();
+            List<Assembly> result = new List<Assembly>() { assembly };
+            result.AddRange(anames.Select(n => Assembly.Load(n)));
+            return result.Where(a => a.GetAssemblyName().StartsWith("FACCTS")).ToArray();
         }
 
         protected override object GetInstance(Type serviceType, string key)
@@ -75,9 +87,6 @@ namespace FACCTS
             base.OnUnhandledException(sender, e);
             ILogger logger = MefServiceLocator.Instance.GetInstance<ILogger>();
             logger.Fatal("An unhandled Exception occured: ", e.Exception);
-            var vm = MefServiceLocator.Instance.GetInstance<IShowExceptionDialogViewModel>();
-            vm.Exception = e.Exception;
-            MefServiceLocator.Instance.GetInstance<IWindowManager>().ShowDialog(vm);
             e.Handled = true;
         }
     }
