@@ -1,0 +1,172 @@
+﻿<UserControl x:Class="FACCTS.Controls.Views.Controls.CaseStatusLeftPaneView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="532" d:DesignWidth="296" Background="{DynamicResource ControlBackgroundBrush}">
+    <Grid>
+    	<Grid.RowDefinitions>
+    		<RowDefinition Height="Auto"/>
+    		<RowDefinition Height="Auto"/>
+    		<RowDefinition/>
+    	</Grid.RowDefinitions>
+    	<GroupBox Header="Court Cases" VerticalAlignment="Top">
+    		<ListBox>
+    			<ListBoxItem Content="New"/>
+    			<ListBoxItem Content="Reissued"/>
+    			<ListBoxItem Content="Active"/>
+    			<ListBoxItem Content="Dropped"/>
+    			<ListBoxItem Content="Dismissed"/>
+    		</ListBox>
+    	</GroupBox>
+    	<GroupBox Header="Find Court Cases" Grid.Row="1">
+    		<Grid>
+    			<Grid.RowDefinitions>
+    				<RowDefinition Height="Auto"/>
+    				<RowDefinition Height="Auto"/>
+    				<RowDefinition Height="Auto"/>
+    				<RowDefinition Height="Auto"/>
+    				<RowDefinition Height="Auto"/>
+    				<RowDefinition Height="Auto"/>
+    				<RowDefinition Height="Auto"/>
+    			</Grid.RowDefinitions>
+    			<Border BorderBrush="Black" BorderThickness="1" CornerRadius="2" Style="{StaticResource OrdinalBorder}">
+    				<Grid>
+    					<Grid.ColumnDefinitions>
+    						<ColumnDefinition Width="Auto" MinWidth="100"/>
+    						<ColumnDefinition/>
+    					</Grid.ColumnDefinitions>
+    					<Grid.RowDefinitions>
+    						<RowDefinition Height="Auto"/>
+    						<RowDefinition Height="Auto"/>
+    					</Grid.RowDefinitions>
+    					<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Case Number" VerticalAlignment="Top"/>
+    					<TextBox HorizontalAlignment="Left" Height="0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+    					<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Status" VerticalAlignment="Center" Grid.Row="1"/>
+    					<ComboBox Margin="0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+    				</Grid>
+    			</Border>
+    			<Border BorderBrush="Black" BorderThickness="1"  Style="{StaticResource OrdinalBorder}" Grid.Row="1">
+    				<Grid>
+    					<Grid.RowDefinitions>
+    						<RowDefinition Height="Auto"/>
+    						<RowDefinition Height="Auto"/>
+    					</Grid.RowDefinitions>
+    					<HeaderedContentControl Header="First Activity" Margin="0,0,0,-0.001">
+    						<Grid>
+    							<Grid.ColumnDefinitions>
+    								<ColumnDefinition Width="Auto" MinWidth="100"/>
+    								<ColumnDefinition/>
+    							</Grid.ColumnDefinitions>
+    							<Grid.RowDefinitions>
+    								<RowDefinition Height="Auto"/>
+    								<RowDefinition Height="Auto"/>
+    							</Grid.RowDefinitions>
+    							<TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Top" Text="Start"/>
+    							<TextBlock TextWrapping="Wrap" Text="End" Margin="0,0,0,-0.001" Grid.Row="1"/>
+    							<DatePicker VerticalAlignment="Top" Grid.Column="1"/>
+    							<DatePicker VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
+    						</Grid>
+    					</HeaderedContentControl>
+    					<HeaderedContentControl Header="Last Activity" Grid.Row="1">
+    						<Grid>
+    							<Grid.ColumnDefinitions>
+    								<ColumnDefinition Width="Auto" MinWidth="100"/>
+    								<ColumnDefinition/>
+    							</Grid.ColumnDefinitions>
+    							<Grid.RowDefinitions>
+    								<RowDefinition Height="Auto"/>
+    								<RowDefinition Height="Auto"/>
+    							</Grid.RowDefinitions>
+    							<TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Top" Text="Start"/>
+    							<TextBlock TextWrapping="Wrap" Text="End" Margin="0,0,0,-0.001" Grid.Row="1"/>
+    							<DatePicker VerticalAlignment="Top" Grid.Column="1"/>
+    							<DatePicker VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
+    						</Grid>
+    					</HeaderedContentControl>
+    				</Grid>
+    			</Border>
+    			<Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
+    				<Grid>
+    					<Grid.ColumnDefinitions>
+    						<ColumnDefinition MinWidth="100" Width="Auto"/>
+    						<ColumnDefinition/>
+    					</Grid.ColumnDefinitions>
+    					<TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Top" Text="Court Clerk"/>
+    					<ComboBox Margin="0,0,0,-0.001" Grid.Column="1"/>
+    				</Grid>
+    			</Border>
+    			<Border BorderBrush="Black" BorderThickness="1" Grid.Row="3" Style="{DynamicResource OrdinalBorder}">
+    				<Grid>
+    					<Grid.ColumnDefinitions>
+    						<ColumnDefinition MinWidth="100" Width="Auto"/>
+    						<ColumnDefinition/>
+    					</Grid.ColumnDefinitions>
+    					<Grid.RowDefinitions>
+    						<RowDefinition Height="Auto"/>
+    						<RowDefinition Height="Auto"/>
+    					</Grid.RowDefinitions>
+    					<TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" Text="CCPOR Status" VerticalAlignment="Center"/>
+    					<TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="1"><Run Text="CCPOR I"/></TextBlock>
+    					<ComboBox Margin="0,0,0,-0.001" Grid.Column="1"/>
+    					<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Row="1" Grid.Column="1"/>
+    				</Grid>
+    			</Border>
+    			<Border BorderBrush="Black" BorderThickness="1" Grid.Row="4">
+    				<Grid>
+    					<Grid.RowDefinitions>
+    						<RowDefinition Height="Auto"/>
+    						<RowDefinition Height="Auto"/>
+    					</Grid.RowDefinitions>
+    					<Grid.ColumnDefinitions>
+    						<ColumnDefinition Width="Auto"/>
+    						<ColumnDefinition/>
+    						<ColumnDefinition/>
+    						<ColumnDefinition/>
+    					</Grid.ColumnDefinitions>
+    					<TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Center"><Run Text="Party 1"/></TextBlock>
+    					<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="1"/>
+    					<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="2"/>
+    					<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="3"/>
+    					<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Text="First name" FontSize="10.667"/>
+    					<TextBlock TextWrapping="Wrap" Text="Middle name" Margin="0,0,0,7.999" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" FontSize="10.667"/>
+    					<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Last name" VerticalAlignment="Top" Grid.Row="1" Grid.Column="3" FontSize="10.667"/>
+    				</Grid>
+    			</Border>
+    			<Border BorderBrush="Black" BorderThickness="1" Grid.Row="5">
+    				<Grid>
+    					<Grid.RowDefinitions>
+    						<RowDefinition Height="Auto"/>
+    						<RowDefinition Height="Auto"/>
+    					</Grid.RowDefinitions>
+    					<Grid.ColumnDefinitions>
+    						<ColumnDefinition Width="Auto"/>
+    						<ColumnDefinition/>
+    						<ColumnDefinition/>
+    						<ColumnDefinition/>
+    					</Grid.ColumnDefinitions>
+    					<TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Center" Text="Party 2"/>
+    					<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="1"/>
+    					<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="2"/>
+    					<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="3"/>
+    					<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Text="First name" FontSize="10.667"/>
+    					<TextBlock TextWrapping="Wrap" Text="Middle name" Margin="0,0,0,7.999" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" FontSize="10.667"/>
+    					<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Last name" VerticalAlignment="Top" Grid.Row="1" Grid.Column="3" FontSize="10.667"/>
+    				</Grid>
+    			</Border>
+    			<UniformGrid Grid.Row="6" HorizontalAlignment="Right" Rows="1" Columns="2">
+    				<Button Content="Clear" Width="75"/>
+    				<Button Content="Find" Width="75"/>
+    			</UniformGrid>
+    		</Grid>
+    	</GroupBox>
+    	<Border BorderBrush="Black" BorderThickness="1" Style="{DynamicResource OrdinalBorder}" Grid.Row="2" VerticalAlignment="Top">
+    		<UniformGrid Rows="1" Columns="2">
+    			<Button Content="Import CMS" HorizontalAlignment="Left"/>
+    			<Button Content="Export CCPOR" VerticalAlignment="Top" HorizontalAlignment="Right"/>
+    		</UniformGrid>
+    	</Border>
+            
+    </Grid>
+</UserControl>

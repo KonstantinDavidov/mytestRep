@@ -113,6 +113,12 @@
     <Compile Include="Views\CaseStatusView.xaml.cs">
       <DependentUpon>CaseStatusView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\CaseStatusLeftPaneView.xaml.cs">
+      <DependentUpon>CaseStatusLeftPaneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CaseStatusRightPaneView.xaml.cs">
+      <DependentUpon>CaseStatusRightPaneView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\NewCourtDateControlView.xaml.cs">
       <DependentUpon>NewCourtDateControlView.xaml</DependentUpon>
     </Compile>
@@ -142,7 +148,15 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Resources\Borders.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Resources\Buttons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Grids.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -151,6 +165,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CaseStatusView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\CaseStatusLeftPaneView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\CaseStatusRightPaneView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
