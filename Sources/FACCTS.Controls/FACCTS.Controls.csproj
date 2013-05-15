@@ -104,6 +104,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\CaseRecordViewModel.cs" />
     <Compile Include="ViewModels\CaseStatusViewModel.cs" />
+    <Compile Include="ViewModels\ChildrenOtherProtectedViewModel.cs" />
+    <Compile Include="ViewModels\PersonalInformationViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\ShowExceptionDialogViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
@@ -112,6 +114,9 @@
     </Compile>
     <Compile Include="Views\CaseStatusView.xaml.cs">
       <DependentUpon>CaseStatusView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChildrenOtherProtectedView.xaml.cs">
+      <DependentUpon>ChildrenOtherProtectedView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\CaseRecordLeftPaneView.xaml.cs">
       <DependentUpon>CaseRecordLeftPaneView.xaml</DependentUpon>
@@ -130,6 +135,9 @@
     </Compile>
     <Compile Include="Views\Controls\ReissuanceControlView.xaml.cs">
       <DependentUpon>ReissuanceControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PersonalInformationView.xaml.cs">
+      <DependentUpon>PersonalInformationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReissuanceDialogView.xaml.cs">
       <DependentUpon>ReissuanceDialogView.xaml</DependentUpon>
@@ -174,6 +182,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\ChildrenOtherProtectedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Controls\CaseRecordLeftPaneView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -197,6 +209,10 @@
     <Page Include="Views\Controls\ReissuanceControlView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\PersonalInformationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ReissuanceDialogView.xaml">
       <Generator>MSBuild:Compile</Generator>
