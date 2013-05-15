@@ -33,12 +33,12 @@
     				<ColumnDefinition Width="10"/>
     			</Grid.ColumnDefinitions>
     			<UniformGrid VerticalAlignment="Top" Rows="1" Columns="6" HorizontalAlignment="Left">
-    				<Button Content="New Case" Width="75"/>
-    				<Button Content="Drop Case" Width="75"/>
-    				<Button Content="New Hearing" Width="75"/>
-    				<Button Content="Continuance" Width="75"/>
-    				<Button Content="Button" Width="75"/>
-    				<Button Content="Button" Width="75"/>
+    				<Button Content="New Case"/>
+    				<Button Content="Drop Case" />
+    				<Button Content="New Hearing"/>
+    				<Button Content="Continuance" />
+    				<Button Content="New Case ID" />
+    				<Button Content="Consolidate" />
     			</UniformGrid>
     			<Button Content="Refresh" HorizontalAlignment="Right" Margin="0,0,0,-0.001" VerticalAlignment="Top" Grid.Column="1"/>
     		</Grid>
