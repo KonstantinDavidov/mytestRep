@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
              d:DesignHeight="532" d:DesignWidth="296" Background="{DynamicResource ControlBackgroundBrush}">
     <Grid>
@@ -42,7 +43,7 @@
     						<RowDefinition Height="Auto"/>
     					</Grid.RowDefinitions>
     					<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Case Number" VerticalAlignment="Top"/>
-    					<TextBox TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Grid.Column="1"/>
+                        <TextBox TextWrapping="Wrap" Text="{Binding CaseNumber, Mode=TwoWay}" VerticalAlignment="Top" Grid.Column="1"/>
     					<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Status" VerticalAlignment="Center" Grid.Row="1"/>
     					<ComboBox Margin="0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
     				</Grid>
@@ -65,8 +66,8 @@
     							</Grid.RowDefinitions>
     							<TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Top" Text="Start"/>
     							<TextBlock TextWrapping="Wrap" Text="End" Margin="0,0,0,-0.001" Grid.Row="1"/>
-    							<DatePicker VerticalAlignment="Top" Grid.Column="1"/>
-    							<DatePicker VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
+                                <DatePicker VerticalAlignment="Top" Grid.Column="1" DisplayDate="{Binding FirstActivityStartDate, Mode=TwoWay}"/>
+                                <DatePicker VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" DisplayDate="{Binding FirstActivityEndDate, Mode=TwoWay}"/>
     						</Grid>
     					</HeaderedContentControl>
     					<HeaderedContentControl Header="Last Activity" Grid.Row="1">
@@ -81,8 +82,8 @@
     							</Grid.RowDefinitions>
     							<TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Top" Text="Start"/>
     							<TextBlock TextWrapping="Wrap" Text="End" Margin="0,0,0,-0.001" Grid.Row="1"/>
-    							<DatePicker VerticalAlignment="Top" Grid.Column="1"/>
-    							<DatePicker VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
+                                <DatePicker VerticalAlignment="Top" Grid.Column="1" DisplayDate="{Binding LastActivityStartDate, Mode=TwoWay}"/>
+                                <DatePicker VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" DisplayDate="{Binding LastActivityEndDate, Mode=TwoWay}"/>
     						</Grid>
     					</HeaderedContentControl>
     				</Grid>
@@ -110,7 +111,7 @@
     					<TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" Text="CCPOR Status" VerticalAlignment="Center"/>
     					<TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="1" Text="CCPOR ID"/>
     					<ComboBox Margin="0,0,0,-0.001" Grid.Column="1"/>
-    					<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Row="1" Grid.Column="1"/>
+                        <TextBox TextWrapping="Wrap" Text="{Binding CCPOR_ID, Mode=TwoWay}" Grid.Row="1" Grid.Column="1"/>
     				</Grid>
     			</Border>
     			<Border BorderBrush="Black" BorderThickness="1" Grid.Row="4" Style="{DynamicResource OrdinalBorder}">
@@ -126,9 +127,9 @@
     						<ColumnDefinition/>
     					</Grid.ColumnDefinitions>
     					<TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Center"><Run Text="Party 1"/></TextBlock>
-    					<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="1"/>
-    					<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="2"/>
-    					<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="3"/>
+                        <TextBox TextWrapping="Wrap" Text="{Binding Party1FirstName, Mode=TwoWay}" Grid.Column="1"/>
+                        <TextBox TextWrapping="Wrap" Text="{Binding Party1MiddleName, Mode=TwoWay}" Grid.Column="2"/>
+                        <TextBox TextWrapping="Wrap" Text="{Binding Party1LastName, Mode=TwoWay}" Grid.Column="3"/>
     					<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Text="First name" FontSize="10.667"/>
     					<TextBlock TextWrapping="Wrap" Text="Middle name" Margin="0,0,0,7.999" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" FontSize="10.667"/>
     					<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Last name" VerticalAlignment="Top" Grid.Row="1" Grid.Column="3" FontSize="10.667"/>
@@ -147,17 +148,17 @@
     						<ColumnDefinition/>
     					</Grid.ColumnDefinitions>
     					<TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Center" Text="Party 2"/>
-    					<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="1"/>
-    					<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="2"/>
-    					<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="3"/>
+                        <TextBox TextWrapping="Wrap" Text="{Binding Party2FirstName, Mode=TwoWay}" Grid.Column="1"/>
+                        <TextBox TextWrapping="Wrap" Text="{Binding Party2MiddleName, Mode=TwoWay}" Grid.Column="2"/>
+                        <TextBox TextWrapping="Wrap" Text="{Binding Party2LastName, Mode=TwoWay}" Grid.Column="3"/>
     					<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Text="First name" FontSize="10.667"/>
     					<TextBlock TextWrapping="Wrap" Text="Middle name" Margin="0,0,0,7.999" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Center" FontSize="10.667"/>
     					<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Last name" VerticalAlignment="Top" Grid.Row="1" Grid.Column="3" FontSize="10.667"/>
     				</Grid>
     			</Border>
     			<UniformGrid Grid.Row="6" HorizontalAlignment="Right" Rows="1" Columns="2">
-    				<Button Content="Clear" Width="75"/>
-    				<Button Content="Find" Width="75"/>
+    				<Button Content="Clear" Width="75" cal:Message.Attach="Clear"/>
+    				<Button Content="Find" Width="75" cal:Message.Attach="Find"/>
     			</UniformGrid>
     		</Grid>
     	</GroupBox>

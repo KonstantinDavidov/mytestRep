@@ -51,6 +51,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>FamilyCourt.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Caliburn.Micro">
       <HintPath>..\packages\Caliburn.Micro.1.5.1\lib\net45\Caliburn.Micro.dll</HintPath>
@@ -231,6 +234,9 @@
     <Resource Include="Resources\PDFForms\txt_files\fl343_data.txt" />
     <Resource Include="Resources\PDFForms\txt_files\fl344_data.txt" />
     <Resource Include="Resources\PDFForms\txt_files\mc020.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="FamilyCourt.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.5\tools\Microsoft.Bcl.Build.targets" />
