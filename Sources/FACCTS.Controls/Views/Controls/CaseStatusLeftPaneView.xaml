@@ -66,8 +66,8 @@
     							</Grid.RowDefinitions>
     							<TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Top" Text="Start"/>
     							<TextBlock TextWrapping="Wrap" Text="End" Margin="0,0,0,-0.001" Grid.Row="1"/>
-                                <DatePicker VerticalAlignment="Top" Grid.Column="1" DisplayDate="{Binding FirstActivityStartDate, Mode=TwoWay}"/>
-                                <DatePicker VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" DisplayDate="{Binding FirstActivityEndDate, Mode=TwoWay}"/>
+                                <DatePicker VerticalAlignment="Top" Grid.Column="1" SelectedDate="{Binding FirstActivityStartDate, Mode=TwoWay}"/>
+                                <DatePicker VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" SelectedDate="{Binding FirstActivityEndDate, Mode=TwoWay}"/>
     						</Grid>
     					</HeaderedContentControl>
     					<HeaderedContentControl Header="Last Activity" Grid.Row="1">
@@ -82,8 +82,8 @@
     							</Grid.RowDefinitions>
     							<TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Top" Text="Start"/>
     							<TextBlock TextWrapping="Wrap" Text="End" Margin="0,0,0,-0.001" Grid.Row="1"/>
-                                <DatePicker VerticalAlignment="Top" Grid.Column="1" DisplayDate="{Binding LastActivityStartDate, Mode=TwoWay}"/>
-                                <DatePicker VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" DisplayDate="{Binding LastActivityEndDate, Mode=TwoWay}"/>
+                                <DatePicker VerticalAlignment="Top" Grid.Column="1" SelectedDate="{Binding LastActivityStartDate, Mode=TwoWay}"/>
+                                <DatePicker VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" SelectedDate="{Binding LastActivityEndDate, Mode=TwoWay}"/>
     						</Grid>
     					</HeaderedContentControl>
     				</Grid>

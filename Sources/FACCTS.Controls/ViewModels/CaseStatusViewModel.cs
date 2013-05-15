@@ -175,7 +175,18 @@ namespace FACCTS.Controls.ViewModels
 
         public void Clear()
         {
-            //TODO implement Clear()
+            CaseNumber = string.Empty;
+            FirstActivityStartDate = null;
+            FirstActivityEndDate = null;
+            LastActivityStartDate = null;
+            LastActivityEndDate = null;
+            CCPOR_ID = string.Empty;
+            Party1FirstName = string.Empty;
+            Party1MiddleName = string.Empty;
+            Party1LastName = string.Empty;
+            Party2FirstName = string.Empty;
+            Party2MiddleName = string.Empty;
+            Party2LastName = string.Empty;
         }
 
         public void Find()

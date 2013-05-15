@@ -133,6 +133,9 @@
     <Compile Include="Views\Controls\NewCourtDateControlView.xaml.cs">
       <DependentUpon>NewCourtDateControlView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\PartyControlView.xaml.cs">
+      <DependentUpon>PartyControlView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\ReissuanceControlView.xaml.cs">
       <DependentUpon>ReissuanceControlView.xaml</DependentUpon>
     </Compile>
@@ -203,6 +206,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\NewCourtDateControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\PartyControlView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

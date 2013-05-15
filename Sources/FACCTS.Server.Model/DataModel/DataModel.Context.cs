@@ -13,10 +13,10 @@ namespace FACCTS.Server.Model.DataModel
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class FACCTS_DBEntities : DbContext
+    public partial class FACCTS_DBEntities1 : DbContext
     {
-        public FACCTS_DBEntities()
-            : base("name=FACCTS_DBEntities")
+        public FACCTS_DBEntities1()
+            : base("name=FACCTS_DBEntities1")
         {
         }
     
@@ -31,5 +31,11 @@ namespace FACCTS.Server.Model.DataModel
         public DbSet<Sessions> Sessions { get; set; }
         public DbSet<Users> Users { get; set; }
         public DbSet<UsersInRoles> UsersInRoles { get; set; }
+        public DbSet<Designations> Designations { get; set; }
+        public DbSet<ParticipantRoles> ParticipantRoles { get; set; }
+        public DbSet<Sex> Sex { get; set; }
+        public DbSet<HairColors> HairColors { get; set; }
+        public DbSet<EyeColors> EyeColors { get; set; }
+        public DbSet<Races> Races { get; set; }
     }
 }
