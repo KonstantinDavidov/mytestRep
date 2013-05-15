@@ -1,0 +1,383 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FACCTS_DBModel.Store" Alias="Self" Provider="Devart.Data.PostgreSql" ProviderManifestToken="PostgreSQL" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="FACCTS_DBModelStoreContainer">
+          <EntitySet Name="ProfileData" EntityType="FACCTS_DBModel.Store.ProfileData" store:Type="Tables" Schema="public" />
+          <EntitySet Name="Profiles" EntityType="FACCTS_DBModel.Store.Profiles" store:Type="Tables" Schema="public" />
+          <EntitySet Name="Roles" EntityType="FACCTS_DBModel.Store.Roles" store:Type="Tables" Schema="public" />
+          <EntitySet Name="Sessions" EntityType="FACCTS_DBModel.Store.Sessions" store:Type="Tables" Schema="public" />
+          <EntitySet Name="Users" EntityType="FACCTS_DBModel.Store.Users" store:Type="Tables" Schema="public" />
+          <EntitySet Name="UsersInRoles" EntityType="FACCTS_DBModel.Store.UsersInRoles" store:Type="Tables" Schema="public" />
+          <AssociationSet Name="profiledata_profile_fkey" Association="FACCTS_DBModel.Store.profiledata_profile_fkey">
+            <End Role="Profiles" EntitySet="Profiles" />
+            <End Role="ProfileData" EntitySet="ProfileData" />
+          </AssociationSet>
+          <AssociationSet Name="usersinroles_rolename_fkey" Association="FACCTS_DBModel.Store.usersinroles_rolename_fkey">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UsersInRoles" EntitySet="UsersInRoles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ProfileData">
+          <Key>
+            <PropertyRef Name="pId" />
+          </Key>
+          <Property Name="pId" Type="char" Nullable="false" MaxLength="36" />
+          <Property Name="Profile" Type="char" Nullable="false" MaxLength="36" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="ValueString" Type="text" />
+          <Property Name="ValueBinary" Type="bytea" />
+        </EntityType>
+        <EntityType Name="Profiles">
+          <Key>
+            <PropertyRef Name="pId" />
+          </Key>
+          <Property Name="pId" Type="char" Nullable="false" MaxLength="36" />
+          <Property Name="Username" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="ApplicationName" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="IsAnonymous" Type="boolean" />
+          <Property Name="LastActivityDate" Type="timestamptz" />
+          <Property Name="LastUpdatedDate" Type="timestamptz" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Rolename" />
+            <PropertyRef Name="ApplicationName" />
+          </Key>
+          <Property Name="Rolename" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="ApplicationName" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Sessions">
+          <Key>
+            <PropertyRef Name="SessionId" />
+            <PropertyRef Name="ApplicationName" />
+          </Key>
+          <Property Name="SessionId" Type="varchar" Nullable="false" MaxLength="80" />
+          <Property Name="ApplicationName" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Created" Type="timestamptz" Nullable="false" />
+          <Property Name="Expires" Type="timestamptz" Nullable="false" />
+          <Property Name="Timeout" Type="int" Nullable="false" />
+          <Property Name="Locked" Type="boolean" Nullable="false" />
+          <Property Name="LockId" Type="int" Nullable="false" />
+          <Property Name="LockDate" Type="timestamptz" Nullable="false" />
+          <Property Name="Data" Type="text" />
+          <Property Name="Flags" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6035: The relationship 'profiles_username_fkey' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+      warning 6035: The relationship 'usersinroles_username_fkey' has columns that are not part of the key of the table on the primary side of the relationship. The relationship was excluded.
+      -->
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="pId" />
+          </Key>
+          <Property Name="pId" Type="char" Nullable="false" MaxLength="36" />
+          <Property Name="Username" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="ApplicationName" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Email" Type="varchar" MaxLength="128" />
+          <Property Name="Comment" Type="varchar" MaxLength="128" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="PasswordQuestion" Type="varchar" MaxLength="255" />
+          <Property Name="PasswordAnswer" Type="varchar" MaxLength="255" />
+          <Property Name="IsApproved" Type="boolean" />
+          <Property Name="LastActivityDate" Type="timestamptz" />
+          <Property Name="LastLoginDate" Type="timestamptz" />
+          <Property Name="LastPasswordChangedDate" Type="timestamptz" />
+          <Property Name="CreationDate" Type="timestamptz" />
+          <Property Name="IsOnLine" Type="boolean" />
+          <Property Name="IsLockedOut" Type="boolean" />
+          <Property Name="LastLockedOutDate" Type="timestamptz" />
+          <Property Name="FailedPasswordAttemptCount" Type="int" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="timestamptz" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="int" />
+          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="timestamptz" />
+        </EntityType>
+        <EntityType Name="UsersInRoles">
+          <Key>
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Rolename" />
+            <PropertyRef Name="ApplicationName" />
+          </Key>
+          <Property Name="Username" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="Rolename" Type="varchar" Nullable="false" MaxLength="255" />
+          <Property Name="ApplicationName" Type="varchar" Nullable="false" MaxLength="255" />
+        </EntityType>
+        <Association Name="profiledata_profile_fkey">
+          <End Role="Profiles" Type="FACCTS_DBModel.Store.Profiles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProfileData" Type="FACCTS_DBModel.Store.ProfileData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="pId" />
+            </Principal>
+            <Dependent Role="ProfileData">
+              <PropertyRef Name="Profile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usersinroles_rolename_fkey">
+          <End Role="Roles" Type="FACCTS_DBModel.Store.Roles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UsersInRoles" Type="FACCTS_DBModel.Store.UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Rolename" />
+              <PropertyRef Name="ApplicationName" />
+            </Principal>
+            <Dependent Role="UsersInRoles">
+              <PropertyRef Name="Rolename" />
+              <PropertyRef Name="ApplicationName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FACCTS_DBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="FACCTS_DBEntities1" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="ProfileData" EntityType="FACCTS_DBModel.ProfileData" />
+          <EntitySet Name="Profiles" EntityType="FACCTS_DBModel.Profiles" />
+          <EntitySet Name="Roles" EntityType="FACCTS_DBModel.Roles" />
+          <EntitySet Name="Sessions" EntityType="FACCTS_DBModel.Sessions" />
+          <EntitySet Name="Users" EntityType="FACCTS_DBModel.Users" />
+          <EntitySet Name="UsersInRoles" EntityType="FACCTS_DBModel.UsersInRoles" />
+          <AssociationSet Name="profiledata_profile_fkey" Association="FACCTS_DBModel.profiledata_profile_fkey">
+            <End Role="Profiles" EntitySet="Profiles" />
+            <End Role="ProfileData" EntitySet="ProfileData" />
+          </AssociationSet>
+          <AssociationSet Name="usersinroles_rolename_fkey" Association="FACCTS_DBModel.usersinroles_rolename_fkey">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="UsersInRoles" EntitySet="UsersInRoles" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ProfileData">
+          <Key>
+            <PropertyRef Name="pId" />
+          </Key>
+          <Property Name="pId" Type="String" Nullable="false" MaxLength="36" Unicode="false" FixedLength="true" />
+          <Property Name="Profile" Type="String" Nullable="false" MaxLength="36" Unicode="false" FixedLength="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="ValueString" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="ValueBinary" Type="Binary" MaxLength="2147483647" FixedLength="false" />
+          <NavigationProperty Name="Profiles" Relationship="FACCTS_DBModel.profiledata_profile_fkey" FromRole="ProfileData" ToRole="Profiles" />
+        </EntityType>
+        <EntityType Name="Profiles">
+          <Key>
+            <PropertyRef Name="pId" />
+          </Key>
+          <Property Name="pId" Type="String" Nullable="false" MaxLength="36" Unicode="false" FixedLength="true" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="ApplicationName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="IsAnonymous" Type="Boolean" />
+          <Property Name="LastActivityDate" Type="DateTime" />
+          <Property Name="LastUpdatedDate" Type="DateTime" />
+          <NavigationProperty Name="ProfileData" Relationship="FACCTS_DBModel.profiledata_profile_fkey" FromRole="Profiles" ToRole="ProfileData" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="Rolename" />
+            <PropertyRef Name="ApplicationName" />
+          </Key>
+          <Property Name="Rolename" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="ApplicationName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="UsersInRoles" Relationship="FACCTS_DBModel.usersinroles_rolename_fkey" FromRole="Roles" ToRole="UsersInRoles" />
+        </EntityType>
+        <EntityType Name="Sessions">
+          <Key>
+            <PropertyRef Name="SessionId" />
+            <PropertyRef Name="ApplicationName" />
+          </Key>
+          <Property Name="SessionId" Type="String" Nullable="false" MaxLength="80" Unicode="true" FixedLength="false" />
+          <Property Name="ApplicationName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" />
+          <Property Name="Expires" Type="DateTime" Nullable="false" />
+          <Property Name="Timeout" Type="Int32" Nullable="false" />
+          <Property Name="Locked" Type="Boolean" Nullable="false" />
+          <Property Name="LockId" Type="Int32" Nullable="false" />
+          <Property Name="LockDate" Type="DateTime" Nullable="false" />
+          <Property Name="Data" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="Flags" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="pId" />
+          </Key>
+          <Property Name="pId" Type="String" Nullable="false" MaxLength="36" Unicode="false" FixedLength="true" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="ApplicationName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="Comment" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordQuestion" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="PasswordAnswer" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="IsApproved" Type="Boolean" />
+          <Property Name="LastActivityDate" Type="DateTime" />
+          <Property Name="LastLoginDate" Type="DateTime" />
+          <Property Name="LastPasswordChangedDate" Type="DateTime" />
+          <Property Name="CreationDate" Type="DateTime" />
+          <Property Name="IsOnLine" Type="Boolean" />
+          <Property Name="IsLockedOut" Type="Boolean" />
+          <Property Name="LastLockedOutDate" Type="DateTime" />
+          <Property Name="FailedPasswordAttemptCount" Type="Int32" />
+          <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" />
+          <Property Name="FailedPasswordAnswerAttemptCount" Type="Int32" />
+          <Property Name="FailedPasswordAnswerAttemptWindowStart" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="UsersInRoles">
+          <Key>
+            <PropertyRef Name="Username" />
+            <PropertyRef Name="Rolename" />
+            <PropertyRef Name="ApplicationName" />
+          </Key>
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="Rolename" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="ApplicationName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Roles" Relationship="FACCTS_DBModel.usersinroles_rolename_fkey" FromRole="UsersInRoles" ToRole="Roles" />
+        </EntityType>
+        <Association Name="profiledata_profile_fkey">
+          <End Role="Profiles" Type="FACCTS_DBModel.Profiles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProfileData" Type="FACCTS_DBModel.ProfileData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Profiles">
+              <PropertyRef Name="pId" />
+            </Principal>
+            <Dependent Role="ProfileData">
+              <PropertyRef Name="Profile" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="usersinroles_rolename_fkey">
+          <End Role="Roles" Type="FACCTS_DBModel.Roles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UsersInRoles" Type="FACCTS_DBModel.UsersInRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="Rolename" />
+              <PropertyRef Name="ApplicationName" />
+            </Principal>
+            <Dependent Role="UsersInRoles">
+              <PropertyRef Name="Rolename" />
+              <PropertyRef Name="ApplicationName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FACCTS_DBModelStoreContainer" CdmEntityContainer="FACCTS_DBEntities1">
+          <EntitySetMapping Name="ProfileData">
+            <EntityTypeMapping TypeName="FACCTS_DBModel.ProfileData">
+              <MappingFragment StoreEntitySet="ProfileData">
+                <ScalarProperty Name="pId" ColumnName="pId" />
+                <ScalarProperty Name="Profile" ColumnName="Profile" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ValueString" ColumnName="ValueString" />
+                <ScalarProperty Name="ValueBinary" ColumnName="ValueBinary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Profiles">
+            <EntityTypeMapping TypeName="FACCTS_DBModel.Profiles">
+              <MappingFragment StoreEntitySet="Profiles">
+                <ScalarProperty Name="pId" ColumnName="pId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+                <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
+                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="FACCTS_DBModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Rolename" ColumnName="Rolename" />
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sessions">
+            <EntityTypeMapping TypeName="FACCTS_DBModel.Sessions">
+              <MappingFragment StoreEntitySet="Sessions">
+                <ScalarProperty Name="SessionId" ColumnName="SessionId" />
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Expires" ColumnName="Expires" />
+                <ScalarProperty Name="Timeout" ColumnName="Timeout" />
+                <ScalarProperty Name="Locked" ColumnName="Locked" />
+                <ScalarProperty Name="LockId" ColumnName="LockId" />
+                <ScalarProperty Name="LockDate" ColumnName="LockDate" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Flags" ColumnName="Flags" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="FACCTS_DBModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="pId" ColumnName="pId" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
+                <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="IsOnLine" ColumnName="IsOnLine" />
+                <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+                <ScalarProperty Name="LastLockedOutDate" ColumnName="LastLockedOutDate" />
+                <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
+                <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
+                <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
+                <ScalarProperty Name="FailedPasswordAnswerAttemptWindowStart" ColumnName="FailedPasswordAnswerAttemptWindowStart" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersInRoles">
+            <EntityTypeMapping TypeName="FACCTS_DBModel.UsersInRoles">
+              <MappingFragment StoreEntitySet="UsersInRoles">
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Rolename" ColumnName="Rolename" />
+                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

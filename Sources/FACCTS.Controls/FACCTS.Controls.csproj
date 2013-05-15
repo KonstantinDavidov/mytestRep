@@ -113,6 +113,12 @@
     <Compile Include="Views\CaseStatusView.xaml.cs">
       <DependentUpon>CaseStatusView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\CaseRecordLeftPaneView.xaml.cs">
+      <DependentUpon>CaseRecordLeftPaneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CaseRecordRightPaneView.xaml.cs">
+      <DependentUpon>CaseRecordRightPaneView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\CaseStatusLeftPaneView.xaml.cs">
       <DependentUpon>CaseStatusLeftPaneView.xaml</DependentUpon>
     </Compile>
@@ -167,6 +173,14 @@
     <Page Include="Views\CaseStatusView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\CaseRecordLeftPaneView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\CaseRecordRightPaneView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Controls\CaseStatusLeftPaneView.xaml">
       <SubType>Designer</SubType>

@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:localcontrols="clr-namespace:FACCTS.Controls.Views.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="577" d:DesignWidth="810" Background="{DynamicResource ControlBackgroundBrush}">
+             d:DesignHeight="300" d:DesignWidth="600" Background="{DynamicResource ControlBackgroundBrush}">
     <Grid>
     	<Grid.ColumnDefinitions>
     		<ColumnDefinition Width="{StaticResource LeftPaneWidth}"/>

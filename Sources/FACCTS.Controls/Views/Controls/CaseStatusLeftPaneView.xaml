@@ -42,7 +42,7 @@
     						<RowDefinition Height="Auto"/>
     					</Grid.RowDefinitions>
     					<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Case Number" VerticalAlignment="Top"/>
-    					<TextBox HorizontalAlignment="Left" Height="0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120" Grid.Column="1"/>
+    					<TextBox TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Grid.Column="1"/>
     					<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Status" VerticalAlignment="Center" Grid.Row="1"/>
     					<ComboBox Margin="0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
     				</Grid>
@@ -108,12 +108,12 @@
     						<RowDefinition Height="Auto"/>
     					</Grid.RowDefinitions>
     					<TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" Text="CCPOR Status" VerticalAlignment="Center"/>
-    					<TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="1"><Run Text="CCPOR I"/></TextBlock>
+    					<TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="1" Text="CCPOR ID"/>
     					<ComboBox Margin="0,0,0,-0.001" Grid.Column="1"/>
     					<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Row="1" Grid.Column="1"/>
     				</Grid>
     			</Border>
-    			<Border BorderBrush="Black" BorderThickness="1" Grid.Row="4">
+    			<Border BorderBrush="Black" BorderThickness="1" Grid.Row="4" Style="{DynamicResource OrdinalBorder}">
     				<Grid>
     					<Grid.RowDefinitions>
     						<RowDefinition Height="Auto"/>
@@ -134,7 +134,7 @@
     					<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Last name" VerticalAlignment="Top" Grid.Row="1" Grid.Column="3" FontSize="10.667"/>
     				</Grid>
     			</Border>
-    			<Border BorderBrush="Black" BorderThickness="1" Grid.Row="5">
+    			<Border BorderBrush="Black" BorderThickness="1" Grid.Row="5" Style="{DynamicResource OrdinalBorder}">
     				<Grid>
     					<Grid.RowDefinitions>
     						<RowDefinition Height="Auto"/>
@@ -161,7 +161,7 @@
     			</UniformGrid>
     		</Grid>
     	</GroupBox>
-    	<Border BorderBrush="Black" BorderThickness="1" Style="{DynamicResource OrdinalBorder}" Grid.Row="2" VerticalAlignment="Top">
+    	<Border BorderBrush="Black" BorderThickness="1" Style="{DynamicResource OrdinalBorder}" Grid.Row="2" VerticalAlignment="Bottom">
     		<UniformGrid Rows="1" Columns="2">
     			<Button Content="Import CMS" HorizontalAlignment="Left"/>
     			<Button Content="Export CCPOR" VerticalAlignment="Top" HorizontalAlignment="Right"/>

@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Caliburn.Micro.ReactiveUI", "ReactiveUI\Caliburn.Micro.ReactiveUI.csproj", "{39E149C2-0DE8-4E53-B0C3-A48CCE826584}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACCTS.Server.Model", "FACCTS.Server.Model\FACCTS.Server.Model.csproj", "{5A675CBB-2774-4FDE-A8C6-40AA46F4FA3F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{39E149C2-0DE8-4E53-B0C3-A48CCE826584}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39E149C2-0DE8-4E53-B0C3-A48CCE826584}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39E149C2-0DE8-4E53-B0C3-A48CCE826584}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A675CBB-2774-4FDE-A8C6-40AA46F4FA3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A675CBB-2774-4FDE-A8C6-40AA46F4FA3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A675CBB-2774-4FDE-A8C6-40AA46F4FA3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A675CBB-2774-4FDE-A8C6-40AA46F4FA3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -54,6 +60,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{5515ABAB-B4DD-4F50-8501-060AD3296E77} = {2A35A32C-88CC-4F41-9D70-691F0BB1B1C0}
 		{995A2FD2-4F0B-45B7-A98D-971924B8F128} = {2A35A32C-88CC-4F41-9D70-691F0BB1B1C0}
+		{5A675CBB-2774-4FDE-A8C6-40AA46F4FA3F} = {2A35A32C-88CC-4F41-9D70-691F0BB1B1C0}
 		{39E149C2-0DE8-4E53-B0C3-A48CCE826584} = {3B38B188-9D94-4E91-BBD2-C5DFACB9B319}
 	EndGlobalSection
 EndGlobal
