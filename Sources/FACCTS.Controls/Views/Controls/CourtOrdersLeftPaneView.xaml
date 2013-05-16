@@ -7,6 +7,7 @@
              x:Class="FACCTS.Controls.Views.Controls.CourtOrdersLeftPaneView" 
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:ei="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
              mc:Ignorable="d" 
              d:DesignHeight="480" d:DesignWidth="300" Background="{DynamicResource ControlBackgroundBrush}">
     <Grid>
@@ -16,15 +17,18 @@
         </Grid.RowDefinitions>
         <GroupBox Header="Case Docket - Completed"/>
         <GroupBox Header="Court Orders" Grid.Row="1">
-            <TreeView ScrollViewer.HorizontalScrollBarVisibility="Auto">
+            <TreeView ScrollViewer.HorizontalScrollBarVisibility="Auto" x:Name="TreeView">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectedItemChanged">
                         <cal:ActionMessage MethodName="Activate">
                             <cal:Parameter Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TreeView}, Path=SelectedItem.DataContext, Mode=OneWay}"/>
                         </cal:ActionMessage>
                     </i:EventTrigger>
+                    <i:EventTrigger EventName="Loaded">
+                        <ei:ChangePropertyAction TargetName="FirstItem" PropertyName="IsSelected" Value="True"/>
+                    </i:EventTrigger>
                 </i:Interaction.Triggers>
-                <TreeViewItem Header="DV110 - TRO" IsSelected="True" IsExpanded="True">
+                <TreeViewItem Header="DV110 - TRO" IsExpanded="True" x:Name="FirstItem">
                     <TreeViewItem.DataContext>
                         <ViewModels:DV110TemporaryRestrainingOrderViewModel/>
                     </TreeViewItem.DataContext>
