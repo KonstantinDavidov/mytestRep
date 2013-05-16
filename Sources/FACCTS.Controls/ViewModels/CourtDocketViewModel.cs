@@ -4,6 +4,7 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ReactiveUI;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -13,6 +14,20 @@ namespace FACCTS.Controls.ViewModels
         public CourtDocketViewModel() : base()
         {
             this.DisplayName = "Court Docket";
+        }
+
+
+        private DateTime? _calendarDate;
+        public DateTime? CalendarDate
+        {
+            get
+            {
+                return _calendarDate;
+            }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _calendarDate, value);
+            }
         }
     }
 }
