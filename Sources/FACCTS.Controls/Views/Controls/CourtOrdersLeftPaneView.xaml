@@ -28,7 +28,11 @@
                     <TreeViewItem.DataContext>
                         <ViewModels:DV110TemporaryRestrainingOrderViewModel/>
                     </TreeViewItem.DataContext>
-                    <TreeViewItem Header="Property and Attorney's Fee"/>
+                    <TreeViewItem Header="Property and Attorney's Fee">
+                        <TreeViewItem.DataContext>
+                            <ViewModels:DV110PropertyAndAttorneysFeeViewModel/>
+                        </TreeViewItem.DataContext>
+                    </TreeViewItem>
                     <TreeViewItem Header="Child Custody"/>
                     <TreeViewItem Header="Supervision"/>
                     <TreeViewItem Header="Attach DV145 - Travel Restriction"/>

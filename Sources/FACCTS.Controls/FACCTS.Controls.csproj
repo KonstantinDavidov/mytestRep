@@ -107,6 +107,7 @@
     <Compile Include="ViewModels\ChildrenOtherProtectedViewModel.cs" />
     <Compile Include="ViewModels\CourtDocketViewModel.cs" />
     <Compile Include="ViewModels\CourtOrdersViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV110PropertyAndAttorneysFeeViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\DV110TemporaryRestrainingOrderViewModel.cs" />
     <Compile Include="ViewModels\PersonalInformationViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
@@ -159,6 +160,9 @@
     </Compile>
     <Compile Include="Views\CourtOrdersView.xaml.cs">
       <DependentUpon>CourtOrdersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\DV110PropertyAndAttorneysFeeView.xaml.cs">
+      <DependentUpon>DV110PropertyAndAttorneysFeeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OutputForms\DV110TemporaryRestrainingOrderView.xaml.cs">
       <DependentUpon>DV110TemporaryRestrainingOrderView.xaml</DependentUpon>
@@ -262,6 +266,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\CourtOrdersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OutputForms\DV110PropertyAndAttorneysFeeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
