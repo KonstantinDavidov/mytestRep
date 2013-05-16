@@ -1,0 +1,76 @@
+﻿<UserControl x:Class="FACCTS.Controls.Views.Controls.CourtOrdersRightPaneView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="677" Background="{DynamicResource ControlBackgroundBrush}"
+             xmlns:cal="http://www.caliburnproject.org">
+    <Grid>
+    	<Grid.RowDefinitions>
+    		<RowDefinition Height="Auto"/>
+    		<RowDefinition/>
+    		<RowDefinition Height="Auto"/>
+    	</Grid.RowDefinitions>
+    	<Grid>
+    		<Grid.ColumnDefinitions>
+    			<ColumnDefinition/>
+    			<ColumnDefinition/>
+    		</Grid.ColumnDefinitions>
+    		<Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1">
+    			<Grid Margin="5,0">
+    				<Grid.ColumnDefinitions>
+    					<ColumnDefinition Width="Auto"/>
+    					<ColumnDefinition/>
+    					<ColumnDefinition/>
+    					<ColumnDefinition Width="Auto"/>
+    					<ColumnDefinition Width="Auto"/>
+    					<ColumnDefinition Width="Auto"/>
+    				</Grid.ColumnDefinitions>
+    				<Grid.RowDefinitions>
+    					<RowDefinition Height="Auto"/>
+    					<RowDefinition Height="Auto"/>
+    				</Grid.RowDefinitions>
+    				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Party" VerticalAlignment="Center"/>
+    				<TextBox Height="21.933" TextWrapping="Wrap" Text="TextBox" Grid.Column="1"/>
+    				<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="2"/>
+    				<CheckBox Content="Present" Margin="0,0,-0.001,0" Grid.Column="3" VerticalAlignment="Center"/>
+    				<CheckBox Content="Sworn" Margin="0,0,-0.001,0" VerticalAlignment="Center" Grid.Column="4"/>
+    				<TextBox Grid.ColumnSpan="3" Height="21.933" TextWrapping="Wrap" Text="TextBox" Grid.Column="5"/>
+    				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" FontStyle="Italic" FontSize="10.667"/>
+    				<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Row="1" Grid.Column="2"/>
+    				<TextBlock TextWrapping="Wrap" Text="Attendence" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Center" FontStyle="Italic" FontSize="10.667" HorizontalAlignment="Center"/>
+    				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Parent" VerticalAlignment="Center" Grid.Row="1" Grid.Column="5" FontStyle="Italic" FontSize="10.667"/>
+    			</Grid>
+    		</Border>
+    		<Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Column="1">
+    			<Grid Margin="5,0">
+    				<Grid.ColumnDefinitions>
+    					<ColumnDefinition Width="Auto"/>
+    					<ColumnDefinition/>
+    					<ColumnDefinition/>
+    					<ColumnDefinition Width="Auto"/>
+    					<ColumnDefinition Width="Auto"/>
+    					<ColumnDefinition Width="Auto"/>
+    				</Grid.ColumnDefinitions>
+    				<Grid.RowDefinitions>
+    					<RowDefinition Height="Auto"/>
+    					<RowDefinition Height="Auto"/>
+    				</Grid.RowDefinitions>
+    				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Party" VerticalAlignment="Center"/>
+    				<TextBox Height="21.933" TextWrapping="Wrap" Text="TextBox" Grid.Column="1"/>
+    				<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="2"/>
+    				<CheckBox Content="Present" Margin="0,0,-0.001,0" Grid.Column="3" VerticalAlignment="Center"/>
+    				<CheckBox Content="Sworn" Margin="0,0,-0.001,0" VerticalAlignment="Center" Grid.Column="4"/>
+    				<TextBox Grid.ColumnSpan="3" Height="21.933" TextWrapping="Wrap" Text="TextBox" Grid.Column="5"/>
+    				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" FontStyle="Italic" FontSize="10.667"/>
+    				<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Row="1" Grid.Column="2"/>
+    				<TextBlock TextWrapping="Wrap" Text="Attendence" Grid.Row="1" Grid.Column="3" Grid.ColumnSpan="2" VerticalAlignment="Center" FontStyle="Italic" FontSize="10.667" HorizontalAlignment="Center"/>
+    				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Parent" VerticalAlignment="Center" Grid.Row="1" Grid.Column="5" FontStyle="Italic" FontSize="10.667"/>
+    			</Grid>
+    		</Border>
+    	</Grid>
+    	<GroupBox Header="{Binding ActiveItem.DisplayName, Mode=OneWay}" Grid.Row="1" cal:View.Model="{Binding ActiveItem, Mode=OneWay}"/>
+            
+    </Grid>
+</UserControl>

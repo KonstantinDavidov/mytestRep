@@ -16,5 +16,13 @@ namespace FACCTS.Controls.ViewModels
         {
             this.DisplayName = "Court Orders";
         }
+
+        public void Activate(ViewModelBase viewModel)
+        {
+            if (viewModel != null)
+            {
+                this.ActivateItem(viewModel);
+            }
+        }
     }
 }
