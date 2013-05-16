@@ -1,0 +1,41 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:cal="http://www.caliburnproject.org"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+	mc:Ignorable="d"
+	x:Class="FACCTS.Controls.Views.Controls.CaseRecordLeftPaneView"
+	x:Name="UserControl"
+	d:DesignWidth="375.7" d:DesignHeight="480" Background="{DynamicResource ControlBackgroundBrush}">
+
+	<Grid x:Name="LayoutRoot">
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<GroupBox Header="Court Cases">
+			<ListBox/>
+		</GroupBox>
+		<GroupBox Header="Court Case Edit" Grid.Row="1">
+			<ListBox x:Name="listBox">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <cal:ActionMessage MethodName="ActivateControl">
+                            <cal:Parameter Value="{Binding ElementName=listBox, Path=SelectedIndex}" />
+                        </cal:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <ListBoxItem Content="Personal Information" IsSelected="True"/>
+				<ListBoxItem Content="Children - Other Protected"/>
+				<ListBoxItem Content="Attorneys"/>
+				<ListBoxItem Content="Witness and Interpreter"/>
+				<ListBoxItem Content="Related Cases"/>
+				<ListBoxItem Content="Appearence"/>
+				<ListBoxItem Content="Case History"/>
+				<ListBoxItem Content="Case Notes"/>
+			</ListBox>
+		</GroupBox>
+	</Grid>
+</UserControl>
