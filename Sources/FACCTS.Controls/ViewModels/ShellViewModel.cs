@@ -19,11 +19,13 @@ namespace FACCTS.Controls.ViewModels
     {
         [ImportingConstructor]
         public ShellViewModel(CaseStatusViewModel caseStatusViewModel
-            , CaseRecordViewModel caseRecordViewModel)
+            , CaseRecordViewModel caseRecordViewModel
+            , CourtDocketViewModel courtDocketViewModel)
             : base()
         {
             CaseStatusViewModel = caseStatusViewModel;
             CaseRecordViewModel = caseRecordViewModel;
+            CourtDocketViewModel = courtDocketViewModel;
             this.WhenAny(x => x.ActiveItem, x => x.Value)
                 .Subscribe(x =>
                 {
@@ -63,6 +65,8 @@ namespace FACCTS.Controls.ViewModels
         }
 
         public CaseRecordViewModel CaseRecordViewModel { protected get; set; }
+
+        public CourtDocketViewModel CourtDocketViewModel  { protected get; set; }
        
         public void ShowCaseStatus()
         {
@@ -72,6 +76,11 @@ namespace FACCTS.Controls.ViewModels
         public void ShowCaseRecord()
         {
             ActivateItem(CaseRecordViewModel);
+        }
+
+        public void ShowCourtDocket()
+        {
+            ActivateItem(CourtDocketViewModel);
         }
 
        

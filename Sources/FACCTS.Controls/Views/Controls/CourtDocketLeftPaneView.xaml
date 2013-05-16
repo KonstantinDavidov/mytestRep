@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="FACCTS.Controls.Views.Controls.CourtDocketLeftPaneView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="471" d:DesignWidth="300" Background="{DynamicResource ControlBackgroundBrush}">
+    <Grid>
+    	<Grid.RowDefinitions>
+    		<RowDefinition/>
+    		<RowDefinition Height="Auto"/>
+    		<RowDefinition Height="Auto"/>
+    	</Grid.RowDefinitions>
+    	<GroupBox Header="Court Case List">
+    		<ListBox/>
+    	</GroupBox>
+    	<GroupBox Header="Court Docket Calendar" Grid.Row="1">
+    		<Grid>
+    			<Grid.ColumnDefinitions>
+    				<ColumnDefinition Width="Auto"/>
+    				<ColumnDefinition/>
+    				<ColumnDefinition Width="Auto"/>
+    			</Grid.ColumnDefinitions>
+    			<Grid.RowDefinitions>
+    				<RowDefinition/>
+    				<RowDefinition Height="Auto"/>
+    				<RowDefinition Height="Auto"/>
+    			</Grid.RowDefinitions>
+    			<Calendar Margin="0,0,0,-0.001" Grid.ColumnSpan="3"/>
+    			<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Filter by Courtroom" VerticalAlignment="Center" Grid.Row="1"/>
+    			<ComboBox Grid.Row="1" Grid.Column="1"/>
+    			<Button Content="View Cases" Grid.Row="1" Grid.Column="2"/>
+    			<TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2"><Run Text="Filter by AM/PM"/></TextBlock>
+    			<ComboBox Margin="0" Grid.Row="2" Grid.Column="1"/>
+    		</Grid>
+    	</GroupBox>
+    	<Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
+    		<Button Content="Add Case" HorizontalAlignment="Left" Width="75"/>
+    	</Border>
+            
+    </Grid>
+</UserControl>
