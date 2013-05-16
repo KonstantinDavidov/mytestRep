@@ -20,12 +20,14 @@ namespace FACCTS.Controls.ViewModels
         [ImportingConstructor]
         public ShellViewModel(CaseStatusViewModel caseStatusViewModel
             , CaseRecordViewModel caseRecordViewModel
-            , CourtDocketViewModel courtDocketViewModel)
+            , CourtDocketViewModel courtDocketViewModel
+            , CourtOrdersViewModel courtOrdersViewModel)
             : base()
         {
             CaseStatusViewModel = caseStatusViewModel;
             CaseRecordViewModel = caseRecordViewModel;
             CourtDocketViewModel = courtDocketViewModel;
+            CourtOrdersViewModel = courtOrdersViewModel;
             this.WhenAny(x => x.ActiveItem, x => x.Value)
                 .Subscribe(x =>
                 {
@@ -40,9 +42,9 @@ namespace FACCTS.Controls.ViewModels
             get
             {
                 string retValue = _name;
-                if (ActiveItem != null && ActiveItem is ViewModelBase)
+                if (ActiveItem != null && ActiveItem is IScreen)
                 {
-                    retValue += string.Format(" - {0}", (ActiveItem as ViewModelBase).DisplayName);
+                    retValue += string.Format(" - {0}", (ActiveItem as IScreen).DisplayName);
                 }
                 return retValue; 
             }
@@ -67,6 +69,8 @@ namespace FACCTS.Controls.ViewModels
         public CaseRecordViewModel CaseRecordViewModel { protected get; set; }
 
         public CourtDocketViewModel CourtDocketViewModel  { protected get; set; }
+
+        public CourtOrdersViewModel CourtOrdersViewModel { protected get; set; }
        
         public void ShowCaseStatus()
         {
@@ -81,6 +85,11 @@ namespace FACCTS.Controls.ViewModels
         public void ShowCourtDocket()
         {
             ActivateItem(CourtDocketViewModel);
+        }
+
+        public void ShowCourtOrders()
+        {
+            ActivateItem(CourtOrdersViewModel);
         }
 
        

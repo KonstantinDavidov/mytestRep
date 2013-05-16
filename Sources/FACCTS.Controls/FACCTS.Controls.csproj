@@ -106,6 +106,7 @@
     <Compile Include="ViewModels\CaseStatusViewModel.cs" />
     <Compile Include="ViewModels\ChildrenOtherProtectedViewModel.cs" />
     <Compile Include="ViewModels\CourtDocketViewModel.cs" />
+    <Compile Include="ViewModels\CourtOrdersViewModel.cs" />
     <Compile Include="ViewModels\PersonalInformationViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\ShowExceptionDialogViewModel.cs" />
@@ -148,6 +149,9 @@
     </Compile>
     <Compile Include="Views\CourtDocketView.xaml.cs">
       <DependentUpon>CourtDocketView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CourtOrdersView.xaml.cs">
+      <DependentUpon>CourtOrdersView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PersonalInformationView.xaml.cs">
       <DependentUpon>PersonalInformationView.xaml</DependentUpon>
@@ -236,6 +240,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\CourtDocketView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CourtOrdersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
