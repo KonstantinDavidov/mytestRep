@@ -17,13 +17,15 @@ namespace FACCTS.Controls.ViewModels
         public CaseRecordViewModel(PersonalInformationViewModel personalInformation
             , ChildrenOtherProtectedViewModel childrenViewModel
             , AttorneysViewModel attorneysViewModel
-            , WitnessInterpereterViewModel witnessInterprererViewModel) : base()
+            , WitnessInterpereterViewModel witnessInterprererViewModel
+            , RelatedCasesViewModel relatedCasesViewModel) : base()
         {
             this.DisplayName = "Case Record";
             PersonalInformationViewModel = personalInformation;
             ChildrenOtherProtectedViewModel = childrenViewModel;
             AttorneysViewModel = attorneysViewModel;
             WitnessInterpereterViewModel = witnessInterprererViewModel;
+            RelatedCasesViewModel = relatedCasesViewModel;
             ActivateControl(0);
         }
 
@@ -31,6 +33,7 @@ namespace FACCTS.Controls.ViewModels
         protected ChildrenOtherProtectedViewModel ChildrenOtherProtectedViewModel { get; set; }
         protected AttorneysViewModel AttorneysViewModel {get; set;}
         protected WitnessInterpereterViewModel WitnessInterpereterViewModel { get; set; }
+        protected RelatedCasesViewModel RelatedCasesViewModel { get; set; }
 
         public void ActivateControl(int selectedIndex)
         {
@@ -47,6 +50,9 @@ namespace FACCTS.Controls.ViewModels
                     break;
                 case 3:
                     ActivateItem(WitnessInterpereterViewModel);
+                    break;
+                case 4:
+                    ActivateItem(RelatedCasesViewModel);
                     break;
                 default:
                     ActivateItem(PersonalInformationViewModel);
