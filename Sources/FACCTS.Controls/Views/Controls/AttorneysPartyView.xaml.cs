@@ -25,5 +25,27 @@ namespace FACCTS.Controls.Views.Controls
             InitializeComponent();
         }
 
+        #region DisplayName
+
+        /// <summary>
+        /// DisplayName Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty DisplayNameProperty =
+            DependencyProperty.Register("DisplayName", typeof(string), typeof(AttorneysPartyView),
+                new FrameworkPropertyMetadata("AttorneysPartyView"));
+
+        /// <summary>
+        /// Gets or sets the DisplayName property. This dependency property 
+        /// indicates ....
+        /// </summary>
+        public string DisplayName
+        {
+            get { return (string)GetValue(DisplayNameProperty); }
+            set { SetValue(DisplayNameProperty, value); }
+        }
+
+        #endregion
+
+        
     }
 }

@@ -13,9 +13,9 @@
     		<RowDefinition/>
     		<RowDefinition Height="Auto"/>
     	</Grid.RowDefinitions>
-        <localcontrols:AttorneysPartyView Grid.Row="0"    />
-        <localcontrols:AttorneysPartyView Grid.Row="1"    />
-        <localcontrols:AttorneysPartyView Grid.Row="2"    />
+        <localcontrols:AttorneysPartyView Grid.Row="0"    DisplayName="Attorney for Party 1"/>
+        <localcontrols:AttorneysPartyView Grid.Row="1"    DisplayName="Attorney for Party 2"/>
+        <localcontrols:AttorneysPartyView Grid.Row="2"    DisplayName="Attorney for Child"/>
         <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Row="3" CornerRadius="4">
         	<Grid>
         		<Button Content="Save" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Top" Width="75"/>
