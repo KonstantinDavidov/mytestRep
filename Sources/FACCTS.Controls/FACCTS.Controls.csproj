@@ -106,25 +106,32 @@
   <ItemGroup>
     <Compile Include="IShell.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\CaseRecordViewModel.cs" />
+    <Compile Include="ViewModels\Case Record\AttorneysViewModel.cs" />
+    <Compile Include="ViewModels\Case Record\CaseRecordViewModel.cs" />
     <Compile Include="ViewModels\CaseStatusViewModel.cs" />
-    <Compile Include="ViewModels\ChildrenOtherProtectedViewModel.cs" />
+    <Compile Include="ViewModels\Case Record\ChildrenOtherProtectedViewModel.cs" />
     <Compile Include="ViewModels\CourtDocketViewModel.cs" />
     <Compile Include="ViewModels\CourtOrdersViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\DV110PropertyAndAttorneysFeeViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\DV110TemporaryRestrainingOrderViewModel.cs" />
-    <Compile Include="ViewModels\PersonalInformationViewModel.cs" />
+    <Compile Include="ViewModels\Case Record\PersonalInformationViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\ShowExceptionDialogViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
-    <Compile Include="Views\CaseRecordView.xaml.cs">
+    <Compile Include="Views\Case Record\AttorneysView.xaml.cs">
+      <DependentUpon>AttorneysView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Case Record\CaseRecordView.xaml.cs">
       <DependentUpon>CaseRecordView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CaseStatusView.xaml.cs">
       <DependentUpon>CaseStatusView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ChildrenOtherProtectedView.xaml.cs">
+    <Compile Include="Views\Case Record\ChildrenOtherProtectedView.xaml.cs">
       <DependentUpon>ChildrenOtherProtectedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\AttorneysPartyView.xaml.cs">
+      <DependentUpon>AttorneysPartyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\CaseRecordLeftPaneView.xaml.cs">
       <DependentUpon>CaseRecordLeftPaneView.xaml</DependentUpon>
@@ -171,7 +178,7 @@
     <Compile Include="Views\OutputForms\DV110TemporaryRestrainingOrderView.xaml.cs">
       <DependentUpon>DV110TemporaryRestrainingOrderView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\PersonalInformationView.xaml.cs">
+    <Compile Include="Views\Case Record\PersonalInformationView.xaml.cs">
       <DependentUpon>PersonalInformationView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReissuanceDialogView.xaml.cs">
@@ -209,7 +216,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\CaseRecordView.xaml">
+    <Page Include="Views\Case Record\AttorneysView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Case Record\CaseRecordView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -217,7 +228,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ChildrenOtherProtectedView.xaml">
+    <Page Include="Views\Case Record\ChildrenOtherProtectedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\AttorneysPartyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -281,7 +296,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PersonalInformationView.xaml">
+    <Page Include="Views\Case Record\PersonalInformationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -327,6 +342,7 @@
       <Name>Caliburn.Micro.ReactiveUI</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.5\tools\Microsoft.Bcl.Build.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

@@ -15,16 +15,19 @@ namespace FACCTS.Controls.ViewModels
     {
         [ImportingConstructor]
         public CaseRecordViewModel(PersonalInformationViewModel personalInformation
-            , ChildrenOtherProtectedViewModel childrenViewModel) : base()
+            , ChildrenOtherProtectedViewModel childrenViewModel
+            , AttorneysViewModel attorneysViewModel) : base()
         {
             this.DisplayName = "Case Record";
             PersonalInformationViewModel = personalInformation;
             ChildrenOtherProtectedViewModel = childrenViewModel;
+            AttorneysViewModel = attorneysViewModel;
             ActivateControl(0);
         }
 
         protected PersonalInformationViewModel PersonalInformationViewModel { get; set; }
         protected ChildrenOtherProtectedViewModel ChildrenOtherProtectedViewModel { get; set; }
+        protected AttorneysViewModel AttorneysViewModel {get; set;}
 
         public void ActivateControl(int selectedIndex)
         {
@@ -35,6 +38,9 @@ namespace FACCTS.Controls.ViewModels
                     break;
                 case 1:
                     ActivateItem(ChildrenOtherProtectedViewModel);
+                    break;
+                case 2:
+                    ActivateItem(AttorneysViewModel);
                     break;
                 default:
                     ActivateItem(PersonalInformationViewModel);

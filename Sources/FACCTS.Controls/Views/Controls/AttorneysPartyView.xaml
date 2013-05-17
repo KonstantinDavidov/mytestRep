@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="FACCTS.Controls.Views.Controls.AttorneysPartyView"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 mc:Ignorable="d" 
+			 d:DesignHeight="153" d:DesignWidth="823" Background="{DynamicResource ControlBackgroundBrush}">
+	<GroupBox Header="{Binding DisplayName, FallbackValue=Attorney for Party 1, Mode=OneWay}">
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition Width="20"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition/>
+				<ColumnDefinition Width="10"/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			<TextBlock HorizontalAlignment="Right" Margin="0" TextWrapping="Wrap" Text="First, Last name" VerticalAlignment="Center" Grid.Row="1"/>
+			<TextBlock HorizontalAlignment="Right" Margin="0" TextWrapping="Wrap" Text="Firm name" VerticalAlignment="Center" Grid.Row="2"/>
+			<TextBlock HorizontalAlignment="Right" Margin="0" TextWrapping="Wrap" Text="Street Address" VerticalAlignment="Center" Grid.Row="3"/>
+			<TextBlock HorizontalAlignment="Right" Margin="0" TextWrapping="Wrap" Text="City, State, Zip" VerticalAlignment="Center" Grid.Row="4"/>
+			<TextBlock HorizontalAlignment="Right" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="5"><Run Text="Email"/></TextBlock>
+			<CheckBox Content="Pro Per" Margin="0" Grid.Column="1" Grid.ColumnSpan="3"/>
+			<TextBox Grid.ColumnSpan="2" TextWrapping="Wrap" Text="TextBox" Grid.Row="1" Grid.Column="1"/>
+			<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Row="1" Grid.Column="3"/>
+			<TextBox Grid.ColumnSpan="3" TextWrapping="Wrap" Text="TextBox" Grid.Row="2" Grid.Column="1"/>
+			<TextBox Grid.ColumnSpan="3" Height="23" TextWrapping="Wrap" Text="TextBox" Grid.Row="3" Grid.Column="1"/>
+			<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Row="4" Grid.Column="1"/>
+			<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Row="4" Grid.Column="2" Margin="0,-0.001,0,0"/>
+			<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Row="4" Grid.Column="3" Margin="0,-0.001,0,0"/>
+			<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Row="5" Grid.Column="1" Margin="0,-0.001,0,0" Grid.ColumnSpan="3"/>
+			<TextBlock TextWrapping="Wrap" Text="State Bar ID" Grid.Row="1" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+			<TextBlock TextWrapping="Wrap" Text="Phone" Grid.Row="4" Grid.Column="5" VerticalAlignment="Center" Margin="0,4,0,3.999" HorizontalAlignment="Right"/>
+			<TextBlock TextWrapping="Wrap" Text="Fax" Grid.Row="5" Grid.Column="5" VerticalAlignment="Center" Margin="0,4,0,3.999" HorizontalAlignment="Right"/>
+			<TextBox Height="23" TextWrapping="Wrap" Text="TextBox" Grid.Row="1" Grid.Column="6"/>
+			<TextBox Height="23" TextWrapping="Wrap" Text="TextBox" Grid.Row="4" Grid.Column="6"/>
+			<TextBox Height="23" TextWrapping="Wrap" Text="TextBox" Grid.Row="5" Grid.Column="6" Margin="0,0,0,-0.001"/>
+		</Grid>
+	</GroupBox>
+</UserControl>
