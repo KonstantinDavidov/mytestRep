@@ -1,0 +1,14 @@
+﻿body {
+}
+
+/* court staff layout
+----------------------------------------------------------*/
+
+.leftpanel {
+    width: 300px;
+    background-color: #FFF;
+}
+
+.centerpanel {
+    margin-left: 310px;
+}

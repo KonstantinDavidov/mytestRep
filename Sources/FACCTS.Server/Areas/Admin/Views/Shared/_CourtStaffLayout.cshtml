@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "_CourtStaffLayout";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<div id="body">
+    <div class="content-wrapper main-content clear-fix">
+        
+        <div class="float-left leftpanel">
+            Court Staff
+        </div>
+        
+        <div class="centerpanel">
+            <div>
+                <ul>
+                    <li>@Html.ActionLink("Profile"      , "Profile"         , "CourtStaff", new { area = "Admin" }, null)</li>
+                    <li>@Html.ActionLink("Availability" , "Availability"    , "CourtStaff", new { area = "Admin" }, null)</li>
+                    <li>@Html.ActionLink("User Role"    , "UserRole"        , "CourtStaff", new { area = "Admin" }, null)</li>
+                </ul>
+            </div>
+
+            @RenderBody()
+        </div>        
+        
+    </div>
+</div>
