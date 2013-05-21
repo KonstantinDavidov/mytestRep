@@ -12,17 +12,15 @@ namespace FACCTS.Server.Model.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Sessions
+    public partial class aspnet_PersonalizationPerUser
     {
-        public string SessionId { get; set; }
-        public string ApplicationName { get; set; }
-        public System.DateTime Created { get; set; }
-        public System.DateTime Expires { get; set; }
-        public int Timeout { get; set; }
-        public bool Locked { get; set; }
-        public int LockId { get; set; }
-        public System.DateTime LockDate { get; set; }
-        public string Data { get; set; }
-        public int Flags { get; set; }
+        public System.Guid Id { get; set; }
+        public Nullable<System.Guid> PathId { get; set; }
+        public Nullable<System.Guid> UserId { get; set; }
+        public byte[] PageSettings { get; set; }
+        public System.DateTime LastUpdatedDate { get; set; }
+    
+        public virtual aspnet_Paths aspnet_Paths { get; set; }
+        public virtual aspnet_Users aspnet_Users { get; set; }
     }
 }

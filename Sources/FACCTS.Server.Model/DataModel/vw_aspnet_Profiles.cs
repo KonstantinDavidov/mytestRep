@@ -12,9 +12,10 @@ namespace FACCTS.Server.Model.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class HairColors
+    public partial class vw_aspnet_Profiles
     {
-        public int ID { get; set; }
-        public string HairColor { get; set; }
+        public System.Guid UserId { get; set; }
+        public System.DateTime LastUpdatedDate { get; set; }
+        public Nullable<int> DataSize { get; set; }
     }
 }

@@ -12,9 +12,12 @@ namespace FACCTS.Server.Model.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Races
+    public partial class aspnet_PersonalizationAllUsers
     {
-        public int ID { get; set; }
-        public string Race { get; set; }
+        public System.Guid PathId { get; set; }
+        public byte[] PageSettings { get; set; }
+        public System.DateTime LastUpdatedDate { get; set; }
+    
+        public virtual aspnet_Paths aspnet_Paths { get; set; }
     }
 }

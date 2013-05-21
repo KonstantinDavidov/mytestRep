@@ -12,14 +12,14 @@ namespace FACCTS.Server.Model.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class ProfileData
+    public partial class vw_aspnet_Users
     {
-        public string pId { get; set; }
-        public string Profile { get; set; }
-        public string Name { get; set; }
-        public string ValueString { get; set; }
-        public byte[] ValueBinary { get; set; }
-    
-        public virtual Profiles Profiles { get; set; }
+        public System.Guid ApplicationId { get; set; }
+        public System.Guid UserId { get; set; }
+        public string UserName { get; set; }
+        public string LoweredUserName { get; set; }
+        public string MobileAlias { get; set; }
+        public bool IsAnonymous { get; set; }
+        public System.DateTime LastActivityDate { get; set; }
     }
 }

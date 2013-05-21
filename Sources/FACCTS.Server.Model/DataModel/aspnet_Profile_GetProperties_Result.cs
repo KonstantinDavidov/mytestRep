@@ -10,11 +10,11 @@
 namespace FACCTS.Server.Model.DataModel
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Designations
+    public partial class aspnet_Profile_GetProperties_Result
     {
-        public int ID { get; set; }
-        public string Designation { get; set; }
+        public string PropertyNames { get; set; }
+        public string PropertyValuesString { get; set; }
+        public byte[] PropertyValuesBinary { get; set; }
     }
 }

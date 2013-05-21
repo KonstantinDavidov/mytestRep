@@ -12,12 +12,11 @@ namespace FACCTS.Server.Model.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class UsersInRoles
+    public partial class vw_aspnet_WebPartState_User
     {
-        public string Username { get; set; }
-        public string Rolename { get; set; }
-        public string ApplicationName { get; set; }
-    
-        public virtual Roles Roles { get; set; }
+        public Nullable<System.Guid> PathId { get; set; }
+        public Nullable<System.Guid> UserId { get; set; }
+        public Nullable<int> DataSize { get; set; }
+        public System.DateTime LastUpdatedDate { get; set; }
     }
 }

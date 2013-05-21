@@ -12,20 +12,20 @@ namespace FACCTS.Server.Model.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class Profiles
+    public partial class aspnet_Roles
     {
-        public Profiles()
+        public aspnet_Roles()
         {
-            this.ProfileData = new HashSet<ProfileData>();
+            this.aspnet_Users = new HashSet<aspnet_Users>();
         }
     
-        public string pId { get; set; }
-        public string Username { get; set; }
-        public string ApplicationName { get; set; }
-        public Nullable<bool> IsAnonymous { get; set; }
-        public Nullable<System.DateTime> LastActivityDate { get; set; }
-        public Nullable<System.DateTime> LastUpdatedDate { get; set; }
+        public System.Guid ApplicationId { get; set; }
+        public System.Guid RoleId { get; set; }
+        public string RoleName { get; set; }
+        public string LoweredRoleName { get; set; }
+        public string Description { get; set; }
     
-        public virtual ICollection<ProfileData> ProfileData { get; set; }
+        public virtual aspnet_Applications aspnet_Applications { get; set; }
+        public virtual ICollection<aspnet_Users> aspnet_Users { get; set; }
     }
 }

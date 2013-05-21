@@ -10,11 +10,16 @@
 namespace FACCTS.Server.Model.DataModel
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Sex
+    public partial class aspnet_Membership_GetPasswordWithFormat_Result
     {
-        public int ID { get; set; }
-        public string Sex1 { get; set; }
+        public string Column1 { get; set; }
+        public Nullable<int> Column2 { get; set; }
+        public string Column3 { get; set; }
+        public Nullable<int> Column4 { get; set; }
+        public Nullable<int> Column5 { get; set; }
+        public Nullable<bool> Column6 { get; set; }
+        public Nullable<System.DateTime> Column7 { get; set; }
+        public Nullable<System.DateTime> Column8 { get; set; }
     }
 }

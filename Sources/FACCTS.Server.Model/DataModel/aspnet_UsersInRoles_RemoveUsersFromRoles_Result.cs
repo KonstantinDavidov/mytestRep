@@ -10,18 +10,10 @@
 namespace FACCTS.Server.Model.DataModel
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Roles
+    public partial class aspnet_UsersInRoles_RemoveUsersFromRoles_Result
     {
-        public Roles()
-        {
-            this.UsersInRoles = new HashSet<UsersInRoles>();
-        }
-    
-        public string Rolename { get; set; }
-        public string ApplicationName { get; set; }
-    
-        public virtual ICollection<UsersInRoles> UsersInRoles { get; set; }
+        public string Column1 { get; set; }
+        public string Name { get; set; }
     }
 }

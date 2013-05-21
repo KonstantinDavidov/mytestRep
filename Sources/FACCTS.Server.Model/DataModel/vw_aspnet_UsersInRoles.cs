@@ -12,9 +12,9 @@ namespace FACCTS.Server.Model.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class EyeColors
+    public partial class vw_aspnet_UsersInRoles
     {
-        public int ID { get; set; }
-        public string EyeColor { get; set; }
+        public System.Guid UserId { get; set; }
+        public System.Guid RoleId { get; set; }
     }
 }
