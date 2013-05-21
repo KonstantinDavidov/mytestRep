@@ -8,6 +8,7 @@ using System.Web.Http.Dependencies;
 using System.Web.Mvc;
 using IDependencyResolver = System.Web.Http.Dependencies.IDependencyResolver;
 using MEF.MVC4;
+using log4net;
 
 namespace FACCTS.Server
 {
@@ -27,8 +28,19 @@ namespace FACCTS.Server
         {
             var assemblyCatalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
             var container = new CompositionContainer(assemblyCatalog);
+            RegisterInstances(container);
             
             return container;
+        }
+
+        private static void RegisterInstances(CompositionContainer container)
+        {
+            var batch = new CompositionBatch();
+            log4net.Config.XmlConfigurator.Configure();
+            var loggerForWebSite = LogManager.GetLogger("FacctsService");
+            batch.AddExportedValue<ILog>(loggerForWebSite);
+
+            container.Compose(batch);
         }
     }
 }
