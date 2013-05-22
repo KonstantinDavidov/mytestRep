@@ -64,6 +64,7 @@
     <Folder Include="dbo\Views\" />
     <Folder Include="Security\" />
     <Folder Include="dbo\Stored Procedures\" />
+    <Folder Include="dbo\Scripts" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\aspnet_Applications.sql" />
@@ -300,8 +301,12 @@
     <Build Include="dbo\Tables\OAuth_ClientAuthorization.sql" />
     <Build Include="dbo\Tables\OAuth_SymmetricCryptoKey.sql" />
     <Build Include="dbo\Tables\OAuth_Nonce.sql" />
+    <None Include="dbo\Scripts\InsertApplications.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="FACCTS.Server.Database.refactorlog" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="dbo\Scripts\Script.PostDeployment.sql" />
   </ItemGroup>
 </Project>
