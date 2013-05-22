@@ -11,3 +11,4 @@ Post-Deployment Script Template
 */
 
 :r .\InsertApplications.sql
+:r .\InsertOAuthData.sql

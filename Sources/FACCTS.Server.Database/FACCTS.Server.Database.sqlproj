@@ -309,4 +309,7 @@
   <ItemGroup>
     <PostDeploy Include="dbo\Scripts\Script.PostDeployment.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="dbo\Scripts\InsertOAuthData.sql" />
+  </ItemGroup>
 </Project>
