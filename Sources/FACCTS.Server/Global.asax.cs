@@ -35,48 +35,8 @@ namespace FACCTS.Server
             
         }
 
-        //public static DatabaseKeyNonceStore KeyNonceStore { get; set; }
+        
 
-        public static FACCTS_DBEntities DataContext
-        {
-            get
-            {
-                FACCTS_DBEntities dataContext = DataContextSimple;
-                if (dataContext == null)
-                {
-                    dataContext = System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(FACCTS_DBEntities)) as FACCTS_DBEntities;
-                    DataContextSimple = dataContext;
-                }
-
-                return dataContext;
-            }
-        }
-
-        private static FACCTS_DBEntities DataContextSimple
-        {
-            get
-            {
-                if (HttpContext.Current != null)
-                {
-                    return HttpContext.Current.Items["DataContext"] as FACCTS_DBEntities;
-                }
-                else
-                {
-                    throw new InvalidOperationException();
-                }
-            }
-
-            set
-            {
-                if (HttpContext.Current != null)
-                {
-                    HttpContext.Current.Items["DataContext"] = value;
-                }
-                else
-                {
-                    throw new InvalidOperationException();
-                }
-            }
-        }
+        
     }
 }

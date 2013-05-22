@@ -1,7 +1,9 @@
 ﻿using FACCTS.Server.Model.DataModel;
+using FACCTS.Server.Services.Repositiries;
 using StructureMap;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Data.Entity;
 using System.Data.Entity.Extensions.UnitOfWork;
 using System.Linq;
@@ -10,7 +12,8 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Services
 {
-    public class DataManager
+    [Export(typeof(IDataManager))]
+    internal class DataManager : IDataManager
     {
         public DataManager()
         {
@@ -29,6 +32,13 @@ namespace FACCTS.Server.Services
             DbContext context = new FACCTS_DBEntities();
 
             return context;
+        }
+
+        [Import]
+        public OAuth_NonceRepository NonceRepository
+        {
+            get;
+            set;
         }
 
     }
