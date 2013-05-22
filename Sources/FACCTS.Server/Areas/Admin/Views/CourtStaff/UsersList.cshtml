@@ -1,0 +1,20 @@
+﻿@model MembershipUserCollection
+
+<table>
+    <tr>
+        <th>User ID</th>
+        <th>Email</th>
+        <th>User Role</th>
+    </tr>
+
+    @foreach (MembershipUser user in Model)
+    {
+        <tr onclick="javascript:location.href='@Url.Action("Profile", "CourtStaff", new { userName = user.UserName })'" class='@((ViewBag.userName == user.UserName) ? "select": "") '>
+
+            <td>@user.UserName</td>
+            <td>@user.Email</td>
+            <td>@string.Join(",", Roles.GetRolesForUser(user.UserName))</td>
+
+        </tr>
+    }
+</table>

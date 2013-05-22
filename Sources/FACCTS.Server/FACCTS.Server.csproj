@@ -156,6 +156,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CourtSettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CourtStaffController.cs" />
+    <Compile Include="Areas\Admin\Models\EditUser.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
@@ -254,6 +255,8 @@
     <Content Include="Areas\Admin\Views\CourtStaff\Profile.cshtml" />
     <Content Include="Areas\Admin\Views\CourtStaff\Availability.cshtml" />
     <Content Include="Areas\Admin\Views\CourtStaff\UserRole.cshtml" />
+    <Content Include="Areas\Admin\Views\CourtStaff\UsersList.cshtml" />
+    <Content Include="Areas\Admin\Views\CourtStaff\CreateUser.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Readme Mef.MVC4.txt" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -301,7 +304,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

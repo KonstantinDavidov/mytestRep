@@ -1,14 +1,98 @@
 ﻿body {
 }
 
+input:disabled {
+    color: gray;
+}
+
 /* court staff layout
 ----------------------------------------------------------*/
 
 .leftpanel {
     width: 300px;
-    background-color: #FFF;
+    border: 1px solid gray;
+    padding: 5px;
+    background-color: white;
 }
 
 .centerpanel {
-    margin-left: 310px;
+    margin-left: 320px;
+    border: 1px solid gray;
+    background-color: white;
+    padding: 5px;
+    margin-top: 20px;
+}
+
+/* sub menu
+----------------------------------------------------------*/
+ul.submenu {
+    margin: 0;
+    margin-top: -25px;
+    padding: 0;
+}
+
+ul.submenu li {
+   display: inline;
+   list-style: none;
+   padding-left: 15px;
+}
+
+/* user edit
+----------------------------------------------------------*/
+
+.dEdit {
+    width: 350px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.dEdit > div {
+    text-align: left;
+}
+
+.dEdit span {
+    display: inline-block;
+    width: 100px;
+}
+
+.dEdit input[type=text] {
+    width: 200px;
+}
+
+.dEdit input[type=submit] {
+    margin: 0 auto;
+}
+
+/* users list
+----------------------------------------------------------*/
+.headerSection {
+    font-size: 1.4em;
+    padding: 3px;
+    border-bottom: 1px solid gray;
+    font-weight: bolder;
+}
+
+.operations  {
+    margin-top: 20px;
+    border-top: 1px solid gray;
+}
+
+.operations form {
+    float: right;
+}
+
+#usersGrid {
+    height: 600px;
+}
+
+#usersGrid td {
+    cursor: pointer;
+}
+
+#usersGrid tr:hover td {
+    background-color: #E2E2E2;
+}
+
+#usersGrid tr.select {
+    background-color: #D3DCE0; 
 }

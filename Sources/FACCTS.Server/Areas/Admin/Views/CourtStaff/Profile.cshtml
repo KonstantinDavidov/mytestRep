@@ -2,5 +2,40 @@
     ViewBag.Title = "Profile";
     Layout = "~/Areas/Admin/Views/Shared/_CourtStaffLayout.cshtml";
 }
+@model FACCTS.Server.Areas.Admin.Models.EditUser
 
-<h2>Profile</h2>
+@if (Model == null)
+{
+    <div>Staff is not selected</div>
+}
+else 
+{
+    using (Html.BeginForm()) 
+    {
+        <div class="dEdit">
+
+            <div><span>First Name</span>    @Html.EditorFor(x => x.FirstName)</div>
+            <div><span>Middle Name</span>   @Html.EditorFor(x => x.MiddleName)</div>
+            <div><span>Last Name</span>     @Html.EditorFor(x => x.LastName)</div>
+        
+            <br />
+    
+            <div><span>User ID</span>       @Html.EditorFor(x => x.UserName)</div>
+            <div><span>User Email</span>    @Html.EditorFor(x => x.Email)</div>
+            <div><span>User Phone</span>    @Html.EditorFor(x => x.Phone)</div>
+            
+            <div>
+                <span>CLETS Certified</span> @Html.EditorFor(x => x.Certified)
+            </div>
+
+            <input type="submit" value="Update" />
+        </div>
+    }
+    
+    
+    <hr />
+    
+    <div>
+        Picture <a>Click to Change</a>
+    </div>
+} 
