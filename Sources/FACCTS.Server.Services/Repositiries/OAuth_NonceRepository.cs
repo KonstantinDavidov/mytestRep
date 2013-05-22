@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Services.Repositiries
 {
-    [Export(typeof(OAuth_NonceRepository))]
+    
     public class OAuth_NonceRepository : DbContextRepository<OAuth_Nonce>
     {
         public OAuth_NonceRepository() : base()

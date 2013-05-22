@@ -1,6 +1,7 @@
 ﻿//using FACCTS.Server.Code;
 using FACCTS.Server.Model.DataModel;
 using FACCTS.Server.Services;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -19,11 +20,14 @@ namespace FACCTS.Server
 
     public class WebApiApplication : System.Web.HttpApplication
     {
+        private ILog _logger;
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
 
             ConfigureMEF();
+            _logger = System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(ILog)) as ILog;
+            _logger.Info("Application_Start started");
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
@@ -44,6 +48,21 @@ namespace FACCTS.Server
             get { return DataManager.UsersRepository.Get(user => user.OpenIDClaimedIdentifier == HttpContext.Current.User.Identity.Name).SingleOrDefault(); }
         }
 
+
+        protected void Application_End(object sender, EventArgs e)
+        {
+            _logger.Info("Sample shutting down...");
+
+            // this would be automatic, but in partial trust scenarios it is not.
+            log4net.LogManager.Shutdown();
+        }
+
+        protected void Application_Error(object sender, EventArgs e)
+        {
+            _logger.Fatal("An unhandled exception occurred in ASP.NET processing: " + Server.GetLastError(), Server.GetLastError());
+            DataManager.Dispose();
+            
+        }
         
     }
 }

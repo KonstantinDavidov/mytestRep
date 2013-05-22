@@ -34,40 +34,129 @@ namespace FACCTS.Server.Services
             return context;
         }
 
-        [Import]
+
+        private OAuth_NonceRepository _nonceRepository;
         public OAuth_NonceRepository NonceRepository
         {
-            get;
-            set;
+            get
+            {
+                if (_nonceRepository == null)
+                {
+                    _nonceRepository = ObjectFactory.GetInstance<OAuth_NonceRepository>();
+                }
+                return _nonceRepository;
+            }
         }
 
-        [Import]
+
+        private OAuth_ClientRepository _clientRepository;
         public OAuth_ClientRepository ClientRepository
         {
-            get;
-            set;
+            get
+            {
+                if (_clientRepository == null)
+                {
+                    _clientRepository = ObjectFactory.GetInstance<OAuth_ClientRepository>();
+                }
+                return _clientRepository;
+            }
+            
         }
 
-        [Import]
+
+        private OAuth_ClientAuthorizationRepository _clientAuthorizationRepository;
         public OAuth_ClientAuthorizationRepository ClientAuthorizationRepository
         {
-            get;
-            set;
+            get
+            {
+                if (_clientAuthorizationRepository == null)
+                {
+                    _clientAuthorizationRepository = ObjectFactory.GetInstance<OAuth_ClientAuthorizationRepository>();
+                }
+                return _clientAuthorizationRepository;
+            }
+            
         }
 
-        [Import]
+
+        private OAuth_SymmetricCryptoKeyRepository _symmetricCryptoKeyRepository;
         public OAuth_SymmetricCryptoKeyRepository SymmetricCryptoKeyRepository
         {
-            get;
-            set;
+            get
+            {
+                if (_symmetricCryptoKeyRepository == null)
+                {
+                    _symmetricCryptoKeyRepository = ObjectFactory.GetInstance<OAuth_SymmetricCryptoKeyRepository>();
+                }
+                return _symmetricCryptoKeyRepository;
+            }
+            
         }
 
-        [Import]
+
+        private OAuth_UsersRepository _usersRepository;
         public OAuth_UsersRepository UsersRepository
         {
-            get;
-            set;
+            get
+            {
+                if (_usersRepository == null)
+                {
+                    _usersRepository = ObjectFactory.GetInstance<OAuth_UsersRepository>();
+                }
+                return _usersRepository;
+            }
+            
         }
 
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        ~DataManager()
+        {
+            Dispose(false);
+        }
+
+        private bool _wasDisposed = false;
+        protected virtual void Dispose(bool isDisposing)
+        {
+            if (_wasDisposed)
+                return;
+            if (isDisposing)
+            {
+                //clean up managed resources
+                if (_nonceRepository != null)
+                {
+                    _nonceRepository.Dispose();
+                    _nonceRepository = null;
+                }
+                if (_clientRepository != null)
+                {
+                    _clientRepository.Dispose();
+                    _clientRepository = null;
+                }
+                if (_clientAuthorizationRepository != null)
+                {
+                    _clientAuthorizationRepository.Dispose();
+                    _clientAuthorizationRepository = null;
+                }
+                if (_symmetricCryptoKeyRepository != null)
+                {
+                    _symmetricCryptoKeyRepository.Dispose();
+                    _symmetricCryptoKeyRepository = null;
+                }
+                if (_usersRepository != null)
+                {
+                    _usersRepository.Dispose();
+                    _usersRepository = null;
+                }
+            }
+            //clean up the native resources
+
+            _wasDisposed = true;
+        }
     }
 }

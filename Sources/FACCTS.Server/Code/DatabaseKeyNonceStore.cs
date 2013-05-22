@@ -1,12 +1,14 @@
 ﻿using DotNetOpenAuth.Messaging.Bindings;
 using FACCTS.Server.Model.DataModel;
 using FACCTS.Server.Services;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
+using FACCTS.Server.Common;
 
 namespace FACCTS.Server.Code
 {
@@ -21,6 +23,9 @@ namespace FACCTS.Server.Code
 
         [Import]
         public IDataManager DataManager { protected get; set; }
+
+        [Import]
+        public ILog Logger { protected get; set; }
 
         #region INonceStore Members
 
@@ -49,9 +54,11 @@ namespace FACCTS.Server.Code
         /// </remarks>
         public bool StoreNonce(string context, string nonce, DateTime timestampUtc)
         {
+            Logger.MethodEntry(null, nonce, timestampUtc);
             try
             {
                 DataManager.NonceRepository.Insert(new OAuth_Nonce { Context = context, Code = nonce, Timestamp = timestampUtc });
+                Logger.MethodExit();
                 return true;
             }
             //catch (System.Data.Linq.DuplicateKeyException)
@@ -62,6 +69,7 @@ namespace FACCTS.Server.Code
             {
                 return false;
             }
+            
         }
 
         #endregion
@@ -70,16 +78,19 @@ namespace FACCTS.Server.Code
 
         public CryptoKey GetKey(string bucket, string handle)
         {
+            Logger.MethodEntry(null, bucket, handle);
             // It is critical that this lookup be case-sensitive, which can only be configured at the database.
             var matches = from key in DataManager.SymmetricCryptoKeyRepository.Get()
                           where key.Bucket == bucket && key.Handle == handle
                           select new CryptoKey(key.Secret, key.ExpiresUtc.AsUtc());
+            Logger.MethodExit();
 
             return matches.FirstOrDefault();
         }
 
         public IEnumerable<KeyValuePair<string, CryptoKey>> GetKeys(string bucket)
         {
+            Logger.MethodEntry(null, bucket);
             return from key in DataManager.SymmetricCryptoKeyRepository.Get()
                    where key.Bucket == bucket
                    orderby key.ExpiresUtc descending
@@ -88,6 +99,7 @@ namespace FACCTS.Server.Code
 
         public void StoreKey(string bucket, string handle, CryptoKey key)
         {
+            Logger.MethodEntry(null, bucket, handle, key);
             var keyRow = new OAuth_SymmetricCryptoKey()
             {
                 Bucket = bucket,
@@ -97,15 +109,18 @@ namespace FACCTS.Server.Code
             };
 
             DataManager.SymmetricCryptoKeyRepository.Insert(keyRow);
+            Logger.MethodExit();
         }
 
         public void RemoveKey(string bucket, string handle)
         {
+            Logger.MethodEntry(null, bucket, handle);
             var match = DataManager.SymmetricCryptoKeyRepository.Get(k => k.Bucket == bucket && k.Handle == handle).FirstOrDefault();
             if (match != null)
             {
                 DataManager.SymmetricCryptoKeyRepository.Delete(match);
             }
+            Logger.MethodExit();
         }
 
         #endregion

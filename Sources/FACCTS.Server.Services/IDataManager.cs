@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Services
 {
-    public interface IDataManager
+    public interface IDataManager : IDisposable
     {
         OAuth_NonceRepository NonceRepository { get; }
         OAuth_ClientRepository ClientRepository { get; }

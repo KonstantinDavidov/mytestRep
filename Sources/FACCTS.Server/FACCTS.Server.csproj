@@ -251,6 +251,7 @@
     <Compile Include="Code\DatabaseKeyNonceStore.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Code\ExceptionHandlingAttribute.cs" />
     <Compile Include="Code\HttpHeaderAttribute.cs" />
     <Compile Include="Code\OAuth2AuthorizationServer.cs">
       <SubType>Code</SubType>

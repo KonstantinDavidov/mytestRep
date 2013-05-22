@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Services.Repositiries
 {
-    [Export]
+    
     public class OAuth_UsersRepository : DbContextRepository<OAuth_Users>
     {
         public OAuth_UsersRepository() : base()

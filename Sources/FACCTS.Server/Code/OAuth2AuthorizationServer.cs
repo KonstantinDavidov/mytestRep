@@ -3,12 +3,14 @@ using DotNetOpenAuth.OAuth2;
 using DotNetOpenAuth.OAuth2.ChannelElements;
 using DotNetOpenAuth.OAuth2.Messages;
 using FACCTS.Server.Services;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Web;
+using FACCTS.Server.Common;
 
 namespace FACCTS.Server.Code
 {
@@ -52,8 +54,12 @@ namespace FACCTS.Server.Code
             set; 
         }
 
+        [Import]
+        public ILog Logger { protected get; set; }
+
         public AccessTokenResult CreateAccessToken(IAccessTokenRequest accessTokenRequestMessage)
         {
+            Logger.MethodEntry();
             var accessToken = new AuthorizationServerAccessToken();
 
             // Just for the sake of the sample, we use a short-lived token.  This can be useful to mitigate the security risks
@@ -75,11 +81,13 @@ namespace FACCTS.Server.Code
             accessToken.AccessTokenSigningKey = CreateRSA();
 
             var result = new AccessTokenResult(accessToken);
+            Logger.MethodExit();
             return result;
         }
 
         public IClientDescription GetClient(string clientIdentifier)
         {
+            Logger.MethodEntry();
             var consumerRow = DataManager.ClientRepository.Get(consumerCandidate => consumerCandidate.ClientIdentifier == clientIdentifier).SingleOrDefault();
             if (consumerRow == null)
             {
@@ -91,6 +99,7 @@ namespace FACCTS.Server.Code
 
         public bool IsAuthorizationValid(IAuthorizationDescription authorization)
         {
+            Logger.MethodEntry();
             return this.IsAuthorizationValid(authorization.Scope, authorization.ClientIdentifier, authorization.UtcIssued, authorization.User);
         }
 
@@ -109,6 +118,7 @@ namespace FACCTS.Server.Code
 
         public bool CanBeAutoApproved(EndUserAuthorizationRequest authorizationRequest)
         {
+            Logger.MethodEntry();
             if (authorizationRequest == null)
             {
                 throw new ArgumentNullException("authorizationRequest");
@@ -132,6 +142,7 @@ namespace FACCTS.Server.Code
                 }
             }
 
+            Logger.MethodExit();
             // Default to not auto-approving.
             return false;
         }
@@ -183,6 +194,7 @@ namespace FACCTS.Server.Code
 
         private bool IsAuthorizationValid(HashSet<string> requestedScopes, string clientIdentifier, DateTime issuedUtc, string username)
         {
+            Logger.MethodEntry(null, clientIdentifier, issuedUtc, username);
             // If db precision exceeds token time precision (which is common), the following query would
             // often disregard a token that is minted immediately after the authorization record is stored in the db.
             // To compensate for this, we'll increase the timestamp on the token's issue date by 1 second.
@@ -210,6 +222,7 @@ namespace FACCTS.Server.Code
                 grantedScopes.UnionWith(OAuthUtilities.SplitScopes(scope));
             }
 
+            Logger.MethodExit();
             return requestedScopes.IsSubsetOf(grantedScopes);
         }
     }

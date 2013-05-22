@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Services.Repositiries
 {
-    [Export]
+    
     public class OAuth_SymmetricCryptoKeyRepository : DbContextRepository<OAuth_SymmetricCryptoKey>
     {
         public OAuth_SymmetricCryptoKeyRepository() : base()
