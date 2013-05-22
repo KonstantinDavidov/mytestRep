@@ -47,6 +47,12 @@ namespace FACCTS.Server.Model.DataModel
         public DbSet<vw_aspnet_WebPartState_Paths> vw_aspnet_WebPartState_Paths { get; set; }
         public DbSet<vw_aspnet_WebPartState_Shared> vw_aspnet_WebPartState_Shared { get; set; }
         public DbSet<vw_aspnet_WebPartState_User> vw_aspnet_WebPartState_User { get; set; }
+        public DbSet<C__RefactorLog> C__RefactorLog { get; set; }
+        public DbSet<OAuth_Client> OAuth_Client { get; set; }
+        public DbSet<OAuth_ClientAuthorization> OAuth_ClientAuthorization { get; set; }
+        public DbSet<OAuth_Nonce> OAuth_Nonce { get; set; }
+        public DbSet<OAuth_SymmetricCryptoKey> OAuth_SymmetricCryptoKey { get; set; }
+        public DbSet<OAuth_Users> OAuth_Users { get; set; }
     
         public virtual ObjectResult<string> aspnet_AnyDataInTables(Nullable<int> tablesToCheck)
         {

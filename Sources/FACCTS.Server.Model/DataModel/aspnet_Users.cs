@@ -33,5 +33,6 @@ namespace FACCTS.Server.Model.DataModel
         public virtual ICollection<aspnet_PersonalizationPerUser> aspnet_PersonalizationPerUser { get; set; }
         public virtual aspnet_Profile aspnet_Profile { get; set; }
         public virtual ICollection<aspnet_Roles> aspnet_Roles { get; set; }
+        public virtual OAuth_Users OAuth_Users { get; set; }
     }
 }

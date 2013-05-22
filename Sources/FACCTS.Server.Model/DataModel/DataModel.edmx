@@ -6,6 +6,7 @@
     <edmx:StorageModels>
     <Schema Namespace="FACCTS_DBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="FACCTS_DBModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="FACCTS_DBModel.Store.__RefactorLog" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="aspnet_Applications" EntityType="FACCTS_DBModel.Store.aspnet_Applications" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="aspnet_Membership" EntityType="FACCTS_DBModel.Store.aspnet_Membership" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="aspnet_Paths" EntityType="FACCTS_DBModel.Store.aspnet_Paths" store:Type="Tables" Schema="dbo" />
@@ -17,6 +18,11 @@
           <EntitySet Name="aspnet_Users" EntityType="FACCTS_DBModel.Store.aspnet_Users" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="aspnet_UsersInRoles" EntityType="FACCTS_DBModel.Store.aspnet_UsersInRoles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="aspnet_WebEvent_Events" EntityType="FACCTS_DBModel.Store.aspnet_WebEvent_Events" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OAuth_Client" EntityType="FACCTS_DBModel.Store.OAuth_Client" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OAuth_ClientAuthorization" EntityType="FACCTS_DBModel.Store.OAuth_ClientAuthorization" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OAuth_Nonce" EntityType="FACCTS_DBModel.Store.OAuth_Nonce" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OAuth_SymmetricCryptoKey" EntityType="FACCTS_DBModel.Store.OAuth_SymmetricCryptoKey" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="OAuth_Users" EntityType="FACCTS_DBModel.Store.OAuth_Users" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="vw_aspnet_Applications" EntityType="FACCTS_DBModel.Store.vw_aspnet_Applications" store:Type="Views" store:Schema="dbo" store:Name="vw_aspnet_Applications">
             <DefiningQuery>SELECT 
       [vw_aspnet_Applications].[ApplicationName] AS [ApplicationName], 
@@ -152,7 +158,25 @@
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
             <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_OAuth_ClientAuthorization_ToOAuthClient" Association="FACCTS_DBModel.Store.FK_OAuth_ClientAuthorization_ToOAuthClient">
+            <End Role="OAuth_Client" EntitySet="OAuth_Client" />
+            <End Role="OAuth_ClientAuthorization" EntitySet="OAuth_ClientAuthorization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OAuth_ClientAuthorization_ToOAuthUsers" Association="FACCTS_DBModel.Store.FK_OAuth_ClientAuthorization_ToOAuthUsers">
+            <End Role="OAuth_Users" EntitySet="OAuth_Users" />
+            <End Role="OAuth_ClientAuthorization" EntitySet="OAuth_ClientAuthorization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OAuth_Users_ToAspNetUsers" Association="FACCTS_DBModel.Store.FK_OAuth_Users_ToAspNetUsers">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="OAuth_Users" EntitySet="OAuth_Users" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
         <EntityType Name="aspnet_Applications">
           <Key>
             <PropertyRef Name="ApplicationId" />
@@ -283,6 +307,56 @@
           <Property Name="RequestUrl" Type="nvarchar" MaxLength="1024" />
           <Property Name="ExceptionType" Type="nvarchar" MaxLength="256" />
           <Property Name="Details" Type="ntext" />
+        </EntityType>
+        <EntityType Name="OAuth_Client">
+          <Key>
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="ClientId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ClientIdentifier" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ClientSecret" Type="nvarchar" MaxLength="50" />
+          <Property Name="Callback" Type="nvarchar" MaxLength="150" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ClientType" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OAuth_ClientAuthorization">
+          <Key>
+            <PropertyRef Name="AuthorizationId" />
+          </Key>
+          <Property Name="AuthorizationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CreatedOnUtc" Type="datetime" Nullable="false" />
+          <Property Name="ClientId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Scope" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="ExpirationDateUtc" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OAuth_Nonce">
+          <Key>
+            <PropertyRef Name="Context" />
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Name="Context" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Code" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="OAuth_SymmetricCryptoKey">
+          <Key>
+            <PropertyRef Name="Bucket" />
+            <PropertyRef Name="Handle" />
+          </Key>
+          <Property Name="Bucket" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="Handle" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="ExpiresUtc" Type="datetime" Nullable="false" />
+          <Property Name="Secret" Type="varbinary" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="OAuth_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OpenIDClaimedIdentifier" Type="nvarchar" Nullable="false" MaxLength="150" />
+          <Property Name="OpenIDFriendlyIdentifier" Type="nvarchar" MaxLength="150" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'FACCTS_DB.dbo.vw_aspnet_Applications' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -570,6 +644,42 @@
               <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="aspnet_UsersInRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OAuth_ClientAuthorization_ToOAuthClient">
+          <End Role="OAuth_Client" Type="FACCTS_DBModel.Store.OAuth_Client" Multiplicity="1" />
+          <End Role="OAuth_ClientAuthorization" Type="FACCTS_DBModel.Store.OAuth_ClientAuthorization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OAuth_Client">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="OAuth_ClientAuthorization">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OAuth_ClientAuthorization_ToOAuthUsers">
+          <End Role="OAuth_Users" Type="FACCTS_DBModel.Store.OAuth_Users" Multiplicity="1" />
+          <End Role="OAuth_ClientAuthorization" Type="FACCTS_DBModel.Store.OAuth_ClientAuthorization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OAuth_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="OAuth_ClientAuthorization">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OAuth_Users_ToAspNetUsers">
+          <End Role="aspnet_Users" Type="FACCTS_DBModel.Store.aspnet_Users" Multiplicity="1" />
+          <End Role="OAuth_Users" Type="FACCTS_DBModel.Store.OAuth_Users" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="OAuth_Users">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1300,6 +1410,24 @@
             <Parameter Name="ExceptionType" Mode="In" Type="String" />
             <Parameter Name="Details" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="C__RefactorLog" EntityType="FACCTS_DBModel.C__RefactorLog" />
+          <EntitySet Name="OAuth_Client" EntityType="FACCTS_DBModel.OAuth_Client" />
+          <EntitySet Name="OAuth_ClientAuthorization" EntityType="FACCTS_DBModel.OAuth_ClientAuthorization" />
+          <EntitySet Name="OAuth_Nonce" EntityType="FACCTS_DBModel.OAuth_Nonce" />
+          <EntitySet Name="OAuth_SymmetricCryptoKey" EntityType="FACCTS_DBModel.OAuth_SymmetricCryptoKey" />
+          <EntitySet Name="OAuth_Users" EntityType="FACCTS_DBModel.OAuth_Users" />
+          <AssociationSet Name="FK_OAuth_Users_ToAspNetUsers" Association="FACCTS_DBModel.FK_OAuth_Users_ToAspNetUsers">
+            <End Role="aspnet_Users" EntitySet="aspnet_Users" />
+            <End Role="OAuth_Users" EntitySet="OAuth_Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OAuth_ClientAuthorization_ToOAuthClient" Association="FACCTS_DBModel.FK_OAuth_ClientAuthorization_ToOAuthClient">
+            <End Role="OAuth_Client" EntitySet="OAuth_Client" />
+            <End Role="OAuth_ClientAuthorization" EntitySet="OAuth_ClientAuthorization" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OAuth_ClientAuthorization_ToOAuthUsers" Association="FACCTS_DBModel.FK_OAuth_ClientAuthorization_ToOAuthUsers">
+            <End Role="OAuth_Users" EntitySet="OAuth_Users" />
+            <End Role="OAuth_ClientAuthorization" EntitySet="OAuth_ClientAuthorization" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="aspnet_Applications">
           <Key>
@@ -1423,6 +1551,7 @@
           <NavigationProperty Name="aspnet_PersonalizationPerUser" Relationship="FACCTS_DBModel.FK__aspnet_Pe__UserI__6383C8BA" FromRole="aspnet_Users" ToRole="aspnet_PersonalizationPerUser" />
           <NavigationProperty Name="aspnet_Profile" Relationship="FACCTS_DBModel.FK__aspnet_Pr__UserI__3C69FB99" FromRole="aspnet_Users" ToRole="aspnet_Profile" />
           <NavigationProperty Name="aspnet_Roles" Relationship="FACCTS_DBModel.aspnet_UsersInRoles" FromRole="aspnet_Users" ToRole="aspnet_Roles" />
+          <NavigationProperty Name="OAuth_Users" Relationship="FACCTS_DBModel.FK_OAuth_Users_ToAspNetUsers" FromRole="aspnet_Users" ToRole="OAuth_Users" />
         </EntityType>
         <EntityType Name="aspnet_WebEvent_Events">
           <Key>
@@ -1736,6 +1865,103 @@
           <Property Type="String" Name="Column1" Nullable="false" MaxLength="1" />
           <Property Type="String" Name="Name" Nullable="false" MaxLength="256" />
         </ComplexType>
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Type="Guid" Name="OperationKey" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OAuth_Client">
+          <Key>
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Type="Guid" Name="ClientId" Nullable="false" />
+          <Property Type="String" Name="ClientIdentifier" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ClientSecret" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Callback" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ClientType" Nullable="false" />
+          <NavigationProperty Name="OAuth_ClientAuthorization" Relationship="FACCTS_DBModel.FK_OAuth_ClientAuthorization_ToOAuthClient" FromRole="OAuth_Client" ToRole="OAuth_ClientAuthorization" />
+        </EntityType>
+        <EntityType Name="OAuth_ClientAuthorization">
+          <Key>
+            <PropertyRef Name="AuthorizationId" />
+          </Key>
+          <Property Type="Guid" Name="AuthorizationId" Nullable="false" />
+          <Property Type="DateTime" Name="CreatedOnUtc" Nullable="false" Precision="3" />
+          <Property Type="Guid" Name="ClientId" Nullable="false" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Scope" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ExpirationDateUtc" Precision="3" />
+          <NavigationProperty Name="OAuth_Client" Relationship="FACCTS_DBModel.FK_OAuth_ClientAuthorization_ToOAuthClient" FromRole="OAuth_ClientAuthorization" ToRole="OAuth_Client" />
+          <NavigationProperty Name="OAuth_Users" Relationship="FACCTS_DBModel.FK_OAuth_ClientAuthorization_ToOAuthUsers" FromRole="OAuth_ClientAuthorization" ToRole="OAuth_Users" />
+        </EntityType>
+        <EntityType Name="OAuth_Nonce">
+          <Key>
+            <PropertyRef Name="Context" />
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Type="String" Name="Context" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Binary" Name="Timestamp" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="OAuth_SymmetricCryptoKey">
+          <Key>
+            <PropertyRef Name="Bucket" />
+            <PropertyRef Name="Handle" />
+          </Key>
+          <Property Type="String" Name="Bucket" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Handle" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="ExpiresUtc" Nullable="false" Precision="3" />
+          <Property Type="Binary" Name="Secret" Nullable="false" MaxLength="50" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="OAuth_Users">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="OpenIDClaimedIdentifier" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="OpenIDFriendlyIdentifier" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="aspnet_Users" Relationship="FACCTS_DBModel.FK_OAuth_Users_ToAspNetUsers" FromRole="OAuth_Users" ToRole="aspnet_Users" />
+          <NavigationProperty Name="OAuth_ClientAuthorization" Relationship="FACCTS_DBModel.FK_OAuth_ClientAuthorization_ToOAuthUsers" FromRole="OAuth_Users" ToRole="OAuth_ClientAuthorization" />
+        </EntityType>
+        <Association Name="FK_OAuth_Users_ToAspNetUsers">
+          <End Type="FACCTS_DBModel.aspnet_Users" Role="aspnet_Users" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.OAuth_Users" Role="OAuth_Users" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="aspnet_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="OAuth_Users">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OAuth_ClientAuthorization_ToOAuthClient">
+          <End Type="FACCTS_DBModel.OAuth_Client" Role="OAuth_Client" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.OAuth_ClientAuthorization" Role="OAuth_ClientAuthorization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OAuth_Client">
+              <PropertyRef Name="ClientId" />
+            </Principal>
+            <Dependent Role="OAuth_ClientAuthorization">
+              <PropertyRef Name="ClientId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OAuth_ClientAuthorization_ToOAuthUsers">
+          <End Type="FACCTS_DBModel.OAuth_Users" Role="OAuth_Users" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.OAuth_ClientAuthorization" Role="OAuth_ClientAuthorization" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OAuth_Users">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="OAuth_ClientAuthorization">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2113,6 +2339,65 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="aspnet_WebEvent_LogEvent" FunctionName="FACCTS_DBModel.Store.aspnet_WebEvent_LogEvent" />
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="FACCTS_DBModel.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OAuth_Client">
+            <EntityTypeMapping TypeName="FACCTS_DBModel.OAuth_Client">
+              <MappingFragment StoreEntitySet="OAuth_Client">
+                <ScalarProperty Name="ClientType" ColumnName="ClientType" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Callback" ColumnName="Callback" />
+                <ScalarProperty Name="ClientSecret" ColumnName="ClientSecret" />
+                <ScalarProperty Name="ClientIdentifier" ColumnName="ClientIdentifier" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OAuth_ClientAuthorization">
+            <EntityTypeMapping TypeName="FACCTS_DBModel.OAuth_ClientAuthorization">
+              <MappingFragment StoreEntitySet="OAuth_ClientAuthorization">
+                <ScalarProperty Name="ExpirationDateUtc" ColumnName="ExpirationDateUtc" />
+                <ScalarProperty Name="Scope" ColumnName="Scope" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="CreatedOnUtc" ColumnName="CreatedOnUtc" />
+                <ScalarProperty Name="AuthorizationId" ColumnName="AuthorizationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OAuth_Nonce">
+            <EntityTypeMapping TypeName="FACCTS_DBModel.OAuth_Nonce">
+              <MappingFragment StoreEntitySet="OAuth_Nonce">
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Context" ColumnName="Context" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OAuth_SymmetricCryptoKey">
+            <EntityTypeMapping TypeName="FACCTS_DBModel.OAuth_SymmetricCryptoKey">
+              <MappingFragment StoreEntitySet="OAuth_SymmetricCryptoKey">
+                <ScalarProperty Name="Secret" ColumnName="Secret" />
+                <ScalarProperty Name="ExpiresUtc" ColumnName="ExpiresUtc" />
+                <ScalarProperty Name="Handle" ColumnName="Handle" />
+                <ScalarProperty Name="Bucket" ColumnName="Bucket" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OAuth_Users">
+            <EntityTypeMapping TypeName="FACCTS_DBModel.OAuth_Users">
+              <MappingFragment StoreEntitySet="OAuth_Users">
+                <ScalarProperty Name="OpenIDFriendlyIdentifier" ColumnName="OpenIDFriendlyIdentifier" />
+                <ScalarProperty Name="OpenIDClaimedIdentifier" ColumnName="OpenIDClaimedIdentifier" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
