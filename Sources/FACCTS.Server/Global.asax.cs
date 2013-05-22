@@ -1,5 +1,6 @@
 ﻿//using FACCTS.Server.Code;
 using FACCTS.Server.Model.DataModel;
+using FACCTS.Server.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -27,6 +28,7 @@ namespace FACCTS.Server
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            WebApiApplication.DataManager = System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IDataManager)) as IDataManager;
         }
 
         private void ConfigureMEF()
@@ -35,7 +37,12 @@ namespace FACCTS.Server
             
         }
 
-        
+        public static IDataManager DataManager { private get; set; }
+
+        public static OAuth_Users LoggedInUser
+        {
+            get { return DataManager.UsersRepository.Get(user => user.OpenIDClaimedIdentifier == HttpContext.Current.User.Identity.Name).SingleOrDefault(); }
+        }
 
         
     }

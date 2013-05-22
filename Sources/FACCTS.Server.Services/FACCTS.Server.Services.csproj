@@ -61,6 +61,7 @@
     <Compile Include="Repositiries\OAuth_ClientRepository.cs" />
     <Compile Include="Repositiries\OAuth_NonceRepository.cs" />
     <Compile Include="Repositiries\OAuth_SymmetricCryptoKeyRepository.cs" />
+    <Compile Include="Repositiries\OAuth_UsersRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FACCTS.Server.Common\FACCTS.Server.Common.csproj">

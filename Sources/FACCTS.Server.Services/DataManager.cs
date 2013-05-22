@@ -62,5 +62,12 @@ namespace FACCTS.Server.Services
             set;
         }
 
+        [Import]
+        public OAuth_UsersRepository UsersRepository
+        {
+            get;
+            set;
+        }
+
     }
 }

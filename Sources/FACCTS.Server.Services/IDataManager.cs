@@ -13,5 +13,6 @@ namespace FACCTS.Server.Services
         OAuth_ClientRepository ClientRepository { get; }
         OAuth_ClientAuthorizationRepository ClientAuthorizationRepository { get; }
         OAuth_SymmetricCryptoKeyRepository SymmetricCryptoKeyRepository { get; }
+        OAuth_UsersRepository UsersRepository { get; }
     }
 }
