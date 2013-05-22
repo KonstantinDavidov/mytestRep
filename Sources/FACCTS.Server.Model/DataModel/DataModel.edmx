@@ -338,7 +338,7 @@
           </Key>
           <Property Name="Context" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="Code" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="Timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Timestamp" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="OAuth_SymmetricCryptoKey">
           <Key>
@@ -1413,7 +1413,6 @@
           <EntitySet Name="C__RefactorLog" EntityType="FACCTS_DBModel.C__RefactorLog" />
           <EntitySet Name="OAuth_Client" EntityType="FACCTS_DBModel.OAuth_Client" />
           <EntitySet Name="OAuth_ClientAuthorization" EntityType="FACCTS_DBModel.OAuth_ClientAuthorization" />
-          <EntitySet Name="OAuth_Nonce" EntityType="FACCTS_DBModel.OAuth_Nonce" />
           <EntitySet Name="OAuth_SymmetricCryptoKey" EntityType="FACCTS_DBModel.OAuth_SymmetricCryptoKey" />
           <EntitySet Name="OAuth_Users" EntityType="FACCTS_DBModel.OAuth_Users" />
           <AssociationSet Name="FK_OAuth_Users_ToAspNetUsers" Association="FACCTS_DBModel.FK_OAuth_Users_ToAspNetUsers">
@@ -1428,6 +1427,7 @@
             <End Role="OAuth_Users" EntitySet="OAuth_Users" />
             <End Role="OAuth_ClientAuthorization" EntitySet="OAuth_ClientAuthorization" />
           </AssociationSet>
+          <EntitySet Name="OAuth_Nonce" EntityType="FACCTS_DBModel.OAuth_Nonce" />
         </EntityContainer>
         <EntityType Name="aspnet_Applications">
           <Key>
@@ -1896,16 +1896,6 @@
           <NavigationProperty Name="OAuth_Client" Relationship="FACCTS_DBModel.FK_OAuth_ClientAuthorization_ToOAuthClient" FromRole="OAuth_ClientAuthorization" ToRole="OAuth_Client" />
           <NavigationProperty Name="OAuth_Users" Relationship="FACCTS_DBModel.FK_OAuth_ClientAuthorization_ToOAuthUsers" FromRole="OAuth_ClientAuthorization" ToRole="OAuth_Users" />
         </EntityType>
-        <EntityType Name="OAuth_Nonce">
-          <Key>
-            <PropertyRef Name="Context" />
-            <PropertyRef Name="Code" />
-            <PropertyRef Name="Timestamp" />
-          </Key>
-          <Property Type="String" Name="Context" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Code" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Binary" Name="Timestamp" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
-        </EntityType>
         <EntityType Name="OAuth_SymmetricCryptoKey">
           <Key>
             <PropertyRef Name="Bucket" />
@@ -1962,6 +1952,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="OAuth_Nonce">
+          <Key>
+            <PropertyRef Name="Context" />
+            <PropertyRef Name="Code" />
+            <PropertyRef Name="Timestamp" />
+          </Key>
+          <Property Type="String" Name="Context" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Timestamp" Nullable="false" Precision="3" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2370,15 +2370,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OAuth_Nonce">
-            <EntityTypeMapping TypeName="FACCTS_DBModel.OAuth_Nonce">
-              <MappingFragment StoreEntitySet="OAuth_Nonce">
-                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="Context" ColumnName="Context" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="OAuth_SymmetricCryptoKey">
             <EntityTypeMapping TypeName="FACCTS_DBModel.OAuth_SymmetricCryptoKey">
               <MappingFragment StoreEntitySet="OAuth_SymmetricCryptoKey">
@@ -2395,6 +2386,15 @@
                 <ScalarProperty Name="OpenIDFriendlyIdentifier" ColumnName="OpenIDFriendlyIdentifier" />
                 <ScalarProperty Name="OpenIDClaimedIdentifier" ColumnName="OpenIDClaimedIdentifier" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OAuth_Nonce">
+            <EntityTypeMapping TypeName="FACCTS_DBModel.OAuth_Nonce">
+              <MappingFragment StoreEntitySet="OAuth_Nonce">
+                <ScalarProperty Name="Timestamp" ColumnName="Timestamp" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Context" ColumnName="Context" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

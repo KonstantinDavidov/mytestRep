@@ -16,6 +16,6 @@ namespace FACCTS.Server.Model.DataModel
     {
         public string Context { get; set; }
         public string Code { get; set; }
-        public byte[] Timestamp { get; set; }
+        public System.DateTime Timestamp { get; set; }
     }
 }

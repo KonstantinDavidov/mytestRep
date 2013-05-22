@@ -10,5 +10,8 @@ namespace FACCTS.Server.Services
     public interface IDataManager
     {
         OAuth_NonceRepository NonceRepository { get; }
+        OAuth_ClientRepository ClientRepository { get; }
+        OAuth_ClientAuthorizationRepository ClientAuthorizationRepository { get; }
+        OAuth_SymmetricCryptoKeyRepository SymmetricCryptoKeyRepository { get; }
     }
 }

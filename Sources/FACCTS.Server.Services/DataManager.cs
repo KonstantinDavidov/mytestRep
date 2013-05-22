@@ -41,5 +41,26 @@ namespace FACCTS.Server.Services
             set;
         }
 
+        [Import]
+        public OAuth_ClientRepository ClientRepository
+        {
+            get;
+            set;
+        }
+
+        [Import]
+        public OAuth_ClientAuthorizationRepository ClientAuthorizationRepository
+        {
+            get;
+            set;
+        }
+
+        [Import]
+        public OAuth_SymmetricCryptoKeyRepository SymmetricCryptoKeyRepository
+        {
+            get;
+            set;
+        }
+
     }
 }
