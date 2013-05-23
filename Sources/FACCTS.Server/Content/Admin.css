@@ -1,0 +1,70 @@
+﻿input:disabled      { color: gray }
+
+/* admin layout
+----------------------------------------------------------*/
+
+    #div-header         { background-color: #FFF; padding: 10px 0 5px 0; overflow: hidden }
+    #div-body           { padding: 20px 0; background-color: #EFEEEF; overflow: hidden }
+    #div-body > div     { height: 700px }
+    .bodyAlign          { margin: 0 auto; max-width: 1000px; min-width: 800px; position: relative }
+
+/* court staff layout
+----------------------------------------------------------*/
+
+    #leftpanel          { position: absolute; top: 0; bottom: 0; left: 0; width: 300px; 
+                          border: 1px solid gray; background-color: #E3E3E3 }
+    #div-central-panel  { position: absolute; top: 30px; bottom: 0; left: 320px; right: 0;
+                          border: 1px solid gray; background-color: #E3E3E3; padding: 5px }
+    #div-sub-menu       { position: absolute; top: 0; left: 320px; right: 0; height: 30px }
+
+
+    /* sub menu */
+    #submenu            { margin: 0; padding: 0 }
+    #submenu li         { display: inline; list-style: none; padding-left: 15px }
+
+    /* users list */
+    .left-panel-header  { position: absolute; top: 0; left: 5px; right: 5px;
+                          font-size: 1.4em; padding: 2px; font-weight: bolder; color: #777 }
+
+    .operations         { position: absolute; bottom: 0; left: 5px; right: 5px; margin-top: 20px }
+    .operations form    { float: right }
+
+    #div-usersGrid              { position: absolute; top: 30px; bottom: 50px; left: 5px; right: 5px; 
+                                  border: 1px solid gray; background-color: white; padding: 5px; overflow: scroll; }
+    #div-usersGrid td           { cursor: pointer }
+    #div-usersGrid tr:hover td  {background-color: #E2E2E2 }
+    #div-usersGrid tr.select    {background-color: #D3DCE0 }
+
+/* user edit
+----------------------------------------------------------*/
+
+.dEdit {
+    padding-top: 30px;
+    width: 350px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.dEdit > div {
+    text-align: left;
+}
+
+.dEdit span {
+    display: inline-block;
+    width: 100px;
+}
+
+.dEdit input[type=text] {
+    width: 200px;
+}
+
+.dEdit input[type=submit] {
+    margin: 0 auto;
+}
+
+#div-user-image         { width: 350px; margin: 0 auto }
+#div-user-image > span  { float: left; padding-top: 60px; }
+#div-user-image > div   { margin-left: 100px }
+#div-user-image a       { color: #06BCFA; text-decoration: none; font-style: italic; font-size: 1.2em; cursor: pointer }
+#userImageFile          { display: none; width: 0 }
+#userImage              { width: 120px; height: 150px; border: 1px solid #E2E2E2}
