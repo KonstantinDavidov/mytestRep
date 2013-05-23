@@ -24,7 +24,7 @@
 
     /* users list */
     .left-panel-header  { position: absolute; top: 0; left: 5px; right: 5px;
-                          font-size: 1.4em; padding: 2px; font-weight: bolder }
+                          font-size: 1.4em; padding: 2px; font-weight: bolder; color: #777 }
 
     .operations         { position: absolute; bottom: 0; left: 5px; right: 5px; margin-top: 20px }
     .operations form    { float: right }
@@ -39,6 +39,7 @@
 ----------------------------------------------------------*/
 
 .dEdit {
+    padding-top: 30px;
     width: 350px;
     margin: 0 auto;
     text-align: center;
@@ -60,3 +61,10 @@
 .dEdit input[type=submit] {
     margin: 0 auto;
 }
+
+#div-user-image         { width: 350px; margin: 0 auto }
+#div-user-image > span  { float: left; padding-top: 60px; }
+#div-user-image > div   { margin-left: 100px }
+#div-user-image a       { color: #06BCFA; text-decoration: none; font-style: italic; font-size: 1.2em; cursor: pointer }
+#userImageFile          { display: none; width: 0 }
+#userImage              { width: 120px; height: 150px; border: 1px solid #E2E2E2}

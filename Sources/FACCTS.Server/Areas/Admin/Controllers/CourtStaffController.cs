@@ -40,16 +40,29 @@ namespace FACCTS.Server.Areas.Admin
         [HttpPost]
         public ActionResult Profile(EditUser user)
         {
+            /*
+             * save user info
+             */
+            MembershipUser mUser = Membership.GetUser(user.UserName);
+
+            mUser.Email = "la la la";
+
+            Membership.UpdateUser(mUser);
+
+            return RedirectToAction("Profile", new { userName = user.UserName });
+        }
+
+        public ActionResult Availability(string userName)
+        {
+            ViewBag.userName = userName;
+
             return View();
         }
 
-        public ActionResult Availability()
+        public ActionResult UserRole(string userName)
         {
-            return View();
-        }
+            ViewBag.userName = userName;
 
-        public ActionResult UserRole()
-        {
             return View();
         }
 
@@ -75,6 +88,24 @@ namespace FACCTS.Server.Areas.Admin
              */
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult LoadUserImage(string userName, HttpPostedFileBase userImageFile)
+        {
+            /*
+             * save image
+             */
+
+            return RedirectToAction("Profile", new { userName = userName });
+        }
+
+        public FileContentResult GetImage(string userName)
+        {
+            /*
+             * load image
+             */
+
+            return /*image != null ? File(image.Image, "image/png") :*/ null;
         }
     }
 }

@@ -4,7 +4,7 @@
 }
 @model FACCTS.Server.Areas.Admin.Models.EditUser
 
-@if (Model == null)
+@if (string.IsNullOrEmpty(ViewBag.userName))
 {
     <div>Staff is not selected</div>
 }
@@ -13,7 +13,6 @@ else
     using (Html.BeginForm()) 
     {
         <div class="dEdit">
-
             <div><span>First Name</span>    @Html.EditorFor(x => x.FirstName)</div>
             <div><span>Middle Name</span>   @Html.EditorFor(x => x.MiddleName)</div>
             <div><span>Last Name</span>     @Html.EditorFor(x => x.LastName)</div>
@@ -31,11 +30,20 @@ else
             <input type="submit" value="Update" />
         </div>
     }
-    
-    
+
     <hr />
-    
-    <div>
-        Picture <a>Click to Change</a>
-    </div>
+
+    using (Html.BeginForm("LoadUserImage", "CourtStaff", new { userName = ViewBag.userName }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div id="div-user-image">
+            <span>Picture</span>
+            <div>
+                <img id="userImage" alt="Picture" />
+                <br />
+                <input type="file" id="userImageFile" name="userImageFile" onchange="this.parentNode.parentNode.parentNode.submit();" />
+                <a onclick="javascipt: document.getElementById('userImageFile').click()">Click to Change</a>
+            </div>
+        </div>
+    }
+ 
 } 

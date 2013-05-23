@@ -25,9 +25,9 @@
 
     <div id="div-sub-menu">
         <ul id="submenu">
-            <li>@Html.ActionLink("Profile"      , "Profile"         , "CourtStaff", new { area = "Admin" }, null)</li>
-            <li>@Html.ActionLink("Availability" , "Availability"    , "CourtStaff", new { area = "Admin" }, null)</li>
-            <li>@Html.ActionLink("User Role"    , "UserRole"        , "CourtStaff", new { area = "Admin" }, null)</li>
+            <li>@Html.ActionLink("Profile"      , "Profile"         , "CourtStaff", new { area = "Admin", userName = ViewBag.userName }, null)</li>
+            <li>@Html.ActionLink("Availability" , "Availability"    , "CourtStaff", new { area = "Admin", userName = ViewBag.userName }, null)</li>
+            <li>@Html.ActionLink("User Role"    , "UserRole"        , "CourtStaff", new { area = "Admin", userName = ViewBag.userName }, null)</li>
         </ul>
     </div>
   
