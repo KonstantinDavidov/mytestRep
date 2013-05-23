@@ -425,7 +425,7 @@ label.checkbox {
 }
 
 input, textarea {
-    border: 1px solid #e2e2e2;
+    border: 1px solid #CCC;
     background: #fff;
     color: #333;
     font-size: 1.2em;

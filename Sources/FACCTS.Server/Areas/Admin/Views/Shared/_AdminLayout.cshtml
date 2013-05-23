@@ -9,24 +9,26 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <header>
-        <div class="content-wrapper">
-            <div class="float-left">
-                <p class="site-title">
-                    Administration Tools
-                </p>
+
+    <div id="div-header">
+        <div class="bodyAlign">
+            <div class="float-left site-title">
+                Administration Tools
             </div>
             <div class="float-right">
-                <nav>
-                    <ul id="menu">
-                        <li>@Html.ActionLink("Court Staff"      , "Index", "CourtStaff"     , new { area = "Admin" }, null)</li>
-                        <li>@Html.ActionLink("Court Settings"   , "Index", "CourtSettings"  , new { area = "Admin" }, null)</li>
-                    </ul>
-                </nav>
+                <ul id="menu">
+                    <li>@Html.ActionLink("Court Staff"      , "Index", "CourtStaff"     , new { area = "Admin" }, null)</li>
+                    <li>@Html.ActionLink("Court Settings"   , "Index", "CourtSettings"  , new { area = "Admin" }, null)</li>
+                </ul>
             </div>
         </div>
-    </header>
-    @RenderBody()
+    </div>
+
+    <div id="div-body">
+        <div class="bodyAlign">
+            @RenderBody()
+        </div>
+    </div>
 
     @Scripts.Render("~/bundles/jquery")
     @RenderSection("scripts", required: false)

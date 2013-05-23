@@ -2,40 +2,35 @@
     ViewBag.Title = "_CourtStaffLayout";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
-<div id="body">
-    <div class="content-wrapper main-content clear-fix">
-        
-        <div class="float-left leftpanel">
-            <div class="headerSection">Court Staff</div>
+ 
+    <div id="leftpanel">
+        <div class="left-panel-header">Court Staff</div>
             
-            <div id="usersGrid">
-
-                @{ Html.RenderAction("UsersList", "CourtStaff", new { userName = ViewBag.userName }); }
-
-            </div>
-
-            <div class="operations">
-                @using (Html.BeginForm("RemoveUser", "CourtStaff", FormMethod.Post))
-                {
-                    <input type="submit" value="REMOVE" @(string.IsNullOrEmpty(ViewBag.userName) ? "disabled" : "") />
-                }
-
-                @using (Html.BeginForm("CreateUser", "CourtStaff", FormMethod.Get))
-                {
-                    <input type="submit" value="NEW" />
-                }
-            </div>
+        <div id="div-usersGrid">
+            @{ Html.RenderAction("UsersList", "CourtStaff", new { userName = ViewBag.userName }); }
         </div>
-        
-        <div class="centerpanel">
-            <ul class="submenu">
-                <li>@Html.ActionLink("Profile"      , "Profile"         , "CourtStaff", new { area = "Admin" }, null)</li>
-                <li>@Html.ActionLink("Availability" , "Availability"    , "CourtStaff", new { area = "Admin" }, null)</li>
-                <li>@Html.ActionLink("User Role"    , "UserRole"        , "CourtStaff", new { area = "Admin" }, null)</li>
-            </ul>
 
-            @RenderBody()
-        </div>        
-        
+        <div class="operations">
+            @using (Html.BeginForm("RemoveUser", "CourtStaff", FormMethod.Post))
+            {
+                <input type="submit" value="REMOVE" @(string.IsNullOrEmpty(ViewBag.userName) ? "disabled" : "") />
+            }
+
+            @using (Html.BeginForm("CreateUser", "CourtStaff", FormMethod.Get))
+            {
+                <input type="submit" value="NEW" />
+            }
+        </div>
     </div>
-</div>
+
+    <div id="div-sub-menu">
+        <ul id="submenu">
+            <li>@Html.ActionLink("Profile"      , "Profile"         , "CourtStaff", new { area = "Admin" }, null)</li>
+            <li>@Html.ActionLink("Availability" , "Availability"    , "CourtStaff", new { area = "Admin" }, null)</li>
+            <li>@Html.ActionLink("User Role"    , "UserRole"        , "CourtStaff", new { area = "Admin" }, null)</li>
+        </ul>
+    </div>
+  
+    <div id="div-central-panel">
+        @RenderBody()
+    </div>     
