@@ -12,17 +12,9 @@ namespace FACCTS.Server.Model.DataModel
     using System;
     using System.Collections.Generic;
     
-    public partial class OAuth_Users
+    public partial class Races
     {
-        public OAuth_Users()
-        {
-            this.OAuth_ClientAuthorization = new HashSet<OAuth_ClientAuthorization>();
-        }
-    
-        public System.Guid UserId { get; set; }
-        public string OpenIDClaimedIdentifier { get; set; }
-        public string OpenIDFriendlyIdentifier { get; set; }
-    
-        public virtual ICollection<OAuth_ClientAuthorization> OAuth_ClientAuthorization { get; set; }
+        public int Id { get; set; }
+        public string Race { get; set; }
     }
 }
