@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[HairColor]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [Color] NVARCHAR(100) NOT NULL
+)

@@ -51,7 +51,7 @@ namespace FACCTS.Server
 
         protected void Application_End(object sender, EventArgs e)
         {
-            _logger.Info("Sample shutting down...");
+            _logger.Info("FACCTS shutting down...");
 
             // this would be automatic, but in partial trust scenarios it is not.
             log4net.LogManager.Shutdown();
