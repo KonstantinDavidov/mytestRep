@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[Races]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [Race] NVARCHAR(100) NOT NULL
+)

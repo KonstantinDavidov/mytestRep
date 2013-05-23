@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[EyesColor]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [Color] NVARCHAR(100) NOT NULL
+)

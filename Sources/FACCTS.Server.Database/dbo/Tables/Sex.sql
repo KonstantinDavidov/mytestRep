@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[Sex]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [Sex] NVARCHAR(100) NOT NULL
+)

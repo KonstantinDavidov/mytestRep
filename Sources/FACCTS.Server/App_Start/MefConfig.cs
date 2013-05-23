@@ -8,6 +8,10 @@ using System.Web.Http.Dependencies;
 using System.Web.Mvc;
 using IDependencyResolver = System.Web.Http.Dependencies.IDependencyResolver;
 using MEF.MVC4;
+using log4net;
+using FACCTS.Server.Model.DataModel;
+using System.ComponentModel.Composition.Primitives;
+using System.Web.Hosting;
 
 namespace FACCTS.Server
 {
@@ -25,10 +29,23 @@ namespace FACCTS.Server
 
         private static CompositionContainer ConfigureContainer()
         {
-            var assemblyCatalog = new AssemblyCatalog(Assembly.GetExecutingAssembly());
-            var container = new CompositionContainer(assemblyCatalog);
+            var path = HostingEnvironment.MapPath("~/bin");
+            if (path == null) throw new Exception("Unable to find the path");
+            var aggregateCatalog = new AggregateCatalog(new DirectoryCatalog(path, "FACCTS.Server.*.dll"));
+            var container = new CompositionContainer(aggregateCatalog);
+            RegisterInstances(container);
             
             return container;
+        }
+
+        private static void RegisterInstances(CompositionContainer container)
+        {
+            var batch = new CompositionBatch();
+            log4net.Config.XmlConfigurator.Configure();
+            var loggerForWebSite = LogManager.GetLogger("FacctsService");
+            batch.AddExportedValue<ILog>(loggerForWebSite);
+            //batch.AddExportedValue<FACCTS_DBEntities>(new FACCTS_DBEntities());
+            container.Compose(batch);
         }
     }
 }
