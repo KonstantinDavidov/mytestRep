@@ -40,14 +40,14 @@
         <EntityTypeShape EntityType="FACCTS_DBModel.OAuth_SymmetricCryptoKey" Width="2.125" PointX="6" PointY="34.5" />
         <AssociationConnector Association="FACCTS_DBModel.FK_OAuth_ClientAuthorization_ToOAuthClient" />
         <EntityTypeShape EntityType="FACCTS_DBModel.OAuth_Nonce" Width="1.5" PointX="3.5" PointY="33.875" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.CourtCaseStatuses" Width="1.5" PointX="4.5726271926297937" PointY="24.302113857260959" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Designations" Width="1.5" PointX="5.6136801920894905" PointY="8.8994671296791488" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.EyesColor" Width="1.5" PointX="9.2576298235252636" PointY="30.476894780284212" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.HairColor" Width="1.5" PointX="6.1916930331809885" PointY="24.968489822451254" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.ParticipantRoles" Width="1.5" PointX="5.7768501703519606" PointY="20.25063561846066" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Races" Width="1.5" PointX="3.5465263517324472" PointY="10.74954285228138" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Sex" Width="1.5" PointX="7.2628866076762257" PointY="16.622175656548784" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.OAuth_Users" Width="1.5" PointX="8.5319128728154645" PointY="17.563542761636686" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CourtCaseStatuses" Width="1.5" PointX="10.625" PointY="40.625" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Designations" Width="1.5" PointX="8.75" PointY="40.625" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.EyesColor" Width="1.5" PointX="8.75" PointY="42.5" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.HairColor" Width="1.5" PointX="6.875" PointY="42.5" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.ParticipantRoles" Width="1.5" PointX="5" PointY="40.625" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Races" Width="1.5" PointX="6.875" PointY="40.625" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Sex" Width="1.5" PointX="5" PointY="42.5" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.OAuth_Users" Width="1.5" PointX="1.625" PointY="38.25" />
         <AssociationConnector Association="FACCTS_DBModel.FK_OAuth_ClientAuthorization_ToOAuthUsers" />
       </Diagram>
     </edmx:Diagrams>

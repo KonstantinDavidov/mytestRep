@@ -1,0 +1,60 @@
+﻿@model Thinktecture.IdentityServer.Web.ViewModels.SignInModel
+
+@{
+    ViewBag.Title = "Username / Password Sign In";
+    if (Model.IsSigninRequest)
+    {
+        ViewBag.HideMenu = true;
+    }
+}
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h2>
+        You are currenty logged in as @User.Identity.Name, but you requested a resource
+        that you were not authorized for. Either provide credentials that do have access
+        or contact your administrator to grant you access.
+    </h2>
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true, "Sign In was unsuccessful. Please correct the errors and try again.")
+    <fieldset class="editor small signin">
+        <legend>Login</legend>
+        <div>
+            @Html.LabelFor(m => m.UserName)
+            @Html.TextBoxFor(m => m.UserName)
+            @Html.ValidationMessageFor(m => m.UserName)
+        </div>
+                
+        <div>
+            @Html.LabelFor(m => m.Password)
+            @Html.PasswordFor(m => m.Password)
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+                
+        <div>
+            @Html.LabelFor(m => m.EnableSSO)
+            @Html.CheckBoxFor(m => m.EnableSSO)
+        </div>
+                
+        <div class="buttons">
+            <input type="submit" value="Sign In" />
+        </div>
+    </fieldset>
+}
+
+@if (Model.ShowClientCertificateLink)
+{ 
+    @Html.ActionLink("Use client certificate", "CertificateSignIn", new { returnUrl = Model.ReturnUrl }) 
+}
+
+@section scripts
+{
+<script type="text/javascript">
+    $(function () {
+        $("#UserName").focus();
+    });
+</script>
+}

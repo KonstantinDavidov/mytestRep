@@ -1,0 +1,26 @@
+﻿@model UserRolesViewModel
+@{
+    ViewBag.Title = "Roles for " + Model.Username;
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("Error updating role assignments");
+    
+    <fieldset class="editor">
+        <legend>@ViewBag.Title</legend>
+        @for (int i = 0; i < Model.RoleAssignments.Length; i++)
+        {
+            <div>
+                @Html.HiddenFor(x => Model.RoleAssignments[i].Role)
+                @Html.LabelFor(x => Model.RoleAssignments[i].InRole, Model.RoleAssignments[i].Role)
+                @Html.CheckBoxFor(x => Model.RoleAssignments[i].InRole)
+            </div>
+        }
+        <div class="buttons">
+            <button type="submit">Update</button>
+            <button type="reset">Cancel</button>
+        </div>
+    </fieldset>
+}

@@ -1,0 +1,20 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewBag.Title = "Sign Out";
+    ViewBag.HideMenu = true;
+}
+
+<h2>Sign Out</h2>
+
+@if (!string.IsNullOrWhiteSpace(ViewBag.ReturnUrl))
+{
+    <p>
+        <a href='@ViewBag.ReturnUrl'>Return to application</a>
+    </p>
+}
+
+@foreach (var link in Model)
+{
+    <iframe style="visibility: hidden; width: 1px; height: 1px" src="@link?wa=wsignoutcleanup1.0" />
+}

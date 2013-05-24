@@ -1,0 +1,35 @@
+﻿@model Thinktecture.IdentityServer.Models.RelyingParty
+
+@{
+    if (Model.Id == null)
+    {
+        ViewBag.Title = "New Relying Party";
+    }
+    else
+    {
+        ViewBag.Title = "Relying Party : " + Model.Name;
+    }
+}
+@using (Html.BeginForm("RP", "RP", new { id = Model.Id }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("Error updating relying party")
+    <fieldset class="editor">
+        <legend>@ViewBag.Title</legend>
+
+        @Html.EditorForModel()
+
+        <div class="buttons">
+            @if (Model.Id != null)
+            {
+                <button type="submit" name="action" value="save">Save Changes</button>
+                <button type="submit" name="action" value="delete">Delete</button>
+            }
+            else
+            {
+                <button type="submit" name="action" value="create">Create</button>
+            }
+            <button type="reset">Cancel</button>
+        </div>
+    </fieldset>
+}
