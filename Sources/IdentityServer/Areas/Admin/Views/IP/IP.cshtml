@@ -1,0 +1,39 @@
+﻿@model Thinktecture.IdentityServer.Models.IdentityProvider
+@using Thinktecture.IdentityServer.Web.Utility
+
+@{
+    if (Model.ID == 0)
+    {
+        ViewBag.Title = "New Identity Provider";
+    }
+    else
+    {
+        ViewBag.Title = "Identity Provider : " + Model.Name;
+    }
+}
+@{
+    var action = Model.ID == 0 ? "Create" : "Update";
+}
+@using (Html.BeginForm(action, "IP", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary("Error updating identity provider")
+    <fieldset class="editor">
+        <legend>@ViewBag.Title</legend>
+
+        @Html.EditorForModel()
+
+        <div class="buttons">
+            @if (Model.ID > 0)
+            {
+                <button type="submit" name="action" value="save">Save Changes</button>
+                <button type="submit" name="action" value="delete">Delete</button>
+            }
+            else
+            {
+                <button type="submit" name="action" value="create">Create</button>
+            }
+            <button type="reset">Cancel</button>
+        </div>
+    </fieldset>
+}

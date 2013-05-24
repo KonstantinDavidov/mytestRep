@@ -1,0 +1,58 @@
+﻿@model Thinktecture.IdentityServer.Web.ViewModels.InitialConfigurationModel
+
+@{
+    ViewBag.Title = "Initial Configuration";
+}
+
+<h2>Initial Configuration
+    <a href="@Url.Content("~/docs/initialConfiguration.html")" target="_blank">(help)</a>
+</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset class="editor">
+        <legend>Settings</legend>
+
+        <div>
+            @Html.LabelFor(model => model.SiteName)
+            @Html.EditorFor(model => model.SiteName)
+            @Html.ValidationMessageFor(model => model.SiteName)
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.IssuerUri)
+            @Html.EditorFor(model => model.IssuerUri)
+            @Html.ValidationMessageFor(model => model.IssuerUri)
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.SigningCertificate)
+            @Html.DropDownList("SigningCertificate", Model.AvailableCertificatesList)
+        </div>
+    </fieldset>
+    
+    <fieldset class="editor">
+        <legend>Default accounts</legend>
+        <div>
+            @Html.LabelFor(model => model.CreateDefaultAccounts)
+            @Html.EditorFor(model => model.CreateDefaultAccounts)
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.UserName)
+            @Html.EditorFor(model => model.UserName)
+        </div>
+
+        <div>
+            @Html.LabelFor(model => model.Password)
+            @Html.EditorFor(model => model.Password)
+        </div>
+    </fieldset>
+    
+    <div class="buttons"> 
+        <input type="submit" value="Save" />
+    </div>
+}
