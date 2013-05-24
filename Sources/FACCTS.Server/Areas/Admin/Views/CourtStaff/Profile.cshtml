@@ -38,7 +38,8 @@ else
         <div id="div-user-image">
             <span>Picture</span>
             <div>
-                <img id="userImage" alt="Picture" />
+                <img id="userImage" alt="Picture" src="@Url.Action("GetImage", "CourtStaff", new { userName = ViewBag.userName })" />
+
                 <br />
                 <input type="file" id="userImageFile" name="userImageFile" onchange="this.parentNode.parentNode.parentNode.submit();" />
                 <a onclick="javascipt: document.getElementById('userImageFile').click()">Click to Change</a>
