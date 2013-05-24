@@ -108,6 +108,19 @@ namespace FACCTS.Server.Services
             
         }
 
+        private HairColorRepository _hairColorRepository;
+
+        public HairColorRepository HairColorRepository
+        {
+            get {
+                if (_hairColorRepository == null)
+                {
+                    _hairColorRepository = ObjectFactory.GetInstance<HairColorRepository>();
+                }
+                return _hairColorRepository;
+            }
+        }
+        
 
         public void Dispose()
         {

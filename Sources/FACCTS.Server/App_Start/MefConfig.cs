@@ -32,6 +32,7 @@ namespace FACCTS.Server
             var path = HostingEnvironment.MapPath("~/bin");
             if (path == null) throw new Exception("Unable to find the path");
             var aggregateCatalog = new AggregateCatalog(new DirectoryCatalog(path, "FACCTS.Server.*.dll"));
+            aggregateCatalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
             var container = new CompositionContainer(aggregateCatalog);
             RegisterInstances(container);
             
