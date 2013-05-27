@@ -10,5 +10,8 @@ namespace FACCTS.Server.Services
     public interface IDataManager : IDisposable
     {
         HairColorRepository HairColorRepository { get; }
+        EyesColorRepository EyesColorRepository { get; }
+        SexRepository SexRepository { get; }
+        CourtCaseStatusesRepository CourtCaseStatusesRepository { get; }
     }
 }

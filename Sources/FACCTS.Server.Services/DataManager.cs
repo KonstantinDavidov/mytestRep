@@ -54,7 +54,49 @@ namespace FACCTS.Server.Services
                 return _hairColorRepository;
             }
         }
-        
+
+        private EyesColorRepository _eyesColorRepository;
+
+        public EyesColorRepository EyesColorRepository
+        {
+            get
+            {
+                if (_eyesColorRepository == null)
+                {
+                    _eyesColorRepository = ObjectFactory.GetInstance<EyesColorRepository>();
+                }
+                return _eyesColorRepository;
+            }
+        }
+
+        private CourtCaseStatusesRepository _courtCaseStatusesRepository;
+
+        public CourtCaseStatusesRepository CourtCaseStatusesRepository
+        {
+            get
+            {
+                if (_courtCaseStatusesRepository == null)
+                {
+                    _courtCaseStatusesRepository = ObjectFactory.GetInstance<CourtCaseStatusesRepository>();
+                }
+                return _courtCaseStatusesRepository;
+            }
+        }
+
+        private SexRepository _sexRepository;
+
+        public SexRepository SexRepository
+        {
+            get
+            {
+                if (_sexRepository == null)
+                {
+                    _sexRepository = ObjectFactory.GetInstance<SexRepository>();
+                }
+                return _sexRepository;
+            }
+        }
+
 
         public void Dispose()
         {
