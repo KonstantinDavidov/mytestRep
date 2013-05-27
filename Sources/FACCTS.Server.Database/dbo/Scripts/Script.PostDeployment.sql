@@ -10,6 +10,4 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-:r .\InsertApplications.sql
 :r .\InsertDictionaryData.sql
-:r .\IdentityServerScript.sql

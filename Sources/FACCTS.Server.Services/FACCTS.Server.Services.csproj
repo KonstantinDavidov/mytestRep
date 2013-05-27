@@ -60,11 +60,6 @@
     <Compile Include="Repositiries\CourtCaseStatusesRepository.cs" />
     <Compile Include="Repositiries\EyesColorRepository.cs" />
     <Compile Include="Repositiries\HairColorRepository.cs" />
-    <Compile Include="Repositiries\OAuth_ClientAuthorizationRepository.cs" />
-    <Compile Include="Repositiries\OAuth_ClientRepository.cs" />
-    <Compile Include="Repositiries\OAuth_NonceRepository.cs" />
-    <Compile Include="Repositiries\OAuth_SymmetricCryptoKeyRepository.cs" />
-    <Compile Include="Repositiries\OAuth_UsersRepository.cs" />
     <Compile Include="Repositiries\SexRepository.cs" />
   </ItemGroup>
   <ItemGroup>

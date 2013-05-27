@@ -43,11 +43,6 @@ namespace FACCTS.Server
 
         public static IDataManager DataManager { private get; set; }
 
-        public static OAuth_Users LoggedInUser
-        {
-            get { return DataManager.UsersRepository.Get(user => user.OpenIDClaimedIdentifier == HttpContext.Current.User.Identity.Name).SingleOrDefault(); }
-        }
-
 
         protected void Application_End(object sender, EventArgs e)
         {
