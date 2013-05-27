@@ -304,24 +304,13 @@
     <Build Include="dbo\Tables\Sex.sql" />
     <Build Include="dbo\Tables\HairColor.sql" />
     <Build Include="dbo\Tables\EyesColor.sql" />
-    <Build Include="dbo\Tables\Races.sql" />
-    <Build Include="dbo\Tables\GlobalConfiguration.sql" />
-    <Build Include="dbo\Tables\WSFederationConfiguration.sql" />
-    <Build Include="dbo\Tables\KeyMaterialConfiguration.sql" />
-    <Build Include="dbo\Tables\WSTrustConfiguration.sql" />
-    <Build Include="dbo\Tables\FederationMetadataConfiguration.sql" />
-    <Build Include="dbo\Tables\OAuth2Configuration.sql" />
-    <Build Include="dbo\Tables\SimpleHttpConfiguration.sql" />
-    <Build Include="dbo\Tables\DiagnosticsConfiguration.sql" />
-    <Build Include="dbo\Tables\ClientCertificates.sql" />
-    <Build Include="dbo\Tables\Delegation.sql" />
-    <Build Include="dbo\Tables\RelyingParties.sql" />
-    <Build Include="dbo\Tables\IdentityProvider.sql" />
-    <Build Include="dbo\Tables\Client.sql" />
-    <Build Include="dbo\Tables\__MigrationHistory.sql" />
-    <Build Include="dbo\Tables\AdfsIntegrationConfiguration.sql" />
     <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
-    <Build Include="dbo\Tables\User.sql" />
+    <Build Include="dbo\Tables\Race_1.sql" />
+    <Build Include="dbo\Tables\OAuth_Users.sql" />
+    <Build Include="dbo\Tables\OAuth_SymmetricCryptoKey.sql" />
+    <Build Include="dbo\Tables\OAuth_Nonce.sql" />
+    <Build Include="dbo\Tables\OAuth_ClientAuthorization.sql" />
+    <Build Include="dbo\Tables\OAuth_Client.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="FACCTS.Server.Database.refactorlog" />
