@@ -1,4 +1,5 @@
-﻿using FACCTS.Server.Model.DataModel;
+﻿using FACCTS.Server.Model;
+using FACCTS.Server.Model.DataModel;
 using FACCTS.Server.Services.Repositiries;
 using StructureMap;
 using System;
@@ -15,8 +16,11 @@ namespace FACCTS.Server.Services
     [Export(typeof(IDataManager))]
     internal class DataManager : IDataManager
     {
-        public DataManager()
+        [ImportingConstructor]
+        public DataManager(FacctsDatabaseInitializer initializer)
         {
+            Database.SetInitializer(initializer);
+
             ObjectFactory.Configure(x =>
                 {
                     x.For<DbContext>().Use<DatabaseContext>();
