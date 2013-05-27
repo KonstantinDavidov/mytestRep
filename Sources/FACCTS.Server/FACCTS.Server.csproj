@@ -200,27 +200,16 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="ClientDescriptionAdapter.cs" />
-    <Compile Include="Code\DatabaseKeyNonceStore.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Code\ExceptionHandlingAttribute.cs" />
     <Compile Include="Code\HttpHeaderAttribute.cs" />
-    <Compile Include="Code\OAuth2AuthorizationServer.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Code\Utilities.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HairColorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\OAuthController.cs" />
     <Compile Include="Controllers\SexDictController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountAuthorizeModel.cs" />
-    <Compile Include="Models\LogOnModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -357,6 +346,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
