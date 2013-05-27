@@ -14,8 +14,13 @@ namespace FACCTS.Server.Model
     {
         protected override void Seed(DatabaseContext context)
         {
-            //TODO: implement default filling of the database tables
+            SeedContext(context);
             base.Seed(context);
+        }
+
+        public static void SeedContext(DatabaseContext context)
+        {
+
         }
     }
 }
