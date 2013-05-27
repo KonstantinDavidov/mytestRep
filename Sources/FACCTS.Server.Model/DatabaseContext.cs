@@ -12,7 +12,8 @@ namespace FACCTS.Server.Model.DataModel
     public partial class DatabaseContext : DbContext
     {
 
-        public DatabaseContext() : base("name=IdentityServerConfiguration")
+        public DatabaseContext()
+            : base("name=IdentityServerConfiguration")
         {
 
         }

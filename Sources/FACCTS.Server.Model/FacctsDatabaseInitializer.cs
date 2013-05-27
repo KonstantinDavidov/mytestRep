@@ -16,14 +16,17 @@ namespace FACCTS.Server.Model
     [Export]
     public class FacctsDatabaseInitializer : CreateDatabaseIfNotExists<DatabaseContext>
     {
+        public FacctsDatabaseInitializer() : base()
+        {
+            //Database.SetInitializer<IdentityServerConfigurationContext>(new ConfigurationDatabaseInitializer());
+        }
 
         protected override void Seed(DatabaseContext context)
         {
-            using (IdentityServerConfigurationContext idCtx = IdentityServerConfigurationContext.Get())
-            {
-                ConfigurationDatabaseInitializer IdCtxInit = new ConfigurationDatabaseInitializer();
-                IdCtxInit.InitializeDatabase(idCtx);
-            }
+            //using (IdentityServerConfigurationContext idCtx = IdentityServerConfigurationContext.Get())
+            //{
+            //    idCtx.Database.Initialize(true);
+            //}
             SeedFacctsDefaultData(context as DatabaseContext);
             base.Seed(context);
             
@@ -31,6 +34,10 @@ namespace FACCTS.Server.Model
 
         protected virtual void SeedFacctsDefaultData(DatabaseContext context)
         {
+            //using(var idCtx = IdentityServerConfigurationContext.Get())
+            //{
+            //    ConfigurationDatabaseInitializer.SeedContext(idCtx);
+            //}
             SeedCaseStatuses(context);
             SeedDesignations(context);
             SeedEyeColors(context);
@@ -130,15 +137,12 @@ namespace FACCTS.Server.Model
 
         private CsvReader GetReaderFor(string resourceName)
         {
-            using (Stream stream = Assembly.GetExecutingAssembly()
-                               .GetManifestResourceStream(string.Format("{0}.{1}.{2}", "FACCTS.Server.Model", "DeployData", resourceName)))
-            {
-                using (StreamReader sr = new StreamReader(stream))
-                {
-                    return new CsvReader(sr);
-                }
-                
-            }
+            Stream stream = Assembly.GetExecutingAssembly()
+                               .GetManifestResourceStream(string.Format("{0}.{1}.{2}", "FACCTS.Server.Model", "DeployData", resourceName));
+            StreamReader sr = new StreamReader(stream);
+            return new CsvReader(sr, new CsvHelper.Configuration.CsvConfiguration() { 
+                Delimiter = ";",
+            });
         }
        
     }

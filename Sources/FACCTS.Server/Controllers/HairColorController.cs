@@ -20,7 +20,13 @@ namespace FACCTS.Server.Controllers
         // GET api/haircolor
         public IEnumerable<HairColor> Get()
         {
-            var data = DataManager.HairColorRepository.Get();
+            //var data = DataManager.HairColorRepository.Get();
+            IEnumerable<HairColor> data;
+            using (DatabaseContext ctx = new DatabaseContext())
+            {
+                data = from hc in ctx.HairColor
+                       select hc;
+            }
             return data;
         }
 

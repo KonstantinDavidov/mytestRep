@@ -19,7 +19,7 @@ namespace FACCTS.Server.Services
         [ImportingConstructor]
         public DataManager(FacctsDatabaseInitializer initializer)
         {
-            Database.SetInitializer(initializer);
+            Database.SetInitializer<DatabaseContext>(initializer);
 
             ObjectFactory.Configure(x =>
                 {
@@ -34,7 +34,7 @@ namespace FACCTS.Server.Services
         private  DbContext CreateContext()
         {
             DatabaseContext context = new DatabaseContext();
-            context.Database.Initialize(false);
+            //context.Database.Initialize(false);
             return (DbContext)context;
         }
 
