@@ -11,5 +11,5 @@ Post-Deployment Script Template
 */
 
 :r .\InsertApplications.sql
-:r .\InsertOAuthData.sql
 :r .\InsertDictionaryData.sql
+:r .\IdentityServerScript.sql
