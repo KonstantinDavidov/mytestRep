@@ -1,4 +1,4 @@
-﻿--[dbo].[CourtCaseStatuses]
+﻿--[dbo].[CourtCaseStatuse]
 
 DECLARE @CaseStatusNewId int = 1
 DECLARE @CaseStatusReissuedId int = 10
@@ -6,50 +6,50 @@ DECLARE @CaseStatusActiveId int = 20
 DECLARE @CaseStatusDroppedId int = 30
 DECLARE @CaseStatusDismissedId int = 40
 
-if not exists (Select 1 from [dbo].[CourtCaseStatuses] where Id = @CaseStatusNewId)
-    insert into [dbo].[CourtCaseStatuses] (Id, CaseStatus)
+if not exists (Select 1 from [dbo].[CourtCaseStatuse] where Id = @CaseStatusNewId)
+    insert into [dbo].[CourtCaseStatuse] (Id, CaseStatus)
         values (@CaseStatusNewId, N'New')
-if not exists (Select 1 from [dbo].[CourtCaseStatuses] where Id = @CaseStatusReissuedId)
-    insert into [dbo].[CourtCaseStatuses] (Id, CaseStatus)
+if not exists (Select 1 from [dbo].[CourtCaseStatuse] where Id = @CaseStatusReissuedId)
+    insert into [dbo].[CourtCaseStatuse] (Id, CaseStatus)
         values (@CaseStatusReissuedId, N'Reissued')
-if not exists (Select 1 from [dbo].[CourtCaseStatuses] where Id = @CaseStatusActiveId)
-    insert into [dbo].[CourtCaseStatuses] (Id, CaseStatus)
+if not exists (Select 1 from [dbo].[CourtCaseStatuse] where Id = @CaseStatusActiveId)
+    insert into [dbo].[CourtCaseStatuse] (Id, CaseStatus)
         values (@CaseStatusActiveId, N'Active')
-if not exists (Select 1 from [dbo].[CourtCaseStatuses] where Id = @CaseStatusDroppedId)
-    insert into [dbo].[CourtCaseStatuses] (Id, CaseStatus)
+if not exists (Select 1 from [dbo].[CourtCaseStatuse] where Id = @CaseStatusDroppedId)
+    insert into [dbo].[CourtCaseStatuse] (Id, CaseStatus)
         values (@CaseStatusDroppedId, N'Dropped')
-if not exists (Select 1 from [dbo].[CourtCaseStatuses] where Id = @CaseStatusDismissedId)
-    insert into [dbo].[CourtCaseStatuses] (Id, CaseStatus)
+if not exists (Select 1 from [dbo].[CourtCaseStatuse] where Id = @CaseStatusDismissedId)
+    insert into [dbo].[CourtCaseStatuse] (Id, CaseStatus)
         values (@CaseStatusDismissedId, N'Dismissed')
 
---[dbo].[Designations]
+--[dbo].[Designation]
 DECLARE @DesignationNoneId int = 1
 DECLARE @DesignationPlaintiffId int = 10
 DECLARE @DesignationRespondentId int = 20
 
-if not exists (Select 1 from [dbo].[Designations] where Id = @DesignationNoneId)
-    insert into [dbo].[Designations] (Id, Designation)
+if not exists (Select 1 from [dbo].[Designation] where Id = @DesignationNoneId)
+    insert into [dbo].[Designation] (Id, Designation)
         values (@DesignationNoneId, N'None')
-if not exists (Select 1 from [dbo].[Designations] where Id = @DesignationPlaintiffId)
-    insert into [dbo].[Designations] (Id, Designation)
+if not exists (Select 1 from [dbo].[Designation] where Id = @DesignationPlaintiffId)
+    insert into [dbo].[Designation] (Id, Designation)
         values (@DesignationPlaintiffId, N'Plaintiff')
-if not exists (Select 1 from [dbo].[Designations] where Id = @DesignationRespondentId)
-    insert into [dbo].[Designations] (Id, Designation)
+if not exists (Select 1 from [dbo].[Designation] where Id = @DesignationRespondentId)
+    insert into [dbo].[Designation] (Id, Designation)
         values (@DesignationRespondentId, N'Respondent')
 
---[dbo].[ParticipantRoles]
+--[dbo].[ParticipantRole]
 DECLARE @ParticipantRoleProtectedId int = 1
 DECLARE @ParticipantRolerestrainedId int = 10
 DECLARE @ParticipantRoleAdditionalProtectedId int = 20
 
-if not exists (Select 1 from [dbo].[ParticipantRoles] where Id = @ParticipantRoleProtectedId)
-    insert into [dbo].[ParticipantRoles] (Id, ParticipantRole)
+if not exists (Select 1 from [dbo].[ParticipantRole] where Id = @ParticipantRoleProtectedId)
+    insert into [dbo].[ParticipantRole] (Id, ParticipantRole)
         values (@ParticipantRoleProtectedId, N'Protected')
-if not exists (Select 1 from [dbo].[ParticipantRoles] where Id = @ParticipantRolerestrainedId)
-    insert into [dbo].[ParticipantRoles] (Id, ParticipantRole)
+if not exists (Select 1 from [dbo].[ParticipantRole] where Id = @ParticipantRolerestrainedId)
+    insert into [dbo].[ParticipantRole] (Id, ParticipantRole)
         values (@ParticipantRolerestrainedId, N'Restrained')
-if not exists (Select 1 from [dbo].[ParticipantRoles] where Id = @ParticipantRoleAdditionalProtectedId)
-    insert into [dbo].[ParticipantRoles] (Id, ParticipantRole)
+if not exists (Select 1 from [dbo].[ParticipantRole] where Id = @ParticipantRoleAdditionalProtectedId)
+    insert into [dbo].[ParticipantRole] (Id, ParticipantRole)
         values (@ParticipantRoleAdditionalProtectedId, N'Additional Protected')
 
 --[dbo].[Sex]
@@ -165,7 +165,7 @@ if not exists (Select 1 from [dbo].[EyesColor] where id = @EyesColorUnknown)
     insert into [dbo].[EyesColor] (Id, Color)
         values (@EyesColorUnknown, N'Unknown')
 
---[dbo].[Races]
+--[dbo].[Race]
 DECLARE @RaceOtherAsian int = 1
 DECLARE @RaceBlack int = 10
 DECLARE @RaceChineese int = 20
@@ -178,7 +178,7 @@ DECLARE @RaceJapanese int = 80
 DECLARE @RaceKorean int = 90
 DECLARE @RaceLaotian int = 100
 DECLARE @RacePacificIslander int = 110
-DECLARE @RaceSamoan int = 120
+DECLARE @Raceamoan int = 120
 DECLARE @RaceHawaiian int = 130
 DECLARE @RaceVietnamese int = 140
 DECLARE @RaceWhite int = 150
@@ -186,60 +186,60 @@ DECLARE @RaceOther int = 160
 DECLARE @RaceUnknown int = 170
 DECLARE @RaceAsianIndian int = 180
 
-if not exists (Select 1 from [dbo].[Races] where Id = @RaceOtherAsian)
-    insert into [dbo].[Races] (Id, Race)
+if not exists (Select 1 from [dbo].[Race] where Id = @RaceOtherAsian)
+    insert into [dbo].[Race] (Id, Race)
         values (@RaceOtherAsian, N'Other Asian')
-if not exists (Select 1 from [dbo].[Races] where Id = @RaceBlack)
-    insert into [dbo].[Races] (Id, Race)
+if not exists (Select 1 from [dbo].[Race] where Id = @RaceBlack)
+    insert into [dbo].[Race] (Id, Race)
         values (@RaceBlack, N'Black')
-if not exists (Select 1 from [dbo].[Races] where Id = @RaceChineese)
-    insert into [dbo].[Races] (Id, Race)
+if not exists (Select 1 from [dbo].[Race] where Id = @RaceChineese)
+    insert into [dbo].[Race] (Id, Race)
         values (@RaceChineese, N'Chinese')
-if not exists (Select 1 from [dbo].[Races] where Id = @RaceCambodian)
-    insert into [dbo].[Races] (Id, Race)
+if not exists (Select 1 from [dbo].[Race] where Id = @RaceCambodian)
+    insert into [dbo].[Race] (Id, Race)
         values (@RaceCambodian, N'Cambodian')
-if not exists (Select 1 from [dbo].[Races] where Id = @RaceFilipino)
-    insert into [dbo].[Races] (Id, Race)
+if not exists (Select 1 from [dbo].[Race] where Id = @RaceFilipino)
+    insert into [dbo].[Race] (Id, Race)
         values (@RaceFilipino, N'Filipino')
-if not exists (Select 1 from [dbo].[Races] where Id = @RaceGuamanian)
-    insert into [dbo].[Races] (Id, Race)
+if not exists (Select 1 from [dbo].[Race] where Id = @RaceGuamanian)
+    insert into [dbo].[Race] (Id, Race)
         values (@RaceGuamanian, N'Guamanian')
-if not exists (Select 1 from [dbo].[Races] where Id = @RaceHispanic)
-    insert into [dbo].[Races] (Id, Race)
+if not exists (Select 1 from [dbo].[Race] where Id = @RaceHispanic)
+    insert into [dbo].[Race] (Id, Race)
         values (@RaceHispanic, N'Hispanic')
-if not exists (Select 1 from [dbo].[Races] where Id = @RaceIndian)
-    insert into [dbo].[Races] (Id, Race)
+if not exists (Select 1 from [dbo].[Race] where Id = @RaceIndian)
+    insert into [dbo].[Race] (Id, Race)
         values (@RaceIndian, N'Indian')
-if not exists (Select 1 from [dbo].[Races] where Id = @RaceJapanese)
-    insert into [dbo].[Races] (Id, Race)
+if not exists (Select 1 from [dbo].[Race] where Id = @RaceJapanese)
+    insert into [dbo].[Race] (Id, Race)
         values (@RaceJapanese, N'Japanese')
-if not exists (Select 1 from [dbo].[Races] where Id = @RaceKorean)
-    insert into [dbo].[Races] (Id, Race)
+if not exists (Select 1 from [dbo].[Race] where Id = @RaceKorean)
+    insert into [dbo].[Race] (Id, Race)
         values (@RaceKorean, N'Korean')
-if not exists (Select 1 from [dbo].[Races] where Id = @RaceLaotian)
-    insert into [dbo].[Races] (Id, Race)
+if not exists (Select 1 from [dbo].[Race] where Id = @RaceLaotian)
+    insert into [dbo].[Race] (Id, Race)
         values (@RaceLaotian, N'Laotian')
-if not exists (Select 1 from [dbo].[Races] where Id = @RacePacificIslander)
-    insert into [dbo].[Races] (Id, Race)
+if not exists (Select 1 from [dbo].[Race] where Id = @RacePacificIslander)
+    insert into [dbo].[Race] (Id, Race)
         values (@RacePacificIslander, N'Pacific Islander')
-if not exists (Select 1 from [dbo].[Races] where Id = @RaceSamoan)
-    insert into [dbo].[Races] (Id, Race)
-        values (@RaceSamoan, N'Samoan')
-if not exists (Select 1 from [dbo].[Races] where Id = @RaceHawaiian)
-    insert into [dbo].[Races] (Id, Race)
+if not exists (Select 1 from [dbo].[Race] where Id = @Raceamoan)
+    insert into [dbo].[Race] (Id, Race)
+        values (@Raceamoan, N'Samoan')
+if not exists (Select 1 from [dbo].[Race] where Id = @RaceHawaiian)
+    insert into [dbo].[Race] (Id, Race)
         values (@RaceHawaiian, N'Hawaiian')
-if not exists (Select 1 from [dbo].[Races] where Id = @RaceVietnamese)
-    insert into [dbo].[Races] (Id, Race)
+if not exists (Select 1 from [dbo].[Race] where Id = @RaceVietnamese)
+    insert into [dbo].[Race] (Id, Race)
         values (@RaceVietnamese, N'Vietnamese')
-if not exists (Select 1 from [dbo].[Races] where Id = @RaceWhite)
-    insert into [dbo].[Races] (Id, Race)
+if not exists (Select 1 from [dbo].[Race] where Id = @RaceWhite)
+    insert into [dbo].[Race] (Id, Race)
         values (@RaceWhite, N'White')
-if not exists (Select 1 from [dbo].[Races] where Id = @RaceOther)
-    insert into [dbo].[Races] (Id, Race)
+if not exists (Select 1 from [dbo].[Race] where Id = @RaceOther)
+    insert into [dbo].[Race] (Id, Race)
         values (@RaceOther, N'Other')
-if not exists (Select 1 from [dbo].[Races] where Id = @RaceUnknown)
-    insert into [dbo].[Races] (Id, Race)
+if not exists (Select 1 from [dbo].[Race] where Id = @RaceUnknown)
+    insert into [dbo].[Race] (Id, Race)
         values (@RaceUnknown, N'Unknown')
-if not exists (Select 1 from [dbo].[Races] where Id = @RaceAsianIndian)
-    insert into [dbo].[Races] (Id, Race)
+if not exists (Select 1 from [dbo].[Race] where Id = @RaceAsianIndian)
+    insert into [dbo].[Race] (Id, Race)
         values (@RaceAsianIndian, N'Asian Indian')

@@ -15,5 +15,8 @@ namespace FACCTS.Server.Services
         OAuth_SymmetricCryptoKeyRepository SymmetricCryptoKeyRepository { get; }
         OAuth_UsersRepository UsersRepository { get; }
         HairColorRepository HairColorRepository { get; }
+        EyesColorRepository EyesColorRepository { get; }
+        SexRepository SexRepository { get; }
+        CourtCaseStatusesRepository CourtCaseStatusesRepository { get; }
     }
 }
