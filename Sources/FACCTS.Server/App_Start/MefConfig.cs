@@ -12,6 +12,7 @@ using log4net;
 using FACCTS.Server.Model.DataModel;
 using System.ComponentModel.Composition.Primitives;
 using System.Web.Hosting;
+using Thinktecture.IdentityServer.Repositories;
 
 namespace FACCTS.Server
 {
@@ -25,6 +26,7 @@ namespace FACCTS.Server
             
             var dependencyResolver = System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver;
             System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver = new MefDependencyResolver(container);
+            Container.Current = new CompositionContainer(new RepositoryExportProvider());
         }
 
         private static CompositionContainer ConfigureContainer()

@@ -33,9 +33,9 @@ namespace FACCTS.Server.Services
 
         private  DbContext CreateContext()
         {
-            DbContext context = DatabaseContext.Get();
-
-            return context;
+            DatabaseContext context = new DatabaseContext();
+            context.Database.Initialize(false);
+            return (DbContext)context;
         }
 
 
@@ -97,6 +97,7 @@ namespace FACCTS.Server.Services
             }
         }
 
+        
 
         public void Dispose()
         {
@@ -120,6 +121,21 @@ namespace FACCTS.Server.Services
                 {
                     _hairColorRepository.Dispose();
                     _hairColorRepository = null;
+                }
+                if (_eyesColorRepository != null)
+                {
+                    _eyesColorRepository.Dispose();
+                    _eyesColorRepository = null;
+                }
+                if (_courtCaseStatusesRepository != null)
+                {
+                    _courtCaseStatusesRepository.Dispose();
+                    _courtCaseStatusesRepository = null;
+                }
+                if (_sexRepository != null)
+                {
+                    _sexRepository.Dispose();
+                    _sexRepository = null;
                 }
             }
             //clean up the native resources

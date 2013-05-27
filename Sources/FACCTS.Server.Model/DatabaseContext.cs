@@ -4,26 +4,27 @@ using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using Thinktecture.IdentityServer.Repositories.Sql;
 
 namespace FACCTS.Server.Model.DataModel
 {
     [Export]
     public partial class DatabaseContext : DbContext
     {
-        public DatabaseContext()
-            : base("name=FACCTS_DBEntities")
+
+        public DatabaseContext() : base("name=IdentityServerConfiguration")
         {
+
         }
 
-        public DatabaseContext(DbConnection conn) : base(conn, true)
+        public DatabaseContext(DbConnection dbConn) : base(dbConn, true)
         {
 
         }
 
         public DatabaseContext(IDatabaseInitializer<DatabaseContext> initializer)
         {
-            Database.SetInitializer(initializer);
-            
+            Database.SetInitializer<DatabaseContext>(initializer);
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -40,7 +41,6 @@ namespace FACCTS.Server.Model.DataModel
 
             return new DatabaseContext();
         }
-
 
         public DbSet<CourtCaseStatus> CourtCaseStatuses { get; set; }
         public DbSet<Designation> Designations { get; set; }

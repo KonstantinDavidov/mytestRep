@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Services.Repositiries
 {
-    public class CourtCaseStatusesRepository : DbContextRepository<CourtCaseStatuses>
+    public class CourtCaseStatusesRepository : DbContextRepository<CourtCaseStatus>
     {
         public CourtCaseStatusesRepository()
             : base()

@@ -1,4 +1,5 @@
-﻿//using FACCTS.Server.Code;
+﻿using FACCTS.Server.Model;
+//using FACCTS.Server.Code;
 using FACCTS.Server.Model.DataModel;
 using FACCTS.Server.Services;
 using log4net;
@@ -6,8 +7,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using System.Data.Entity;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -23,6 +27,11 @@ namespace FACCTS.Server
         private ILog _logger;
         protected void Application_Start()
         {
+            // create empty config database if it not exists
+            Database.SetInitializer(new FacctsDatabaseInitializer());
+
+            // set the anti CSRF for name (that's a unqiue claim in our system)
+            AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.Name;
             AreaRegistration.RegisterAllAreas();
 
             ConfigureMEF();
