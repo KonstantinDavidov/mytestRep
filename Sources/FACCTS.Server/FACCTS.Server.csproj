@@ -355,6 +355,8 @@
     <Content Include="Areas\Admin\Views\CourtStaff\UserRole.cshtml" />
     <Content Include="Areas\Admin\Views\CourtStaff\UsersList.cshtml" />
     <Content Include="Areas\Admin\Views\CourtStaff\CreateUser.cshtml" />
+    <Content Include="Areas\Admin\Views\CourtStaff\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Readme Mef.MVC4.txt" />
     <Content Include="Scripts\jquery-1.8.2.js" />

@@ -18,7 +18,7 @@ namespace FACCTS.Server.Areas.Admin
         /// </summary>
         public ActionResult Index()
         {
-            return RedirectToAction("Profile");
+            return View();
         }
 
         public ActionResult Profile(string userName)
