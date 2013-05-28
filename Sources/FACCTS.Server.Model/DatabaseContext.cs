@@ -1,10 +1,10 @@
-﻿using System;
+﻿using FACCTS.Server.Model.DataModel.Configuration;
+using System;
 using System.ComponentModel.Composition;
 using System.Data.Common;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
-using Thinktecture.IdentityServer.Repositories.Sql;
 
 namespace FACCTS.Server.Model.DataModel
 {
@@ -13,7 +13,7 @@ namespace FACCTS.Server.Model.DataModel
     {
 
         public DatabaseContext()
-            : base("name=IdentityServerConfiguration")
+            : base("name=FACCTS_DB")
         {
 
         }
@@ -50,5 +50,22 @@ namespace FACCTS.Server.Model.DataModel
         public DbSet<ParticipantRole> ParticipantRoles { get; set; }
         public DbSet<Race> Races { get; set; }
         public DbSet<Sex> Sex { get; set; }
+
+        public DbSet<GlobalConfiguration> GlobalConfiguration { get; set; }
+        public DbSet<WSFederationConfiguration> WSFederation { get; set; }
+        public DbSet<KeyMaterialConfiguration> Keys { get; set; }
+        public DbSet<WSTrustConfiguration> WSTrust { get; set; }
+        public DbSet<FederationMetadataConfiguration> FederationMetadata { get; set; }
+        public DbSet<OAuth2Configuration> OAuth2 { get; set; }
+        public DbSet<AdfsIntegrationConfiguration> AdfsIntegration { get; set; }
+        public DbSet<SimpleHttpConfiguration> SimpleHttp { get; set; }
+        public DbSet<DiagnosticsConfiguration> Diagnostics { get; set; }
+
+        public DbSet<ClientCertificates> ClientCertificates { get; set; }
+        public DbSet<Delegation> Delegation { get; set; }
+        public DbSet<RelyingParties> RelyingParties { get; set; }
+        public DbSet<IdentityProvider> IdentityProviders { get; set; }
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<CodeToken> CodeTokens { get; set; }
     }
 }

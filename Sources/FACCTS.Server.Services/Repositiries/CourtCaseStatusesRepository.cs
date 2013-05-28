@@ -13,6 +13,7 @@ namespace FACCTS.Server.Services.Repositiries
         public CourtCaseStatusesRepository()
             : base()
         {
+            
         }
     }
 }

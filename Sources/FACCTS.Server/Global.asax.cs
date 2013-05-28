@@ -1,4 +1,5 @@
-﻿using FACCTS.Server.Model;
+﻿using FACCTS.Server.App_Start;
+using FACCTS.Server.Model;
 //using FACCTS.Server.Code;
 using FACCTS.Server.Model.DataModel;
 using FACCTS.Server.Services;
@@ -28,7 +29,7 @@ namespace FACCTS.Server
         protected void Application_Start()
         {
             // create empty config database if it not exists
-            Database.SetInitializer(new FacctsDatabaseInitializer());
+            DatabasesConfigure.ConfigureDB();
 
             // set the anti CSRF for name (that's a unqiue claim in our system)
             AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.Name;

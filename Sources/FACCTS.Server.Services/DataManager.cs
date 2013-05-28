@@ -19,7 +19,6 @@ namespace FACCTS.Server.Services
         [ImportingConstructor]
         public DataManager(FacctsDatabaseInitializer initializer)
         {
-            Database.SetInitializer<DatabaseContext>(initializer);
 
             ObjectFactory.Configure(x =>
                 {

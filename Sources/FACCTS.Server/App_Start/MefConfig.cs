@@ -26,7 +26,7 @@ namespace FACCTS.Server
             
             var dependencyResolver = System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver;
             System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver = new MefDependencyResolver(container);
-            Container.Current = new CompositionContainer(new RepositoryExportProvider());
+            Container.Current = container;
         }
 
         private static CompositionContainer ConfigureContainer()
