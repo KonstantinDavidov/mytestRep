@@ -453,6 +453,17 @@ namespace FACCTS.Server.Model
             SeedRace(context);
             SeedSex(context);
             SeedPdfForm(context);
+            SeedCourtCounties(context);
+        }
+
+        private void SeedCourtCounties(DatabaseContext context)
+        {
+            GetRecords<CourtCounty>("CourtCounty.csv")
+                .Aggregate(context.CourtCounties, (dbset, record) =>
+                {
+                    dbset.Add(record);
+                    return dbset;
+                });
         }
 
         private void SeedPdfForm(DatabaseContext context)

@@ -1,0 +1,309 @@
+1;01100;Alameda County;Superior;Oakland
+2;01120;Alameda County;Superior;Oakland
+3;01200;Alameda County;Juvenile;Oakland
+4;01410;Alameda County;Superior;Oakland
+5;01420;Alameda County;Superior;Oakland
+6;01430;Alameda County;Superior;Oakland
+7;01435;Alameda County;Superior;Oakland
+8;01440;Alameda County;Superior;Oakland
+9;02100;Alpine County;Superior;Markleeville
+10;02200;Alpine County;Juvenile;Markleeville
+11;03100;Amador County;Superior;Jackson
+12;03200;Amador County;Juvenile;Jackson
+13;03610;Amador County;Superior;Jackson
+14;04100;Butte County;Superior;Oroville
+15;04200;Butte County;Juvenile;Oroville
+16;04430;Butte County;Superior;Chico
+17;04450;Butte County;Superior;Gridley
+18;04460;Butte County;Superior;Oroville
+19;04470;Butte County;Superior;Paradise
+20;05100;Calaveras County;Superior;San Andreas
+21;05200;Calaveras County;Juvenile;San Andreas
+22;05660;Calaveras County;Superior;San Andreas
+23;06100;Colusa County;Superior;Colusa
+24;06200;Colusa County;Juvenile;Colusa
+25;06620;Colusa County;Superior;Colusa
+26;07100;Contra Costa County;Superior;Martinez
+27;07200;Contra Costa County;Juvenile;Martinez
+28;07410;Contra Costa County;Superior;Concord
+29;07460;Contra Costa County;Superior;Richmond
+30;07465;Contra Costa County;Superior;Pittsburg
+31;07480;Contra Costa County;Superior;Walnut Creek
+32;08100;Del Norte County;Superior;Crescent City
+33;09660;El Dorado County;Superior;Lake Tahoe
+34;09670;El Dorado County;Superior;Placerville
+35;10100;Fresno County;Superior;Fresno
+36;10200;Fresno County;Juvenile;Fresno
+37;10440;Fresno County;Superior;Fresno
+38;10625;Fresno County;Superior;Clovis
+39;10627;Fresno County;Superior;Coalinga
+40;10640;Fresno County;Superior;Firebaugh
+41;10645;Fresno County;Superior;Fowler
+42;10650;Fresno County;Superior;Kerman
+43;10655;Fresno County;Superior;Kingsburg
+44;10670;Fresno County;Superior;Reedley
+45;10680;Fresno County;Superior;Sanger
+46;10685;Fresno County;Superior;Selma
+47;11100;Glenn County;Superior;Willows
+48;11200;Glenn County;Juvenile;Willows
+49;12100;Humboldt County;Superior;Eureka
+50;12650;Humboldt County;Superior;Eel River/Garberville
+51;12660;Humboldt County;Superior;North Humboldt/Hoopa
+52;13100;Imperial County;Superior;El Centro
+53;13200;Imperial County;Juvenile;El Centro
+54;13420;Imperial County;Superior;Brawley
+55;13430;Imperial County;Superior;Calexio
+56;13440;Imperial County;Superior;El Centro
+57;13450;Imperial County;Superior;Winterhaven
+58;14100;Inyo County;Superior;Independence
+59;14200;Inyo County;Juvenile;Independence
+60;14660;Inyo County;Superior;Bishop
+61;15100;Kern County;Superior;Bakersfield
+62;15200;Kern County;Juvenile;Bakersfield
+63;15410;Kern County;Superior;Lamont
+64;15420;Kern County;Superior;Bakersfield
+65;15430;Kern County;Superior;Delano
+66;15435;Kern County;Superior;Lake Isabella
+67;15440;Kern County;Superior;Taft
+68;15445;Kern County;Superior;Shafter
+69;15460;Kern County;Superior;Mojave
+70;15470;Kern County;Superior;Ridgecrest
+71;16100;Kings County;Superior;Hanford
+72;16200;Kings County;Juvenile;Hanford
+73;16420;Kings County;Superior;Hanford
+74;16610;Kings County;Superior;Avenal
+75;16620;Kings County;Superior;Corcoran
+76;16660;Kings County;Superior;Lemoore
+77;17100;Lake County;Superior;Lakeport
+78;17610;Lake County;Superior;Clearlake
+79;18100;Lassen County;Superior;Susanville
+80;18200;Lassen County;Juvenile;Susanville
+81;18675;Lassen County;Superior;Susanville
+82;19100;Los Angeles County;Superior;Los Angeles
+83;19110;Los Angeles County;Superior;Pomona
+84;19111;Los Angeles County;Superior;Glendale
+85;19112;Los Angeles County;Superior;Burbank
+86;19120;Los Angeles County;Superior;Lancaster
+87;19121;Los Angeles County;Superior;San Fernando
+88;19130;Los Angeles County;Superior;Pasadena
+89;19140;Los Angeles County;Superior;Van Nuys
+90;19150;Los Angeles County;Superior;Long Beach
+91;19160;Los Angeles County;Superior;Compton
+92;19170;Los Angeles County;Superior;Norwalk
+93;19180;Los Angeles County;Superior;Torrance
+94;19190;Los Angeles County;Superior;Santa Monica
+95;19200;Los Angeles County;Juvenile;Los Angeles
+96;19210;Los Angeles County;Juvenile;Los Angeles
+97;19405;Los Angeles County;Superior;Airport/Los Angeles
+98;19410;Los Angeles County;Superior;Alhambra
+99;19413;Los Angeles County;Superior;Lancaster
+100;19420;Los Angeles County;Superior;Beverly Hills
+101;19425;Los Angeles County;Superior;Burbank
+102;19430;Los Angeles County;Superior;West Covina
+103;19432;Los Angeles County;Superior;Chatsworth
+104;19435;Los Angeles County;Superior;Compton
+105;19440;Los Angeles County;Superior;Downey
+106;19443;Los Angeles County;Superior;East Los Angeles
+107;19446;Los Angeles County;Superior;El Monte
+108;19450;Los Angeles County;Superior;Glendale
+109;19455;Los Angeles County;Superior;Inglewood
+110;19460;Los Angeles County;Superior;Long Beach
+111;19462;Los Angeles County;Superior;Los Angeles
+112;19463;Los Angeles County;Superior;Metro Branch
+113;19466;Los Angeles County;Superior;Bellflower
+114;19468;Los Angeles County;Superior;Calencai
+115;19470;Los Angeles County;Superior;Pasadena
+116;19472;Los Angeles County;Superior;Malibu
+117;19475;Los Angeles County;Superior;Pomona
+118;19480;Los Angeles County;Superior;Huntington Park
+119;19482;Los Angeles County;Superior;Monrovia
+120;19484;Los Angeles County;Superior;Santa Monica
+121;10486;Los Angeles County;Superior;Torrance
+122;19490;Los Angeles County;Superior;Whittier
+123;19495;Los Angeles County;Superior;Hollywood
+124;19496;Los Angeles County;Superior;San Fernando
+125;19497;Los Angeles County;Superior;San Pedro
+126;19498;Los Angeles County;Superior;West Los Angeles
+127;19610;Los Angeles County;Superior;Catalina/Avalon
+128;20100;Madera County;Superior;Madera
+129;20200;Madera County;Juvenile;Madera
+130;20620;Madera County;Superior;Chochilla
+131;20640;Madera County;Superior;Borden
+132;20660;Madera County;Superior;Madera
+133;20680;Madera County;Superior;Bass Lake
+134;21420;Marin County;Superior;San Rafael
+135;22100;Mariposa County;Superior;Mariposa
+136;22200;Mariposa County;Juvenile;Mariposa
+137;22650;Mariposa County;Superior;Mariposa
+138;23100;Mendocino County;Superior;Ukiah
+139;23200;Mendocino County;Juvenile;Ukiah
+140;23210;Mendocino County;Juvenile;Ukiah
+141;23450;Mendocino County;Superior;Willits
+142;23480;Mendocino County;Superior;Ukiah
+143;23675;Mendocino County;Superior;Fort Bragg
+144;24200;Merced County;Juvenile;Merced
+145;24450;Merced County;Superior;Merced
+146;24455;Merced County;Superior;Los Banos
+147;25100;Modoc County;Superior;Alturas
+148;25200;Modoc County;Juvenile;Alturas
+149;26100;Mono County;Superior;Bridgeport
+150;26200;Mono County;Juvenile;Bridgeport
+151;26650;Mono County;Superior;Bridgeport
+152;26660;Mono County;Superior;Mammoth Lakes
+153;27100;Monterey County;Superior;Salinas
+154;27200;Monterey County;Juvenile;Salinas
+155;27450;Monterey County;Superior;Monterey
+156;27470;Monterey County;Superior;Salinas
+157;27650;Monterey County;Superior;King City
+158;28100;Napa County;Superior;Napa
+159;29100;Nevada County;Superior;Nevada City
+160;29200;Nevada County;Juvenile;Nevada City
+161;29210;Nevada County;Juvenile;Truckee
+162;29460;Nevada County;Superior;Nevada City
+163;29480;Nevada County;Superior;Truckee
+164;30100;Orange County;Superior;Santa Ana
+165;30200;Orange County;Juvenile;Lamoreaux/Orange
+166;30420;Orange County;Superior;Fullerton
+167;30440;Orange County;Superior;Westminster
+168;30450;Orange County;Superior;Laguna Hills
+169;30452;Orange County;Superior;Laguna Niquel
+170;30460;Orange County;Superior;Newport Beach
+171;30470;Orange County;Superior;Santa Ana
+172;31200;Placer County;Juvenile;Auburn
+173;31205;Placer County;Superior;Tahoe City
+174;31410;Placer County;Superior;Auburn
+175;31420;Placer County;Superior;Colfax
+176;31450;Placer County;Superior;Lincoln
+177;31455;Placer County;Superior;Roseville
+178;31480;Placer County;Superior;Tahoe City
+179;31680;Placer County;Superior;Tahoe City
+180;32100;Plumas County;Superior;Quincy
+181;32200;Plumas County;Juvenile;Quincy
+182;32610;Plumas County;Superior;Greenville
+183;32640;Plumas County;Superior;Chester
+184;32650;Plumas County;Superior;Portola
+185;32660;Plumas County;Superior;Quincy
+186;33100;Riverside County;Superior;Riverside
+187;33110;Riverside County;Superior;Indio
+188;33230;Riverside County;Juvenile;Riverside
+189;33240;Riverside County;Juvenile;Indio
+190;33440;Riverside County;Superior;Corona
+191;33442;Riverside County;Superior;Hemet
+192;33450;Riverside County;Superior;Banning
+193;33480;Riverside County;Superior;Indio/Moreno Valley
+194;33490;Riverside County;Superior;Blythe
+195;33491;Riverside County;Superior;Perris
+196;34100;Sacramento County;Superior;Temcula
+197;34200;Sacramento County;Juvenile;Sacramento
+198;34470;Sacramento County;Superior;Sacramento
+199;35100;San Benito County;Superior;Holister
+200;35200;San Benito County;Juvenile;Holister
+201;36100;San Bernardino County;Superior;San Bernardino
+202;36110;San Bernardino County;Superior;Rancho Cucamonga
+203;36120;San Bernardino County;Superior;Victorville
+204;36130;San Bernardino County;Superior;Barstow
+205;36140;San Bernardino County;Superior;Joshua Tree
+206;36200;San Bernardino County;Juvenile;San Bernardino
+207;36210;San Bernardino County;Juvenile;Rancho Cucamonga
+208;36220;San Bernardino County;Juvenile;Victorville
+209;36433;San Bernardino County;Superior;Chino
+210;36460;San Bernardino County;Superior;Redlands
+211;36470;San Bernardino County;Superior;San Bernardino
+212;36480;San Bernardino County;Superior;Fontana
+213;36490;San Bernardino County;Superior;Victorville
+214;36495;San Bernardino County;Superior;Rancho Cucamonga
+215;36625;San Bernardino County;Superior;Big Bear Lake
+216;36637;San Bernardino County;Superior;Twin Peaks
+217;36660;San Bernardino County;Superior;Needles
+218;36677;San Bernardino County;Superior;Joshua Tree
+219;37100;San Diego County;Superior;San Diego
+220;37110;San Diego County;Superior;Vista
+221;37200;San Diego County;Juvenile;San Diego
+222;37440;San Diego County;Superior;El Cajon
+223;37460;San Diego County;Superior;Vista
+224;37480;San Diego County;Superior;San Diego
+225;37485;San Diego County;Superior;Chula Vista
+226;38100;San Francsico County;Superior;San Francisco
+227;38200;San Francsico County;Juvenile;San Francisco
+228;38460;San Francsico County;Superior;San Francisco
+229;39100;San Joaquin County;Superior;Stockton
+230;39200;San Joaquin County;Juvenile;French Camp
+231;39440;San Joaquin County;Superior;Lodi
+232;39451;San Joaquin County;Superior;Manteca
+233;39453;San Joaquin County;Superior;Tracey
+234;39460;San Joaquin County;Superior;Stockton
+235;40100;San Luis Obispo County;Superior;San Luis Obispo
+236;40200;San Luis Obispo County;Juvenile;San Luis Obispo
+237;40410;San Luis Obispo County;Superior;San Luis Obispo
+238;40420;San Luis Obispo County;Superior;Grover Beach
+239;40430;San Luis Obispo County;Superior;Pas Robles
+240;41100;San Mateo County;Superior;Redwood City
+241;41200;San Mateo County;Juvenile;San Mateo
+242;41410;San Mateo County;Superior;San Mateo
+243;41420;San Mateo County;Superior;South San Francisco
+244;41430;San Mateo County;Superior;Redwood City
+245;42100;Santa Barbara County;Superior;Santa Barbara
+246;42101;Santa Barbara County;Superior;Santa Maria
+247;42200;Santa Barbara County;Juvenile;Santa Barbara
+248;42201;Santa Barbara County;Juvenile;Santa Maria
+249;42202;Santa Barbara County;Juvenile;Santa Maria
+250;42460;Santa Barbara County;Superior;Santa Barbara
+251;42465;Santa Barbara County;Superior;Santa Maria
+252;42470;Santa Barbara County;Superior;Lompoc
+253;43100;Santa Clara County;Superior;San Jose
+254;43200;Santa Clara County;Juvenile;San Jose
+255;43460;Santa Clara County;Superior;Palo Alto
+256;43470;Santa Clara County;Superior;San Jose
+257;43473;Santa Clara County;Superior;Santa Clara
+258;43477;Santa Clara County;Superior;Sunnyvale
+259;43635;Santa Clara County;Superior;San Martin
+260;44100;Santa Cruz County;Superior;Santa Cruz
+261;44200;Santa Cruz County;Juvenile;Santa Cruz
+262;44460;Santa Cruz County;Superior;Santa Cruz
+263;44480;Santa Cruz County;Superior;Watsonville
+264;45200;Shasta County;Juvenile;Redding
+265;45620;Shasta County;Superior;Burney
+266;45670;Shasta County;Superior;Redding
+267;46100;Sierra County;Superior;Downieville
+268;46100;Sierra County;Superior;Downieville
+269;47100;Siskiyou County;Superior;Yreka
+270;47200;Siskiyou County;Juvenile;Yreka
+271;47630;Siskiyou County;Superior;Dorris
+272;47650;Siskiyou County;Superior;Happy Camp
+273;47670;Siskiyou County;Superior;Weed
+274;47690;Siskiyou County;Superior;Yreka
+275;48100;Solano County;Superior;Fairfield
+276;48200;Solano County;Juvenile;Fairfield
+277;48430;Solano County;Superior;Fairfield
+278;48480;Solano County;Superior;Vallejo
+279;49100;Sonoma County;Superior;Santa Rosa
+280;49200;Sonoma County;Juvenile;Santa Rosa
+281;49460;Sonoma County;Superior;Santa Rosa
+282;50100;Stanislaus County;Superior;Modesto
+283;50200;Stanislaus County;Juvenile;Modesto
+284;50450;Stanislaus County;Superior;Modesto
+285;50670;Stanislaus County;Superior;Turlock
+286;51100;Sutter County;Superior;Yuba City
+287;51200;Sutter County;Juvenile;Yuba City
+288;51460;Sutter County;Superior;Yuba City
+289;52100;Tehama County;Superior;Red Bluff
+290;52200;Tehama County;Juvenile;Red Bluff
+291;52620;Tehama County;Superior;Corning
+292;52660;Tehama County;Superior;Red Bluff
+293;53100;Trinity County;Superior;Weaverville
+294;53200;Trinity County;Juvenile;Weaverville
+295;54100;Tulare County;Superior;Visalia
+296;54200;Tulare County;Juvenile;Visalia
+297;54440;Tulare County;Superior;Dinuba
+298;54465;Tulare County;Superior;Parterville
+299;54485;Tulare County;Superior;Tulare
+300;54490;Tulare County;Superior;Visalia
+301;55100;Tuolumne County;Superior;Sonora
+302;55200;Tuolumne County;Juvenile;Sonora
+303;56100;Ventura County;Superior;Ventura
+304;56480;Ventura County;Superior;Ventura
+305;57420;Yolo County;Superior;Woodland
+306;58100;Yuba County;Superior;Marysville
+307;58200;Yuba County;Juvenile;Marysville
+308;58650;Yuba County;Superior;Marysville
+309;60000;Test;Test;Test

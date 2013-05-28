@@ -69,6 +69,7 @@ namespace FACCTS.Server.Model.DataModel
         public DbSet<Client> Clients { get; set; }
         public DbSet<CodeToken> CodeTokens { get; set; }
         public DbSet<FormField> FormFields { get; set; }
+        public DbSet<CourtCounty> CourtCounties { get; set; }
 
         public new IDbSet<TEntity> Set<TEntity>() where TEntity : class
         {

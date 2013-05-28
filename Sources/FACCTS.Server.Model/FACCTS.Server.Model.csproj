@@ -85,6 +85,7 @@
     <Compile Include="Entities\Configuration\WSFederationConfiguration.cs" />
     <Compile Include="Entities\Configuration\WSTrustConfiguration.cs" />
     <Compile Include="Entities\CourtCaseStatus.cs" />
+    <Compile Include="Entities\CourtCounty.cs" />
     <Compile Include="Entities\Delegation.cs" />
     <Compile Include="Entities\Designation.cs" />
     <Compile Include="Entities\EyesColor.cs" />
@@ -121,7 +122,9 @@
       <Name>FACCTS.Server.Common</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="DeployData\CourtCounty.csv" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
