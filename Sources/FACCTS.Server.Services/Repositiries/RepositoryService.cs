@@ -56,8 +56,12 @@ namespace FACCTS.Server.Services.Repositiries
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+        private bool _wasDisposed;
         protected virtual void Dispose(bool disposing)
         {
+            if (_wasDisposed)
+                return;
             if (disposing)
             {
                 if (this.Context != null)
@@ -66,6 +70,13 @@ namespace FACCTS.Server.Services.Repositiries
                     this.Context = null;
                 }
             }
+
+            _wasDisposed = true;
+        }
+
+        ~RepositoryService()
+        {
+            Dispose(false);
         }
     }
 }

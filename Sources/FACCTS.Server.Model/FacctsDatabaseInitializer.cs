@@ -452,6 +452,17 @@ namespace FACCTS.Server.Model
             SeedParticipantRole(context);
             SeedRace(context);
             SeedSex(context);
+            SeedPdfForm(context);
+        }
+
+        private void SeedPdfForm(DatabaseContext context)
+        {
+            GetRecords<FormField>("pdf_form_fields.csv")
+                .Aggregate(context.FormFields, (dbset, record) =>
+                {
+                    dbset.Add(record);
+                    return dbset;
+                });
         }
 
         private void SeedSex(DatabaseContext context)
@@ -549,10 +560,11 @@ namespace FACCTS.Server.Model
 
             StreamReader sr = new StreamReader(stream);
 
-            return new CsvReader(sr, new CsvHelper.Configuration.CsvConfiguration()
+            var csvConfiguration = new CsvHelper.Configuration.CsvConfiguration()
                 {
                     Delimiter = ";",
-                });
+                };
+            return new CsvReader(sr, csvConfiguration);
         }
        
         #endregion
