@@ -12,7 +12,7 @@ using System.Linq;
 using Thinktecture.IdentityServer.Repositories;
 using Models = Thinktecture.IdentityServer.Models;
 
-namespace FACCTS.Server.Model
+namespace FACCTS.Server.Services.Repositiries
 {
     /// <summary>
     /// TODO: Update summary.

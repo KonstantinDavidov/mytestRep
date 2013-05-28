@@ -5,8 +5,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Configuration.Provider;
 using System.Linq;
 using System.Web.Security;
+using Thinktecture.IdentityServer.Repositories;
 
-namespace Thinktecture.IdentityServer.Repositories
+namespace FACCTS.Server.Services.Repositiries
 {
     [Export(typeof(IUserManagementRepository))]
     public class ProviderUserManagementRepository : IUserManagementRepository

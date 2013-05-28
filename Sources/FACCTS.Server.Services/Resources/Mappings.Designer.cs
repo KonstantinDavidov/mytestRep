@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FACCTS.Server.Model.Resources {
+namespace FACCTS.Server.Services.Resources {
     using System;
     
     
@@ -22,24 +22,24 @@ namespace FACCTS.Server.Model.Resources {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class IdentityProviderRepository {
+    internal class Mappings {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal IdentityProviderRepository() {
+        internal Mappings() {
         }
         
         /// <summary>
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FACCTS.Server.Model.Resources.IdentityProviderRepository", typeof(IdentityProviderRepository).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FACCTS.Server.Services.Resources.Mappings", typeof(Mappings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace FACCTS.Server.Model.Resources {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,11 +61,20 @@ namespace FACCTS.Server.Model.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The Name/Identifier &apos;{0}&apos; is already in use..
+        ///   Looks up a localized string similar to Decryption certificate not found: {0}.
         /// </summary>
-        public static string NameAlreadyInUseError {
+        internal static string DecryptionCertificateNotFoundException {
             get {
-                return ResourceManager.GetString("NameAlreadyInUseError", resourceCulture);
+                return ResourceManager.GetString("DecryptionCertificateNotFoundException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Signing certificate not found: {0}.
+        /// </summary>
+        internal static string SigningCertificateNotFoundException {
+            get {
+                return ResourceManager.GetString("SigningCertificateNotFoundException", resourceCulture);
             }
         }
     }

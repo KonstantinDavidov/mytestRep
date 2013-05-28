@@ -14,7 +14,7 @@ using FACCTS.Server.Model.DataModel;
 using Thinktecture.IdentityServer.Models;
 using FACCTS.Server.Common;
 
-namespace FACCTS.Server.Model
+namespace FACCTS.Server.Services.Repositiries
 {
     internal static class Mappings
     {

@@ -11,9 +11,11 @@ using System.Linq;
 using System.Security.Claims;
 using System.Web.Profile;
 using System.Web.Security;
+using Thinktecture.IdentityServer;
+using Thinktecture.IdentityServer.Repositories;
 using Thinktecture.IdentityServer.TokenService;
 
-namespace Thinktecture.IdentityServer.Repositories
+namespace FACCTS.Server.Services.Repositiries
 {
     [Export(typeof(IClaimsRepository))]
     public class ProviderClaimsRepository : IClaimsRepository

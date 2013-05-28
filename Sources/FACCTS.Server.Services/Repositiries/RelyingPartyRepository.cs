@@ -12,7 +12,7 @@ using System.Linq;
 using Thinktecture.IdentityServer.Models;
 using Thinktecture.IdentityServer.Repositories;
 
-namespace FACCTS.Server.Model
+namespace FACCTS.Server.Services.Repositiries
 {
     [Export(typeof(IRelyingPartyRepository))]
     public class RelyingPartyRepository : IRelyingPartyRepository

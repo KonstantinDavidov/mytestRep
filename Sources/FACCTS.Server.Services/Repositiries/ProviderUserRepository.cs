@@ -8,8 +8,10 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Web.Security;
+using Thinktecture.IdentityServer;
+using Thinktecture.IdentityServer.Repositories;
 
-namespace Thinktecture.IdentityServer.Repositories
+namespace FACCTS.Server.Services.Repositiries
 {
     [Export(typeof(IUserRepository))]
     public class ProviderUserRepository : IUserRepository

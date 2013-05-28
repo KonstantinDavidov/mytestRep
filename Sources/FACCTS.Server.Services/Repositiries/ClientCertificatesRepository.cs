@@ -12,7 +12,7 @@ using System.Security.Cryptography.X509Certificates;
 using Thinktecture.IdentityServer.Models;
 using Thinktecture.IdentityServer.Repositories;
 
-namespace FACCTS.Server.Model
+namespace FACCTS.Server.Services.Repositiries
 {
     /// <summary>
     /// TODO: Update summary.

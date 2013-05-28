@@ -3,7 +3,8 @@
  * see license.txt
  */
 
-namespace Thinktecture.IdentityServer.Repositories
+using Thinktecture.IdentityServer.Repositories;
+namespace FACCTS.Server.Services.Repositiries
 {   
     public class NullCacheRepository : ICacheRepository
     {

@@ -12,7 +12,7 @@ using Thinktecture.IdentityServer.Repositories;
 using Models = Thinktecture.IdentityServer.Models;
 
 
-namespace FACCTS.Server.Model
+namespace FACCTS.Server.Services.Repositiries
 {
     [Export(typeof(IIdentityProviderRepository))]
     public class IdentityProviderRepository : IIdentityProviderRepository

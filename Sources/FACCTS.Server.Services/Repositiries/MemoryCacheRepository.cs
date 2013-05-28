@@ -6,8 +6,10 @@
 using System;
 using System.ComponentModel.Composition;
 using System.Runtime.Caching;
+using Thinktecture.IdentityServer;
+using Thinktecture.IdentityServer.Repositories;
 
-namespace Thinktecture.IdentityServer.Repositories
+namespace FACCTS.Server.Services.Repositiries
 {
     [Export(typeof(ICacheRepository))]
     public class MemoryCacheRepository : ICacheRepository
