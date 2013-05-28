@@ -21,14 +21,13 @@ namespace FACCTS.Server.Controllers
         // GET api/courtcasestatuses
         public IEnumerable<CourtCaseStatus> Get()
         {
-            return DataManager.CourtCaseStatusesRepository.Get();
+            return DataManager.CourtCaseStatusesRepository.GetAll();
         }
 
         // GET api/courtcasestatuses/5
         public CourtCaseStatus Get(int id)
         {
-            var entity = DataManager.CourtCaseStatusesRepository.Get(x => x.Id == id).FirstOrDefault();
-            if (entity == null)
+            var entity = DataManager.CourtCaseStatusesRepository.GetById(id);
             {
                 throw new HttpResponseException(
                 Request.CreateResponse(

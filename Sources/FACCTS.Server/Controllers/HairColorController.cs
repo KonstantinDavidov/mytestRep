@@ -20,14 +20,14 @@ namespace FACCTS.Server.Controllers
         // GET api/haircolor
         public IEnumerable<HairColor> Get()
         {
-            var data = DataManager.HairColorRepository.Get();
+            var data = DataManager.HairColorRepository.GetAll();
             return data;
         }
 
         // GET api/haircolor/5
         public HairColor Get(int id)
         {
-            var hc = DataManager.HairColorRepository.Get(h => h.Id == id).FirstOrDefault();
+            var hc = DataManager.HairColorRepository.GetById(id);
             if (hc == null)
             {
                 throw new HttpResponseException(

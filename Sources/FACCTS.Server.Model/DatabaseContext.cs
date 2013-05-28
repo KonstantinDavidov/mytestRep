@@ -1,4 +1,5 @@
-﻿using FACCTS.Server.Model.DataModel.Configuration;
+﻿using FACCTS.Server.Common;
+using FACCTS.Server.Model.DataModel.Configuration;
 using System;
 using System.ComponentModel.Composition;
 using System.Data.Common;
@@ -8,8 +9,8 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    [Export]
-    public partial class DatabaseContext : DbContext
+    [Export(typeof(IDatabaseContext))]
+    public partial class DatabaseContext : DbContext, IDatabaseContext
     {
 
         public DatabaseContext()
@@ -67,5 +68,10 @@ namespace FACCTS.Server.Model.DataModel
         public DbSet<IdentityProvider> IdentityProviders { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<CodeToken> CodeTokens { get; set; }
+
+        public new IDbSet<TEntity> Set<TEntity>() where TEntity : class
+        {
+            return base.Set<TEntity>();
+        }
     }
 }

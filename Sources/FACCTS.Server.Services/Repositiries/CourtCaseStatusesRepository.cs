@@ -1,17 +1,20 @@
-﻿using FACCTS.Server.Model.DataModel;
+﻿using FACCTS.Server.Common;
+using FACCTS.Server.Model.DataModel;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Extensions.Repository;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FACCTS.Server.Services.Repositiries
 {
-    public class CourtCaseStatusesRepository : DbContextRepository<CourtCaseStatus>
+    [Export]
+    public class CourtCaseStatusesRepository : RepositoryService<CourtCaseStatus>
     {
-        public CourtCaseStatusesRepository()
-            : base()
+        [ImportingConstructor]
+        public CourtCaseStatusesRepository(IDatabaseContext dbContext)
+            : base(dbContext)
         {
             
         }

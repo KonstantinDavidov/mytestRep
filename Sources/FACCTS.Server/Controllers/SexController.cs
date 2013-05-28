@@ -19,13 +19,13 @@ namespace FACCTS.Server.Controllers
         // GET api/sex
         public IEnumerable<Sex> Get()
         {
-            return DataManager.SexRepository.Get();
+            return DataManager.SexRepository.GetAll();
         }
 
         // GET api/sex/5
         public Sex Get(int id)
         {
-            var entity = DataManager.SexRepository.Get(x => x.Id == id).FirstOrDefault();
+            var entity = DataManager.SexRepository.GetAll().FirstOrDefault(x => x.Id == id);
             if (entity == null)
             {
                 throw new HttpResponseException(

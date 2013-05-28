@@ -21,13 +21,13 @@ namespace FACCTS.Server.Controllers
         // GET api/eyescolor
         public IEnumerable<EyesColor> Get()
         {
-            return DataManager.EyesColorRepository.Get();
+            return DataManager.EyesColorRepository.GetAll();
         }
 
         // GET api/eyescolor/5
         public EyesColor Get(int id)
         {
-            var entity = DataManager.EyesColorRepository.Get(x => x.Id == id).FirstOrDefault();
+            var entity = DataManager.EyesColorRepository.GetById(id);
             if (entity == null)
             {
                 throw new HttpResponseException(

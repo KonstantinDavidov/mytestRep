@@ -1,12 +1,11 @@
 ﻿using FACCTS.Server.Model;
 using FACCTS.Server.Model.DataModel;
 using FACCTS.Server.Services.Repositiries;
-using StructureMap;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Data.Entity;
-using System.Data.Entity.Extensions.UnitOfWork;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,80 +19,37 @@ namespace FACCTS.Server.Services
         public DataManager(FacctsDatabaseInitializer initializer)
         {
 
-            ObjectFactory.Configure(x =>
-                {
-                    x.For<DbContext>().Use<DatabaseContext>();
-                    x.For<IUnitOfWorkFactory>().Use<DbContextUnitOfWorkFactory>();
-                    x.Scan(y => y.Assembly("FACCTS.Server.Services"));
-                });
-
-            DbContextUnitOfWorkFactory.SetDbContext(CreateContext);
+            
         }
 
-        private  DbContext CreateContext()
-        {
-            DatabaseContext context = new DatabaseContext();
-            //context.Database.Initialize(false);
-            return (DbContext)context;
-        }
-
-
-       
-
-
-        private HairColorRepository _hairColorRepository;
-
+        [Import]
         public HairColorRepository HairColorRepository
         {
-            get {
-                if (_hairColorRepository == null)
-                {
-                    _hairColorRepository = ObjectFactory.GetInstance<HairColorRepository>();
-                }
-                return _hairColorRepository;
-            }
+            get;
+            set;
         }
 
-        private EyesColorRepository _eyesColorRepository;
-
+        [Import]
         public EyesColorRepository EyesColorRepository
         {
-            get
-            {
-                if (_eyesColorRepository == null)
-                {
-                    _eyesColorRepository = ObjectFactory.GetInstance<EyesColorRepository>();
-                }
-                return _eyesColorRepository;
-            }
+            get;
+            set;
         }
 
-        private CourtCaseStatusesRepository _courtCaseStatusesRepository;
 
+        [Import]
         public CourtCaseStatusesRepository CourtCaseStatusesRepository
         {
-            get
-            {
-                if (_courtCaseStatusesRepository == null)
-                {
-                    _courtCaseStatusesRepository = ObjectFactory.GetInstance<CourtCaseStatusesRepository>();
-                }
-                return _courtCaseStatusesRepository;
-            }
+            get;
+            set;
         }
 
-        private SexRepository _sexRepository;
 
+        [Import]
         public SexRepository SexRepository
         {
-            get
-            {
-                if (_sexRepository == null)
-                {
-                    _sexRepository = ObjectFactory.GetInstance<SexRepository>();
-                }
-                return _sexRepository;
-            }
+            get;
+            set;
         }
 
         
@@ -116,25 +72,25 @@ namespace FACCTS.Server.Services
                 return;
             if (isDisposing)
             {
-                if (_hairColorRepository != null)
+                if (HairColorRepository != null)
                 {
-                    _hairColorRepository.Dispose();
-                    _hairColorRepository = null;
+                    HairColorRepository.Dispose();
+                    HairColorRepository = null;
                 }
-                if (_eyesColorRepository != null)
+                if (EyesColorRepository != null)
                 {
-                    _eyesColorRepository.Dispose();
-                    _eyesColorRepository = null;
+                    EyesColorRepository.Dispose();
+                    EyesColorRepository = null;
                 }
-                if (_courtCaseStatusesRepository != null)
+                if (CourtCaseStatusesRepository != null)
                 {
-                    _courtCaseStatusesRepository.Dispose();
-                    _courtCaseStatusesRepository = null;
+                    CourtCaseStatusesRepository.Dispose();
+                    CourtCaseStatusesRepository = null;
                 }
-                if (_sexRepository != null)
+                if (SexRepository != null)
                 {
-                    _sexRepository.Dispose();
-                    _sexRepository = null;
+                    SexRepository.Dispose();
+                    SexRepository = null;
                 }
             }
             //clean up the native resources

@@ -1,16 +1,20 @@
-﻿using FACCTS.Server.Model.DataModel;
+﻿using FACCTS.Server.Common;
+using FACCTS.Server.Model.DataModel;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Extensions.Repository;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FACCTS.Server.Services.Repositiries
 {
-    public class HairColorRepository : DbContextRepository<HairColor>
+    [Export]
+    public class HairColorRepository : RepositoryService<HairColor>
     {
-        public HairColorRepository() : base()
+        [ImportingConstructor]
+        public HairColorRepository(IDatabaseContext dbContext)
+            : base(dbContext)
         {
         }
     }
