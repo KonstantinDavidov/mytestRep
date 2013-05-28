@@ -13,6 +13,7 @@ using FACCTS.Server.Model.DataModel;
 using System.ComponentModel.Composition.Primitives;
 using System.Web.Hosting;
 using Thinktecture.IdentityServer.Repositories;
+using Thinktecture.IdentityServer.Protocols.OAuth2;
 
 namespace FACCTS.Server
 {
@@ -47,6 +48,8 @@ namespace FACCTS.Server
             log4net.Config.XmlConfigurator.Configure();
             var loggerForWebSite = LogManager.GetLogger("FacctsService");
             batch.AddExportedValue<ILog>(loggerForWebSite);
+            //batch.AddExportedValue<OAuth2AuthorizeController>(new OAuth2AuthorizeController());
+            //batch.AddExportedValue<OAuth2TokenController>(new OAuth2TokenController());
             //batch.AddExportedValue<FACCTS_DBEntities>(new FACCTS_DBEntities());
             container.Compose(batch);
         }

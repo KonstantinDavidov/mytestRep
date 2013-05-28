@@ -70,6 +70,8 @@ namespace FACCTS.Server.Model.DataModel
         public DbSet<CodeToken> CodeTokens { get; set; }
         public DbSet<FormField> FormFields { get; set; }
         public DbSet<CourtCounty> CourtCounties { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
 
         public new IDbSet<TEntity> Set<TEntity>() where TEntity : class
         {

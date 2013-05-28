@@ -2,6 +2,7 @@
 using FACCTS.Server.Common;
 using FACCTS.Server.Model.DataModel;
 using FACCTS.Server.Model.DataModel.Configuration;
+using FACCTS.Server.Model.Membership;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -13,6 +14,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Security;
 using Thinktecture.IdentityModel.Constants;
 
 namespace FACCTS.Server.Model
@@ -454,6 +456,19 @@ namespace FACCTS.Server.Model
             SeedSex(context);
             SeedPdfForm(context);
             SeedCourtCounties(context);
+            SeedMembershipProviderData(context);
+        }
+
+        private void SeedMembershipProviderData(DatabaseContext context)
+        {
+            WebSecurity.Register("Demo", "123456", "demo@demo.com", true, "Demo", "Demo");
+            GetRecords<Role>("UserRoles.csv")
+                .Aggregate(0, (index, record) =>
+                {
+                    Roles.CreateRole(record.RoleName);
+                    return 0;
+                });
+            Roles.AddUserToRole("Demo", "Administrator");
         }
 
         private void SeedCourtCounties(DatabaseContext context)
