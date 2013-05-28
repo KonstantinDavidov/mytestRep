@@ -3,39 +3,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using CsvHelper.TypeConversion;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace FACCTS.Server.Model.DataModel
 {
     public class User
     {
         [Key]
-        public virtual Guid UserId { get; set; }
+        [Column("Id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int UserId { get; set; }
 
         [Required]
-        public virtual String Username { get; set; }
+        public String Username { get; set; }
 
-        public virtual String Email { get; set; }
+        public String Email { get; set; }
 
         [Required, DataType(DataType.Password)]
-        public virtual String Password { get; set; }
+        public String Password { get; set; }
 
-        public virtual String FirstName { get; set; }
-        public virtual String LastName { get; set; }
+        public String FirstName { get; set; }
+        public String LastName { get; set; }
 
         [DataType(DataType.MultilineText)]
-        public virtual String Comment { get; set; }
+        public String Comment { get; set; }
 
-        public virtual Boolean IsApproved { get; set; }
-        public virtual int PasswordFailuresSinceLastSuccess { get; set; }
-        public virtual DateTime? LastPasswordFailureDate { get; set; }
-        public virtual DateTime? LastActivityDate { get; set; }
-        public virtual DateTime? LastLockoutDate { get; set; }
-        public virtual DateTime? LastLoginDate { get; set; }
-        public virtual String ConfirmationToken { get; set; }
-        public virtual DateTime? CreateDate { get; set; }
-        public virtual Boolean IsLockedOut { get; set; }
-        public virtual DateTime? LastPasswordChangedDate { get; set; }
-        public virtual String PasswordVerificationToken { get; set; }
-        public virtual DateTime? PasswordVerificationTokenExpirationDate { get; set; }
+        public Boolean IsApproved { get; set; }
+        public int PasswordFailuresSinceLastSuccess { get; set; }
+        public DateTime? LastPasswordFailureDate { get; set; }
+        public DateTime? LastActivityDate { get; set; }
+        public DateTime? LastLockoutDate { get; set; }
+        public DateTime? LastLoginDate { get; set; }
+        public String ConfirmationToken { get; set; }
+        public DateTime? CreateDate { get; set; }
+        public Boolean IsLockedOut { get; set; }
+        public DateTime? LastPasswordChangedDate { get; set; }
+        public String PasswordVerificationToken { get; set; }
+        public DateTime? PasswordVerificationTokenExpirationDate { get; set; }
 
         public virtual ICollection<Role> Roles { get; set; }
     }

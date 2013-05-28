@@ -117,7 +117,7 @@
     <EmbeddedResource Include="DeployData\Race.csv" />
     <EmbeddedResource Include="DeployData\Sex.csv" />
     <EmbeddedResource Include="DeployData\pdf_form_fields.csv" />
-    <EmbeddedResource Include="DeployData\UserRoles.csv" />
+    <EmbeddedResource Include="DeployData\Roles.csv" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

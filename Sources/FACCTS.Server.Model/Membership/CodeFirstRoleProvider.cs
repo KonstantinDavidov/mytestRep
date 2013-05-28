@@ -153,7 +153,7 @@ namespace FACCTS.Server.Model.Membership
                     {
                         Role NewRole = new Role
                         {
-                            RoleId = Guid.NewGuid(),
+                            //RoleId = Guid.NewGuid(),
                             RoleName = roleName
                         };
                         Context.Roles.Add(NewRole);

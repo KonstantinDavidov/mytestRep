@@ -110,7 +110,7 @@ namespace FACCTS.Server.Model.Membership
 
                 User NewUser = new User
                 {
-                    UserId = Guid.NewGuid(),
+                    //UserId = Guid.NewGuid(),
                     Username = username,
                     Password = HashedPassword,
                     IsApproved = isApproved,
@@ -457,7 +457,7 @@ namespace FACCTS.Server.Model.Membership
 
                 User NewUser = new User
                 {
-                    UserId = Guid.NewGuid(),
+                    //UserId = Guid.NewGuid(),
                     Username = userName,
                     Password = hashedPassword,
                     IsApproved = !requireConfirmationToken,

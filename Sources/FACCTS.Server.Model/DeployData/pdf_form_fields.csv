@@ -1,3 +1,4 @@
+Id;Field Name;Form Name;Field Type;Screen Name;Form Field Id;Dupe;Dropdown Options;Bool options;Screen Panel;Panel Section
 1;caseNumber;None;TEXT;Case Number;1;N;NULL;NULL;Case;NULL
 2;hearingDate;None;TEXT;First Hearing Date;2;N;NULL;NULL;Case;NULL
 3;courtDepartment;None;TEXT;Courtroom;3;N;NULL;NULL;Case;NULL

@@ -5,6 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 
 namespace FACCTS.Server.Model.DataModel
 {
@@ -12,15 +13,17 @@ namespace FACCTS.Server.Model.DataModel
     {
         [Key]
         [Column("Id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [CsvField(Index = 0)]
-        public virtual Guid RoleId { get; set; }
+        public int RoleId { get; set; }
 
         [Required]
         [CsvField(Index = 1)]
-        public virtual string RoleName { get; set; }
+        [StringLength(50)]
+        public string RoleName { get; set; }
 
         [CsvField(Ignore = true)]
-        public virtual string Description { get; set; }
+        public string Description { get; set; }
 
         [CsvField(Ignore = true)]
         public virtual ICollection<User> Users { get; set; }
