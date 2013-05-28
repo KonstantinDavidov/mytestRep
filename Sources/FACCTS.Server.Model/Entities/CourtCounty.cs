@@ -20,21 +20,25 @@ namespace FACCTS.Server.Model.DataModel
         [Column("court_code")]
         [CsvField(Index = 1)]
         [TypeConverter(typeof(NullStringConverter))]
+        [StringLength(8)]
         public string CourtCode { get; set; }
 
         [Column("county")]
         [CsvField(Index = 2)]
         [TypeConverter(typeof(NullStringConverter))]
+        [StringLength(64)]
         public string County { get; set; }
 
         [Column("court_name")]
         [CsvField(Index = 3)]
         [TypeConverter(typeof(NullStringConverter))]
+        [StringLength(50)]
         public string CourtName { get; set; }
 
         [Column("location")]
         [CsvField(Index = 4)]
         [TypeConverter(typeof(NullStringConverter))]
+        [StringLength(64)]
         public string Location { get; set; }
     }
 }

@@ -16,6 +16,7 @@ namespace FACCTS.Server.Model.DataModel
         public int Id { get; set; }
         [Required]
         [CsvField(Index = 1)]
+        [StringLength(150)]
         public string Color { get; set; }
     }
 }
