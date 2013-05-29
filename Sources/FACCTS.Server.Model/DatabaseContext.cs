@@ -44,6 +44,8 @@ namespace FACCTS.Server.Model.DataModel
             return new DatabaseContext();
         }
 
+        #region Dictionary tables
+        
         public DbSet<CourtCaseStatus> CourtCaseStatuses { get; set; }
         public DbSet<Designation> Designations { get; set; }
         public DbSet<EyesColor> EyesColor { get; set; }
@@ -51,7 +53,14 @@ namespace FACCTS.Server.Model.DataModel
         public DbSet<ParticipantRole> ParticipantRoles { get; set; }
         public DbSet<Race> Races { get; set; }
         public DbSet<Sex> Sex { get; set; }
+        public DbSet<CourtLocation> CourtLocations { get; set; }
+        public DbSet<FormField> FormFields { get; set; }
+        public DbSet<CourtCounty> CourtCounties { get; set; }
+        public DbSet<Courtroom> Courtrooms { get; set; }
 
+        #endregion
+
+        #region Identity provider entities
         public DbSet<GlobalConfiguration> GlobalConfiguration { get; set; }
         public DbSet<WSFederationConfiguration> WSFederation { get; set; }
         public DbSet<KeyMaterialConfiguration> Keys { get; set; }
@@ -61,17 +70,22 @@ namespace FACCTS.Server.Model.DataModel
         public DbSet<AdfsIntegrationConfiguration> AdfsIntegration { get; set; }
         public DbSet<SimpleHttpConfiguration> SimpleHttp { get; set; }
         public DbSet<DiagnosticsConfiguration> Diagnostics { get; set; }
-
         public DbSet<ClientCertificates> ClientCertificates { get; set; }
         public DbSet<Delegation> Delegation { get; set; }
         public DbSet<RelyingParties> RelyingParties { get; set; }
         public DbSet<IdentityProvider> IdentityProviders { get; set; }
         public DbSet<Client> Clients { get; set; }
         public DbSet<CodeToken> CodeTokens { get; set; }
-        public DbSet<FormField> FormFields { get; set; }
-        public DbSet<CourtCounty> CourtCounties { get; set; }
+       
+        #endregion
+
+        #region Membership provider entities
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        #endregion
+
+
+        #region Data Tables
         public DbSet<CaseRecord> CaseRecords { get; set; }
         public DbSet<Child> Children { get; set; }
         public DbSet<CourtCase> CourtCases { get; set; }
@@ -80,6 +94,12 @@ namespace FACCTS.Server.Model.DataModel
         public DbSet<Attorney> Attorneys { get; set; }
         public DbSet<Interpreter> Interpreters { get; set; }
         public DbSet<Witness> Witnesses { get; set; }
+        public DbSet<Appearance> Appearances { get; set; }
+        #endregion
+
+
+        
+       
 
         public new IDbSet<TEntity> Set<TEntity>() where TEntity : class
         {

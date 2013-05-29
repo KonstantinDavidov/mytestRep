@@ -27,6 +27,9 @@ namespace FACCTS.Server.Model.DataModel
         [StringLength(100)]
         public string FirmName { get; set; }
 
+        [StringLength(200)]
+        public string StreetAddress { get; set; }
+
         [StringLength(100)]
         public string City { get; set; }
 

@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Appearance.cs" />
     <Compile Include="Entities\Attorney.cs" />
     <Compile Include="Entities\CaseRecord.cs" />
     <Compile Include="Entities\Child.cs" />
@@ -90,7 +91,9 @@
     <Compile Include="Entities\CourtCase.cs" />
     <Compile Include="Entities\CourtCaseStatus.cs" />
     <Compile Include="Entities\CourtCounty.cs" />
+    <Compile Include="Entities\CourtLocation.cs" />
     <Compile Include="Entities\CourtParty.cs" />
+    <Compile Include="Entities\Courtroom.cs" />
     <Compile Include="Entities\Delegation.cs" />
     <Compile Include="Entities\Designation.cs" />
     <Compile Include="Entities\EyesColor.cs" />
