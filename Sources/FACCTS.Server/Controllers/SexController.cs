@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace FACCTS.Server.Controllers
 {
+    [Authorize]
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class SexController : ApiController

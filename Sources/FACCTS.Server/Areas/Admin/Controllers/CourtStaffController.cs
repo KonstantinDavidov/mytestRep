@@ -1,6 +1,7 @@
 ﻿using FACCTS.Server.Areas.Admin.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
@@ -11,6 +12,9 @@ using System.Web.Security;
 
 namespace FACCTS.Server.Areas.Admin
 {
+    [Authorize]
+    [Export]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class CourtStaffController : Controller
     {
         /// <summary>
