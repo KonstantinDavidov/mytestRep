@@ -72,6 +72,11 @@ namespace FACCTS.Server.Model.DataModel
         public DbSet<CourtCounty> CourtCounties { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<CaseRecord> CaseRecords { get; set; }
+        public DbSet<Child> Children { get; set; }
+        public DbSet<CourtCase> CourtCases { get; set; }
+        public DbSet<CourtParty> CourtParties { get; set; }
+        public DbSet<OtherProtected> OtherProtected { get; set; }
 
         public new IDbSet<TEntity> Set<TEntity>() where TEntity : class
         {

@@ -9,7 +9,7 @@ using CsvHelper.TypeConversion;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public class Role
+    public partial class Role
     {
         [Key]
         [Column("Id")]

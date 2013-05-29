@@ -2,7 +2,7 @@
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public class IdentityProvider
+    public partial class IdentityProvider
     {
         [Key]
         public int ID { get; set; }

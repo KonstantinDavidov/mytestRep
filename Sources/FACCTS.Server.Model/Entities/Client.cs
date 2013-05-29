@@ -2,7 +2,7 @@
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public class Client
+    public partial class Client
     {
         [Key]
         public int Id { get; set; }

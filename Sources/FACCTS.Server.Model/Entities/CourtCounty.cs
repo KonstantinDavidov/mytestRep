@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public class CourtCounty
+    public partial class CourtCounty
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]

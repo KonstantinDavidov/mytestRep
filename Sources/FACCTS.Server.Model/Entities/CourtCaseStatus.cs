@@ -7,7 +7,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace FACCTS.Server.Model.DataModel
 {
 
-
     public partial class CourtCaseStatus
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
