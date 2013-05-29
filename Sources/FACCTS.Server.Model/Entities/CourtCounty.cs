@@ -40,5 +40,9 @@ namespace FACCTS.Server.Model.DataModel
         [TypeConverter(typeof(NullStringConverter))]
         [StringLength(64)]
         public string Location { get; set; }
+
+        [CsvField(Ignore=true)]
+        [InverseProperty("CourtCounty")]
+        public virtual ICollection<CourtLocation> CourtLocations { get; set; }
     }
 }
