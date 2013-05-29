@@ -114,7 +114,9 @@
     <Compile Include="DatabaseContext.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <EmbeddedResource Include="DeployData\CourtCaseStatus.csv" />
     <EmbeddedResource Include="DeployData\Designation.csv" />
     <EmbeddedResource Include="DeployData\EyesColor.csv" />
