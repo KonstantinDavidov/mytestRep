@@ -95,6 +95,8 @@ namespace FACCTS.Server.Model.DataModel
         public DbSet<Interpreter> Interpreters { get; set; }
         public DbSet<Witness> Witnesses { get; set; }
         public DbSet<Appearance> Appearances { get; set; }
+        public DbSet<CaseHistory> CaseHistory { get; set; }
+        public DbSet<CaseNote> CaseNotes { get; set; }
         #endregion
 
 
