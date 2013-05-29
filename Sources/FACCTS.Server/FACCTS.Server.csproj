@@ -288,14 +288,32 @@
     <Content Include="Areas\Admin\Views\CourtStaff\UserRole.cshtml" />
     <Content Include="Areas\Admin\Views\CourtStaff\UsersList.cshtml" />
     <Content Include="Areas\Admin\Views\CourtStaff\CreateUser.cshtml" />
-    <Content Include="Configuration\connectionStrings.config" />
-    <Content Include="Configuration\identity.config" />
-    <Content Include="Configuration\identityServices.config" />
-    <Content Include="Configuration\profile.config" />
-    <Content Include="Configuration\tracing.config" />
-    <Content Include="Configuration\repositories.config" />
     <Content Include="Areas\Admin\Views\CourtStaff\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="..\Configuration\connectionStrings.config">
+      <Link>Configuration\connectionStrings.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Configuration\identity.config">
+      <Link>Configuration\identity.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Configuration\identityServices.config">
+      <Link>Configuration\identityServices.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Configuration\profile.config">
+      <Link>Configuration\profile.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Configuration\repositories.config">
+      <Link>Configuration\repositories.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\Configuration\tracing.config">
+      <Link>Configuration\tracing.config</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Readme Mef.MVC4.txt" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -391,6 +409,9 @@
     </VisualStudio>
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>$(SolutionDir)bin\Debug\DatabaseDeploy.exe</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

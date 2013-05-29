@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACCTS.Server.Common", "FAC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACCTS.Server.Services", "FACCTS.Server.Services\FACCTS.Server.Services.csproj", "{28230005-EF1C-40FE-B7CF-D0850E920280}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DevConfiguration", "DevConfiguration", "{D7F7EF57-5EBB-4842-A320-BEE7AE631B9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseDeploy", "DatabaseDeploy\DatabaseDeploy.csproj", "{0F447B42-A179-4004-AE84-049698F21146}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +69,10 @@ Global
 		{28230005-EF1C-40FE-B7CF-D0850E920280}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28230005-EF1C-40FE-B7CF-D0850E920280}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28230005-EF1C-40FE-B7CF-D0850E920280}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F447B42-A179-4004-AE84-049698F21146}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F447B42-A179-4004-AE84-049698F21146}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F447B42-A179-4004-AE84-049698F21146}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F447B42-A179-4004-AE84-049698F21146}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,6 +84,7 @@ Global
 		{FF6F3BE2-F68C-492D-BADA-E0E4C9524D53} = {2A35A32C-88CC-4F41-9D70-691F0BB1B1C0}
 		{28230005-EF1C-40FE-B7CF-D0850E920280} = {2A35A32C-88CC-4F41-9D70-691F0BB1B1C0}
 		{39E149C2-0DE8-4E53-B0C3-A48CCE826584} = {3B38B188-9D94-4E91-BBD2-C5DFACB9B319}
+		{0F447B42-A179-4004-AE84-049698F21146} = {D7F7EF57-5EBB-4842-A320-BEE7AE631B9C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35
