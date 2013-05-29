@@ -47,5 +47,7 @@ namespace FACCTS.Server.Model.DataModel
 
         [InverseProperty("CaseRecord")]
         public virtual ICollection<CaseNote> CaseNotes { get; set; }
+
+        public ICollection<RelatedCase> RelatedCases { get; set; }
     }
 }

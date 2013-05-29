@@ -32,6 +32,20 @@ namespace FACCTS.Server.Model.DataModel
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Entity<RelatedCase>()
+                .HasKey(x => new { x.CourtCaseId, x.CaseRecordId });
+
+            modelBuilder.Entity<CaseRecord>()
+                .HasMany(x => x.RelatedCases)
+                .WithRequired(x => x.CaseRecord)
+                .HasForeignKey(x => x.CaseRecordId)
+                .WillCascadeOnDelete();
+
+            modelBuilder.Entity<RelatedCase>()
+                .HasRequired(x => x.CourtCase)
+                .WithMany()
+                .HasForeignKey(x => x.CourtCaseId)
+                .WillCascadeOnDelete(false);
             base.OnModelCreating(modelBuilder);
         }
 
@@ -97,6 +111,7 @@ namespace FACCTS.Server.Model.DataModel
         public DbSet<Appearance> Appearances { get; set; }
         public DbSet<CaseHistory> CaseHistory { get; set; }
         public DbSet<CaseNote> CaseNotes { get; set; }
+        public DbSet<RelatedCase> RelatedCases { get; set; }
         #endregion
 
 
