@@ -34,6 +34,7 @@ namespace FACCTS.Server.Model
         }
 
         
+            WebSecurity.Register("Demo", "123456", "demo@demo.com", true, "Demo", "Demo");
 
 
     }

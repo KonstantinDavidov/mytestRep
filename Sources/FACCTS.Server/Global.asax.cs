@@ -36,8 +36,8 @@ namespace FACCTS.Server
             AreaRegistration.RegisterAllAreas();
 
             ConfigureMEF();
-            //_logger = System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(ILog)) as ILog;
-            //_logger.Info("Application_Start started");
+            _logger = System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(ILog)) as ILog;
+            _logger.Info("Application_Start started");
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
@@ -47,7 +47,7 @@ namespace FACCTS.Server
 
         private void ConfigureMEF()
         {
-            //MefConfig.RegisterMef();
+            MefConfig.RegisterMef();
             
         }
 
@@ -56,7 +56,7 @@ namespace FACCTS.Server
 
         protected void Application_End(object sender, EventArgs e)
         {
-            //_logger.Info("FACCTS shutting down...");
+            _logger.Info("FACCTS shutting down...");
 
             // this would be automatic, but in partial trust scenarios it is not.
             log4net.LogManager.Shutdown();
@@ -64,8 +64,8 @@ namespace FACCTS.Server
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            //_logger = System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(ILog)) as ILog;
-            //_logger.Fatal("An unhandled exception occurred in ASP.NET processing: " + Server.GetLastError(), Server.GetLastError());
+            _logger = System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(ILog)) as ILog;
+            _logger.Fatal("An unhandled exception occurred in ASP.NET processing: " + Server.GetLastError(), Server.GetLastError());
             DataManager.Dispose();
             
         }
