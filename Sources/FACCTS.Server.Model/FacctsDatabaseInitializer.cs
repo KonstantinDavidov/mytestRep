@@ -457,6 +457,17 @@ namespace FACCTS.Server.Model
             SeedPdfForm(context);
             SeedCourtCounties(context);
             SeedMembershipProviderData(context);
+            SeedAvailavleCourtOrders(context);
+        }
+
+        private void SeedAvailavleCourtOrders(DatabaseContext context)
+        {
+            GetRecords<AvailableCourtOrder>("AvailableCourtOrders.csv")
+                .Aggregate(context.AvailableCourtOrders, (dbset, record) =>
+                {
+                    dbset.Add(record);
+                    return dbset;
+                });
         }
 
         private void SeedMembershipProviderData(DatabaseContext context)

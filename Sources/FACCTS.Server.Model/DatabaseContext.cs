@@ -32,6 +32,7 @@ namespace FACCTS.Server.Model.DataModel
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            //CaseRecord - CourtCase => many to many
             modelBuilder.Entity<RelatedCase>()
                 .HasKey(x => new { x.CourtCaseId, x.CaseRecordId });
 
@@ -46,6 +47,20 @@ namespace FACCTS.Server.Model.DataModel
                 .WithMany()
                 .HasForeignKey(x => x.CourtCaseId)
                 .WillCascadeOnDelete(false);
+
+            //CourtCase => AvailableCourtOrders => many to many
+            modelBuilder.Entity<CourtCase>()
+                .HasMany(x => x.CourtOrders)
+                .WithRequired(x => x.CourtCase)
+                .HasForeignKey(x => x.CourtCaseId)
+                .WillCascadeOnDelete();
+
+            modelBuilder.Entity<CourtCaseOrder>()
+                .HasRequired(x => x.AvailableCourtOrder)
+                .WithMany()
+                .HasForeignKey(x => x.AvailableCourtOrderId)
+                .WillCascadeOnDelete(false);
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -112,6 +127,8 @@ namespace FACCTS.Server.Model.DataModel
         public DbSet<CaseHistory> CaseHistory { get; set; }
         public DbSet<CaseNote> CaseNotes { get; set; }
         public DbSet<RelatedCase> RelatedCases { get; set; }
+        public DbSet<AvailableCourtOrder> AvailableCourtOrders { get; set; }
+        public DbSet<CourtCaseOrder> CourtCaseOrders { get; set; }
         #endregion
 
 

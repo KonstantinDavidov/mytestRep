@@ -40,5 +40,7 @@ namespace FACCTS.Server.Model.DataModel
 
 
         public ICollection<CaseRecord> RelatedCaseRecords { get; set; }
+
+        public ICollection<CourtCaseOrder> CourtOrders { get; set; }
     }
 }

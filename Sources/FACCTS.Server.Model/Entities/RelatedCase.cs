@@ -16,4 +16,5 @@ namespace FACCTS.Server.Model.DataModel
 
         public virtual CourtCase CourtCase { get; set; }
     }
+
 }
