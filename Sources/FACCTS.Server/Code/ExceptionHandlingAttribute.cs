@@ -16,7 +16,7 @@ namespace FACCTS.Server.Code
     {
         public ExceptionHandlingAttribute() : base()
         {
-            Logger = System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(ILog)) as ILog;
+            Logger = ServiceLocator.Current.GetInstance<ILog>();
         }
 
         protected ILog Logger { get; set; }
