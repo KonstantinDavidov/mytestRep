@@ -51,7 +51,7 @@ namespace FACCTS.Server.Model.Membership
                     Context.SaveChanges();
                 }
 
-                if (IsApproved)
+                if (IsApproved && HttpContext.Current != null)
                 {
                     FormsAuthentication.SetAuthCookie(Username, false);
                 }

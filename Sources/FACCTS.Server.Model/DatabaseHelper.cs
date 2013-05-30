@@ -12,6 +12,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Security;
+using Thinktecture.IdentityModel;
 using Thinktecture.IdentityModel.Constants;
 
 namespace FACCTS.Server.Model
@@ -21,7 +22,34 @@ namespace FACCTS.Server.Model
         public static void SeedDatabase(DatabaseContext context)
         {
             SeedDefaultData(context);
+            SeedSecurityData(context);
             SeedFacctsDefaultData(context);
+        }
+
+        private static void SeedSecurityData(DatabaseContext context)
+        {
+            RelyingParties relyingParty = new RelyingParties()
+            {
+                Name = "FACCTS (URN)",
+                Enabled = true,
+                Realm = "urn:facctssecurity",
+                SymmetricSigningKey = CryptoRandom.CreateRandomKeyString(44),    
+
+            };
+            context.RelyingParties.Add(relyingParty);
+            Client client = new Client()
+            {
+                Name = "FACCTS Client Application",
+                Description = "Client for the FACCTS application",
+                RedirectUri = "http://localhost:50050/callback",
+                ClientId = "cce45e00-e8ff-4d0b-be2c-00e63b88c80b",
+                ClientSecret = CryptoHelper.HashPassword("0feb1684-cb91-4a90-b5c1-04c7465c8b21"),
+                AllowResourceOwnerFlow = true,
+                AllowCodeFlow = true,
+                AllowImplicitFlow = true,
+                AllowRefreshToken = true,
+            };
+            context.Clients.Add(client);
         }
 
         private static void SeedDefaultData(DatabaseContext context)
@@ -123,9 +151,9 @@ namespace FACCTS.Server.Model
         {
             return new OAuth2Configuration
             {
-                Enabled = false,
-                EnableImplicitFlow = false,
-                EnableResourceOwnerFlow = false,
+                Enabled = true,
+                EnableImplicitFlow = true,
+                EnableResourceOwnerFlow = true,
                 EnableConsent = true
             };
         }
