@@ -461,7 +461,7 @@ namespace FACCTS.Server.Model
 
         private void SeedMembershipProviderData(DatabaseContext context)
         {
-            WebSecurity.Register("Demo", "123456", "demo@demo.com", false, "Demo", "Demo");
+            WebSecurity.Register("Demo", "123456", "demo@demo.com", true, "Demo", "Demo");
             GetRecords<Role>("Roles.csv")
                 .Aggregate(0, (index, record) =>
                 {
