@@ -105,6 +105,7 @@
     <Compile Include="Entities\Interpreter.cs" />
     <Compile Include="Entities\OtherProtected.cs" />
     <Compile Include="Entities\ParticipantRole.cs" />
+    <Compile Include="Entities\Permission.cs" />
     <Compile Include="Entities\Race.cs" />
     <Compile Include="Entities\RelatedCase.cs" />
     <Compile Include="Entities\RelyingParties.cs">
