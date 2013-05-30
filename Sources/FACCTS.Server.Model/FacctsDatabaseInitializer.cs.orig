@@ -5,7 +5,10 @@ using FACCTS.Server.Model.DataModel.Configuration;
 using FACCTS.Server.Model.Membership;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Configuration;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -16,15 +19,22 @@ using Thinktecture.IdentityModel.Constants;
 
 namespace FACCTS.Server.Model
 {
-    internal static class DatabaseHelper
+    [Export]
+    public class FacctsDatabaseInitializer : CreateDatabaseIfNotExists<DatabaseContext>
     {
-        public static void SeedDatabase(DatabaseContext context)
+        public FacctsDatabaseInitializer() : base()
         {
-            SeedDefaultData(context);
-            SeedFacctsDefaultData(context);
+            //Database.SetInitializer<IdentityServerConfigurationContext>(new ConfigurationDatabaseInitializer());
         }
 
-        private static void SeedDefaultData(DatabaseContext context)
+        protected override void Seed(DatabaseContext context)
+        {
+            DatabaseHelper.SeedDatabase(context);
+            base.Seed(context);
+        }
+
+<<<<<<< HEAD
+        public static void SeedDefaultData(DatabaseContext context)
         {
             // test data
             var entry = ConfigurationManager.AppSettings["idsrv:CreateTestDataOnInitialization"];
@@ -435,7 +445,7 @@ namespace FACCTS.Server.Model
 
 
         #region FACCTS default data
-        private static void SeedFacctsDefaultData(DatabaseContext context)
+        protected virtual void SeedFacctsDefaultData(DatabaseContext context)
         {
             SeedCaseStatuses(context);
             SeedDesignations(context);
@@ -447,20 +457,9 @@ namespace FACCTS.Server.Model
             SeedPdfForm(context);
             SeedCourtCounties(context);
             SeedMembershipProviderData(context);
-            SeedAvailavleCourtOrders(context);
         }
 
-        private static void SeedAvailavleCourtOrders(DatabaseContext context)
-        {
-            GetRecords<AvailableCourtOrder>("AvailableCourtOrders.csv")
-                .Aggregate(context.AvailableCourtOrders, (dbset, record) =>
-                {
-                    dbset.Add(record);
-                    return dbset;
-                });
-        }
-
-        private static void SeedMembershipProviderData(DatabaseContext context)
+        private void SeedMembershipProviderData(DatabaseContext context)
         {
             WebSecurity.Register("Demo", "123456", "demo@demo.com", true, "Demo", "Demo");
             GetRecords<Role>("Roles.csv")
@@ -472,7 +471,7 @@ namespace FACCTS.Server.Model
             Roles.AddUserToRole("Demo", "Administrator");
         }
 
-        private static void SeedCourtCounties(DatabaseContext context)
+        private void SeedCourtCounties(DatabaseContext context)
         {
             GetRecords<CourtCounty>("CourtCounty.csv")
                 .Aggregate(context.CourtCounties, (dbset, record) =>
@@ -482,7 +481,7 @@ namespace FACCTS.Server.Model
                 });
         }
 
-        private static void SeedPdfForm(DatabaseContext context)
+        private void SeedPdfForm(DatabaseContext context)
         {
             GetRecords<FormField>("pdf_form_fields.csv")
                 .Aggregate(context.FormFields, (dbset, record) =>
@@ -492,7 +491,7 @@ namespace FACCTS.Server.Model
                 });
         }
 
-        private static void SeedSex(DatabaseContext context)
+        private void SeedSex(DatabaseContext context)
         {
             GetRecords<Sex>("Sex.csv")
                 .Aggregate(context.Sex, (dbset, record) =>
@@ -505,7 +504,7 @@ namespace FACCTS.Server.Model
 
 
 
-        private static void SeedRace(DatabaseContext context)
+        private void SeedRace(DatabaseContext context)
         {
             GetRecords<Race>("Race.csv")
                 .Aggregate(context.Races, (dbset, record) =>
@@ -515,7 +514,7 @@ namespace FACCTS.Server.Model
                 });
         }
 
-        private static void SeedParticipantRole(DatabaseContext context)
+        private void SeedParticipantRole(DatabaseContext context)
         {
             GetRecords<ParticipantRole>("ParticipantRole.csv")
                 .Aggregate(context.ParticipantRoles, (dbset, record) =>
@@ -525,7 +524,7 @@ namespace FACCTS.Server.Model
                 });
         }
 
-        private static void SeedHairColor(DatabaseContext context)
+        private void SeedHairColor(DatabaseContext context)
         {
             GetRecords<HairColor>("HairColor.csv")
                 .Aggregate(context.HairColor, (dbset, record) =>
@@ -536,7 +535,7 @@ namespace FACCTS.Server.Model
                 );
         }
 
-        private static void SeedEyeColors(DatabaseContext context)
+        private void SeedEyeColors(DatabaseContext context)
         {
             GetRecords<EyesColor>("EyesColor.csv")
                 .Aggregate(context.EyesColor, (dbset, record) =>
@@ -546,7 +545,7 @@ namespace FACCTS.Server.Model
                 });
         }
 
-        private static void SeedDesignations(DatabaseContext context)
+        private void SeedDesignations(DatabaseContext context)
         {
             GetRecords<Designation>("Designation.csv")
                 .Aggregate(context.Designations, (dbset, record) =>
@@ -556,7 +555,7 @@ namespace FACCTS.Server.Model
                 });
         }
 
-        private static void SeedCaseStatuses(DatabaseContext context)
+        private void SeedCaseStatuses(DatabaseContext context)
         {
             GetRecords<CourtCaseStatus>("CourtCaseStatus.csv")
                 .Aggregate(context.CourtCaseStatuses, (dbset, record) =>
@@ -566,7 +565,7 @@ namespace FACCTS.Server.Model
                 });
         }
 
-        private static IEnumerable<T> GetRecords<T>(string resourceCsvFileName)
+        private IEnumerable<T> GetRecords<T>(string resourceCsvFileName)
             where T : class
         {
             using (CsvReader csvReader = GetReaderFor(resourceCsvFileName))
@@ -580,7 +579,7 @@ namespace FACCTS.Server.Model
         }
 
 
-        private static CsvReader GetReaderFor(string resourceName)
+        private CsvReader GetReaderFor(string resourceName)
         {
             Stream stream = Assembly.GetExecutingAssembly()
                                .GetManifestResourceStream(string.Format("{0}.{1}.{2}", "FACCTS.Server.Model", "DeployData", resourceName));
@@ -588,12 +587,17 @@ namespace FACCTS.Server.Model
             StreamReader sr = new StreamReader(stream);
 
             var csvConfiguration = new CsvHelper.Configuration.CsvConfiguration()
-            {
-                Delimiter = ";",
-            };
+                {
+                    Delimiter = ";",
+                };
             return new CsvReader(sr, csvConfiguration);
         }
-
+       
         #endregion
+=======
+        
+>>>>>>> 0b8af18ef3de04a15aaabee988eeaa3802912b0f
+
+
     }
 }
