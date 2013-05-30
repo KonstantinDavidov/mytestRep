@@ -33,9 +33,5 @@ namespace FACCTS.Server.Model
             base.Seed(context);
         }
 
-        
-            WebSecurity.Register("Demo", "123456", "demo@demo.com", true, "Demo", "Demo");
-
-
     }
 }
