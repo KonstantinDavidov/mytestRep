@@ -15,6 +15,7 @@ using FACCTS.Controls.ViewModels;
 using FACCTS.Services.Logger;
 using System.Dynamic;
 using System.Windows;
+using Microsoft.Mef.CommonServiceLocator;
 
 namespace FACCTS
 {
@@ -42,19 +43,19 @@ namespace FACCTS
             batch.AddExportedValue<IEventAggregator>(new EventAggregator());
            // batch.AddExportedValue<ILogger>(new Logger());
             batch.AddExportedValue(container);
-            MefServiceLocator.Initialize(() => container);
+            ServiceLocatorContainer.Locator = new MefServiceLocator(container);
             container.Compose(batch);
 
-            ILogger logger = MefServiceLocator.Instance.GetInstance<ILogger>();
+            ILogger logger = ServiceLocatorContainer.Locator.GetInstance<ILogger>();
             logger.ErrorDialogShowing += ShowLoggerDialog;
 
         }
 
         private void ShowLoggerDialog(object sender, ShowDialogEventArgs e)
         {
-            var vm = MefServiceLocator.Instance.GetInstance<IShowExceptionDialogViewModel>();
+            var vm = ServiceLocatorContainer.Locator.GetInstance<IShowExceptionDialogViewModel>();
             vm.Exception = e.Exception;
-            MefServiceLocator.Instance.GetInstance<IWindowManager>().ShowDialog(vm);
+            ServiceLocatorContainer.Locator.GetInstance<IWindowManager>().ShowDialog(vm);
         }
 
         
@@ -69,12 +70,12 @@ namespace FACCTS
 
         protected override object GetInstance(Type serviceType, string key)
         {
-            return MefServiceLocator.Instance.GetInstance(serviceType, key);
+            return ServiceLocatorContainer.Locator.GetInstance(serviceType, key);
         }
 
         protected override IEnumerable<object> GetAllInstances(Type serviceType)
         {
-            return MefServiceLocator.Instance.GetAllInstances(serviceType);
+            return ServiceLocatorContainer.Locator.GetAllInstances(serviceType);
         }
 
         protected override void BuildUp(object instance)
@@ -85,7 +86,7 @@ namespace FACCTS
         protected override void OnUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
         {
             base.OnUnhandledException(sender, e);
-            ILogger logger = MefServiceLocator.Instance.GetInstance<ILogger>();
+            ILogger logger = ServiceLocatorContainer.Locator.GetInstance<ILogger>();
             logger.Fatal("An unhandled Exception occured: ", e.Exception);
             e.Handled = true;
         }
