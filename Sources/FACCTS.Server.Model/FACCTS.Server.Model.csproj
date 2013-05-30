@@ -72,8 +72,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatabaseHelper.cs" />
     <Compile Include="Entities\Appearance.cs" />
     <Compile Include="Entities\Attorney.cs" />
+    <Compile Include="Entities\AvailableCourtOrder.cs" />
     <Compile Include="Entities\CaseHistory.cs" />
     <Compile Include="Entities\CaseNote.cs" />
     <Compile Include="Entities\CaseRecord.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="Entities\Configuration\WSFederationConfiguration.cs" />
     <Compile Include="Entities\Configuration\WSTrustConfiguration.cs" />
     <Compile Include="Entities\CourtCase.cs" />
+    <Compile Include="Entities\CourtCaseOrder.cs" />
     <Compile Include="Entities\CourtCaseStatus.cs" />
     <Compile Include="Entities\CourtCounty.cs" />
     <Compile Include="Entities\CourtLocation.cs" />
@@ -139,6 +142,7 @@
     <EmbeddedResource Include="DeployData\Sex.csv" />
     <EmbeddedResource Include="DeployData\pdf_form_fields.csv" />
     <EmbeddedResource Include="DeployData\Roles.csv" />
+    <EmbeddedResource Include="DeployData\AvailableCourtOrders.csv" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

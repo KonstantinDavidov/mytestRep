@@ -56,13 +56,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataRepository\Core\EFRepository.cs" />
-    <Compile Include="DataRepository\Core\EFUnitOfWork.cs" />
-    <Compile Include="DataRepository\Core\EFUnitOfWorkFactory.cs" />
-    <Compile Include="DataRepository\Core\Interfaces\IRepository.cs" />
-    <Compile Include="DataRepository\Core\Interfaces\IUnitOfWork.cs" />
-    <Compile Include="DataRepository\Core\Interfaces\IUnitOfWorkFactory.cs" />
-    <Compile Include="DataRepository\Core\UnitOfWork.cs" />
     <Compile Include="Logger\ILogger.cs" />
     <Compile Include="Logger\Logger.cs" />
     <Compile Include="Logger\ShowDialogEventArgs.cs" />

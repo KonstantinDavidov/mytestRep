@@ -49,5 +49,8 @@ namespace FACCTS.Server.Model.DataModel
         public virtual ICollection<CaseNote> CaseNotes { get; set; }
 
         public ICollection<RelatedCase> RelatedCases { get; set; }
+
+        [StringLength(250)]
+        public string Judge { get; set; }
     }
 }
