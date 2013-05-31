@@ -1,4 +1,5 @@
 ﻿using FACCTS.Server.App_Start;
+using FACCTS.Server.Common;
 using FACCTS.Server.Model;
 //using FACCTS.Server.Code;
 using FACCTS.Server.Model.DataModel;
@@ -36,13 +37,13 @@ namespace FACCTS.Server
             AreaRegistration.RegisterAllAreas();
 
             ConfigureMEF();
-            _logger = System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(ILog)) as ILog;
+            _logger = ServiceLocator.Current.GetInstance<ILog>();
             _logger.Info("Application_Start started");
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            WebApiApplication.DataManager = System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(IDataManager)) as IDataManager;
+            WebApiApplication.DataManager = ServiceLocator.Current.GetInstance<IDataManager>();
         }
 
         private void ConfigureMEF()
@@ -64,7 +65,7 @@ namespace FACCTS.Server
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            _logger = System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(ILog)) as ILog;
+            _logger = ServiceLocator.Current.GetInstance<ILog>();
             _logger.Fatal("An unhandled exception occurred in ASP.NET processing: " + Server.GetLastError(), Server.GetLastError());
             DataManager.Dispose();
             

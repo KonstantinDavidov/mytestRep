@@ -15,6 +15,8 @@ using System.Web.Hosting;
 using Thinktecture.IdentityServer.Repositories;
 using Thinktecture.IdentityServer.Protocols.OAuth2;
 using System.IO;
+using FACCTS.Server.Common;
+using Microsoft.Mef.CommonServiceLocator;
 
 namespace FACCTS.Server
 {
@@ -28,7 +30,7 @@ namespace FACCTS.Server
             
             var dependencyResolver = System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver;
             System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver = new MefDependencyResolver(container);
-            Container.Current = container;
+            
         }
 
         private static CompositionContainer ConfigureContainer()
@@ -37,10 +39,10 @@ namespace FACCTS.Server
             if (path == null) throw new Exception("Unable to find the path");
             var aggregateCatalog = new AggregateCatalog(new DirectoryCatalog(path, "FACCTS.Server.*.dll"));
             aggregateCatalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
-            aggregateCatalog.Catalogs.Add(new AssemblyCatalog(Assembly.LoadFrom(Path.Combine(path, "Thinktecture.IdentityServer.Core.dll"))));
             var container = new CompositionContainer(aggregateCatalog);
+            Container.Current = container;
             RegisterInstances(container);
-            
+            ServiceLocator.Current = new MefServiceLocator(container);
             return container;
         }
 
@@ -50,7 +52,8 @@ namespace FACCTS.Server
             log4net.Config.XmlConfigurator.Configure();
             var loggerForWebSite = LogManager.GetLogger("FacctsService");
             batch.AddExportedValue<ILog>(loggerForWebSite);
-            //batch.AddExportedValue<OAuth2AuthorizeController>(new OAuth2AuthorizeController());
+            batch.AddExportedValue<OAuth2AuthorizeController>(new OAuth2AuthorizeController());
+            batch.AddExportedValue<OAuth2TokenController>(new OAuth2TokenController());
             container.Compose(batch);
         }
     }
