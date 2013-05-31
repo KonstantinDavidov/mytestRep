@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FACCTS.Server.Services.Resources {
+namespace FACCTS.Server.Data.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace FACCTS.Server.Services.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FACCTS.Server.Services.Resources.IdentityProviderRepository", typeof(IdentityProviderRepository).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("FACCTS.Server.Data.Resources.IdentityProviderRepository", typeof(IdentityProviderRepository).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

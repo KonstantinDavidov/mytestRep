@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FACCTS.Server.Common
+namespace FACCTS.Server.DataContracts
 {
     public interface IDatabaseContext
     {

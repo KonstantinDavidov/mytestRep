@@ -11,7 +11,7 @@ using System.Web.Security;
 using Thinktecture.IdentityServer;
 using Thinktecture.IdentityServer.Repositories;
 
-namespace FACCTS.Server.Services.Repositiries
+namespace FACCTS.Server.Data.Repositiries
 {
     [Export(typeof(IUserRepository))]
     public class ProviderUserRepository : IUserRepository

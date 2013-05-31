@@ -4,7 +4,7 @@
  */
 
 using Thinktecture.IdentityServer.Repositories;
-namespace FACCTS.Server.Services.Repositiries
+namespace FACCTS.Server.Data.Repositiries
 {   
     public class NullCacheRepository : ICacheRepository
     {

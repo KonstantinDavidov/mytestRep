@@ -1,4 +1,5 @@
 ﻿using FACCTS.Server.Common;
+using FACCTS.Server.DataContracts;
 using FACCTS.Server.Model.DataModel;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FACCTS.Server.Services.Repositiries
+namespace FACCTS.Server.Data.Repositiries
 {
     [Export]
     public class CourtCaseStatusesRepository : RepositoryService<CourtCaseStatus>

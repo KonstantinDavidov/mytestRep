@@ -1,4 +1,5 @@
 ﻿using FACCTS.Server.Common;
+using FACCTS.Server.DataContracts;
 using FACCTS.Server.Model.DataModel.Configuration;
 using System;
 using System.ComponentModel.Composition;

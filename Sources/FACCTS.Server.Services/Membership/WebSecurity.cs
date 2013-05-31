@@ -7,7 +7,7 @@ using System.Web.Routing;
 using System.Web.Security;
 using WS = System.Web.Security;
 
-namespace FACCTS.Server.Model.Membership
+namespace FACCTS.Server.Providers.Membership
 {
     public sealed class WebSecurity
     {

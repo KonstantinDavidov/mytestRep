@@ -72,8 +72,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatabaseHelper.cs" />
-    <Compile Include="DropCreateFacctsModelChanged.cs" />
     <Compile Include="Entities\Appearance.cs" />
     <Compile Include="Entities\Attorney.cs" />
     <Compile Include="Entities\AvailableCourtOrder.cs" />
@@ -121,14 +119,8 @@
     <Compile Include="Entities\Witness.cs" />
     <Compile Include="Enums\CaseNoteStatus.cs" />
     <Compile Include="Enums\CCPORStatus.cs" />
-    <Compile Include="FacctsDatabaseInitializer.cs" />
-    <Compile Include="Membership\CodeFirstMembershipProvider.cs" />
-    <Compile Include="Membership\CodeFirstRoleProvider.cs" />
-    <Compile Include="Membership\Crypto.cs" />
-    <Compile Include="Membership\WebSecurity.cs" />
     <Compile Include="NullStringConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DatabaseContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

@@ -5,7 +5,7 @@ using Models = Thinktecture.IdentityServer.Models;
 using Entities = FACCTS.Server.Model.DataModel;
 using System.ComponentModel.Composition;
 
-namespace FACCTS.Server.Services.Repositiries
+namespace FACCTS.Server.Data.Repositiries
 {
     [Export(typeof(IConfigurationRepository))]
     public class ConfigurationRepository : IConfigurationRepository

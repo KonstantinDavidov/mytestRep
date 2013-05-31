@@ -5,7 +5,7 @@ using Thinktecture.IdentityServer.Models;
 using Thinktecture.IdentityServer.Repositories;
 using Thinktecture.IdentityServer.TokenService;
 
-namespace FACCTS.Server.Services.Repositiries
+namespace FACCTS.Server.Data.Repositiries
 {
     [Export(typeof(IClaimsTransformationRulesRepository))]
     public class PassThruTransformationRuleRepository : IClaimsTransformationRulesRepository

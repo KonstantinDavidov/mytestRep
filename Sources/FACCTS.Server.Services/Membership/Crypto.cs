@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 
-namespace FACCTS.Server.Model.Membership
+namespace FACCTS.Server.Providers.Membership
 {
     public static class Crypto
     {

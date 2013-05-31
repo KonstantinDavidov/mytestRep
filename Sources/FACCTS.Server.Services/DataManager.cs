@@ -1,6 +1,6 @@
 ﻿using FACCTS.Server.Model;
 using FACCTS.Server.Model.DataModel;
-using FACCTS.Server.Services.Repositiries;
+using FACCTS.Server.Data.Repositiries;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
