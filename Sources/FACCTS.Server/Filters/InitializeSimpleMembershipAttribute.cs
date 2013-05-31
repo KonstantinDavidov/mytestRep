@@ -1,4 +1,4 @@
-﻿using FACCTS.Server.Model.Membership;
+﻿using FACCTS.Server.Providers.Membership;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;

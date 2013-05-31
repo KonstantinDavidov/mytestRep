@@ -11,7 +11,7 @@ using System.Linq;
 using Thinktecture.IdentityServer.Models;
 using Thinktecture.IdentityServer.Repositories;
 
-namespace FACCTS.Server.Services.Repositiries
+namespace FACCTS.Server.Data.Repositiries
 {    
     /// <summary>
     /// TODO: Update summary.

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FACCTS.Server.Common
+namespace FACCTS.Server.DataContracts
 {
     public interface IFacctsDataRepository<TEntity> : IDisposable where TEntity : class
     {

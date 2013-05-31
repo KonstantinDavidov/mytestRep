@@ -15,7 +15,7 @@ using Thinktecture.IdentityServer;
 using Thinktecture.IdentityServer.Repositories;
 using Thinktecture.IdentityServer.TokenService;
 
-namespace FACCTS.Server.Services.Repositiries
+namespace FACCTS.Server.Data.Repositiries
 {
     [Export(typeof(IClaimsRepository))]
     public class ProviderClaimsRepository : IClaimsRepository

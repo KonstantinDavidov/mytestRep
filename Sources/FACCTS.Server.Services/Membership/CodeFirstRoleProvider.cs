@@ -8,9 +8,9 @@ using System.Web.Security;
 using WS = System.Web.Security;
 using FACCTS.Server.Model.DataModel;
 
-namespace FACCTS.Server.Model.Membership
+namespace FACCTS.Server.Providers.Membership
 {
-    public class CodeFirstRoleProvider : RoleProvider
+    public class CodeFirstRoleProvider : WS.RoleProvider
     {
         public override string ApplicationName
         {

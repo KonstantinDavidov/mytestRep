@@ -9,7 +9,7 @@ using System.Web;
 using WS = System.Web.Security;
 using System.Web.Security;
 
-namespace FACCTS.Server.Model.Membership
+namespace FACCTS.Server.Providers.Membership
 {
     public class CodeFirstMembershipProvider : WS.MembershipProvider
     {

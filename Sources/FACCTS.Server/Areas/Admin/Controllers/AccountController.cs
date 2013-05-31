@@ -1,21 +1,17 @@
-﻿using FACCTS.Server.Model.Membership;
+﻿using FACCTS.Server.Providers.Membership;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-//using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using FACCTS.Server.Models;
-//using DotNetOpenAuth.AspNet;
-//using Microsoft.Web.WebPages.OAuth;
-//using WebMatrix.WebData;
 
 
 namespace FACCTS.Server.Areas.Admin.Controllers
 {
     [Authorize]
-    //[InitializeSimpleMembership]
+    [FACCTS.Server.Filters.InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //
