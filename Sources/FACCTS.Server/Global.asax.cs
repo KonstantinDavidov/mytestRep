@@ -19,6 +19,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using FACCTS.Server.DataContracts;
+using Thinktecture.IdentityServer.Repositories;
 
 namespace FACCTS.Server
 {
@@ -41,10 +42,14 @@ namespace FACCTS.Server
             _logger = ServiceLocator.Current.GetInstance<ILog>();
             _logger.Info("Application_Start started");
             WebApiConfig.Register(GlobalConfiguration.Configuration);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters, ServiceLocator.Current.GetInstance<IConfigurationRepository>());
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            ProtocolConfig.RegisterProtocols(GlobalConfiguration.Configuration, RouteTable.Routes,
+                ServiceLocator.Current.GetInstance<IConfigurationRepository>(), 
+                ServiceLocator.Current.GetInstance<IUserRepository>(),
+                ServiceLocator.Current.GetInstance<IRelyingPartyRepository>());
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            //WebApiApplication.DataManager = ServiceLocator.Current.GetInstance<IDataManager>();
+            WebApiApplication.DataManager = ServiceLocator.Current.GetInstance<IDataManager>();
         }
 
         private void ConfigureMEF()

@@ -9,10 +9,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using Thinktecture.IdentityModel.Authorization.Mvc;
+using Thinktecture.IdentityServer;
 
 namespace FACCTS.Server.Areas.Admin
 {
-    [Authorize]
+    //[Authorize]
+    [ClaimsAuthorize(Constants.Actions.Administration, Constants.Resources.Configuration)]
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class CourtStaffController : Controller
