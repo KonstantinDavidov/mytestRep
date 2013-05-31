@@ -12,6 +12,11 @@ namespace FACCTS.Server
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            routes.MapRoute(
+                "InitialConfiguration",
+                "initialconfiguration",
+                new { controller = "InitialConfiguration", action = "Index" }
+            );
 
             routes.MapRoute(
                 name: "Default",

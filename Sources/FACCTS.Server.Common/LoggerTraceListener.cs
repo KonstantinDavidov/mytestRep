@@ -12,7 +12,17 @@ namespace FACCTS.Server.Common
         private ILog _logger;
         public LoggerTraceListener() : base()
         {
+            Initialize();
+        }
+
+        protected virtual void Initialize()
+        {
             _logger = ServiceLocator.Current.GetInstance<ILog>();
+        }
+
+        public LoggerTraceListener(string name) : base(name)
+        {
+            Initialize();
         }
 
         public override void Write(string message)

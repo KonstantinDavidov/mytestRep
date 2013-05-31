@@ -6,11 +6,14 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using FACCTS.Server.Models;
+using Thinktecture.IdentityModel.Authorization.Mvc;
+using Thinktecture.IdentityServer;
 
 
 namespace FACCTS.Server.Areas.Admin.Controllers
 {
-    [Authorize]
+    //[Authorize]
+    [ClaimsAuthorize(Constants.Actions.Administration, Constants.Resources.Configuration)]
     [FACCTS.Server.Filters.InitializeSimpleMembership]
     public class AccountController : Controller
     {

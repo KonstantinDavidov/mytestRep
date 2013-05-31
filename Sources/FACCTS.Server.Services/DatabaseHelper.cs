@@ -201,9 +201,9 @@ namespace FACCTS.Server.Model
         {
             return new GlobalConfiguration
             {
-                SiteName = "thinktecture identity server v2",
-                IssuerUri = "http://identityserver.v2.thinktecture.com/trust/changethis",
-                IssuerContactEmail = "office@thinktecture.com",
+                SiteName = "FACCTS WEP API",
+                IssuerUri = "http://opensoftdev.ru/",
+                IssuerContactEmail = "office@opensoftdev.ru",
                 DefaultWSTokenType = TokenTypes.Saml2TokenProfile11,
                 DefaultHttpTokenType = TokenTypes.JsonWebToken,
                 DefaultTokenLifetime = 10,

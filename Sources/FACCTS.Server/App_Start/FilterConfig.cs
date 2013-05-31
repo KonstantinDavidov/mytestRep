@@ -15,7 +15,7 @@ namespace FACCTS.Server
 
             filters.Add(new GlobalViewModelFilter());
             filters.Add(new SslRedirectFilter(configuration.Global.HttpsPort));
-            //filters.Add(new InitialConfigurationFilter());
+            filters.Add(new InitialConfigurationFilter());
         }
     }
 }

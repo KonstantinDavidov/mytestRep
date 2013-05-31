@@ -214,6 +214,7 @@
     <Compile Include="Controllers\EyesColorController.cs" />
     <Compile Include="Controllers\HairColorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InitialConfigurationController.cs" />
     <Compile Include="Controllers\SexController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -224,7 +225,18 @@
     <Compile Include="GlobalFilter\InitialConfigurationFilter.cs" />
     <Compile Include="GlobalFilter\SslRedirectFilter.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\InitialConfigurationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\InitialConfigurationController.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InitialConfigurationController.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\InitialConfigurationModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InitialConfigurationModel.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -401,6 +413,16 @@
       <Project>{28230005-ef1c-40fe-b7cf-d0850e920280}</Project>
       <Name>FACCTS.Server.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\InitialConfigurationController.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>InitialConfigurationController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\InitialConfigurationModel.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>InitialConfigurationModel.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
