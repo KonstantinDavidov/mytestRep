@@ -14,8 +14,8 @@ using Thinktecture.IdentityServer;
 
 namespace FACCTS.Server.Areas.Admin
 {
-    //[Authorize]
-    [ClaimsAuthorize(Constants.Actions.Administration, Constants.Resources.Configuration)]
+    [Authorize]
+    //[ClaimsAuthorize(Constants.Actions.Administration, Constants.Resources.Configuration)]
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class CourtStaffController : Controller

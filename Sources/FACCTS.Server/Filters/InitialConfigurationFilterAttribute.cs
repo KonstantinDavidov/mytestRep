@@ -1,4 +1,5 @@
 ﻿using FACCTS.Server.Common;
+using log4net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,9 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Thinktecture.IdentityServer.Repositories;
 
-namespace FACCTS.Server.GlobalFilter
+namespace FACCTS.Server.Filters
 {
-    public class InitialConfigurationFilter : ActionFilterAttribute
+    public class InitialConfigurationFilterAttribute : ActionFilterAttribute
     {
         
         public IConfigurationRepository ConfigurationRepository 
@@ -20,9 +21,11 @@ namespace FACCTS.Server.GlobalFilter
             } 
         }
 
+        private ILog _logger = ServiceLocator.Current.GetInstance<ILog>();
+
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            
+            _logger.MethodEntry("InitialConfigurationFilterAttribute.OnActionExecuting");
 
             if (!filterContext.ActionDescriptor.ControllerDescriptor.ControllerName.Equals("InitialConfiguration"))
             {
@@ -38,6 +41,7 @@ namespace FACCTS.Server.GlobalFilter
             }
 
             base.OnActionExecuting(filterContext);
+            _logger.MethodExit("InitialConfigurationFilterAttribute.OnActionExecuting");
         }
     }
 }

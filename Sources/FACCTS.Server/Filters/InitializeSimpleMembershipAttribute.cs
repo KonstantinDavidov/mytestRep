@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using FACCTS.Server.Model.DataModel;
+using log4net;
+using FACCTS.Server.Common;
 
 namespace FACCTS.Server.Filters
 {
@@ -18,10 +20,14 @@ namespace FACCTS.Server.Filters
         private static object _initializerLock = new object();
         private static bool _isInitialized;
 
+        private ILog _logger = ServiceLocator.Current.GetInstance<ILog>();
+
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            _logger.MethodEntry("InitializeSimpleMembershipAttribute.OnActionExecuting");
             // Ensure ASP.NET Simple Membership is initialized only once per app start
             LazyInitializer.EnsureInitialized(ref _initializer, ref _isInitialized, ref _initializerLock);
+            _logger.MethodExit("InitializeSimpleMembershipAttribute.OnActionExecuting");
         }
 
         private class SimpleMembershipInitializer

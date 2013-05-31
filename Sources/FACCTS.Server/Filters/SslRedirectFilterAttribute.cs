@@ -1,28 +1,36 @@
-﻿using System;
+﻿using FACCTS.Server.Common;
+using log4net;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace FACCTS.Server.GlobalFilter
+namespace FACCTS.Server.Filters
 {
-    public class SslRedirectFilter : ActionFilterAttribute
+    public class SslRedirectFilterAttribute : ActionFilterAttribute
     {
         int _port = 443;
 
-        public SslRedirectFilter(int sslPort)
+        public SslRedirectFilterAttribute(int sslPort)
         {
             _port = sslPort;
         }
 
+        private ILog _logger = ServiceLocator.Current.GetInstance<ILog>();
+
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            _logger.MethodEntry("SslRedirectFilterAttribute.OnActionExecuting");
             if (!filterContext.HttpContext.Request.IsSecureConnection)
             {
+                string absoluteUri = GetAbsoluteUri(filterContext.HttpContext.Request.Url).AbsoluteUri;
+                _logger.InfoFormat("Redirect to: {0}", absoluteUri);
                 filterContext.Result = new RedirectResult(
-                    GetAbsoluteUri(filterContext.HttpContext.Request.Url).AbsoluteUri,
+                    absoluteUri,
                     true);
             }
+            _logger.MethodExit("SslRedirectFilterAttribute.OnActionExecuting");
         }
 
         private Uri GetAbsoluteUri(Uri uriFromCaller)

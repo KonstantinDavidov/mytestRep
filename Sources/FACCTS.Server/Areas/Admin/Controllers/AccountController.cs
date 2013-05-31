@@ -8,21 +8,26 @@ using System.Web.Security;
 using FACCTS.Server.Models;
 using Thinktecture.IdentityModel.Authorization.Mvc;
 using Thinktecture.IdentityServer;
+using log4net;
+using FACCTS.Server.Common;
 
 
 namespace FACCTS.Server.Areas.Admin.Controllers
 {
-    //[Authorize]
-    [ClaimsAuthorize(Constants.Actions.Administration, Constants.Resources.Configuration)]
+    [Authorize]
+    //[ClaimsAuthorize(Constants.Actions.Administration, Constants.Resources.Configuration)]
     [FACCTS.Server.Filters.InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //
         // GET: /Account/Login
+
+        private ILog _logger = ServiceLocator.Current.GetInstance<ILog>();
         
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
         {
+            _logger.MethodEntry("AccountController.Login", returnUrl);
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }

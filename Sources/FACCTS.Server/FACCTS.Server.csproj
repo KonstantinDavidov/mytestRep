@@ -16,7 +16,8 @@
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -192,6 +193,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\CourtSettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CourtStaffController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OAuthAccountController.cs" />
     <Compile Include="Areas\Admin\Models\EditUser.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
@@ -221,12 +223,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="GlobalFilter\GlobalViewModelFilter.cs" />
-    <Compile Include="GlobalFilter\InitialConfigurationFilter.cs" />
-    <Compile Include="GlobalFilter\SslRedirectFilter.cs" />
+    <Compile Include="Filters\GlobalViewModelFilter.cs" />
+    <Compile Include="Filters\InitialConfigurationFilterAttribute.cs" />
+    <Compile Include="Filters\SslRedirectFilterAttribute.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\InitialConfigurationModel.cs" />
+    <Compile Include="Models\SignInModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\AccountController.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AccountController.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\InitialConfigurationController.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -236,6 +244,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InitialConfigurationModel.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\SignIn.cshtml.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SignIn.cshtml.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\SignInModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SignInModel.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -345,6 +363,7 @@
     </Content>
     <Content Include="Areas\Admin\Views\Account\Login.cshtml" />
     <Content Include="Areas\Admin\Views\Web.config" />
+    <Content Include="Areas\Admin\Views\OAuthAccount\SignIn.cshtml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Readme Mef.MVC4.txt" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -361,7 +380,9 @@
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -415,6 +436,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\AccountController.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>AccountController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\InitialConfigurationController.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>InitialConfigurationController.Designer.cs</LastGenOutput>
@@ -422,6 +447,14 @@
     <EmbeddedResource Include="Resources\InitialConfigurationModel.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>InitialConfigurationModel.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SignIn.cshtml.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SignIn.cshtml.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\SignInModel.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>SignInModel.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
