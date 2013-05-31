@@ -10,6 +10,7 @@ using System.Data.Entity;
 using FACCTS.Server.Model.DataModel;
 using log4net;
 using FACCTS.Server.Common;
+using FACCTS.Server.Data;
 
 namespace FACCTS.Server.Filters
 {

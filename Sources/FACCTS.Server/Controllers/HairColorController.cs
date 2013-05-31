@@ -5,18 +5,16 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using FACCTS.Server.Services;
+using FACCTS.Server.Data;
 using System.ComponentModel.Composition;
+using FACCTS.Server.DataContracts;
 
 namespace FACCTS.Server.Controllers
 {
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class HairColorController : ApiController
+    public class HairColorController : ApiControllerBase
     {
-        [Import(typeof(IDataManager))]
-        private IDataManager DataManager;
-
         // GET api/haircolor
         public IEnumerable<HairColor> Get()
         {

@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.Web;
 using WS = System.Web.Security;
 using System.Web.Security;
+using FACCTS.Server.Data;
 
 namespace FACCTS.Server.Providers.Membership
 {

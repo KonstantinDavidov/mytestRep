@@ -1,5 +1,6 @@
 ﻿using FACCTS.Server.Common;
 using FACCTS.Server.DataContracts;
+using FACCTS.Server.Model.DataModel;
 using FACCTS.Server.Model.DataModel.Configuration;
 using System;
 using System.ComponentModel.Composition;
@@ -8,7 +9,7 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
-namespace FACCTS.Server.Model.DataModel
+namespace FACCTS.Server.Data
 {
     [Export(typeof(IDatabaseContext))]
     public partial class DatabaseContext : DbContext, IDatabaseContext
@@ -131,10 +132,6 @@ namespace FACCTS.Server.Model.DataModel
         public DbSet<AvailableCourtOrder> AvailableCourtOrders { get; set; }
         public DbSet<CourtCaseOrder> CourtCaseOrders { get; set; }
         #endregion
-
-
-        
-       
 
         public new IDbSet<TEntity> Set<TEntity>() where TEntity : class
         {

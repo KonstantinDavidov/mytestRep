@@ -1,0 +1,919 @@
+Id;Field Name;Form Name;Field Type;Screen Name;Form Field Id;Dupe;Dropdown Options;Bool options;Screen Panel;Panel Section
+1;caseNumber;None;TEXT;Case Number;1;N;NULL;NULL;Case;NULL
+2;hearingDate;None;TEXT;First Hearing Date;2;N;NULL;NULL;Case;NULL
+3;courtDepartment;None;TEXT;Courtroom;3;N;NULL;NULL;Case;NULL
+4;party1FirstName;None;TEXT;First Name;4;N;NULL;NULL;Case;NULL
+5;party1MiddleName;None;TEXT;Middle Name;5;N;NULL;NULL;Case;NULL
+6;party1LastName;None;TEXT;Last Name;6;N;NULL;NULL;Case;NULL
+7;party1Desgination;None;DROPDOWN;Designation;7;N;Protected\,Restrained;NULL;Case;NULL
+8;party1AddressStreet;None;TEXT;Address Street;8;N;NULL;NULL;Case;NULL
+9;party1AddressCity;None;TEXT;Address City;9;N;NULL;NULL;Case;NULL
+10;party1AddressState;None;TEXT;Address State;10;N;NULL;NULL;Case;NULL
+11;party1AddressZip;None;TEXT;Address Zip;11;N;NULL;NULL;Case;NULL
+12;party1Phone;None;TEXT;Phone;12;N;NULL;NULL;Case;NULL
+13;party1Sex;None;TEXT;Sex;13;N;NULL;NULL;Case;NULL
+14;party1Race;None;DROPDOWN;Race;14;N;NULL;NULL;Case;NULL
+15;party1HairColor;None;DROPDOWN;Hair;15;N;NULL;NULL;Case;NULL
+16;party1EyeColor;None;DROPDOWN;Eyes;16;N;NULL;NULL;Case;NULL
+17;party1Weight;None;TEXT;Weight;17;N;NULL;NULL;Case;NULL
+18;party1HeightFt;None;TEXT;Height Ft;18;N;NULL;NULL;Case;NULL
+19;party1HeightIn;None;TEXT;Heght In;19;N;NULL;NULL;Case;NULL
+20;party1DOB;None;TEXT;Date of Birth;20;N;NULL;NULL;Case;NULL
+21;party1Age;None;TEXT;Age;21;N;NULL;NULL;Case;NULL
+22;party2FirstName;None;TEXT;First Name;22;N;NULL;NULL;Case;NULL
+23;party2MiddleName;None;TEXT;Middle Name;23;N;NULL;NULL;Case;NULL
+24;party2LastName;None;TEXT;Last Name;24;N;NULL;NULL;Case;NULL
+25;party2Desgination;None;DROPDOWN;Designation;25;N;Protected\,Restrained;NULL;Case;NULL
+26;party2AddressStreet;None;TEXT;Address Street;26;N;NULL;NULL;Case;NULL
+27;party2AddressCity;None;TEXT;Address City;27;N;NULL;NULL;Case;NULL
+28;party2AddressState;None;TEXT;Address State;28;N;NULL;NULL;Case;NULL
+29;party2AddressZip;None;TEXT;Address Zip;29;N;NULL;NULL;Case;NULL
+30;party2Phone;None;TEXT;Phone;30;N;NULL;NULL;Case;NULL
+31;party2Sex;None;TEXT;Sex;31;N;NULL;NULL;Case;NULL
+32;party2Race;None;DROPDOWN;Race;32;N;NULL;NULL;Case;NULL
+33;party2HairColor;None;DROPDOWN;Hair;33;N;NULL;NULL;Case;NULL
+34;party2EyeColor;None;DROPDOWN;Eyes;34;N;NULL;NULL;Case;NULL
+35;party2Weight;None;TEXT;Weight;35;N;NULL;NULL;Case;NULL
+36;party2HeightFt;None;TEXT;Height Ft;36;N;NULL;NULL;Case;NULL
+37;party2HeightIn;None;TEXT;Heght In;37;N;NULL;NULL;Case;NULL
+38;party2DOB;None;TEXT;Date of Birth;38;N;NULL;NULL;Case;NULL
+39;party2Age;None;TEXT;Age;39;N;NULL;NULL;Case;NULL
+40;child[1]FirstName;None;TEXT;First Name;40;N;NULL;NULL;Case;NULL
+41;child[1]LastName;None;TEXT;Last Name;41;N;NULL;NULL;Case;NULL
+42;child[1]Relationship;None;DROPDOWN;Relationship;42;N;NULL;NULL;Case;NULL
+43;child[1]Sex;None;BOOL;Sex;43;N;NULL;NULL;Case;NULL
+44;child[1]DOB;None;TEXT;Date of Birth;44;N;NULL;NULL;Case;NULL
+45;child[2]FirstName;None;TEXT;First Name;45;N;NULL;NULL;Case;NULL
+46;child[2]LastName;None;TEXT;Last Name;46;N;NULL;NULL;Case;NULL
+47;child[2]Relationship;None;DROPDOWN;Relationship;47;N;NULL;NULL;Case;NULL
+48;child[2]Sex;None;BOOL;Sex;48;N;NULL;NULL;Case;NULL
+49;child[2]DOB;None;TEXT;Date of Birth;49;N;NULL;NULL;Case;NULL
+50;child[3]FirstName;None;TEXT;First Name;50;N;NULL;NULL;Case;NULL
+51;child[3]LastName;None;TEXT;Last Name;51;N;NULL;NULL;Case;NULL
+52;child[3]Relationship;None;DROPDOWN;Relationship;52;N;NULL;NULL;Case;NULL
+53;child[3]Sex;None;BOOL;Sex;53;N;NULL;NULL;Case;NULL
+54;child[3]DOB;None;TEXT;Date of Birth;54;N;NULL;NULL;Case;NULL
+55;child[4]FirstName;None;TEXT;First Name;55;N;NULL;NULL;Case;NULL
+56;child[4]LastName;None;TEXT;Last Name;56;N;NULL;NULL;Case;NULL
+57;child[4]Relationship;None;DROPDOWN;Relationship;57;N;NULL;NULL;Case;NULL
+58;child[4]Sex;None;BOOL;Sex;58;N;NULL;NULL;Case;NULL
+59;child[4]DOB;None;TEXT;Date of Birth;59;N;NULL;NULL;Case;NULL
+60;child[5]FirstName;None;TEXT;First Name;60;N;NULL;NULL;Case;NULL
+61;child[5]LastName;None;TEXT;Last Name;61;N;NULL;NULL;Case;NULL
+62;child[5]Relationship;None;DROPDOWN;Relationship;62;N;NULL;NULL;Case;NULL
+63;child[5]Sex;None;BOOL;Sex;63;N;NULL;NULL;Case;NULL
+64;child[5]DOB;None;TEXT;Date of Birth;64;N;NULL;NULL;Case;NULL
+65;party1ProPer;None;TEXT;ProPer;65;N;NULL;NULL;Case;NULL
+66;party1AttorneyFirstName;None;TEXT;Attorney First Name;66;N;NULL;NULL;Case;NULL
+67;party1AttorneyLastName;None;TEXT;Attorney Last Name;67;N;NULL;NULL;Case;NULL
+68;party1AttorneyAddressStreet;None;TEXT;Attorney Address Street;68;N;NULL;NULL;Case;NULL
+69;party1AttorneyAddressCityState;None;TEXT;Attorney Address City State;69;N;NULL;NULL;Case;NULL
+70;party1AttorneyPhone;None;TEXT;Attorney Phone;70;N;NULL;NULL;Case;NULL
+71;party1AttorneyFax;None;TEXT;Attorney Fax;71;N;NULL;NULL;Case;NULL
+72;party1AttorneyEmail;None;TEXT;Attorney Email;72;N;NULL;NULL;Case;NULL
+73;party1AttorneyBarID;None;TEXT;Attorney Bar ID;73;N;NULL;NULL;Case;NULL
+74;party2ProPer;None;TEXT;ProPer;74;N;NULL;NULL;Case;NULL
+75;party2AttorneyFirstName;None;TEXT;Attorney First Name;75;N;NULL;NULL;Case;NULL
+76;party2AttorneyLastName;None;TEXT;Attorney Last Name;76;N;NULL;NULL;Case;NULL
+77;party2AttorneyAddressStreet;None;TEXT;Attorney Address Street;77;N;NULL;NULL;Case;NULL
+78;party2AttorneyAddressCityState;None;TEXT;Attorney Address City State;78;N;NULL;NULL;Case;NULL
+79;party2AttorneyPhone;None;TEXT;Attorney Phone;79;N;NULL;NULL;Case;NULL
+80;party2AttorneyFax;None;TEXT;Attorney Fax;80;N;NULL;NULL;Case;NULL
+81;party2AttorneyEmail;None;TEXT;Attorney Email;81;N;NULL;NULL;Case;NULL
+82;party2AttorneyBarID;None;TEXT;Attorney Bar ID;82;N;NULL;NULL;Case;NULL
+83;childrenAttorneyFirstName;None;TEXT;Attorney First Name;83;N;NULL;NULL;Case;NULL
+84;childrenAttorneyLastName;None;TEXT;Attorney Last Name;84;N;NULL;NULL;Case;NULL
+85;childrenAttorneyAddressStreet;None;TEXT;Attorney Address Street;85;N;NULL;NULL;Case;NULL
+86;childrenAttorneyAddressCityState;None;TEXT;Attorney Address City State;86;N;NULL;NULL;Case;NULL
+87;childrenAttorneyPhone;None;TEXT;Attorney Phone;87;N;NULL;NULL;Case;NULL
+88;childrenAttorneyFax;None;TEXT;Attorney Fax;88;N;NULL;NULL;Case;NULL
+89;childrenAttorneyEmail;None;TEXT;Attorney Email;89;N;NULL;NULL;Case;NULL
+90;childrenAttorneyBarID;None;TEXT;Attorney Bar ID;90;N;NULL;NULL;Case;NULL
+91;witness[1]FirstName;None;TEXT;First Name;91;N;NULL;NULL;Case;NULL
+92;witness[1]Last Name;None;TEXT;Last Name;92;N;NULL;NULL;Case;NULL
+93;witness[1]For;None;DROPDOWN;Witness For;93;N;NULL;NULL;Case;NULL
+94;witness[1]ContactInfo;None;TEXT;Contact Info;94;N;NULL;NULL;Case;NULL
+95;witness[2]FirstName;None;TEXT;First Name;95;N;NULL;NULL;Case;NULL
+96;witness[2]Last Name;None;TEXT;Last Name;96;N;NULL;NULL;Case;NULL
+97;witness[2]For;None;DROPDOWN;Witness For;97;N;NULL;NULL;Case;NULL
+98;witness[2]ContactInfo;None;TEXT;Contact Info;98;N;NULL;NULL;Case;NULL
+99;witness[3]FirstName;None;TEXT;First Name;99;N;NULL;NULL;Case;NULL
+100;witness[3]Last Name;None;TEXT;Last Name;100;N;NULL;NULL;Case;NULL
+101;witness[3]For;None;DROPDOWN;Witness For;101;N;NULL;NULL;Case;NULL
+102;witness[3]ContactInfo;None;TEXT;Contact Info;102;N;NULL;NULL;Case;NULL
+103;witness[4]FirstName;None;TEXT;First Name;103;N;NULL;NULL;Case;NULL
+104;witness[4]Last Name;None;TEXT;Last Name;104;N;NULL;NULL;Case;NULL
+105;witness[4]For;None;DROPDOWN;Witness For;105;N;NULL;NULL;Case;NULL
+106;witness[4]ContactInfo;None;TEXT;Contact Info;106;N;NULL;NULL;Case;NULL
+107;interpreterFirstName;None;TEXT;First Name;107;N;NULL;NULL;Case;NULL
+108;interpreterLast Name;None;TEXT;Last Name;108;N;NULL;NULL;Case;NULL
+109;interpreterLanguage;None;TEXT;Language;109;N;NULL;NULL;Case;NULL
+110;relatedCaseNumber_1;None;TEXT;Related Case Number;110;N;NULL;NULL;Case;NULL
+111;relatedCaseCounty_1;None;TEXT;County Court;111;N;NULL;NULL;Case;NULL
+112;relatedCaseType_1;None;TEXT;Related Case Type;112;N;NULL;NULL;Case;NULL
+113;relatedCPOTRO_1;None;BOOL;Related Case CPO/TRO;113;N;NULL;NULL;Case;NULL
+114;relatedExpireDate_1;None;TEXT;Related Case Expiration Date;114;N;NULL;NULL;Case;NULL
+115;relatedCaseNumber_2;None;TEXT;Related Case Number;115;N;NULL;NULL;Case;NULL
+116;relatedCaseCounty_2;None;TEXT;County Court;116;N;NULL;NULL;Case;NULL
+117;relatedCaseType_2;None;TEXT;Related Case Type;117;N;NULL;NULL;Case;NULL
+118;relatedCPOTRO_2;None;BOOL;Related Case CPO/TRO;118;N;NULL;NULL;Case;NULL
+119;relatedExpireDate_2;None;TEXT;Related Case Expiration Date;119;N;NULL;NULL;Case;NULL
+120;relatedCaseNumber_3;None;TEXT;Related Case Number;120;N;NULL;NULL;Case;NULL
+121;relatedCaseCounty_3;None;TEXT;County Court;121;N;NULL;NULL;Case;NULL
+122;relatedCaseType_3;None;TEXT;Related Case Type;122;N;NULL;NULL;Case;NULL
+123;relatedCPOTRO_3;None;BOOL;Related Case CPO/TRO;123;N;NULL;NULL;Case;NULL
+124;relatedExpireDate_3;None;TEXT;Related Case Expiration Date;124;N;NULL;NULL;Case;NULL
+125;relatedCaseNumber_4;None;TEXT;Related Case Number;125;N;NULL;NULL;Case;NULL
+126;relatedCaseCounty_4;None;TEXT;County Court;126;N;NULL;NULL;Case;NULL
+127;relatedCaseType_4;None;TEXT;Related Case Type;127;N;NULL;NULL;Case;NULL
+128;relatedCPOTRO_4;None;BOOL;Related Case CPO/TRO;128;N;NULL;NULL;Case;NULL
+129;relatedExpireDate_4;None;TEXT;Related Case Expiration Date;129;N;NULL;NULL;Case;NULL
+130;additionalProtectedPersons;CH130;TEXT;NULL;1;N;NULL;N;Court Orders;NULL
+131;additionalProtectedPersonsAttach;CH130;TEXT;NULL;2;N;NULL;N;Court Orders;NULL
+132;carposAdditonalLEA;CH130;TEXT;NULL;3;N;NULL;N;Court Orders;NULL
+133;carposAddress_1;CH130;TEXT;NULL;4;N;NULL;N;Court Orders;NULL
+134;carposAddress_2;CH130;TEXT;NULL;5;N;NULL;N;Court Orders;NULL
+135;carposDeliverLEAYes;CH130;TEXT;NULL;6;N;NULL;N;Court Orders;NULL
+136;carposEnterPOSYes;CH130;TEXT;NULL;7;N;NULL;N;Court Orders;NULL
+137;carposLEA_1;CH130;TEXT;NULL;8;N;NULL;N;Court Orders;NULL
+138;carposLEA_2;CH130;TEXT;NULL;9;N;NULL;N;Court Orders;NULL
+139;carposTransmitPOSYes;CH130;BOOL;NULL;10;N;NULL;N;Court Orders;NULL
+140;caseNumber;CH130;TEXT;NULL;11;N;NULL;N;Court Orders;NULL
+141;caseNumber2;CH130;TEXT;NULL;12;N;NULL;N;Court Orders;NULL
+142;courtName;CH130;TEXT;NULL;13;N;NULL;N;Court Orders;NULL
+143;expirationDate;CH130;DATE;NULL;14;N;NULL;N;Court Orders;NULL
+144;expirationMidnight;CH130;TEXT;NULL;15;N;NULL;N;Court Orders;NULL
+145;expirationTime;CH130;TEXT;NULL;16;N;NULL;N;Court Orders;NULL
+146;expirationTimeAM;CH130;TEXT;NULL;17;N;NULL;N;Court Orders;NULL
+147;expirationTimePM;CH130;TEXT;NULL;18;N;NULL;N;Court Orders;NULL
+148;fireArmYes;CH130;BOOL;NULL;19;N;NULL;N;Court Orders;NULL
+149;formClerk;CH130;TEXT;NULL;20;N;NULL;N;Court Orders;NULL
+150;formDate;CH130;DATE;NULL;21;N;NULL;N;Court Orders;NULL
+151;hearingAdditionalPersonYes;CH130;BOOL;NULL;22;N;NULL;N;Court Orders;NULL
+152;hearingContinued;CH130;TEXT;NULL;23;N;NULL;N;Court Orders;NULL
+153;hearingContinuedDate;CH130;DATE;NULL;24;N;NULL;N;Court Orders;NULL
+154;hearingContinuedTime;CH130;TEXT;NULL;25;N;NULL;N;Court Orders;NULL
+155;hearingDate;CH130;DATE;NULL;26;N;NULL;N;Court Orders;NULL
+156;hearingDepartment;CH130;TEXT;NULL;27;N;NULL;N;Court Orders;NULL
+157;hearingJudicialOfficer;CH130;TEXT;NULL;28;N;NULL;N;Court Orders;NULL
+158;hearingLawyer1Name;CH130;TEXT;NULL;29;N;NULL;N;Court Orders;NULL
+159;hearingLawyer1Present;CH130;TEXT;NULL;30;N;NULL;N;Court Orders;NULL
+160;hearingLawyer2Name;CH130;TEXT;NULL;31;N;NULL;N;Court Orders;NULL
+161;hearingLawyer2Present;CH130;TEXT;NULL;32;N;NULL;N;Court Orders;NULL
+162;hearingParty1Present;CH130;TEXT;NULL;33;N;NULL;N;Court Orders;NULL
+163;hearingParty2Present;CH130;TEXT;NULL;34;N;NULL;N;Court Orders;NULL
+164;hearingRoom;CH130;TEXT;NULL;35;N;NULL;N;Court Orders;NULL
+165;hearingTime;CH130;TEXT;NULL;36;N;NULL;N;Court Orders;NULL
+166;lawyerBarID;CH130;TEXT;NULL;37;N;NULL;N;Court Orders;NULL
+167;lawyerFirmName;CH130;TEXT;NULL;38;N;NULL;N;Court Orders;NULL
+168;lawyerName;CH130;TEXT;NULL;39;N;NULL;N;Court Orders;NULL
+169;lawyersFeesAdditionalYes;CH130;TEXT;NULL;40;N;NULL;N;Court Orders;NULL
+170;lawyersFeesAmount_1;CH130;TEXT;NULL;41;N;NULL;N;Court Orders;NULL
+171;lawyersFeesAmount_2;CH130;TEXT;NULL;42;N;NULL;N;Court Orders;NULL
+172;lawyersFeesAmount_3;CH130;TEXT;NULL;43;N;NULL;N;Court Orders;NULL
+173;lawyersFeesAmount_4;CH130;TEXT;NULL;44;N;NULL;N;Court Orders;NULL
+174;lawyersFeesCourtYes;CH130;BOOL;NULL;45;N;NULL;N;Court Orders;NULL
+175;lawyersFeesItem_1;CH130;TEXT;NULL;46;N;NULL;N;Court Orders;NULL
+176;lawyersFeesItem_2;CH130;TEXT;NULL;47;N;NULL;N;Court Orders;NULL
+177;lawyersFeesItem_3;CH130;TEXT;NULL;48;N;NULL;N;Court Orders;NULL
+178;lawyersFeesItem_4;CH130;TEXT;NULL;49;N;NULL;N;Court Orders;NULL
+179;lawyersFeesLawyerYes;CH130;BOOL;NULL;50;N;NULL;N;Court Orders;NULL
+180;lawyersFeesPaid;CH130;TEXT;NULL;51;N;NULL;N;Court Orders;NULL
+181;lawyersFeesPersonPay;CH130;TEXT;NULL;52;N;NULL;N;Court Orders;NULL
+182;lawyersFeesPersonRecieve;CH130;TEXT;NULL;53;N;NULL;N;Court Orders;NULL
+183;noticeFooter;CH130;TEXT;NULL;54;N;NULL;N;Court Orders;NULL
+184;noticeHeader;CH130;TEXT;NULL;55;N;NULL;N;Court Orders;NULL
+185;otherOrdersAdditionalYes;CH130;TEXT;NULL;56;N;NULL;N;Court Orders;NULL
+186;otherOrdersDetail;CH130;TEXT;NULL;57;N;NULL;N;Court Orders;NULL
+187;otherOrdersYes;CH130;BOOL;NULL;58;N;NULL;N;Court Orders;NULL
+188;pagesNumberAttached;CH130;TEXT;NULL;59;N;NULL;N;Court Orders;NULL
+189;personalConductContact;CH130;TEXT;NULL;60;N;NULL;N;Court Orders;NULL
+190;personalConductHarrass;CH130;TEXT;NULL;61;N;NULL;N;Court Orders;NULL
+191;personalConductLocation;CH130;TEXT;NULL;62;N;NULL;N;Court Orders;NULL
+192;personalConductOrdersOthersYes;CH130;BOOL;NULL;63;N;NULL;N;Court Orders;NULL
+193;personalConductOther;CH130;TEXT;NULL;64;N;NULL;N;Court Orders;NULL
+194;personalConductOtherAttach;CH130;TEXT;NULL;65;N;NULL;N;Court Orders;NULL
+195;personalConductOtherDetail;CH130;TEXT;NULL;66;N;NULL;N;Court Orders;NULL
+196;personalConductYes;CH130;BOOL;NULL;67;N;NULL;N;Court Orders;NULL
+197;protectedAddress_1;CH130;TEXT;NULL;68;N;NULL;N;Court Orders;NULL
+198;protectedAge_2;CH130;TEXT;NULL;69;N;NULL;N;Court Orders;NULL
+199;protectedAge_3;CH130;TEXT;NULL;70;N;NULL;N;Court Orders;NULL
+200;protectedCity_1;CH130;TEXT;NULL;71;N;NULL;N;Court Orders;NULL
+201;protectedEmail_1;CH130;TEXT;NULL;72;N;NULL;N;Court Orders;NULL
+202;protectedFax_1;CH130;TEXT;NULL;73;N;NULL;N;Court Orders;NULL
+203;protectedLivesWithYouNo_2;CH130;BOOL;NULL;74;N;NULL;N;Court Orders;NULL
+204;protectedLivesWithYouNo_3;CH130;BOOL;NULL;75;N;NULL;N;Court Orders;NULL
+205;protectedLivesWithYouYes_2;CH130;BOOL;NULL;76;N;NULL;N;Court Orders;NULL
+206;protectedLivesWithYouYes_3;CH130;BOOL;NULL;77;N;NULL;N;Court Orders;NULL
+207;protectedName_1;CH130;TEXT;NULL;78;N;NULL;N;Court Orders;NULL
+208;protectedName_2;CH130;TEXT;NULL;79;N;NULL;N;Court Orders;NULL
+209;protectedName_3;CH130;TEXT;NULL;80;N;NULL;N;Court Orders;NULL
+210;protectedRelationship_2;CH130;TEXT;NULL;81;N;NULL;N;Court Orders;NULL
+211;protectedRelationship_3;CH130;TEXT;NULL;82;N;NULL;N;Court Orders;NULL
+212;protectedSex_2;CH130;TEXT;NULL;83;N;NULL;N;Court Orders;NULL
+213;protectedSex_3;CH130;TEXT;NULL;84;N;NULL;N;Court Orders;NULL
+214;protectedState_1;CH130;TEXT;NULL;85;N;NULL;N;Court Orders;NULL
+215;protectedTelephone_1;CH130;TEXT;NULL;86;N;NULL;N;Court Orders;NULL
+216;protectedZip_1;CH130;TEXT;NULL;87;N;NULL;N;Court Orders;NULL
+217;restrainedAddress;CH130;TEXT;NULL;88;N;NULL;N;Court Orders;NULL
+218;restrainedAge;CH130;TEXT;NULL;89;N;NULL;N;Court Orders;NULL
+219;restrainedCity;CH130;TEXT;NULL;90;N;NULL;N;Court Orders;NULL
+220;restrainedDOB;CH130;TEXT;NULL;91;N;NULL;N;Court Orders;NULL
+221;restrainedEyeColor;CH130;TEXT;NULL;92;N;NULL;N;Court Orders;NULL
+222;restrainedHairColor;CH130;TEXT;NULL;93;N;NULL;N;Court Orders;NULL
+223;restrainedHeight;CH130;TEXT;NULL;94;N;NULL;N;Court Orders;NULL
+224;restrainedName;CH130;TEXT;NULL;95;N;NULL;N;Court Orders;NULL
+225;restrainedRace;CH130;TEXT;NULL;96;N;NULL;N;Court Orders;NULL
+226;restrainedRelationship;CH130;TEXT;NULL;97;N;NULL;N;Court Orders;NULL
+227;restrainedSexF;CH130;BOOL;NULL;98;N;NULL;N;Court Orders;NULL
+228;restrainedSexM;CH130;BOOL;NULL;99;N;NULL;N;Court Orders;NULL
+229;restrainedState;CH130;TEXT;NULL;100;N;NULL;N;Court Orders;NULL
+230;restrainedWeight;CH130;TEXT;NULL;101;N;NULL;N;Court Orders;NULL
+231;restrainedZip;CH130;TEXT;NULL;102;N;NULL;N;Court Orders;NULL
+232;serviceFeeDate;CH130;DATE;NULL;103;N;NULL;N;Court Orders;NULL
+233;serviceFormCH110POSNo;CH130;TEXT;NULL;104;N;NULL;N;Court Orders;NULL
+234;serviceFormCH110POSYes;CH130;TEXT;NULL;105;N;NULL;N;Court Orders;NULL
+235;serviceNoFee;CH130;TEXT;NULL;106;N;NULL;N;Court Orders;NULL
+236;serviceNoFeeViolence;CH130;TEXT;NULL;107;N;NULL;N;Court Orders;NULL
+237;serviceNoFeeWaiver;CH130;TEXT;NULL;108;N;NULL;N;Court Orders;NULL
+238;serviceOrderPerson2Attend;CH130;TEXT;NULL;109;N;NULL;N;Court Orders;NULL
+239;serviceOrderPerson2NoAttend;CH130;TEXT;NULL;110;N;NULL;N;Court Orders;NULL
+240;stayAwayOrdersPerson1;CH130;TEXT;NULL;111;N;NULL;N;Court Orders;NULL
+241;stayAwayOrdersPerson3;CH130;TEXT;NULL;112;N;NULL;N;Court Orders;NULL
+242;stayAwayOrdersPersonChildCare1;CH130;TEXT;NULL;113;N;NULL;N;Court Orders;NULL
+243;stayAwayOrdersPersonHome1;CH130;TEXT;NULL;114;N;NULL;N;Court Orders;NULL
+244;stayAwayOrdersPersonOther;CH130;TEXT;NULL;115;N;NULL;N;Court Orders;NULL
+245;stayAwayOrdersPersonOtherDetail;CH130;TEXT;NULL;116;N;NULL;N;Court Orders;NULL
+246;stayAwayOrdersPersonOtherSpecify;CH130;TEXT;NULL;117;N;NULL;N;Court Orders;NULL
+247;stayAwayOrdersPersonSchool1;CH130;TEXT;NULL;118;N;NULL;N;Court Orders;NULL
+248;stayAwayOrdersPersonVehicle1;CH130;TEXT;NULL;119;N;NULL;N;Court Orders;NULL
+249;stayAwayOrdersPersonWork1;CH130;TEXT;NULL;120;N;NULL;N;Court Orders;NULL
+250;stayAwayOrdersYes;CH130;TEXT;NULL;121;N;NULL;N;Court Orders;NULL
+251;stayWayOrdersYards;CH130;TEXT;NULL;122;N;NULL;N;Court Orders;NULL
+252;animalCareDenied;DV110;DROPDOWN;NULL;1;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+253;animalCareGranted;DV110;DROPDOWN;NULL;2;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+254;animalCareNotRequested;DV110;DROPDOWN;NULL;3;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+255;animalDetail;DV110;TEXT;NULL;4;N;NULL;N;Court Orders;NULL
+256;animalDistanceYards;DV110;TEXT;NULL;5;N;NULL;N;Court Orders;NULL
+257;caseNumber;DV110;TEXT;NULL;6;N;NULL;N;Court Orders;NULL
+258;childVisitationDenied;DV110;DROPDOWN;NULL;7;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+259;childVisitationGranted;DV110;DROPDOWN;NULL;8;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+260;childVisitationNotRequested;DV110;DROPDOWN;NULL;9;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+261;courtClerk;DV110;TEXT;NULL;10;N;NULL;N;Court Orders;NULL
+262;courtDate;DV110;DATE;NULL;11;N;NULL;N;Court Orders;NULL
+263;courtName;DV110;TEXT;NULL;12;N;NULL;N;Court Orders;NULL
+264;criminalProtectiveOrderCR160;DV110;TEXT;NULL;13;N;NULL;N;Court Orders;NULL
+265;criminalProtectiveOrderCaseNumber;DV110;TEXT;NULL;14;N;NULL;N;Court Orders;NULL
+266;criminalProtectiveOrderCounty;DV110;TEXT;NULL;15;N;NULL;N;Court Orders;NULL
+267;criminalProtectiveOrderExpireDate;DV110;TEXT;NULL;16;N;NULL;N;Court Orders;NULL
+268;criminalProtectiveOrderNoInfo;DV110;TEXT;NULL;17;N;NULL;N;Court Orders;NULL
+269;criminalProtectiveOrderYes;DV110;TEXT;NULL;18;N;NULL;N;Court Orders;NULL
+270;debtPaymentAmount_1;DV110;TEXT;NULL;19;N;NULL;N;Court Orders;NULL
+271;debtPaymentAmount_2;DV110;TEXT;NULL;20;N;NULL;N;Court Orders;NULL
+272;debtPaymentDate_1;DV110;DATE;NULL;21;N;NULL;N;Court Orders;NULL
+273;debtPaymentDate_2;DV110;DATE;NULL;22;N;NULL;N;Court Orders;NULL
+274;debtPaymentDenied;DV110;DROPDOWN;NULL;23;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+275;debtPaymentGranted;DV110;DROPDOWN;NULL;24;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+276;debtPaymentItem_1;DV110;TEXT;NULL;25;N;NULL;N;Court Orders;NULL
+277;debtPaymentItem_2;DV110;TEXT;NULL;26;N;NULL;N;Court Orders;NULL
+278;debtPaymentNotRequested;DV110;DROPDOWN;NULL;27;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+279;debtPaymentPayTo_1;DV110;TEXT;NULL;28;N;NULL;N;Court Orders;NULL
+280;debtPaymentPayTo_2;DV110;TEXT;NULL;29;N;NULL;N;Court Orders;NULL
+281;fireArmYes;DV110;TEXT;NULL;30;N;NULL;N;Court Orders;NULL
+282;formDate;DV110;DATE;NULL;31;N;NULL;N;Court Orders;NULL
+283;hearingDate;DV110;TEXT;NULL;32;N;NULL;N;Court Orders;NULL
+284;hearingTime;DV110;TEXT;NULL;33;N;NULL;N;Court Orders;NULL
+285;hearingTimeAM;DV110;TEXT;NULL;34;N;NULL;N;Court Orders;NULL
+286;hearingTimePM;DV110;TEXT;NULL;35;N;NULL;N;Court Orders;NULL
+287;lawyerBarID;DV110;TEXT;NULL;36;N;NULL;N;Court Orders;NULL
+288;lawyerFirmName;DV110;TEXT;NULL;37;N;NULL;N;Court Orders;NULL
+289;lawyerName;DV110;TEXT;NULL;38;N;NULL;N;Court Orders;NULL
+290;moveOutOrderAddress;DV110;TEXT;NULL;39;N;NULL;N;Court Orders;NULL
+291;moveOutOrderDenied;DV110;DROPDOWN;NULL;40;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+292;moveOutOrderGranted;DV110;DROPDOWN;NULL;41;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+293;moveOutOrderNotRequested;DV110;DROPDOWN;NULL;42;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+294;noticeFooter;DV110;TEXT;NULL;43;N;NULL;N;Court Orders;NULL
+295;noticeHeader;DV110;TEXT;NULL;44;N;NULL;N;Court Orders;NULL
+296;otherOrdersAttached;DV110;BOOL;NULL;45;N;NULL;N;Court Orders;NULL
+297;otherOrdersDenied;DV110;DROPDOWN;NULL;46;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+298;otherOrdersDetail;DV110;TEXT;NULL;47;N;NULL;N;Court Orders;NULL
+299;otherOrdersGranted;DV110;DROPDOWN;NULL;48;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+300;otherOrdersNotRequested;DV110;DROPDOWN;NULL;49;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+301;personalConductOrdersContact;DV110;TEXT;NULL;50;N;NULL;N;Court Orders;NULL
+302;personalConductOrdersDenied;DV110;DROPDOWN;NULL;51;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+303;personalConductOrdersExceptions;DV110;TEXT;NULL;52;N;NULL;N;Court Orders;NULL
+304;personalConductOrdersGranted;DV110;DROPDOWN;NULL;53;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+305;personalConductOrdersHarass;DV110;TEXT;NULL;54;N;NULL;N;Court Orders;NULL
+306;personalConductOrdersLocation;DV110;TEXT;NULL;55;N;NULL;N;Court Orders;NULL
+307;personalConductOrdersNotRequested;DV110;DROPDOWN;NULL;56;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+308;personalConductOrdersPerson3;DV110;TEXT;NULL;57;N;NULL;N;Court Orders;NULL
+309;propertyControlDenied;DV110;DROPDOWN;NULL;58;N;NULL;N;Court Orders;NULL
+310;propertyControlDetail;DV110;TEXT;NULL;59;N;NULL;N;Court Orders;NULL
+311;propertyControlGranted;DV110;DROPDOWN;NULL;60;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+312;propertyControlNotRequested;DV110;DROPDOWN;NULL;61;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+313;propertyRestraintDenied;DV110;DROPDOWN;NULL;62;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+314;propertyRestraintGranted;DV110;DROPDOWN;NULL;63;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+315;propertyRestraintNotRequested;DV110;DROPDOWN;NULL;64;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+316;propertyRestraintPerson1;DV110;TEXT;NULL;65;N;NULL;N;Court Orders;NULL
+317;propertyRestraintPerson2;DV110;TEXT;NULL;66;N;NULL;N;Court Orders;NULL
+318;protectedAdditionalAttach;DV110;TEXT;NULL;67;N;NULL;N;Court Orders;NULL
+319;protectedAdditionalYes;DV110;TEXT;NULL;68;N;NULL;N;Court Orders;NULL
+320;protectedAddress_1;DV110;TEXT;NULL;69;N;NULL;N;Court Orders;NULL
+321;protectedAge_2;DV110;TEXT;NULL;70;N;NULL;N;Court Orders;NULL
+322;protectedAge_3;DV110;TEXT;NULL;71;N;NULL;N;Court Orders;NULL
+323;protectedAge_4;DV110;TEXT;NULL;72;N;NULL;N;Court Orders;NULL
+324;protectedCity_1;DV110;TEXT;NULL;73;N;NULL;N;Court Orders;NULL
+325;protectedFax_1;DV110;TEXT;NULL;74;N;NULL;N;Court Orders;NULL
+326;protectedName_1;DV110;TEXT;NULL;75;N;NULL;N;Court Orders;NULL
+327;protectedName_2;DV110;TEXT;NULL;76;N;NULL;N;Court Orders;NULL
+328;protectedName_3;DV110;TEXT;NULL;77;N;NULL;N;Court Orders;NULL
+329;protectedName_4;DV110;TEXT;NULL;78;N;NULL;N;Court Orders;NULL
+330;protectedRelationship_2;DV110;TEXT;NULL;79;N;NULL;N;Court Orders;NULL
+331;protectedRelationship_3;DV110;TEXT;NULL;80;N;NULL;N;Court Orders;NULL
+332;protectedRelationship_4;DV110;TEXT;NULL;81;N;NULL;N;Court Orders;NULL
+333;protectedSex_2;DV110;TEXT;NULL;82;N;NULL;N;Court Orders;NULL
+334;protectedSex_3;DV110;TEXT;NULL;83;N;NULL;N;Court Orders;NULL
+335;protectedSex_4;DV110;TEXT;NULL;84;N;NULL;N;Court Orders;NULL
+336;protectedState_1;DV110;TEXT;NULL;85;N;NULL;N;Court Orders;NULL
+337;protectedTelephone_1;DV110;TEXT;NULL;86;N;NULL;N;Court Orders;NULL
+338;protectedZip_1;DV110;TEXT;NULL;87;N;NULL;N;Court Orders;NULL
+339;protected[0]Email_1;DV110;TEXT;NULL;88;N;NULL;N;Court Orders;NULL
+340;recordCommunicationsDenied;DV110;DROPDOWN;NULL;89;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+341;recordCommunicationsGranted;DV110;DROPDOWN;NULL;90;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+342;recordCommunicationsNotRequested;DV110;DROPDOWN;NULL;91;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+343;restrainedAddress;DV110;TEXT;NULL;92;N;NULL;N;Court Orders;NULL
+344;restrainedAge;DV110;TEXT;NULL;93;N;NULL;N;Court Orders;NULL
+345;restrainedCity;DV110;TEXT;NULL;94;N;NULL;N;Court Orders;NULL
+346;restrainedDOB;DV110;TEXT;NULL;95;N;NULL;N;Court Orders;NULL
+347;restrainedEyeColor;DV110;TEXT;NULL;96;N;NULL;N;Court Orders;NULL
+348;restrainedHairColor;DV110;TEXT;NULL;97;N;NULL;N;Court Orders;NULL
+349;restrainedHeight;DV110;TEXT;NULL;98;N;NULL;N;Court Orders;NULL
+350;restrainedName;DV110;TEXT;NULL;99;N;NULL;N;Court Orders;NULL
+351;restrainedRace;DV110;TEXT;NULL;100;N;NULL;N;Court Orders;NULL
+352;restrainedRelationship;DV110;TEXT;NULL;101;N;NULL;N;Court Orders;NULL
+353;restrainedSexF;DV110;TEXT;NULL;102;N;NULL;N;Court Orders;NULL
+354;restrainedSexM;DV110;TEXT;NULL;103;N;NULL;N;Court Orders;NULL
+355;restrainedState;DV110;TEXT;NULL;104;N;NULL;N;Court Orders;NULL
+356;restrainedWeight;DV110;TEXT;NULL;105;N;NULL;N;Court Orders;NULL
+357;restrainedZip;DV110;TEXT;NULL;106;N;NULL;N;Court Orders;NULL
+358;stayAwayOrdersChildCare1;DV110;TEXT;NULL;107;N;NULL;N;Court Orders;NULL
+359;stayAwayOrdersDenied;DV110;DROPDOWN;NULL;108;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+360;stayAwayOrdersException;DV110;TEXT;NULL;109;N;NULL;N;Court Orders;NULL
+361;stayAwayOrdersGranted;DV110;DROPDOWN;NULL;110;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+362;stayAwayOrdersNotRequested;DV110;DROPDOWN;NULL;111;N;Denied\,Granted\,Not Requested;N;Court Orders;NULL
+363;stayAwayOrdersOtherDetail1;DV110;TEXT;NULL;112;N;NULL;N;Court Orders;NULL
+364;stayAwayOrdersOtherDetail2;DV110;TEXT;NULL;113;N;NULL;N;Court Orders;NULL
+365;stayAwayOrdersOtherSpecify;DV110;TEXT;NULL;114;N;NULL;N;Court Orders;NULL
+366;stayAwayOrdersPerson1;DV110;TEXT;NULL;115;N;NULL;N;Court Orders;NULL
+367;stayAwayOrdersPerson3;DV110;TEXT;NULL;116;N;NULL;N;Court Orders;NULL
+368;stayAwayOrdersPersonHome1;DV110;TEXT;NULL;117;N;NULL;N;Court Orders;NULL
+369;stayAwayOrdersPersonOther;DV110;TEXT;NULL;118;N;NULL;N;Court Orders;NULL
+370;stayAwayOrdersPersonSchool1;DV110;TEXT;NULL;119;N;NULL;N;Court Orders;NULL
+371;stayAwayOrdersPersonVehicle1;DV110;TEXT;NULL;120;N;NULL;N;Court Orders;NULL
+372;stayAwayOrdersPersonWork1;DV110;TEXT;NULL;121;N;NULL;N;Court Orders;NULL
+373;stayAwayOrdersYards;DV110;TEXT;NULL;122;N;NULL;N;Court Orders;NULL
+374;caseNumber;DV115;TEXT;NULL;1;N;NULL;N;Court Orders;NULL
+375;courtName;DV115;TEXT;NULL;2;N;NULL;N;Court Orders;NULL
+376;formDate;DV115;DATE;NULL;3;N;NULL;N;Court Orders;NULL
+377;formPartyName;DV115;TEXT;NULL;4;N;NULL;N;Court Orders;NULL
+378;hearingDate;DV115;DATE;NULL;5;N;NULL;N;Court Orders;NULL
+379;hearingReissueCount;DV115;TEXT;NULL;6;N;NULL;N;Court Orders;NULL
+380;lawyerBarID;DV115;TEXT;NULL;7;N;NULL;N;Court Orders;NULL
+381;lawyerFirmName;DV115;TEXT;NULL;8;N;NULL;N;Court Orders;NULL
+382;lawyerFormDate;DV115;DATE;NULL;9;N;NULL;N;Court Orders;NULL
+383;lawyerFormName;DV115;TEXT;NULL;10;N;NULL;N;Court Orders;NULL
+384;lawyerName;DV115;TEXT;NULL;11;N;NULL;N;Court Orders;NULL
+385;noticeFooter;DV115;TEXT;NULL;12;N;NULL;N;Court Orders;NULL
+386;noticeHeader;DV115;TEXT;NULL;13;N;NULL;N;Court Orders;NULL
+387;protectedAddress_1;DV115;TEXT;NULL;14;N;NULL;N;Court Orders;NULL
+388;protectedCity_1;DV115;TEXT;NULL;15;N;NULL;N;Court Orders;NULL
+389;protectedEmail_1;DV115;TEXT;NULL;16;N;NULL;N;Court Orders;NULL
+390;protectedFax_1;DV115;TEXT;NULL;17;N;NULL;N;Court Orders;NULL
+391;protectedName_1;DV115;TEXT;NULL;18;N;NULL;N;Court Orders;NULL
+392;protectedState_1;DV115;TEXT;NULL;19;N;NULL;N;Court Orders;NULL
+393;protectedTelephone_1;DV115;TEXT;NULL;20;N;NULL;N;Court Orders;NULL
+394;protectedZip_1;DV115;TEXT;NULL;21;N;NULL;N;Court Orders;NULL
+395;restrainedAddress;DV115;TEXT;NULL;22;N;NULL;N;Court Orders;NULL
+396;restrainedCity;DV115;TEXT;NULL;23;N;NULL;N;Court Orders;NULL
+397;restrainedName;DV115;TEXT;NULL;24;N;NULL;N;Court Orders;NULL
+398;restrainedState;DV115;TEXT;NULL;25;N;NULL;N;Court Orders;NULL
+399;restrainedZip;DV115;TEXT;NULL;26;N;NULL;N;Court Orders;NULL
+400;serviceNotPrior;DV115;TEXT;NULL;27;N;NULL;N;Court Orders;NULL
+401;serviceOther;DV115;TEXT;NULL;28;N;NULL;N;Court Orders;NULL
+402;serviceOtherDetail;DV115;TEXT;NULL;29;N;NULL;N;Court Orders;NULL
+403;caseNumber;DV116;TEXT;NULL;1;N;NULL;N;Court Orders;NULL
+404;clerkSignature;DV116;TEXT;NULL;2;N;NULL;N;Court Orders;NULL
+405;clerkSignatureDate;DV116;DATE;NULL;3;N;NULL;N;Court Orders;NULL
+406;courtName;DV116;TEXT;NULL;4;N;NULL;N;Court Orders;NULL
+407;formDate;DV116;DATE;NULL;5;N;NULL;N;Court Orders;NULL
+408;hearingCourtAddress;DV116;TEXT;NULL;6;N;NULL;N;Court Orders;NULL
+409;hearingCourtAddressCityState;DV116;TEXT;NULL;7;N;NULL;N;Court Orders;NULL
+410;hearingCourtName;DV116;TEXT;NULL;8;N;NULL;N;Court Orders;NULL
+411;hearingDate;DV116;DATE;NULL;9;N;NULL;N;Court Orders;NULL
+412;hearingDepartment;DV116;TEXT;NULL;10;N;NULL;N;Court Orders;NULL
+413;hearingNotServedPerson2;DV116;TEXT;NULL;11;N;NULL;N;Court Orders;NULL
+414;hearingOther;DV116;TEXT;NULL;12;N;NULL;N;Court Orders;NULL
+415;hearingOtherDetail1;DV116;TEXT;NULL;13;N;NULL;N;Court Orders;NULL
+416;hearingOtherDetail2;DV116;TEXT;NULL;14;N;NULL;N;Court Orders;NULL
+417;hearingOtherDetail3;DV116;TEXT;NULL;15;N;NULL;N;Court Orders;NULL
+418;hearingReferredFamilyCourtServices;DV116;TEXT;NULL;16;N;NULL;N;Court Orders;NULL
+419;hearingRequestTimeHireAttorney;DV116;TEXT;NULL;17;N;NULL;N;Court Orders;NULL
+420;hearingRoom;DV116;TEXT;NULL;18;N;NULL;N;Court Orders;NULL
+421;hearingTime;DV116;TEXT;NULL;19;N;NULL;N;Court Orders;NULL
+422;lawyerAddress;DV116;TEXT;NULL;20;N;NULL;N;Court Orders;NULL
+423;lawyerBarID;DV116;TEXT;NULL;21;N;NULL;N;Court Orders;NULL
+424;lawyerCity;DV116;TEXT;NULL;22;N;NULL;N;Court Orders;NULL
+425;lawyerEmail;DV116;TEXT;NULL;23;N;NULL;N;Court Orders;NULL
+426;lawyerFax;DV116;TEXT;NULL;24;N;NULL;N;Court Orders;NULL
+427;lawyerFirmName;DV116;TEXT;NULL;25;N;NULL;N;Court Orders;NULL
+428;lawyerName;DV116;TEXT;NULL;26;N;NULL;N;Court Orders;NULL
+429;lawyerState;DV116;TEXT;NULL;27;N;NULL;N;Court Orders;NULL
+430;lawyerTelephone;DV116;TEXT;NULL;28;N;NULL;N;Court Orders;NULL
+431;lawyerZip;DV116;TEXT;NULL;29;N;NULL;N;Court Orders;NULL
+432;noticeFooter;DV116;TEXT;NULL;30;N;NULL;N;Court Orders;NULL
+433;noticeHeader;DV116;TEXT;NULL;31;N;NULL;N;Court Orders;NULL
+434;protectedName_1;DV116;TEXT;NULL;32;N;NULL;N;Court Orders;NULL
+435;reissueRestrainingOrderDenial;DV116;TEXT;NULL;33;N;NULL;N;Court Orders;NULL
+436;reissueRestrainingOrderDenialDetail;DV116;TEXT;NULL;34;N;NULL;N;Court Orders;NULL
+437;reissueRestrainingOrderGranted;DV116;TEXT;NULL;35;N;NULL;N;Court Orders;NULL
+438;reissueRestrainingOrderNo;DV116;TEXT;NULL;36;N;NULL;N;Court Orders;NULL
+439;restrainedName;DV116;TEXT;NULL;37;N;NULL;N;Court Orders;NULL
+440;serviceNoFurther;DV116;TEXT;NULL;38;N;NULL;N;Court Orders;NULL
+441;serviceOrderPerson1;DV116;TEXT;NULL;39;N;NULL;N;Court Orders;NULL
+442;serviceOrderPerson1Days;DV116;TEXT;NULL;40;N;NULL;N;Court Orders;NULL
+443;serviceOrderPerson2;DV116;TEXT;NULL;41;N;NULL;N;Court Orders;NULL
+444;serviceOrderPerson2Days;DV116;TEXT;NULL;42;N;NULL;N;Court Orders;NULL
+445;additionalProtectedYes;DV130;BOOL;NULL;1;N;NULL;N;Court Orders;NULL
+446;animalCareYes;DV130;BOOL;NULL;2;N;NULL;N;Court Orders;NULL
+447;animalDetail;DV130;TEXT;NULL;3;N;NULL;N;Court Orders;NULL
+448;animalDistanceYards;DV130;TEXT;NULL;4;N;NULL;N;Court Orders;NULL
+449;attachedPageOrdersDV140;DV130;BOOL;NULL;5;N;NULL;N;Court Orders;NULL
+450;attachedPageOrdersDV145;DV130;BOOL;NULL;6;N;NULL;N;Court Orders;NULL
+451;attachedPageOrdersDV150;DV130;BOOL;NULL;7;N;NULL;N;Court Orders;NULL
+452;attachedPageOrdersDate;DV130;BOOL;NULL;8;N;NULL;N;Court Orders;NULL
+453;attachedPageOrdersFL342;DV130;BOOL;NULL;9;N;NULL;N;Court Orders;NULL
+454;attachedPageOrdersFL343;DV130;BOOL;NULL;10;N;NULL;N;Court Orders;NULL
+455;attachedPageOrdersOther;DV130;BOOL;NULL;11;N;NULL;N;Court Orders;NULL
+456;attachedPageOrdersOtherDetail1;DV130;TEXT;NULL;12;N;NULL;N;Court Orders;NULL
+457;attachedPageOrdersOtherDetail2;DV130;TEXT;NULL;13;N;NULL;N;Court Orders;NULL
+458;attachedPageOrdersPages;DV130;TEXT;NULL;14;N;NULL;N;Court Orders;NULL
+459;attachedPageOrdersYes;DV130;BOOL;NULL;15;N;NULL;N;Court Orders;NULL
+460;battererInventionYes;DV130;BOOL;NULL;16;N;NULL;N;Court Orders;NULL
+461;caseNumber;DV130;TEXT;NULL;17;N;NULL;N;Court Orders;NULL
+462;childCustodyOtherForm;DV130;TEXT;NULL;18;N;NULL;N;Court Orders;NULL
+463;childCustodyYes;DV130;BOOL;NULL;19;N;NULL;N;Court Orders;NULL
+464;childSupportOtherForm;DV130;TEXT;NULL;20;N;NULL;N;Court Orders;NULL
+465;childSupportYes;DV130;BOOL;NULL;21;N;NULL;N;Court Orders;NULL
+466;clerkDate;DV130;DATE;NULL;22;N;NULL;N;Court Orders;NULL
+467;clerkName;DV130;TEXT;NULL;23;N;NULL;N;Court Orders;NULL
+468;courtName;DV130;TEXT;NULL;24;N;NULL;N;Court Orders;NULL
+469;criminalProtectiveOrderCR160CaseNumber;DV130;TEXT;NULL;25;N;NULL;N;Court Orders;NULL
+470;criminalProtectiveOrderCR160County;DV130;TEXT;NULL;26;N;NULL;N;Court Orders;NULL
+471;criminalProtectiveOrderCR160Effect;DV130;TEXT;NULL;27;N;NULL;N;Court Orders;NULL
+472;criminalProtectiveOrderCR160Expires;DV130;TEXT;NULL;28;N;NULL;N;Court Orders;NULL
+473;criminalProtectiveOrderNoInfo;DV130;TEXT;NULL;29;N;NULL;N;Court Orders;NULL
+474;criminalProtectiveOrderYes;DV130;BOOL;NULL;30;N;NULL;N;Court Orders;NULL
+475;debtPaymentAdditional;DV130;TEXT;NULL;31;N;NULL;N;Court Orders;NULL
+476;debtPaymentAmount_1;DV130;TEXT;NULL;32;N;NULL;N;Court Orders;NULL
+477;debtPaymentAmount_2;DV130;TEXT;NULL;33;N;NULL;N;Court Orders;NULL
+478;debtPaymentAmount_3;DV130;TEXT;NULL;34;N;NULL;N;Court Orders;NULL
+479;debtPaymentDate_1;DV130;TEXT;NULL;35;N;NULL;N;Court Orders;NULL
+480;debtPaymentDate_2;DV130;TEXT;NULL;36;N;NULL;N;Court Orders;NULL
+481;debtPaymentDate_3;DV130;TEXT;NULL;37;N;NULL;N;Court Orders;NULL
+482;debtPaymentItem_1;DV130;TEXT;NULL;38;N;NULL;N;Court Orders;NULL
+483;debtPaymentItem_2;DV130;TEXT;NULL;39;N;NULL;N;Court Orders;NULL
+484;debtPaymentItem_3;DV130;TEXT;NULL;40;N;NULL;N;Court Orders;NULL
+485;debtPaymentPayTo_1;DV130;TEXT;NULL;41;N;NULL;N;Court Orders;NULL
+486;debtPaymentPayTo_2;DV130;TEXT;NULL;42;N;NULL;N;Court Orders;NULL
+487;debtPaymentPayTo_3;DV130;TEXT;NULL;43;N;NULL;N;Court Orders;NULL
+488;debtPaymentYes;DV130;BOOL;NULL;44;N;NULL;N;Court Orders;NULL
+489;expirationDate;DV130;DATE;NULL;45;N;NULL;N;Court Orders;NULL
+490;expirationTime;DV130;TEXT;NULL;46;N;NULL;N;Court Orders;NULL
+491;expirationTimeAM;DV130;TEXT;NULL;47;N;NULL;N;Court Orders;NULL
+492;expirationTimeMidnight;DV130;TEXT;NULL;48;N;NULL;N;Court Orders;NULL
+493;expirationTimePM;DV130;TEXT;NULL;49;N;NULL;N;Court Orders;NULL
+494;hearingContinued;DV130;TEXT;NULL;50;N;NULL;N;Court Orders;NULL
+495;hearingDate;DV130;DATE;NULL;51;N;NULL;N;Court Orders;NULL
+496;hearingJudicialOfficer;DV130;TEXT;NULL;52;N;NULL;N;Court Orders;NULL
+497;hearingLawyer1Name;DV130;TEXT;NULL;53;N;NULL;N;Court Orders;NULL
+498;hearingLawyer1Present;DV130;TEXT;NULL;54;N;NULL;N;Court Orders;NULL
+499;hearingLawyer2Name;DV130;TEXT;NULL;55;N;NULL;N;Court Orders;NULL
+500;hearingLawyer2Present;DV130;TEXT;NULL;56;N;NULL;N;Court Orders;NULL
+501;hearingParty1Present;DV130;TEXT;NULL;57;N;NULL;N;Court Orders;NULL
+502;hearingParty2Present;DV130;TEXT;NULL;58;N;NULL;N;Court Orders;NULL
+503;hearingReturnDate;DV130;TEXT;NULL;59;N;NULL;N;Court Orders;NULL
+504;hearingReturnIssue;DV130;TEXT;NULL;60;N;NULL;N;Court Orders;NULL
+505;hearingReturnIssue2;DV130;TEXT;NULL;61;N;NULL;N;Court Orders;NULL
+506;hearingReturnTime;DV130;TEXT;NULL;62;N;NULL;N;Court Orders;NULL
+507;hearingReturnTimeAM;DV130;TEXT;NULL;63;N;NULL;N;Court Orders;NULL
+508;hearingReturnTimePM;DV130;TEXT;NULL;64;N;NULL;N;Court Orders;NULL
+509;lawyerAddress;DV130;TEXT;NULL;65;N;NULL;N;Court Orders;NULL
+510;lawyerBarID;DV130;TEXT;NULL;66;N;NULL;N;Court Orders;NULL
+511;lawyerCity;DV130;TEXT;NULL;67;N;NULL;N;Court Orders;NULL
+512;lawyerEmail;DV130;TEXT;NULL;68;N;NULL;N;Court Orders;NULL
+513;lawyerFax;DV130;TEXT;NULL;69;N;NULL;N;Court Orders;NULL
+514;lawyerFirmName;DV130;TEXT;NULL;70;N;NULL;N;Court Orders;NULL
+515;lawyerName;DV130;TEXT;NULL;71;N;NULL;N;Court Orders;NULL
+516;lawyerState;DV130;TEXT;NULL;72;N;NULL;N;Court Orders;NULL
+517;lawyerTelephone;DV130;TEXT;NULL;73;N;NULL;N;Court Orders;NULL
+518;lawyerZip;DV130;TEXT;NULL;74;N;NULL;N;Court Orders;NULL
+519;lawyersFeesAmount_1;DV130;TEXT;NULL;75;N;NULL;N;Court Orders;NULL
+520;lawyersFeesAmount_2;DV130;TEXT;NULL;76;N;NULL;N;Court Orders;NULL
+521;lawyersFeesDueDate_1;DV130;DATE;NULL;77;N;NULL;N;Court Orders;NULL
+522;lawyersFeesDueDate_2;DV130;DATE;NULL;78;N;NULL;N;Court Orders;NULL
+523;lawyersFeesItem_1;DV130;TEXT;NULL;79;N;NULL;N;Court Orders;NULL
+524;lawyersFeesItem_2;DV130;TEXT;NULL;80;N;NULL;N;Court Orders;NULL
+525;lawyersFeesPayTo_1;DV130;TEXT;NULL;81;N;NULL;N;Court Orders;NULL
+526;lawyersFeesPayTo_2;DV130;TEXT;NULL;82;N;NULL;N;Court Orders;NULL
+527;lawyersFeesYes;DV130;TEXT;NULL;83;N;NULL;N;Court Orders;NULL
+528;moveOutOrderAddress;DV130;TEXT;NULL;84;N;NULL;N;Court Orders;NULL
+529;moveOutOrderAddress2;DV130;TEXT;NULL;85;N;NULL;N;Court Orders;NULL
+530;moveOutOrderYes;DV130;TEXT;NULL;86;N;NULL;N;Court Orders;NULL
+531;noticeFooter;DV130;TEXT;NULL;87;N;NULL;N;Court Orders;NULL
+532;noticeHeader;DV130;TEXT;NULL;88;N;NULL;N;Court Orders;NULL
+533;otherOrdersDetail;DV130;TEXT;NULL;89;N;NULL;N;Court Orders;NULL
+534;otherOrdersYes;DV130;BOOL;NULL;90;N;NULL;N;Court Orders;NULL
+535;paymentsServicesAdditionalOrders;DV130;TEXT;NULL;91;N;NULL;N;Court Orders;NULL
+536;paymentsServicesAmount_1;DV130;TEXT;NULL;92;N;NULL;N;Court Orders;NULL
+537;paymentsServicesAmount_2;DV130;TEXT;NULL;93;N;NULL;N;Court Orders;NULL
+538;paymentsServicesAmount_3;DV130;TEXT;NULL;94;N;NULL;N;Court Orders;NULL
+539;paymentsServicesDueDate_1;DV130;TEXT;NULL;95;N;NULL;N;Court Orders;NULL
+540;paymentsServicesDueDate_2;DV130;TEXT;NULL;96;N;NULL;N;Court Orders;NULL
+541;paymentsServicesDueDate_3;DV130;TEXT;NULL;97;N;NULL;N;Court Orders;NULL
+542;paymentsServicesItem_1;DV130;TEXT;NULL;98;N;NULL;N;Court Orders;NULL
+543;paymentsServicesItem_2;DV130;TEXT;NULL;99;N;NULL;N;Court Orders;NULL
+544;paymentsServicesItem_3;DV130;TEXT;NULL;100;N;NULL;N;Court Orders;NULL
+545;paymentsServicesPayTo_1;DV130;TEXT;NULL;101;N;NULL;N;Court Orders;NULL
+546;paymentsServicesPayTo_2;DV130;TEXT;NULL;102;N;NULL;N;Court Orders;NULL
+547;paymentsServicesPayTo_3;DV130;TEXT;NULL;103;N;NULL;N;Court Orders;NULL
+548;paymentsServicesYes;DV130;BOOL;NULL;104;N;NULL;N;Court Orders;NULL
+549;personalConductContact;DV130;TEXT;NULL;105;N;NULL;N;Court Orders;NULL
+550;personalConductException;DV130;TEXT;NULL;106;N;NULL;N;Court Orders;NULL
+551;personalConductHarass;DV130;TEXT;NULL;107;N;NULL;N;Court Orders;NULL
+552;personalConductLocation;DV130;TEXT;NULL;108;N;NULL;N;Court Orders;NULL
+553;personalConductOrdersYes;DV130;BOOL;NULL;109;N;NULL;N;Court Orders;NULL
+554;propertyControlDetail1;DV130;TEXT;NULL;110;N;NULL;N;Court Orders;NULL
+555;propertyControlDetail2;DV130;TEXT;NULL;111;N;NULL;N;Court Orders;NULL
+556;propertyControlYes;DV130;BOOL;NULL;112;N;NULL;N;Court Orders;NULL
+557;propertyRestraintPerson1;DV130;TEXT;NULL;113;N;NULL;N;Court Orders;NULL
+558;propertyRestraintPerson2;DV130;TEXT;NULL;114;N;NULL;N;Court Orders;NULL
+559;propertyRestraintYes;DV130;BOOL;NULL;115;N;NULL;N;Court Orders;NULL
+560;protectedAdditionalAttachYes;DV130;BOOL;NULL;116;N;NULL;N;Court Orders;NULL
+561;protectedAge_2;DV130;TEXT;NULL;117;N;NULL;N;Court Orders;NULL
+562;protectedAge_3;DV130;TEXT;NULL;118;N;NULL;N;Court Orders;NULL
+563;protectedAge_4;DV130;TEXT;NULL;119;N;NULL;N;Court Orders;NULL
+564;protectedName_1;DV130;TEXT;NULL;120;N;NULL;N;Court Orders;NULL
+565;protectedName_2;DV130;TEXT;NULL;121;N;NULL;N;Court Orders;NULL
+566;protectedName_3;DV130;TEXT;NULL;122;N;NULL;N;Court Orders;NULL
+567;protectedName_4;DV130;TEXT;NULL;123;N;NULL;N;Court Orders;NULL
+568;protectedRelationship_2;DV130;TEXT;NULL;124;N;NULL;N;Court Orders;NULL
+569;protectedRelationship_3;DV130;TEXT;NULL;125;N;NULL;N;Court Orders;NULL
+570;protectedRelationship_4;DV130;TEXT;NULL;126;N;NULL;N;Court Orders;NULL
+571;protectedSex_2;DV130;TEXT;NULL;127;N;NULL;N;Court Orders;NULL
+572;protectedSex_3;DV130;TEXT;NULL;128;N;NULL;N;Court Orders;NULL
+573;protectedSex_4;DV130;TEXT;NULL;129;N;NULL;N;Court Orders;NULL
+574;recordCommunicationsYes;DV130;BOOL;NULL;130;N;NULL;N;Court Orders;NULL
+575;restrainedAddress;DV130;TEXT;NULL;131;N;NULL;N;Court Orders;NULL
+576;restrainedAge;DV130;TEXT;NULL;132;N;NULL;N;Court Orders;NULL
+577;restrainedCity;DV130;TEXT;NULL;133;N;NULL;N;Court Orders;NULL
+578;restrainedDOB;DV130;TEXT;NULL;134;N;NULL;N;Court Orders;NULL
+579;restrainedEyeColor;DV130;TEXT;NULL;135;N;NULL;N;Court Orders;NULL
+580;restrainedHairColor;DV130;TEXT;NULL;136;N;NULL;N;Court Orders;NULL
+581;restrainedHeight;DV130;TEXT;NULL;137;N;NULL;N;Court Orders;NULL
+582;restrainedName;DV130;TEXT;NULL;138;N;NULL;N;Court Orders;NULL
+583;restrainedRace;DV130;TEXT;NULL;139;N;NULL;N;Court Orders;NULL
+584;restrainedRelationship;DV130;TEXT;NULL;140;N;NULL;N;Court Orders;NULL
+585;restrainedSexF;DV130;TEXT;NULL;141;N;NULL;N;Court Orders;NULL
+586;restrainedSexM;DV130;TEXT;NULL;142;N;NULL;N;Court Orders;NULL
+587;restrainedState;DV130;TEXT;NULL;143;N;NULL;N;Court Orders;NULL
+588;restrainedWeight;DV130;TEXT;NULL;144;N;NULL;N;Court Orders;NULL
+589;restrainedZip;DV130;TEXT;NULL;145;N;NULL;N;Court Orders;NULL
+590;serviceBothPresent;DV130;TEXT;NULL;146;N;NULL;N;Court Orders;NULL
+591;servicePOSDifferentDV110;DV130;TEXT;NULL;147;N;NULL;N;Court Orders;NULL
+592;servicePOSSameDV110;DV130;TEXT;NULL;148;N;NULL;N;Court Orders;NULL
+593;servicePerson1Present;DV130;TEXT;NULL;149;N;NULL;N;Court Orders;NULL
+594;spousalSupportOtherForm;DV130;TEXT;NULL;150;N;NULL;N;Court Orders;NULL
+595;spousalSupportYes;DV130;BOOL;NULL;151;N;NULL;N;Court Orders;NULL
+596;stayAwayOrdersChildCare1;DV130;TEXT;NULL;152;N;NULL;N;Court Orders;NULL
+597;stayAwayOrdersException;DV130;TEXT;NULL;153;N;NULL;N;Court Orders;NULL
+598;stayAwayOrdersOther;DV130;TEXT;NULL;154;N;NULL;N;Court Orders;NULL
+599;stayAwayOrdersOtherDetail;DV130;TEXT;NULL;155;N;NULL;N;Court Orders;NULL
+600;stayAwayOrdersOtherSpecify;DV130;TEXT;NULL;156;N;NULL;N;Court Orders;NULL
+601;stayAwayOrdersPerson1;DV130;TEXT;NULL;157;N;NULL;N;Court Orders;NULL
+602;stayAwayOrdersPerson3;DV130;TEXT;NULL;158;N;NULL;N;Court Orders;NULL
+603;stayAwayOrdersPersonHome1;DV130;TEXT;NULL;159;N;NULL;N;Court Orders;NULL
+604;stayAwayOrdersPersonWork1;DV130;TEXT;NULL;160;N;NULL;N;Court Orders;NULL
+605;stayAwayOrdersSchool1;DV130;TEXT;NULL;161;N;NULL;N;Court Orders;NULL
+606;stayAwayOrdersVehicle1;DV130;TEXT;NULL;162;N;NULL;N;Court Orders;NULL
+607;stayAwayOrdersYards;DV130;TEXT;NULL;163;N;NULL;N;Court Orders;NULL
+608;stayAwayOrdersYes;DV130;BOOL;NULL;164;N;NULL;N;Court Orders;NULL
+609;caseNumber;DV140;TEXT;NULL;1;N;NULL;N;Court Orders;NULL
+610;childAbuctionOrdersDV145;DV140;TEXT;NULL;2;N;NULL;N;Court Orders;NULL
+611;childAbuctionYes;DV140;BOOL;NULL;3;N;NULL;N;Court Orders;NULL
+612;childAdditionalAttachYes;DV140;BOOL;NULL;4;N;NULL;N;Court Orders;NULL
+613;childAdditionalDetail;DV140;TEXT;NULL;5;N;NULL;N;Court Orders;NULL
+614;childCustodyOrdersYes;DV140;BOOL;NULL;6;N;NULL;N;Court Orders;NULL
+615;childDOB_1;DV140;TEXT;NULL;7;N;NULL;N;Court Orders;NULL
+616;childDOB_2;DV140;TEXT;NULL;8;N;NULL;N;Court Orders;NULL
+617;childDOB_3;DV140;TEXT;NULL;9;N;NULL;N;Court Orders;NULL
+618;childLegalDad_1;DV140;TEXT;NULL;10;N;NULL;N;Court Orders;NULL
+619;childLegalDad_2;DV140;TEXT;NULL;11;N;NULL;N;Court Orders;NULL
+620;childLegalDad_3;DV140;TEXT;NULL;12;N;NULL;N;Court Orders;NULL
+621;childLegalMom_1;DV140;TEXT;NULL;13;N;NULL;N;Court Orders;NULL
+622;childLegalMom_2;DV140;TEXT;NULL;14;N;NULL;N;Court Orders;NULL
+623;childLegalMom_3;DV140;TEXT;NULL;15;N;NULL;N;Court Orders;NULL
+624;childLegalOther_1;DV140;TEXT;NULL;16;N;NULL;N;Court Orders;NULL
+625;childLegalOther_2;DV140;TEXT;NULL;17;N;NULL;N;Court Orders;NULL
+626;childLegalOther_3;DV140;TEXT;NULL;18;N;NULL;N;Court Orders;NULL
+627;childName_1;DV140;TEXT;NULL;19;N;NULL;N;Court Orders;NULL
+628;childName_2;DV140;TEXT;NULL;20;N;NULL;N;Court Orders;NULL
+629;childName_3;DV140;TEXT;NULL;21;N;NULL;N;Court Orders;NULL
+630;childPhysicalDad_1;DV140;TEXT;NULL;22;N;NULL;N;Court Orders;NULL
+631;childPhysicalDad_2;DV140;TEXT;NULL;23;N;NULL;N;Court Orders;NULL
+632;childPhysicalDad_3;DV140;TEXT;NULL;24;N;NULL;N;Court Orders;NULL
+633;childPhysicalMom_1;DV140;TEXT;NULL;25;N;NULL;N;Court Orders;NULL
+634;childPhysicalMom_2;DV140;TEXT;NULL;26;N;NULL;N;Court Orders;NULL
+635;childPhysicalMom_3;DV140;TEXT;NULL;27;N;NULL;N;Court Orders;NULL
+636;childPhysicalOther_1;DV140;TEXT;NULL;28;N;NULL;N;Court Orders;NULL
+637;childPhysicalOther_2;DV140;TEXT;NULL;29;N;NULL;N;Court Orders;NULL
+638;childPhysicalOther_3;DV140;TEXT;NULL;30;N;NULL;N;Court Orders;NULL
+639;childVisitationAttachDetail;DV140;TEXT;NULL;31;N;NULL;N;Court Orders;NULL
+640;childVisitationAttachPages;DV140;TEXT;NULL;32;N;NULL;N;Court Orders;NULL
+641;childVisitationAttachYes;DV140;BOOL;NULL;33;N;NULL;N;Court Orders;NULL
+642;childVisitationForDad;DV140;TEXT;NULL;34;N;NULL;N;Court Orders;NULL
+643;childVisitationForMom;DV140;TEXT;NULL;35;N;NULL;N;Court Orders;NULL
+644;childVisitationForOther;DV140;TEXT;NULL;36;N;NULL;N;Court Orders;NULL
+645;childVisitationForOtherDetail;DV140;TEXT;NULL;37;N;NULL;N;Court Orders;NULL
+646;childVisitationMediationLocation;DV140;TEXT;NULL;38;N;NULL;N;Court Orders;NULL
+647;childVisitationMediationYes;DV140;BOOL;NULL;39;N;NULL;N;Court Orders;NULL
+648;childVisitationNo;DV140;TEXT;NULL;40;N;NULL;N;Court Orders;NULL
+649;childVisitationNoDad;DV140;TEXT;NULL;41;N;NULL;N;Court Orders;NULL
+650;childVisitationNoMom;DV140;TEXT;NULL;42;N;NULL;N;Court Orders;NULL
+651;childVisitationNoOther;DV140;TEXT;NULL;43;N;NULL;N;Court Orders;NULL
+652;childVisitationNoOtherDetail;DV140;TEXT;NULL;44;N;NULL;N;Court Orders;NULL
+653;childVisitationOrdersYes;DV140;BOOL;NULL;45;N;NULL;N;Court Orders;NULL
+654;childVisitationOtherYes;DV140;BOOL;NULL;46;N;NULL;N;Court Orders;NULL
+655;childVisitationPermitted;DV140;TEXT;NULL;47;N;NULL;N;Court Orders;NULL
+656;childVisitationWeekdayFromDay;DV140;TEXT;NULL;48;N;NULL;N;Court Orders;NULL
+657;childVisitationWeekdayFromTime;DV140;TEXT;NULL;49;N;NULL;N;Court Orders;NULL
+658;childVisitationWeekdayFromTimeAM;DV140;TEXT;NULL;50;N;NULL;N;Court Orders;NULL
+659;childVisitationWeekdayFromTimePM;DV140;TEXT;NULL;51;N;NULL;N;Court Orders;NULL
+660;childVisitationWeekdayStartDate;DV140;TEXT;NULL;52;N;NULL;N;Court Orders;NULL
+661;childVisitationWeekdayToDay;DV140;TEXT;NULL;53;N;NULL;N;Court Orders;NULL
+662;childVisitationWeekdayToTime;DV140;TEXT;NULL;54;N;NULL;N;Court Orders;NULL
+663;childVisitationWeekdayToTimeAM;DV140;TEXT;NULL;55;N;NULL;N;Court Orders;NULL
+664;childVisitationWeekdayToTimePM;DV140;TEXT;NULL;56;N;NULL;N;Court Orders;NULL
+665;childVisitationWeekdayYes;DV140;BOOL;NULL;57;N;NULL;N;Court Orders;NULL
+666;childVisitationWeekend1Month;DV140;TEXT;NULL;58;N;NULL;N;Court Orders;NULL
+667;childVisitationWeekend2Month;DV140;TEXT;NULL;59;N;NULL;N;Court Orders;NULL
+668;childVisitationWeekend3Month;DV140;TEXT;NULL;60;N;NULL;N;Court Orders;NULL
+669;childVisitationWeekend4Month;DV140;TEXT;NULL;61;N;NULL;N;Court Orders;NULL
+670;childVisitationWeekend5Month;DV140;TEXT;NULL;62;N;NULL;N;Court Orders;NULL
+671;childVisitationWeekendFromDay;DV140;TEXT;NULL;63;N;NULL;N;Court Orders;NULL
+672;childVisitationWeekendFromTime;DV140;TEXT;NULL;64;N;NULL;N;Court Orders;NULL
+673;childVisitationWeekendFromTimeAM;DV140;TEXT;NULL;65;N;NULL;N;Court Orders;NULL
+674;childVisitationWeekendFromTimePM;DV140;TEXT;NULL;66;N;NULL;N;Court Orders;NULL
+675;childVisitationWeekendStartDate;DV140;DATE;NULL;67;N;NULL;N;Court Orders;NULL
+676;childVisitationWeekendToDay;DV140;TEXT;NULL;68;N;NULL;N;Court Orders;NULL
+677;childVisitationWeekendToTime;DV140;TEXT;NULL;69;N;NULL;N;Court Orders;NULL
+678;childVisitationWeekendToTimeAM;DV140;TEXT;NULL;70;N;NULL;N;Court Orders;NULL
+679;childVisitationWeekendToTimePM;DV140;TEXT;NULL;71;N;NULL;N;Court Orders;NULL
+680;childVisitationWeekendYes;DV140;BOOL;NULL;72;N;NULL;N;Court Orders;NULL
+681;countyResidenceOther;DV140;TEXT;NULL;73;N;NULL;N;Court Orders;NULL
+682;countyResidenceOtherDetail;DV140;TEXT;NULL;74;N;NULL;N;Court Orders;NULL
+683;countyResidenceUSA;DV140;TEXT;NULL;75;N;NULL;N;Court Orders;NULL
+684;formAttachDV110;DV140;BOOL;NULL;76;N;NULL;N;Court Orders;NULL
+685;formAttachDV130;DV140;BOOL;NULL;77;N;NULL;N;Court Orders;NULL
+686;noticeFooter;DV140;TEXT;NULL;78;N;NULL;N;Court Orders;NULL
+687;noticeHeader;DV140;TEXT;NULL;79;N;NULL;N;Court Orders;NULL
+688;otherOrdersYes;DV140;BOOL;NULL;80;N;NULL;N;Court Orders;NULL
+689;otherParentMom;DV140;TEXT;NULL;81;N;NULL;N;Court Orders;NULL
+690;otherParentName;DV140;TEXT;NULL;82;N;NULL;N;Court Orders;NULL
+691;otherParentOther;DV140;TEXT;NULL;83;N;NULL;N;Court Orders;NULL
+692;otherParentOtherDetail;DV140;TEXT;NULL;84;N;NULL;N;Court Orders;NULL
+693;otherParnetDad;DV140;TEXT;NULL;85;N;NULL;N;Court Orders;NULL
+694;protectedChildDad;DV140;TEXT;NULL;86;N;NULL;N;Court Orders;NULL
+695;protectedChildMom;DV140;TEXT;NULL;87;N;NULL;N;Court Orders;NULL
+696;protectedChildOther;DV140;TEXT;NULL;88;N;NULL;N;Court Orders;NULL
+697;protectedName_1;DV140;TEXT;NULL;89;N;NULL;N;Court Orders;NULL
+698;supervisedVisitationYes;DV140;BOOL;NULL;90;N;NULL;N;Court Orders;NULL
+699;transportationVisitationDropOffAddress;DV140;TEXT;NULL;91;N;NULL;N;Court Orders;NULL
+700;transportationVisitationDropOffYes;DV140;BOOL;NULL;92;N;NULL;N;Court Orders;NULL
+701;transportationVisitationPickupDad;DV140;TEXT;NULL;93;N;NULL;N;Court Orders;NULL
+702;transportationVisitationPickupMom;DV140;TEXT;NULL;94;N;NULL;N;Court Orders;NULL
+703;transportationVisitationPickupOther;DV140;TEXT;NULL;95;N;NULL;N;Court Orders;NULL
+704;transportationVisitationPickupOtherDetail;DV140;TEXT;NULL;96;N;NULL;N;Court Orders;NULL
+705;transportationVisitationTakeDad;DV140;TEXT;NULL;97;N;NULL;N;Court Orders;NULL
+706;transportationVisitationTakeMom;DV140;TEXT;NULL;98;N;NULL;N;Court Orders;NULL
+707;transportationVisitationTakeOther;DV140;TEXT;NULL;99;N;NULL;N;Court Orders;NULL
+708;transportationVisitationTakeOtherDetail;DV140;TEXT;NULL;100;N;NULL;N;Court Orders;NULL
+709;transportationVisitationYes;DV140;BOOL;NULL;101;N;NULL;N;Court Orders;NULL
+710;travelChildrenOutsideCalifornia;DV140;TEXT;NULL;102;N;NULL;N;Court Orders;NULL
+711;travelChildrenOutsideOther;DV140;TEXT;NULL;103;N;NULL;N;Court Orders;NULL
+712;travelChildrenOutsideOtherDetail;DV140;TEXT;NULL;104;N;NULL;N;Court Orders;NULL
+713;travelChildrenOutsideUSA;DV140;TEXT;NULL;105;N;NULL;N;Court Orders;NULL
+714;travelChildrenPermissionDad;DV140;TEXT;NULL;106;N;NULL;N;Court Orders;NULL
+715;travelChildrenPermissionMom;DV140;TEXT;NULL;107;N;NULL;N;Court Orders;NULL
+716;travelChildrenPermissionOther;DV140;TEXT;NULL;108;N;NULL;N;Court Orders;NULL
+717;travelChildrenPermissionOtherDetail;DV140;TEXT;NULL;109;N;NULL;N;Court Orders;NULL
+718;travelChildrenYes;DV140;BOOL;NULL;110;N;NULL;N;Court Orders;NULL
+719;caseNumber;DV150;TEXT;NULL;1;N;NULL;N;Court Orders;NULL
+720;contactProviderDad;DV150;TEXT;NULL;2;N;NULL;N;Court Orders;NULL
+721;contactProviderDadDate;DV150;DATE;NULL;3;N;NULL;N;Court Orders;NULL
+722;contactProviderMom;DV150;TEXT;NULL;4;N;NULL;N;Court Orders;NULL
+723;contactProviderMomDate;DV150;DATE;NULL;5;N;NULL;N;Court Orders;NULL
+724;contactProviderOther;DV150;TEXT;NULL;6;N;NULL;N;Court Orders;NULL
+725;contactProviderOtherDetail;DV150;TEXT;NULL;7;N;NULL;N;Court Orders;NULL
+726;costsDad;DV150;TEXT;NULL;8;N;NULL;N;Court Orders;NULL
+727;costsDadPercent;DV150;TEXT;NULL;9;N;NULL;N;Court Orders;NULL
+728;costsMom;DV150;TEXT;NULL;10;N;NULL;N;Court Orders;NULL
+729;costsMomPercent;DV150;TEXT;NULL;11;N;NULL;N;Court Orders;NULL
+730;costsOther;DV150;TEXT;NULL;12;N;NULL;N;Court Orders;NULL
+731;costsOtherDetail;DV150;TEXT;NULL;13;N;NULL;N;Court Orders;NULL
+732;exchangesChildrenSupervised;DV150;TEXT;NULL;14;N;NULL;N;Court Orders;NULL
+733;formAttachedDV110;DV150;BOOL;NULL;15;N;NULL;N;Court Orders;NULL
+734;formAttachedDV130;DV150;BOOL;NULL;16;N;NULL;N;Court Orders;NULL
+735;formAttachedDV140;DV150;BOOL;NULL;17;N;NULL;N;Court Orders;NULL
+736;mediationLocation;DV150;TEXT;NULL;18;N;NULL;N;Court Orders;NULL
+737;mediationYes;DV150;BOOL;NULL;19;N;NULL;N;Court Orders;NULL
+738;noticeFooter;DV150;TEXT;NULL;20;N;NULL;N;Court Orders;NULL
+739;noticeHeader;DV150;TEXT;NULL;21;N;NULL;N;Court Orders;NULL
+740;otherCourtOrders;DV150;TEXT;NULL;22;N;NULL;N;Court Orders;NULL
+741;otherParentDad;DV150;TEXT;NULL;23;N;NULL;N;Court Orders;NULL
+742;otherParentMom;DV150;TEXT;NULL;24;N;NULL;N;Court Orders;NULL
+743;otherParentName;DV150;TEXT;NULL;25;N;NULL;N;Court Orders;NULL
+744;otherParentOther;DV150;TEXT;NULL;26;N;NULL;N;Court Orders;NULL
+745;otherParentOtherDetail;DV150;TEXT;NULL;27;N;NULL;N;Court Orders;NULL
+746;protectedDad_1;DV150;TEXT;NULL;28;N;NULL;N;Court Orders;NULL
+747;protectedMom_1;DV150;TEXT;NULL;29;N;NULL;N;Court Orders;NULL
+748;protectedName_1;DV150;TEXT;NULL;30;N;NULL;N;Court Orders;NULL
+749;protectedOther_1;DV150;TEXT;NULL;31;N;NULL;N;Court Orders;NULL
+750;providerAddress;DV150;TEXT;NULL;32;N;NULL;N;Court Orders;NULL
+751;providerName;DV150;TEXT;NULL;33;N;NULL;N;Court Orders;NULL
+752;providerNonProfessional;DV150;TEXT;NULL;34;N;NULL;N;Court Orders;NULL
+753;providerProfessional;DV150;TEXT;NULL;35;N;NULL;N;Court Orders;NULL
+754;providerTelephone;DV150;TEXT;NULL;36;N;NULL;N;Court Orders;NULL
+755;providerTherapeutic;DV150;TEXT;NULL;37;N;NULL;N;Court Orders;NULL
+756;scheduledVisitsSupervisedDV140;DV150;TEXT;NULL;38;N;NULL;N;Court Orders;NULL
+757;scheduledVisitsSupervisedHours;DV150;TEXT;NULL;39;N;NULL;N;Court Orders;NULL
+758;scheduledVisitsSupervisedOther;DV150;TEXT;NULL;40;N;NULL;N;Court Orders;NULL
+759;scheduledVisitsSupervisedVisits;DV150;TEXT;NULL;41;N;NULL;N;Court Orders;NULL
+760;scheduledVisitsSupervisedYes;DV150;BOOL;NULL;42;N;NULL;N;Court Orders;NULL
+761;visitationSupervisedDad;DV150;TEXT;NULL;43;N;NULL;N;Court Orders;NULL
+762;visitationSupervisedMom;DV150;TEXT;NULL;44;N;NULL;N;Court Orders;NULL
+763;visitationSupervisedOther;DV150;TEXT;NULL;45;N;NULL;N;Court Orders;NULL
+764;visitationSupervisedOtherDetail;DV150;TEXT;NULL;46;N;NULL;N;Court Orders;NULL
+765;visitationYes;DV150;BOOL;NULL;47;N;NULL;N;Court Orders;NULL
+766;additionalChildSuppEducation;FL342;TEXT;NULL;1;N;NULL;N;Court Orders;NULL
+767;additionalChildSuppEducationOther;FL342;TEXT;NULL;2;N;NULL;N;Court Orders;NULL
+768;additionalChildSuppEducationOtherAmount;FL342;TEXT;NULL;3;N;NULL;N;Court Orders;NULL
+769;additionalChildSuppEducationOtherDetails;FL342;TEXT;NULL;4;N;NULL;N;Court Orders;NULL
+770;additionalChildSuppEducationOtherOr;FL342;TEXT;NULL;5;N;NULL;N;Court Orders;NULL
+771;additionalChildSuppEducationOtherParent;FL342;TEXT;NULL;6;N;NULL;N;Court Orders;NULL
+772;additionalChildSuppEducationOtherPercent;FL342;TEXT;NULL;7;N;NULL;N;Court Orders;NULL
+773;additionalChildSuppEducationPetitioner;FL342;TEXT;NULL;8;N;NULL;N;Court Orders;NULL
+774;additionalChildSuppEducationPetitionerAmount;FL342;TEXT;NULL;9;N;NULL;N;Court Orders;NULL
+775;additionalChildSuppEducationPetitionerOr;FL342;TEXT;NULL;10;N;NULL;N;Court Orders;NULL
+776;additionalChildSuppEducationPetitionerPercent;FL342;TEXT;NULL;11;N;NULL;N;Court Orders;NULL
+777;additionalChildSuppEducationRespondent;FL342;TEXT;NULL;12;N;NULL;N;Court Orders;NULL
+778;additionalChildSuppEducationRespondentAmount;FL342;TEXT;NULL;13;N;NULL;N;Court Orders;NULL
+779;additionalChildSuppEducationRespondentOr;FL342;TEXT;NULL;14;N;NULL;N;Court Orders;NULL
+780;additionalChildSuppEducationRespondentPercent;FL342;TEXT;NULL;15;N;NULL;N;Court Orders;NULL
+781;additionalChildSuppTravelExp;FL342;TEXT;NULL;16;N;NULL;N;Court Orders;NULL
+782;additionalChildSuppTravelExpOther;FL342;TEXT;NULL;17;N;NULL;N;Court Orders;NULL
+783;additionalChildSuppTravelExpOtherAmount;FL342;TEXT;NULL;18;N;NULL;N;Court Orders;NULL
+784;additionalChildSuppTravelExpOtherDetails;FL342;TEXT;NULL;19;N;NULL;N;Court Orders;NULL
+785;additionalChildSuppTravelExpOtherOr;FL342;TEXT;NULL;20;N;NULL;N;Court Orders;NULL
+786;additionalChildSuppTravelExpOtherParent;FL342;TEXT;NULL;21;N;NULL;N;Court Orders;NULL
+787;additionalChildSuppTravelExpOtherPercent;FL342;TEXT;NULL;22;N;NULL;N;Court Orders;NULL
+788;additionalChildSuppTravelExpPetitioner;FL342;TEXT;NULL;23;N;NULL;N;Court Orders;NULL
+789;additionalChildSuppTravelExpPetitionerAmount;FL342;TEXT;NULL;24;N;NULL;N;Court Orders;NULL
+790;additionalChildSuppTravelExpPetitionerOr;FL342;TEXT;NULL;25;N;NULL;N;Court Orders;NULL
+791;additionalChildSuppTravelExpPetitionerPercent;FL342;TEXT;NULL;26;N;NULL;N;Court Orders;NULL
+792;additionalChildSuppTravelExpRespondent;FL342;TEXT;NULL;27;N;NULL;N;Court Orders;NULL
+793;additionalChildSuppTravelExpRespondentAmount;FL342;TEXT;NULL;28;N;NULL;N;Court Orders;NULL
+794;additionalChildSuppTravelExpRespondentOr;FL342;TEXT;NULL;29;N;NULL;N;Court Orders;NULL
+795;additionalChildSuppTravelExpRespondentPercent;FL342;TEXT;NULL;30;N;NULL;N;Court Orders;NULL
+796;additionalChildSuppYes;FL342;BOOL;NULL;31;N;NULL;N;Court Orders;NULL
+797;attachmentFindingsOrderDV130;FL342;BOOL;NULL;32;N;NULL;N;Court Orders;NULL
+798;attachmentFindingsOrderFL180;FL342;BOOL;NULL;33;N;NULL;N;Court Orders;NULL
+799;attachmentFindingsOrderFL340;FL342;BOOL;NULL;34;N;NULL;N;Court Orders;NULL
+800;attachmentFindingsOrderOther;FL342;TEXT;NULL;35;N;NULL;N;Court Orders;NULL
+801;attachmentFindingsOrderOtherDetail;FL342;TEXT;NULL;36;N;NULL;N;Court Orders;NULL
+802;caseNumber;FL342;TEXT;NULL;37;N;NULL;N;Court Orders;NULL
+803;childSupportAmountIncome;FL342;TEXT;NULL;38;N;NULL;N;Court Orders;NULL
+804;childSupportAmountOtherGross;FL342;TEXT;NULL;39;N;NULL;N;Court Orders;NULL
+805;childSupportAmountOtherNet;FL342;TEXT;NULL;40;N;NULL;N;Court Orders;NULL
+806;childSupportAmountOtherTANF;FL342;TEXT;NULL;41;N;NULL;N;Court Orders;NULL
+807;childSupportAmountPetitionerGross;FL342;TEXT;NULL;42;N;NULL;N;Court Orders;NULL
+808;childSupportAmountPetitionerNet;FL342;TEXT;NULL;43;N;NULL;N;Court Orders;NULL
+809;childSupportAmountPetitionerTANF;FL342;TEXT;NULL;44;N;NULL;N;Court Orders;NULL
+810;childSupportAmountPrintout;FL342;TEXT;NULL;45;N;NULL;N;Court Orders;NULL
+811;childSupportAmountRespondentGross;FL342;TEXT;NULL;46;N;NULL;N;Court Orders;NULL
+812;childSupportAmountRespondentNet;FL342;TEXT;NULL;47;N;NULL;N;Court Orders;NULL
+813;childSupportAmountRespondentTANF;FL342;TEXT;NULL;48;N;NULL;N;Court Orders;NULL
+814;childSupportAmount_1;FL342;TEXT;NULL;49;N;NULL;N;Court Orders;NULL
+815;childSupportAmount_2;FL342;TEXT;NULL;50;N;NULL;N;Court Orders;NULL
+816;childSupportAmount_3;FL342;TEXT;NULL;51;N;NULL;N;Court Orders;NULL
+817;childSupportAmount_4;FL342;TEXT;NULL;52;N;NULL;N;Court Orders;NULL
+818;childSupportBaseDate;FL342;DATE;NULL;53;N;NULL;N;Court Orders;NULL
+819;childSupportBaseOther;FL342;TEXT;NULL;54;N;NULL;N;Court Orders;NULL
+820;childSupportBasePetitioner;FL342;TEXT;NULL;55;N;NULL;N;Court Orders;NULL
+821;childSupportBaseRespondent;FL342;TEXT;NULL;56;N;NULL;N;Court Orders;NULL
+822;childSupportBaseYes;FL342;BOOL;NULL;57;N;NULL;N;Court Orders;NULL
+823;childSupportDOB_1;FL342;TEXT;NULL;58;N;NULL;N;Court Orders;NULL
+824;childSupportDOB_2;FL342;TEXT;NULL;59;N;NULL;N;Court Orders;NULL
+825;childSupportDOB_3;FL342;TEXT;NULL;60;N;NULL;N;Court Orders;NULL
+826;childSupportDOB_4;FL342;TEXT;NULL;61;N;NULL;N;Court Orders;NULL
+827;childSupportName_1;FL342;TEXT;NULL;62;N;NULL;N;Court Orders;NULL
+828;childSupportName_2;FL342;TEXT;NULL;63;N;NULL;N;Court Orders;NULL
+829;childSupportName_3;FL342;TEXT;NULL;64;N;NULL;N;Court Orders;NULL
+830;childSupportName_4;FL342;TEXT;NULL;65;N;NULL;N;Court Orders;NULL
+831;childSupportPayTo_1;FL342;TEXT;NULL;66;N;NULL;N;Court Orders;NULL
+832;childSupportPayTo_2;FL342;TEXT;NULL;67;N;NULL;N;Court Orders;NULL
+833;childSupportPayTo_3;FL342;TEXT;NULL;68;N;NULL;N;Court Orders;NULL
+834;childSupportPayTo_4;FL342;TEXT;NULL;69;N;NULL;N;Court Orders;NULL
+835;childSupportPayableFirst;FL342;TEXT;NULL;70;N;NULL;N;Court Orders;NULL
+836;childSupportPayableFirstFifteen;FL342;TEXT;NULL;71;N;NULL;N;Court Orders;NULL
+837;childSupportPayableOther;FL342;TEXT;NULL;72;N;NULL;N;Court Orders;NULL
+838;childSupportPayableOtherDetail;FL342;TEXT;NULL;73;N;NULL;N;Court Orders;NULL
+839;childrenRelationshipNumber;FL342;TEXT;NULL;74;N;NULL;N;Court Orders;NULL
+840;childrenRelationshipPercentTimeOther;FL342;TEXT;NULL;75;N;NULL;N;Court Orders;NULL
+841;childrenRelationshipPercentTimePetitioner;FL342;TEXT;NULL;76;N;NULL;N;Court Orders;NULL
+842;childrenRelationshipPercentTimeRespondent;FL342;TEXT;NULL;77;N;NULL;N;Court Orders;NULL
+843;childrenRelationshipYes;FL342;BOOL;NULL;78;N;NULL;N;Court Orders;NULL
+844;employmentSearchOrderOther;FL342;TEXT;NULL;79;N;NULL;N;Court Orders;NULL
+845;employmentSearchOrderPetitioner;FL342;TEXT;NULL;80;N;NULL;N;Court Orders;NULL
+846;employmentSearchOrderRespondent;FL342;TEXT;NULL;81;N;NULL;N;Court Orders;NULL
+847;employmentSearchOrderYes;FL342;BOOL;NULL;82;N;NULL;N;Court Orders;NULL
+848;hardshipsCatastrophicOtherAmount;FL342;TEXT;NULL;83;N;NULL;N;Court Orders;NULL
+849;hardshipsCatastrophicPetitionerAmount;FL342;TEXT;NULL;84;N;NULL;N;Court Orders;NULL
+850;hardshipsCatastrophicPetitionerEndDate;FL342;DATE;NULL;85;N;NULL;N;Court Orders;NULL
+851;hardshipsCatastrophicRespondentAmount;FL342;TEXT;NULL;86;N;NULL;N;Court Orders;NULL
+852;hardshipsCatastrophicYes;FL342;BOOL;NULL;87;N;NULL;N;Court Orders;NULL
+853;hardshipsMedicalExpensesEndDate;FL342;DATE;NULL;88;N;NULL;N;Court Orders;NULL
+854;hardshipsMedicalExpensesOtherAmount;FL342;TEXT;NULL;89;N;NULL;N;Court Orders;NULL
+855;hardshipsMedicalExpensesPetitionerAmount;FL342;TEXT;NULL;90;N;NULL;N;Court Orders;NULL
+856;hardshipsMedicalExpensesRespondentAmount;FL342;TEXT;NULL;91;N;NULL;N;Court Orders;NULL
+857;hardshipsMedicalExpensesYes;FL342;BOOL;NULL;92;N;NULL;N;Court Orders;NULL
+858;hardshipsMinorChildrenEndDate;FL342;DATE;NULL;93;N;NULL;N;Court Orders;NULL
+859;hardshipsMinorChildrenOtherAmount;FL342;TEXT;NULL;94;N;NULL;N;Court Orders;NULL
+860;hardshipsMinorChildrenPetitionerAmount;FL342;TEXT;NULL;95;N;NULL;N;Court Orders;NULL
+861;hardshipsMinorChildrenRespondentAmount;FL342;TEXT;NULL;96;N;NULL;N;Court Orders;NULL
+862;hardshipsMinorChildrenYes;FL342;TEXT;NULL;97;N;NULL;N;Court Orders;NULL
+863;hardshipsYes;FL342;TEXT;NULL;98;N;NULL;N;Court Orders;NULL
+864;healthCareCostRightReimburse;FL342;TEXT;NULL;99;N;NULL;N;Court Orders;NULL
+865;healthCareCostsNotAvail;FL342;TEXT;NULL;100;N;NULL;N;Court Orders;NULL
+866;healthCareCostsNotAvailOtherParent;FL342;TEXT;NULL;101;N;NULL;N;Court Orders;NULL
+867;healthCareCostsNotAvailPetitioner;FL342;TEXT;NULL;102;N;NULL;N;Court Orders;NULL
+868;healthCareCostsNotAvailRespondent;FL342;TEXT;NULL;103;N;NULL;N;Court Orders;NULL
+869;healthCareCostsOther;FL342;TEXT;NULL;104;N;NULL;N;Court Orders;NULL
+870;healthCareCostsPetitioner;FL342;TEXT;NULL;105;N;NULL;N;Court Orders;NULL
+871;healthCareCostsRepsondent;FL342;TEXT;NULL;106;N;NULL;N;Court Orders;NULL
+872;imputationIncomeOther;FL342;TEXT;NULL;107;N;NULL;N;Court Orders;NULL
+873;imputationIncomePetitioner;FL342;TEXT;NULL;108;N;NULL;N;Court Orders;NULL
+874;imputationIncomeRespondent;FL342;TEXT;NULL;109;N;NULL;N;Court Orders;NULL
+875;imputedIncomeAmount;FL342;TEXT;NULL;110;N;NULL;N;Court Orders;NULL
+876;imputedIncomePerson;FL342;TEXT;NULL;111;N;NULL;N;Court Orders;NULL
+877;lowIncomeAdustmentApplies;FL342;TEXT;NULL;112;N;NULL;N;Court Orders;NULL
+878;lowIncomeAdustmentNotApplies;FL342;TEXT;NULL;113;N;NULL;N;Court Orders;NULL
+879;lowIncomeAdustmentNotAppliesDetails;FL342;TEXT;NULL;114;N;NULL;N;Court Orders;NULL
+880;lowIncomeAdustmentYes;FL342;BOOL;NULL;115;N;NULL;N;Court Orders;NULL
+881;mandAddChildSuppEmployment;FL342;TEXT;NULL;116;N;NULL;N;Court Orders;NULL
+882;mandAddChildSuppEmploymentOther;FL342;TEXT;NULL;117;N;NULL;N;Court Orders;NULL
+883;mandAddChildSuppEmploymentOtherAmount;FL342;TEXT;NULL;118;N;NULL;N;Court Orders;NULL
+884;mandAddChildSuppEmploymentOtherDetails;FL342;TEXT;NULL;119;N;NULL;N;Court Orders;NULL
+885;mandAddChildSuppEmploymentOtherOr;FL342;TEXT;NULL;120;N;NULL;N;Court Orders;NULL
+886;mandAddChildSuppEmploymentOtherParent;FL342;TEXT;NULL;121;N;NULL;N;Court Orders;NULL
+887;mandAddChildSuppEmploymentOtherPercent;FL342;TEXT;NULL;122;N;NULL;N;Court Orders;NULL
+888;mandAddChildSuppEmploymentPetitioner;FL342;TEXT;NULL;123;N;NULL;N;Court Orders;NULL
+889;mandAddChildSuppEmploymentPetitionerAmount;FL342;TEXT;NULL;124;N;NULL;N;Court Orders;NULL
+890;mandAddChildSuppEmploymentPetitionerOr;FL342;TEXT;NULL;125;N;NULL;N;Court Orders;NULL
+891;mandAddChildSuppEmploymentPetitionerPercent;FL342;TEXT;NULL;126;N;NULL;N;Court Orders;NULL
+892;mandAddChildSuppEmploymentRespondent;FL342;TEXT;NULL;127;N;NULL;N;Court Orders;NULL
+893;mandAddChildSuppEmploymentRespondentAmount;FL342;TEXT;NULL;128;N;NULL;N;Court Orders;NULL
+894;mandAddChildSuppEmploymentRespondentOr;FL342;TEXT;NULL;129;N;NULL;N;Court Orders;NULL
+895;mandAddChildSuppEmploymentRespondentPercent;FL342;TEXT;NULL;130;N;NULL;N;Court Orders;NULL
+896;mandAddChildSuppHealthCare;FL342;TEXT;NULL;131;N;NULL;N;Court Orders;NULL
+897;mandAddChildSuppHealthCareOther;FL342;TEXT;NULL;132;N;NULL;N;Court Orders;NULL
+898;mandAddChildSuppHealthCareOtherAmount;FL342;TEXT;NULL;133;N;NULL;N;Court Orders;NULL
+899;mandAddChildSuppHealthCareOtherDetails;FL342;TEXT;NULL;134;N;NULL;N;Court Orders;NULL
+900;mandAddChildSuppHealthCareOtherOr;FL342;TEXT;NULL;135;N;NULL;N;Court Orders;NULL
+901;mandAddChildSuppHealthCareOtherParent;FL342;TEXT;NULL;136;N;NULL;N;Court Orders;NULL
+902;mandAddChildSuppHealthCareOtherPercent;FL342;TEXT;NULL;137;N;NULL;N;Court Orders;NULL
+903;mandAddChildSuppHealthCarePetitioner;FL342;TEXT;NULL;138;N;NULL;N;Court Orders;NULL
+904;mandAddChildSuppHealthCarePetitionerAmount;FL342;TEXT;NULL;139;N;NULL;N;Court Orders;NULL
+905;mandAddChildSuppHealthCarePetitionerOr;FL342;TEXT;NULL;140;N;NULL;N;Court Orders;NULL
+906;mandAddChildSuppHealthCarePetitionerPercent;FL342;TEXT;NULL;141;N;NULL;N;Court Orders;NULL
+907;mandAddChildSuppHealthCareRespondent;FL342;TEXT;NULL;142;N;NULL;N;Court Orders;NULL
+908;mandAddChildSuppHealthCareRespondentAmount;FL342;TEXT;NULL;143;N;NULL;N;Court Orders;NULL
+909;mandAddChildSuppHealthCareRespondentOr;FL342;TEXT;NULL;144;N;NULL;N;Court Orders;NULL
+910;mandAddChildSuppHealthCareRespondentPercent;FL342;TEXT;NULL;145;N;NULL;N;Court Orders;NULL
+911;mandAddChildSuppYes;FL342;BOOL;NULL;146;N;NULL;N;Court Orders;NULL
+912;nonGuidelineOrderYes;FL342;BOOL;NULL;147;N;NULL;N;Court Orders;NULL
+913;noticeFooter;FL342;TEXT;NULL;148;N;NULL;N;Court Orders;NULL
+914;otherOrdersDetail;FL342;TEXT;NULL;149;N;NULL;N;Court Orders;NULL
+915;otherParent;FL342;TEXT;NULL;150;N;NULL;N;Court Orders;NULL
+916;petitionerName;FL342;TEXT;NULL;151;N;NULL;N;Court Orders;NULL
+917;respondentName;FL342;TEXT;NULL;152;N;NULL;N;Court Orders;NULL
+918;totalChildSupportAmount;FL342;TEXT;NULL;153;N;NULL;N;Court Orders;NULL

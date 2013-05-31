@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FACCTS.Server.Model.DataModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,11 +9,17 @@ namespace FACCTS.Server.DataContracts
 {
     public interface IDataManager : IDisposable
     {
-        /*
-        HairColorRepository HairColorRepository { get; }
-        EyesColorRepository EyesColorRepository { get; }
-        SexRepository SexRepository { get; }
-        CourtCaseStatusesRepository CourtCaseStatusesRepository { get; }
-         * */
+        //Dictionaries
+        IFacctsDictionaryDataRepository<HairColor> HairColorRepository { get; }
+        IFacctsDictionaryDataRepository<EyesColor> EyesColorRepository { get; }
+        IFacctsDictionaryDataRepository<Sex> SexRepository { get; }
+        IFacctsDictionaryDataRepository<CourtCaseStatus> CourtCaseStatusesRepository { get; }
+
+        //Entities
+        IFacctsDataRepository<CourtParty> CourtPartyRepository { get; }
+
+        // Save pending changes to the data store.
+        void Commit();
+
     }
 }

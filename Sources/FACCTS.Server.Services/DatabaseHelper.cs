@@ -15,7 +15,7 @@ using Thinktecture.IdentityModel;
 using Thinktecture.IdentityModel.Constants;
 using CsvHelper;
 
-namespace FACCTS.Server.Model
+namespace FACCTS.Server.Data
 {
     internal static class DatabaseHelper
     {
@@ -611,7 +611,7 @@ namespace FACCTS.Server.Model
         private static CsvReader GetReaderFor(string resourceName)
         {
             Stream stream = Assembly.GetExecutingAssembly()
-                               .GetManifestResourceStream(string.Format("{0}.{1}.{2}", "FACCTS.Server.Model", "DeployData", resourceName));
+                               .GetManifestResourceStream(string.Format("{0}.{1}.{2}", "FACCTS.Server.Data", "DeployData", resourceName));
 
             StreamReader sr = new StreamReader(stream);
 

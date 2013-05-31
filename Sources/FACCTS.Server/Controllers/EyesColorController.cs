@@ -1,5 +1,5 @@
 ﻿using FACCTS.Server.Model.DataModel;
-using FACCTS.Server.Services;
+using FACCTS.Server.Data;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,11 +13,8 @@ namespace FACCTS.Server.Controllers
 {
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class EyesColorController : ApiController
+    public class EyesColorController : ApiControllerBase
     {
-        [Import(typeof(IDataManager))]
-        private IDataManager DataManager;
-
         // GET api/eyescolor
         public IEnumerable<EyesColor> Get()
         {
