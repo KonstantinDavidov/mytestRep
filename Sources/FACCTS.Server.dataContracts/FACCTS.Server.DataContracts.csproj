@@ -44,15 +44,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="IDatabaseContext.cs" />
     <Compile Include="IDataManager.cs" />
     <Compile Include="IFacctsDataRepository.cs" />
+    <Compile Include="IFacctsDictionarydataRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FACCTS.Server.Model\FACCTS.Server.Model.csproj">
+      <Project>{5a675cbb-2774-4fde-a8c6-40aa46f4fa3f}</Project>
+      <Name>FACCTS.Server.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />

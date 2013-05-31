@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.DataContracts
 {
-    public interface IFacctsDataRepository<TEntity> : IDisposable where TEntity : class
+    public interface IFacctsDataRepository<TEntity> : IFacctsDictionaryDataRepository<TEntity> where TEntity : class
     {
-        IQueryable<TEntity> GetAll();
-        TEntity GetById(object id);
         void Insert(TEntity entity);
         void Update(TEntity entity);
         void Delete(TEntity entity);
-
+        void Delete(int id);
     }
 }

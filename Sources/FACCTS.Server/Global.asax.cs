@@ -3,7 +3,7 @@ using FACCTS.Server.Common;
 using FACCTS.Server.Model;
 //using FACCTS.Server.Code;
 using FACCTS.Server.Model.DataModel;
-using FACCTS.Server.Services;
+using FACCTS.Server.Data;
 using log4net;
 using System;
 using System.Collections.Generic;
@@ -18,6 +18,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using FACCTS.Server.DataContracts;
 
 namespace FACCTS.Server
 {
@@ -43,7 +44,7 @@ namespace FACCTS.Server
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            WebApiApplication.DataManager = ServiceLocator.Current.GetInstance<IDataManager>();
+            //WebApiApplication.DataManager = ServiceLocator.Current.GetInstance<IDataManager>();
         }
 
         private void ConfigureMEF()

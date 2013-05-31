@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.DataContracts
 {
-    class Class1
+    public interface IFacctsDictionaryDataRepository<TEntity> where TEntity : class
     {
+        IQueryable<TEntity> GetAll();
+        TEntity GetById(long id);
     }
 }

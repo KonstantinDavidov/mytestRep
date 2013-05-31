@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using FACCTS.Server.Model.DataModel;
+using FACCTS.Server.Data;
 
 namespace FACCTS.Server.Filters
 {

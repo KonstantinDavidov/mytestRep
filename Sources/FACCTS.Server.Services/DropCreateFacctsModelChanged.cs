@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FACCTS.Server.Model
+namespace FACCTS.Server.Data
 {
     public class DropCreateFacctsModelChanged : DropCreateDatabaseIfModelChanges<DatabaseContext>
     {

@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 using System.Web.Security;
 using Thinktecture.IdentityModel.Constants;
 
-namespace FACCTS.Server.Model
+namespace FACCTS.Server.Data
 {
     [Export]
     public class FacctsDatabaseInitializer : CreateDatabaseIfNotExists<DatabaseContext>

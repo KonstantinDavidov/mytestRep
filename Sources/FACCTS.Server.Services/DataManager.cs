@@ -9,50 +9,101 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FACCTS.Server.DataContracts;
 
-namespace FACCTS.Server.Services
+namespace FACCTS.Server.Data
 {
     [Export(typeof(IDataManager))]
     internal class DataManager : IDataManager
     {
+        [Import(typeof(IRepositoryProvider))]
+        protected IRepositoryProvider RepositoryProvider { get; set; }
+
+        private DatabaseContext DbContext { get; set; }
+
         [ImportingConstructor]
-        public DataManager(FacctsDatabaseInitializer initializer)
+        public DataManager(IRepositoryProvider repositoryProvider)
         {
+            CreateDbContext();
 
-            
+            repositoryProvider.DbContext = DbContext;
+            RepositoryProvider = repositoryProvider;       
+  
+        }
+        #region IDataManager
+
+        #region Repositories
+        public IFacctsDictionaryDataRepository<HairColor> HairColorRepository
+        {
+            get { return GetStandardDictionaryRepo<HairColor>(); }
         }
 
-        [Import]
-        public HairColorRepository HairColorRepository
+        public IFacctsDictionaryDataRepository<EyesColor> EyesColorRepository
         {
-            get;
-            set;
+            get { return GetStandardDictionaryRepo<EyesColor>(); }
         }
 
-        [Import]
-        public EyesColorRepository EyesColorRepository
+        public IFacctsDictionaryDataRepository<Sex> SexRepository
         {
-            get;
-            set;
+            get { return GetStandardDictionaryRepo<Sex>(); }
         }
 
-
-        [Import]
-        public CourtCaseStatusesRepository CourtCaseStatusesRepository
+        public IFacctsDictionaryDataRepository<CourtCaseStatus> CourtCaseStatusesRepository
         {
-            get;
-            set;
+            get { return GetStandardDictionaryRepo<CourtCaseStatus>(); }
         }
 
-
-        [Import]
-        public SexRepository SexRepository
+        public IFacctsDataRepository<CourtParty> CourtPartyRepository
         {
-            get;
-            set;
+            get { return GetStandardRepo<CourtParty>(); }
+        }
+        #endregion
+
+        //Commit
+        public void Commit()
+        {
+            //System.Diagnostics.Debug.WriteLine("Committed");
+            DbContext.SaveChanges();
+        }
+        #endregion
+
+        #region helpers
+        protected void CreateDbContext()
+        {
+            DbContext = new DatabaseContext();
+            // Do NOT enable proxied entities, else serialization fails
+            DbContext.Configuration.ProxyCreationEnabled = false;
+
+            // Load navigation properties explicitly (avoid serialization trouble)
+            DbContext.Configuration.LazyLoadingEnabled = false;
+
+            // Because Web API will perform validation, we don't need/want EF to do so
+            DbContext.Configuration.ValidateOnSaveEnabled = false;
+
+            //DbContext.Configuration.AutoDetectChangesEnabled = false;
+            // We won't use this performance tweak because we don't need 
+            // the extra performance and, when autodetect is false,
+            // we'd have to be careful. We're not being that careful.
         }
 
+        private IFacctsDataRepository<T> GetStandardRepo<T>() where T : class
+        {
+            return RepositoryProvider.GetRepositoryForEntityType<T>();
+        }
+
+        private T GetRepo<T>() where T : class
+        {
+            return RepositoryProvider.GetRepository<T>();
+        }
+
+        private IFacctsDictionaryDataRepository<T> GetStandardDictionaryRepo<T>() where T : class
+        {
+            return RepositoryProvider.GetDictionaryRepositoryForEntityType<T>();
+        }
+
+        #endregion
         
+        #region IDisposable
 
         public void Dispose()
         {
@@ -60,42 +111,17 @@ namespace FACCTS.Server.Services
             GC.SuppressFinalize(this);
         }
 
-        ~DataManager()
+        protected virtual void Dispose(bool disposing)
         {
-            Dispose(false);
-        }
-
-        private bool _wasDisposed = false;
-        protected virtual void Dispose(bool isDisposing)
-        {
-            if (_wasDisposed)
-                return;
-            if (isDisposing)
+            if (disposing)
             {
-                if (HairColorRepository != null)
+                if (DbContext != null)
                 {
-                    HairColorRepository.Dispose();
-                    HairColorRepository = null;
-                }
-                if (EyesColorRepository != null)
-                {
-                    EyesColorRepository.Dispose();
-                    EyesColorRepository = null;
-                }
-                if (CourtCaseStatusesRepository != null)
-                {
-                    CourtCaseStatusesRepository.Dispose();
-                    CourtCaseStatusesRepository = null;
-                }
-                if (SexRepository != null)
-                {
-                    SexRepository.Dispose();
-                    SexRepository = null;
+                    DbContext.Dispose();
                 }
             }
-            //clean up the native resources
-
-            _wasDisposed = true;
         }
+
+        #endregion
     }
 }

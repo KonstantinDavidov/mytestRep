@@ -6,8 +6,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FACCTS.Server.Model.DataModel
 {
-
-
     public partial class EyesColor
     {
         [Key]

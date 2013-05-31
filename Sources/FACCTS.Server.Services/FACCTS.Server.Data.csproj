@@ -75,7 +75,6 @@
     <Compile Include="DataManager.cs" />
     <Compile Include="DropCreateFacctsModelChanged.cs" />
     <Compile Include="FacctsDatabaseInitializer.cs" />
-    <Compile Include="IDataManager.cs" />
     <Compile Include="Membership\CodeFirstMembershipProvider.cs" />
     <Compile Include="Membership\CodeFirstRoleProvider.cs" />
     <Compile Include="Membership\Crypto.cs" />
@@ -84,10 +83,10 @@
     <Compile Include="Repositiries\ClientCertificatesRepository.cs" />
     <Compile Include="Repositiries\ClientsRepository.cs" />
     <Compile Include="Repositiries\ConfigurationRepository.cs" />
-    <Compile Include="Repositiries\CourtCaseStatusesRepository.cs" />
     <Compile Include="Repositiries\DelegationRepository.cs" />
-    <Compile Include="Repositiries\EyesColorRepository.cs" />
-    <Compile Include="Repositiries\HairColorRepository.cs" />
+    <Compile Include="Repositiries\Helpers\IRepositoryProvider.cs" />
+    <Compile Include="Repositiries\Helpers\RepositoryFactories.cs" />
+    <Compile Include="Repositiries\Helpers\RepositoryProvider.cs" />
     <Compile Include="Repositiries\IdentityProviderRepository.cs" />
     <Compile Include="Repositiries\Mappings.cs" />
     <Compile Include="Repositiries\MemoryCacheRepository.cs" />
@@ -97,8 +96,7 @@
     <Compile Include="Repositiries\ProviderUserManagementRepository.cs" />
     <Compile Include="Repositiries\ProviderUserRepository.cs" />
     <Compile Include="Repositiries\RelyingPartyRepository.cs" />
-    <Compile Include="Repositiries\RepositoryService.cs" />
-    <Compile Include="Repositiries\SexRepository.cs" />
+    <Compile Include="Repositiries\FacctsDataRepository.cs" />
     <Compile Include="Repositiries\StandardClaimTypes.cs" />
     <Compile Include="Resources\IdentityProviderRepository.Designer.cs">
       <DependentUpon>IdentityProviderRepository.resx</DependentUpon>
@@ -127,6 +125,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EmbeddedResource Include="DeployData\AvailableCourtOrders.csv" />
+    <EmbeddedResource Include="DeployData\CourtCaseStatus.csv" />
+    <EmbeddedResource Include="DeployData\CourtCounty.csv" />
+    <EmbeddedResource Include="DeployData\Designation.csv" />
+    <EmbeddedResource Include="DeployData\EyesColor.csv" />
+    <EmbeddedResource Include="DeployData\HairColor.csv" />
+    <EmbeddedResource Include="DeployData\ParticipantRole.csv" />
+    <EmbeddedResource Include="DeployData\pdf_form_fields.csv" />
+    <EmbeddedResource Include="DeployData\Race.csv" />
+    <EmbeddedResource Include="DeployData\Roles.csv" />
+    <EmbeddedResource Include="DeployData\Sex.csv" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

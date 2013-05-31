@@ -1,5 +1,5 @@
 ﻿using FACCTS.Server.Model.DataModel;
-using FACCTS.Server.Services;
+using FACCTS.Server.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -7,16 +7,18 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using FACCTS.Server.DataContracts;
 
 namespace FACCTS.Server.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
     public class SexController : ApiController
     {
         [Import(typeof(IDataManager))]
-        private IDataManager DataManager;
+        protected IDataManager DataManager;
+
         // GET api/sex
         public IEnumerable<Sex> Get()
         {

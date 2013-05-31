@@ -7,6 +7,7 @@ using System.Data.Entity;
 using System.Web.Security;
 using WS = System.Web.Security;
 using FACCTS.Server.Model.DataModel;
+using FACCTS.Server.Data;
 
 namespace FACCTS.Server.Providers.Membership
 {
