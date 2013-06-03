@@ -4,7 +4,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	mc:Ignorable="d"
-	x:Class="FACCTS.Controls.UserLoginView"
+	x:Class="FACCTS.Controls.UserLoginControlView"
 	x:Name="UserControl"
 	d:DesignWidth="640" d:DesignHeight="480" Width="400" Height="200">
 
@@ -29,7 +29,7 @@
 				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"><Run Text="User Name:"/></TextBlock>
 				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Grid.Row="1" Margin="0,0,0,5.972"><Run Text="Password:"/></TextBlock>
 				<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="1" Width="150"/>
-				<PasswordBox Margin="0,0,0,-0.001" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
+				<PasswordBox Margin="0,0,0,-0.001" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" x:Name="PasswordBox"/>
 				<Button Grid.ColumnSpan="2" Content="LogIn" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Grid.Column="2" Grid.Row="1"/>
                 <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="2" Grid.ColumnSpan="2" Grid.Column="1" FontStyle="Italic">
                     <Hyperlink>Please reset my password</Hyperlink>

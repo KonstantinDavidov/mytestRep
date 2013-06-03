@@ -13,13 +13,18 @@ using Thinktecture.IdentityModel.Clients;
 using Thinktecture.IdentityServer.Protocols.WSTrust;
 using Thinktecture.IdentityServer.TokenService;
 using System.ServiceModel.Activation;
+using log4net;
+using FACCTS.Server.Common;
 
 namespace FACCTS.Server.App_Start
 {
     public class ProtocolConfig
     {
+        private static ILog _logger = ServiceLocator.Current.GetInstance<ILog>();
+
         public static void RegisterProtocols(HttpConfiguration httpConfiguration, RouteCollection routes, IConfigurationRepository configuration, IUserRepository users, IRelyingPartyRepository relyingParties)
         {
+            _logger.MethodEntry("ProtocolConfig.RegisterProtocols");
             var basicAuthConfig = CreateBasicAuthConfig(users);
             var clientAuthConfig = CreateClientAuthConfig();
 
@@ -31,13 +36,14 @@ namespace FACCTS.Server.App_Start
             // oauth2 endpoint
             if (configuration.OAuth2.Enabled)
             {
+                _logger.Info("OAuth2 is enabled.");
                 // authorize endpoint
                 routes.MapRoute(
                     "oauth2authorize",
                     Thinktecture.IdentityServer.Endpoints.Paths.OAuth2Authorize,
                     new { controller = "OAuth2Authorize", action = "index" }
                 );
-
+               
                 // token endpoint
                 routes.MapHttpRoute(
                     name: "oauth2token",
@@ -53,6 +59,7 @@ namespace FACCTS.Server.App_Start
             // simple http endpoint
             if (configuration.SimpleHttp.Enabled)
             {
+                _logger.Info("SimpleHTTP is enabled.");
                 routes.MapHttpRoute(
                     name: "simplehttp",
                     routeTemplate: Thinktecture.IdentityServer.Endpoints.Paths.SimpleHttp,
@@ -65,6 +72,7 @@ namespace FACCTS.Server.App_Start
             // ws-trust
             if (configuration.WSTrust.Enabled)
             {
+                _logger.Info("WSTrust is enabled.");
                 routes.Add(new ServiceRoute(
                     Thinktecture.IdentityServer.Endpoints.Paths.WSTrustBase,
                     new TokenServiceHostFactory(),
@@ -72,6 +80,8 @@ namespace FACCTS.Server.App_Start
                 );
             }
             #endregion
+
+            _logger.MethodExit("ProtocolConfig.RegisterProtocols");
         }
 
         public static AuthenticationConfiguration CreateBasicAuthConfig(IUserRepository userRepository)

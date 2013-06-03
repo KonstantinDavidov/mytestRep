@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FACCTS.Controls.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -16,11 +17,12 @@ namespace FACCTS.Controls
 	/// <summary>
 	/// Interaction logic for UserLoginView.xaml
 	/// </summary>
-	public partial class UserLoginView : UserControl
+    public partial class UserLoginControlView : UserControl
 	{
-		public UserLoginView()
+        public UserLoginControlView()
 		{
 			this.InitializeComponent();
 		}
-	}
+      
+    }
 }

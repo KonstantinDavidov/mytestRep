@@ -43,11 +43,11 @@ namespace FACCTS.Server
             _logger.Info("Application_Start started");
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters, ServiceLocator.Current.GetInstance<IConfigurationRepository>());
-            RouteConfig.RegisterRoutes(RouteTable.Routes);
             ProtocolConfig.RegisterProtocols(GlobalConfiguration.Configuration, RouteTable.Routes,
                 ServiceLocator.Current.GetInstance<IConfigurationRepository>(), 
                 ServiceLocator.Current.GetInstance<IUserRepository>(),
                 ServiceLocator.Current.GetInstance<IRelyingPartyRepository>());
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             WebApiApplication.DataManager = ServiceLocator.Current.GetInstance<IDataManager>();
         }

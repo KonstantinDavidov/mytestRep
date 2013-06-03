@@ -1,5 +1,7 @@
-﻿using System;
+﻿using FACCTS.Controls.Interfaces;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -15,7 +17,9 @@ namespace FACCTS.Controls
 	/// <summary>
 	/// Interaction logic for UserLoginDialogView.xaml
 	/// </summary>
-	public partial class UserLoginDialogView : Window
+
+    [Export(typeof(IPasswordSupplier))]
+	public partial class UserLoginDialogView : Window, IPasswordSupplier
 	{
 		public UserLoginDialogView()
 		{
@@ -23,5 +27,10 @@ namespace FACCTS.Controls
 			
 			// Insert code required on object creation below this point.
 		}
-	}
+
+        public string GetPassword()
+        {
+            return this.UserLoginView.PasswordBox.Password;
+        }
+    }
 }

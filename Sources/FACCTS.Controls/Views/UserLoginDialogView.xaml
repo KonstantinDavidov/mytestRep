@@ -6,5 +6,5 @@
 	x:Name="Window"
 	Title="Login"
 	ResizeMode="NoResize" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight">
-	<local:UserLoginView/>
+	<local:UserLoginView x:Name="UserLoginView"/>
 </Window>
