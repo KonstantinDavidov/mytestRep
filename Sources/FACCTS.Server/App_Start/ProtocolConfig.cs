@@ -41,14 +41,14 @@ namespace FACCTS.Server.App_Start
                 routes.MapRoute(
                     "oauth2authorize",
                     Thinktecture.IdentityServer.Endpoints.Paths.OAuth2Authorize,
-                    new { controller = "OAuth2Authorize", action = "index" }
+                    new { controller = "OAuth2FacctsAuthorize", action = "index" }
                 );
                
                 // token endpoint
                 routes.MapHttpRoute(
                     name: "oauth2token",
                     routeTemplate: Thinktecture.IdentityServer.Endpoints.Paths.OAuth2Token,
-                    defaults: new { controller = "OAuth2Token" },
+                    defaults: new { controller = "OAuth2FacctsToken" },
                     constraints: null,
                     handler: new AuthenticationHandler(clientAuthConfig, httpConfiguration)
                 );

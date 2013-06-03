@@ -178,7 +178,6 @@
     <None Include="Resources\PDFForms\fl343.pdf" />
     <None Include="Resources\PDFForms\fl344.pdf" />
     <None Include="Resources\PDFForms\mc020.pdf" />
-    <None Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

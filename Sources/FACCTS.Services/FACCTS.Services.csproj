@@ -55,6 +55,7 @@
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.ComponentModel.Composition.Registration" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
@@ -69,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authentication\AuthenticationService.cs" />
+    <Compile Include="Authentication\CryptoHelper.cs" />
     <Compile Include="Authentication\IAuthenticationService.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Logger\ILogger.cs" />

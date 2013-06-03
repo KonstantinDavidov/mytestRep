@@ -218,8 +218,8 @@
     <Compile Include="Controllers\HairColorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InitialConfigurationController.cs" />
-    <Compile Include="Controllers\OAuth2AuthorizeController.cs" />
-    <Compile Include="Controllers\OAuth2TokenController.cs" />
+    <Compile Include="Controllers\OAuth2FacctsAuthorizeController.cs" />
+    <Compile Include="Controllers\OAuth2FacctsTokenController.cs" />
     <Compile Include="Controllers\SexController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />

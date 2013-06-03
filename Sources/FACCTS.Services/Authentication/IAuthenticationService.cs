@@ -9,5 +9,7 @@ namespace FACCTS.Services.Authentication
     public interface IAuthenticationService
     {
         string GetToken();
+        void Authenticate(string userName, string password);
+        bool IsAuthenticated { get; }
     }
 }
