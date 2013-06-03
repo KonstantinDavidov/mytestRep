@@ -52,8 +52,8 @@ namespace FACCTS.Server
             log4net.Config.XmlConfigurator.Configure();
             var loggerForWebSite = LogManager.GetLogger("FacctsService");
             batch.AddExportedValue<ILog>(loggerForWebSite);
-            batch.AddExportedValue<OAuth2AuthorizeController>(new OAuth2AuthorizeController());
-            batch.AddExportedValue<OAuth2TokenController>(new OAuth2TokenController());
+            //batch.AddExportedValue<OAuth2AuthorizeController>(new OAuth2AuthorizeController());
+            //batch.AddExportedValue<OAuth2TokenController>(new OAuth2TokenController());
             container.Compose(batch);
         }
     }

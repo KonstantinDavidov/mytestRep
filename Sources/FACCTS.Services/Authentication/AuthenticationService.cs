@@ -26,8 +26,7 @@ namespace FACCTS.Services.Authentication
                _clientId,
                _clientSecret
                );
-
-            var response = client.RequestAccessTokenUserName(userName, password, "FACCTS_WPF");
+            var response = client.RequestAccessTokenUserName(userName, password, "urn:facctssecurity");
             _token = response.AccessToken;
             IsAuthenticated = true;
         }

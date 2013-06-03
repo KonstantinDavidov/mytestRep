@@ -39,16 +39,16 @@ namespace FACCTS.Server.App_Start
                 _logger.Info("OAuth2 is enabled.");
                 // authorize endpoint
                 routes.MapRoute(
-                    "oauth2authorize",
-                    Thinktecture.IdentityServer.Endpoints.Paths.OAuth2Authorize,
-                    new { controller = "OAuth2FacctsAuthorize", action = "index" }
+                    "facctsoauth2authorize",
+                    Endpoints.OAuth2Authorize,
+                    new { controller = "OAuth2Authorize", action = "index" }
                 );
                
                 // token endpoint
                 routes.MapHttpRoute(
-                    name: "oauth2token",
-                    routeTemplate: Thinktecture.IdentityServer.Endpoints.Paths.OAuth2Token,
-                    defaults: new { controller = "OAuth2FacctsToken" },
+                    name: "facctsoauth2token",
+                    routeTemplate: Endpoints.OAuth2Token,
+                    defaults: new { controller = "OAuth2Token" },
                     constraints: null,
                     handler: new AuthenticationHandler(clientAuthConfig, httpConfiguration)
                 );

@@ -16,6 +16,8 @@ using FACCTS.Services.Logger;
 using System.Dynamic;
 using System.Windows;
 using Microsoft.Mef.CommonServiceLocator;
+using FACCTS.Controls.Interfaces;
+using FACCTS.Controls.Views;
 
 namespace FACCTS
 {
@@ -89,6 +91,15 @@ namespace FACCTS
             ILogger logger = ServiceLocatorContainer.Locator.GetInstance<ILogger>();
             logger.Fatal("An unhandled Exception occured: ", e.Exception);
             e.Handled = true;
+        }
+
+        protected override void OnStartup(object sender, StartupEventArgs e)
+        {
+            base.OnStartup(sender, e);
+            IWindowManager wm = ServiceLocatorContainer.Locator.GetInstance<IWindowManager>();
+            UserLoginDialogView ul = ServiceLocatorContainer.Locator.GetInstance<IPasswordSupplier>() as UserLoginDialogView;
+            ul.DataContext = ServiceLocatorContainer.Locator.GetInstance<UserLoginDialogViewModel>();
+            ul.ShowDialog();
         }
     }
 }

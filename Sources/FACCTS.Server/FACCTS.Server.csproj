@@ -222,6 +222,7 @@
     <Compile Include="Controllers\OAuth2FacctsTokenController.cs" />
     <Compile Include="Controllers\SexController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Endpoints.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
