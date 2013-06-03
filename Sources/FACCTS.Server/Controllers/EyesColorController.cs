@@ -13,6 +13,7 @@ namespace FACCTS.Server.Controllers
 {
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
+    [Authorize]
     public class EyesColorController : ApiControllerBase
     {
         // GET api/eyescolor

@@ -1,7 +1,7 @@
 ﻿using FACCTS.Server.Common;
 using FACCTS.Server.Model.DataModel;
 using FACCTS.Server.Model.DataModel.Configuration;
-using FACCTS.Server.Providers.Membership;
+using FACCTS.Server.Data.Providers.Membership;
 using System;
 using System.Collections.Generic;
 using System.Configuration;

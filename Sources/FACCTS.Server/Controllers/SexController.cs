@@ -14,6 +14,7 @@ namespace FACCTS.Server.Controllers
     //[Authorize]
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
+    [Authorize]
     public class SexController : ApiController
     {
         [Import(typeof(IDataManager))]
