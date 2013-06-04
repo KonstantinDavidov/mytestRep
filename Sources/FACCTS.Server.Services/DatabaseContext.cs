@@ -9,6 +9,7 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
+
 namespace FACCTS.Server.Data
 {
     [Export(typeof(IDatabaseContext))]
@@ -63,6 +64,17 @@ namespace FACCTS.Server.Data
                 .HasForeignKey(x => x.AvailableCourtOrderId)
                 .WillCascadeOnDelete(false);
 
+            //Role => Permissions m-to-m
+            modelBuilder.Entity<Role>()
+                .HasMany(r => r.Permissions)
+                .WithMany(p => p.Roles)
+                .Map(m =>
+                   {
+                       m.MapLeftKey("RoleId");
+                       m.MapRightKey("Id");
+                       m.ToTable("RolePermission");
+                   });
+
             base.OnModelCreating(modelBuilder);
         }
 
@@ -113,6 +125,7 @@ namespace FACCTS.Server.Data
         #region Membership provider entities
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Permission> Permissions { get; set; }
         #endregion
 
 
@@ -131,6 +144,7 @@ namespace FACCTS.Server.Data
         public DbSet<RelatedCase> RelatedCases { get; set; }
         public DbSet<AvailableCourtOrder> AvailableCourtOrders { get; set; }
         public DbSet<CourtCaseOrder> CourtCaseOrders { get; set; }
+        public DbSet<CourtMember> CourtMembers { get; set; }
         #endregion
 
         public new IDbSet<TEntity> Set<TEntity>() where TEntity : class

@@ -11,15 +11,11 @@ using FACCTS.Server.DataContracts;
 
 namespace FACCTS.Server.Controllers
 {
-    //[Authorize]
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    [Authorize]
-    public class SexController : ApiController
+    //[Authorize]
+    public class SexController : ApiControllerBase
     {
-        [Import(typeof(IDataManager))]
-        protected IDataManager DataManager;
-
         // GET api/sex
         public IEnumerable<Sex> Get()
         {

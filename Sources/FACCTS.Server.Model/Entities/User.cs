@@ -7,6 +7,7 @@ using CsvHelper.TypeConversion;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace FACCTS.Server.Model.DataModel
 {
+    [Table("User")]
     public partial class User
     {
         [Key]

@@ -136,6 +136,7 @@
     <EmbeddedResource Include="DeployData\Race.csv" />
     <EmbeddedResource Include="DeployData\Roles.csv" />
     <EmbeddedResource Include="DeployData\Sex.csv" />
+    <EmbeddedResource Include="DeployData\Permissions.csv" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
