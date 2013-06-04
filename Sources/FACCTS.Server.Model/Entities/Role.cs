@@ -31,5 +31,7 @@ namespace FACCTS.Server.Model.DataModel
 
         [CsvField(Ignore = true)]
         public virtual ICollection<User> Users { get; set; }
+
+        public virtual ICollection<Permission> Permissions { get; set; }
     }
 }

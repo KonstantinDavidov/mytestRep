@@ -476,6 +476,7 @@ namespace FACCTS.Server.Data
             SeedCourtCounties(context);
             SeedMembershipProviderData(context);
             SeedAvailavleCourtOrders(context);
+            SeedPermissions(context);
         }
 
         private static void SeedAvailavleCourtOrders(DatabaseContext context)
@@ -593,6 +594,15 @@ namespace FACCTS.Server.Data
         {
             GetRecords<CourtCaseStatus>("CourtCaseStatus.csv")
                 .Aggregate(context.CourtCaseStatuses, (dbset, record) =>
+                {
+                    dbset.Add(record);
+                    return dbset;
+                });
+        }
+        private static void SeedPermissions(DatabaseContext context)
+        {
+            GetRecords<Permission>("Permissions.csv")
+                .Aggregate(context.Permissions, (dbset, record) =>
                 {
                     dbset.Add(record);
                     return dbset;
