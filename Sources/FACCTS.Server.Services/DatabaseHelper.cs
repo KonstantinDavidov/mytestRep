@@ -33,7 +33,7 @@ namespace FACCTS.Server.Data
                 Name = "FACCTS (URN)",
                 Enabled = true,
                 Realm = "urn:facctssecurity",
-                SymmetricSigningKey = CryptoRandom.CreateRandomKeyString(44),    
+                SymmetricSigningKey = CryptoRandom.CreateRandomKeyString(48),    
 
             };
             context.RelyingParties.Add(relyingParty);
@@ -491,13 +491,18 @@ namespace FACCTS.Server.Data
         private static void SeedMembershipProviderData(DatabaseContext context)
         {
             WebSecurity.Register("Demo", "123456", "demo@demo.com", true, "Demo", "Demo");
+            WebSecurity.Register("DemoWPF", "123456", "demowpf@demo.com", true, "DemoWPF", "DemoWPF");
             GetRecords<Role>("Roles.csv")
                 .Aggregate(0, (index, record) =>
                 {
                     Roles.CreateRole(record.RoleName);
+                    Role role = context.Roles.Single(r => r.RoleName.Equals(record.RoleName, StringComparison.OrdinalIgnoreCase));
+                    role.IsIdentityServerUser = record.IsIdentityServerUser;
+                    context.SaveChanges();
                     return 0;
                 });
             Roles.AddUserToRole("Demo", "Administrator");
+            Roles.AddUserToRole("DemoWPF", "Judicial Officer");
         }
 
         private static void SeedCourtCounties(DatabaseContext context)

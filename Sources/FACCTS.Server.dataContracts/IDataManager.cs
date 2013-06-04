@@ -15,6 +15,7 @@ namespace FACCTS.Server.DataContracts
         IFacctsDictionaryDataRepository<Sex> SexRepository { get; }
         IFacctsDictionaryDataRepository<CourtCaseStatus> CourtCaseStatusesRepository { get; }
         IFacctsDataRepository<CourtCase> CourtCaseRepository { get; }
+        IFacctsDataRepository<Role> FacctsRoleRepository { get; }
 
         //Entities
         IFacctsDataRepository<CourtParty> CourtPartyRepository { get; }
