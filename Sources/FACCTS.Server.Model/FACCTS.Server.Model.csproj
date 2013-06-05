@@ -80,6 +80,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataTransferConversion\Appearance.cs" />
+    <Compile Include="DataTransferConversion\CourtCase.cs" />
     <Compile Include="Entities\Appearance.cs" />
     <Compile Include="Entities\Attorney.cs" />
     <Compile Include="Entities\AvailableCourtOrder.cs" />
@@ -148,6 +150,7 @@
       <Name>FACCTS.Server.Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -21,6 +21,7 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(CaseRecord))]
     [KnownType(typeof(CourtCaseStatus))]
     [KnownType(typeof(User))]
+    [KnownType(typeof(CourtCaseOrders))]
     public partial class CourtCase: IObjectWithChangeTracker, INotifyPropertyChanged
     {
         #region Simple Properties
@@ -312,6 +313,53 @@ namespace Faccts.Model.Entities
             }
         }
         private TrackableCollection<CaseRecord> _caseRecord2;
+    
+        [DataMember]
+        public TrackableCollection<CourtCaseOrders> CourtCaseOrders
+        {
+            get
+            {
+                if (_courtCaseOrders == null)
+                {
+                    _courtCaseOrders = new TrackableCollection<CourtCaseOrders>();
+                    _courtCaseOrders.CollectionChanged += FixupCourtCaseOrders;
+                }
+                return _courtCaseOrders;
+            }
+            set
+            {
+                if (!ReferenceEquals(_courtCaseOrders, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+                    if (_courtCaseOrders != null)
+                    {
+                        _courtCaseOrders.CollectionChanged -= FixupCourtCaseOrders;
+                        // This is the principal end in an association that performs cascade deletes.
+                        // Remove the cascade delete event handler for any entities in the current collection.
+                        foreach (CourtCaseOrders item in _courtCaseOrders)
+                        {
+                            ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
+                        }
+                    }
+                    _courtCaseOrders = value;
+                    if (_courtCaseOrders != null)
+                    {
+                        _courtCaseOrders.CollectionChanged += FixupCourtCaseOrders;
+                        // This is the principal end in an association that performs cascade deletes.
+                        // Add the cascade delete event handler for any entities that are already in the new collection.
+                        foreach (CourtCaseOrders item in _courtCaseOrders)
+                        {
+                            ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
+                        }
+                    }
+                    OnNavigationPropertyChanged("CourtCaseOrders");
+                }
+            }
+        }
+        private TrackableCollection<CourtCaseOrders> _courtCaseOrders;
 
         #endregion
 
@@ -407,6 +455,7 @@ namespace Faccts.Model.Entities
             CourtCaseStatus = null;
             User = null;
             CaseRecord2.Clear();
+            CourtCaseOrders.Clear();
         }
 
         #endregion
@@ -600,6 +649,51 @@ namespace Faccts.Model.Entities
                     {
                         ChangeTracker.RecordRemovalFromCollectionProperties("CaseRecord2", item);
                     }
+                }
+            }
+        }
+    
+        private void FixupCourtCaseOrders(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (CourtCaseOrders item in e.NewItems)
+                {
+                    item.CourtCase = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("CourtCaseOrders", item);
+                    }
+                    // This is the principal end in an association that performs cascade deletes.
+                    // Update the event listener to refer to the new dependent.
+                    ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (CourtCaseOrders item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.CourtCase, this))
+                    {
+                        item.CourtCase = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtCaseOrders", item);
+                    }
+                    // This is the principal end in an association that performs cascade deletes.
+                    // Remove the previous dependent from the event listener.
+                    ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
                 }
             }
         }

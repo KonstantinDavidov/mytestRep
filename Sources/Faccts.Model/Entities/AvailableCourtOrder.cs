@@ -18,9 +18,8 @@ using System.Runtime.Serialization;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(User))]
-    [KnownType(typeof(Permission))]
-    public partial class Role: IObjectWithChangeTracker, INotifyPropertyChanged
+    [KnownType(typeof(CourtCaseOrders))]
+    public partial class AvailableCourtOrder: IObjectWithChangeTracker, INotifyPropertyChanged
     {
         #region Simple Properties
     
@@ -44,123 +43,88 @@ namespace Faccts.Model.Entities
         private int _id;
     
         [DataMember]
-        public string RoleName
+        public string Name
         {
-            get { return _roleName; }
+            get { return _name; }
             set
             {
-                if (_roleName != value)
+                if (_name != value)
                 {
-                    _roleName = value;
-                    OnPropertyChanged("RoleName");
+                    _name = value;
+                    OnPropertyChanged("Name");
                 }
             }
         }
-        private string _roleName;
+        private string _name;
     
         [DataMember]
-        public string Description
+        public string FileName
         {
-            get { return _description; }
+            get { return _fileName; }
             set
             {
-                if (_description != value)
+                if (_fileName != value)
                 {
-                    _description = value;
-                    OnPropertyChanged("Description");
+                    _fileName = value;
+                    OnPropertyChanged("FileName");
                 }
             }
         }
-        private string _description;
+        private string _fileName;
     
         [DataMember]
-        public bool IsIdentityServerUser
+        public string Code
         {
-            get { return _isIdentityServerUser; }
+            get { return _code; }
             set
             {
-                if (_isIdentityServerUser != value)
+                if (_code != value)
                 {
-                    _isIdentityServerUser = value;
-                    OnPropertyChanged("IsIdentityServerUser");
+                    _code = value;
+                    OnPropertyChanged("Code");
                 }
             }
         }
-        private bool _isIdentityServerUser;
+        private string _code;
 
         #endregion
 
         #region Navigation Properties
     
         [DataMember]
-        public TrackableCollection<User> User
+        public TrackableCollection<CourtCaseOrders> CourtCaseOrders
         {
             get
             {
-                if (_user == null)
+                if (_courtCaseOrders == null)
                 {
-                    _user = new TrackableCollection<User>();
-                    _user.CollectionChanged += FixupUser;
+                    _courtCaseOrders = new TrackableCollection<CourtCaseOrders>();
+                    _courtCaseOrders.CollectionChanged += FixupCourtCaseOrders;
                 }
-                return _user;
+                return _courtCaseOrders;
             }
             set
             {
-                if (!ReferenceEquals(_user, value))
+                if (!ReferenceEquals(_courtCaseOrders, value))
                 {
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
-                    if (_user != null)
+                    if (_courtCaseOrders != null)
                     {
-                        _user.CollectionChanged -= FixupUser;
+                        _courtCaseOrders.CollectionChanged -= FixupCourtCaseOrders;
                     }
-                    _user = value;
-                    if (_user != null)
+                    _courtCaseOrders = value;
+                    if (_courtCaseOrders != null)
                     {
-                        _user.CollectionChanged += FixupUser;
+                        _courtCaseOrders.CollectionChanged += FixupCourtCaseOrders;
                     }
-                    OnNavigationPropertyChanged("User");
+                    OnNavigationPropertyChanged("CourtCaseOrders");
                 }
             }
         }
-        private TrackableCollection<User> _user;
-    
-        [DataMember]
-        public TrackableCollection<Permission> Permission
-        {
-            get
-            {
-                if (_permission == null)
-                {
-                    _permission = new TrackableCollection<Permission>();
-                    _permission.CollectionChanged += FixupPermission;
-                }
-                return _permission;
-            }
-            set
-            {
-                if (!ReferenceEquals(_permission, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-                    if (_permission != null)
-                    {
-                        _permission.CollectionChanged -= FixupPermission;
-                    }
-                    _permission = value;
-                    if (_permission != null)
-                    {
-                        _permission.CollectionChanged += FixupPermission;
-                    }
-                    OnNavigationPropertyChanged("Permission");
-                }
-            }
-        }
-        private TrackableCollection<Permission> _permission;
+        private TrackableCollection<CourtCaseOrders> _courtCaseOrders;
 
         #endregion
 
@@ -241,15 +205,14 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
-            User.Clear();
-            Permission.Clear();
+            CourtCaseOrders.Clear();
         }
 
         #endregion
 
         #region Association Fixup
     
-        private void FixupUser(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupCourtCaseOrders(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
             {
@@ -258,70 +221,31 @@ namespace Faccts.Model.Entities
     
             if (e.NewItems != null)
             {
-                foreach (User item in e.NewItems)
+                foreach (CourtCaseOrders item in e.NewItems)
                 {
-                    item.Role.Add(this);
+                    item.AvailableCourtOrder = this;
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         if (!item.ChangeTracker.ChangeTrackingEnabled)
                         {
                             item.StartTracking();
                         }
-                        ChangeTracker.RecordAdditionToCollectionProperties("User", item);
+                        ChangeTracker.RecordAdditionToCollectionProperties("CourtCaseOrders", item);
                     }
                 }
             }
     
             if (e.OldItems != null)
             {
-                foreach (User item in e.OldItems)
+                foreach (CourtCaseOrders item in e.OldItems)
                 {
-                    if (item.Role.Contains(this))
+                    if (ReferenceEquals(item.AvailableCourtOrder, this))
                     {
-                        item.Role.Remove(this);
+                        item.AvailableCourtOrder = null;
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("User", item);
-                    }
-                }
-            }
-        }
-    
-        private void FixupPermission(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (Permission item in e.NewItems)
-                {
-                    item.Role.Add(this);
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("Permission", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (Permission item in e.OldItems)
-                {
-                    if (item.Role.Contains(this))
-                    {
-                        item.Role.Remove(this);
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("Permission", item);
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtCaseOrders", item);
                     }
                 }
             }

@@ -316,6 +316,60 @@ namespace Faccts.Model.Entities
             get { return _wSTrustConfiguration  ?? (_wSTrustConfiguration = CreateObjectSet<WSTrustConfiguration>("WSTrustConfiguration")); }
         }
         private ObjectSet<WSTrustConfiguration> _wSTrustConfiguration;
+    
+        public ObjectSet<Applications> Applications
+        {
+            get { return _applications  ?? (_applications = CreateObjectSet<Applications>("Applications")); }
+        }
+        private ObjectSet<Applications> _applications;
+    
+        public ObjectSet<AvailableCourtOrder> AvailableCourtOrder
+        {
+            get { return _availableCourtOrder  ?? (_availableCourtOrder = CreateObjectSet<AvailableCourtOrder>("AvailableCourtOrder")); }
+        }
+        private ObjectSet<AvailableCourtOrder> _availableCourtOrder;
+    
+        public ObjectSet<CourtCaseOrders> CourtCaseOrders
+        {
+            get { return _courtCaseOrders  ?? (_courtCaseOrders = CreateObjectSet<CourtCaseOrders>("CourtCaseOrders")); }
+        }
+        private ObjectSet<CourtCaseOrders> _courtCaseOrders;
+    
+        public ObjectSet<CourtMember> CourtMember
+        {
+            get { return _courtMember  ?? (_courtMember = CreateObjectSet<CourtMember>("CourtMember")); }
+        }
+        private ObjectSet<CourtMember> _courtMember;
+    
+        public ObjectSet<Memberships> Memberships
+        {
+            get { return _memberships  ?? (_memberships = CreateObjectSet<Memberships>("Memberships")); }
+        }
+        private ObjectSet<Memberships> _memberships;
+    
+        public ObjectSet<Permission> Permission
+        {
+            get { return _permission  ?? (_permission = CreateObjectSet<Permission>("Permission")); }
+        }
+        private ObjectSet<Permission> _permission;
+    
+        public ObjectSet<Profiles> Profiles
+        {
+            get { return _profiles  ?? (_profiles = CreateObjectSet<Profiles>("Profiles")); }
+        }
+        private ObjectSet<Profiles> _profiles;
+    
+        public ObjectSet<Roles> Roles
+        {
+            get { return _roles  ?? (_roles = CreateObjectSet<Roles>("Roles")); }
+        }
+        private ObjectSet<Roles> _roles;
+    
+        public ObjectSet<Users> Users
+        {
+            get { return _users  ?? (_users = CreateObjectSet<Users>("Users")); }
+        }
+        private ObjectSet<Users> _users;
 
         #endregion
 

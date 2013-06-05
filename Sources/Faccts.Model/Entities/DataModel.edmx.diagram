@@ -80,6 +80,26 @@
         <AssociationConnector Association="FACCTS.Model.Entities.FK_dbo_Witnesses_dbo_Designation_Designation_Id" ManuallyRouted="false" />
         <AssociationConnector Association="FACCTS.Model.Entities.RelatedCase" ManuallyRouted="false" />
         <AssociationConnector Association="FACCTS.Model.Entities.RoleUser" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="FACCTS.Model.Entities.Applications" Width="1.5" PointX="3.3938415643730391" PointY="18.257021823086319" />
+        <EntityTypeShape EntityType="FACCTS.Model.Entities.AvailableCourtOrder" Width="1.5" PointX="1.2871121155503729" PointY="26.165719789530019" />
+        <EntityTypeShape EntityType="FACCTS.Model.Entities.CourtCaseOrders" Width="1.5" PointX="0.98304101498007823" PointY="0.60567368595193782" />
+        <EntityTypeShape EntityType="FACCTS.Model.Entities.CourtMember" Width="1.5" PointX="6.5952954453394259" PointY="15.369033477906619" />
+        <EntityTypeShape EntityType="FACCTS.Model.Entities.Memberships" Width="1.5" PointX="8.5021796415104429" PointY="1.5753420300666905" />
+        <EntityTypeShape EntityType="FACCTS.Model.Entities.Permission" Width="1.5" PointX="9.0595713020579751" PointY="25.320525419581926" />
+        <EntityTypeShape EntityType="FACCTS.Model.Entities.Profiles" Width="1.5" PointX="11.377758342482968" PointY="12.055837666641846" />
+        <EntityTypeShape EntityType="FACCTS.Model.Entities.Roles" Width="1.5" PointX="2.093895944810424" PointY="0.23355382691768642" />
+        <EntityTypeShape EntityType="FACCTS.Model.Entities.Users" Width="1.5" PointX="7.3800873790774908" PointY="13.338562911999674" />
+        <AssociationConnector Association="FACCTS.Model.Entities.MembershipEntity_Application" />
+        <AssociationConnector Association="FACCTS.Model.Entities.RoleEntity_Application" />
+        <AssociationConnector Association="FACCTS.Model.Entities.User_Application" />
+        <AssociationConnector Association="FACCTS.Model.Entities.FK_dbo_CourtCaseOrders_dbo_AvailableCourtOrder_AvailableCourtOrderId" />
+        <AssociationConnector Association="FACCTS.Model.Entities.FK_dbo_CourtCaseOrders_dbo_CourtCase_CourtCaseId" />
+        <AssociationConnector Association="FACCTS.Model.Entities.FK_dbo_CourtMember_dbo_CourtMember_Substitute_UserId" />
+        <AssociationConnector Association="FACCTS.Model.Entities.FK_dbo_CourtMember_dbo_User_Id" />
+        <AssociationConnector Association="FACCTS.Model.Entities.MembershipEntity_User" />
+        <AssociationConnector Association="FACCTS.Model.Entities.ProfileEntity_User" />
+        <AssociationConnector Association="FACCTS.Model.Entities.RolePermission" />
+        <AssociationConnector Association="FACCTS.Model.Entities.UsersInRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

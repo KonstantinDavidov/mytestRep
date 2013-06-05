@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,7 @@ namespace FACCTS.DTO
         public bool RelationshipToProtected { get; set; }
 
         [JsonProperty("Sex")]
+        
         public  SexDTO Sex { get; set; }
         [JsonProperty("DateOfBirth")]
         public DateTime DateOfBirth { get; set; }

@@ -188,6 +188,21 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<int> _courtCase_Id;
+    
+        [DataMember]
+        public string Judge
+        {
+            get { return _judge; }
+            set
+            {
+                if (_judge != value)
+                {
+                    _judge = value;
+                    OnPropertyChanged("Judge");
+                }
+            }
+        }
+        private string _judge;
 
         #endregion
 

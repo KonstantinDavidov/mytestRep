@@ -18,14 +18,13 @@ using System.Runtime.Serialization;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(User))]
-    [KnownType(typeof(Permission))]
-    public partial class Role: IObjectWithChangeTracker, INotifyPropertyChanged
+    [KnownType(typeof(Role))]
+    public partial class Permission: IObjectWithChangeTracker, INotifyPropertyChanged
     {
         #region Simple Properties
     
         [DataMember]
-        public int Id
+        public long Id
         {
             get { return _id; }
             set
@@ -41,126 +40,61 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _id;
+        private long _id;
     
         [DataMember]
-        public string RoleName
+        public string Name
         {
-            get { return _roleName; }
+            get { return _name; }
             set
             {
-                if (_roleName != value)
+                if (_name != value)
                 {
-                    _roleName = value;
-                    OnPropertyChanged("RoleName");
+                    _name = value;
+                    OnPropertyChanged("Name");
                 }
             }
         }
-        private string _roleName;
-    
-        [DataMember]
-        public string Description
-        {
-            get { return _description; }
-            set
-            {
-                if (_description != value)
-                {
-                    _description = value;
-                    OnPropertyChanged("Description");
-                }
-            }
-        }
-        private string _description;
-    
-        [DataMember]
-        public bool IsIdentityServerUser
-        {
-            get { return _isIdentityServerUser; }
-            set
-            {
-                if (_isIdentityServerUser != value)
-                {
-                    _isIdentityServerUser = value;
-                    OnPropertyChanged("IsIdentityServerUser");
-                }
-            }
-        }
-        private bool _isIdentityServerUser;
+        private string _name;
 
         #endregion
 
         #region Navigation Properties
     
         [DataMember]
-        public TrackableCollection<User> User
+        public TrackableCollection<Role> Role
         {
             get
             {
-                if (_user == null)
+                if (_role == null)
                 {
-                    _user = new TrackableCollection<User>();
-                    _user.CollectionChanged += FixupUser;
+                    _role = new TrackableCollection<Role>();
+                    _role.CollectionChanged += FixupRole;
                 }
-                return _user;
+                return _role;
             }
             set
             {
-                if (!ReferenceEquals(_user, value))
+                if (!ReferenceEquals(_role, value))
                 {
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
-                    if (_user != null)
+                    if (_role != null)
                     {
-                        _user.CollectionChanged -= FixupUser;
+                        _role.CollectionChanged -= FixupRole;
                     }
-                    _user = value;
-                    if (_user != null)
+                    _role = value;
+                    if (_role != null)
                     {
-                        _user.CollectionChanged += FixupUser;
+                        _role.CollectionChanged += FixupRole;
                     }
-                    OnNavigationPropertyChanged("User");
+                    OnNavigationPropertyChanged("Role");
                 }
             }
         }
-        private TrackableCollection<User> _user;
-    
-        [DataMember]
-        public TrackableCollection<Permission> Permission
-        {
-            get
-            {
-                if (_permission == null)
-                {
-                    _permission = new TrackableCollection<Permission>();
-                    _permission.CollectionChanged += FixupPermission;
-                }
-                return _permission;
-            }
-            set
-            {
-                if (!ReferenceEquals(_permission, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-                    if (_permission != null)
-                    {
-                        _permission.CollectionChanged -= FixupPermission;
-                    }
-                    _permission = value;
-                    if (_permission != null)
-                    {
-                        _permission.CollectionChanged += FixupPermission;
-                    }
-                    OnNavigationPropertyChanged("Permission");
-                }
-            }
-        }
-        private TrackableCollection<Permission> _permission;
+        private TrackableCollection<Role> _role;
 
         #endregion
 
@@ -241,15 +175,14 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
-            User.Clear();
-            Permission.Clear();
+            Role.Clear();
         }
 
         #endregion
 
         #region Association Fixup
     
-        private void FixupUser(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupRole(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
             {
@@ -258,70 +191,31 @@ namespace Faccts.Model.Entities
     
             if (e.NewItems != null)
             {
-                foreach (User item in e.NewItems)
+                foreach (Role item in e.NewItems)
                 {
-                    item.Role.Add(this);
+                    item.Permission.Add(this);
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         if (!item.ChangeTracker.ChangeTrackingEnabled)
                         {
                             item.StartTracking();
                         }
-                        ChangeTracker.RecordAdditionToCollectionProperties("User", item);
+                        ChangeTracker.RecordAdditionToCollectionProperties("Role", item);
                     }
                 }
             }
     
             if (e.OldItems != null)
             {
-                foreach (User item in e.OldItems)
+                foreach (Role item in e.OldItems)
                 {
-                    if (item.Role.Contains(this))
+                    if (item.Permission.Contains(this))
                     {
-                        item.Role.Remove(this);
+                        item.Permission.Remove(this);
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("User", item);
-                    }
-                }
-            }
-        }
-    
-        private void FixupPermission(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (Permission item in e.NewItems)
-                {
-                    item.Role.Add(this);
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("Permission", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (Permission item in e.OldItems)
-                {
-                    if (item.Role.Contains(this))
-                    {
-                        item.Role.Remove(this);
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("Permission", item);
+                        ChangeTracker.RecordRemovalFromCollectionProperties("Role", item);
                     }
                 }
             }

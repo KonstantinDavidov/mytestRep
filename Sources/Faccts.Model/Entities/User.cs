@@ -21,6 +21,7 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(CaseNotes))]
     [KnownType(typeof(CourtCase))]
     [KnownType(typeof(Role))]
+    [KnownType(typeof(CourtMember))]
     public partial class User: IObjectWithChangeTracker, INotifyPropertyChanged
     {
         #region Simple Properties
@@ -313,6 +314,21 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<System.DateTime> _passwordVerificationTokenExpirationDate;
+    
+        [DataMember]
+        public string MiddleName
+        {
+            get { return _middleName; }
+            set
+            {
+                if (_middleName != value)
+                {
+                    _middleName = value;
+                    OnPropertyChanged("MiddleName");
+                }
+            }
+        }
+        private string _middleName;
 
         #endregion
 
@@ -434,6 +450,23 @@ namespace Faccts.Model.Entities
             }
         }
         private TrackableCollection<Role> _role;
+    
+        [DataMember]
+        public CourtMember CourtMember
+        {
+            get { return _courtMember; }
+            set
+            {
+                if (!ReferenceEquals(_courtMember, value))
+                {
+                    var previousValue = _courtMember;
+                    _courtMember = value;
+                    FixupCourtMember(previousValue);
+                    OnNavigationPropertyChanged("CourtMember");
+                }
+            }
+        }
+        private CourtMember _courtMember;
 
         #endregion
 
@@ -517,11 +550,65 @@ namespace Faccts.Model.Entities
             CaseNotes.Clear();
             CourtCase.Clear();
             Role.Clear();
+            CourtMember = null;
         }
 
         #endregion
 
         #region Association Fixup
+    
+        private void FixupCourtMember(CourtMember previousValue)
+        {
+            // This is the principal end in an association that performs cascade deletes.
+            // Update the event listener to refer to the new dependent.
+            if (previousValue != null)
+            {
+                ChangeTracker.ObjectStateChanging -= previousValue.HandleCascadeDelete;
+            }
+    
+            if (CourtMember != null)
+            {
+                ChangeTracker.ObjectStateChanging += CourtMember.HandleCascadeDelete;
+            }
+    
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && ReferenceEquals(previousValue.User, this))
+            {
+                previousValue.User = null;
+            }
+    
+            if (CourtMember != null)
+            {
+                CourtMember.User = this;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("CourtMember")
+                    && (ChangeTracker.OriginalValues["CourtMember"] == CourtMember))
+                {
+                    ChangeTracker.OriginalValues.Remove("CourtMember");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("CourtMember", previousValue);
+                    // This is the principal end of an identifying association, so the dependent must be deleted when the relationship is removed.
+                    // If the current state of the dependent is Added, the relationship can be changed without causing the dependent to be deleted.
+                    if (previousValue != null && previousValue.ChangeTracker.State != ObjectState.Added)
+                    {
+                        previousValue.MarkAsDeleted();
+                    }
+                }
+                if (CourtMember != null && !CourtMember.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    CourtMember.StartTracking();
+                }
+            }
+        }
     
         private void FixupCaseNotes(object sender, NotifyCollectionChangedEventArgs e)
         {

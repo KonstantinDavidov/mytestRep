@@ -1,5 +1,6 @@
 ﻿using FACCTS.Server.Model.Enums;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,7 @@ namespace FACCTS.DTO
         public DateTime Date { get; set; }
 
         [JsonProperty("CourtRoom")]
+        
         public CourtroomDTO CourtRoom { get; set; }
 
         [JsonProperty("Orders")]

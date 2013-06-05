@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +17,12 @@ namespace FACCTS.DTO
         [JsonProperty]
         public int CourtCaseId { get; set; }
         [JsonProperty]
+        
         public CourtCaseDTO CourtCase { get; set; }
         [JsonProperty]
         public int AvailableCourtOrderId { get; set; }
         [JsonProperty]
+        
         public AvailableCourtOrderDTO AvailableCourtOrder { get; set; }
 
         [JsonProperty]

@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,6 @@ namespace FACCTS.DTO
         [JsonProperty("LastName")]
         public string LastName { get; set; }
 
-        [JsonProperty("Designation")]
-        public  DesignationDTO Designation { get; set; }
-
         [JsonProperty("Appear")]
         public bool? Appear { get; set; }
 
@@ -37,5 +35,7 @@ namespace FACCTS.DTO
         //[JsonProperty("CaseRecord")]
         //public  CaseRecordDTO CaseRecord { get; set; }
 
+        [JsonProperty]
+        public int? DesignationID { get; set; }
     }
 }

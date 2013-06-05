@@ -75,6 +75,7 @@
     <Compile Include="RelatedCaseDTO.cs" />
     <Compile Include="SexDTO.cs" />
     <Compile Include="UserDTO.cs" />
+    <Compile Include="Utils\TypeExtensions.cs" />
     <Compile Include="WitnessDTO.cs" />
   </ItemGroup>
   <ItemGroup>
