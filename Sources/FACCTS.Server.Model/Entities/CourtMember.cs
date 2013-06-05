@@ -16,5 +16,6 @@ namespace FACCTS.Server.Model.DataModel
 
         [Column(TypeName = "image")]
         public byte[] Image { get; set; }
+        public string Phone { get; set; }
     }
 }

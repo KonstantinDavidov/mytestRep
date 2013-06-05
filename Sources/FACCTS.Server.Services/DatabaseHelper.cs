@@ -459,6 +459,7 @@ namespace FACCTS.Server.Data
                 }
             };
         }
+
         #endregion
 
 
@@ -477,6 +478,7 @@ namespace FACCTS.Server.Data
             SeedMembershipProviderData(context);
             SeedAvailavleCourtOrders(context);
             SeedPermissions(context);
+            SeedRolePermissions(context);
         }
 
         private static void SeedAvailavleCourtOrders(DatabaseContext context)
@@ -607,7 +609,19 @@ namespace FACCTS.Server.Data
                     dbset.Add(record);
                     return dbset;
                 });
+            context.SaveChanges();
         }
+        
+        private static void SeedRolePermissions(DatabaseContext context)
+        {
+            //Admin
+            var adminPermissions = context.Permissions.ToList();
+            var admin = context.Roles.Where(r => r.RoleId == 1).FirstOrDefault();
+            if (admin != null) adminPermissions.ForEach(p => admin.Permissions.Add(p));
+
+            context.SaveChanges();
+        }
+       
 
         private static IEnumerable<T> GetRecords<T>(string resourceCsvFileName)
             where T : class
