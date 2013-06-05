@@ -243,6 +243,10 @@ namespace FACCTS.Server.Common
                 for (int i = 0; i < a.Length; i++)
                 {
                     areSame &= (a[i] == b[i]);
+                    if (!areSame)
+                    {
+                        break;
+                    }
                 }
                 return areSame;
             }

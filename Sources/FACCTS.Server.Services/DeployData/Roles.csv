@@ -1,8 +1,8 @@
-﻿Id;Name
-1;Administrator
-10;Court Clerk
-20;Judicial Officer
-30;Courtroom Clerk
-40;Family Court Center
-50;Self Help Center
-60;Business Office
+﻿Id;Name;IsIdentityServerUser
+1;Administrator;false
+10;Court Clerk;true
+20;Judicial Officer;true
+30;Courtroom Clerk;true
+40;Family Court Center;true
+50;Self Help Center;true
+60;Business Office;true

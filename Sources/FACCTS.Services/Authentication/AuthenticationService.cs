@@ -38,7 +38,7 @@ namespace FACCTS.Services.Authentication
         private string _oauth2TokenEndpoint;
         private string _token;
         private const string _clientId = "cce45e00-e8ff-4d0b-be2c-00e63b88c80b";
-        private static readonly string _clientSecret = CryptoHelper.HashPassword("0feb1684-cb91-4a90-b5c1-04c7465c8b21");
+        private static readonly string _clientSecret = "0feb1684-cb91-4a90-b5c1-04c7465c8b21";
 
         public string GetToken()
         {

@@ -25,6 +25,10 @@ namespace FACCTS.Server.Model.DataModel
         [CsvField(Ignore = true)]
         public string Description { get; set; }
 
+        [CsvField(Index = 2)]
+        [Required]
+        public bool IsIdentityServerUser { get; set; }
+
         [CsvField(Ignore = true)]
         public virtual ICollection<User> Users { get; set; }
 

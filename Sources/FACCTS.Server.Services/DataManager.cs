@@ -62,6 +62,14 @@ namespace FACCTS.Server.Data
         {
             get { return GetStandardRepo<CourtCase>(); }
         }
+
+        public IFacctsDataRepository<Role> FacctsRoleRepository
+        {
+            get
+            {
+                return GetStandardRepo<Role>();
+            }
+        }
         #endregion
 
         //Commit

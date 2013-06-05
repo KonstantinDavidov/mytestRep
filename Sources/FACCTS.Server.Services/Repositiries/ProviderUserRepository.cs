@@ -16,6 +16,8 @@ namespace FACCTS.Server.Data.Repositiries
     [Export(typeof(IUserRepository))]
     public class ProviderUserRepository : IUserRepository
     {
+        public bool UseInternalRolePrefix { get; set; }
+
         [Import]
         public IClientCertificatesRepository Repository { get; set; }
 
@@ -41,7 +43,15 @@ namespace FACCTS.Server.Data.Repositiries
             if (Roles.Enabled)
             {
                 var roles = Roles.GetRolesForUser(userName);
-                returnedRoles = roles.Where(role => role.StartsWith(Constants.Roles.InternalRolesPrefix)).ToList();    
+                if (UseInternalRolePrefix)
+                {
+                    returnedRoles = roles.Where(role => role.StartsWith(Constants.Roles.InternalRolesPrefix)).ToList();
+                }
+                else
+                {
+                    returnedRoles = roles.ToList();
+                }
+                    
             }
 
             return returnedRoles;
