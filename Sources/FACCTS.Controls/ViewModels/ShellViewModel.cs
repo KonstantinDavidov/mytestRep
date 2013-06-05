@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FACCTS.Services;
+using FACCTS.Services.Authentication;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -21,13 +22,15 @@ namespace FACCTS.Controls.ViewModels
         public ShellViewModel(CaseStatusViewModel caseStatusViewModel
             , CaseRecordViewModel caseRecordViewModel
             , CourtDocketViewModel courtDocketViewModel
-            , CourtOrdersViewModel courtOrdersViewModel)
+            , CourtOrdersViewModel courtOrdersViewModel
+            , IAuthenticationService authenticationService)
             : base()
         {
             CaseStatusViewModel = caseStatusViewModel;
             CaseRecordViewModel = caseRecordViewModel;
             CourtDocketViewModel = courtDocketViewModel;
             CourtOrdersViewModel = courtOrdersViewModel;
+            AuthenticationService = authenticationService;
             this.WhenAny(x => x.ActiveItem, x => x.Value)
                 .Subscribe(x =>
                 {
@@ -50,7 +53,50 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-        
+        private IAuthenticationService _AuthenticationService;
+        protected IAuthenticationService AuthenticationService
+        {
+            get
+            {
+                return _AuthenticationService;
+            }
+            set
+            {
+                if (value == _AuthenticationService)
+                    return;
+                IAuthenticationService oldValue = _AuthenticationService;
+                if (oldValue != null)
+                {
+                    oldValue.AuthenticationStatusChanged -= AuthenticationStatusChanged;
+                }
+                _AuthenticationService = value;
+                if (_AuthenticationService != null)
+                {
+                    _AuthenticationService.AuthenticationStatusChanged += AuthenticationStatusChanged;
+                }
+                this.NotifyOfPropertyChange();
+            }
+        }
+
+        private void AuthenticationStatusChanged(object sender, AuthenticationStatusChangedEventArgs e)
+        {
+            IsAuthenticated = e.AuthenticationStatus == AuthenticationStatus.Authenticated;
+        }
+
+        private bool _isAuthenticated;
+        public bool IsAuthenticated
+        {
+            get{
+                return _isAuthenticated;
+            }
+            set{
+                if (value == _isAuthenticated)
+                    return;
+                _isAuthenticated = value;
+                this.NotifyOfPropertyChange();
+            }
+        }
+
         private CaseStatusViewModel _caseStatucViewModel;
         public CaseStatusViewModel CaseStatusViewModel {
             protected get
@@ -65,6 +111,7 @@ namespace FACCTS.Controls.ViewModels
                 this.NotifyOfPropertyChange();
             } 
         }
+
 
         public CaseRecordViewModel CaseRecordViewModel { protected get; set; }
 

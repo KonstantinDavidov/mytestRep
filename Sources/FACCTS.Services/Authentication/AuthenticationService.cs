@@ -23,6 +23,7 @@ namespace FACCTS.Services.Authentication
             }
             _dialogService = dialogService;
             _oauth2TokenEndpoint = ConfigurationManager.AppSettings["OAuthAuthenticationEndpoint"];
+            UpdateAuthStatus(AuthenticationStatus.Offline);
            
         }
 
@@ -30,6 +31,7 @@ namespace FACCTS.Services.Authentication
 
         public void Authenticate(string userName, string password)
         {
+            UpdateAuthStatus(AuthenticationStatus.TryingToAuthenticate);
             var client = new FacctsOAuth2Client(
                new Uri(_oauth2TokenEndpoint),
                _clientId,
@@ -40,18 +42,35 @@ namespace FACCTS.Services.Authentication
             if (response != null)
             {
                 _token = response.AccessToken;
-                IsAuthenticated = true;
+                UpdateAuthStatus(AuthenticationStatus.Authenticated);
             }
             else
             {
+                UpdateAuthStatus(AuthenticationStatus.Offline);
                 _dialogService.MessageBox("Authentication failed. Please try to use correct credentials or notify the system administrator", "Authentication", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
             }
             
         }
 
-        public bool IsAuthenticated { get; private set;}
+        public bool IsAuthenticated 
+        { 
+            get
+            {
+                return _authenticationStatus == AuthenticationStatus.Authenticated;
+            }
+        }
 
+        public event EventHandler<AuthenticationStatusChangedEventArgs> AuthenticationStatusChanged;
+        private AuthenticationStatus _authenticationStatus;
 
+        private void UpdateAuthStatus(AuthenticationStatus status)
+        {
+            _authenticationStatus = status;
+            if (AuthenticationStatusChanged != null)
+            {
+                AuthenticationStatusChanged(this, new AuthenticationStatusChangedEventArgs(status));
+            }
+        }
 
         private string _oauth2TokenEndpoint;
         private string _token;

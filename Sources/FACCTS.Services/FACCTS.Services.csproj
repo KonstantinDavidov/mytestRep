@@ -75,6 +75,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authentication\AuthenticationService.cs" />
+    <Compile Include="Authentication\AuthenticationStatus.cs" />
+    <Compile Include="Authentication\AuthenticationStatusChangedEventArgs.cs" />
     <Compile Include="Authentication\IAuthenticationService.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Dialog\DialogService.cs" />

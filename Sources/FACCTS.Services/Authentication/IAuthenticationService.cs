@@ -11,5 +11,6 @@ namespace FACCTS.Services.Authentication
         string GetToken();
         void Authenticate(string userName, string password);
         bool IsAuthenticated { get; }
+        event EventHandler<AuthenticationStatusChangedEventArgs> AuthenticationStatusChanged;
     }
 }

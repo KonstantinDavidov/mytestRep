@@ -1,4 +1,5 @@
-﻿using FACCTS.Controls.Interfaces;
+﻿using Caliburn.Micro;
+using FACCTS.Controls.Interfaces;
 using FACCTS.Services.Authentication;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Controls.ViewModels
 {
-    [Export]
+    [Export("UserLoginDialogViewModel")]
     public class UserLoginDialogViewModel : ViewModelBase
     {
         private IAuthenticationService _authenticationService;
@@ -34,7 +35,9 @@ namespace FACCTS.Controls.ViewModels
 
         public void Login(string userName)
         {
-            _authenticationService.Authenticate(userName, _passwordSupplier.GetPassword());
+            TryClose(true);
+            Execute.OnUIThreadAsync(() => _authenticationService.Authenticate(userName, _passwordSupplier.GetPassword()));
+            
         }
     }
 }

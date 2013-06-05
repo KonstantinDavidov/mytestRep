@@ -118,6 +118,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Interfaces\IPasswordSupplier.cs" />
     <Compile Include="IShell.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

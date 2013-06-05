@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:vm="clr-namespace:FACCTS.Controls.ViewModels"
+             xmlns:conv="clr-namespace:FACCTS.Controls.Converters"
              mc:Ignorable="d" 
              d:DesignHeight="572" d:DesignWidth="933"
         Title="{Binding Name, Mode=OneWay}" Background="{DynamicResource ControlBackgroundBrush}" WindowState="Maximized">
@@ -51,6 +52,6 @@
             <RadioButton x:Name="ShowCourtDocket" Content="Court Docket" Style="{StaticResource radioButtonStyle}"/>
             <RadioButton x:Name="ShowCourtOrders" Content="Court Orders" Style="{StaticResource radioButtonStyle}"/>
         </UniformGrid>
-        <ContentControl DockPanel.Dock="Bottom" x:Name="ActiveItem"/>
+        <ContentControl DockPanel.Dock="Bottom" x:Name="ActiveItem" Visibility="{Binding IsAuthenticated, Mode=OneWay, Converter={x:Static conv:BoolToVisibilityConverter.Instance}}"/>
     </DockPanel>
 </Window>

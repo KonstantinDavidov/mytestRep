@@ -2,9 +2,11 @@
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:local="clr-namespace:FACCTS.Controls"
+    xmlns:cal="http://www.caliburnproject.org"
 	x:Class="FACCTS.Controls.Views.UserLoginDialogView"
 	x:Name="Window"
 	Title="Login"
-	ResizeMode="NoResize" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight">
+	ResizeMode="NoResize" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight"
+    cal:Bind.Model="UserLoginDialogViewModel">
 	<local:UserLoginControlView x:Name="UserLoginView"/>
 </Window>
