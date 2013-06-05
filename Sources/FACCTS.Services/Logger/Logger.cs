@@ -71,6 +71,13 @@ namespace FACCTS.Services.Logger
             }
         }
 
+        public void InfoFormat(string format, params object[] formatParameters)
+        {
+            if (!_logger.IsInfoEnabled)
+                return;
+            _logger.InfoFormat(format, formatParameters);
+        }
+
         public event EventHandler<ShowDialogEventArgs> ErrorDialogShowing;
     }
 }

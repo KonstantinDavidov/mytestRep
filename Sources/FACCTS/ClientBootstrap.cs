@@ -18,6 +18,7 @@ using System.Windows;
 using Microsoft.Mef.CommonServiceLocator;
 using FACCTS.Controls.Interfaces;
 using FACCTS.Controls.Views;
+using FACCTS.Services.Dialog;
 
 namespace FACCTS
 {
@@ -50,7 +51,19 @@ namespace FACCTS
 
             ILogger logger = ServiceLocatorContainer.Locator.GetInstance<ILogger>();
             logger.ErrorDialogShowing += ShowLoggerDialog;
+            IDialogService dialogService = ServiceLocatorContainer.Locator.GetInstance<IDialogService>();
+            ((DialogService)dialogService).MessageBoxShowing += ClientBootstrap_MessageBoxShowing;
 
+        }
+
+        private void ClientBootstrap_MessageBoxShowing(object sender, MessageBoxShowingEventArgs e)
+        {
+            MethodInfo mi = typeof(Xceed.Wpf.Toolkit.MessageBox).GetMethod("Show", BindingFlags.Static | BindingFlags.Public, Type.DefaultBinder, e.Parameters.Select(x => x.GetType()).ToArray(), null);
+            if (mi == null)
+            {
+                throw new NullReferenceException("Cannot find the \"Show\" method in the MessageBox");
+            }
+            e.MessageBoxResult = (MessageBoxResult)mi.Invoke(null, e.Parameters);
         }
 
         private void ShowLoggerDialog(object sender, ShowDialogEventArgs e)

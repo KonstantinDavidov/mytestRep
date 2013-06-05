@@ -13,6 +13,7 @@ namespace FACCTS.Services.Logger
         void Fatal(string message);
         void Fatal(string message, Exception ex);
         void Info(string message);
+        void InfoFormat(string format, params object[] formatParameters);
         void Warn(string message);
         event EventHandler<ShowDialogEventArgs> ErrorDialogShowing;
     }

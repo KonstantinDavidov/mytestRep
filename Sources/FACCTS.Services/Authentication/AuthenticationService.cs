@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FACCTS.Services.Dialog;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Configuration;
@@ -13,22 +14,39 @@ namespace FACCTS.Services.Authentication
     [Export(typeof(IAuthenticationService))]
     internal class AuthenticationService : IAuthenticationService
     {
-        public AuthenticationService()
+        [ImportingConstructor]
+        public AuthenticationService(IDialogService dialogService)
         {
+            if (dialogService == null)
+            {
+                throw new ArgumentNullException("dialogService");
+            }
+            _dialogService = dialogService;
             _oauth2TokenEndpoint = ConfigurationManager.AppSettings["OAuthAuthenticationEndpoint"];
            
         }
 
+        private IDialogService _dialogService;
+
         public void Authenticate(string userName, string password)
         {
-            var client = new OAuth2Client(
+            var client = new FacctsOAuth2Client(
                new Uri(_oauth2TokenEndpoint),
                _clientId,
                _clientSecret
                );
+            
             var response = client.RequestAccessTokenUserName(userName, password, "urn:facctssecurity");
-            _token = response.AccessToken;
-            IsAuthenticated = true;
+            if (response != null)
+            {
+                _token = response.AccessToken;
+                IsAuthenticated = true;
+            }
+            else
+            {
+                _dialogService.MessageBox("Authentication failed. Please try to use correct credentials or notify the system administrator", "Authentication", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error);
+            }
+            
         }
 
         public bool IsAuthenticated { get; private set;}
