@@ -31,6 +31,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Faccts.Model", "Faccts.Mode
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACCTS.Server.DataContracts", "FACCTS.Server.dataContracts\FACCTS.Server.DataContracts.csproj", "{D5E0D9F2-0C8F-40E0-BE66-8D33EC1DFC97}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataTransfer", "DataTransfer", "{1E3D2599-664F-4BC6-921B-6370EE477701}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACCTS.DTO", "FACCTS.DTO\FACCTS.DTO.csproj", "{080CC873-1AA8-45DD-B1AD-F59A5531C173}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Analysis (Debug)|Any CPU = Analysis (Debug)|Any CPU
@@ -135,6 +139,14 @@ Global
 		{D5E0D9F2-0C8F-40E0-BE66-8D33EC1DFC97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5E0D9F2-0C8F-40E0-BE66-8D33EC1DFC97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5E0D9F2-0C8F-40E0-BE66-8D33EC1DFC97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{080CC873-1AA8-45DD-B1AD-F59A5531C173}.Analysis (Debug)|Any CPU.ActiveCfg = Debug|Any CPU
+		{080CC873-1AA8-45DD-B1AD-F59A5531C173}.Analysis (Debug)|Any CPU.Build.0 = Debug|Any CPU
+		{080CC873-1AA8-45DD-B1AD-F59A5531C173}.Debug and Contracts|Any CPU.ActiveCfg = Debug|Any CPU
+		{080CC873-1AA8-45DD-B1AD-F59A5531C173}.Debug and Contracts|Any CPU.Build.0 = Debug|Any CPU
+		{080CC873-1AA8-45DD-B1AD-F59A5531C173}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{080CC873-1AA8-45DD-B1AD-F59A5531C173}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{080CC873-1AA8-45DD-B1AD-F59A5531C173}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{080CC873-1AA8-45DD-B1AD-F59A5531C173}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -148,6 +160,7 @@ Global
 		{D5E0D9F2-0C8F-40E0-BE66-8D33EC1DFC97} = {2A35A32C-88CC-4F41-9D70-691F0BB1B1C0}
 		{39E149C2-0DE8-4E53-B0C3-A48CCE826584} = {3B38B188-9D94-4E91-BBD2-C5DFACB9B319}
 		{0F447B42-A179-4004-AE84-049698F21146} = {D7F7EF57-5EBB-4842-A320-BEE7AE631B9C}
+		{080CC873-1AA8-45DD-B1AD-F59A5531C173} = {1E3D2599-664F-4BC6-921B-6370EE477701}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35
