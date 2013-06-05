@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FACCTS.Server.DataContracts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Data.Entity;
@@ -15,7 +16,7 @@ namespace FACCTS.Server.Data.Repositiries.Helpers
         {
             return new Dictionary<Type, Func<DbContext, object>>
                 {
-                   //{typeof(IAttendanceRepository), dbContext => new AttendanceRepository(dbContext)},
+                   {typeof(ICourtMemberRepository), dbContext => new CourtMemberRepository(dbContext)},
                 };
         }
 
