@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ICourtMemberRepository.cs" />
     <Compile Include="IDatabaseContext.cs" />
     <Compile Include="IDataManager.cs" />
     <Compile Include="IFacctsDataRepository.cs" />

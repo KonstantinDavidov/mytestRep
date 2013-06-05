@@ -99,6 +99,7 @@
     <Compile Include="Repositiries\ClientCertificatesRepository.cs" />
     <Compile Include="Repositiries\ClientsRepository.cs" />
     <Compile Include="Repositiries\ConfigurationRepository.cs" />
+    <Compile Include="Repositiries\CourtMemberRepository.cs" />
     <Compile Include="Repositiries\DelegationRepository.cs" />
     <Compile Include="Repositiries\Helpers\IRepositoryProvider.cs" />
     <Compile Include="Repositiries\Helpers\RepositoryFactories.cs" />
