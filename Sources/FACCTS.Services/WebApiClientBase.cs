@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Thinktecture.IdentityModel.Clients;
 using Thinktecture.IdentityModel.Extensions;
 using Newtonsoft.Json;
+using System.Configuration;
 
 namespace FACCTS.Services
 {
@@ -18,6 +19,7 @@ namespace FACCTS.Services
 
         protected IAuthenticationService AuthenticationService { get; set; }
 
+        private string _webApiBaseAddress = ConfigurationManager.AppSettings["WepApiEndpoint"];
 
         public WebApiClientBase()
         {
@@ -25,27 +27,58 @@ namespace FACCTS.Services
             AuthenticationService = ServiceLocatorContainer.Locator.GetInstance<IAuthenticationService>();
         }
 
-        public virtual T CallServiceGet<T>(string baseAddress)
+        public virtual T CallServiceGet<T>(string route)
         {
-            var client = new HttpClient
+            if (!AuthenticationService.IsAuthenticated)
             {
-                BaseAddress = new Uri(baseAddress)
-            };
-            T result = default(T);
+                return default(T);
+            }
+            using (var client = new HttpClient
+            {
+                BaseAddress = new Uri(_webApiBaseAddress)
+            })
+            {
+                T result = default(T);
 
-            try
-            {
-                client.SetBearerToken(AuthenticationService.GetToken());
-                var response = client.GetAsync("").Result;
-                response.EnsureSuccessStatusCode();
-                result = response.Content.ReadAsAsync<T>().Result;
-                
+                try
+                {
+                    client.SetBearerToken(AuthenticationService.GetToken());
+                    var response = client.GetAsync(route).Result;
+                    response.EnsureSuccessStatusCode();
+                    result = response.Content.ReadAsAsync<T>().Result;
+
+                }
+                catch (Exception ex)
+                {
+                    Logger.Fatal("An exception was thrown during the call of the Web Service (GET).", ex);
+                }
+                return result;
             }
-            catch (Exception ex)
+            
+        }
+
+        public virtual T CallServicePost<T>(string route, FormUrlEncodedContent content)
+        {
+            using (var client = new HttpClient
             {
-                Logger.Fatal("An exception was thrown during the call of the Web Service.", ex);
+                BaseAddress = new Uri(_webApiBaseAddress)
+            })
+            {
+                T result = default(T);
+                try
+                {
+                    client.SetBearerToken(AuthenticationService.GetToken());
+                    var response = client.PostAsync(route, content).Result;
+                    response.EnsureSuccessStatusCode();
+                    result = response.Content.ReadAsAsync<T>().Result;
+
+                }
+                catch (Exception ex)
+                {
+                    Logger.Fatal("An exception was thrown during the call of the Web Service (POST).", ex);
+                }
+                return result;
             }
-            return result;
         }
 
 

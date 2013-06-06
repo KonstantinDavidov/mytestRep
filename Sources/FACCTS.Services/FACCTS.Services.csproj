@@ -85,6 +85,8 @@
     <Compile Include="Authentication\AuthenticationStatusChangedEventArgs.cs" />
     <Compile Include="Authentication\IAuthenticationService.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Data\CourtCases.cs" />
+    <Compile Include="Data\Routes.cs" />
     <Compile Include="Dialog\DialogService.cs" />
     <Compile Include="Dialog\IDialogService.cs" />
     <Compile Include="Dialog\MessageBoxShowingEventArgs.cs" />
@@ -106,10 +108,12 @@
       <Project>{90761585-4755-4e44-b9d2-739ada889311}</Project>
       <Name>Faccts.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FACCTS.Server.Model\FACCTS.Server.Model.csproj">
+      <Project>{5a675cbb-2774-4fde-a8c6-40aa46f4fa3f}</Project>
+      <Name>FACCTS.Server.Model</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="DataTransfer\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
