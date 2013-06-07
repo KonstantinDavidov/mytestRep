@@ -9,6 +9,7 @@ using ReactiveUI;
 using FACCTS.Server.Model.DataModel;
 using System.Collections.ObjectModel;
 using FACCTS.Services.Logger;
+using FACCTS.Services.Data;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -262,6 +263,14 @@ namespace FACCTS.Controls.ViewModels
             set
             {
                 this.RaiseAndSetIfChanged(ref _selectedCaseStatusId, value);
+            }
+        }
+
+        public List<String> CCPORStatusList
+        {
+            get
+            {
+                return CCPORStatuses.GetAll();
             }
         }
     }
