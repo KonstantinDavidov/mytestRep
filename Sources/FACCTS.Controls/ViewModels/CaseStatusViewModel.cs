@@ -235,11 +235,33 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
+        private List<CourtCaseStatus> _courtCaseStatuses;
         public List<CourtCaseStatus> CourtCaseStatuses
         {
             get
             {
-                return FACCTS.Services.Data.CourtCaseStatuses.GetAll();
+                if (_courtCaseStatuses == null)
+                {
+                    _courtCaseStatuses = FACCTS.Services.Data.CourtCaseStatuses.GetAll();
+                    if (_courtCaseStatuses != null && _courtCaseStatuses.Any())
+                    {
+                        SelectedCaseStatusId = _courtCaseStatuses.First().Id;
+                    }
+                }
+                return _courtCaseStatuses;
+            }
+        }
+
+        private int _selectedCaseStatusId;
+        public int SelectedCaseStatusId
+        {
+            get
+            {
+                return _selectedCaseStatusId;
+            }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _selectedCaseStatusId, value);
             }
         }
     }

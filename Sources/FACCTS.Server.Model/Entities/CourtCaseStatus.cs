@@ -9,6 +9,11 @@ namespace FACCTS.Server.Model.DataModel
 
     public partial class CourtCaseStatus
     {
+        public CourtCaseStatus()
+        {
+
+        }
+
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Key]
         [CsvField(Index=0)]
@@ -17,5 +22,26 @@ namespace FACCTS.Server.Model.DataModel
         [CsvField(Index = 1)]
         [StringLength(100)]
         public string CaseStatus { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType()) 
+                return false;
+
+            CourtCaseStatus cs = (CourtCaseStatus)obj;
+            if (Id != cs.Id)
+                return false;
+
+            if (CaseStatus != cs.CaseStatus)
+                return false;
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return Id ^ CaseStatus.GetHashCode();
+
+        }
     }
 }

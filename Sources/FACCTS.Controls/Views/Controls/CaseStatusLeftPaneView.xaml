@@ -4,17 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:data="clr-namespace:FACCTS.Services.Data;assembly=FACCTS.Services"
+             xmlns:ent="clr-namespace:FACCTS.Server.Model.DataModel;assembly=FACCTS.Server.Model"
              xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
              d:DesignHeight="532" d:DesignWidth="296" Background="{DynamicResource ControlBackgroundBrush}">
-    <UserControl.Resources>
-        <CollectionViewSource x:Key="cvsCourtCaseStatuses" Source="{Binding CourtCaseStatuses, Mode=OneWay}">
-            <CollectionViewSource.SortDescriptions>
-                <scm:SortDescription PropertyName="Id"/>
-            </CollectionViewSource.SortDescriptions>
-        </CollectionViewSource>
-    </UserControl.Resources>
     <Grid>
     	<Grid.RowDefinitions>
     		<RowDefinition Height="Auto"/>
@@ -22,8 +16,12 @@
     		<RowDefinition/>
     	</Grid.RowDefinitions>
     	<GroupBox Header="Court Cases" VerticalAlignment="Top">
-            <ListBox ItemsSource="{Binding Source={StaticResource cvsCourtCaseStatuses}}">
-    			
+            <ListBox ItemsSource="{Binding CourtCaseStatuses}" SelectedValuePath="Id" SelectedValue="{Binding SelectedCaseStatusId, Mode=TwoWay}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="{x:Type ent:CourtCaseStatus}">
+                        <TextBlock Text="{Binding CaseStatus, Mode=OneWay}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
     		</ListBox>
     	</GroupBox>
     	<GroupBox Header="Find Court Cases" Grid.Row="1">
@@ -50,7 +48,13 @@
     					<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Case Number" VerticalAlignment="Top"/>
                         <TextBox TextWrapping="Wrap" Text="{Binding CaseNumber, Mode=TwoWay}" VerticalAlignment="Top" Grid.Column="1"/>
     					<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Status" VerticalAlignment="Center" Grid.Row="1"/>
-    					<ComboBox Margin="0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+                        <ComboBox Margin="0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom"  SelectedValuePath="Id" ItemsSource="{Binding CourtCaseStatuses, Mode=OneWay}" SelectedIndex="0">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate DataType="{x:Type ent:CourtCaseStatus}">
+                                    <TextBlock Text="{Binding CaseStatus, Mode=OneWay}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
     				</Grid>
     			</Border>
     			<Border BorderBrush="Black" BorderThickness="1"  Style="{StaticResource OrdinalBorder}" Grid.Row="1">
@@ -100,7 +104,7 @@
     						<ColumnDefinition/>
     					</Grid.ColumnDefinitions>
     					<TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Top" Text="Court Clerk"/>
-    					<ComboBox Margin="0,0,0,-0.001" Grid.Column="1"/>
+    					<ComboBox Margin="0,0,0,-0.001" Grid.Column="1" />
     				</Grid>
     			</Border>
     			<Border BorderBrush="Black" BorderThickness="1" Grid.Row="3" Style="{DynamicResource OrdinalBorder}">
