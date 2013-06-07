@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns:tnserr="https://isb.srv.courts-tc.ca.gov/portal/isb/schema/ALL/ISBServices/CommonServices/Error/1.0.0"
+	 targetNamespace="https://isb.srv.courts-tc.ca.gov/portal/isb/schema/ALL/ISBServices/CommonServices/Error/1.0.0"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:element name="ISBCommonErrorMessage">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ExceptionCode" type="xs:string"/>
+				<xs:element name="ExceptionMessage" type="xs:string" minOccurs="0"/>
+				<xs:element name="ExceptionDetails" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="StackTrace" type="xs:string"/>
+							<xs:element name="Msg" type="xs:string"/>
+							<xs:element name="FullClass" type="xs:string"/>
+							<xs:element name="Class" type="xs:string"/>
+							<xs:element name="Data" type="xs:anyType" minOccurs="0"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	 xmlns:tnsap="https://isb.srv.courts-tc.ca.gov/portal/isb/schema/ALL/ISBServices/CommonServices/AdditionalParams/1.0.0"
+	 targetNamespace="https://isb.srv.courts-tc.ca.gov/portal/isb/schema/ALL/ISBServices/CommonServices/AdditionalParams/1.0.0"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xs:element name="AdditionalParams">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ReplayParameters" minOccurs="0">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="TTL" type="xs:integer" minOccurs="0"/>
+							<xs:element name="Destination" type="xs:string" minOccurs="0"/>
+							<xs:element name="MaxReplayCount" type="xs:integer" minOccurs="0"/>
+							<xs:element name="ReplaySchedule" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="tnsap:ScheduleHMS" minOccurs="0"/>
+										<xs:element name="ScheduleDateTime" type="xs:dateTime" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="CutOffSchedule" minOccurs="0">
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element ref="tnsap:ScheduleHMS" minOccurs="0"/>
+										<xs:element name="CutOffDateTime" type="xs:dateTime" minOccurs="0"/>
+									</xs:sequence>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="NVPairs" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="Name" type="xs:string"/>
+							<xs:element name="Value" type="xs:string"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ScheduleHMS">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Hours" type="xs:integer"/>
+				<xs:element name="Minutes" type="xs:integer"/>
+				<xs:element name="Seconds" type="xs:integer"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

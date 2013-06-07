@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2009 sp1 (http://www.altova.com) by Ashwin (STATE OF CALIFORNIA - AOC) -->
+<xsd:schema xmlns:s="http://niem.gov/niem/structures/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Request" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:nc="http://niem.gov/niem/niem-core/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Request" xmlns:j="http://niem.gov/niem/domains/jxdm/4.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Request" xmlns:i="http://niem.gov/niem/appinfo/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Request" targetNamespace="http://niem.gov/niem/domains/jxdm/4.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Request" version="1">
+	<xsd:annotation>
+		<xsd:documentation>Justice</xsd:documentation>
+		<xsd:appinfo>
+			<i:ConformantIndicator>true</i:ConformantIndicator>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:import namespace="http://niem.gov/niem/structures/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Request" schemaLocation="../../../structures/2.0/structures.xsd"/>
+	<xsd:import namespace="http://niem.gov/niem/appinfo/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Request" schemaLocation="../../../appinfo/2.0/appinfo.xsd"/>
+	<xsd:import namespace="http://niem.gov/niem/niem-core/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Request" schemaLocation="../../../../constraint/niem-core/2.0/niem-core.xsd"/>
+	<xsd:element name="CaseOtherIdentification" type="nc:IdentificationType" nillable="true">
+		<xsd:annotation>
+			<xsd:documentation>A miscellaneous identifier for a case.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="CourtName" nillable="true">
+		<xsd:annotation>
+			<xsd:documentation>A name of a unit of a court.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="nc:TextType">
+					<xsd:maxLength value="250"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

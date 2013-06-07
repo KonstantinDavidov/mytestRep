@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	 xmlns:tnsresp="https://isb.srv.courts-tc.ca.gov/portal/isb/schema/ALL/ISBServices/CommonServices/Response/1.0.0"
+	 targetNamespace="https://isb.srv.courts-tc.ca.gov/portal/isb/schema/ALL/ISBServices/CommonServices/Response/1.0.0"
+	 elementFormDefault="qualified"
+	 attributeFormDefault="unqualified">
+	<xsd:element name="ISBCommonResponseMessage">
+		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element name="Status" type="xsd:string" />
+				<xsd:element name="Message" type="xsd:string" />
+				<xsd:element name="DocumentId" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="CorrelationId" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="SequenceId" type="xsd:string" minOccurs="0"/>
+				<xsd:element name="ISBTransactionId" type="xsd:string" />
+				<xsd:element name="TimeStamp" type="xsd:dateTime"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>
