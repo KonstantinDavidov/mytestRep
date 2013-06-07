@@ -32,6 +32,7 @@ namespace FACCTS.Server
         protected void Application_Start()
         {
             // create empty config database if it not exists
+           
             DatabasesConfigure.ConfigureDB();
 
             // set the anti CSRF for name (that's a unqiue claim in our system)
@@ -41,6 +42,7 @@ namespace FACCTS.Server
             ConfigureMEF();
             _logger = ServiceLocator.Current.GetInstance<ILog>();
             _logger.Info("Application_Start started");
+            GlobalConfig.CustomizeConfig(GlobalConfiguration.Configuration);
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters, ServiceLocator.Current.GetInstance<IConfigurationRepository>());
             ProtocolConfig.RegisterProtocols(GlobalConfiguration.Configuration, RouteTable.Routes,

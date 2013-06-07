@@ -13,10 +13,9 @@ namespace FACCTS.Server.Data.Repositiries
     {
         public CourtMemberRepository(DbContext context) : base(context) { }
 
-        public IQueryable<CourtMember> GetCourtMembersByRole(long roleId)
+        public IQueryable<CourtMember> GetCourtMembersByRole(int roleId)
         {
-            return Entities.Where(cm => cm.Roles.Any(r => r.RoleId == roleId));
+            return Entities.Where(cm => cm.Roles.Any(r => r.RoleId >= roleId));
         }
-
     }
 }

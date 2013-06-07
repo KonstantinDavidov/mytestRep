@@ -35,7 +35,7 @@ namespace FACCTS.DTO
         
         public List<int> CourtOrders { get; set; }
         [JsonProperty]
-        public int CaseStatusId { get; set; }
+        public int? CaseStatusId { get; set; }
 
         [JsonProperty]
         public int? CourtClerkId { get; set; }
