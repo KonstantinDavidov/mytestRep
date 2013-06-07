@@ -71,7 +71,7 @@ namespace FACCTS.Server.Filters
                 _logger.Info("The signing certificate is absent in the database.");
                 var cert = GetAvailableCertificateFromStore();
                 keys.SigningCertificate = cert;
-                _logger.InfoFormat("Signing certificate was set to: {0}", cert.Subject);
+                //_logger.InfoFormat("Signing certificate was set to: {0}", cert.Subject);
             }
 
             if (string.IsNullOrWhiteSpace(keys.SymmetricSigningKey))

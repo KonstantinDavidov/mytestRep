@@ -1,18 +1,481 @@
-﻿@{
-   ViewBag.Title = "Court Staff";
-}
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
 
+        @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/themes/base/css")
+    
+        <!-- All JavaScript at the bottom, except this Modernizr build.
+       Modernizr enables HTML5 elements & feature detects for optimal performance.
+       Create your own custom Modernizr build: www.modernizr.com/download/ -->
+        @Scripts.Render("~/bundles/modernizr")
+        
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
 
-<div id="main">
-    <div id="left">
-        <select id ="staffList">
-            <option id="1">John Smith</option>
-            <option id="2">Bred Pit</option>
-        </select>
+        <!-- Add your site or application content here -->
+            <div id="wrapper">
+        <div id="header"></div>
+        <div id="tabs-wrapper">
+            <div id="main-tabs">
+                <ul>
+                    <li><a href="#court-staff">
+                        <span class="ui-icon ui-icon-image"></span>
+                        Court Staff</a></li>
+                    <li><a href="#court-settings">
+                        <span class="ui-icon ui-icon-image"></span>
+                        Court Settings</a></li>
+                    <div id="login-info">
+                        <label>User Login:</label>
+                        <span>smyles@occ.gov</span>
+                        <a href="#">Log Out</a>
+                    </div>
+                </ul>
+                <div id="court-staff">
+                    <div class="left-side-wrapper">
+                        <div class="section">
+                            <label>Court Staff</label>
+                            <hr>
+                            <table id="court-staff-table" class="clickable" cellspacing="0">
+                                <thead class="ui-widget-header">
+                                    <tr>
+                                        <td>User ID</td>
+                                        <td>Email</td>
+                                        <td>User Role</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-user-id="1">
+                                        <td>Sophia Myles</td>
+                                        <td>smyles@occ.gov</td>
+                                        <td>Administrator</td>
+                                    </tr>
+                                    <tr data-user-id="2">
+                                        <td>Pascal Hutton</td>
+                                        <td>phutton@occ.gov</td>
+                                        <td>Administrator</td>
+                                    </tr>
+                                    <tr data-user-id="3">
+                                        <td>Ray Stevenson</td>
+                                        <td>rstevenson@occ.gov</td>
+                                        <td>Judicial Officer</td>
+                                    </tr>
+                                    <tr  data-user-id="4" class="active">
+                                        <td>Amy Smart</td>
+                                        <td>asmart@occ.gov</td>
+                                        <td>Administrator</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <fieldset>
+                            <button id="new-court-staff">NEW</button>
+                            <button id="remove-court-staff">REMOVE</button>
+                        </fieldset>
+                    </div>
+                    <div class="right-side-wrapper">
+                        <div class="right-side">
+                            <div id="user-tabs">
+                                <ul>
+                                    <li><a href="#profile">Profile</a></li>
+                                    <li><a href="#availability">Availability</a></li>
+                                    <li><a href="#user-role">User Role</a></li>
+                                </ul>
+                                <div id="profile">
+                                    <form id="profile-form">
+                                        <div class="form-fields-block">
+                                            <div class="form-field">
+                                                <label for="first-name">First Name</label>
+                                                <input type="text" id="first-name" name="first-name" value="Amy" disabled>
+                                            </div>
+                                            <div class="form-field">
+                                                <label for="middle-name">Middle Name</label>
+                                                <input type="text" id="middle-name" name="middle-name" value="Ann" disabled>
+                                            </div>
+                                            <div class="form-field">
+                                                <label for="last-name">Last Name</label>
+                                                <input type="text" id="last-name" name="last-name" value="Smart" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="form-fields-block">
+                                            <div class="form-field">
+                                                <label for="user-id">User Id</label>
+                                                <input type="text" id="user-id" name="user-id" value="amys" disabled>
+                                            </div>
+                                            <div class="form-field">
+                                                <label for="user-email">User Email</label>
+                                                <input type="text" id="user-email" name="user-email" value="amys@occ.gov" disabled>
+                                            </div>
+                                            <div class="form-field">
+                                                <label for="user-phone">User Phone</label>
+                                                <input type="text" id="user-phone" name="user-phone" value="234-234-2345" disabled>
+                                            </div>
+                                            <div class="form-field checkbox-field">
+                                                <input type="checkbox" id="clets-certified" name="clets-certified" value="1" disabled>
+                                                <label for="clets-certified" class="important">CLETS Certified</label>
+                                            </div>
+                                            <div class="form-element">
+                                                <button id="profile-update">Update</button>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="form-fields-block">
+                                            <div class="form-field">
+                                                <label>Picture</label>
+                                                <img src="images/image.jpg">
+                                            </div>
+                                            <div class="form-element">
+                                                <a href="#">Click to change</a>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <div id="dialog-form" title="Update user profile">
+                                        <form id="update-profile-form">
+                                            <div class="form-fields-block">
+                                                <p>
+                                                    <label for="update-first-name">First Name</label>
+                                                    <input type="text" id="update-first-name" name="first-name" class="text ui-widget-content ui-corner-all" required />
+                                                </p>
+                                                <p>
+                                                    <label for="update-middle-name">Middle Name</label>
+                                                    <input type="text" id="update-middle-name" name="middle-name" class="text ui-widget-content ui-corner-all">
+                                                </p>
+                                                <p>
+                                                    <label for="update-last-name">Last Name</label>
+                                                    <input type="text" id="update-last-name" name="last-name" class="text ui-widget-content ui-corner-all" required />
+                                                </p>
+                                            </div>
+                                            <div class="form-fields-block">
+                                                <p>
+                                                    <label for="update-user-id">User Id</label>
+                                                    <input type="text" id="update-user-id" name="user-id" class="text ui-widget-content ui-corner-all" required>
+                                                </p>
+                                                <p>
+                                                    <label for="update-user-email">User Email</label>
+                                                    <input type="email" id="update-user-email" name="user-email" class="text ui-widget-content ui-corner-all" required>
+                                                </p>
+                                                <p>
+                                                    <label for="update-user-phone">User Phone</label>
+                                                    <input type="text" id="update-user-phone" name="user-phone" class="text ui-widget-content ui-corner-all" required>
+                                                </p>
+                                                <p class="checkbox-field">
+                                                    <input type="checkbox" id="update-clets-certified" name="clets-certified" class="text ui-widget-content ui-corner-all">
+                                                    <label for="update-clets-certified" class="important">CLETS Certified</label>
+                                                </p>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div id="availability">
+                                    <form id="availability-form">
+                                        <div class="form-fields-block">
+                                            <div class="form-element">
+                                                <input type="checkbox" name="availability-available" id="availability-available" checked>
+                                                <label for="availability-available">Available</label>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="form-fields-block">
+                                            <div class="form-element">
+                                                <label for="availability-substitute">Select Substitude</label>
+                                            </div>
+                                            <div class="form-element">
+                                                <select name="availability-substitute" id="availability-substitute">
+                                                    <option value="administrator">Administrator</option>
+                                                    <option value="judicial-office" selected>Judicial Officer</option>
+                                                    <option value="courtroom-clerk">Courtroom Clerk</option>
+                                                    <option value="self-help-center">Self Help Center</option>
+                                                    <option value="business-office">Business Office</option>
+                                                </select>
+                                            </div>
+                                            <div class="form-element">
+                                                <table id="substitute-users-table" class="clickable bordered">
+                                                    <thead class="ui-widget-header">
+                                                        <tr>
+                                                            <td>Substitute</td>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td data-user-id="1">Sophia Myles</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td data-user-id="2">Pascal Hilton</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td data-user-id="3">Tom Smith</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td data-user-id="4">Amy Smart</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        <div class="form-fields-block">
+                                            <div class="form-element">
+                                                <button id="availability-assign">Assign</button>
+                                                <button id="availability-remove" class="important">Remove</button>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </form>
+                                </div>
+                                <div id="user-role">
+                                    <form id="user-role-form">
+                                        <table class="user-role-table">
+                                            <tr>
+                                                <td class="td-user-role">
+                                                    <input type="radio" name="user-role" id="administrator" value="administrator" checked>
+                                                    <label for="administrator">Administrator</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="administrator-court-settings" id="administrator-court-settings" disabled checked>
+                                                    <label for="administrator-court-settings">Court Settings</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="administrator-court-staff" id="administrator-court-staff" disabled checked>
+                                                    <label for="administrator-court-staff">Court Staff</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="administartor-case-reco" id="administrator-case-reco" disabled checked>
+                                                    <label for="administrator-case-reco">Case Reco</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="administrator-calendar" id="administrator-calendar" disabled checked>
+                                                    <label for="administrator-calendar">Calendar</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="administrator-court-orders" id="administrator-court-orders" disabled checked>
+                                                    <label for="administrator-court-orders">Court Orders</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="administrator-cases" id="administrator-cases" disabled checked>
+                                                    <label for="administrator-cases">Cases</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="administrator-case-history" id="administrator-case-history" disabled checked>
+                                                    <label for="administrator-case-history">Case History</label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table class="user-role-table">
+                                            <tr>
+                                                <td class="td-user-role">
+                                                    <input type="radio" name="user-role" id="judicial-officer" value="judicial-officer">
+                                                    <label for="judicial-officer">Judicial Officer</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="judicial-officer-court-settings" id="judicial-officer-court-settings" disabled>
+                                                    <label for="judicial-officer-court-settings">Court Settings</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="judicial-officer-court-staff" id="judicial-officer-court-staff" disabled>
+                                                    <label for="judicial-officer-court-staff">Court Staff</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="administartor-case-reco" id="judicial-officer-case-reco" disabled checked>
+                                                    <label for="judicial-officer-case-reco">Case Reco</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="judicial-officer-calendar" id="judicial-officer-calendar" disabled checked>
+                                                    <label for="judicial-officer-calendar">Calendar</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="judicial-officer-court-orders" id="judicial-officer-court-orders" disabled checked>
+                                                    <label for="judicial-officer-court-orders">Court Orders</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="judicial-officer-cases" id="judicial-officer-cases" disabled checked>
+                                                    <label for="judicial-officer-cases">Cases</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="judicial-officer-case-history" id="judicial-officer-case-history" disabled checked>
+                                                    <label for="judicial-officer-case-history">Case History</label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table class="user-role-table">
+                                            <tr>
+                                                <td class="td-user-role">
+                                                    <input type="radio" name="user-role" id="courtroom-clerk" value="courtroom-clerk">
+                                                    <label for="courtroom-clerk">Courtroom Clerk</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="courtroom-clerk-court-settings" id="courtroom-clerk-court-settings" disabled>
+                                                    <label for="courtroom-clerk-court-settings">Court Settings</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="courtroom-clerk-court-staff" id="courtroom-clerk-court-staff" disabled>
+                                                    <label for="courtroom-clerk-court-staff">Court Staff</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="administartor-case-reco" id="courtroom-clerk-case-reco" disabled checked>
+                                                    <label for="courtroom-clerk-case-reco">Case Reco</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="courtroom-clerk-calendar" id="courtroom-clerk-calendar" disabled checked>
+                                                    <label for="courtroom-clerk-calendar">Calendar</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="courtroom-clerk-court-orders" id="courtroom-clerk-court-orders" disabled checked>
+                                                    <label for="courtroom-clerk-court-orders">Court Orders</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="courtroom-clerk-cases" id="courtroom-clerk-cases" disabled checked>
+                                                    <label for="courtroom-clerk-cases">Cases</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="courtroom-clerk-case-history" id="courtroom-clerk-case-history" disabled>
+                                                    <label for="courtroom-clerk-case-history">Case History</label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table class="user-role-table">
+                                            <tr>
+                                                <td class="td-user-role">
+                                                    <input type="radio" name="user-role" id="family-court-center" value="family-court-center">
+                                                    <label for="family-court-center">Family Court Center</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="family-court-center-court-settings" id="family-court-center-court-settings" disabled>
+                                                    <label for="family-court-center-court-settings">Court Settings</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="family-court-center-court-staff" id="family-court-center-court-staff" disabled>
+                                                    <label for="family-court-center-court-staff">Court Staff</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="administartor-case-reco" id="family-court-center-case-reco" disabled checked>
+                                                    <label for="family-court-center-case-reco">Case Reco</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="family-court-center-calendar" id="family-court-center-calendar" disabled checked>
+                                                    <label for="family-court-center-calendar">Calendar</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="family-court-center-court-orders" id="family-court-center-court-orders" disabled>
+                                                    <label for="family-court-center-court-orders">Court Orders</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="family-court-center-cases" id="family-court-center-cases" disabled checked>
+                                                    <label for="family-court-center-cases">Cases</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="family-court-center-case-history" id="family-court-center-case-history" disabled>
+                                                    <label for="family-court-center-case-history">Case History</label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table class="user-role-table">
+                                            <tr>
+                                                <td class="td-user-role">
+                                                    <input type="radio" name="user-role" id="self-help-center" value="self-help-center">
+                                                    <label for="self-help-center">Self Help Center</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="self-help-center-court-settings" id="self-help-center-court-settings" disabled>
+                                                    <label for="self-help-center-court-settings">Court Settings</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="self-help-center-court-staff" id="self-help-center-court-staff" disabled>
+                                                    <label for="self-help-center-court-staff">Court Staff</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="administartor-case-reco" id="self-help-center-case-reco" disabled>
+                                                    <label for="self-help-center-case-reco">Case Reco</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="self-help-center-calendar" id="self-help-center-calendar" disabled>
+                                                    <label for="self-help-center-calendar">Calendar</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="self-help-center-court-orders" id="self-help-center-court-orders" disabled>
+                                                    <label for="self-help-center-court-orders">Court Orders</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="self-help-center-cases" id="self-help-center-cases" disabled checked>
+                                                    <label for="self-help-center-cases">Cases</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="self-help-center-case-history" id="self-help-center-case-history" disabled>
+                                                    <label for="self-help-center-case-history">Case History</label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <table class="user-role-table">
+                                            <tr>
+                                                <td class="td-user-role">
+                                                    <input type="radio" name="user-role" id="business-office" value="business-office">
+                                                    <label for="business-office">Business Office</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="business-office-court-settings" id="business-office-court-settings" disabled>
+                                                    <label for="business-office-court-settings">Court Settings</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="business-office-court-staff" id="business-office-court-staff" disabled>
+                                                    <label for="business-office-court-staff">Court Staff</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="administartor-case-reco" id="business-office-case-reco" disabled>
+                                                    <label for="business-office-case-reco">Case Reco</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="business-office-calendar" id="business-office-calendar" disabled>
+                                                    <label for="business-office-calendar">Calendar</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="business-office-court-orders" id="business-office-court-orders" disabled>
+                                                    <label for="business-office-court-orders">Court Orders</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="business-office-cases" id="business-office-cases" disabled checked>
+                                                    <label for="business-office-cases">Cases</label>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" name="business-office-case-history" id="business-office-case-history" disabled>
+                                                    <label for="business-office-case-history">Case History</label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </form>
+                                </div>
+                            </div>
+                            <fieldset class="right">
+                                <button id="save-profile">SAVE</button>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+                <div id="court-settings">
+                </div>
+            </div>
+        </div>
     </div>
-    <div id="right">
-        @ViewBag.Title
-    </div>
-</div>
+        @Scripts.Render(
+        "~/bundles/jquery", 
+        "~/bundles/jsextlibs", 
+        "~/Scripts/lib/require.js", 
+        "~/bundles/jsapplibs",
+        "~/bundles/jqueryui",
+        "~/Scripts/main.js")
 
+    </body>
+</html>
 

@@ -19,6 +19,7 @@ namespace FACCTS.Server.DataContracts
 
         //Entities
         IFacctsDataRepository<CourtParty> CourtPartyRepository { get; }
+        ICourtMemberRepository CourtMemberRepository { get; }
 
         // Save pending changes to the data store.
         void Commit();

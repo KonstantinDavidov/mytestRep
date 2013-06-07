@@ -9,10 +9,10 @@ namespace FACCTS.Server
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/lib/jquery-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
-                        "~/Scripts/jquery-ui-{version}.js"));
+                        "~/Scripts/lib/jquery-ui-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.unobtrusive*",
@@ -23,9 +23,42 @@ namespace FACCTS.Server
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css"));
+            bundles.Add(new ScriptBundle("~/bundles/jsextlibs")
+                //.IncludeDirectory("~/Scripts/lib", "*.js", searchSubdirectories: false));
+                .Include(
+                    "~/Scripts/lib/json2.js", // IE7 needs this
 
-            bundles.Add(new StyleBundle("~/Content/admincss").Include("~/Content/admin.css"));
+                    // jQuery plugins
+                    "~/Scripts/lib/activity-indicator.js",
+                    //"~/Scripts/lib/jquery.mockjson.js",
+                    "~/Scripts/lib/TrafficCop.js",
+                    "~/Scripts/lib/infuser.js", // depends on TrafficCop
+
+                    // Knockout and its plugins
+                    "~/Scripts/lib/knockout-{version}.js",
+                    "~/Scripts/lib/knockout.activity.js",
+                    "~/Scripts/lib/knockout.asyncCommand.js",
+                    "~/Scripts/lib/knockout.dirtyFlag.js",
+                    "~/Scripts/lib/knockout.validation.js",
+                    "~/Scripts/lib/koExternalTemplateEngine.js",
+
+                    // Other 3rd party libraries
+                    "~/Scripts/lib/underscore.js",
+                    "~/Scripts/lib/moment.js",
+                    "~/Scripts/lib/sammy.*",
+                    "~/Scripts/lib/amplify.*",
+                    "~/Scripts/lib/toastr.js"
+                    ));
+
+            // All application JS files (except mocks)
+            bundles.Add(new ScriptBundle("~/bundles/jsapplibs")
+                .IncludeDirectory("~/Scripts/app/", "*.js", searchSubdirectories: false));
+           
+            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/admin.css", 
+                "~/Content/main.css",
+                "~/Content/normalize.css",
+                //"~/Content/site.css",
+                "~/Content/jquery-ui-1.10.3.custom.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",
