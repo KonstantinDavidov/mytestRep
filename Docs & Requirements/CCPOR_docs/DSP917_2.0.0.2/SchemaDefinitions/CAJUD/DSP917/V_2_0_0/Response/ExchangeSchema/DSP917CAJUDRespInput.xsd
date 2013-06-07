@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+ California Administrative Office of the Courts
+ CCMS Data Exchange DSP917 - Court Sends Restraining Order Issuance/Cancel/Update Notification 
+ Copyright (c)  2011 by the Judicial Council of California/Administrative Office of the Courts. All Rights Reserved.
+ Document Type - An Exchange Wrapper to provide a common base and structure for CCMS Exchanges
+ Revision History
+ ===========================================
+ Version # - Date - Author - Description 
+ Version - 1.0.0 - August 2011 - California Administrative Office of the Courts - Initial Creation 
+ ===========================================
+ -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tnserr="https://isb.srv.courts-tc.ca.gov/portal/isb/schema/ALL/ISBServices/CommonServices/Error/1.0.0" xmlns:tnsresp="https://isb.srv.courts-tc.ca.gov/portal/isb/schema/ALL/ISBServices/CommonServices/Response/1.0.0" xmlns:dsp917cajudresp="https://isb.srv.courts-tc.ca.gov/portal/cajud/schema/dsp917resp/2.0.0/xsd" xmlns:dsp917cajudrespip="http://isb.srv.courts-tc.ca.gov/portal/cajud/Schema/DSP917CAJUDRespInput/2.0.0/xsd" xmlns:tnshdr="https://isb.srv.courts-tc.ca.gov/portal/isb/schema/ALL/ISBServices/CommonServices/2.0.0" xmlns:tnsap="https://isb.srv.courts-tc.ca.gov/portal/isb/schema/ALL/ISBServices/CommonServices/AdditionalParams/1.0.0" targetNamespace="http://isb.srv.courts-tc.ca.gov/portal/cajud/Schema/DSP917CAJUDRespInput/2.0.0/xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="https://isb.srv.courts-tc.ca.gov/portal/isb/schema/ALL/ISBServices/CommonServices/2.0.0" schemaLocation="../../../../../Common/ISBCommonServiceHeader.xsd"/>
+	<xs:import namespace="https://isb.srv.courts-tc.ca.gov/portal/cajud/schema/dsp917resp/2.0.0/xsd" schemaLocation="DSP917CAJUDResp.xsd"/>
+	<xs:import namespace="https://isb.srv.courts-tc.ca.gov/portal/isb/schema/ALL/ISBServices/CommonServices/AdditionalParams/1.0.0" schemaLocation="../../../../../Common/ISBAdditionalParams.xsd"/>
+	<xs:element name="DSP917CAJUDRespInput">
+		<xs:annotation>
+			<xs:documentation>The root node for response message encapsulating the technical header and business payload.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="tnshdr:ISBCommonServiceHeader"/>
+				<xs:element ref="dsp917cajudresp:ProductExchangePackage"/>
+				<xs:element ref="tnsap:AdditionalParams" minOccurs="0"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

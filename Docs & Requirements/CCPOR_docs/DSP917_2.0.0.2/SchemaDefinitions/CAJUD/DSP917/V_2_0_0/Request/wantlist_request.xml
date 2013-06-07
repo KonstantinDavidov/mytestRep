@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<w:WantList w:release="2.0" w:product="NIEM"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:nc="http://niem.gov/niem/niem-core/2.0"
+  xmlns:niem-xsd="http://niem.gov/niem/proxy/xsd/2.0"
+  xmlns:unece="http://niem.gov/niem/unece_rec20-misc/2.0"
+  xmlns:j="http://niem.gov/niem/domains/jxdm/4.0" xmlns:w="http://niem.gov/niem/wantlist/2">
+  <w:Element w:name="j:CaseOtherIdentification" w:isReference="false"/>
+  <w:Element w:name="j:CourtName" w:isReference="false"/>
+  <w:Element w:name="nc:ActivityCategoryText" w:isReference="false"/>
+  <w:Element w:name="nc:ActivityDate" w:isReference="false"/>
+  <w:Element w:name="nc:ActivityDateRepresentation" w:isReference="false"/>
+  <w:Element w:name="nc:ActivityIdentification" w:isReference="false"/>
+  <w:Element w:name="nc:AddressDeliveryPoint" w:isReference="false"/>
+  <w:Element w:name="nc:AddressFullText" w:isReference="false"/>
+  <w:Element w:name="nc:AddressRepresentation" w:isReference="false"/>
+  <w:Element w:name="nc:AddressSecondaryUnitText" w:isReference="false"/>
+  <w:Element w:name="nc:BinaryBase64Object" w:isReference="false"/>
+  <w:Element w:name="nc:BinaryObject" w:isReference="false"/>
+  <w:Element w:name="nc:CaseDocketID" w:isReference="false"/>
+  <w:Element w:name="nc:ContactInformation" w:isReference="true"/>
+  <w:Element w:name="nc:ContactMailingAddress" w:isReference="false"/>
+  <w:Element w:name="nc:ContactMeans" w:isReference="false"/>
+  <w:Element w:name="nc:ConveyanceRegistrationPlateIdentification" w:isReference="false"/>
+  <w:Element w:name="nc:Date" w:isReference="false"/>
+  <w:Element w:name="nc:DateRepresentation" w:isReference="false"/>
+  <w:Element w:name="nc:DocumentBinary" w:isReference="false"/>
+  <w:Element w:name="nc:DocumentCategoryText" w:isReference="false"/>
+  <w:Element w:name="nc:DocumentDescriptionText" w:isReference="false"/>
+  <w:Element w:name="nc:DocumentFormatCategoryText" w:isReference="false"/>
+  <w:Element w:name="nc:DocumentTitleText" w:isReference="false"/>
+  <w:Element w:name="nc:ExpirationDate" w:isReference="false"/>
+  <w:Element w:name="nc:IdentificationCategory" w:isReference="false"/>
+  <w:Element w:name="nc:IdentificationCategoryText" w:isReference="false"/>
+  <w:Element w:name="nc:IdentificationExpirationDate" w:isReference="false"/>
+  <w:Element w:name="nc:IdentificationID" w:isReference="false"/>
+  <w:Element w:name="nc:IdentificationJurisdiction" w:isReference="false"/>
+  <w:Element w:name="nc:IdentificationJurisdictionText" w:isReference="false"/>
+  <w:Element w:name="nc:LocationAddress" w:isReference="false"/>
+  <w:Element w:name="nc:LocationCityName" w:isReference="false"/>
+  <w:Element w:name="nc:LocationCountry" w:isReference="false"/>
+  <w:Element w:name="nc:LocationPostalCode" w:isReference="false"/>
+  <w:Element w:name="nc:LocationState" w:isReference="false"/>
+  <w:Element w:name="nc:LocationStateName" w:isReference="false"/>
+  <w:Element w:name="nc:LocationStreet" w:isReference="false"/>
+  <w:Element w:name="nc:MeasureText" w:isReference="false"/>
+  <w:Element w:name="nc:MeasureValue" w:isReference="false"/>
+  <w:Element w:name="nc:Organization" w:isReference="true"/>
+  <w:Element w:name="nc:OrganizationOtherIdentification" w:isReference="false"/>
+  <w:Element w:name="nc:Person" w:isReference="true"/>
+  <w:Element w:name="nc:PersonBirthDate" w:isReference="false"/>
+  <w:Element w:name="nc:PersonGivenName" w:isReference="false"/>
+  <w:Element w:name="nc:PersonHeightMeasure" w:isReference="false"/>
+  <w:Element w:name="nc:PersonMiddleName" w:isReference="false"/>
+  <w:Element w:name="nc:PersonName" w:isReference="false"/>
+  <w:Element w:name="nc:PersonNameSuffixText" w:isReference="false"/>
+  <w:Element w:name="nc:PersonOtherIdentification" w:isReference="false"/>
+  <w:Element w:name="nc:PersonPhysicalFeature" w:isReference="false"/>
+  <w:Element w:name="nc:PersonSurName" w:isReference="false"/>
+  <w:Element w:name="nc:PersonWeightMeasure" w:isReference="false"/>
+  <w:Element w:name="nc:PhysicalFeatureCategory" w:isReference="false"/>
+  <w:Element w:name="nc:PhysicalFeatureCategoryText" w:isReference="false"/>
+  <w:Element w:name="nc:PhysicalFeatureGeneralCategoryText" w:isReference="false"/>
+  <w:Element w:name="nc:PhysicalFeatureLocationText" w:isReference="false"/>
+  <w:Element w:name="nc:RoleOf" w:isReference="false"/>
+  <w:Element w:name="nc:RoleOfOrganization" w:isReference="true"/>
+  <w:Element w:name="nc:RoleOfPerson" w:isReference="true"/>
+  <w:Element w:name="nc:StreetName" w:isReference="false"/>
+  <w:Element w:name="nc:StreetNumberText" w:isReference="false"/>
+  <w:Element w:name="nc:StructuredAddress" w:isReference="false"/>
+  <w:Element w:name="nc:Vehicle" w:isReference="true"/>
+  <w:Element w:name="nc:VehicleIdentification" w:isReference="false"/>
+  <w:Element w:name="nc:Year" w:isReference="false"/>
+  <w:Type w:name="nc:AddressType" w:isRequested="true">
+    <w:ElementInType w:name="nc:AddressRepresentation"
+      w:isReference="false" w:minOccurs="1" w:maxOccurs="1"/>
+  </w:Type>
+  <w:Type w:name="nc:BinaryType" w:isRequested="true">
+    <w:ElementInType w:name="nc:BinaryObject" w:isReference="false"
+      w:minOccurs="1" w:maxOccurs="1"/>
+  </w:Type>
+  <w:Type w:name="nc:ContactInformationType" w:isRequested="true"/>
+  <w:Type w:name="nc:ConveyanceType" w:isRequested="true"/>
+  <w:Type w:name="nc:DateType" w:isRequested="true">
+    <w:ElementInType w:name="nc:DateRepresentation"
+      w:isReference="false" w:minOccurs="0" w:maxOccurs="1"/>
+  </w:Type>
+  <w:Type w:name="nc:IdentificationType" w:isRequested="true">
+    <w:ElementInType w:name="nc:IdentificationCategory"
+      w:isReference="false" w:minOccurs="0" w:maxOccurs="1"/>
+    <w:ElementInType w:name="nc:IdentificationCategoryDescriptionText"
+      w:isReference="false" w:minOccurs="0" w:maxOccurs="1"/>
+    <w:ElementInType w:name="nc:IdentificationEffectiveDate"
+      w:isReference="false" w:minOccurs="0" w:maxOccurs="1"/>
+    <w:ElementInType w:name="nc:IdentificationExpirationDate"
+      w:isReference="false" w:minOccurs="0" w:maxOccurs="1"/>
+    <w:ElementInType w:name="nc:IdentificationID" w:isReference="false"
+      w:minOccurs="0" w:maxOccurs="1"/>
+    <w:ElementInType w:name="nc:IdentificationJurisdiction"
+      w:isReference="false" w:minOccurs="0" w:maxOccurs="1"/>
+  </w:Type>
+  <w:Type w:name="nc:ItemType" w:isRequested="true"/>
+  <w:Type w:name="nc:LocationType" w:isRequested="true">
+    <w:ElementInType w:name="nc:LocationAddress" w:isReference="false"
+      w:minOccurs="1" w:maxOccurs="1"/>
+  </w:Type>
+  <w:Type w:name="nc:MeasureType" w:isRequested="true">
+    <w:ElementInType w:name="nc:MeasureValue" w:isReference="false"
+      w:minOccurs="1" w:maxOccurs="1"/>
+  </w:Type>
+  <w:Type w:name="nc:OrganizationType" w:isRequested="true"/>
+  <w:Type w:name="nc:PersonNameTextType" w:isRequested="true"/>
+  <w:Type w:name="nc:PersonNameType" w:isRequested="true">
+    <w:ElementInType w:name="nc:PersonGivenName" w:isReference="false"
+      w:minOccurs="1" w:maxOccurs="1"/>
+    <w:ElementInType w:name="nc:PersonMiddleName" w:isReference="false"
+      w:minOccurs="0" w:maxOccurs="1"/>
+    <w:ElementInType w:name="nc:PersonNameSuffixText"
+      w:isReference="false" w:minOccurs="0" w:maxOccurs="1"/>
+    <w:ElementInType w:name="nc:PersonSurName" w:isReference="false"
+      w:minOccurs="1" w:maxOccurs="1"/>
+  </w:Type>
+  <w:Type w:name="nc:PersonType" w:isRequested="true">
+    <w:ElementInType w:name="nc:PersonBirthDate" w:isReference="false"
+      w:minOccurs="0" w:maxOccurs="1"/>
+    <w:ElementInType w:name="nc:PersonName" w:isReference="false"
+      w:minOccurs="0" w:maxOccurs="unbounded"/>
+  </w:Type>
+  <w:Type w:name="nc:PhysicalFeatureType" w:isRequested="true">
+    <w:ElementInType w:name="nc:PhysicalFeatureCategory"
+      w:isReference="false" w:minOccurs="0" w:maxOccurs="1"/>
+    <w:ElementInType w:name="nc:PhysicalFeatureDescriptionText"
+      w:isReference="false" w:minOccurs="0" w:maxOccurs="1"/>
+    <w:ElementInType w:name="nc:PhysicalFeatureGeneralCategoryText"
+      w:isReference="false" w:minOccurs="0" w:maxOccurs="1"/>
+    <w:ElementInType w:name="nc:PhysicalFeatureLocationText"
+      w:isReference="false" w:minOccurs="0" w:maxOccurs="1"/>
+  </w:Type>
+  <w:Type w:name="nc:ProperNameTextType" w:isRequested="true"/>
+  <w:Type w:name="nc:StreetType" w:isRequested="true">
+    <w:ElementInType w:name="nc:StreetFullText" w:isReference="false"
+      w:minOccurs="0" w:maxOccurs="unbounded"/>
+    <w:ElementInType w:name="nc:StreetName" w:isReference="false"
+      w:minOccurs="0" w:maxOccurs="1"/>
+    <w:ElementInType w:name="nc:StreetNumberText" w:isReference="false"
+      w:minOccurs="0" w:maxOccurs="1"/>
+  </w:Type>
+  <w:Type w:name="nc:StructuredAddressType" w:isRequested="true">
+    <w:ElementInType w:name="nc:AddressDeliveryPoint"
+      w:isReference="false" w:minOccurs="0" w:maxOccurs="unbounded"/>
+    <w:ElementInType w:name="nc:LocationCityName" w:isReference="false"
+      w:minOccurs="0" w:maxOccurs="1"/>
+    <w:ElementInType w:name="nc:LocationCountry" w:isReference="false"
+      w:minOccurs="0" w:maxOccurs="1"/>
+    <w:ElementInType w:name="nc:LocationPostalCode"
+      w:isReference="false" w:minOccurs="0" w:maxOccurs="1"/>
+    <w:ElementInType w:name="nc:LocationState" w:isReference="false"
+      w:minOccurs="0" w:maxOccurs="1"/>
+  </w:Type>
+  <w:Type w:name="nc:TangibleItemType" w:isRequested="true"/>
+  <w:Type w:name="nc:TextType" w:isRequested="true"/>
+  <w:Type w:name="nc:VehicleType" w:isRequested="true"/>
+  <w:Type w:name="nc:WeightMeasureType" w:isRequested="true"/>
+  <w:Type w:name="niem-xsd:base64Binary" w:isRequested="true"/>
+  <w:Type w:name="niem-xsd:boolean" w:isRequested="true"/>
+  <w:Type w:name="niem-xsd:date" w:isRequested="true"/>
+  <w:Type w:name="niem-xsd:decimal" w:isRequested="true"/>
+  <w:Type w:name="niem-xsd:gYear" w:isRequested="true"/>
+  <w:Type w:name="niem-xsd:nonNegativeInteger" w:isRequested="true"/>
+  <w:Type w:name="niem-xsd:string" w:isRequested="true"/>
+  <w:Type w:name="xsd:base64Binary" w:isRequested="true"/>
+  <w:Type w:name="xsd:boolean" w:isRequested="true"/>
+  <w:Type w:name="xsd:date" w:isRequested="true"/>
+  <w:Type w:name="xsd:decimal" w:isRequested="true"/>
+  <w:Type w:name="xsd:gYear" w:isRequested="true"/>
+  <w:Type w:name="xsd:nonNegativeInteger" w:isRequested="true"/>
+  <w:Type w:name="xsd:string" w:isRequested="true"/>
+</w:WantList>

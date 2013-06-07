@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="http://isb.srv.courts-tc.ca.gov/portal/cajud/Schema/DSP917CAJUDReqInput/2.0.0/xsd" xmlns:ns2="http://isb.srv.courts-tc.ca.gov/portal/cajud/Schema/DSP917CAJUDReqOutput/1.0.0/xsd" xmlns:tns="https://isb.srv.courts-tc.ca.gov/portal/cajud/schema/ALL/DSP917CAJUDReq/1.0.0/wsdl" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="https://isb.srv.courts-tc.ca.gov/portal/cajud/schema/ALL/DSP917CAJUDReq/1.0.0/wsdl">
+	<import namespace="http://isb.srv.courts-tc.ca.gov/portal/cajud/Schema/DSP917CAJUDReqInput/2.0.0/xsd" location="../../../../../SchemaDefinitions/CAJUD/DSP917/V_2_0_0/Request/ExchangeSchema/DSP917CAJUDReqInput.xsd"/>
+	<import namespace="http://isb.srv.courts-tc.ca.gov/portal/cajud/Schema/DSP917CAJUDReqOutput/1.0.0/xsd" location="../../../../../SchemaDefinitions/CAJUD/DSP917/V_2_0_0/Request/ExchangeSchema/DSP917CAJUDReqOutput.xsd"/>
+	<message name="NotifyInput">
+		<part name="input" element="ns:DSP917CAJUDReqInput"/>
+	</message>
+	<message name="NotifyOutput">
+		<part name="output" element="ns2:DSP917CAJUDReqOutput"/>
+	</message>
+	<portType name="RestrainingOrderIssuanceCancelUpdateNotificationRequestServiceInterface">
+		<operation name="Notify">
+			<input message="tns:NotifyInput"/>
+			<output message="tns:NotifyOutput"/>
+		</operation>
+	</portType>
+</definitions>

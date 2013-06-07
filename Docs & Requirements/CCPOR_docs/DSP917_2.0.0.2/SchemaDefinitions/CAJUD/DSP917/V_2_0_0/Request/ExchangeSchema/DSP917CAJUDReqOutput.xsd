@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <!-- 
+ California Administrative Office of the Courts
+ CCMS Data Exchange DSP917 - Court Sends Restraining Order Issuance/Cancel/Update Notification 
+ Copyright (c)  2011 by the Judicial Council of California/Administrative Office of the Courts. All Rights Reserved.
+ Document Type - An Exchange Wrapper to provide a common base and structure for CCMS Exchanges
+ Revision History
+ ===========================================
+ Version # - Date - Author - Description 
+ Version - 1.0.0 - August 2011 - California Administrative Office of the Courts - Initial Creation 
+ ===========================================
+ -->
+
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tnserr="https://isb.srv.courts-tc.ca.gov/portal/isb/schema/ALL/ISBServices/CommonServices/Error/1.0.0" xmlns:tnsresp="https://isb.srv.courts-tc.ca.gov/portal/isb/schema/ALL/ISBServices/CommonServices/Response/1.0.0" xmlns:dsp917cajudreqop="http://isb.srv.courts-tc.ca.gov/portal/cajud/Schema/DSP917CAJUDReqOutput/1.0.0/xsd" targetNamespace="http://isb.srv.courts-tc.ca.gov/portal/cajud/Schema/DSP917CAJUDReqOutput/1.0.0/xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:import namespace="https://isb.srv.courts-tc.ca.gov/portal/isb/schema/ALL/ISBServices/CommonServices/Error/1.0.0" schemaLocation="../../../../../Common/ISBCommonServiceErrorSchema.xsd"/>
+	<xs:import namespace="https://isb.srv.courts-tc.ca.gov/portal/isb/schema/ALL/ISBServices/CommonServices/Response/1.0.0" schemaLocation="../../../../../Common/ISBCommonServiceResponseSchema.xsd"/>
+	<xs:element name="DSP917CAJUDReqOutput">
+		<xs:annotation>
+			<xs:documentation>The root node for request message encapsulating the technical response.</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element ref="tnserr:ISBCommonErrorMessage"/>
+				<xs:element ref="tnsresp:ISBCommonResponseMessage"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dsp917cajudrespip:DSP917CAJUDRespInput xsi:schemaLocation="http://isb.srv.courts-tc.ca.gov/portal/cajud/Schema/DSP917CAJUDRespInput/2.0.0/xsd ../Response/ExchangeSchema/DSP917CAJUDRespInput.xsd" xmlns:dsp917cajudrespip="http://isb.srv.courts-tc.ca.gov/portal/cajud/Schema/DSP917CAJUDRespInput/2.0.0/xsd" xmlns:dsp917cajudresp="https://isb.srv.courts-tc.ca.gov/portal/cajud/schema/dsp917resp/2.0.0/xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tnshdr="https://isb.srv.courts-tc.ca.gov/portal/isb/schema/ALL/ISBServices/CommonServices/2.0.0" xmlns:tnsap="https://isb.srv.courts-tc.ca.gov/portal/isb/schema/ALL/ISBServices/CommonServices/AdditionalParams/1.0.0">
+	<tnshdr:ISBCommonServiceHeader>
+		<Source xmlns="">100000</Source>
+		<Target xmlns="">100008</Target>
+		<InterfaceName xmlns="">DSP917</InterfaceName>
+		<DocumentType xmlns="">DSP917_RESP</DocumentType>
+		<DocumentId xmlns=""/>
+		<CorrelationId xmlns="">130000217092</CorrelationId>
+		<DistributionId xmlns="">1</DistributionId>
+		<ISBTransactionId xmlns="">1002968903</ISBTransactionId>
+		<Environment xmlns="">TEST</Environment>
+		<Hostname xmlns="">localhost</Hostname>
+		<TimeStamp xmlns="">2011-02-03T21:56:52.285-05:00</TimeStamp>
+		<CourtCd xmlns="">13</CourtCd>
+	</tnshdr:ISBCommonServiceHeader>
+	<dsp917cajudresp:ProductExchangePackage>
+		<dsp917cajudresp:ProductExchangeErrorActivity>
+			<dsp917cajudresp:ErrorInformation>
+				<dsp917cajudresp:ErrorInformationMessageCode>450000</dsp917cajudresp:ErrorInformationMessageCode>
+				<dsp917cajudresp:ErrorInformationMessageText>Transaction cannot be processed, because the look-up information was not found/mismatch.</dsp917cajudresp:ErrorInformationMessageText>
+			</dsp917cajudresp:ErrorInformation>
+		</dsp917cajudresp:ProductExchangeErrorActivity>
+	</dsp917cajudresp:ProductExchangePackage>
+</dsp917cajudrespip:DSP917CAJUDRespInput>

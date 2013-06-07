@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dsp917cajudrespip:DSP917CAJUDRespInput xmlns:dsp917cajudrespip="http://isb.srv.courts-tc.ca.gov/portal/cajud/Schema/DSP917CAJUDRespInput/2.0.0/xsd" xmlns:dsp917cajudresp="https://isb.srv.courts-tc.ca.gov/portal/cajud/schema/dsp917resp/2.0.0/xsd" xmlns:ncresp="http://niem.gov/niem/niem-core/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Response" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tnshdr="https://isb.srv.courts-tc.ca.gov/portal/isb/schema/ALL/ISBServices/CommonServices/2.0.0" xmlns:tnsap="https://isb.srv.courts-tc.ca.gov/portal/isb/schema/ALL/ISBServices/CommonServices/AdditionalParams/1.0.0" xsi:schemaLocation="http://isb.srv.courts-tc.ca.gov/portal/cajud/Schema/DSP917CAJUDRespInput/2.0.0/xsd ../Response/ExchangeSchema/DSP917CAJUDRespInput.xsd">
+	<tnshdr:ISBCommonServiceHeader>
+		<Source>100008</Source>
+		<Target>100000</Target>
+		<InterfaceName>DSP917</InterfaceName>
+		<DocumentType>DSP917_RESP</DocumentType>
+		<DocumentId>DSP917</DocumentId>
+		<CorrelationId>764560</CorrelationId>
+		<DistributionId>1</DistributionId>
+		<ISBTransactionId>-1</ISBTransactionId>
+		<Environment>DEV</Environment>
+		<Hostname>10.23.154.189</Hostname>
+		<TimeStamp>2011-01-12T18:29:44.818-08:00</TimeStamp>
+		<CourtCd>12</CourtCd>
+		<UserId>sptest1_12</UserId>
+	</tnshdr:ISBCommonServiceHeader>
+	<dsp917cajudresp:ProductExchangePackage>
+		<dsp917cajudresp:ProductExchangeResponseActivity>
+			<dsp917cajudresp:ControlNumber>555555555</dsp917cajudresp:ControlNumber>
+			<dsp917cajudresp:OrderIdentification>
+				<ncresp:IdentificationID>120000005919</ncresp:IdentificationID>
+			</dsp917cajudresp:OrderIdentification>
+			<dsp917cajudresp:CaseRestrainingOrder>
+				<ncresp:ActivityCategoryText>TRO</ncresp:ActivityCategoryText>
+			</dsp917cajudresp:CaseRestrainingOrder>
+		</dsp917cajudresp:ProductExchangeResponseActivity>
+	</dsp917cajudresp:ProductExchangePackage>
+</dsp917cajudrespip:DSP917CAJUDRespInput>

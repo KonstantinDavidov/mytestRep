@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>netfx-Microsoft.IdentityModel.Swt</id>
+    <version>1.1.1.63</version>
+    <title>NETFx SWT Token Support for WIF/ACS</title>
+    <authors>Zulfiqar Ahmed,  Dominick Baier,  Julian Dominguez,  Daniel Cazzulino,  kzu,  Clarius</authors>
+    <owners>Zulfiqar Ahmed,  Dominick Baier,  Julian Dominguez,  Daniel Cazzulino,  kzu,  Clarius</owners>
+    <licenseUrl>http://netfx.codeplex.com/license</licenseUrl>
+    <projectUrl>http://netfx.codeplex.com/</projectUrl>
+    <iconUrl>http://download.codeplex.com/Project/Download/FileDownload.aspx?ProjectName=netfx&amp;DownloadId=199201</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Adds the required source code and Web.config changes to support SWT tokens.
+
+Just configure SWT token format in Azure ACS/STS, and add your SwtSigningKey value to the Web.config!
+
+Requires: http://kzu.to/wifruntime and http://kzu.to/wif_sdk</description>
+    <summary>Adds the required source code and Web.config changes to support SWT tokens.
+
+Just configure SWT token format in Azure ACS/STS, and add your SwtSigningKey value to the Web.config!
+
+Requires: http://kzu.to/wifruntime and http://kzu.to/wif_sdk</summary>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <tags>netfx swt wif oauth wrap acs azure</tags>
+    <dependencies>
+      <dependency id="netfx-Guard" version="1.2.0.0" />
+      <dependency id="netfx-System.DateTimeEpochExtensions" version="1.0.0.0" />
+    </dependencies>
+    <references />
+  </metadata>
+</package>
