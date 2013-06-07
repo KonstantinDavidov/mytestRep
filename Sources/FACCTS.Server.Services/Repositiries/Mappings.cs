@@ -351,6 +351,21 @@ namespace FACCTS.Server.Data.Repositiries
         }
         #endregion
 
+        #region CodeToken
+        public static Models.CodeToken ToDomainModel(this Entities.CodeToken token)
+        {
+            return new Models.CodeToken
+            {
+                ClientId = token.ClientId,
+                Scope = token.Scope,
+                UserName = token.UserName,
+                Code = token.Code,
+                Type = (CodeTokenType)token.Type,
+                TimeStamp = token.TimeStamp
+            };
+        }
+        #endregion
+
         #region Client Certificates
         public static List<ClientCertificate> ToDomainModel(this List<ClientCertificates> entities)
         {

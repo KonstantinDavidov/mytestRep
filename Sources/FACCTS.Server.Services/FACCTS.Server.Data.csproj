@@ -69,20 +69,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Thinktecture.IdentityModel, Version=2.6.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\Thinktecture.IdentityModel.dll</HintPath>
-    </Reference>
-    <Reference Include="Thinktecture.IdentityServer.Core">
-      <HintPath>..\packages\Thinktecture.IdentityServer.Core.2.1.0\lib\net45\Thinktecture.IdentityServer.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Thinktecture.IdentityServer.Core.Repositories">
-      <HintPath>..\packages\Thinktecture.IdentityServer.Core.2.1.0\lib\net45\Thinktecture.IdentityServer.Core.Repositories.dll</HintPath>
-    </Reference>
-    <Reference Include="Thinktecture.IdentityServer.Protocols, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\lib\Thinktecture.IdentityServer.Protocols.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClaimsTransformer.cs" />
@@ -98,6 +84,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositiries\ClientCertificatesRepository.cs" />
     <Compile Include="Repositiries\ClientsRepository.cs" />
+    <Compile Include="Repositiries\CodeTokenRepository.cs" />
     <Compile Include="Repositiries\ConfigurationRepository.cs" />
     <Compile Include="Repositiries\CourtMemberRepository.cs" />
     <Compile Include="Repositiries\DelegationRepository.cs" />
@@ -138,6 +125,18 @@
     <ProjectReference Include="..\FACCTS.Server.Model\FACCTS.Server.Model.csproj">
       <Project>{5a675cbb-2774-4fde-a8c6-40aa46f4fa3f}</Project>
       <Name>FACCTS.Server.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IdentityModel\Thinktecture.IdentityModel\Thinktecture.IdentityModel.45.csproj">
+      <Project>{ac9a74df-4aab-43c8-b0ed-b7602721e545}</Project>
+      <Name>Thinktecture.IdentityModel.45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Thinktecture.IdentityServer.Core\Thinktecture.IdentityServer.Core.csproj">
+      <Project>{38ce5c59-909e-4da6-8e1d-7eee7312ca9a}</Project>
+      <Name>Thinktecture.IdentityServer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Thinktecture.IdentityServer.Protocols\Thinktecture.IdentityServer.Protocols.csproj">
+      <Project>{c129c90c-774c-47d7-a19e-57b31c87ae18}</Project>
+      <Name>Thinktecture.IdentityServer.Protocols</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

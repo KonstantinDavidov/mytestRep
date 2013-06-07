@@ -32,8 +32,8 @@ namespace FACCTS.Server.Data
             {
                 Name = "FACCTS (URN)",
                 Enabled = true,
-                Realm = "urn:facctssecurity",
-                SymmetricSigningKey = CryptoRandom.CreateRandomKeyString(48),    
+                Realm = Constants.RelyingParties.FACCTS,
+                SymmetricSigningKey = CryptoRandom.CreateRandomKeyString(32),    
 
             };
             context.RelyingParties.Add(relyingParty);
@@ -102,9 +102,9 @@ namespace FACCTS.Server.Data
         {
             return new GlobalConfiguration
             {
-                SiteName = "thinktecture identity server v2",
-                IssuerUri = "http://identityserver.v2.thinktecture.com/trust/changethis",
-                IssuerContactEmail = "office@thinktecture.com",
+                SiteName = "FACCTS WEP API",
+                IssuerUri = "http://opensoftdev.ru/",
+                IssuerContactEmail = "office@opensoftdev.ru",
                 DefaultWSTokenType = TokenTypes.Saml2TokenProfile11,
                 DefaultHttpTokenType = TokenTypes.JsonWebToken,
                 DefaultTokenLifetime = 10,
@@ -114,7 +114,7 @@ namespace FACCTS.Server.Data
                 EnforceUsersGroupMembership = true,
                 HttpPort = 80,
                 HttpsPort = 443,
-                EnableClientCertificateAuthentication = false,
+                EnableClientCertificateAuthentication = true,
                 RequireRelyingPartyRegistration = true
             };
         }
@@ -191,7 +191,7 @@ namespace FACCTS.Server.Data
         {
             return new DiagnosticsConfiguration
             {
-                EnableFederationMessageTracing = false
+                EnableFederationMessageTracing = true
             };
         }
         #endregion
@@ -615,11 +615,11 @@ namespace FACCTS.Server.Data
         private static void SeedRolePermissions(DatabaseContext context)
         {
             //Admin
-            var adminPermissions = context.Permissions.ToList();
-            var admin = context.Roles.Where(r => r.RoleId == 1).FirstOrDefault();
-            if (admin != null) adminPermissions.ForEach(p => admin.Permissions.Add(p));
+            //var adminPermissions = context.Permissions.ToList();
+            //var admin = context.Roles.Where(r => r.RoleId == 1).FirstOrDefault();
+            //if (admin != null) adminPermissions.ForEach(p => admin.Permissions.Add(p));
 
-            context.SaveChanges();
+            //context.SaveChanges();
         }
        
 

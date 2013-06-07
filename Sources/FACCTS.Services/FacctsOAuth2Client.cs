@@ -163,7 +163,7 @@ namespace FACCTS.Services
             var response = new AccessTokenResponse
             {
                 AccessToken = json["access_token"].ToString(),
-                TokenType = json["token_type"].ToString(),
+                //TokenType = json["token_type"].ToString(),
                 ExpiresIn = int.Parse(json["expires_in"].ToString())
             };
 

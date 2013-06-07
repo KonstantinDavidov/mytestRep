@@ -12,12 +12,8 @@ namespace FACCTS.Services.Data
     {
         public IEnumerable<CourtCase> GetAll()
         {
-            string output = this.CallServiceGet<String>(Routes.GetCourtCases.CourtCaseController);
-            if (string.IsNullOrEmpty(output))
-            {
-                return null;
-            }
-            return JsonConvert.DeserializeObject<List<CourtCase>>(output);
+            List<CourtCase> output = this.CallServiceGet<List<CourtCase>>(Routes.GetCourtCases.CourtCaseController);
+            return output;
         }
     }
 }

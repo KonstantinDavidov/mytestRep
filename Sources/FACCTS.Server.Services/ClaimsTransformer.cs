@@ -35,8 +35,8 @@ namespace FACCTS.Server.Data
                 .ToList()
                 .ForEach(role =>
                 {
-                    Logger.InfoFormat("{0} -> {1}", role, Constants.Roles.IdentityServerUsers);
-                    incomingPrincipal.Identities.First().AddClaim(new Claim(ClaimTypes.Role, Constants.Roles.IdentityServerUsers, ClaimValueTypes.String, Constants.InternalIssuer));
+                    Logger.InfoFormat("{0} -> {1}", role, Thinktecture.IdentityServer.Constants.Roles.IdentityServerUsers);
+                    incomingPrincipal.Identities.First().AddClaim(new Claim(ClaimTypes.Role, Thinktecture.IdentityServer.Constants.Roles.IdentityServerUsers, ClaimValueTypes.String, Thinktecture.IdentityServer.Constants.InternalIssuer));
                     //hack for the compatibility with the identity server
                 });
 

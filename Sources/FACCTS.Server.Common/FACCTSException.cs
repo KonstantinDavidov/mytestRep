@@ -8,5 +8,9 @@ namespace FACCTS.Server.Common
 {
     public class FACCTSException : Exception
     {
+        public FACCTSException(string message) : base()
+        {
+
+        }
     }
 }

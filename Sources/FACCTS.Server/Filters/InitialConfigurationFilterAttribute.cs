@@ -11,6 +11,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Thinktecture.IdentityModel;
+using Thinktecture.IdentityServer.Models;
 using Thinktecture.IdentityServer.Repositories;
 
 namespace FACCTS.Server.Filters
@@ -25,6 +26,8 @@ namespace FACCTS.Server.Filters
                 return ServiceLocator.Current.GetInstance<IConfigurationRepository>();
             } 
         }
+
+        private IRelyingPartyRepository _relyingPartyRepository = ServiceLocator.Current.GetInstance<IRelyingPartyRepository>();
 
         public InitialConfigurationFilterAttribute() : base()
         {
@@ -55,14 +58,14 @@ namespace FACCTS.Server.Filters
                     // make sure we can access the private key
                     var pk = cert.PrivateKey;
 
-                    keys.SigningCertificate = cert;
+                    UpdateCertificate(keys, cert);
                     _logger.InfoFormat("Signing certificate was found: {0}", cert.Subject);
                 }
                 catch (CryptographicException)
                 {
                     _logger.InfoFormat(Resources.InitialConfigurationController.NoReadAccessPrivateKey, WindowsIdentity.GetCurrent().Name);
                     var cert = GetAvailableCertificateFromStore();
-                    keys.SigningCertificate = cert;
+                    UpdateCertificate(keys, cert);
                     _logger.InfoFormat("Signing certificate was set to: {0}", cert.Subject);
                 }
             }
@@ -70,21 +73,37 @@ namespace FACCTS.Server.Filters
             {
                 _logger.Info("The signing certificate is absent in the database.");
                 var cert = GetAvailableCertificateFromStore();
-                keys.SigningCertificate = cert;
+                UpdateCertificate(keys, cert);
                 _logger.InfoFormat("Signing certificate was set to: {0}", cert.Subject);
             }
-
-            if (string.IsNullOrWhiteSpace(keys.SymmetricSigningKey))
-            {
-                keys.SymmetricSigningKey = Convert.ToBase64String(CryptoRandom.CreateRandomKey(32));
-            }
-
             // updates key material config
             ConfigurationRepository.Keys = keys;
 
             base.OnActionExecuting(filterContext);
             _logger.MethodExit("InitialConfigurationFilterAttribute.OnActionExecuting");
         }
+
+        private void UpdateCertificate(Thinktecture.IdentityServer.Models.Configuration.KeyMaterialConfiguration keys, X509Certificate2 cert)
+        {
+            keys.SigningCertificate = cert;
+            if (string.IsNullOrWhiteSpace(keys.SymmetricSigningKey))
+            {
+                //keys.SymmetricSigningKey = CryptoRandom.CreateRandomKeyString(32);
+                RelyingParty rp;
+                if (_relyingPartyRepository.TryGet(FACCTS.Server.Common.Constants.RelyingParties.FACCTS, out rp))
+                {
+                    keys.SymmetricSigningKey = Convert.ToBase64String(rp.SymmetricSigningKey);
+                    rp.EncryptingCertificate = cert;
+                    _relyingPartyRepository.Update(rp);
+                    //rp.EncryptingCertificateThumbprint = keys.SymmetricSigningKey;
+                }
+                else
+                {
+                    throw new FACCTSException("Relying party record was not found!");
+                }
+            }
+        }
+
 
         private X509Certificate2 GetAvailableCertificateFromStore()
         {
