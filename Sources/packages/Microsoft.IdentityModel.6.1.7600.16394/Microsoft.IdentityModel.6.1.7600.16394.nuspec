@@ -15,8 +15,5 @@
     <copyright>Copyright 2012</copyright>
     <language />
     <tags>authentication federation claims</tags>
-    <references>
-      <reference file="Microsoft.IdentityModel.dll" />
-    </references>
   </metadata>
 </package>
