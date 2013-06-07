@@ -28,6 +28,7 @@ namespace FACCTS.Controls.ViewModels
                     {
                         _logger.InfoFormat("IsAuthenticated = {0}. Renew the Court cases.", x);
                         this.NotifyOfPropertyChange(() => CourtCases);
+                        this.NotifyOfPropertyChange(() => CourtCaseStatuses);
                     }
                 });
 
@@ -231,6 +232,14 @@ namespace FACCTS.Controls.ViewModels
             set
             {
                 this.RaiseAndSetIfChanged(ref _courtCases, value);
+            }
+        }
+
+        public List<CourtCaseStatus> CourtCaseStatuses
+        {
+            get
+            {
+                return FACCTS.Services.Data.CourtCaseStatuses.GetAll();
             }
         }
     }
