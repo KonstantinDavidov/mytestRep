@@ -28,7 +28,7 @@ namespace FACCTS.Server.Filters
         {
             _logger.MethodEntry("GlobalViewModelFilter.OnActionExecuting");
             filterContext.Controller.ViewBag.SiteName = ConfigurationRepository.Global.SiteName;
-            filterContext.Controller.ViewBag.IsAdministrator = ClaimsAuthorization.CheckAccess(Constants.Actions.Administration, Constants.Resources.UI);
+            filterContext.Controller.ViewBag.IsAdministrator = ClaimsAuthorization.CheckAccess(Thinktecture.IdentityServer.Constants.Actions.Administration, Thinktecture.IdentityServer.Constants.Resources.UI);
             filterContext.Controller.ViewBag.IsSignedIn = filterContext.HttpContext.User.Identity.IsAuthenticated;
 
             base.OnActionExecuting(filterContext);

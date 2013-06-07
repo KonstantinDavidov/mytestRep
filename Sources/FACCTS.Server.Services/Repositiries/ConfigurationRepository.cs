@@ -202,6 +202,22 @@ namespace FACCTS.Server.Data.Repositiries
                 }
             }
         }
-        
+
+
+
+
+
+
+        public Models.Configuration.AdfsIntegrationConfiguration AdfsIntegration
+        {
+            get
+            {
+                throw new System.NotImplementedException();
+            }
+            set
+            {
+                throw new System.NotImplementedException();
+            }
+        }
     }
 }

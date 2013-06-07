@@ -6,16 +6,34 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
+using FACCTS.Server.Model.DataModel;
+using System.Collections.ObjectModel;
+using FACCTS.Services.Logger;
 
 namespace FACCTS.Controls.ViewModels
 {
     [Export(typeof(CaseStatusViewModel))]
     public class CaseStatusViewModel : ViewModelBase
     {
-        public CaseStatusViewModel() : base()
+        [ImportingConstructor]
+        public CaseStatusViewModel(ILogger logger) : base()
         {
+            _logger = logger;
+            _logger.Info("CaseStatusViewModel..ctor()");
             this.DisplayName = "Case Status";
+            this.WhenAny(x => x.IsAuthenticated, x => x.Value)
+                .Subscribe(x =>
+                {
+                    if (x)
+                    {
+                        _logger.InfoFormat("IsAuthenticated = {0}. Renew the Court cases.", x);
+                        this.NotifyOfPropertyChange(() => CourtCases);
+                    }
+                });
+
         }
+
+        private ILogger _logger;
 
         private string _caseNumber;
         public string CaseNumber
@@ -192,6 +210,28 @@ namespace FACCTS.Controls.ViewModels
         public void Find()
         {
             //TODO implement Find()
+        }
+
+        private ObservableCollection<CourtCase> _courtCases;
+        public ObservableCollection<CourtCase> CourtCases
+        {
+            get
+            {
+                if (_courtCases == null && IsAuthenticated)
+                {
+                    var data = new FACCTS.Services.Data.CourtCases().GetAll();
+                    if (data != null)
+                    {
+                        _logger.InfoFormat("Wep api service returned {0} court cases", data.Count());
+                        _courtCases = new ObservableCollection<CourtCase>();
+                    }
+                }
+                return _courtCases;
+            }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _courtCases, value);
+            }
         }
     }
 }

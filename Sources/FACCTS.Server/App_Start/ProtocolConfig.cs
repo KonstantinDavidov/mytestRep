@@ -15,6 +15,7 @@ using Thinktecture.IdentityServer.TokenService;
 using System.ServiceModel.Activation;
 using log4net;
 using FACCTS.Server.Common;
+using Thinktecture.IdentityModel.Constants;
 
 namespace FACCTS.Server.App_Start
 {
@@ -26,7 +27,7 @@ namespace FACCTS.Server.App_Start
         {
             _logger.MethodEntry("ProtocolConfig.RegisterProtocols");
             var basicAuthConfig = CreateBasicAuthConfig(users);
-            var clientAuthConfig = CreateClientAuthConfig();
+            var clientAuthConfig = CreateClientAuthConfig(httpConfiguration, configuration);
 
             // require SSL for all web api endpoints
             httpConfiguration.MessageHandlers.Add(new RequireHttpsHandler());
@@ -86,28 +87,40 @@ namespace FACCTS.Server.App_Start
 
         public static AuthenticationConfiguration CreateBasicAuthConfig(IUserRepository userRepository)
         {
+            _logger.Info("Creating basic auth configuration...");
             var authConfig = new AuthenticationConfiguration
             {
                 InheritHostClientIdentity = false,
                 //RequireSsl = true,
-                ClaimsAuthenticationManager = new ClaimsTransformer()
+                ClaimsAuthenticationManager = new FACCTS.Server.Data.ClaimsTransformer()
             };
 
             authConfig.AddBasicAuthentication((userName, password) => userRepository.ValidateUser(userName, password));
+            _logger.Info("Basic auth configuration done!");
             return authConfig;
         }
 
-        public static AuthenticationConfiguration CreateClientAuthConfig()
+        public static AuthenticationConfiguration CreateClientAuthConfig(HttpConfiguration httpConfiguration, IConfigurationRepository configuration)
         {
+            _logger.Info("Creating client auth configuration... ");
             var authConfig = new AuthenticationConfiguration
             {
                 InheritHostClientIdentity = false,
-                //RequireSsl = true,
+                RequireSsl = false,
+                //EnableSessionToken = true,
+               // DefaultAuthenticationScheme = JwtConstants.JWT,
             };
 
             // accept arbitrary credentials on basic auth header,
             // validation will be done in the protocol endpoint
             authConfig.AddBasicAuthentication((id, secret) => true, retainPassword: true);
+            authConfig.AddJsonWebToken(
+                issuer: configuration.Global.IssuerUri,
+                audience: FACCTS.Server.Common.Constants.RelyingParties.FACCTS,
+                signingKey: configuration.Keys.SymmetricSigningKey
+                );
+            httpConfiguration.MessageHandlers.Add(new AuthenticationHandler(authConfig));
+            _logger.Info("Client auth configuration done! ");
             return authConfig;
         }
     }

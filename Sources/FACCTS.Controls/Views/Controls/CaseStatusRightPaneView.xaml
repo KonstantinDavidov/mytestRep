@@ -11,7 +11,7 @@
     		<RowDefinition Height="Auto"/>
     	</Grid.RowDefinitions>
     	<GroupBox Header="Case Status">
-    		<DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding CourtCases, Mode=OneWay}">
     			<DataGrid.Columns>
     				<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Case Number"/>
     				<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Status"/>

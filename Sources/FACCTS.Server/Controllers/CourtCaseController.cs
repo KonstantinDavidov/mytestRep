@@ -1,4 +1,5 @@
-﻿using FACCTS.Server.Models;
+﻿using FACCTS.Server.Model.DataModel;
+using FACCTS.Server.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -6,6 +7,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Thinktecture.IdentityModel.Authorization.WebApi;
+using Thinktecture.IdentityServer;
 
 namespace FACCTS.Server.Controllers
 {
@@ -19,17 +22,10 @@ namespace FACCTS.Server.Controllers
 
         }
 
-        public IEnumerable<CourtCaseHeading> GetHeadings()
+        public List<CourtCase> Get()
         {
             return DataManager.CourtCaseRepository.GetAll()
-                .Select(x => new { x.Id, x.CaseNumber, x.CaseStatus })
-                .AsEnumerable()
-                .Select(x => new CourtCaseHeading()
-                {
-                    Id = x.Id,
-                    CaseNumber = x.CaseNumber,
-                    CaseStatus = x.CaseStatus,
-                });
+                .ToList();
         }
     }
 }
