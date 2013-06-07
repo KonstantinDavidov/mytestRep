@@ -1,0 +1,337 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Thinktecture.IdentityModel.Web</name>
+    </assembly>
+    <members>
+        <member name="T:Thinktecture.IdentityModel.Web.WSFedRequestValidator">
+            <summary>
+            Request Validator for allowing WS-Federation token posts
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.WSFedRequestValidator.IsValidRequestString(System.Web.HttpContext,System.String,System.Web.Util.RequestValidationSource,System.String,System.Int32@)">
+            <summary>
+            Validates a string that contains HTTP request data.
+            </summary>
+            <param name="context">The context of the current request.</param>
+            <param name="value">The HTTP request data to validate.</param>
+            <param name="requestValidationSource">An enumeration that represents the source of request data that is being validated. The following are possible values for the enumeration:QueryStringForm CookiesFilesRawUrlPathPathInfoHeaders</param>
+            <param name="collectionKey">The key in the request collection of the item to validate. This parameter is optional. This parameter is used if the data to validate is obtained from a collection. If the data to validate is not from a collection, <paramref name="collectionKey"/> can be null.</param>
+            <param name="validationFailureIndex">When this method returns, indicates the zero-based starting point of the problematic or invalid text in the request collection. This parameter is passed uninitialized.</param>
+            <returns>
+            true if the string to be validated is valid; otherwise, false.
+            </returns>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Web.SwtSecurityKeyClause">
+            <summary>
+            The <see cref="T:Thinktecture.IdentityModel.Web.SwtSecurityTokenHandler"/> passes an instance of this clause to 
+            the <see cref="!:SwtIssuerTokenResolver"/> so that it knows it's an SWT that has 
+            already been verified against the <see cref="!:SwtIssuerNameRegistry"/> trusted 
+            issuers list. 
+            </summary>
+            <remarks>
+            Because we only support one symmetric <see cref="T:System.IdentityModel.Tokens.SecurityKey"/> 
+            for SWT, we don't need to differentiate between issuers.
+            </remarks>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Web.WrapClient">
+            <summary>
+            Implements the OAuth WRAP protocol to request tokens from an issuer.
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.WrapClient.#ctor(System.Uri)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Thinktecture.IdentityModel.Web.WrapClient"/> class.
+            </summary>
+            <param name="issuerAddress">The issuer address.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.WrapClient.Issue(System.String,System.String,System.Uri)">
+            <summary>
+            Requests an SWT Token using username/password credentials.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="password">The password.</param>
+            <param name="scope">The requested scope.</param>
+            <returns>The requested SWT token</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.WrapClient.Issue(Thinktecture.IdentityModel.Web.SimpleWebToken,System.Uri)">
+            <summary>
+            Requests an SWT Token using an input SWT token.
+            </summary>
+            <param name="token">The input SWT token.</param>
+            <param name="scope">The requested scope.</param>
+            <returns>The requested SWT token</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.WrapClient.Issue(System.IdentityModel.Tokens.SamlSecurityToken,System.Uri)">
+            <summary>
+            Requests an SWT Token using an input SAML token.
+            </summary>
+            <param name="token">The input SAML token.</param>
+            <param name="scope">The requested scope.</param>
+            <returns>The requested SWT token</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.WrapClient.Issue(System.IdentityModel.Tokens.GenericXmlSecurityToken,System.Uri)">
+            <summary>
+            Requests an SWT Token using an input GenericXml SAML token.
+            </summary>
+            <param name="token">The input GenericXml SAML token.</param>
+            <param name="scope">The requested scope.</param>
+            <returns>The requested SWT token</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.WrapClient.IssueAssertion(System.String,System.String,System.Uri)">
+            <summary>
+            Requests an SWT Token using an input assertion.
+            </summary>
+            <param name="token">The assertion.</param>
+            <param name="assertionFormat">The assertion format.</param>
+            <param name="scope">The requested scope.</param>
+            <returns>The requested SWT token</returns>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Web.ProtectedCookie">
+            <summary>
+            Represents a cookie protected with encryption and integrity protection.
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.ProtectedCookie.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Thinktecture.IdentityModel.Web.ProtectedCookie"/> class for DPAPI protection (single server).
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.ProtectedCookie.#ctor(System.Security.Cryptography.X509Certificates.X509Certificate2)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Thinktecture.IdentityModel.Web.ProtectedCookie"/> class for asymmetric protection (e.g. web farms).
+            </summary>
+            <param name="protectionCertificate">The protection certificate.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.ProtectedCookie.#ctor(System.Collections.Generic.List{Microsoft.IdentityModel.Web.CookieTransform})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Thinktecture.IdentityModel.Web.ProtectedCookie"/> class.
+            </summary>
+            <param name="transforms">The transforms.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.ProtectedCookie.Write(System.String,System.String,System.DateTime)">
+            <summary>
+            Writes the specified cookie.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+            <param name="expirationTime">The expiration time.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.ProtectedCookie.Write(System.String,System.String,System.DateTime,System.String,System.String)">
+            <summary>
+            Writes the specified cookie.
+            </summary>
+            <param name="name">The name.</param>
+            <param name="value">The value.</param>
+            <param name="expirationTime">The expiration time.</param>
+            <param name="domain">The domain.</param>
+            <param name="path">The path.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.ProtectedCookie.Read(System.String)">
+            <summary>
+            Reads the specified cookie.
+            </summary>
+            <param name="name">The name.</param>
+            <returns>The cookie value or null.</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.ProtectedCookie.Delete(System.String)">
+            <summary>
+            Deletes the specified cookie.
+            </summary>
+            <param name="name">The name.</param>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Web.SimpleWebToken">
+            <summary>
+            This class represents the token format for the SimpleWebToken.
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.SimpleWebToken.#ctor(System.Uri,System.String,System.DateTime,System.Collections.Generic.List{Microsoft.IdentityModel.Claims.Claim},System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Thinktecture.IdentityModel.Web.SimpleWebToken"/> class.
+            This is internal contructor is only called from the <see cref="!:SimpleWebTokenHandler"/> when reading a token received from the wire.
+            </summary>
+            <param name="audienceUri">The Audience Uri of the token.</param>
+            <param name="issuer">The issuer of the token.</param>
+            <param name="expiresOn">The expiry time of the token.</param>
+            <param name="claims">The claims in the token.</param>
+            <param name="signature">The signature of the token.</param>
+            <param name="unsignedString">The serialized token without its signature.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.SimpleWebToken.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Thinktecture.IdentityModel.Web.SimpleWebToken"/> class.
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.SimpleWebToken.SignVerify(System.Byte[])">
+            <summary>
+            Verifies the signature of the incoming token.
+            </summary>
+            <param name="key">The key used for signing.</param>
+            <returns>true if the signatures match, false otherwise.</returns>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Web.SimpleWebToken.Id">
+            <summary>
+            Gets the Id of the token.
+            </summary>
+            <value>The Id of the token.</value>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Web.SimpleWebToken.SecurityKeys">
+            <summary>
+            Gets the keys associated with this token.
+            </summary>
+            <value>The keys associated with this token.</value>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Web.SimpleWebToken.ValidFrom">
+            <summary>
+            Gets the time from when the token is valid.
+            </summary>
+            <value>The time from when the token is valid.</value>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Web.SimpleWebToken.ValidTo">
+            <summary>
+            Gets the time when the token expires.
+            </summary>
+            <value>The time upto which the token is valid.</value>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Web.SimpleWebToken.AudienceUri">
+            <summary>
+            Gets the AudienceUri for the token.
+            </summary>
+            <value>The audience Uri of the token.</value>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Web.SimpleWebToken.Issuer">
+            <summary>
+            Gets the Issuer for the token.
+            </summary>
+            <value>The issuer for the token.</value>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Web.SimpleWebToken.Claims">
+            <summary>
+            Gets the Claims in the token.
+            </summary>
+            <value>The Claims in the token.</value>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Web.SwtSecurityTokenHandler">
+            <summary>
+            Handles SWT tokens.
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.SwtSecurityTokenHandler.ReadToken(System.String)">
+            <summary>
+            Reads a serialized token and converts it into a <see cref="T:System.IdentityModel.Tokens.SecurityToken"/>.
+            </summary>
+            <param name="rawToken">The token in serialized form.</param>
+            <returns>The parsed form of the token.</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.SwtSecurityTokenHandler.ParseToken(System.String)">
+            <summary>
+            Parses the token into a collection.
+            </summary>
+            <param name="encodedToken">The serialized token.</param>
+            <returns>A colleciton of all name-value pairs from the token.</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.SwtSecurityTokenHandler.DecodeClaims(System.String,System.Collections.Specialized.NameValueCollection)">
+            <summary>Create <see cref="T:Microsoft.IdentityModel.Claims.Claim"/> from the incoming token.
+            </summary>
+            <param name="issuer">The issuer of the token.</param>
+            <param name="rawClaims">The name value pairs from the token.</param>        
+            <returns>A list of Claims created from the token.</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.SwtSecurityTokenHandler.DecodeExpiry(System.String)">
+            <summary>
+            Convert the expiryTime to the <see cref="T:System.DateTime"/> format.
+            </summary>
+            <param name="expiry">The expiry time from the token.</param>
+            <returns>The local expiry time of the token.</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.AllowAnonymousAccessAttribute.ApplyDispatchBehavior(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Dispatcher.DispatchOperation)">
+            <summary>
+              Implements a modification or extension of the service across an operation.
+            </summary>
+            <param name = "operationDescription">The operation being examined. Use for examination only. If the operation description is modified, the results are undefined.</param>
+            <param name = "dispatchOperation">The run-time object that exposes customization properties for the operation described by <paramref name = "operationDescription" />.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.AllowAnonymousAccessAttribute.ApplyClientBehavior(System.ServiceModel.Description.OperationDescription,System.ServiceModel.Dispatcher.ClientOperation)">
+            <summary>
+              Implements a modification or extension of the client across an operation.
+            </summary>
+            <param name = "operationDescription">The operation being examined. Use for examination only. If the operation description is modified, the results are undefined.</param>
+            <param name = "clientOperation">The run-time object that exposes customization properties for the operation described by <paramref name = "operationDescription" />.</param>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Web.WebUserNameSecurityTokenHandler">
+            <summary>
+            Generic security token handler for username/password type credentials
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.WebUserNameSecurityTokenHandler.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Thinktecture.IdentityModel.Web.WebUserNameSecurityTokenHandler"/> class.
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.WebUserNameSecurityTokenHandler.#ctor(Thinktecture.IdentityModel.Web.WebUserNameSecurityTokenHandler.ValidateUserNameCredentialDelegate)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Thinktecture.IdentityModel.Web.WebUserNameSecurityTokenHandler"/> class.
+            </summary>
+            <param name="validateUserNameCredential">The credential validation callback.</param>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.WebUserNameSecurityTokenHandler.ValidateUserNameCredentialCore(System.String,System.String)">
+            <summary>
+            Validates the user name credential core.
+            </summary>
+            <param name="userName">Name of the user.</param>
+            <param name="password">The password.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.WebUserNameSecurityTokenHandler.ValidateToken(System.IdentityModel.Tokens.SecurityToken)">
+            <summary>
+            Validates the username and password.
+            </summary>
+            <param name="token">The token.</param>
+            <returns>A ClaimsIdentityCollection representing the identity in the token</returns>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Web.WebUserNameSecurityTokenHandler.ValidateUserNameCredential">
+            <summary>
+            Gets or sets the credential validation callback
+            </summary>
+            <value>
+            The credential validation callback.
+            </value>
+        </member>
+        <member name="P:Thinktecture.IdentityModel.Web.WebUserNameSecurityTokenHandler.CanValidateToken">
+            <summary>
+            Gets a value indicating whether this instance can validate a token.
+            </summary>
+            <value>
+            	<c>true</c> if this instance can validate a token; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="T:Thinktecture.IdentityModel.Web.WebUserNameSecurityTokenHandler.ValidateUserNameCredentialDelegate">
+            <summary>
+            Callback type for validating the credential
+            </summary>
+            <param name="username">The username.</param>
+            <param name="password">The password.</param>
+            <returns>True when the credential could be validated succesfully. Otherwise false.</returns>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.DateTimeEpochExtensions.ToEpochTime(System.DateTime)">
+            <summary>
+            Converts the given date value to epoch time.
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.DateTimeEpochExtensions.ToEpochTime(System.DateTimeOffset)">
+            <summary>
+            Converts the given date value to epoch time.
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.DateTimeEpochExtensions.ToDateTimeFromEpoch(System.UInt64)">
+            <summary>
+            Converts the given epoch time to a <see cref="T:System.DateTime"/> with <see cref="F:System.DateTimeKind.Utc"/> kind.
+            </summary>
+        </member>
+        <member name="M:Thinktecture.IdentityModel.Web.DateTimeEpochExtensions.ToDateTimeOffsetFromEpoch(System.UInt64)">
+            <summary>
+            Converts the given epoch time to a UTC <see cref="T:System.DateTimeOffset"/>.
+            </summary>
+        </member>
+    </members>
+</doc>

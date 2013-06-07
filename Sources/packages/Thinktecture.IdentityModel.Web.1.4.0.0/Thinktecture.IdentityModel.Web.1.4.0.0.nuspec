@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Thinktecture.IdentityModel.Web</id>
+    <version>1.4.0.0</version>
+    <title>Thinktecture.IdentityModel.Web</title>
+    <authors>Dominick Baier</authors>
+    <owners>Dominick Baier</owners>
+    <licenseUrl>http://identitymodel.codeplex.com/license</licenseUrl>
+    <projectUrl>http://identitymodel.codeplex.com/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Thinktecture.IdentityModel.Web extends and adds new functionality to the Windows Identity Foundation in the area of RESTful services.</description>
+    <summary>Thinktecture.IdentityModel.Web extends and adds new functionality to the Windows Identity Foundation in the area of RESTful services.</summary>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <tags>WIF WCF ASP.NET Security Federation Identity OAuth OAuth2 SWT WRAP SAML HTTP WebApi</tags>
+    <dependencies>
+      <dependency id="Thinktecture.IdentityModel" version="1.3.0.0" />
+      <dependency id="HttpClient" version="0.6.0.0" />
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.IdentityModel" targetFramework=".NETFramework4.0" />
+      <frameworkAssembly assemblyName="Microsoft.IdentityModel" targetFramework=".NETFramework4.0" />
+    </frameworkAssemblies>
+    <references>
+      <reference file="Thinktecture.IdentityModel.Web.dll" />
+    </references>
+  </metadata>
+</package>
