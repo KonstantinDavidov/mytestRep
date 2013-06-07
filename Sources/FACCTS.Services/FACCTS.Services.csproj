@@ -86,6 +86,7 @@
     <Compile Include="Authentication\IAuthenticationService.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Data\CourtCases.cs" />
+    <Compile Include="Data\CourtCaseStatuses.cs" />
     <Compile Include="Data\Routes.cs" />
     <Compile Include="Dialog\DialogService.cs" />
     <Compile Include="Dialog\IDialogService.cs" />
@@ -101,7 +102,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Faccts.Model\Faccts.Model.csproj">

@@ -14,8 +14,8 @@ namespace FACCTS.Services.Data
 
         }
 
-        private static List<CourtCase> _all;
-        public static List<CourtCase> GetAll()
+        private static List<CourtCaseStatus> _all;
+        public static List<CourtCaseStatus> GetAll()
         {
             if (_all == null)
             {
@@ -24,9 +24,9 @@ namespace FACCTS.Services.Data
             return _all;
         }
 
-        protected List<CourtCase> GetCourtCaseStatuses()
+        protected List<CourtCaseStatus> GetCourtCaseStatuses()
         {
-            return this.CallServiceGet<List<CourtCase>>("CourtCaseStatuses");
+            return this.CallServiceGet<List<CourtCaseStatus>>("CourtCaseStatuses");
         }
     }
 }
