@@ -85,6 +85,7 @@
     <Compile Include="Authentication\AuthenticationStatusChangedEventArgs.cs" />
     <Compile Include="Authentication\IAuthenticationService.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Data\CCPORStatuses.cs" />
     <Compile Include="Data\CourtCases.cs" />
     <Compile Include="Data\CourtCaseStatuses.cs" />
     <Compile Include="Data\Routes.cs" />
