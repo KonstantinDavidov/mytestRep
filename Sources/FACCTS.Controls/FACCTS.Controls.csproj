@@ -186,6 +186,9 @@
     <Compile Include="Views\Controls\CourtOrdersRightPaneView.xaml.cs">
       <DependentUpon>CourtOrdersRightPaneView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\NewCourtCaseControlView.xaml.cs">
+      <DependentUpon>NewCourtCaseControlView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\NewCourtDateControlView.xaml.cs">
       <DependentUpon>NewCourtDateControlView.xaml</DependentUpon>
     </Compile>
@@ -203,6 +206,9 @@
     </Compile>
     <Compile Include="Views\CourtOrdersView.xaml.cs">
       <DependentUpon>CourtOrdersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewCourtCaseDialogView.xaml.cs">
+      <DependentUpon>NewCourtCaseDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OutputForms\DV110PropertyAndAttorneysFeeView.xaml.cs">
       <DependentUpon>DV110PropertyAndAttorneysFeeView.xaml</DependentUpon>
@@ -304,6 +310,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Controls\NewCourtCaseControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Controls\NewCourtDateControlView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -327,6 +337,10 @@
     <Page Include="Views\CourtOrdersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewCourtCaseDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\OutputForms\DV110PropertyAndAttorneysFeeView.xaml">
       <SubType>Designer</SubType>

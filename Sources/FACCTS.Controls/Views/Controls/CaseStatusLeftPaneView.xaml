@@ -10,7 +10,10 @@
              xmlns:utils="clr-namespace:FACCTS.Controls.Utils"
              xmlns:this="clr-namespace:FACCTS.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="532" d:DesignWidth="296" Background="{DynamicResource ControlBackgroundBrush}">
+             d:DesignHeight="537" d:DesignWidth="296" Background="{DynamicResource ControlBackgroundBrush}">
+    <UserControl.Resources>
+        <ResourceDictionary Source="pack://application:,,,/FACCTS.Controls;component/Resources/Borders.xaml"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -37,7 +40,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Border BorderBrush="Black" BorderThickness="1" CornerRadius="2" Style="{StaticResource OrdinalBorder}">
+                <Border BorderThickness="1" CornerRadius="2" Style="{StaticResource OrdinalBorder}" >
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" MinWidth="100"/>
@@ -47,8 +50,8 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Case Number" VerticalAlignment="Top"/>
-                        <AdornerDecorator Grid.Column="1">
+                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Case Number" VerticalAlignment="Top" Margin="0,5"/>
+                        <AdornerDecorator Grid.Column="1" Margin="0,3">
                             <this:TextBoxClearButton TextWrapping="Wrap" Text="{Binding CaseNumber, Mode=TwoWay}" VerticalAlignment="Top" >
                                 <utils:WatermarkService.Watermark>
                                     <TextBlock>Please type the case number</TextBlock>
@@ -56,8 +59,8 @@
                              </this:TextBoxClearButton>
                         </AdornerDecorator>
                         
-                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Status" VerticalAlignment="Center" Grid.Row="1"/>
-                        <ComboBox Margin="0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom"  SelectedValuePath="Id" ItemsSource="{Binding CourtCaseStatuses, Mode=OneWay}" SelectedIndex="0">
+                        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Status" VerticalAlignment="Center" Grid.Row="1" Padding="0,5"/>
+                        <ComboBox Margin="0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"  SelectedValuePath="Id" ItemsSource="{Binding CourtCaseStatuses, Mode=OneWay}" SelectedIndex="0" Padding="0,3">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate DataType="{x:Type ent:CourtCaseStatus}">
                                     <TextBlock Text="{Binding CaseStatus, Mode=OneWay}"/>
@@ -66,13 +69,13 @@
                         </ComboBox>
                     </Grid>
                 </Border>
-                <Border BorderBrush="Black" BorderThickness="1"  Style="{StaticResource OrdinalBorder}" Grid.Row="1">
+                <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1"  Style="{StaticResource OrdinalBorder}" Grid.Row="1">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <HeaderedContentControl Header="First Activity" Margin="0,0,0,-0.001">
+                        <HeaderedContentControl Header="First Activity" Margin="0,0,0,-0.001" Padding="0,8" UseLayoutRounding="True" FontWeight="Bold">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" MinWidth="100"/>
@@ -82,13 +85,13 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Top" Text="Start"/>
-                                <TextBlock TextWrapping="Wrap" Text="End" Margin="0,0,0,-0.001" Grid.Row="1"/>
-                                <DatePicker VerticalAlignment="Top" Grid.Column="1" SelectedDate="{Binding FirstActivityStartDate, Mode=TwoWay}"/>
-                                <DatePicker VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" SelectedDate="{Binding FirstActivityEndDate, Mode=TwoWay}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="0,5" TextWrapping="Wrap" VerticalAlignment="Top" Text="Start" FontWeight="Normal"/>
+                                <TextBlock TextWrapping="Wrap" Text="End" Margin="0,5" Grid.Row="1" FontWeight="Normal"/>
+                                <DatePicker VerticalAlignment="Center" Grid.Column="1" SelectedDate="{Binding FirstActivityStartDate, Mode=TwoWay}" FontWeight="Normal"/>
+                                <DatePicker VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" SelectedDate="{Binding FirstActivityEndDate, Mode=TwoWay}" FontWeight="Normal"/>
                             </Grid>
                         </HeaderedContentControl>
-                        <HeaderedContentControl Header="Last Activity" Grid.Row="1">
+                        <HeaderedContentControl Header="Last Activity" Grid.Row="1" Padding="0,8" FontWeight="Bold">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" MinWidth="100"/>
@@ -98,15 +101,15 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Top" Text="Start"/>
-                                <TextBlock TextWrapping="Wrap" Text="End" Margin="0,0,0,-0.001" Grid.Row="1"/>
-                                <DatePicker VerticalAlignment="Top" Grid.Column="1" SelectedDate="{Binding LastActivityStartDate, Mode=TwoWay}"/>
-                                <DatePicker VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" SelectedDate="{Binding LastActivityEndDate, Mode=TwoWay}"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="0,5" TextWrapping="Wrap" VerticalAlignment="Top" Text="Start" FontWeight="Normal"/>
+                                <TextBlock TextWrapping="Wrap" Text="End" Margin="0,0,0,-0.001" Grid.Row="1" Padding="0,5" FontWeight="Normal"/>
+                                <DatePicker VerticalAlignment="Center" Grid.Column="1" SelectedDate="{Binding LastActivityStartDate, Mode=TwoWay}" FontWeight="Normal"/>
+                                <DatePicker VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" SelectedDate="{Binding LastActivityEndDate, Mode=TwoWay}" FontWeight="Normal"/>
                             </Grid>
                         </HeaderedContentControl>
                     </Grid>
                 </Border>
-                <Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
+                <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition MinWidth="100" Width="Auto"/>
@@ -116,7 +119,7 @@
                         <ComboBox Margin="0,0,0,-0.001" Grid.Column="1" ItemsSource="{Binding CourtClerks, Mode=OneWay}" SelectedItem="{Binding SelectedClerk, Mode=TwoWay}"/>
                     </Grid>
                 </Border>
-                <Border BorderBrush="Black" BorderThickness="1" Grid.Row="3" Style="{DynamicResource OrdinalBorder}">
+                <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Row="3" Style="{DynamicResource OrdinalBorder}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition MinWidth="100" Width="Auto"/>
@@ -126,9 +129,9 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" Text="CCPOR Status" VerticalAlignment="Center"/>
-                        <TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="1" Text="CCPOR ID"/>
-                        <ComboBox Grid.Column="1" Height="20" VerticalAlignment="Bottom" ItemsSource="{Binding CCPORStatusList, Mode=OneWay}" SelectedIndex="0"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" Text="CCPOR Status" VerticalAlignment="Center" Padding="0,5"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="1" Text="CCPOR ID" Padding="0,5"/>
+                        <ComboBox Grid.Column="1" Height="20" VerticalAlignment="Bottom" ItemsSource="{Binding CCPORStatusList, Mode=OneWay}" SelectedIndex="0" VerticalContentAlignment="Center"/>
                         <AdornerDecorator Grid.Column="1" Grid.Row="1">
                             <this:TextBoxClearButton TextWrapping="Wrap" VerticalAlignment="Top">
                                 <utils:WatermarkService.Watermark>
@@ -139,7 +142,7 @@
                         
                     </Grid>
                 </Border>
-                <Border BorderBrush="Black" BorderThickness="1" Grid.Row="4" Style="{DynamicResource OrdinalBorder}">
+                <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Row="4" Style="{DynamicResource OrdinalBorder}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -154,7 +157,7 @@
                         <AdornerDecorator Grid.Column="1">
                             <this:TextBoxClearButton TextWrapping="Wrap" VerticalAlignment="Top" Margin="0" Text="{Binding Party1FirstName, Mode=TwoWay}">
                         		<utils:WatermarkService.Watermark>
-                        			<TextBlock Text="First Name" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="First Name" HorizontalAlignment="Center" FontSize="10.667"/>
                         		</utils:WatermarkService.Watermark>
                         	</this:TextBoxClearButton>
                         </AdornerDecorator>
@@ -176,7 +179,7 @@
                         </AdornerDecorator>
                     </Grid>
                 </Border>
-                <Border BorderBrush="Black" BorderThickness="1" Grid.Row="5" Style="{DynamicResource OrdinalBorder}">
+                <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Row="5" Style="{DynamicResource OrdinalBorder}">
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
@@ -212,13 +215,13 @@
                         </AdornerDecorator>
                     </Grid>
                 </Border>
-                <UniformGrid Grid.Row="6" HorizontalAlignment="Right" Rows="1" Columns="2">
+                <UniformGrid Grid.Row="6" HorizontalAlignment="Right" Rows="1" Columns="2" Margin="0,8">
                     <Button Content="Clear" Width="75" cal:Message.Attach="Clear"/>
                     <Button Content="Find" Width="75" cal:Message.Attach="Find"/>
                 </UniformGrid>
             </Grid>
         </GroupBox>
-        <Border BorderBrush="Black" BorderThickness="1" Style="{DynamicResource OrdinalBorder}" Grid.Row="2" VerticalAlignment="Bottom">
+        <Border BorderThickness="1" Style="{DynamicResource OrdinalBorder}" Grid.Row="2" VerticalAlignment="Bottom">
             <UniformGrid Rows="1" Columns="2">
                 <Button Content="Import CMS" HorizontalAlignment="Left"/>
                 <Button Content="Export CCPOR" VerticalAlignment="Top" HorizontalAlignment="Right"/>
