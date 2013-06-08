@@ -2,6 +2,7 @@
 using Caliburn.Micro.ReactiveUI;
 using FACCTS.Services;
 using FACCTS.Services.Authentication;
+using FACCTS.Services.Logger;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -17,10 +18,25 @@ namespace FACCTS.Controls.ViewModels
     {
         private IAuthenticationService _authenticationService;
 
+        private ILogger _logger = ServiceLocatorContainer.Locator.GetInstance<ILogger>();
+
         public ViewModelBase()
             : this(ServiceLocatorContainer.Locator.GetInstance<IAuthenticationService>())
         {
+            this.WhenAny(x => x.IsAuthenticated, x => x.Value)
+                .Subscribe(x =>
+                {
+                    if (x)
+                    {
+                        _logger.InfoFormat("IsAuthenticated = {0}.", x);
+                        Authorized();
+                    }
+                });
+        }
 
+        protected virtual void Authorized()
+        {
+            
         }
 
         [ImportingConstructor]

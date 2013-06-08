@@ -77,6 +77,14 @@ namespace FACCTS.Server.Data
                 return GetRepo<ICourtMemberRepository>();
             }
         }
+
+        public IFacctsDataRepository<User> UserRepository
+        {
+            get
+            {
+                return GetStandardRepo<User>();
+            }
+        }
         #endregion
 
         //Commit

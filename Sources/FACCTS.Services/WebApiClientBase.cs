@@ -28,7 +28,7 @@ namespace FACCTS.Services
             AuthenticationService = ServiceLocatorContainer.Locator.GetInstance<IAuthenticationService>();
         }
 
-        public virtual T CallServiceGet<T>(string route)
+        protected virtual T CallServiceGet<T>(string route)
         {
             if (!AuthenticationService.IsAuthenticated)
             {
@@ -58,7 +58,7 @@ namespace FACCTS.Services
             
         }
 
-        public virtual T CallServicePost<T>(string route, FormUrlEncodedContent content)
+        protected virtual T CallServicePost<T>(string route, FormUrlEncodedContent content)
         {
             using (var client = new HttpClient
             {

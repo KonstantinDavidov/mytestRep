@@ -113,7 +113,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Top" Text="Court Clerk"/>
-                        <ComboBox Margin="0,0,0,-0.001" Grid.Column="1" />
+                        <ComboBox Margin="0,0,0,-0.001" Grid.Column="1" ItemsSource="{Binding CourtClerks, Mode=OneWay}" SelectedItem="{Binding SelectedClerk, Mode=TwoWay}"/>
                     </Grid>
                 </Border>
                 <Border BorderBrush="Black" BorderThickness="1" Grid.Row="3" Style="{DynamicResource OrdinalBorder}">
@@ -129,12 +129,12 @@
                         <TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" Text="CCPOR Status" VerticalAlignment="Center"/>
                         <TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="1" Text="CCPOR ID"/>
                         <ComboBox Grid.Column="1" Height="20" VerticalAlignment="Bottom" ItemsSource="{Binding CCPORStatusList, Mode=OneWay}" SelectedIndex="0"/>
-                        <AdornerDecorator Grid.Column="1">
-                            <TextBox TextWrapping="Wrap" Text="{Binding CCPOR_ID, Mode=TwoWay}" Grid.Row="1" >
+                        <AdornerDecorator Grid.Column="1" Grid.Row="1">
+                            <this:TextBoxClearButton TextWrapping="Wrap" VerticalAlignment="Top">
                                 <utils:WatermarkService.Watermark>
-                                    <TextBlock Text="Please type CCPOR status here"/>
+                                    <TextBlock>Please type CCPOR Status</TextBlock>
                                 </utils:WatermarkService.Watermark>
-                            </TextBox>
+                            </this:TextBoxClearButton>
                         </AdornerDecorator>
                         
                     </Grid>
@@ -152,27 +152,27 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Center"><Run Text="Party 1"/></TextBlock>
                         <AdornerDecorator Grid.Column="1">
-                            <TextBox TextWrapping="Wrap" Text="{Binding Party1FirstName, Mode=TwoWay}">
-                                <utils:WatermarkService.Watermark>
-                                    <TextBlock Text="First name" FontSize="10.667" HorizontalAlignment="Center"/>
-                                </utils:WatermarkService.Watermark>
-                            </TextBox>
+                            <this:TextBoxClearButton TextWrapping="Wrap" VerticalAlignment="Top" Margin="0" Text="{Binding Party1FirstName, Mode=TwoWay}">
+                        		<utils:WatermarkService.Watermark>
+                        			<TextBlock Text="First Name" HorizontalAlignment="Center"/>
+                        		</utils:WatermarkService.Watermark>
+                        	</this:TextBoxClearButton>
                         </AdornerDecorator>
 
                         <AdornerDecorator Grid.Column="2">
-                            <TextBox TextWrapping="Wrap" Text="{Binding Party1MiddleName, Mode=TwoWay}">
+                            <this:TextBoxClearButton TextWrapping="Wrap" Text="{Binding Party1MiddleName, Mode=TwoWay}">
                                 <utils:WatermarkService.Watermark>
                                     <TextBlock Text="Middle name" FontSize="10.667" HorizontalAlignment="Center"/>
                                 </utils:WatermarkService.Watermark>
-                            </TextBox>
+                            </this:TextBoxClearButton>
                         </AdornerDecorator>
 
                         <AdornerDecorator Grid.Column="3">
-                            <TextBox TextWrapping="Wrap" Text="{Binding Party1LastName, Mode=TwoWay}" >
+                            <this:TextBoxClearButton TextWrapping="Wrap" Text="{Binding Party1LastName, Mode=TwoWay}" >
                                 <utils:WatermarkService.Watermark>
                                     <TextBlock Text="Last name" FontSize="10.667" HorizontalAlignment="Center"/>
                                 </utils:WatermarkService.Watermark>
-                            </TextBox>
+                            </this:TextBoxClearButton>
                         </AdornerDecorator>
                     </Grid>
                 </Border>
@@ -189,26 +189,26 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Center" Text="Party 2"/>
                         <AdornerDecorator Grid.Column="1">
-                            <TextBox TextWrapping="Wrap" Text="{Binding Party2FirstName, Mode=TwoWay}">
+                            <this:TextBoxClearButton TextWrapping="Wrap" Text="{Binding Party2FirstName, Mode=TwoWay}">
                                 <utils:WatermarkService.Watermark>
                                     <TextBlock Text="First name" FontSize="10.667" HorizontalAlignment="Center"/>
                                 </utils:WatermarkService.Watermark>
-                            </TextBox>
+                            </this:TextBoxClearButton>
                         </AdornerDecorator>
 
                         <AdornerDecorator Grid.Column="2">
-                            <TextBox TextWrapping="Wrap" Text="{Binding Party2MiddleName, Mode=TwoWay}">
+                            <this:TextBoxClearButton TextWrapping="Wrap" Text="{Binding Party2MiddleName, Mode=TwoWay}">
                                     <utils:WatermarkService.Watermark>
                                         <TextBlock Text="Middle Name" FontSize="10.667" HorizontalAlignment="Center"/>
                                     </utils:WatermarkService.Watermark>
-                            </TextBox>
+                            </this:TextBoxClearButton>
                         </AdornerDecorator>
                         <AdornerDecorator Grid.Column="3">
-                            <TextBox TextWrapping="Wrap" Text="{Binding Party2LastName, Mode=TwoWay}" Grid.Column="3">
+                            <this:TextBoxClearButton TextWrapping="Wrap" Text="{Binding Party2LastName, Mode=TwoWay}" Grid.Column="3">
                                 <utils:WatermarkService.Watermark>
                                     <TextBlock Text="Last name" FontSize="10.667" HorizontalAlignment="Center"/>
                                 </utils:WatermarkService.Watermark>
-                            </TextBox>
+                            </this:TextBoxClearButton>
                         </AdornerDecorator>
                     </Grid>
                 </Border>

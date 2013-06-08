@@ -115,6 +115,7 @@
     <Compile Include="Data\CourtCases.cs" />
     <Compile Include="Data\CourtCaseStatuses.cs" />
     <Compile Include="Data\Routes.cs" />
+    <Compile Include="Data\Users.cs" />
     <Compile Include="Dialog\DialogService.cs" />
     <Compile Include="Dialog\IDialogService.cs" />
     <Compile Include="Dialog\MessageBoxShowingEventArgs.cs" />

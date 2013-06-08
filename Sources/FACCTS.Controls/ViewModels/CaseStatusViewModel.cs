@@ -22,17 +22,16 @@ namespace FACCTS.Controls.ViewModels
             _logger = logger;
             _logger.Info("CaseStatusViewModel..ctor()");
             this.DisplayName = "Case Status";
-            this.WhenAny(x => x.IsAuthenticated, x => x.Value)
-                .Subscribe(x =>
-                {
-                    if (x)
-                    {
-                        _logger.InfoFormat("IsAuthenticated = {0}. Renew the Court cases.", x);
-                        this.NotifyOfPropertyChange(() => CourtCases);
-                        this.NotifyOfPropertyChange(() => CourtCaseStatuses);
-                    }
-                });
 
+        }
+
+        protected override void Authorized()
+        {
+            base.Authorized();
+            
+            this.NotifyOfPropertyChange(() => CourtCases);
+            this.NotifyOfPropertyChange(() => CourtCaseStatuses);
+            this.NotifyOfPropertyChange(() => CourtClerks);
         }
 
         private ILogger _logger;
@@ -271,6 +270,27 @@ namespace FACCTS.Controls.ViewModels
             get
             {
                 return CCPORStatuses.GetAll();
+            }
+        }
+
+        public List<User> CourtClerks
+        {
+            get
+            {
+                return Users.GetByRole("Court Clerk");
+            }
+        }
+
+        private User _selectedClerk;
+        public User SelectedClerk
+        {
+            get
+            {
+                return _selectedClerk;
+            }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _selectedClerk, value);
             }
         }
     }

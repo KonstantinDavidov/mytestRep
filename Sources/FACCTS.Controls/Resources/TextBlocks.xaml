@@ -89,14 +89,15 @@
                       HorizontalAlignment="Stretch"
                       BorderBrush="{StaticResource SearchTextBox_SearchIconBorder}"
                       Background="{StaticResource SearchTextBox_SearchIconBackground}"
-                      CornerRadius="3.75">
+                      CornerRadius="3.75"
+                      Visibility="Hidden">
                 <Image x:Name="SearchIcon"
                        Stretch="None"
                        Width="15"
                        Height="15"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
-                       Source="pack://application:,,,/Resources/Images/clear.png" />
+                       Source="pack://application:,,,/FACCTS.Controls;component/Resources/Images/clear.png" />
             </Border>
 
         </Grid>
@@ -144,7 +145,7 @@
                      Value="{StaticResource SearchTextBox_SearchIconBorder_MouseOver}" />
                 <Setter Property="Background"
                     TargetName="PART_SearchIconBorder"
-                    Value="{StaticResource SearchTextBox_SearchIconBackground_MouseOver}" />
+                    Value="{StaticResource MouseOverHighlightBrush}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -156,7 +157,7 @@
                     Value="{StaticResource SearchTextBox_SearchIconBorder_MouseOver}" />
                 <Setter Property="Background"
                     TargetName="PART_SearchIconBorder"
-                    Value="{StaticResource SearchTextBox_SearchIconBackground_MouseOver}" />
+                    Value="{StaticResource MouseOverHighlightBrush}" />
             </MultiTrigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -174,6 +175,9 @@
                         TargetName="PART_SearchIconBorder"
                         Value="{StaticResource SearchTextBox_SearchIconBackground_MouseDown}" />
             </MultiTrigger>
+            <Trigger Property="HasText" Value="True">
+                <Setter TargetName="PART_SearchIconBorder" Property="Visibility" Value="Visible"/>
+            </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
 

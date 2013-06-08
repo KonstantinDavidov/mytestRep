@@ -229,6 +229,7 @@
     <Compile Include="Controllers\OAuth2FacctsAuthorizeController.cs" />
     <Compile Include="Controllers\OAuth2FacctsTokenController.cs" />
     <Compile Include="Controllers\SexController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Endpoints.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />

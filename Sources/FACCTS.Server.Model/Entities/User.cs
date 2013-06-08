@@ -44,5 +44,30 @@ namespace FACCTS.Server.Model.DataModel
         public DateTime? PasswordVerificationTokenExpirationDate { get; set; }
 
         public virtual ICollection<Role> Roles { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            // Check for null values and compare run-time types.
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            User u = (User)obj;
+            if (u.UserId != this.UserId)
+                return false;
+            //if (u.Username != this.Username)
+            //    return false;
+            //if (u.Email != this.Email)
+            //    return false;
+            //if (u.Password != this.Password)
+            //    return false;
+
+            return true;
+
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode() ^ this.UserId;
+        }
     }
 }
