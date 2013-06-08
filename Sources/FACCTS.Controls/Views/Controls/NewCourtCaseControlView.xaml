@@ -3,11 +3,26 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ent="clr-namespace:FACCTS.Server.Model.Enums;assembly=FACCTS.Server.Model"
 	xmlns:xctk="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
 	mc:Ignorable="d"
 	x:Class="FACCTS.Controls.NewCourtCaseControlView"
 	x:Name="UserControl"
 	d:DesignWidth="520" d:DesignHeight="327" Background="{DynamicResource ControlBackgroundBrush}" Width="Auto" Height="Auto">
+    <UserControl.Resources>
+        <CollectionViewSource x:Key="cvsDepts">
+            <CollectionViewSource.Source>
+                <ObjectDataProvider 
+                    MethodName="GetValues" 
+                    ObjectType="{x:Type system:Enum}">
+                    <ObjectDataProvider.MethodParameters>
+                        <x:Type TypeName="ent:Depts" />
+                    </ObjectDataProvider.MethodParameters>
+                </ObjectDataProvider>
+            </CollectionViewSource.Source>
+        </CollectionViewSource>
+    </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot">
         <Grid>
@@ -36,13 +51,13 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="Date:" Margin="0,5"/>
-                    <DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" VerticalContentAlignment="Center"/>
+                    <DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" VerticalContentAlignment="Center" SelectedDate="{Binding SelectedDate, Mode=TwoWay}"/>
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="2">Time:</TextBlock>
-                    <xctk:DateTimeUpDown Format="FullDateTime" Grid.Column="3" VerticalAlignment="Stretch"/>
+                    <xctk:DateTimeUpDown Format="ShortTime" Grid.Column="3" VerticalAlignment="Stretch" Value="{Binding SelectedTime, Mode=TwoWay}"/>
                     <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="4">Dept.:</TextBlock>
-                    <ComboBox Grid.ColumnSpan="2" VerticalAlignment="Center" Grid.Column="5"/>
+                    <ComboBox Grid.ColumnSpan="2" VerticalAlignment="Center" Grid.Column="5" SelectedItem="{Binding Dept, Mode=TwoWay}"/>
                     <ComboBox VerticalAlignment="Top" Grid.Row="1" Margin="0,5"/>
-                    <TextBox TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5"/>
+                    <TextBox TextWrapping="Wrap" Text="{Binding CourtNotice, Mode=TwoWay}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5"/>
                 </Grid>
             </GroupBox>
             <UniformGrid HorizontalAlignment="Right" Margin="8,8,0,8" Grid.Row="3" VerticalAlignment="Top" Rows="1" Columns="2">
@@ -64,12 +79,12 @@
             			<RowDefinition Height="Auto"/>
             		</Grid.RowDefinitions>
             		<TextBlock HorizontalAlignment="Left" Grid.RowSpan="2" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1" Text="Compliance with" Margin="0,5"/>
-            		<CheckBox Content="Permanent" Grid.Column="1" IsChecked="True" Margin="0,5"/>
-            		<CheckBox Content="CC / CV" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Margin="0,5"/>
-            		<CheckBox Content="CS" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="3" Margin="0,5"/>
-            		<CheckBox Content="SS" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="4" Margin="0,5"/>
-            		<RadioButton Content="Batteries Intervention" Grid.Column="1" HorizontalAlignment="Left" Margin="0,5" Grid.Row="1" VerticalAlignment="Top" Style="{DynamicResource RadioButtonCheckBoxStyle}"/>
-            		<RadioButton Content="Other (specify)" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2" IsThreeState="True" Style="{DynamicResource RadioButtonCheckBoxStyle}" Margin="0,5"/>
+            		<CheckBox Content="Permanent" Grid.Column="1" Margin="0,5" IsChecked="{Binding IsPermanent, Mode=TwoWay}"/>
+                    <CheckBox Content="CC / CV" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Margin="0,5" IsChecked="{Binding IsCCorCV, Mode=TwoWay}"/>
+            		<CheckBox Content="CS" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="3" Margin="0,5" IsChecked="{Binding IsCS, Mode=TwoWay}"/>
+            		<CheckBox Content="SS" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="4" Margin="0,5" IsChecked="{Binding IsSS, Mode=TwoWay}"/>
+            		<RadioButton Content="Batteries Intervention" Grid.Column="1" HorizontalAlignment="Left" Margin="0,5" Grid.Row="1" VerticalAlignment="Top" Style="{DynamicResource RadioButtonCheckBoxStyle}" IsChecked="{Binding IsBatteriesIntervention, Mode=TwoWay}"/>
+                    <RadioButton Content="Other (specify)" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2" IsThreeState="True" Style="{DynamicResource RadioButtonCheckBoxStyle}" Margin="0,5" IsChecked="{Binding IsComlianceWithOther, Mode=TwoWay}"/>
             		<TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="1" Grid.Column="3"/>
             		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Other Issue" VerticalAlignment="Top" Grid.Row="2" Margin="0,5"/>
             		<TextBox Grid.ColumnSpan="4" HorizontalAlignment="Stretch" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1"/>
