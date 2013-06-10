@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EnumAnnotations</name>
+    </assembly>
+    <members>
+        <member name="T:EnumAnnotations.EnumAnnotation">
+            <summary>
+            Enum wrapper for more conviently accessing the Data Annotations Attributes (only the Display Attribute is supported) 
+            </summary>
+        </member>
+        <member name="M:EnumAnnotations.EnumAnnotation.#ctor(System.Enum)">
+            <summary>
+            Wrap an Enum in a EnumAnnotation for more conviently accessing the Annotations Attributes (only the Display Attribute is supported) 
+            </summary>
+            <param name="enumValue">An Enum value</param>
+        </member>
+        <member name="M:EnumAnnotations.EnumAnnotation.ToString">
+            <summary>
+            Enum value casted to string
+            </summary>
+        </member>
+        <member name="M:EnumAnnotations.EnumAnnotation.GetDisplays``1">
+            <summary>
+            Get a Sorted list of all the Display Attribute Annotations for the values in Enum Type of T. Usefull for datasources in databound controls. 
+            </summary>
+            <returns>A sorted list of EnumAnnotations for Enum Type of T </returns>
+        </member>
+        <member name="M:EnumAnnotations.EnumAnnotation.GetDisplays``1(System.Func{EnumAnnotations.EnumAnnotation,System.Boolean})">
+            <summary>
+            Get a Sorted list of all the Display Attribute Annotations for the values in Enum Type of T. Usefull for datasources in databound controls. 
+            </summary>
+            <param name="predicate">Optional filter expression parameter for removing values</param>
+            <returns>A sorted list of EnumAnnotations for Enum Type of T </returns>
+        </member>
+        <member name="M:EnumAnnotations.EnumAnnotation.GetDisplays(System.Enum[])">
+            <summary>
+            Get a Sorted list of Display Attribute Annotations for the Enum values. You can supply Enum values of Multiple types
+            </summary>
+            <returns>A sorted list of EnumAnnotations for the Enums</returns>
+            <param name="args">Enum Type of T values</param>
+        </member>
+        <member name="M:EnumAnnotations.EnumAnnotation.FindDisplay``1(System.Func{EnumAnnotations.EnumAnnotation,System.Boolean})">
+            <summary>
+            Try find a single Enum value wrapped in an EnumAnnotation by its Display attribute fields with a filter expression for Enum Type of T
+            </summary>
+            <param name="predicate">filter expression</param>
+            <returns>EnumAnnotations for Enum Type of T or Null</returns>
+        </member>
+        <member name="M:EnumAnnotations.EnumAnnotation.GetNames``1">
+            <summary>
+            Get a Sorted list of all the Display Attribute Names for the values in Enum Type of T. 
+            </summary>
+            <returns>EnumAnnotations for Enum Type of T or Null</returns>
+        </member>
+        <member name="M:EnumAnnotations.EnumAnnotation.GetEnums``1">
+            <summary>
+            Get a list of Enums
+            </summary>
+        </member>
+        <member name="P:EnumAnnotations.EnumAnnotation.Display">
+            <summary>
+            Cached and Lazy loaded DisplayAttribute
+            </summary>
+        </member>
+        <member name="P:EnumAnnotations.EnumAnnotation.Name">
+            <summary>
+            DisplayAttribute.Name annotation. Returns Enum.ToString() if not specified.
+            </summary>
+        </member>
+        <member name="P:EnumAnnotations.EnumAnnotation.ShortName">
+            <summary>
+            DisplayAttribute.ShortName annotation. Returns Enum.ToString() if not specified.
+            </summary>
+        </member>
+        <member name="P:EnumAnnotations.EnumAnnotation.GroupName">
+            <summary>
+            DisplayAttribute.ShortName annotation. Returns an empty string if not specified.
+            </summary>
+        </member>
+        <member name="P:EnumAnnotations.EnumAnnotation.Description">
+            <summary>
+            DisplayAttribute.Description annotation. Returns an empty string if not specified.
+            </summary>
+        </member>
+        <member name="P:EnumAnnotations.EnumAnnotation.Order">
+            <summary>
+            DisplayAttribute.Order annotation. Returns 0 if not specified.
+            </summary>
+        </member>
+        <member name="P:EnumAnnotations.EnumAnnotation.Value">
+            <summary>
+            Enum original value as object
+            </summary>
+        </member>
+        <member name="P:EnumAnnotations.EnumAnnotation.UnderlyingValue">
+            <summary>
+            Enum Underlying numeric value casted to int
+            </summary>
+        </member>
+        <member name="T:EnumAnnotations.EnumAnnotationExtensions">
+            <summary>
+            Extension methods for getting DisplayAttribute values
+            </summary>
+        </member>
+        <member name="M:EnumAnnotations.EnumAnnotationExtensions.GetDisplay(System.Enum)">
+            <summary>
+            Extension method which wraps a single enum value in an EnumAnnotation. 
+            This method can be called on Nullable Enums in which case all EnumAnnotation Properties will return default values.
+            </summary>
+            <param name="value">Enum value</param>
+            <returns>EnumAnnotation for the type of Enum  </returns>
+        </member>
+        <member name="M:EnumAnnotations.EnumAnnotationExtensions.GetName(System.Enum)">
+            <summary>
+            Extension method which returns the DisplayAttributes Name value. Returns null if the Enum value is null in case of a nullable enum
+            </summary>
+            <param name="value">Enum value</param>
+            <returns>EnumAnnotation.Name for the Enum value</returns>
+        </member>
+        <member name="M:EnumAnnotations.EnumAnnotationExtensions.GetNameOrDefault(System.Enum,System.String)">
+            <summary>
+            Extension method which returns the DisplayAttributes Name value or the the defaultName if the Enum value is null, Usefull for calling on Nullable Enums. 
+            This method doesn't show up in the Intellisense for nullable Enums, but does work fine.
+            </summary>
+            <param name="value">Enum value</param>
+            <param name="defaultName">The name to use when this nullable value has no value</param>
+            <returns>EnumAnnotation.Name or the defaultName for the Enum value</returns>
+        </member>
+    </members>
+</doc>

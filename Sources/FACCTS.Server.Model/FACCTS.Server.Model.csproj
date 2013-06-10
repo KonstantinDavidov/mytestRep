@@ -85,6 +85,7 @@
     <Compile Include="Entities\CourtCounty.cs" />
     <Compile Include="Entities\CourtLocation.cs" />
     <Compile Include="Entities\CourtMember.cs" />
+    <Compile Include="Entities\CourtMemberBrief.cs" />
     <Compile Include="Entities\CourtParty.cs" />
     <Compile Include="Entities\Courtroom.cs" />
     <Compile Include="Entities\Delegation.cs" />

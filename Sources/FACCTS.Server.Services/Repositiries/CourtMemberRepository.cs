@@ -17,5 +17,15 @@ namespace FACCTS.Server.Data.Repositiries
         {
             return Entities.Where(cm => cm.Roles.Any(r => r.RoleId >= roleId));
         }
+        public IQueryable<CourtMemberBrief> GetBriefs()
+        {
+            return Entities.Select(cm => new CourtMemberBrief
+            {
+                FullName = cm.FirstName + " " + cm.LastName,
+                RoleName = cm.Roles.FirstOrDefault() == null ? string.Empty : cm.Roles.FirstOrDefault().RoleName,
+                Email = cm.Email,
+                UserId = cm.UserId
+            });
+        }
     }
 }

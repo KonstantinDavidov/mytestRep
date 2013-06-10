@@ -222,6 +222,7 @@
     <Compile Include="Controllers\CourtCaseController.cs" />
     <Compile Include="Controllers\CourtCaseStatusesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CourtMembersController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CourtMemberBriefController.cs" />
     <Compile Include="Controllers\EyesColorController.cs" />
     <Compile Include="Controllers\HairColorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -412,6 +413,7 @@
     <Content Include="Images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Readme Mef.MVC4.txt" />
     <None Include="Scripts\lib\amplify-vsdoc.js" />
+    <Content Include="Scripts\app\bootstrapper.js" />
     <Content Include="Scripts\lib\jquery-ui-1.10.3.js" />
     <Content Include="Scripts\lib\jquery-ui-1.10.3.min.js" />
     <Content Include="Scripts\lib\amplify.js" />
@@ -498,7 +500,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\app\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
