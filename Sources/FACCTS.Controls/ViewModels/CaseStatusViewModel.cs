@@ -10,6 +10,8 @@ using FACCTS.Server.Model.DataModel;
 using System.Collections.ObjectModel;
 using FACCTS.Services.Logger;
 using FACCTS.Services.Data;
+using FACCTS.Server.Model.Enums;
+using FACCTS.Services;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -235,8 +237,8 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-        private List<CourtCaseStatus> _courtCaseStatuses;
-        public List<CourtCaseStatus> CourtCaseStatuses
+        private List<EnumDescript<CaseStatus>> _courtCaseStatuses;
+        public List<EnumDescript<CaseStatus>> CourtCaseStatuses
         {
             get
             {
@@ -245,23 +247,23 @@ namespace FACCTS.Controls.ViewModels
                     _courtCaseStatuses = FACCTS.Services.Data.CourtCaseStatuses.GetAll();
                     if (_courtCaseStatuses != null && _courtCaseStatuses.Any())
                     {
-                        SelectedCaseStatusId = _courtCaseStatuses.First().Id;
+                        SelectedCaseStatus = _courtCaseStatuses.First().Value;
                     }
                 }
                 return _courtCaseStatuses;
             }
         }
 
-        private int _selectedCaseStatusId;
-        public int SelectedCaseStatusId
+        private CaseStatus _selectedCaseStatus;
+        public CaseStatus SelectedCaseStatus
         {
             get
             {
-                return _selectedCaseStatusId;
+                return _selectedCaseStatus;
             }
             set
             {
-                this.RaiseAndSetIfChanged(ref _selectedCaseStatusId, value);
+                this.RaiseAndSetIfChanged(ref _selectedCaseStatus, value);
             }
         }
 

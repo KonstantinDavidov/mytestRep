@@ -1,4 +1,5 @@
 ﻿using FACCTS.Server.Model.DataModel;
+using FACCTS.Server.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,8 +15,8 @@ namespace FACCTS.Services.Data
 
         }
 
-        private static List<CourtCaseStatus> _all;
-        public static List<CourtCaseStatus> GetAll()
+        private static List<EnumDescript<CaseStatus>> _all;
+        public static List<EnumDescript<CaseStatus>> GetAll()
         {
             if (_all == null)
             {
@@ -24,9 +25,12 @@ namespace FACCTS.Services.Data
             return _all;
         }
 
-        protected List<CourtCaseStatus> GetCourtCaseStatuses()
+        protected List<EnumDescript<CaseStatus>> GetCourtCaseStatuses()
         {
-            return this.CallServiceGet<List<CourtCaseStatus>>("CourtCaseStatuses");
+            return Enum.GetValues(typeof(CaseStatus))
+                .Cast<CaseStatus>()
+                .Select(x => new EnumDescript<CaseStatus>(x))
+                .ToList();
         }
     }
 }

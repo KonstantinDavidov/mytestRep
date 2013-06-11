@@ -21,13 +21,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <GroupBox Header="Court Cases" VerticalAlignment="Top">
-            <ListBox ItemsSource="{Binding CourtCaseStatuses}" SelectedValuePath="Id" SelectedValue="{Binding SelectedCaseStatusId, Mode=TwoWay}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate DataType="{x:Type ent:CourtCaseStatus}">
-                        <TextBlock Text="{Binding CaseStatus, Mode=OneWay}"/>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <ListBox ItemsSource="{Binding CourtCaseStatuses}" SelectedValue="{Binding SelectedCaseStatus, Mode=TwoWay}"/>
         </GroupBox>
         <GroupBox Header="Find Court Cases" Grid.Row="1">
             <Grid>
@@ -60,12 +54,7 @@
                         </AdornerDecorator>
                         
                         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Status" VerticalAlignment="Center" Grid.Row="1" Padding="0,5"/>
-                        <ComboBox Margin="0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"  SelectedValuePath="Id" ItemsSource="{Binding CourtCaseStatuses, Mode=OneWay}" SelectedIndex="0" Padding="0,3">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate DataType="{x:Type ent:CourtCaseStatus}">
-                                    <TextBlock Text="{Binding CaseStatus, Mode=OneWay}"/>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
+                        <ComboBox Margin="0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"  ItemsSource="{Binding CourtCaseStatuses, Mode=OneWay}" SelectedIndex="0" Padding="0,3">
                         </ComboBox>
                     </Grid>
                 </Border>

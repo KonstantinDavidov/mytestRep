@@ -119,6 +119,7 @@
     <Compile Include="Dialog\DialogService.cs" />
     <Compile Include="Dialog\IDialogService.cs" />
     <Compile Include="Dialog\MessageBoxShowingEventArgs.cs" />
+    <Compile Include="EnumDescript.cs" />
     <Compile Include="FacctsOAuth2Client.cs" />
     <Compile Include="Logger\ILogger.cs" />
     <Compile Include="Logger\Logger.cs" />
