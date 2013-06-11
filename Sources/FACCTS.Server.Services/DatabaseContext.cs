@@ -51,19 +51,6 @@ namespace FACCTS.Server.Data
                 .HasForeignKey(x => x.CourtCaseId)
                 .WillCascadeOnDelete(false);
 
-            //CourtCase => AvailableCourtOrders => many to many
-            modelBuilder.Entity<CourtCase>()
-                .HasMany(x => x.CourtOrders)
-                .WithRequired(x => x.CourtCase)
-                .HasForeignKey(x => x.CourtCaseId)
-                .WillCascadeOnDelete();
-
-            modelBuilder.Entity<CourtCaseOrder>()
-                .HasRequired(x => x.AvailableCourtOrder)
-                .WithMany()
-                .HasForeignKey(x => x.AvailableCourtOrderId)
-                .WillCascadeOnDelete(false);
-
             //Role => Permissions m-to-m
             modelBuilder.Entity<Role>()
                 .HasMany(r => r.Permissions)
@@ -89,7 +76,6 @@ namespace FACCTS.Server.Data
 
         #region Dictionary tables
         
-        public DbSet<CourtCaseStatus> CourtCaseStatuses { get; set; }
         public DbSet<Designation> Designations { get; set; }
         public DbSet<EyesColor> EyesColor { get; set; }
         public DbSet<HairColor> HairColor { get; set; }

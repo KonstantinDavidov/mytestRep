@@ -13,7 +13,6 @@ namespace FACCTS.Server.DataContracts
         IFacctsDictionaryDataRepository<HairColor> HairColorRepository { get; }
         IFacctsDictionaryDataRepository<EyesColor> EyesColorRepository { get; }
         IFacctsDictionaryDataRepository<Sex> SexRepository { get; }
-        IFacctsDictionaryDataRepository<CourtCaseStatus> CourtCaseStatusesRepository { get; }
         IFacctsDataRepository<CourtCase> CourtCaseRepository { get; }
         IFacctsDataRepository<Role> FacctsRoleRepository { get; }
 

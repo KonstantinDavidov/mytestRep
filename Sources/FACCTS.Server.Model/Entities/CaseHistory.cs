@@ -19,9 +19,18 @@ namespace FACCTS.Server.Model.DataModel
         public DateTime Date { get; set; }
 
         [Required]
-        public virtual Courtroom CourtRoom { get; set; }
+        [EnumDataType(typeof(CaseHistoryEvent))]
+        public CaseHistoryEvent CaseHistoryEvent { get; set; }
 
-        public string Orders { get; set; }//TODO: modify this when Order entity implemented
+        public virtual User CourtClerk { get; set; }
+
+        [StringLength(30)]
+        public string CCPOR_ID { get; set; }
+
+        [Required]
+        public int CourtCaseOrderId { get; set; }
+        [ForeignKey("CourtCaseOrderId")]
+        public virtual CourtCaseOrder Order { get; set; }
 
         [InverseProperty("CaseHistory")]
         public virtual CaseRecord CaseRecord { get; set; }

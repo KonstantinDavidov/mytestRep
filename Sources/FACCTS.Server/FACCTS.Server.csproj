@@ -221,7 +221,6 @@
     <Compile Include="Code\Utilities.cs" />
     <Compile Include="Controllers\ApiControllerBase.cs" />
     <Compile Include="Controllers\CourtCaseController.cs" />
-    <Compile Include="Controllers\CourtCaseStatusesController.cs" />
     <Compile Include="Areas\Admin\Controllers\CourtMembersController.cs" />
     <Compile Include="Areas\Admin\Controllers\CourtMemberBriefController.cs" />
     <Compile Include="Controllers\EyesColorController.cs" />
@@ -591,7 +590,7 @@
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <PropertyGroup>
-    <PostBuildEvent>$(SolutionDir)bin\Debug\DatabaseDeploy.exe</PostBuildEvent>
+    <PostBuildEvent>$(TargetDir)DatabaseDeploy.exe</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
