@@ -48,11 +48,6 @@ namespace FACCTS.Server.Data
             get { return GetStandardDictionaryRepo<Sex>(); }
         }
 
-        public IFacctsDictionaryDataRepository<CourtCaseStatus> CourtCaseStatusesRepository
-        {
-            get { return GetStandardDictionaryRepo<CourtCaseStatus>(); }
-        }
-
         public IFacctsDataRepository<CourtParty> CourtPartyRepository
         {
             get { return GetStandardRepo<CourtParty>(); }

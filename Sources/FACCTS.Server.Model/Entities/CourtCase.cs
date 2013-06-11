@@ -20,13 +20,6 @@ namespace FACCTS.Server.Model.DataModel
         [StringLength(20)]
         public string CaseNumber { get; set; }
 
-        [Required]
-        public virtual CourtCaseStatus CaseStatus { get; set; }
-
-        public DateTime? FirstActivity { get; set; }
-
-        public DateTime? LastActivity { get; set; }
-
         public virtual User CourtClerk { get; set; }
         
         [EnumDataType(typeof(CCPORStatus))]

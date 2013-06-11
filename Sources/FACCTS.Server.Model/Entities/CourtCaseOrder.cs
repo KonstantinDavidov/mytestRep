@@ -19,11 +19,7 @@ namespace FACCTS.Server.Model.DataModel
 
         [Key]
         public int Id { get; set; }
-
-        public int CourtCaseId { get; set; }
-
-        public CourtCase CourtCase { get; set; }
-
+        
         public int AvailableCourtOrderId { get; set; }
 
         public AvailableCourtOrder AvailableCourtOrder { get; set; }

@@ -142,7 +142,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <EmbeddedResource Include="DeployData\AvailableCourtOrders.csv" />
-    <EmbeddedResource Include="DeployData\CourtCaseStatus.csv" />
     <EmbeddedResource Include="DeployData\CourtCounty.csv" />
     <EmbeddedResource Include="DeployData\Designation.csv" />
     <EmbeddedResource Include="DeployData\EyesColor.csv" />

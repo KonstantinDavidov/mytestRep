@@ -12,6 +12,5 @@ namespace FACCTS.Server.Models
 
         public string CaseNumber { get; set; }
 
-        public CourtCaseStatus CaseStatus { get; set; }
     }
 }

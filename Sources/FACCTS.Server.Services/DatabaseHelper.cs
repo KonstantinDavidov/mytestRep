@@ -466,7 +466,6 @@ namespace FACCTS.Server.Data
         #region FACCTS default data
         private static void SeedFacctsDefaultData(DatabaseContext context)
         {
-            SeedCaseStatuses(context);
             SeedDesignations(context);
             SeedEyeColors(context);
             SeedHairColor(context);
@@ -592,15 +591,6 @@ namespace FACCTS.Server.Data
                 });
         }
 
-        private static void SeedCaseStatuses(DatabaseContext context)
-        {
-            GetRecords<CourtCaseStatus>("CourtCaseStatus.csv")
-                .Aggregate(context.CourtCaseStatuses, (dbset, record) =>
-                {
-                    dbset.Add(record);
-                    return dbset;
-                });
-        }
         private static void SeedPermissions(DatabaseContext context)
         {
             GetRecords<Permission>("Permissions.csv")
