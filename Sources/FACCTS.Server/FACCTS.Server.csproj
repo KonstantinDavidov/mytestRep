@@ -199,6 +199,7 @@
     <Compile Include="Areas\Admin\Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\CourtSettingsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CourtStaffController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\OAuthAccountController.cs" />
     <Compile Include="Areas\Admin\Models\EditUser.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
@@ -224,7 +225,6 @@
     <Compile Include="Areas\Admin\Controllers\CourtMemberBriefController.cs" />
     <Compile Include="Controllers\EyesColorController.cs" />
     <Compile Include="Controllers\HairColorController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InitialConfigurationController.cs" />
     <Compile Include="Controllers\OAuth2FacctsAuthorizeController.cs" />
     <Compile Include="Controllers\OAuth2FacctsTokenController.cs" />
@@ -411,8 +411,12 @@
     <Content Include="Images\ui-icons_888888_256x240.png" />
     <Content Include="Images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Readme Mef.MVC4.txt" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\CourtStaff.cshtml" />
     <None Include="Scripts\lib\amplify-vsdoc.js" />
     <Content Include="Scripts\app\bootstrapper.js" />
+    <Content Include="Scripts\app\dataServiceCourtMember.js" />
+    <Content Include="Scripts\app\vm.courtstaff.js" />
     <Content Include="Scripts\lib\jquery-ui-1.10.3.js" />
     <Content Include="Scripts\lib\jquery-ui-1.10.3.min.js" />
     <Content Include="Scripts\lib\amplify.js" />
@@ -496,6 +500,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Tests\dataService.CourtMember.test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
