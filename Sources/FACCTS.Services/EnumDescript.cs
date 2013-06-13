@@ -53,7 +53,7 @@ namespace FACCTS.Services
             return default(T);
         }
 
-        public string ToString()
+        public override string ToString()
         {
             return this.ToDescription();
         }
