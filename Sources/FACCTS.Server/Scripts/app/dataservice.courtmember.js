@@ -1,4 +1,4 @@
-﻿define('dataservice.courtMember',
+﻿define('dataservice.courtmember',
     ['amplify'],
     function (amplify) {
         var

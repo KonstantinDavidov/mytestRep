@@ -23,7 +23,7 @@ namespace FACCTS.Server.Areas.Admin.Controllers
             return this.DataManager.CourtMemberRepository.GetAll();
         }
         [ActionName("member")]
-        // GET api/courtmember/5
+        // GET api/courtmembers/5
         public CourtMember Get(long id)
         {
             var member = this.DataManager.CourtMemberRepository.GetById(id); ;
