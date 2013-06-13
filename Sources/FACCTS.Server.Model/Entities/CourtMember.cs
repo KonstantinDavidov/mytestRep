@@ -12,7 +12,7 @@ namespace FACCTS.Server.Model.DataModel
     [Table("CourtMember")]
     public class CourtMember : User
     {
-        public int SubstituteId { get; set; }
+        public int? SubstituteId { get; set; }
 
         [ForeignKey("SubstituteId")]
         public virtual CourtMember Substitute { get; set; }
