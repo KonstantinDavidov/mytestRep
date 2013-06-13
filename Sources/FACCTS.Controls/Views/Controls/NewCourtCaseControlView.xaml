@@ -147,8 +147,8 @@
                     <CheckBox Content="CS" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="3" Margin="0,5" IsChecked="{Binding IsCS, Mode=TwoWay}"/>
                     <CheckBox Content="SS" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="4" Margin="0,5" IsChecked="{Binding IsSS, Mode=TwoWay}"/>
                     <RadioButton Content="Batteries Intervention" Grid.Column="1" HorizontalAlignment="Left" Margin="0,5" Grid.Row="1" VerticalAlignment="Top" Style="{DynamicResource RadioButtonCheckBoxStyle}" IsChecked="{Binding IsBatteriesIntervention, Mode=TwoWay}"/>
-                    <RadioButton Content="Other (specify)" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2" IsThreeState="True" Style="{DynamicResource RadioButtonCheckBoxStyle}" Margin="0,5" IsChecked="{Binding IsComlianceWithOther, Mode=TwoWay}"/>
-                    <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="1" Grid.Column="3"/>
+                    <RadioButton x:Name="radioButton" Content="Other (specify)" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2" IsThreeState="True" Style="{DynamicResource RadioButtonCheckBoxStyle}" Margin="0,5" IsChecked="{Binding IsComlianceWithOther, Mode=TwoWay}"/>
+                    <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="1" Grid.Column="3" IsEnabled="{Binding IsChecked, ElementName=radioButton, Mode=OneWay}"/>
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Other Issue" VerticalAlignment="Top" Grid.Row="2" Margin="0,5"/>
                     <TextBox Grid.ColumnSpan="4" HorizontalAlignment="Stretch" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1"/>
                 </Grid>
