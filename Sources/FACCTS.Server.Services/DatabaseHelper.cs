@@ -24,6 +24,14 @@ namespace FACCTS.Server.Data
             SeedDefaultData(context);
             SeedSecurityData(context);
             SeedFacctsDefaultData(context);
+#if TEST_DATA
+            SeedFacctsTestData(context);
+#endif
+        }
+
+        private static void SeedFacctsTestData(DatabaseContext context)
+        {
+            
         }
 
         private static void SeedSecurityData(DatabaseContext context)

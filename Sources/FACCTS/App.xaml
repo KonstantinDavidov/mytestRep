@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="pack://application:,,,/FACCTS.Controls;component/Resources/Grids.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/FACCTS.Controls;component/Resources/Borders.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/FACCTS.Controls;component/Resources/TextBlocks.xaml"/>
+                <ResourceDictionary Source="pack://application:,,,/FACCTS.Controls;component/Resources/ComboBoxes.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

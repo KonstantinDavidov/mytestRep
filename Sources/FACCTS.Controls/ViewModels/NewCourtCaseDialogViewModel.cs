@@ -5,14 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
 using FACCTS.Server.Model.Enums;
+using FACCTS.Server.Model.DataModel;
+using System.ComponentModel.Composition;
 
 namespace FACCTS.Controls.ViewModels
 {
+    [Export]
     public class NewCourtCaseDialogViewModel : ViewModelBase
     {
         public NewCourtCaseDialogViewModel() : base()
         {
             SelectedDate = DateTime.Today;
+            SelectedTime = DateTime.Now.ToLocalTime();
         }
 
         protected override void Authorized()
@@ -151,6 +155,32 @@ namespace FACCTS.Controls.ViewModels
             set
             {
                 this.RaiseAndSetIfChanged(ref _isComlianceWithOther, value);
+            }
+        }
+
+        private List<CourtCounty> _courtCounties;
+        public List<CourtCounty> CourtCounties
+        {
+            get
+            {
+                if (_courtCounties == null)
+                { 
+                    _courtCounties = FACCTS.Services.Data.CourtCounties.GetAll();
+                }
+                return _courtCounties;
+            }
+        }
+
+        private CourtCounty _selectedLocation;
+        public CourtCounty SelectedLocation
+        {
+            get
+            {
+                return _selectedLocation;
+            }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _selectedLocation, value);
             }
         }
 

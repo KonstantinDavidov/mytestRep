@@ -12,6 +12,8 @@ using FACCTS.Services.Logger;
 using FACCTS.Services.Data;
 using FACCTS.Server.Model.Enums;
 using FACCTS.Services;
+using Caliburn.Micro;
+using FACCTS.Controls.Utils;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -19,10 +21,11 @@ namespace FACCTS.Controls.ViewModels
     public class CaseStatusViewModel : ViewModelBase
     {
         [ImportingConstructor]
-        public CaseStatusViewModel(ILogger logger) : base()
+        public CaseStatusViewModel(ILogger logger, IWindowManager windowManager) : base()
         {
             _logger = logger;
             _logger.Info("CaseStatusViewModel..ctor()");
+            _windowManager = windowManager;
             this.DisplayName = "Case Status";
 
         }
@@ -37,6 +40,7 @@ namespace FACCTS.Controls.ViewModels
         }
 
         private ILogger _logger;
+        private IWindowManager _windowManager;
 
         private string _caseNumber;
         public string CaseNumber
@@ -294,6 +298,11 @@ namespace FACCTS.Controls.ViewModels
             {
                 this.RaiseAndSetIfChanged(ref _selectedClerk, value);
             }
+        }
+
+        public void NewCase()
+        {
+            BusinessLogicHelper.CreateNewCase(ServiceLocatorContainer.Locator.GetInstance<NewCourtCaseDialogViewModel>(), _windowManager);
         }
     }
 }
