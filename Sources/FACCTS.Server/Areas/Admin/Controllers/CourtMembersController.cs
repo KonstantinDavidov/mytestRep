@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Data.Entity;
 using FACCTS.Server.Controllers;
 
 namespace FACCTS.Server.Areas.Admin.Controllers
@@ -22,11 +23,19 @@ namespace FACCTS.Server.Areas.Admin.Controllers
         {
             return this.DataManager.CourtMemberRepository.GetAll();
         }
-        [ActionName("member")]
+        [ActionName("memberbyid")]
         // GET api/courtmembers/5
         public CourtMember Get(long id)
         {
             var member = this.DataManager.CourtMemberRepository.GetById(id); ;
+            if (member != null) return member;
+            throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
+        }
+        [ActionName("memberbyname")]
+        // GET api/courtmembers/5
+        public CourtMember Get(string username)
+        {
+            var member = this.DataManager.CourtMemberRepository.GetAll().Where(cm => cm.Username == username).AsNoTracking().FirstOrDefault();
             if (member != null) return member;
             throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
         }

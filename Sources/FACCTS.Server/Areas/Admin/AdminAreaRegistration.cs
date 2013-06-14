@@ -9,7 +9,7 @@ namespace FACCTS.Server.Areas.Admin
         public static string ControllerOnly = "ApiControllerOnly";
         public static string ControllerAndId = "ApiControllerAndIntegerId";
         public static string ControllerAction = "ApiControllerAction";
-        //public static string ControllerActionId = "ApiControllerActionId";
+        public static string ControllerActionId = "ApiControllerActionId";
 
         public override string AreaName
         {
@@ -36,12 +36,12 @@ namespace FACCTS.Server.Areas.Admin
                 name: ControllerAction,
                 routeTemplate: "Admin/api/{controller}/{action}"
             );
-            //context.Routes.MapHttpRoute(
-            //    name: ControllerActionId,
-            //    routeTemplate: "Admin/api/{controller}/{action}/{id}",
-            //    defaults: null, //defaults: new { id = RouteParameter.Optional } //,
-            //    constraints: new { id = @"^\d+$" } // id must be all digits
-            //);
+            context.Routes.MapHttpRoute(
+                name: ControllerActionId,
+                routeTemplate: "Admin/api/{controller}/{action}/{id}",
+                defaults: null//, //defaults: new { id = RouteParameter.Optional } //,
+                //constraints: new { id = @"^\d+$" } // id must be all digits
+            );
 
             context.MapRoute(
                 "Admin_default",

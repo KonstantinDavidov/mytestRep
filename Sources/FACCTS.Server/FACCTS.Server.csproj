@@ -230,7 +230,6 @@
     <Compile Include="Controllers\CourtCaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\CourtMembersController.cs" />
     <Compile Include="Areas\Admin\Controllers\CourtMemberBriefController.cs" />
-    <Compile Include="Controllers\CourtCountiesController.cs" />
     <Compile Include="Controllers\EyesColorController.cs" />
     <Compile Include="Controllers\HairColorController.cs" />
     <Compile Include="Controllers\InitialConfigurationController.cs" />
@@ -500,6 +499,8 @@
     <Content Include="Tests\qunit\qunit.css" />
     <Content Include="Tests\qunit\qunit.js" />
     <Content Include="Tests\webApi\qunit-utils.js" />
+    <Content Include="Tests\webApi\webapi.courtmember-crud.test.html" />
+    <Content Include="Tests\webApi\webapi.courtmember-crud.test.js" />
     <Content Include="Tests\webApi\webapi.endpoint.tests.html" />
     <Content Include="Tests\webApi\webapi.endpoint.tests.js" />
     <Content Include="Web.config">
