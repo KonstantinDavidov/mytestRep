@@ -67,6 +67,18 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
+        private string _title;
+        public virtual string Title
+        {
+            get
+            {
+                return _title;
+            }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _title, value);
+            }
+        }
         
     }
 }

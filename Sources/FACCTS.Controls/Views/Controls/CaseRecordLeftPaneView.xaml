@@ -38,9 +38,9 @@
 				<ListBoxItem Content="Case Notes"/>
 			</ListBox>
 		</GroupBox>
-        <Border Grid.Row="2">
+        <Border Grid.Row="2" Padding="10">
             <UniformGrid Rows="1" Columns="2">
-                <Button Content="New Case" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                <Button Content="New Case" VerticalAlignment="Top" HorizontalAlignment="Left" cal:Message.Attach="NewCase"/>
             </UniformGrid>
             
         </Border>

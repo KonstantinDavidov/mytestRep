@@ -15,7 +15,7 @@
 	mc:Ignorable="d"
 	x:Class="FACCTS.Controls.NewCourtCaseControlView"
 	x:Name="UserControl"
-	d:DesignWidth="407" d:DesignHeight="199" Background="{DynamicResource ControlBackgroundBrush}" Width="Auto" Height="Auto"
+	Width="407" Height="199" Background="{DynamicResource ControlBackgroundBrush}"
     d:DataContext="{d:DesignInstance Type=vm:NewCourtCaseDialogViewModel, IsDesignTimeCreatable=True}">
     <UserControl.Resources>
         <ResourceDictionary>

@@ -20,7 +20,7 @@ namespace FACCTS.Controls.ViewModels
 
         public NewCourtCaseDialogViewModel() : base()
         {
-           
+            this.Title = "Create New Case";
                 
         }
 
