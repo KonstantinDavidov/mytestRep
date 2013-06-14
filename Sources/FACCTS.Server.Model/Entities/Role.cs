@@ -6,6 +6,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using System.Collections.ObjectModel;
 
 namespace FACCTS.Server.Model.DataModel
 {
@@ -32,6 +33,18 @@ namespace FACCTS.Server.Model.DataModel
         [CsvField(Ignore = true)]
         public virtual ICollection<User> Users { get; set; }
 
-        public virtual ICollection<Permission> Permissions { get; set; }
+        private ICollection<Permission> _permissions;
+
+        public virtual ICollection<Permission> Permissions 
+        {
+            get
+            {
+                return _permissions ?? new Collection<Permission>();
+            }
+            set
+            {
+                _permissions = value;
+            } 
+        }
     }
 }

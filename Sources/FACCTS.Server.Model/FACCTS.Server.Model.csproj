@@ -91,6 +91,7 @@
     <Compile Include="Entities\CourtCase.cs" />
     <Compile Include="Entities\CourtCaseOrder.cs" />
     <Compile Include="Entities\CourtCounty.cs" />
+    <Compile Include="Entities\CourtDepartment.cs" />
     <Compile Include="Entities\CourtLocation.cs" />
     <Compile Include="Entities\CourtMember.cs" />
     <Compile Include="Entities\CourtMemberBrief.cs" />
@@ -119,7 +120,6 @@
     <Compile Include="Enums\CaseNoteStatus.cs" />
     <Compile Include="Enums\CaseStatus.cs" />
     <Compile Include="Enums\CCPORStatus.cs" />
-    <Compile Include="Enums\Depts.cs" />
     <Compile Include="NullStringConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -230,6 +230,8 @@
     <Compile Include="Controllers\CourtCaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\CourtMembersController.cs" />
     <Compile Include="Areas\Admin\Controllers\CourtMemberBriefController.cs" />
+    <Compile Include="Controllers\CourtCountiesController.cs" />
+    <Compile Include="Controllers\CourtDepartmentsController.cs" />
     <Compile Include="Controllers\EyesColorController.cs" />
     <Compile Include="Controllers\HairColorController.cs" />
     <Compile Include="Controllers\InitialConfigurationController.cs" />
@@ -433,6 +435,7 @@
     <Content Include="Scripts\jquery-2.0.2.min.map" />
     <None Include="Scripts\lib\amplify-vsdoc.js" />
     <Content Include="Scripts\app\bootstrapper.js" />
+    <Content Include="Scripts\app\dataServiceCourtMember.js" />
     <Content Include="Scripts\app\dataservice.courtmember.js" />
     <Content Include="Scripts\app\vm.courtstaff.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -475,6 +478,7 @@
     <Content Include="Scripts\lib\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\lib\knockout-2.2.0.js" />
     <Content Include="Scripts\lib\modernizr-2.6.2.js" />
+    <Content Include="Scripts\lib\qunit.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\lib\MIT-LICENSE.txt" />
     <Content Include="Scripts\lib\moment.js" />

@@ -3376,6 +3376,7 @@
         <Setter Property="Foreground" Value="#FF042271" />
         <Setter Property="FontFamily" Value="Trebuchet MS" />
         <Setter Property="FontSize" Value="12" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GroupBox}">

@@ -54,8 +54,8 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-        public Depts _dept;
-        public Depts Dept
+        public CourtDepartment _dept;
+        public CourtDepartment Dept
         {
             get
             {

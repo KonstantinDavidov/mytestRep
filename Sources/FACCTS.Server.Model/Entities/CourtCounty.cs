@@ -2,6 +2,7 @@
 using CsvHelper.TypeConversion;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -44,5 +45,21 @@ namespace FACCTS.Server.Model.DataModel
         [CsvField(Ignore=true)]
         [InverseProperty("CourtCounty")]
         public virtual ICollection<CourtLocation> CourtLocations { get; set; }
+
+        
+        private ICollection<CourtDepartment> _departments;
+        [CsvField(Ignore = true)]
+        [InverseProperty("CourtCounty")]
+        public virtual ICollection<CourtDepartment> Departments 
+        {
+            get
+            {
+                return _departments ?? new Collection<CourtDepartment>();
+            }
+            set
+            {
+                _departments = value;
+            }
+        }
     }
 }

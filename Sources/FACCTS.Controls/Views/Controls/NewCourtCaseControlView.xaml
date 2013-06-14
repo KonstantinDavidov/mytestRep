@@ -19,17 +19,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/FACCTS.Controls;component/Resources/ComboBoxes.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <CollectionViewSource x:Key="cvsDepts">
-                <CollectionViewSource.Source>
-                    <ObjectDataProvider 
-                    MethodName="GetValues" 
-                    ObjectType="{x:Type system:Enum}">
-                        <ObjectDataProvider.MethodParameters>
-                            <x:Type TypeName="ent:Depts" />
-                        </ObjectDataProvider.MethodParameters>
-                    </ObjectDataProvider>
-                </CollectionViewSource.Source>
-            </CollectionViewSource>
+
             <CollectionViewSource x:Key="cvsLocations" Source="{Binding CourtCounties, Mode=OneWay}">
                 <CollectionViewSource.GroupDescriptions>
                     <PropertyGroupDescription PropertyName="County" />
@@ -75,7 +65,7 @@
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="2">Time:</TextBlock>
                     <xctk:DateTimeUpDown Format="ShortTime" Grid.Column="3" VerticalAlignment="Stretch" Value="{Binding SelectedTime, Mode=TwoWay}"/>
                     <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="4">Dept.:</TextBlock>
-                    <ComboBox Grid.ColumnSpan="2" VerticalAlignment="Center" Grid.Column="5" SelectedItem="{Binding Dept, Mode=TwoWay}" ItemsSource="{Binding Source={StaticResource cvsDepts}, Mode=OneWay}"/>
+                    <ComboBox Grid.ColumnSpan="2" VerticalAlignment="Center" Grid.Column="5" SelectedItem="{Binding Dept, Mode=TwoWay}" ItemsSource="{Binding SelectedLocation.Departments, Mode=OneWay}" DisplayMemberPath="Room"/>
                     <ComboBox VerticalAlignment="Top" Grid.Row="1" Margin="0,5,0,0" ItemsSource="{Binding Source={StaticResource cvsLocations}, Mode=OneWay}" SelectedItem="{Binding SelectedLocation}" HorizontalAlignment="Left" Width="150">
                         <ComboBox.GroupStyle>
                             <GroupStyle>

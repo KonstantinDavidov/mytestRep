@@ -88,6 +88,14 @@ namespace FACCTS.Server.Data
                 return GetStandardRepo<CourtCounty>(); 
             }
         }
+
+        public IFacctsDataRepository<CourtDepartment> CourtDepartmentRepository
+        {
+            get
+            {
+                return GetStandardRepo<CourtDepartment>();
+            }
+        }
         #endregion
 
         //Commit
