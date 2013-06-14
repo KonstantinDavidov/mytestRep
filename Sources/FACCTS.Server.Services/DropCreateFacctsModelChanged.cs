@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Data
 {
-    public class DropCreateFacctsModelChanged : DropCreateDatabaseIfModelChanges<DatabaseContext>
+    public class DropCreateFacctsModelChanged : DropCreateDatabaseAlways<DatabaseContext>
     {
         protected override void Seed(DatabaseContext context)
         {
