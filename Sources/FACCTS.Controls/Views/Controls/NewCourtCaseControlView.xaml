@@ -9,6 +9,8 @@
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
     xmlns:vm="clr-namespace:FACCTS.Controls.ViewModels"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+    xmlns:cal="http://www.caliburnproject.org"
 	mc:Ignorable="d"
 	x:Class="FACCTS.Controls.NewCourtCaseControlView"
 	x:Name="UserControl"
@@ -57,6 +59,7 @@
                         <ColumnDefinition Width="80"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
@@ -111,10 +114,12 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
                     <TextBox TextWrapping="Wrap" Text="{Binding CourtNotice, Mode=TwoWay}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" />
+                    <TextBlock Grid.Row="2" Text="Case number: " VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding CaseNumber, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Grid.ColumnSpan="2"/>
                 </Grid>
             </GroupBox>
             <UniformGrid HorizontalAlignment="Right" Margin="8,8,0,8" Grid.Row="3" VerticalAlignment="Top" Rows="1" Columns="2">
-                <Button Content="New Case" Margin="8" IsDefault="True"/>
+                <Button Content="New Case" Margin="8" IsDefault="True" cal:Message.Attach="CreateNewCase"/>
                 <Button Content="Cancel" Margin="8,8,0,8" IsCancel="True"/>
             </UniformGrid>
             <GroupBox Header="Issues to be Addressed" Grid.Row="1" VerticalAlignment="Top" Padding="8">

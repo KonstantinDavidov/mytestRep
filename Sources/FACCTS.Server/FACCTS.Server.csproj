@@ -250,6 +250,7 @@
     <Compile Include="Filters\InitialConfigurationFilterAttribute.cs" />
     <Compile Include="Filters\SslRedirectFilterAttribute.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\CourtCaseCreationRequest.cs" />
     <Compile Include="Models\CourtCaseHeading.cs" />
     <Compile Include="Models\InitialConfigurationModel.cs" />
     <Compile Include="Models\SignInModel.cs" />

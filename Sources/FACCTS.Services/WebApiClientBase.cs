@@ -11,6 +11,8 @@ using Thinktecture.IdentityModel.Extensions;
 using Newtonsoft.Json;
 using System.Configuration;
 using Thinktecture.IdentityModel.Constants;
+using System.Net.Http.Headers;
+using System.Net.Http.Formatting;
 
 namespace FACCTS.Services
 {
@@ -58,7 +60,7 @@ namespace FACCTS.Services
             
         }
 
-        protected virtual T CallServicePost<T>(string route, FormUrlEncodedContent content)
+        protected virtual T CallServicePost<T, TContent>(string route, TContent content)
         {
             using (var client = new HttpClient
             {
@@ -69,7 +71,7 @@ namespace FACCTS.Services
                 try
                 {
                     client.SetBearerToken(AuthenticationService.GetToken());
-                    var response = client.PostAsync(route, content).Result;
+                    var response = client.PostAsJsonAsync<TContent>(route, content).Result;
                     response.EnsureSuccessStatusCode();
                     result = response.Content.ReadAsAsync<T>().Result;
 

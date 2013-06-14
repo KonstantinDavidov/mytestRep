@@ -7,14 +7,19 @@ using ReactiveUI;
 using FACCTS.Server.Model.Enums;
 using FACCTS.Server.Model.DataModel;
 using System.ComponentModel.Composition;
+using FACCTS.Services.Data;
+using FACCTS.Services.Logger;
+using System.ComponentModel;
 
 namespace FACCTS.Controls.ViewModels
 {
     [Export]
-    public class NewCourtCaseDialogViewModel : ViewModelBase
+    public class NewCourtCaseDialogViewModel : ViewModelBase, IDataErrorInfo
     {
-        public NewCourtCaseDialogViewModel() : base()
+        [ImportingConstructor]
+        public NewCourtCaseDialogViewModel(ILogger logger) : base()
         {
+            _logger = logger;
             SelectedDate = DateTime.Today;
             SelectedTime = DateTime.Now.ToLocalTime();
             this.WhenAny(x => x.SelectedLocation, x => FACCTS.Services.Data.CourtDepartments.GetByCourtCountyId(x.Value))
@@ -24,6 +29,8 @@ namespace FACCTS.Controls.ViewModels
                 });
                 
         }
+
+        private ILogger _logger;
 
         protected override void Authorized()
         {
@@ -203,6 +210,64 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
+
+        private string _caseNumber;
+        public string CaseNumber
+        {
+            get
+            {
+                return _caseNumber;
+            }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _caseNumber, value);
+            }
+        }
         #endregion
+
+        public void CreateNewCase()
+        {
+            this.TryClose(true);
+            var tsk = Task.Factory.StartNew(() =>
+                {
+                    ProceedCreation();
+                }, TaskCreationOptions.AttachedToParent);
+
+        }
+
+        protected virtual void ProceedCreation()
+        {
+            _logger.Info("Start creation the new case...");
+            CourtCase cc = new CourtCase();
+            cc.CreationDateTime = this.SelectedDate.GetValueOrDefault(DateTime.Today).Add(this.SelectedTime.GetValueOrDefault(DateTime.Now.ToLocalTime()).TimeOfDay);
+            cc.CaseNumber = this.CaseNumber;
+            cc.CourtCounty = this.SelectedLocation;
+            cc.CourtDepartment = this.Dept;
+            _logger.Info("Saving the new case to the database...");
+            CourtCases.CreateNew(cc);
+        }
+
+        public string Error
+        {
+            get 
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public string this[string columnName]
+        {
+            get 
+            {
+                string result = null;
+                switch(columnName)
+                {
+                    case "CaseNumber":
+                        return "Please specify the court case number";
+                        break;
+                }
+                return result;
+            }
+        }
     }
 }

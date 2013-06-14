@@ -1,4 +1,5 @@
-﻿using FACCTS.Server.Model.DataModel;
+﻿using FACCTS.Server.Filters;
+using FACCTS.Server.Model.DataModel;
 using FACCTS.Server.Models;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,18 @@ namespace FACCTS.Server.Controllers
         {
             return DataManager.CourtCaseRepository.GetAll()
                 .ToList();
+        }
+
+       
+        public CourtCase Post([FromBody] CourtCaseCreationRequest courtCase)
+        {
+            return CreateNewCourtCase(courtCase);
+            //return courtCase;
+        }
+
+        private static CourtCase CreateNewCourtCase(CourtCaseCreationRequest request)
+        {
+            return null;
         }
     }
 }
