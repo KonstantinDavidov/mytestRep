@@ -16,9 +16,10 @@ namespace FACCTS.Server.Controllers
     {
         public List<CourtCounty> Get()
         {
-            return DataManager
+            var all = DataManager
                 .CourtCountyRepository
-                .GetAll()
+                .GetAll();
+            return all
                 .ToList();
         }
     }
