@@ -30,6 +30,17 @@ namespace FACCTS.Server.Data.Repositiries
             return Entities;
         }
 
+        public virtual IQueryable<TEntity> GetAll(params string[] includePaths)
+        {
+            DbQuery<TEntity> query = Entities;
+            query = includePaths.Aggregate(query, (q, s) =>
+                {
+                    q = q.Include(s);
+                    return q;
+                });
+            return query;
+        }
+
         public virtual TEntity GetById(long id)
         {
             return Entities.Find(id);

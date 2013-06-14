@@ -17,6 +17,12 @@ namespace FACCTS.Controls.ViewModels
         {
             SelectedDate = DateTime.Today;
             SelectedTime = DateTime.Now.ToLocalTime();
+            this.WhenAny(x => x.SelectedLocation, x => FACCTS.Services.Data.CourtDepartments.GetByCourtCountyId(x.Value))
+                .Subscribe(x =>
+                {
+                    this.CourtDepartments = x;
+                });
+                
         }
 
         protected override void Authorized()
@@ -181,6 +187,19 @@ namespace FACCTS.Controls.ViewModels
             set
             {
                 this.RaiseAndSetIfChanged(ref _selectedLocation, value);
+            }
+        }
+
+        private List<CourtDepartment> _courtDepartments;
+        public List<CourtDepartment> CourtDepartments
+        {
+            get
+            {
+                return _courtDepartments;
+            }
+            protected set
+            {
+                this.RaiseAndSetIfChanged(ref _courtDepartments, value);
             }
         }
 
