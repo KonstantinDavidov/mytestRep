@@ -121,6 +121,7 @@
     <Compile Include="Enums\CaseNoteStatus.cs" />
     <Compile Include="Enums\CaseStatus.cs" />
     <Compile Include="Enums\CCPORStatus.cs" />
+    <Compile Include="Enums\IdentificationIDType.cs" />
     <Compile Include="NullStringConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
