@@ -131,6 +131,7 @@ namespace FACCTS.Server.Data
         public DbSet<AvailableCourtOrder> AvailableCourtOrders { get; set; }
         public DbSet<CourtCaseOrder> CourtCaseOrders { get; set; }
         public DbSet<CourtMember> CourtMembers { get; set; }
+        public DbSet<CourtDepartment> CourtDepartments { get; set; }
         #endregion
 
         public new IDbSet<TEntity> Set<TEntity>() where TEntity : class

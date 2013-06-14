@@ -22,6 +22,7 @@ namespace FACCTS.Server.DataContracts
         IFacctsDataRepository<User> UserRepository { get; }
 
         IFacctsDataRepository<CourtCounty> CourtCountyRepository { get; }
+        IFacctsDataRepository<CourtDepartment> CourtDepartmentRepository { get; }
 
         // Save pending changes to the data store.
         void Commit();

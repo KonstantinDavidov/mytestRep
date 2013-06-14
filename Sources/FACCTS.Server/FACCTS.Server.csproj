@@ -231,6 +231,7 @@
     <Compile Include="Areas\Admin\Controllers\CourtMembersController.cs" />
     <Compile Include="Areas\Admin\Controllers\CourtMemberBriefController.cs" />
     <Compile Include="Controllers\CourtCountiesController.cs" />
+    <Compile Include="Controllers\CourtDepartmentsController.cs" />
     <Compile Include="Controllers\EyesColorController.cs" />
     <Compile Include="Controllers\HairColorController.cs" />
     <Compile Include="Controllers\InitialConfigurationController.cs" />
@@ -421,20 +422,13 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
-    <Content Include="Scripts\app\route-config.js" />
-    <Content Include="Scripts\app\router.js" />
-    <Content Include="Scripts\app\vm.courtsettings.js" />
     <None Include="Scripts\jquery-2.0.2.intellisense.js" />
-    <Content Include="Scripts\app\binder.js" />
-    <Content Include="Scripts\app\config.js" />
-    <Content Include="Scripts\app\dataprimer.js" />
-    <Content Include="Scripts\app\presenter.js" />
     <Content Include="Scripts\jquery-2.0.2.js" />
     <Content Include="Scripts\jquery-2.0.2.min.js" />
     <Content Include="Scripts\jquery-2.0.2.min.map" />
     <None Include="Scripts\lib\amplify-vsdoc.js" />
     <Content Include="Scripts\app\bootstrapper.js" />
-    <Content Include="Scripts\app\dataservice.courtmember.js" />
+    <Content Include="Scripts\app\dataServiceCourtMember.js" />
     <Content Include="Scripts\app\vm.courtstaff.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -476,6 +470,7 @@
     <Content Include="Scripts\lib\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\lib\knockout-2.2.0.js" />
     <Content Include="Scripts\lib\modernizr-2.6.2.js" />
+    <Content Include="Scripts\lib\qunit.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\lib\MIT-LICENSE.txt" />
     <Content Include="Scripts\lib\moment.js" />
@@ -495,13 +490,6 @@
     <Content Include="Scripts\lib\underscore.min.js" />
     <Content Include="Scripts\lib\r.js" />
     <Content Include="Scripts\lib\require.js" />
-    <Content Include="Tests\qunit\qunit-composite.css" />
-    <Content Include="Tests\qunit\qunit-composite.js" />
-    <Content Include="Tests\qunit\qunit.css" />
-    <Content Include="Tests\qunit\qunit.js" />
-    <Content Include="Tests\webApi\qunit-utils.js" />
-    <Content Include="Tests\webApi\webapi.endpoint.tests.html" />
-    <Content Include="Tests\webApi\webapi.endpoint.tests.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

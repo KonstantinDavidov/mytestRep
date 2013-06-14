@@ -19,17 +19,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/FACCTS.Controls;component/Resources/ComboBoxes.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <CollectionViewSource x:Key="cvsDepts">
-                <CollectionViewSource.Source>
-                    <ObjectDataProvider 
-                    MethodName="GetValues" 
-                    ObjectType="{x:Type system:Enum}">
-                        <ObjectDataProvider.MethodParameters>
-                            <x:Type TypeName="ent:Depts" />
-                        </ObjectDataProvider.MethodParameters>
-                    </ObjectDataProvider>
-                </CollectionViewSource.Source>
-            </CollectionViewSource>
+
             <CollectionViewSource x:Key="cvsLocations" Source="{Binding CourtCounties, Mode=OneWay}">
                 <CollectionViewSource.GroupDescriptions>
                     <PropertyGroupDescription PropertyName="County" />
@@ -75,7 +65,7 @@
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="2">Time:</TextBlock>
                     <xctk:DateTimeUpDown Format="ShortTime" Grid.Column="3" VerticalAlignment="Stretch" Value="{Binding SelectedTime, Mode=TwoWay}"/>
                     <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="4">Dept.:</TextBlock>
-                    <ComboBox Grid.ColumnSpan="2" VerticalAlignment="Center" Grid.Column="5" SelectedItem="{Binding Dept, Mode=TwoWay}" ItemsSource="{Binding Source={StaticResource cvsDepts}, Mode=OneWay}"/>
+                    <ComboBox Grid.ColumnSpan="2" VerticalAlignment="Center" Grid.Column="5" SelectedItem="{Binding Dept, Mode=TwoWay}" ItemsSource="{Binding SelectedLocation.Departments, Mode=OneWay}" DisplayMemberPath="Room"/>
                     <ComboBox VerticalAlignment="Top" Grid.Row="1" Margin="0,5,0,0" ItemsSource="{Binding Source={StaticResource cvsLocations}, Mode=OneWay}" SelectedItem="{Binding SelectedLocation}" HorizontalAlignment="Left" Width="150">
                         <ComboBox.GroupStyle>
                             <GroupStyle>
@@ -147,8 +137,8 @@
                     <CheckBox Content="CS" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="3" Margin="0,5" IsChecked="{Binding IsCS, Mode=TwoWay}"/>
                     <CheckBox Content="SS" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="4" Margin="0,5" IsChecked="{Binding IsSS, Mode=TwoWay}"/>
                     <RadioButton Content="Batteries Intervention" Grid.Column="1" HorizontalAlignment="Left" Margin="0,5" Grid.Row="1" VerticalAlignment="Top" Style="{DynamicResource RadioButtonCheckBoxStyle}" IsChecked="{Binding IsBatteriesIntervention, Mode=TwoWay}"/>
-                    <RadioButton x:Name="radioButton" Content="Other (specify)" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2" IsThreeState="True" Style="{DynamicResource RadioButtonCheckBoxStyle}" Margin="0,5" IsChecked="{Binding IsComlianceWithOther, Mode=TwoWay}"/>
-                    <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="1" Grid.Column="3" IsEnabled="{Binding IsChecked, ElementName=radioButton, Mode=OneWay}"/>
+                    <RadioButton Content="Other (specify)" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2" IsThreeState="True" Style="{DynamicResource RadioButtonCheckBoxStyle}" Margin="0,5" IsChecked="{Binding IsComlianceWithOther, Mode=TwoWay}"/>
+                    <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="1" Grid.Column="3"/>
                     <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Other Issue" VerticalAlignment="Top" Grid.Row="2" Margin="0,5"/>
                     <TextBox Grid.ColumnSpan="4" HorizontalAlignment="Stretch" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1"/>
                 </Grid>

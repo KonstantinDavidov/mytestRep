@@ -29,10 +29,7 @@ namespace FACCTS.Server.Data
 #endif
         }
 
-        private static void SeedFacctsTestData(DatabaseContext context)
-        {
-            
-        }
+        
 
         private static void SeedSecurityData(DatabaseContext context)
         {
@@ -613,11 +610,11 @@ namespace FACCTS.Server.Data
         private static void SeedRolePermissions(DatabaseContext context)
         {
             //Admin
-            //var adminPermissions = context.Permissions.ToList();
-            //var admin = context.Roles.Where(r => r.RoleId == 1).FirstOrDefault();
-            //if (admin != null) adminPermissions.ForEach(p => admin.Permissions.Add(p));
+            var adminPermissions = context.Permissions.ToList();
+            var admin = context.Roles.Where(r => r.RoleId == 1).FirstOrDefault();
+            if (admin != null) adminPermissions.ForEach(p => admin.Permissions.Add(p));
 
-            //context.SaveChanges();
+            context.SaveChanges();
         }
        
 
@@ -649,6 +646,54 @@ namespace FACCTS.Server.Data
             return new CsvReader(sr, csvConfiguration);
         }
 
+        #endregion
+
+        #region FACCTS test data
+        private static void SeedFacctsTestData(DatabaseContext context)
+        {
+            
+            //context.Entry()
+            List<CourtDepartment> departments = new List<CourtDepartment>()
+            {
+                new CourtDepartment()
+                {
+                    
+                    Name = "Family Court",
+                    Room = "G2",
+                    BranchOfficer = "C Smith",
+                    Reporter = "A Smarth",
+                },
+                new CourtDepartment()
+            {
+               
+                Name = "Family Court",
+                Room = "G3",
+                BranchOfficer = "C Smith",
+                Reporter = "A Smarth",
+            },
+            new CourtDepartment()
+            {
+                
+                Name = "Family Court",
+                Room = "G4",
+                BranchOfficer = "C Smith",
+                Reporter = "A Smarth",
+            }
+            };
+
+            var savedDepts = departments.Select(d =>
+            {
+                return context.CourtDepartments.Add(d);
+            })
+            .ToList();
+            context.SaveChanges();
+            CourtCounty cc = context.CourtCounties.Where(c => c.CourtCode == "01200").FirstOrDefault();
+            savedDepts.ForEach(d =>
+            {
+
+                context.Entry(d).Reference(x => x.CourtCounty).CurrentValue = cc;
+            });
+        }
         #endregion
     }
 }

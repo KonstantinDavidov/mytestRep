@@ -121,6 +121,7 @@
     <Compile Include="Data\CourtCases.cs" />
     <Compile Include="Data\CourtCaseStatuses.cs" />
     <Compile Include="Data\CourtCounties.cs" />
+    <Compile Include="Data\CourtDepartments.cs" />
     <Compile Include="Data\Routes.cs" />
     <Compile Include="Data\Users.cs" />
     <Compile Include="Dialog\DialogService.cs" />
