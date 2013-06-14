@@ -29,7 +29,37 @@ namespace FACCTS.Server.Data
 #endif
         }
 
+        private static void SeedFacctsTestData(DatabaseContext context)
+        {
+            var courtMember1 = new CourtMember
+                {
+                    Username = "DemoCourtMember1",
+                    FirstName = "f1",
+                    LastName = "l1",
+                    IsApproved = true,
+                    IsCertified = false,
+                    Phone = "222222",
+                    Password = "12345"
+                };
         
+            context.CourtMembers.Add(courtMember1);
+            var courtMember2 = new CourtMember
+            {
+                Username = "DemoCourtMember2",
+                FirstName = "f2",
+                LastName = "l2",
+                IsApproved = true,
+                IsCertified = true,
+                Substitute = courtMember1,
+                Phone = "333333",
+                Password = "12345"
+            };
+            context.CourtMembers.Add(courtMember2);
+            context.SaveChanges();
+            Roles.AddUserToRole("DemoCourtMember1", "Court Clerk");
+            Roles.AddUserToRole("DemoCourtMember2", "Courtroom Clerk");
+            context.SaveChanges();
+        }
 
         private static void SeedSecurityData(DatabaseContext context)
         {
@@ -610,9 +640,9 @@ namespace FACCTS.Server.Data
         private static void SeedRolePermissions(DatabaseContext context)
         {
             //Admin
-            var adminPermissions = context.Permissions.ToList();
-            var admin = context.Roles.Where(r => r.RoleId == 1).FirstOrDefault();
-            if (admin != null) adminPermissions.ForEach(p => admin.Permissions.Add(p));
+            //var adminPermissions = context.Permissions.ToList();
+            //var admin = context.Roles.Where(r => r.RoleId == 1).FirstOrDefault();
+            //if (admin != null) adminPermissions.ForEach(p => admin.Permissions.Add(p));
 
             context.SaveChanges();
         }
