@@ -651,7 +651,6 @@ namespace FACCTS.Server.Data
         #region FACCTS test data
         private static void SeedFacctsTestData(DatabaseContext context)
         {
-            
             //context.Entry()
             List<CourtDepartment> departments = new List<CourtDepartment>()
             {
@@ -680,19 +679,25 @@ namespace FACCTS.Server.Data
                 Reporter = "A Smarth",
             }
             };
-
-            var savedDepts = departments.Select(d =>
+            var cc = context.CourtCounties.FirstOrDefault(x => x.CourtCode == "01200");
+            
+            if (cc != null)
             {
-                return context.CourtDepartments.Add(d);
-            })
-            .ToList();
-            context.SaveChanges();
-            CourtCounty cc = context.CourtCounties.Where(c => c.CourtCode == "01200").FirstOrDefault();
-            savedDepts.ForEach(d =>
-            {
+                cc = context.CourtCounties.Attach(cc);
+                departments.ForEach(d =>
+                    {
+                        var proxy = context.CourtDepartments.Create();
+                        proxy.Name = d.Name;
+                        proxy.Room = d.Room;
+                        proxy.BranchOfficer = d.BranchOfficer;
+                        proxy.Reporter = d.Reporter;
+                        proxy = context.CourtDepartments.Add(proxy);
+                        context.Entry(cc).Collection(x => x.Departments).Load();
+                        cc.Departments.Add(proxy);
 
-                context.Entry(d).Reference(x => x.CourtCounty).CurrentValue = cc;
-            });
+                    });
+            }
+           
         }
         #endregion
     }

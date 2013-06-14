@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Objects.DataClasses;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,12 +55,18 @@ namespace FACCTS.Server.Model.DataModel
         {
             get
             {
-                return _departments ?? new Collection<CourtDepartment>();
+                return _departments;
             }
             set
             {
                 _departments = value;
             }
+        }
+
+        public void AddCourtDepartment(CourtDepartment d)
+        {
+            this.Departments.Add(d);
+            d.CourtCounty = this;
         }
     }
 }
