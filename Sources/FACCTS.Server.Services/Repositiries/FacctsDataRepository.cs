@@ -59,10 +59,10 @@ namespace FACCTS.Server.Data.Repositiries
                 throw new ArgumentNullException("entity");
 
             DbEntityEntry dbEntityEntry = Context.Entry(entity);
-            if (dbEntityEntry.State == EntityState.Detached)
-            {
-                Entities.Attach(entity);
-            }
+            //if (dbEntityEntry.State == EntityState.Detached)
+            //{
+            //    Entities.Attach(entity);
+            //}
             dbEntityEntry.State = EntityState.Modified;
 
         }
