@@ -478,7 +478,6 @@
     <Content Include="Scripts\lib\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\lib\knockout-2.2.0.js" />
     <Content Include="Scripts\lib\modernizr-2.6.2.js" />
-    <Content Include="Scripts\lib\qunit.js" />
     <Content Include="Scripts\main.js" />
     <Content Include="Scripts\lib\MIT-LICENSE.txt" />
     <Content Include="Scripts\lib\moment.js" />
