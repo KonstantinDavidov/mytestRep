@@ -35,15 +35,10 @@
     				<ColumnDefinition Width="10"/>
     			</Grid.ColumnDefinitions>
     			<UniformGrid VerticalAlignment="Top" Rows="1" Columns="6" HorizontalAlignment="Left">
-    				<Button Content="New Case" cal:Message.Attach="NewCase"/>
-    				<Button Content="Drop Case" />
-    				<Button Content="New Hearing"/>
-    				<Button Content="Continuance" />
-    				<Button Content="New Case ID" />
-    				<Button Content="Consolidate" />
-    			</UniformGrid>
-    			<Button Content="Refresh" HorizontalAlignment="Right" Margin="0,0,0,-0.001" VerticalAlignment="Top" Grid.Column="1"/>
-    		</Grid>
+    				<Button Content="Expand" />
+    				<Button Content="Collapse" />
+                </UniformGrid>
+            </Grid>
     	</Border>
             
     </Grid>

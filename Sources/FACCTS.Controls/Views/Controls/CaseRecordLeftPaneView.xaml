@@ -14,6 +14,7 @@
 		<Grid.RowDefinitions>
 			<RowDefinition/>
 			<RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<GroupBox Header="Court Cases">
 			<ListBox/>
@@ -37,5 +38,11 @@
 				<ListBoxItem Content="Case Notes"/>
 			</ListBox>
 		</GroupBox>
+        <Border Grid.Row="2">
+            <UniformGrid Rows="1" Columns="2">
+                <Button Content="New Case" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            </UniformGrid>
+            
+        </Border>
 	</Grid>
 </UserControl>

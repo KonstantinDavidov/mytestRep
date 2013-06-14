@@ -81,6 +81,7 @@
     <Compile Include="Entities\CodeToken.cs" />
     <Compile Include="Entities\Configuration\AdfsIntegrationConfiguration.cs" />
     <Compile Include="Entities\Configuration\DiagnosticsConfiguration.cs" />
+    <Compile Include="Entities\Configuration\FACCTSConfiguration.cs" />
     <Compile Include="Entities\Configuration\FederationMetadataConfiguration.cs" />
     <Compile Include="Entities\Configuration\GlobalConfiguration.cs" />
     <Compile Include="Entities\Configuration\KeyMaterialConfiguration.cs" />

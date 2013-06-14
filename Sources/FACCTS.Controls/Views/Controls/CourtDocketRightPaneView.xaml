@@ -53,12 +53,13 @@
 					<ColumnDefinition Width="Auto"/>
 					<ColumnDefinition Width="10"/>
 				</Grid.ColumnDefinitions>
-				<UniformGrid HorizontalAlignment="Left" VerticalAlignment="Top" Rows="1" Columns="2">
+				<UniformGrid HorizontalAlignment="Left" VerticalAlignment="Top" Rows="1" Columns="4">
+                    <Button Content="Save" Width="75"/>
 					<Button Content="Drop" Width="75"/>
-					<Button Content="Continuance" Width="75"/>
+                    <Button Content="Dismiss" Width="75"/>
+					<Button Content="Reissue" Width="75"/>
 				</UniformGrid>
-				<Button Content="Save" HorizontalAlignment="Right" Margin="0" VerticalAlignment="Top" Width="75" Grid.Column="1"/>
-			</Grid>
+            </Grid>
 		</Border>
 			
 	</Grid>

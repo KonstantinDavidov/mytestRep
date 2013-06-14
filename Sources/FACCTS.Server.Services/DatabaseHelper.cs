@@ -470,6 +470,7 @@ namespace FACCTS.Server.Data
         #region FACCTS default data
         private static void SeedFacctsDefaultData(DatabaseContext context)
         {
+            SeedFacctsConfiguration(context);
             SeedDesignations(context);
             SeedEyeColors(context);
             SeedHairColor(context);
@@ -482,6 +483,14 @@ namespace FACCTS.Server.Data
             SeedAvailavleCourtOrders(context);
             SeedPermissions(context);
             SeedRolePermissions(context);
+        }
+
+        private static void SeedFacctsConfiguration(DatabaseContext context)
+        {
+            context.FACCTSConfiguration.Add(new FACCTSConfiguration()
+                {
+                    CaseNumberAutoGeneration = true,
+                });
         }
 
         private static void SeedAvailavleCourtOrders(DatabaseContext context)
@@ -650,6 +659,15 @@ namespace FACCTS.Server.Data
         #region FACCTS test data
         private static void SeedFacctsTestData(DatabaseContext context)
         {
+            FACCTSConfiguration config = context.FACCTSConfiguration.FirstOrDefault();
+            if (config != null)
+            {
+                config = context.FACCTSConfiguration.Attach(config);
+                var currentCourtCounty = context.CourtCounties.FirstOrDefault(x => x.CourtCode == "01200");
+                currentCourtCounty = context.CourtCounties.Attach(currentCourtCounty);
+                config.CurrentCourtCounty = currentCourtCounty;
+            }
+
             //context.Entry()
             List<CourtDepartment> departments = new List<CourtDepartment>()
             {
@@ -678,7 +696,7 @@ namespace FACCTS.Server.Data
                 Reporter = "A Smarth",
             }
             };
-            var cc = context.CourtCounties.FirstOrDefault(x => x.CourtCode == "01200");
+            var cc = context.FACCTSConfiguration.First().CurrentCourtCounty;
             
             if (cc != null)
             {

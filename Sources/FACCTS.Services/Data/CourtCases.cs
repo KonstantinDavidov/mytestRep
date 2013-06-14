@@ -27,9 +27,6 @@ namespace FACCTS.Services.Data
         {
             dynamic values = new ExpandoObject();
             values.CaseNumber = courtCase.CaseNumber;
-            values.CreationDateTime = courtCase.CreationDateTime;
-            values.CourtCountyId = courtCase.CourtCounty.Id;
-            values.CourtDepartmentId = courtCase.CourtDepartment.Id;
 
             return values;
         }

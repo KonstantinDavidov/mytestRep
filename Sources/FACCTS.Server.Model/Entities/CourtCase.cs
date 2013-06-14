@@ -12,9 +12,9 @@ namespace FACCTS.Server.Model.DataModel
     public partial class CourtCase
     {
 
-        public CourtCase() : base()
+        public CourtCase()
+            : base()
         {
-            this.CreationDateTime = DateTime.Now;
         }
 
         [Key]
@@ -36,15 +36,6 @@ namespace FACCTS.Server.Model.DataModel
         [Required]
         public virtual CaseRecord CaseRecord { get; set; }
 
-        public DateTime CreationDateTime { get; set; }
 
-        public virtual CourtCounty CourtCounty {get; set;}
-
-        public virtual CourtDepartment CourtDepartment { get; set; }
-
-
-        public ICollection<CaseRecord> RelatedCaseRecords { get; set; }
-
-        public ICollection<CourtCaseOrder> CourtOrders { get; set; }
     }
 }
