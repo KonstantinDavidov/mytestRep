@@ -710,24 +710,25 @@ namespace FACCTS.Server.Data
                 Reporter = "A Smarth",
             }
             };
-
-            //var savedDepts = departments.Select(d =>
-            //{
-            //    return context.CourtDepartments.Add(d);
-            //})
-            //.ToList();
-            CourtCounty cc = context.CourtCounties.Where(c => c.CourtCode == "01200").FirstOrDefault();
-            foreach(var cd in departments)
-            {
-                cd.CourtCountyId = cc.Id; 
-                context.CourtDepartments.Add(cd);
-                context.SaveChanges();
-            }
-
-            context.SaveChanges();
+            var cc = context.CourtCounties.FirstOrDefault(x => x.CourtCode == "01200");
             
-            //savedDepts.ForEach(d =>
+            if (cc != null)
             //{
+                cc = context.CourtCounties.Attach(cc);
+                departments.ForEach(d =>
+                    {
+                        var proxy = context.CourtDepartments.Create();
+                        proxy.Name = d.Name;
+                        proxy.Room = d.Room;
+                        proxy.BranchOfficer = d.BranchOfficer;
+                        proxy.Reporter = d.Reporter;
+                        proxy = context.CourtDepartments.Add(proxy);
+                        context.Entry(cc).Collection(x => x.Departments).Load();
+                        cc.Departments.Add(proxy);
+
+                    });
+            }
+           
             //    context.Entry(d).Reference(x => x.CourtCounty).CurrentValue = cc;
             //});
         }
