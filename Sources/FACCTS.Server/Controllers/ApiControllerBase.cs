@@ -15,6 +15,12 @@ namespace FACCTS.Server.Controllers
     {
         [Import(typeof(IDataManager))]
         protected IDataManager DataManager;
+
+        protected override void Dispose(bool disposing)
+        {
+            DataManager.Dispose();
+            base.Dispose(disposing);
+        }
         
     }
 }

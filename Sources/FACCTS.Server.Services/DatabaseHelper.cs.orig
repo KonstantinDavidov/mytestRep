@@ -29,20 +29,19 @@ namespace FACCTS.Server.Data
 #endif
         }
 
-<<<<<<< HEAD
         private static void AddCourtMembers(DatabaseContext context)
         {
             var courtMember1 = new CourtMember
-                {
-                    Username = "DemoCourtMember1",
-                    FirstName = "f1",
-                    LastName = "l1",
-                    IsApproved = true,
-                    IsCertified = false,
-                    Phone = "222222",
-                    Password = "12345"
-                };
-        
+            {
+                Username = "DemoCourtMember1",
+                FirstName = "f1",
+                LastName = "l1",
+                IsApproved = true,
+                IsCertified = false,
+                Phone = "222222",
+                Password = "12345"
+            };
+
             context.CourtMembers.Add(courtMember1);
             var courtMember2 = new CourtMember
             {
@@ -61,10 +60,7 @@ namespace FACCTS.Server.Data
             Roles.AddUserToRole("DemoCourtMember2", "Courtroom Clerk");
             context.SaveChanges();
         }
-
-=======
        
->>>>>>> 11326d63e6c690474020e691ad4703ff2183405e
         private static void SeedSecurityData(DatabaseContext context)
         {
             RelyingParties relyingParty = new RelyingParties()
@@ -505,6 +501,7 @@ namespace FACCTS.Server.Data
         #region FACCTS default data
         private static void SeedFacctsDefaultData(DatabaseContext context)
         {
+            SeedFacctsConfiguration(context);
             SeedDesignations(context);
             SeedEyeColors(context);
             SeedHairColor(context);
@@ -517,6 +514,14 @@ namespace FACCTS.Server.Data
             SeedAvailavleCourtOrders(context);
             SeedPermissions(context);
             SeedRolePermissions(context);
+        }
+
+        private static void SeedFacctsConfiguration(DatabaseContext context)
+        {
+            context.FACCTSConfiguration.Add(new FACCTSConfiguration()
+                {
+                    CaseNumberAutoGeneration = true,
+                });
         }
 
         private static void SeedAvailavleCourtOrders(DatabaseContext context)
@@ -685,7 +690,19 @@ namespace FACCTS.Server.Data
         #region FACCTS test data
         private static void SeedFacctsTestData(DatabaseContext context)
         {
+<<<<<<< HEAD
             AddCourtMembers(context);
+=======
+            FACCTSConfiguration config = context.FACCTSConfiguration.FirstOrDefault();
+            if (config != null)
+            {
+                config = context.FACCTSConfiguration.Attach(config);
+                var currentCourtCounty = context.CourtCounties.FirstOrDefault(x => x.CourtCode == "01200");
+                currentCourtCounty = context.CourtCounties.Attach(currentCourtCounty);
+                config.CurrentCourtCounty = currentCourtCounty;
+            }
+
+>>>>>>> 65909f0ea43ccd16f0e1e22d7a4364c491449b3b
             //context.Entry()
             List<CourtDepartment> departments = new List<CourtDepartment>()
             {
@@ -714,7 +731,7 @@ namespace FACCTS.Server.Data
                 Reporter = "A Smarth",
             }
             };
-            var cc = context.CourtCounties.FirstOrDefault(x => x.CourtCode == "01200");
+            var cc = context.FACCTSConfiguration.First().CurrentCourtCounty;
             
             if (cc != null)
             //{
@@ -732,40 +749,6 @@ namespace FACCTS.Server.Data
 
                     });
             }
-
-
-
-            var courtMember1 = new CourtMember
-            {
-                Username = "DemoCourtMember1",
-                FirstName = "f1",
-                LastName = "l1",
-                IsApproved = true,
-                IsCertified = false,
-                Phone = "222222",
-                Password = "12345"
-            };
-
-            context.CourtMembers.Add(courtMember1);
-            var courtMember2 = new CourtMember
-            {
-                Username = "DemoCourtMember2",
-                FirstName = "f2",
-                LastName = "l2",
-                IsApproved = true,
-                IsCertified = true,
-                Substitute = courtMember1,
-                Phone = "333333",
-                Password = "12345"
-            };
-            context.CourtMembers.Add(courtMember2);
-            context.SaveChanges();
-            Roles.AddUserToRole("DemoCourtMember1", "Court Clerk");
-            Roles.AddUserToRole("DemoCourtMember2", "Courtroom Clerk");
-            context.SaveChanges();
-           
-            //    context.Entry(d).Reference(x => x.CourtCounty).CurrentValue = cc;
-            //});
         }
         #endregion
     }

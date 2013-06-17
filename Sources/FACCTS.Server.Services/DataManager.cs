@@ -17,7 +17,7 @@ namespace FACCTS.Server.Data
     [PartCreationPolicy(CreationPolicy.NonShared)]
     internal class DataManager : IDataManager
     {
-        [Import(typeof(IRepositoryProvider))]
+        //[Import(typeof(IRepositoryProvider))]
         protected IRepositoryProvider RepositoryProvider { get; set; }
 
         public DatabaseContext DbContext { get; set; }

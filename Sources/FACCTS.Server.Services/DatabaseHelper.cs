@@ -60,7 +60,7 @@ namespace FACCTS.Server.Data
             Roles.AddUserToRole("DemoCourtMember2", "Courtroom Clerk");
             context.SaveChanges();
         }
-       
+
         private static void SeedSecurityData(DatabaseContext context)
         {
             RelyingParties relyingParty = new RelyingParties()
@@ -68,7 +68,7 @@ namespace FACCTS.Server.Data
                 Name = "FACCTS (URN)",
                 Enabled = true,
                 Realm = Constants.RelyingParties.FACCTS,
-                SymmetricSigningKey = CryptoRandom.CreateRandomKeyString(32),    
+                SymmetricSigningKey = CryptoRandom.CreateRandomKeyString(32),
 
             };
             context.RelyingParties.Add(relyingParty);
@@ -645,7 +645,7 @@ namespace FACCTS.Server.Data
                 });
             context.SaveChanges();
         }
-        
+
         private static void SeedRolePermissions(DatabaseContext context)
         {
             //Admin
@@ -655,7 +655,7 @@ namespace FACCTS.Server.Data
 
             context.SaveChanges();
         }
-       
+
 
         private static IEnumerable<T> GetRecords<T>(string resourceCsvFileName)
             where T : class
@@ -729,7 +729,7 @@ namespace FACCTS.Server.Data
             }
             };
             var cc = context.FACCTSConfiguration.First().CurrentCourtCounty;
-            
+
             if (cc != null)
             {
                 cc = context.CourtCounties.Attach(cc);
@@ -749,3 +749,4 @@ namespace FACCTS.Server.Data
         }
         #endregion
     }
+}
