@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACCTS.Server.Integration",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACCTS.WindowsService", "FACCTS.WindowsService\FACCTS.WindowsService.csproj", "{DACBE331-C6CF-42A7-BB51-3826AA832D83}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Faccts.Model", "Faccts.Model\Faccts.Model.csproj", "{90761585-4755-4E44-B9D2-739ADA889311}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Analysis (Debug)|Any CPU = Analysis (Debug)|Any CPU
@@ -175,6 +177,14 @@ Global
 		{DACBE331-C6CF-42A7-BB51-3826AA832D83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DACBE331-C6CF-42A7-BB51-3826AA832D83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DACBE331-C6CF-42A7-BB51-3826AA832D83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90761585-4755-4E44-B9D2-739ADA889311}.Analysis (Debug)|Any CPU.ActiveCfg = Debug|Any CPU
+		{90761585-4755-4E44-B9D2-739ADA889311}.Analysis (Debug)|Any CPU.Build.0 = Debug|Any CPU
+		{90761585-4755-4E44-B9D2-739ADA889311}.Debug and Contracts|Any CPU.ActiveCfg = Debug|Any CPU
+		{90761585-4755-4E44-B9D2-739ADA889311}.Debug and Contracts|Any CPU.Build.0 = Debug|Any CPU
+		{90761585-4755-4E44-B9D2-739ADA889311}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90761585-4755-4E44-B9D2-739ADA889311}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90761585-4755-4E44-B9D2-739ADA889311}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90761585-4755-4E44-B9D2-739ADA889311}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

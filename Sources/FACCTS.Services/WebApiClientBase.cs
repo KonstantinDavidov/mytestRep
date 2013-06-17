@@ -34,6 +34,10 @@ namespace FACCTS.Services
         {
             if (!AuthenticationService.IsAuthenticated)
             {
+                if (typeof(T).IsAssignableFrom(typeof(ICollection<>)))
+                {
+                    return Activator.CreateInstance<T>();
+                }
                 return default(T);
             }
             using (var client = new HttpClient

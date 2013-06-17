@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="79dc3391d7254955a090adf5a102fd7f" Name="Diagram1">
+        <EntityTypeShape EntityType="FACCTS_DBModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.AdfsIntegrationConfiguration" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Appearances" Width="1.5" PointX="7.5" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Applications" Width="1.5" PointX="7.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Attorneys" Width="1.5" PointX="3" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.AvailableCourtOrder" Width="1.5" PointX="8.25" PointY="32.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CaseHistory" Width="1.5" PointX="10.5" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CaseNotes" Width="1.5" PointX="7.5" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CaseRecord" Width="1.5" PointX="5.25" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Children" Width="1.5" PointX="7.5" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Client" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.ClientCertificates" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CodeToken" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CourtCase" Width="1.5" PointX="10.5" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CourtCaseOrders" Width="1.5" PointX="10.5" PointY="28.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CourtCounty" Width="1.5" PointX="0.75" PointY="22.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CourtDepartmenets" Width="1.5" PointX="3" PointY="27" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CourtLocations" Width="1.5" PointX="3" PointY="30.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CourtMember" Width="1.5" PointX="7.5" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CourtParty" Width="1.5" PointX="13.5" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Courtrooms" Width="1.5" PointX="5.25" PointY="30.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Delegation" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Designation" Width="1.5" PointX="11.25" PointY="17" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.DiagnosticsConfiguration" Width="1.5" PointX="2.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.EyesColor" Width="1.5" PointX="11.25" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.FACCTSConfiguration" Width="1.5" PointX="3" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.FederationMetadataConfiguration" Width="1.5" PointX="4.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.FormField" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.GlobalConfiguration" Width="1.5" PointX="13.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.HairColor" Width="1.5" PointX="11.25" PointY="32" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.IdentityProvider" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Interpreters" Width="1.5" PointX="15.75" PointY="24.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.KeyMaterialConfiguration" Width="1.5" PointX="7.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Memberships" Width="1.5" PointX="10" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.OAuth2Configuration" Width="1.5" PointX="15.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.OtherProtected" Width="1.5" PointX="7.5" PointY="54.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.ParticipantRole" Width="1.5" PointX="11.25" PointY="34.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Permission" Width="1.5" PointX="0.75" PointY="12.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Profiles" Width="1.5" PointX="14.5" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Race" Width="1.5" PointX="11.25" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.RelyingParties" Width="1.5" PointX="15.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Role" Width="1.5" PointX="3" PointY="11.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Roles" Width="1.5" PointX="10" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Sex" Width="1.5" PointX="11.25" PointY="39.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.SimpleHttpConfiguration" Width="1.5" PointX="6.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.User" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Users" Width="1.5" PointX="12.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Witnesses" Width="1.5" PointX="18.75" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.WSFederationConfiguration" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.WSTrustConfiguration" Width="1.5" PointX="16.75" PointY="4.75" IsExpanded="true" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Appearances_dbo_CaseRecord_CaseRecord_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Appearances_dbo_Designation_Designation_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.MembershipEntity_Application" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.RoleEntity_Application" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.User_Application" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty1_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty2_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCaseOrders_dbo_AvailableCourtOrder_AvailableCourtOrderId" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CaseRecord_CaseRecord_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_User_CourtClerk_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseNotes_dbo_CaseRecord_CaseRecord_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseNotes_dbo_User_Author_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_CaseRecord_CaseRecord_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_CourtCounty_CourtCounty_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_CourtDepartmenets_CourtDepartment_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_CourtParty_Party1_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_CourtParty_Party2_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Children_dbo_CaseRecord_CaseRecord_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CaseRecord_CaseRecord_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCaseOrders_dbo_CaseRecord_CaseRecord_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtParty_dbo_CaseRecord_CaseRecordByCourtParty1_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtParty_dbo_CaseRecord_CaseRecordByCourtParty2_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Interpreters_dbo_CaseRecord_CaseRecord_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_OtherProtected_dbo_CaseRecord_CaseRecord_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Witnesses_dbo_CaseRecord_CaseRecord_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Children_dbo_Sex_Sex_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_User_CourtClerk_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtDepartmenets_dbo_CourtCounty_CourtCountyId" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtLocations_dbo_CourtCounty_CourtCounty_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_FACCTSConfiguration_dbo_CourtCounty_CurrentCourtCounty_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Courtrooms_dbo_CourtLocations_CourtLocation_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtMember_dbo_CourtMember_SubstituteId" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtMember_dbo_User_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Designation_Designation_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtParty_dbo_EyesColor_EyesColor_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtParty_dbo_HairColor_HairColor_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtParty_dbo_ParticipantRole_ParticipantRole_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Race_Race_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Sex_Sex_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Interpreters_dbo_CourtParty_InterpreterFor_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Witnesses_dbo_CourtParty_WitnessFor_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Witnesses_dbo_Designation_Designation_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.MembershipEntity_User" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.ProfileEntity_User" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.RelatedCase" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.RolePermission" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.RoleUser" ManuallyRouted="false" />
+        <AssociationConnector Association="FACCTS_DBModel.UsersInRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

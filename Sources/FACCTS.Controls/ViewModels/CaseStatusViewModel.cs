@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
-using FACCTS.Server.Model.DataModel;
 using System.Collections.ObjectModel;
 using FACCTS.Services.Logger;
 using FACCTS.Services.Data;
@@ -14,6 +13,7 @@ using FACCTS.Server.Model.Enums;
 using FACCTS.Services;
 using Caliburn.Micro;
 using FACCTS.Controls.Utils;
+using Faccts.Model.Entities;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -36,6 +36,7 @@ namespace FACCTS.Controls.ViewModels
             
             this.NotifyOfPropertyChange(() => CourtCases);
             this.NotifyOfPropertyChange(() => CourtCaseStatuses);
+            this.NotifyOfPropertyChange(() => CourtClerks);
             this.NotifyOfPropertyChange(() => CourtClerks);
         }
 
@@ -279,11 +280,16 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-        public List<User> CourtClerks
+        private List<Faccts.Model.Entities.User> _courtClerks;
+        public List<Faccts.Model.Entities.User> CourtClerks
         {
             get
             {
-                return Users.GetByRole("Court Clerk");
+                if (_courtClerks == null && IsAuthenticated)
+                {
+                    _courtClerks = FACCTS.Services.Data.Users.GetByRole("Court Clerk");
+                }
+                return _courtClerks;
             }
         }
 
