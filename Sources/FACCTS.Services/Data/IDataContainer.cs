@@ -10,6 +10,7 @@ namespace FACCTS.Services.Data
     public interface IDataContainer
     {
         TrackableCollection<CourtCase> CourtCases { get; }
+        SearchCriteria SearchCriteria { get; }
 
         void SearchCourtCases();
     }

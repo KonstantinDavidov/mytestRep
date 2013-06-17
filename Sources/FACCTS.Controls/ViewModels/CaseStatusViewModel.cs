@@ -14,6 +14,7 @@ using FACCTS.Services;
 using Caliburn.Micro;
 using FACCTS.Controls.Utils;
 using Faccts.Model.Entities;
+using System.Reactive.Linq;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -23,6 +24,36 @@ namespace FACCTS.Controls.ViewModels
         [ImportingConstructor]
         public CaseStatusViewModel(ILogger logger, IWindowManager windowManager) : base()
         {
+            Observable.Merge<Object>(
+                this.ObservableForProperty(x => x.CaseNumber),
+                this.ObservableForProperty(x => x.FirstActivityStartDate),
+                this.ObservableForProperty(x => x.FirstActivityEndDate),
+                this.ObservableForProperty(x => x.LastActivityStartDate),
+                this.ObservableForProperty(x => x.LastActivityEndDate),
+                this.ObservableForProperty(x => x.CCPOR_ID),
+                this.ObservableForProperty(x => x.Party1FirstName),
+                this.ObservableForProperty(x => x.Party1MiddleName),
+                this.ObservableForProperty(x => x.Party1LastName),
+                this.ObservableForProperty(x => x.Party2FirstName),
+                this.ObservableForProperty(x => x.Party2MiddleName),
+                this.ObservableForProperty(x => x.Party2LastName),
+                this.ObservableForProperty(x => x.CCPORStatus)
+                ).Subscribe(_ =>
+                {
+                    DataContainer.SearchCriteria.CaseNumber = CaseNumber;
+                    DataContainer.SearchCriteria.FirstActivityStartDate = FirstActivityStartDate;
+                    DataContainer.SearchCriteria.FirstActivityEndDate = FirstActivityEndDate;
+                    DataContainer.SearchCriteria.LastActivityStartDate = LastActivityStartDate;
+                    DataContainer.SearchCriteria.LastActivityEndDate = LastActivityEndDate;
+                    DataContainer.SearchCriteria.CCPOR_ID = CCPOR_ID;
+                    DataContainer.SearchCriteria.Party1FirstName = Party1FirstName;
+                    DataContainer.SearchCriteria.Party1MiddleName = Party1MiddleName;
+                    DataContainer.SearchCriteria.Party1LastName = Party1LastName;
+                    DataContainer.SearchCriteria.Party2FirstName = Party2FirstName;
+                    DataContainer.SearchCriteria.Party2MiddleName = Party2MiddleName;
+                    DataContainer.SearchCriteria.Party2LastName = Party2LastName;
+                    DataContainer.SearchCriteria.CCPORStatus = CCPORStatus;
+                });
             _logger = logger;
             _logger.Info("CaseStatusViewModel..ctor()");
             _windowManager = windowManager;
@@ -197,6 +228,19 @@ namespace FACCTS.Controls.ViewModels
             set
             {
                 this.RaiseAndSetIfChanged(ref _party2LastName, value);
+            }
+        }
+
+        private CCPORStatus _ccporStatus;
+        public CCPORStatus CCPORStatus
+        {
+            get
+            {
+                return _ccporStatus;
+            }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _ccporStatus, value);
             }
         }
 

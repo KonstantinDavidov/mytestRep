@@ -19,6 +19,15 @@ namespace FACCTS.Services.Data
             //SearchCourtCases();
         }
 
+        private SearchCriteria _searchCriteria = new SearchCriteria();
+        public SearchCriteria SearchCriteria
+        {
+            get
+            {
+                return _searchCriteria;
+            }
+        }
+
         private TrackableCollection<CourtCase> _courtCases;
         public TrackableCollection<CourtCase> CourtCases
         {
@@ -75,6 +84,31 @@ namespace FACCTS.Services.Data
                 ChangeTracker.ChangeTrackingEnabled = true;   
             }
         }
+    }
+
+    public class SearchCriteria
+    {
+        public SearchCriteria()
+        {
+
+        }
+
+        public string CaseNumber { get; set; }
+        public string CCPOR_ID { get; set; }
+        public DateTime? FirstActivityEndDate { get; set; }
+        public DateTime? FirstActivityStartDate { get; set; }
+        public DateTime? LastActivityEndDate { get; set; }
+        public DateTime? LastActivityStartDate { get; set; }
+        public string Party1FirstName { get; set; }
+        public string Party1LastName { get; set; }
+        public string Party1MiddleName { get; set; }
+        public string Party2FirstName { get; set; }
+        public string Party2LastName { get; set; }
+        public string Party2MiddleName { get; set; }
+        public FACCTS.Server.Model.Enums.CaseStatus CaseStatus { get; set; }
+        public Faccts.Model.Entities.User CourtClerk { get; set; }
+
+        public Server.Model.Enums.CCPORStatus CCPORStatus { get; set; }
     }
 
    
