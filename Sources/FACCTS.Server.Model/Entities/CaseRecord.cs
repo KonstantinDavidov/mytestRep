@@ -50,6 +50,16 @@ namespace FACCTS.Server.Model.DataModel
 
         public ICollection<RelatedCase> RelatedCases { get; set; }
 
+
+        public virtual CourtCounty CourtCounty { get; set; }
+
+        public virtual CourtDepartment CourtDepartment { get; set; }
+
+
+        public ICollection<CaseRecord> RelatedCaseRecords { get; set; }
+
+        public ICollection<CourtCaseOrder> CourtOrders { get; set; }
+
         [StringLength(250)]
         public string Judge { get; set; }
     }

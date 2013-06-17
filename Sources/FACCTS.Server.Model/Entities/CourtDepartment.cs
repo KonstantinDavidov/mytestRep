@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -31,6 +32,10 @@ namespace FACCTS.Server.Model.DataModel
         public string Reporter { get; set; }
 
         [InverseProperty("Departments")]
+        [JsonProperty(ItemIsReference = true, ItemReferenceLoopHandling = ReferenceLoopHandling.Ignore)]
+        [ForeignKey("CourtCountyId")]
         public virtual CourtCounty CourtCounty { get; set; }
+
+        public int CourtCountyId { get; set; }
     }
 }

@@ -78,9 +78,8 @@
 		</Border>
         <GroupBox Grid.Row="1" Grid.ColumnSpan="3" cal:View.Model="{Binding ActiveItem, Mode=OneWay}" Header="{Binding ActiveItem.DisplayName, Mode=OneWay}"/>
 		<Border BorderBrush="Black" BorderThickness="1" Grid.RowSpan="2" Grid.Row="2" Grid.ColumnSpan="3" Style="{DynamicResource OrdinalBorder}" VerticalAlignment="Bottom">
-			<UniformGrid VerticalAlignment="Top" Rows="1" Columns="2" HorizontalAlignment="Right">
-				<Button Content="New Case" VerticalAlignment="Top"/>
-				<Button Content="Minute Order" VerticalAlignment="Top"/>
+			<UniformGrid VerticalAlignment="Top" Rows="1" Columns="2" HorizontalAlignment="Left">
+				<Button Content="Save" VerticalAlignment="Top"/>
 			</UniformGrid>
 		</Border>
 	</Grid>

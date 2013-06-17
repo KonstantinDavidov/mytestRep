@@ -12,6 +12,11 @@ namespace FACCTS.Server.Model.DataModel
     public partial class CourtCase
     {
 
+        public CourtCase()
+            : base()
+        {
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -32,8 +37,5 @@ namespace FACCTS.Server.Model.DataModel
         public virtual CaseRecord CaseRecord { get; set; }
 
 
-        public ICollection<CaseRecord> RelatedCaseRecords { get; set; }
-
-        public ICollection<CourtCaseOrder> CourtOrders { get; set; }
     }
 }

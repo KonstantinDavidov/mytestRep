@@ -1,5 +1,6 @@
 ﻿using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -47,26 +48,14 @@ namespace FACCTS.Server.Model.DataModel
         [InverseProperty("CourtCounty")]
         public virtual ICollection<CourtLocation> CourtLocations { get; set; }
 
-        
-        private ICollection<CourtDepartment> _departments;
+
         [CsvField(Ignore = true)]
         [InverseProperty("CourtCounty")]
-        public virtual ICollection<CourtDepartment> Departments 
+        [JsonProperty(ItemReferenceLoopHandling = ReferenceLoopHandling.Serialize)]
+        public virtual ICollection<CourtDepartment> Departments
         {
-            get
-            {
-                return _departments;
-            }
-            set
-            {
-                _departments = value;
-            }
-        }
-
-        public void AddCourtDepartment(CourtDepartment d)
-        {
-            this.Departments.Add(d);
-            d.CourtCounty = this;
+            get;
+            set;
         }
     }
 }

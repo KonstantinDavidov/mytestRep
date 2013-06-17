@@ -18,7 +18,8 @@ namespace FACCTS.Server.Controllers
         {
             var all = DataManager
                 .CourtCountyRepository
-                .GetAll();
+                .GetAll()
+                 ;
             return all
                 .ToList();
         }

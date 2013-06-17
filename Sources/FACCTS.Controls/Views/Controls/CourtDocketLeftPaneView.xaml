@@ -19,7 +19,6 @@
     			<Grid.ColumnDefinitions>
     				<ColumnDefinition Width="Auto"/>
     				<ColumnDefinition/>
-    				<ColumnDefinition Width="Auto"/>
     			</Grid.ColumnDefinitions>
     			<Grid.RowDefinitions>
     				<RowDefinition/>
@@ -29,13 +28,16 @@
     			<Calendar Grid.ColumnSpan="3" SelectedDate="{Binding CalendarDate, Mode=TwoWay}"/>
     			<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Filter by Courtroom" VerticalAlignment="Center" Grid.Row="1"/>
     			<ComboBox Grid.Row="1" Grid.Column="1"/>
-    			<Button Content="View Cases" Grid.Row="1" Grid.Column="2"/>
     			<TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2"><Run Text="Filter by AM/PM"/></TextBlock>
     			<ComboBox Margin="0" Grid.Row="2" Grid.Column="1"/>
     		</Grid>
     	</GroupBox>
     	<Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
-    		<Button Content="Add Case" HorizontalAlignment="Left" Width="75"/>
+            <UniformGrid Rows="1" Columns="2" HorizontalAlignment="Left">
+                <Button Content="Add Case" />
+                <Button Content="View Cases" />
+            </UniformGrid>
+    		
     	</Border>
             
     </Grid>

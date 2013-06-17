@@ -9,10 +9,13 @@
     xmlns:system="clr-namespace:System;assembly=mscorlib"
     xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
     xmlns:vm="clr-namespace:FACCTS.Controls.ViewModels"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+    xmlns:cal="http://www.caliburnproject.org"
+    xmlns:conv="clr-namespace:FACCTS.Controls.Converters"
 	mc:Ignorable="d"
 	x:Class="FACCTS.Controls.NewCourtCaseControlView"
 	x:Name="UserControl"
-	d:DesignWidth="520" d:DesignHeight="327" Background="{DynamicResource ControlBackgroundBrush}" Width="Auto" Height="Auto"
+	Width="407" Height="199" Background="{DynamicResource ControlBackgroundBrush}"
     d:DataContext="{d:DesignInstance Type=vm:NewCourtCaseDialogViewModel, IsDesignTimeCreatable=True}">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -43,121 +46,30 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <GroupBox Header="Date and Location" VerticalAlignment="Top" HorizontalContentAlignment="Stretch" Padding="8">
-                <Grid HorizontalAlignment="Left">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="150"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="80"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="80"/>
-                    </Grid.ColumnDefinitions>
+            <Border Grid.Row="0" Grid.ColumnSpan="2" Padding="40, 20">
+                <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Text="Date:" Margin="0,5"/>
-                    <DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="1" VerticalContentAlignment="Center" SelectedDate="{Binding SelectedDate, Mode=TwoWay}"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="2">Time:</TextBlock>
-                    <xctk:DateTimeUpDown Format="ShortTime" Grid.Column="3" VerticalAlignment="Stretch" Value="{Binding SelectedTime, Mode=TwoWay}"/>
-                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="4">Dept.:</TextBlock>
-                    <ComboBox Grid.ColumnSpan="2" VerticalAlignment="Center" Grid.Column="5" SelectedItem="{Binding Dept, Mode=TwoWay}" ItemsSource="{Binding SelectedLocation.Departments, Mode=OneWay}" DisplayMemberPath="Room"/>
-                    <ComboBox VerticalAlignment="Top" Grid.Row="1" Margin="0,5,0,0" ItemsSource="{Binding Source={StaticResource cvsLocations}, Mode=OneWay}" SelectedItem="{Binding SelectedLocation}" HorizontalAlignment="Left" Width="150">
-                        <ComboBox.GroupStyle>
-                            <GroupStyle>
-                                <GroupStyle.HeaderTemplate>
-                                    <DataTemplate>
-                                        <DockPanel>
-                                            <TextBlock FontWeight="Bold" DockPanel.Dock="Top">
-                                                <TextBlock Text="{Binding Name}" />
-                                            </TextBlock>
-                                        </DockPanel>
-                                    </DataTemplate>
-                                </GroupStyle.HeaderTemplate>
-                                <GroupStyle.ContainerStyle>
-                                    <Style TargetType="{x:Type GroupItem}">
-                                        <Setter Property="Template">
-     
-                                            <Setter.Value>
-                                                <ControlTemplate TargetType="{x:Type GroupItem}">
-                                                    <Expander IsExpanded="True">
-                                                        <Expander.Header>
-                                                                <TextBlock FontWeight="Bold" Text="{Binding Path=Name}" Margin="5,0,0,0"/>
-                                                        </Expander.Header>
-                                                        <Expander.Content>
-                                                            <ItemsPresenter/>
-                                                        </Expander.Content>
-                                                    </Expander>
-                                                </ControlTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-
-                                    </Style>
-                                </GroupStyle.ContainerStyle>
-                            </GroupStyle>
-                        </ComboBox.GroupStyle>
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock>
-                                    <Run Text="{Binding Location, Mode=OneWay}"/>
-                                    <Run Text=" / "/>
-                                    <Run Text="{Binding CourtName, Mode=OneWay}"/>
-                                </TextBlock>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                    <TextBox TextWrapping="Wrap" Text="{Binding CourtNotice, Mode=TwoWay}" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="5" />
+                    <TextBlock Text="Create New Case" Style="{StaticResource TextBlockDialogHeading}"/>
+                    <TextBlock Grid.Row="1" TextWrapping="Wrap" Margin="15,8,8,8">
+                        <Run>FACCTs has automatically generated the following Case ID. Please </Run> 
+                        <Run FontWeight="Bold">Confirm</Run>
+                        <Run> or </Run><Run FontWeight="Bold"> Edit</Run><Run> to Manually enter a Case Number</Run>
+                    </TextBlock>
+                    <StackPanel Orientation="Horizontal" Grid.Row="2">
+                        <TextBox Text="{Binding CaseNumber, Mode=TwoWay}" Width="120" Margin="15,3,0,0" IsReadOnly="{Binding IsEditing, Mode=OneWay, Converter={x:Static conv:InvertedBooleanConverter.Instance}}"/>
+                        <Button Content="Edit" Width="75" Margin="10,0,0,0" IsEnabled="{Binding IsEditing, Converter={x:Static conv:InvertedBooleanConverter.Instance}}" cal:Message.Attach="Edit"/>
+                    </StackPanel>
                 </Grid>
-            </GroupBox>
-            <UniformGrid HorizontalAlignment="Right" Margin="8,8,0,8" Grid.Row="3" VerticalAlignment="Top" Rows="1" Columns="2">
-                <Button Content="New Case" Margin="8" IsDefault="True"/>
+            </Border>
+            <UniformGrid HorizontalAlignment="Right" Margin="8,8,0,8" Grid.Row="1" VerticalAlignment="Top" Rows="1" Columns="2">
+                <Button Content="Create Case" Margin="8" IsDefault="True" cal:Message.Attach="CreateNewCase"/>
                 <Button Content="Cancel" Margin="8,8,0,8" IsCancel="True"/>
             </UniformGrid>
-            <GroupBox Header="Issues to be Addressed" Grid.Row="1" VerticalAlignment="Top" Padding="8">
-                <Grid x:Name="grid" HorizontalAlignment="Left">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition x:Name="FirstColumn" Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock HorizontalAlignment="Left" Grid.RowSpan="2" TextWrapping="Wrap" VerticalAlignment="Top" Grid.Row="1" Text="Compliance with" Margin="0,5"/>
-                    <CheckBox Content="Permanent" Grid.Column="1" Margin="0,5" IsChecked="{Binding IsPermanent, Mode=TwoWay}"/>
-                    <CheckBox Content="CC / CV" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Margin="0,5" IsChecked="{Binding IsCCorCV, Mode=TwoWay}"/>
-                    <CheckBox Content="CS" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Column="3" Margin="0,5" IsChecked="{Binding IsCS, Mode=TwoWay}"/>
-                    <CheckBox Content="SS" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="4" Margin="0,5" IsChecked="{Binding IsSS, Mode=TwoWay}"/>
-                    <RadioButton Content="Batteries Intervention" Grid.Column="1" HorizontalAlignment="Left" Margin="0,5" Grid.Row="1" VerticalAlignment="Top" Style="{DynamicResource RadioButtonCheckBoxStyle}" IsChecked="{Binding IsBatteriesIntervention, Mode=TwoWay}"/>
-                    <RadioButton Content="Other (specify)" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2" IsThreeState="True" Style="{DynamicResource RadioButtonCheckBoxStyle}" Margin="0,5" IsChecked="{Binding IsComlianceWithOther, Mode=TwoWay}"/>
-                    <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Width="120" Grid.Row="1" Grid.Column="3"/>
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Other Issue" VerticalAlignment="Top" Grid.Row="2" Margin="0,5"/>
-                    <TextBox Grid.ColumnSpan="4" HorizontalAlignment="Stretch" Height="23" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2" Grid.Column="1"/>
-                </Grid>
-            </GroupBox>
-            <GroupBox Header="Additional Appearance" Grid.Row="2" VerticalAlignment="Top" Padding="8" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="{Binding ColumnDefinitions[0].ActualWidth, ElementName=grid, Mode=OneWay}"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <RadioButton Content="Protected" HorizontalAlignment="Left" VerticalAlignment="Bottom" Style="{DynamicResource RadioButtonCheckBoxStyle}" IsChecked="True" Grid.Column="1" Margin="5"/>
-                    <RadioButton Content="Restrained" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="2" Style="{DynamicResource RadioButtonCheckBoxStyle}" Margin="5"/>
-                    <RadioButton Content="Other" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Column="3" Style="{DynamicResource RadioButtonCheckBoxStyle}" Margin="5"/>
-                    <TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="4"/>
-                </Grid>
-            </GroupBox>
         </Grid>
     </Grid>
 </UserControl>

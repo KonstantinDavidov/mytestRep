@@ -300,9 +300,6 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-        public void NewCase()
-        {
-            BusinessLogicHelper.CreateNewCase(ServiceLocatorContainer.Locator.GetInstance<NewCourtCaseDialogViewModel>(), _windowManager);
-        }
+        
     }
 }

@@ -70,7 +70,7 @@ namespace FACCTS
         {
             var vm = ServiceLocatorContainer.Locator.GetInstance<IShowExceptionDialogViewModel>();
             vm.Exception = e.Exception;
-            ServiceLocatorContainer.Locator.GetInstance<IWindowManager>().ShowDialog(vm);
+            Execute.OnUIThread(() => ServiceLocatorContainer.Locator.GetInstance<IWindowManager>().ShowDialog(vm));
         }
 
         

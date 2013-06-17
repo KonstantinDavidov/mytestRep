@@ -18,5 +18,21 @@ namespace FACCTS.Server.Controllers
         {
             return DataManager.CourtDepartmentRepository.GetAll().ToList();
         }
+
+        public List<CourtDepartment> Get(int courtCountyId)
+        {
+            var all = DataManager
+                .CourtDepartmentRepository.
+                GetAll()
+                .Where(x => x.CourtCountyId == courtCountyId)
+                .ToArray()
+                .Select(x =>
+                    { 
+                        x.CourtCounty = null;
+                        return x; 
+                    })
+                .ToList();
+            return all;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Caliburn.Micro.ReactiveUI;
+using FACCTS.Controls.Utils;
 using FACCTS.Services;
 using System;
 using System.Collections.Generic;
@@ -18,8 +19,10 @@ namespace FACCTS.Controls.ViewModels
             , ChildrenOtherProtectedViewModel childrenViewModel
             , AttorneysViewModel attorneysViewModel
             , WitnessInterpereterViewModel witnessInterprererViewModel
-            , RelatedCasesViewModel relatedCasesViewModel) : base()
+            , RelatedCasesViewModel relatedCasesViewModel,
+              IWindowManager windowManager) : base()
         {
+            _windowManager = windowManager;
             this.DisplayName = "Case Record";
             PersonalInformationViewModel = personalInformation;
             ChildrenOtherProtectedViewModel = childrenViewModel;
@@ -29,6 +32,7 @@ namespace FACCTS.Controls.ViewModels
             ActivateControl(0);
         }
 
+        private IWindowManager _windowManager;
         protected PersonalInformationViewModel PersonalInformationViewModel { get; set; }
         protected ChildrenOtherProtectedViewModel ChildrenOtherProtectedViewModel { get; set; }
         protected AttorneysViewModel AttorneysViewModel {get; set;}
@@ -58,6 +62,11 @@ namespace FACCTS.Controls.ViewModels
                     ActivateItem(PersonalInformationViewModel);
                     break;
             }
+        }
+
+        public void NewCase()
+        {
+            BusinessLogicHelper.CreateNewCase(ServiceLocatorContainer.Locator.GetInstance<NewCourtCaseDialogViewModel>(), _windowManager);
         }
     }
 }
