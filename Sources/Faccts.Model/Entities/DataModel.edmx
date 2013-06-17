@@ -9,7 +9,6 @@
           <EntitySet Name="__MigrationHistory" EntityType="FACCTS_DBModel.Store.__MigrationHistory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AdfsIntegrationConfiguration" EntityType="FACCTS_DBModel.Store.AdfsIntegrationConfiguration" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Appearances" EntityType="FACCTS_DBModel.Store.Appearances" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Applications" EntityType="FACCTS_DBModel.Store.Applications" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Attorneys" EntityType="FACCTS_DBModel.Store.Attorneys" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AvailableCourtOrder" EntityType="FACCTS_DBModel.Store.AvailableCourtOrder" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CaseHistory" EntityType="FACCTS_DBModel.Store.CaseHistory" store:Type="Tables" Schema="dbo" />
@@ -39,24 +38,19 @@
           <EntitySet Name="IdentityProvider" EntityType="FACCTS_DBModel.Store.IdentityProvider" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Interpreters" EntityType="FACCTS_DBModel.Store.Interpreters" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="KeyMaterialConfiguration" EntityType="FACCTS_DBModel.Store.KeyMaterialConfiguration" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Memberships" EntityType="FACCTS_DBModel.Store.Memberships" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OAuth2Configuration" EntityType="FACCTS_DBModel.Store.OAuth2Configuration" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OtherProtected" EntityType="FACCTS_DBModel.Store.OtherProtected" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ParticipantRole" EntityType="FACCTS_DBModel.Store.ParticipantRole" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Permission" EntityType="FACCTS_DBModel.Store.Permission" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Profiles" EntityType="FACCTS_DBModel.Store.Profiles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Race" EntityType="FACCTS_DBModel.Store.Race" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RelatedCase" EntityType="FACCTS_DBModel.Store.RelatedCase" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RelyingParties" EntityType="FACCTS_DBModel.Store.RelyingParties" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Role" EntityType="FACCTS_DBModel.Store.Role" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RolePermission" EntityType="FACCTS_DBModel.Store.RolePermission" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Roles" EntityType="FACCTS_DBModel.Store.Roles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RoleUser" EntityType="FACCTS_DBModel.Store.RoleUser" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Sex" EntityType="FACCTS_DBModel.Store.Sex" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SimpleHttpConfiguration" EntityType="FACCTS_DBModel.Store.SimpleHttpConfiguration" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="FACCTS_DBModel.Store.User" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Users" EntityType="FACCTS_DBModel.Store.Users" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="UsersInRoles" EntityType="FACCTS_DBModel.Store.UsersInRoles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Witnesses" EntityType="FACCTS_DBModel.Store.Witnesses" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="WSFederationConfiguration" EntityType="FACCTS_DBModel.Store.WSFederationConfiguration" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="WSTrustConfiguration" EntityType="FACCTS_DBModel.Store.WSTrustConfiguration" store:Type="Tables" Schema="dbo" />
@@ -248,34 +242,6 @@
             <End Role="Designation" EntitySet="Designation" />
             <End Role="Witnesses" EntitySet="Witnesses" />
           </AssociationSet>
-          <AssociationSet Name="MembershipEntity_Application" Association="FACCTS_DBModel.Store.MembershipEntity_Application">
-            <End Role="Applications" EntitySet="Applications" />
-            <End Role="Memberships" EntitySet="Memberships" />
-          </AssociationSet>
-          <AssociationSet Name="MembershipEntity_User" Association="FACCTS_DBModel.Store.MembershipEntity_User">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Memberships" EntitySet="Memberships" />
-          </AssociationSet>
-          <AssociationSet Name="ProfileEntity_User" Association="FACCTS_DBModel.Store.ProfileEntity_User">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Profiles" EntitySet="Profiles" />
-          </AssociationSet>
-          <AssociationSet Name="RoleEntity_Application" Association="FACCTS_DBModel.Store.RoleEntity_Application">
-            <End Role="Applications" EntitySet="Applications" />
-            <End Role="Roles" EntitySet="Roles" />
-          </AssociationSet>
-          <AssociationSet Name="User_Application" Association="FACCTS_DBModel.Store.User_Application">
-            <End Role="Applications" EntitySet="Applications" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="UsersInRole_Role" Association="FACCTS_DBModel.Store.UsersInRole_Role">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="UsersInRoles" EntitySet="UsersInRoles" />
-          </AssociationSet>
-          <AssociationSet Name="UsersInRole_User" Association="FACCTS_DBModel.Store.UsersInRole_User">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="UsersInRoles" EntitySet="UsersInRoles" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="__MigrationHistory">
           <Key>
@@ -316,14 +282,6 @@
           <Property Name="Designation_Id" Type="int" />
           <Property Name="CaseRecord_Id" Type="int" />
         </EntityType>
-        <EntityType Name="Applications">
-          <Key>
-            <PropertyRef Name="ApplicationId" />
-          </Key>
-          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ApplicationName" Type="nvarchar" Nullable="false" MaxLength="235" />
-          <Property Name="Description" Type="nvarchar" MaxLength="256" />
-        </EntityType>
         <EntityType Name="Attorneys">
           <Key>
             <PropertyRef Name="Id" />
@@ -358,7 +316,7 @@
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="CaseHistoryEvent" Type="int" Nullable="false" />
           <Property Name="CCPOR_ID" Type="nvarchar" MaxLength="30" />
-          <Property Name="CourtCaseOrderId" Type="int" Nullable="false" />
+          <Property Name="CourtCaseOrderId" Type="int" />
           <Property Name="CourtClerk_UserId" Type="int" />
           <Property Name="CaseRecord_Id" Type="int" />
         </EntityType>
@@ -377,7 +335,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Judge" Type="nvarchar" MaxLength="250" />
-          <Property Name="Party1_Id" Type="int" Nullable="false" />
+          <Property Name="Party1_Id" Type="int" />
           <Property Name="Party2_Id" Type="int" />
           <Property Name="AttorneyForParty1_Id" Type="int" />
           <Property Name="AttorneyForParty2_Id" Type="int" />
@@ -662,30 +620,6 @@
           <Property Name="RSASigningKey" Type="nvarchar(max)" />
           <Property Name="SymmetricSigningKey" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="Memberships">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="PasswordFormat" Type="int" Nullable="false" />
-          <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="Email" Type="nvarchar" MaxLength="256" />
-          <Property Name="PasswordQuestion" Type="nvarchar" MaxLength="256" />
-          <Property Name="PasswordAnswer" Type="nvarchar" MaxLength="128" />
-          <Property Name="IsApproved" Type="bit" Nullable="false" />
-          <Property Name="IsLockedOut" Type="bit" Nullable="false" />
-          <Property Name="CreateDate" Type="datetime" Nullable="false" />
-          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
-          <Property Name="LastPasswordChangedDate" Type="datetime" Nullable="false" />
-          <Property Name="LastLockoutDate" Type="datetime" Nullable="false" />
-          <Property Name="FailedPasswordAttemptCount" Type="int" Nullable="false" />
-          <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" Nullable="false" />
-          <Property Name="FailedPasswordAnswerAttemptCount" Type="int" Nullable="false" />
-          <Property Name="FailedPasswordAnswerAttemptWindowsStart" Type="datetime" Nullable="false" />
-          <Property Name="Comment" Type="nvarchar" MaxLength="256" />
-        </EntityType>
         <EntityType Name="OAuth2Configuration">
           <Key>
             <PropertyRef Name="Id" />
@@ -721,16 +655,6 @@
           </Key>
           <Property Name="Id" Type="bigint" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="Profiles">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="PropertyNames" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="PropertyValueStrings" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="PropertyValueBinary" Type="varbinary(max)" Nullable="false" />
-          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Race">
           <Key>
@@ -780,15 +704,6 @@
           <Property Name="RoleId" Type="int" Nullable="false" />
           <Property Name="Id" Type="bigint" Nullable="false" />
         </EntityType>
-        <EntityType Name="Roles">
-          <Key>
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="Description" Type="nvarchar" MaxLength="256" />
-        </EntityType>
         <EntityType Name="RoleUser">
           <Key>
             <PropertyRef Name="Role_RoleId" />
@@ -835,24 +750,6 @@
           <Property Name="LastPasswordChangedDate" Type="datetime" />
           <Property Name="PasswordVerificationToken" Type="nvarchar(max)" />
           <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" />
-        </EntityType>
-        <EntityType Name="Users">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="IsAnonymous" Type="bit" Nullable="false" />
-          <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UsersInRoles">
-          <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="Witnesses">
           <Key>
@@ -928,9 +825,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId">
-          <End Role="CourtCaseOrders" Type="FACCTS_DBModel.Store.CourtCaseOrders" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="CourtCaseOrders" Type="FACCTS_DBModel.Store.CourtCaseOrders" Multiplicity="0..1" />
           <End Role="CaseHistory" Type="FACCTS_DBModel.Store.CaseHistory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourtCaseOrders">
@@ -1052,9 +947,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CaseRecord_dbo_CourtParty_Party1_Id">
-          <End Role="CourtParty" Type="FACCTS_DBModel.Store.CourtParty" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+          <End Role="CourtParty" Type="FACCTS_DBModel.Store.CourtParty" Multiplicity="0..1" />
           <End Role="CaseRecord" Type="FACCTS_DBModel.Store.CaseRecord" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourtParty">
@@ -1495,90 +1388,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="MembershipEntity_Application">
-          <End Role="Applications" Type="FACCTS_DBModel.Store.Applications" Multiplicity="1" />
-          <End Role="Memberships" Type="FACCTS_DBModel.Store.Memberships" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Applications">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="Memberships">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="MembershipEntity_User">
-          <End Role="Users" Type="FACCTS_DBModel.Store.Users" Multiplicity="1" />
-          <End Role="Memberships" Type="FACCTS_DBModel.Store.Memberships" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Memberships">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ProfileEntity_User">
-          <End Role="Users" Type="FACCTS_DBModel.Store.Users" Multiplicity="1" />
-          <End Role="Profiles" Type="FACCTS_DBModel.Store.Profiles" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Profiles">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="RoleEntity_Application">
-          <End Role="Applications" Type="FACCTS_DBModel.Store.Applications" Multiplicity="1" />
-          <End Role="Roles" Type="FACCTS_DBModel.Store.Roles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Applications">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="Roles">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="User_Application">
-          <End Role="Applications" Type="FACCTS_DBModel.Store.Applications" Multiplicity="1" />
-          <End Role="Users" Type="FACCTS_DBModel.Store.Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Applications">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="Users">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="UsersInRole_Role">
-          <End Role="Roles" Type="FACCTS_DBModel.Store.Roles" Multiplicity="1" />
-          <End Role="UsersInRoles" Type="FACCTS_DBModel.Store.UsersInRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="RoleId" />
-            </Principal>
-            <Dependent Role="UsersInRoles">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="UsersInRole_User">
-          <End Role="Users" Type="FACCTS_DBModel.Store.Users" Multiplicity="1" />
-          <End Role="UsersInRoles" Type="FACCTS_DBModel.Store.UsersInRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="UsersInRoles">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -1587,7 +1396,6 @@
           <EntitySet Name="C__MigrationHistory" EntityType="FACCTS_DBModel.C__MigrationHistory" />
           <EntitySet Name="AdfsIntegrationConfiguration" EntityType="FACCTS_DBModel.AdfsIntegrationConfiguration" />
           <EntitySet Name="Appearances" EntityType="FACCTS_DBModel.Appearances" />
-          <EntitySet Name="Applications" EntityType="FACCTS_DBModel.Applications" />
           <EntitySet Name="Attorneys" EntityType="FACCTS_DBModel.Attorneys" />
           <EntitySet Name="AvailableCourtOrder" EntityType="FACCTS_DBModel.AvailableCourtOrder" />
           <EntitySet Name="CaseHistory" EntityType="FACCTS_DBModel.CaseHistory" />
@@ -1617,20 +1425,16 @@
           <EntitySet Name="IdentityProvider" EntityType="FACCTS_DBModel.IdentityProvider" />
           <EntitySet Name="Interpreters" EntityType="FACCTS_DBModel.Interpreters" />
           <EntitySet Name="KeyMaterialConfiguration" EntityType="FACCTS_DBModel.KeyMaterialConfiguration" />
-          <EntitySet Name="Memberships" EntityType="FACCTS_DBModel.Memberships" />
           <EntitySet Name="OAuth2Configuration" EntityType="FACCTS_DBModel.OAuth2Configuration" />
           <EntitySet Name="OtherProtected" EntityType="FACCTS_DBModel.OtherProtected" />
           <EntitySet Name="ParticipantRole" EntityType="FACCTS_DBModel.ParticipantRole" />
           <EntitySet Name="Permission" EntityType="FACCTS_DBModel.Permission" />
-          <EntitySet Name="Profiles" EntityType="FACCTS_DBModel.Profiles" />
           <EntitySet Name="Race" EntityType="FACCTS_DBModel.Race" />
           <EntitySet Name="RelyingParties" EntityType="FACCTS_DBModel.RelyingParties" />
           <EntitySet Name="Role" EntityType="FACCTS_DBModel.Role" />
-          <EntitySet Name="Roles" EntityType="FACCTS_DBModel.Roles" />
           <EntitySet Name="Sex" EntityType="FACCTS_DBModel.Sex" />
           <EntitySet Name="SimpleHttpConfiguration" EntityType="FACCTS_DBModel.SimpleHttpConfiguration" />
           <EntitySet Name="User" EntityType="FACCTS_DBModel.User" />
-          <EntitySet Name="Users" EntityType="FACCTS_DBModel.Users" />
           <EntitySet Name="Witnesses" EntityType="FACCTS_DBModel.Witnesses" />
           <EntitySet Name="WSFederationConfiguration" EntityType="FACCTS_DBModel.WSFederationConfiguration" />
           <EntitySet Name="WSTrustConfiguration" EntityType="FACCTS_DBModel.WSTrustConfiguration" />
@@ -1641,18 +1445,6 @@
           <AssociationSet Name="FK_dbo_Appearances_dbo_Designation_Designation_Id" Association="FACCTS_DBModel.FK_dbo_Appearances_dbo_Designation_Designation_Id">
             <End Role="Designation" EntitySet="Designation" />
             <End Role="Appearances" EntitySet="Appearances" />
-          </AssociationSet>
-          <AssociationSet Name="MembershipEntity_Application" Association="FACCTS_DBModel.MembershipEntity_Application">
-            <End Role="Applications" EntitySet="Applications" />
-            <End Role="Memberships" EntitySet="Memberships" />
-          </AssociationSet>
-          <AssociationSet Name="RoleEntity_Application" Association="FACCTS_DBModel.RoleEntity_Application">
-            <End Role="Applications" EntitySet="Applications" />
-            <End Role="Roles" EntitySet="Roles" />
-          </AssociationSet>
-          <AssociationSet Name="User_Application" Association="FACCTS_DBModel.User_Application">
-            <End Role="Applications" EntitySet="Applications" />
-            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id" Association="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id">
             <End Role="Attorneys" EntitySet="Attorneys" />
@@ -1810,14 +1602,6 @@
             <End Role="Designation" EntitySet="Designation" />
             <End Role="Witnesses" EntitySet="Witnesses" />
           </AssociationSet>
-          <AssociationSet Name="MembershipEntity_User" Association="FACCTS_DBModel.MembershipEntity_User">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Memberships" EntitySet="Memberships" />
-          </AssociationSet>
-          <AssociationSet Name="ProfileEntity_User" Association="FACCTS_DBModel.ProfileEntity_User">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Profiles" EntitySet="Profiles" />
-          </AssociationSet>
           <AssociationSet Name="RelatedCase" Association="FACCTS_DBModel.RelatedCase">
             <End Role="CaseRecord" EntitySet="CaseRecord" />
             <End Role="CourtCase" EntitySet="CourtCase" />
@@ -1830,79 +1614,64 @@
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
           </AssociationSet>
-          <AssociationSet Name="UsersInRoles" Association="FACCTS_DBModel.UsersInRoles">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
             <PropertyRef Name="MigrationId" />
           </Key>
-          <Property Name="MigrationId" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="Model" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="ProductVersion" Type="String" Nullable="false" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Type="String" Name="MigrationId" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Binary" Name="Model" Nullable="false" MaxLength="Max" FixedLength="false" />
+          <Property Type="String" Name="ProductVersion" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="AdfsIntegrationConfiguration">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Enabled" Type="Boolean" Nullable="false" />
-          <Property Name="UsernameAuthenticationEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="SamlAuthenticationEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="JwtAuthenticationEnabled" Type="Boolean" Nullable="false" />
-          <Property Name="PassThruAuthenticationToken" Type="Boolean" Nullable="false" />
-          <Property Name="AuthenticationTokenLifetime" Type="Int32" Nullable="false" />
-          <Property Name="UserNameAuthenticationEndpoint" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="FederationEndpoint" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="IssuerUri" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="IssuerThumbprint" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="EncryptionCertificate" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="Enabled" Nullable="false" />
+          <Property Type="Boolean" Name="UsernameAuthenticationEnabled" Nullable="false" />
+          <Property Type="Boolean" Name="SamlAuthenticationEnabled" Nullable="false" />
+          <Property Type="Boolean" Name="JwtAuthenticationEnabled" Nullable="false" />
+          <Property Type="Boolean" Name="PassThruAuthenticationToken" Nullable="false" />
+          <Property Type="Int32" Name="AuthenticationTokenLifetime" Nullable="false" />
+          <Property Type="String" Name="UserNameAuthenticationEndpoint" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FederationEndpoint" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IssuerUri" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IssuerThumbprint" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EncryptionCertificate" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Appearances">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="Appear" Type="Boolean" />
-          <Property Name="Sworn" Type="Boolean" />
-          <Property Name="AttorneyPresent" Type="Boolean" />
-          <Property Name="Designation_Id" Type="Int32" />
-          <Property Name="CaseRecord_Id" Type="Int32" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Appear" />
+          <Property Type="Boolean" Name="Sworn" />
+          <Property Type="Boolean" Name="AttorneyPresent" />
+          <Property Type="Int32" Name="Designation_Id" />
+          <Property Type="Int32" Name="CaseRecord_Id" />
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_Appearances_dbo_CaseRecord_CaseRecord_Id" FromRole="Appearances" ToRole="CaseRecord" />
           <NavigationProperty Name="Designation" Relationship="FACCTS_DBModel.FK_dbo_Appearances_dbo_Designation_Designation_Id" FromRole="Appearances" ToRole="Designation" />
-        </EntityType>
-        <EntityType Name="Applications">
-          <Key>
-            <PropertyRef Name="ApplicationId" />
-          </Key>
-          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
-          <Property Name="ApplicationName" Type="String" Nullable="false" MaxLength="235" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Memberships" Relationship="FACCTS_DBModel.MembershipEntity_Application" FromRole="Applications" ToRole="Memberships" />
-          <NavigationProperty Name="Roles" Relationship="FACCTS_DBModel.RoleEntity_Application" FromRole="Applications" ToRole="Roles" />
-          <NavigationProperty Name="Users" Relationship="FACCTS_DBModel.User_Application" FromRole="Applications" ToRole="Users" />
         </EntityType>
         <EntityType Name="Attorneys">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
-          <Property Name="FirmName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="StreetAddress" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="City" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="State" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="ZipCode" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="Phone" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="Fax" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="Email" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="StateBarId" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FirmName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="StreetAddress" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="City" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="State" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ZipCode" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Phone" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Fax" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="StateBarId" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id" FromRole="Attorneys" ToRole="CaseRecord" />
           <NavigationProperty Name="CaseRecord1" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty1_Id" FromRole="Attorneys" ToRole="CaseRecord" />
           <NavigationProperty Name="CaseRecord2" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty2_Id" FromRole="Attorneys" ToRole="CaseRecord" />
@@ -1911,23 +1680,23 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="FileName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="Code" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FileName" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Code" MaxLength="15" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CourtCaseOrders" Relationship="FACCTS_DBModel.FK_dbo_CourtCaseOrders_dbo_AvailableCourtOrder_AvailableCourtOrderId" FromRole="AvailableCourtOrder" ToRole="CourtCaseOrders" />
         </EntityType>
         <EntityType Name="CaseHistory">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="CaseHistoryEvent" Type="Int32" Nullable="false" />
-          <Property Name="CCPOR_ID" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
-          <Property Name="CourtCaseOrderId" Type="Int32" Nullable="false" />
-          <Property Name="CourtClerk_UserId" Type="Int32" />
-          <Property Name="CaseRecord_Id" Type="Int32" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="CaseHistoryEvent" Nullable="false" />
+          <Property Type="String" Name="CCPOR_ID" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CourtCaseOrderId" />
+          <Property Type="Int32" Name="CourtClerk_UserId" />
+          <Property Type="Int32" Name="CaseRecord_Id" />
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseHistory" ToRole="CaseRecord" />
           <NavigationProperty Name="CourtCaseOrders" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId" FromRole="CaseHistory" ToRole="CourtCaseOrders" />
           <NavigationProperty Name="User" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_User_CourtClerk_UserId" FromRole="CaseHistory" ToRole="User" />
@@ -1936,10 +1705,10 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Status" Type="Int32" Nullable="false" />
-          <Property Name="Author_UserId" Type="Int32" Nullable="false" />
-          <Property Name="CaseRecord_Id" Type="Int32" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="Status" Nullable="false" />
+          <Property Type="Int32" Name="Author_UserId" Nullable="false" />
+          <Property Type="Int32" Name="CaseRecord_Id" />
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_CaseNotes_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseNotes" ToRole="CaseRecord" />
           <NavigationProperty Name="User" Relationship="FACCTS_DBModel.FK_dbo_CaseNotes_dbo_User_Author_UserId" FromRole="CaseNotes" ToRole="User" />
         </EntityType>
@@ -1947,16 +1716,16 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Judge" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
-          <Property Name="Party1_Id" Type="Int32" Nullable="false" />
-          <Property Name="Party2_Id" Type="Int32" />
-          <Property Name="AttorneyForParty1_Id" Type="Int32" />
-          <Property Name="AttorneyForParty2_Id" Type="Int32" />
-          <Property Name="AttorneyForChild_Id" Type="Int32" />
-          <Property Name="CourtCounty_Id" Type="Int32" />
-          <Property Name="CourtDepartment_Id" Type="Int32" />
-          <Property Name="CaseRecord_Id" Type="Int32" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Judge" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Party1_Id" />
+          <Property Type="Int32" Name="Party2_Id" />
+          <Property Type="Int32" Name="AttorneyForParty1_Id" />
+          <Property Type="Int32" Name="AttorneyForParty2_Id" />
+          <Property Type="Int32" Name="AttorneyForChild_Id" />
+          <Property Type="Int32" Name="CourtCounty_Id" />
+          <Property Type="Int32" Name="CourtDepartment_Id" />
+          <Property Type="Int32" Name="CaseRecord_Id" />
           <NavigationProperty Name="Appearances" Relationship="FACCTS_DBModel.FK_dbo_Appearances_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseRecord" ToRole="Appearances" />
           <NavigationProperty Name="Attorneys" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id" FromRole="CaseRecord" ToRole="Attorneys" />
           <NavigationProperty Name="Attorneys1" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty1_Id" FromRole="CaseRecord" ToRole="Attorneys" />
@@ -1983,13 +1752,13 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="RelationshipToProtected" Type="Boolean" Nullable="false" />
-          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Sex_Id" Type="Int32" Nullable="false" />
-          <Property Name="CaseRecord_Id" Type="Int32" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="RelationshipToProtected" Nullable="false" />
+          <Property Type="DateTime" Name="DateOfBirth" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="Sex_Id" Nullable="false" />
+          <Property Type="Int32" Name="CaseRecord_Id" />
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_Children_dbo_CaseRecord_CaseRecord_Id" FromRole="Children" ToRole="CaseRecord" />
           <NavigationProperty Name="Sex" Relationship="FACCTS_DBModel.FK_dbo_Children_dbo_Sex_Sex_Id" FromRole="Children" ToRole="Sex" />
         </EntityType>
@@ -1997,48 +1766,48 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="ClientId" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="ClientSecret" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="RedirectUri" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="AllowRefreshToken" Type="Boolean" Nullable="false" />
-          <Property Name="AllowImplicitFlow" Type="Boolean" Nullable="false" />
-          <Property Name="AllowResourceOwnerFlow" Type="Boolean" Nullable="false" />
-          <Property Name="AllowCodeFlow" Type="Boolean" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ClientId" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ClientSecret" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="RedirectUri" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="AllowRefreshToken" Nullable="false" />
+          <Property Type="Boolean" Name="AllowImplicitFlow" Nullable="false" />
+          <Property Type="Boolean" Name="AllowResourceOwnerFlow" Nullable="false" />
+          <Property Type="Boolean" Name="AllowCodeFlow" Nullable="false" />
         </EntityType>
         <EntityType Name="ClientCertificates">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Thumbprint" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Thumbprint" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CodeToken">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Code" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="ClientId" Type="Int32" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Scope" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Type" Type="Int32" Nullable="false" />
-          <Property Name="TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Code" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ClientId" Nullable="false" />
+          <Property Type="String" Name="UserName" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Scope" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Type" Nullable="false" />
+          <Property Type="DateTime" Name="TimeStamp" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="CourtCase">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="CaseNumber" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="CCPORStatus" Type="Int32" />
-          <Property Name="CCPORId" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="CourtClerk_UserId" Type="Int32" />
-          <Property Name="CaseRecord_Id" Type="Int32" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CaseNumber" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CCPORStatus" />
+          <Property Type="String" Name="CCPORId" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CourtClerk_UserId" />
+          <Property Type="Int32" Name="CaseRecord_Id" Nullable="false" />
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CaseRecord_CaseRecord_Id" FromRole="CourtCase" ToRole="CaseRecord" />
           <NavigationProperty Name="User" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_User_CourtClerk_UserId" FromRole="CourtCase" ToRole="User" />
           <NavigationProperty Name="CaseRecord1" Relationship="FACCTS_DBModel.RelatedCase" FromRole="CourtCase" ToRole="CaseRecord" />
@@ -2047,12 +1816,12 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="AvailableCourtOrderId" Type="Int32" Nullable="false" />
-          <Property Name="XMLContent" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="IsSigned" Type="Boolean" Nullable="false" />
-          <Property Name="ServerFileName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="CaseRecord_Id" Type="Int32" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="AvailableCourtOrderId" Nullable="false" />
+          <Property Type="String" Name="XMLContent" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsSigned" Nullable="false" />
+          <Property Type="String" Name="ServerFileName" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CaseRecord_Id" />
           <NavigationProperty Name="AvailableCourtOrder" Relationship="FACCTS_DBModel.FK_dbo_CourtCaseOrders_dbo_AvailableCourtOrder_AvailableCourtOrderId" FromRole="CourtCaseOrders" ToRole="AvailableCourtOrder" />
           <NavigationProperty Name="CaseHistory" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId" FromRole="CourtCaseOrders" ToRole="CaseHistory" />
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_CourtCaseOrders_dbo_CaseRecord_CaseRecord_Id" FromRole="CourtCaseOrders" ToRole="CaseRecord" />
@@ -2061,11 +1830,11 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="court_code" Type="String" MaxLength="8" Unicode="true" FixedLength="false" />
-          <Property Name="county" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
-          <Property Name="court_name" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="location" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="court_code" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="county" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="court_name" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="location" MaxLength="64" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_CourtCounty_CourtCounty_Id" FromRole="CourtCounty" ToRole="CaseRecord" />
           <NavigationProperty Name="CourtDepartmenets" Relationship="FACCTS_DBModel.FK_dbo_CourtDepartmenets_dbo_CourtCounty_CourtCountyId" FromRole="CourtCounty" ToRole="CourtDepartmenets" />
           <NavigationProperty Name="CourtLocations" Relationship="FACCTS_DBModel.FK_dbo_CourtLocations_dbo_CourtCounty_CourtCounty_Id" FromRole="CourtCounty" ToRole="CourtLocations" />
@@ -2075,12 +1844,12 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
-          <Property Name="Room" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="BranchOfficer" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="Reporter" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="CourtCountyId" Type="Int32" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Room" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="BranchOfficer" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Reporter" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CourtCountyId" Nullable="false" />
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_CourtDepartmenets_CourtDepartment_Id" FromRole="CourtDepartmenets" ToRole="CaseRecord" />
           <NavigationProperty Name="CourtCounty" Relationship="FACCTS_DBModel.FK_dbo_CourtDepartmenets_dbo_CourtCounty_CourtCountyId" FromRole="CourtDepartmenets" ToRole="CourtCounty" />
         </EntityType>
@@ -2088,13 +1857,13 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="StreetAddress" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="State" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="PostalCode" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="CourtCounty_Id" Type="Int32" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="StreetAddress" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="State" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="PostalCode" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CourtCounty_Id" />
           <NavigationProperty Name="CourtCounty" Relationship="FACCTS_DBModel.FK_dbo_CourtLocations_dbo_CourtCounty_CourtCounty_Id" FromRole="CourtLocations" ToRole="CourtCounty" />
           <NavigationProperty Name="Courtrooms" Relationship="FACCTS_DBModel.FK_dbo_Courtrooms_dbo_CourtLocations_CourtLocation_Id" FromRole="CourtLocations" ToRole="Courtrooms" />
         </EntityType>
@@ -2102,11 +1871,11 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="SubstituteId" Type="Int32" />
-          <Property Name="IsCertified" Type="Boolean" Nullable="false" />
-          <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="Phone" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="SubstituteId" />
+          <Property Type="Boolean" Name="IsCertified" Nullable="false" />
+          <Property Type="Binary" Name="Image" MaxLength="Max" FixedLength="false" />
+          <Property Type="String" Name="Phone" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CourtMember1" Relationship="FACCTS_DBModel.FK_dbo_CourtMember_dbo_CourtMember_SubstituteId" FromRole="CourtMember" ToRole="CourtMember1" />
           <NavigationProperty Name="CourtMember2" Relationship="FACCTS_DBModel.FK_dbo_CourtMember_dbo_CourtMember_SubstituteId" FromRole="CourtMember1" ToRole="CourtMember" />
           <NavigationProperty Name="User" Relationship="FACCTS_DBModel.FK_dbo_CourtMember_dbo_User_Id" FromRole="CourtMember" ToRole="User" />
@@ -2115,30 +1884,30 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="MiddleName" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Address" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="City" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="State" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="ZipCode" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="Phone" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="Fax" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="Weight" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="HeightFt" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="HeightIns" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Age" Type="Int32" Nullable="false" />
-          <Property Name="Designation_Id" Type="Int32" Nullable="false" />
-          <Property Name="ParticipantRole_Id" Type="Int32" Nullable="false" />
-          <Property Name="Sex_Id" Type="Int32" Nullable="false" />
-          <Property Name="HairColor_Id" Type="Int32" Nullable="false" />
-          <Property Name="EyesColor_Id" Type="Int32" Nullable="false" />
-          <Property Name="Race_Id" Type="Int32" Nullable="false" />
-          <Property Name="CaseRecordByCourtParty1_Id" Type="Int32" />
-          <Property Name="CaseRecordByCourtParty2_Id" Type="Int32" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MiddleName" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Address" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="City" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="State" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ZipCode" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Phone" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Fax" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="Weight" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="HeightFt" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="Decimal" Name="HeightIns" Nullable="false" Precision="18" Scale="2" />
+          <Property Type="DateTime" Name="DateOfBirth" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="Age" Nullable="false" />
+          <Property Type="Int32" Name="Designation_Id" Nullable="false" />
+          <Property Type="Int32" Name="ParticipantRole_Id" Nullable="false" />
+          <Property Type="Int32" Name="Sex_Id" Nullable="false" />
+          <Property Type="Int32" Name="HairColor_Id" Nullable="false" />
+          <Property Type="Int32" Name="EyesColor_Id" Nullable="false" />
+          <Property Type="Int32" Name="Race_Id" Nullable="false" />
+          <Property Type="Int32" Name="CaseRecordByCourtParty1_Id" />
+          <Property Type="Int32" Name="CaseRecordByCourtParty2_Id" />
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_CourtParty_Party1_Id" FromRole="CourtParty" ToRole="CaseRecord" />
           <NavigationProperty Name="CaseRecord1" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_CourtParty_Party2_Id" FromRole="CourtParty" ToRole="CaseRecord" />
           <NavigationProperty Name="CaseRecord2" Relationship="FACCTS_DBModel.FK_dbo_CourtParty_dbo_CaseRecord_CaseRecordByCourtParty1_Id" FromRole="CourtParty" ToRole="CaseRecord" />
@@ -2156,26 +1925,26 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="RoomName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="CourtLocation_Id" Type="Int32" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="RoomName" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CourtLocation_Id" />
           <NavigationProperty Name="CourtLocations" Relationship="FACCTS_DBModel.FK_dbo_Courtrooms_dbo_CourtLocations_CourtLocation_Id" FromRole="Courtrooms" ToRole="CourtLocations" />
         </EntityType>
         <EntityType Name="Delegation">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Realm" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Realm" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Designation">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="DesignationName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="DesignationName" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Appearances" Relationship="FACCTS_DBModel.FK_dbo_Appearances_dbo_Designation_Designation_Id" FromRole="Designation" ToRole="Appearances" />
           <NavigationProperty Name="CourtParty" Relationship="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Designation_Designation_Id" FromRole="Designation" ToRole="CourtParty" />
           <NavigationProperty Name="Witnesses" Relationship="FACCTS_DBModel.FK_dbo_Witnesses_dbo_Designation_Designation_Id" FromRole="Designation" ToRole="Witnesses" />
@@ -2184,104 +1953,104 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="EnableFederationMessageTracing" Type="Boolean" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="EnableFederationMessageTracing" Nullable="false" />
         </EntityType>
         <EntityType Name="EyesColor">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Color" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Color" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CourtParty" Relationship="FACCTS_DBModel.FK_dbo_CourtParty_dbo_EyesColor_EyesColor_Id" FromRole="EyesColor" ToRole="CourtParty" />
         </EntityType>
         <EntityType Name="FACCTSConfiguration">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="CaseNumberAutoGeneration" Type="Boolean" Nullable="false" />
-          <Property Name="CurrentCourtCounty_Id" Type="Int32" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="CaseNumberAutoGeneration" Nullable="false" />
+          <Property Type="Int32" Name="CurrentCourtCounty_Id" />
           <NavigationProperty Name="CourtCounty" Relationship="FACCTS_DBModel.FK_dbo_FACCTSConfiguration_dbo_CourtCounty_CurrentCourtCounty_Id" FromRole="FACCTSConfiguration" ToRole="CourtCounty" />
         </EntityType>
         <EntityType Name="FederationMetadataConfiguration">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="Enabled" Nullable="false" />
         </EntityType>
         <EntityType Name="FormField">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="form_field_name" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
-          <Property Name="form_name" Type="String" MaxLength="125" Unicode="true" FixedLength="false" />
-          <Property Name="field_type" Type="String" MaxLength="12" Unicode="true" FixedLength="false" />
-          <Property Name="screen_name" Type="String" MaxLength="60" Unicode="true" FixedLength="false" />
-          <Property Name="form_field_id" Type="Int32" Nullable="false" />
-          <Property Name="dupe" Type="String" MaxLength="5" Unicode="true" FixedLength="false" />
-          <Property Name="dropdown_options" Type="String" MaxLength="160" Unicode="true" FixedLength="false" />
-          <Property Name="bool_options" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
-          <Property Name="screen_panel" Type="String" MaxLength="32" Unicode="true" FixedLength="false" />
-          <Property Name="panel_section" Type="String" MaxLength="32" Unicode="true" FixedLength="false" />
-          <Property Name="xml_export" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="form_field_name" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="form_name" MaxLength="125" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="field_type" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="screen_name" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="form_field_id" Nullable="false" />
+          <Property Type="String" Name="dupe" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="dropdown_options" MaxLength="160" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="bool_options" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="screen_panel" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="panel_section" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="xml_export" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="GlobalConfiguration">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="SiteName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="IssuerUri" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="IssuerContactEmail" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="DefaultWSTokenType" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="DefaultHttpTokenType" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="DefaultTokenLifetime" Type="Int32" Nullable="false" />
-          <Property Name="MaximumTokenLifetime" Type="Int32" Nullable="false" />
-          <Property Name="SsoCookieLifetime" Type="Int32" Nullable="false" />
-          <Property Name="RequireEncryption" Type="Boolean" Nullable="false" />
-          <Property Name="RequireRelyingPartyRegistration" Type="Boolean" Nullable="false" />
-          <Property Name="EnableClientCertificateAuthentication" Type="Boolean" Nullable="false" />
-          <Property Name="EnforceUsersGroupMembership" Type="Boolean" Nullable="false" />
-          <Property Name="HttpPort" Type="Int32" Nullable="false" />
-          <Property Name="HttpsPort" Type="Int32" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="SiteName" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IssuerUri" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IssuerContactEmail" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DefaultWSTokenType" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DefaultHttpTokenType" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="DefaultTokenLifetime" Nullable="false" />
+          <Property Type="Int32" Name="MaximumTokenLifetime" Nullable="false" />
+          <Property Type="Int32" Name="SsoCookieLifetime" Nullable="false" />
+          <Property Type="Boolean" Name="RequireEncryption" Nullable="false" />
+          <Property Type="Boolean" Name="RequireRelyingPartyRegistration" Nullable="false" />
+          <Property Type="Boolean" Name="EnableClientCertificateAuthentication" Nullable="false" />
+          <Property Type="Boolean" Name="EnforceUsersGroupMembership" Nullable="false" />
+          <Property Type="Int32" Name="HttpPort" Nullable="false" />
+          <Property Type="Int32" Name="HttpsPort" Nullable="false" />
         </EntityType>
         <EntityType Name="HairColor">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="Color" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Color" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CourtParty" Relationship="FACCTS_DBModel.FK_dbo_CourtParty_dbo_HairColor_HairColor_Id" FromRole="HairColor" ToRole="CourtParty" />
         </EntityType>
         <EntityType Name="IdentityProvider">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="DisplayName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Type" Type="Int32" Nullable="false" />
-          <Property Name="ShowInHrdSelection" Type="Boolean" Nullable="false" />
-          <Property Name="WSFederationEndpoint" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="IssuerThumbprint" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="ClientID" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="ClientSecret" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="OAuth2ProviderType" Type="Int32" />
-          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DisplayName" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Type" Nullable="false" />
+          <Property Type="Boolean" Name="ShowInHrdSelection" Nullable="false" />
+          <Property Type="String" Name="WSFederationEndpoint" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IssuerThumbprint" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ClientID" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ClientSecret" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="OAuth2ProviderType" />
+          <Property Type="Boolean" Name="Enabled" Nullable="false" />
         </EntityType>
         <EntityType Name="Interpreters">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="Contact" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="InterpreterFor_Id" Type="Int32" Nullable="false" />
-          <Property Name="CaseRecord_Id" Type="Int32" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="InterpreterFor_Id" Nullable="false" />
+          <Property Type="Int32" Name="CaseRecord_Id" />
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_Interpreters_dbo_CaseRecord_CaseRecord_Id" FromRole="Interpreters" ToRole="CaseRecord" />
           <NavigationProperty Name="CourtParty" Relationship="FACCTS_DBModel.FK_dbo_Interpreters_dbo_CourtParty_InterpreterFor_Id" FromRole="Interpreters" ToRole="CourtParty" />
         </EntityType>
@@ -2289,140 +2058,92 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="SigningCertificateName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="DecryptionCertificateName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="RSASigningKey" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="SymmetricSigningKey" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="Memberships">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="Guid" Nullable="false" />
-          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-          <Property Name="PasswordFormat" Type="Int32" Nullable="false" />
-          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-          <Property Name="Email" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-          <Property Name="PasswordQuestion" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-          <Property Name="PasswordAnswer" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
-          <Property Name="IsApproved" Type="Boolean" Nullable="false" />
-          <Property Name="IsLockedOut" Type="Boolean" Nullable="false" />
-          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastPasswordChangedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastLockoutDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FailedPasswordAttemptCount" Type="Int32" Nullable="false" />
-          <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FailedPasswordAnswerAttemptCount" Type="Int32" Nullable="false" />
-          <Property Name="FailedPasswordAnswerAttemptWindowsStart" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Comment" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Applications" Relationship="FACCTS_DBModel.MembershipEntity_Application" FromRole="Memberships" ToRole="Applications" />
-          <NavigationProperty Name="Users" Relationship="FACCTS_DBModel.MembershipEntity_User" FromRole="Memberships" ToRole="Users" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="SigningCertificateName" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="DecryptionCertificateName" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="RSASigningKey" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SymmetricSigningKey" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="OAuth2Configuration">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Enabled" Type="Boolean" Nullable="false" />
-          <Property Name="EnableConsent" Type="Boolean" Nullable="false" />
-          <Property Name="EnableResourceOwnerFlow" Type="Boolean" Nullable="false" />
-          <Property Name="EnableImplicitFlow" Type="Boolean" Nullable="false" />
-          <Property Name="EnableCodeFlow" Type="Boolean" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="Enabled" Nullable="false" />
+          <Property Type="Boolean" Name="EnableConsent" Nullable="false" />
+          <Property Type="Boolean" Name="EnableResourceOwnerFlow" Nullable="false" />
+          <Property Type="Boolean" Name="EnableImplicitFlow" Nullable="false" />
+          <Property Type="Boolean" Name="EnableCodeFlow" Nullable="false" />
         </EntityType>
         <EntityType Name="OtherProtected">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="RelationshipToPlaintiff" Type="Boolean" Nullable="false" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="Contact" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="CaseRecord_Id" Type="Int32" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="RelationshipToPlaintiff" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="CaseRecord_Id" />
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_OtherProtected_dbo_CaseRecord_CaseRecord_Id" FromRole="OtherProtected" ToRole="CaseRecord" />
         </EntityType>
         <EntityType Name="ParticipantRole">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="ParticipantRoleName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="ParticipantRoleName" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CourtParty" Relationship="FACCTS_DBModel.FK_dbo_CourtParty_dbo_ParticipantRole_ParticipantRole_Id" FromRole="ParticipantRole" ToRole="CourtParty" />
         </EntityType>
         <EntityType Name="Permission">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Role" Relationship="FACCTS_DBModel.RolePermission" FromRole="Permission" ToRole="Role" />
-        </EntityType>
-        <EntityType Name="Profiles">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="Guid" Nullable="false" />
-          <Property Name="PropertyNames" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="PropertyValueStrings" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="PropertyValueBinary" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Users" Relationship="FACCTS_DBModel.ProfileEntity_User" FromRole="Profiles" ToRole="Users" />
         </EntityType>
         <EntityType Name="Race">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="RaceName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="RaceName" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CourtParty" Relationship="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Race_Race_Id" FromRole="Race" ToRole="CourtParty" />
         </EntityType>
         <EntityType Name="RelyingParties">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Enabled" Type="Boolean" Nullable="false" />
-          <Property Name="Realm" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="TokenLifeTime" Type="Int32" Nullable="false" />
-          <Property Name="ReplyTo" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="EncryptingCertificate" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="SymmetricSigningKey" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="ExtraData1" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="ExtraData2" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="ExtraData3" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="Enabled" Nullable="false" />
+          <Property Type="String" Name="Realm" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="TokenLifeTime" Nullable="false" />
+          <Property Type="String" Name="ReplyTo" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="EncryptingCertificate" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SymmetricSigningKey" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ExtraData1" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ExtraData2" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ExtraData3" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="IsIdentityServerUser" Type="Boolean" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="RoleName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsIdentityServerUser" Nullable="false" />
           <NavigationProperty Name="Permission" Relationship="FACCTS_DBModel.RolePermission" FromRole="Role" ToRole="Permission" />
           <NavigationProperty Name="User" Relationship="FACCTS_DBModel.RoleUser" FromRole="Role" ToRole="User" />
-        </EntityType>
-        <EntityType Name="Roles">
-          <Key>
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="RoleId" Type="Guid" Nullable="false" />
-          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
-          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Applications" Relationship="FACCTS_DBModel.RoleEntity_Application" FromRole="Roles" ToRole="Applications" />
-          <NavigationProperty Name="Users" Relationship="FACCTS_DBModel.UsersInRoles" FromRole="Roles" ToRole="Users" />
         </EntityType>
         <EntityType Name="Sex">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" />
-          <Property Name="SexName" Type="String" Nullable="false" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="SexName" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Children" Relationship="FACCTS_DBModel.FK_dbo_Children_dbo_Sex_Sex_Id" FromRole="Sex" ToRole="Children" />
           <NavigationProperty Name="CourtParty" Relationship="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Sex_Sex_Id" FromRole="Sex" ToRole="CourtParty" />
         </EntityType>
@@ -2430,64 +2151,50 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="Enabled" Nullable="false" />
         </EntityType>
         <EntityType Name="User">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Username" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Email" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="FirstName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="LastName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="MiddleName" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Comment" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="IsApproved" Type="Boolean" Nullable="false" />
-          <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
-          <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
-          <Property Name="LastActivityDate" Type="DateTime" Precision="3" />
-          <Property Name="LastLockoutDate" Type="DateTime" Precision="3" />
-          <Property Name="LastLoginDate" Type="DateTime" Precision="3" />
-          <Property Name="ConfirmationToken" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="CreateDate" Type="DateTime" Precision="3" />
-          <Property Name="IsLockedOut" Type="Boolean" Nullable="false" />
-          <Property Name="LastPasswordChangedDate" Type="DateTime" Precision="3" />
-          <Property Name="PasswordVerificationToken" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Username" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Email" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="FirstName" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastName" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="MiddleName" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Comment" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsApproved" Nullable="false" />
+          <Property Type="Int32" Name="PasswordFailuresSinceLastSuccess" Nullable="false" />
+          <Property Type="DateTime" Name="LastPasswordFailureDate" Precision="3" />
+          <Property Type="DateTime" Name="LastActivityDate" Precision="3" />
+          <Property Type="DateTime" Name="LastLockoutDate" Precision="3" />
+          <Property Type="DateTime" Name="LastLoginDate" Precision="3" />
+          <Property Type="String" Name="ConfirmationToken" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="CreateDate" Precision="3" />
+          <Property Type="Boolean" Name="IsLockedOut" Nullable="false" />
+          <Property Type="DateTime" Name="LastPasswordChangedDate" Precision="3" />
+          <Property Type="String" Name="PasswordVerificationToken" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="PasswordVerificationTokenExpirationDate" Precision="3" />
           <NavigationProperty Name="CaseHistory" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_User_CourtClerk_UserId" FromRole="User" ToRole="CaseHistory" />
           <NavigationProperty Name="CaseNotes" Relationship="FACCTS_DBModel.FK_dbo_CaseNotes_dbo_User_Author_UserId" FromRole="User" ToRole="CaseNotes" />
           <NavigationProperty Name="CourtCase" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_User_CourtClerk_UserId" FromRole="User" ToRole="CourtCase" />
           <NavigationProperty Name="CourtMember" Relationship="FACCTS_DBModel.FK_dbo_CourtMember_dbo_User_Id" FromRole="User" ToRole="CourtMember" />
           <NavigationProperty Name="Role" Relationship="FACCTS_DBModel.RoleUser" FromRole="User" ToRole="Role" />
         </EntityType>
-        <EntityType Name="Users">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="Guid" Nullable="false" />
-          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
-          <Property Name="LastActivityDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Applications" Relationship="FACCTS_DBModel.User_Application" FromRole="Users" ToRole="Applications" />
-          <NavigationProperty Name="Memberships" Relationship="FACCTS_DBModel.MembershipEntity_User" FromRole="Users" ToRole="Memberships" />
-          <NavigationProperty Name="Profiles" Relationship="FACCTS_DBModel.ProfileEntity_User" FromRole="Users" ToRole="Profiles" />
-          <NavigationProperty Name="Roles" Relationship="FACCTS_DBModel.UsersInRoles" FromRole="Users" ToRole="Roles" />
-        </EntityType>
         <EntityType Name="Witnesses">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="255" Unicode="true" FixedLength="false" />
-          <Property Name="Contact" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="WitnessFor_Id" Type="Int32" Nullable="false" />
-          <Property Name="Designation_Id" Type="Int32" />
-          <Property Name="CaseRecord_Id" Type="Int32" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="LastName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Contact" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="WitnessFor_Id" Nullable="false" />
+          <Property Type="Int32" Name="Designation_Id" />
+          <Property Type="Int32" Name="CaseRecord_Id" />
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_Witnesses_dbo_CaseRecord_CaseRecord_Id" FromRole="Witnesses" ToRole="CaseRecord" />
           <NavigationProperty Name="CourtParty" Relationship="FACCTS_DBModel.FK_dbo_Witnesses_dbo_CourtParty_WitnessFor_Id" FromRole="Witnesses" ToRole="CourtParty" />
           <NavigationProperty Name="Designation" Relationship="FACCTS_DBModel.FK_dbo_Witnesses_dbo_Designation_Designation_Id" FromRole="Witnesses" ToRole="Designation" />
@@ -2496,30 +2203,30 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Enabled" Type="Boolean" Nullable="false" />
-          <Property Name="EnableAuthentication" Type="Boolean" Nullable="false" />
-          <Property Name="EnableFederation" Type="Boolean" Nullable="false" />
-          <Property Name="EnableHrd" Type="Boolean" Nullable="false" />
-          <Property Name="AllowReplyTo" Type="Boolean" Nullable="false" />
-          <Property Name="RequireReplyToWithinRealm" Type="Boolean" Nullable="false" />
-          <Property Name="RequireSslForReplyTo" Type="Boolean" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="Enabled" Nullable="false" />
+          <Property Type="Boolean" Name="EnableAuthentication" Nullable="false" />
+          <Property Type="Boolean" Name="EnableFederation" Nullable="false" />
+          <Property Type="Boolean" Name="EnableHrd" Nullable="false" />
+          <Property Type="Boolean" Name="AllowReplyTo" Nullable="false" />
+          <Property Type="Boolean" Name="RequireReplyToWithinRealm" Nullable="false" />
+          <Property Type="Boolean" Name="RequireSslForReplyTo" Nullable="false" />
         </EntityType>
         <EntityType Name="WSTrustConfiguration">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="Enabled" Type="Boolean" Nullable="false" />
-          <Property Name="EnableMessageSecurity" Type="Boolean" Nullable="false" />
-          <Property Name="EnableMixedModeSecurity" Type="Boolean" Nullable="false" />
-          <Property Name="EnableClientCertificateAuthentication" Type="Boolean" Nullable="false" />
-          <Property Name="EnableFederatedAuthentication" Type="Boolean" Nullable="false" />
-          <Property Name="EnableDelegation" Type="Boolean" Nullable="false" />
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="Enabled" Nullable="false" />
+          <Property Type="Boolean" Name="EnableMessageSecurity" Nullable="false" />
+          <Property Type="Boolean" Name="EnableMixedModeSecurity" Nullable="false" />
+          <Property Type="Boolean" Name="EnableClientCertificateAuthentication" Nullable="false" />
+          <Property Type="Boolean" Name="EnableFederatedAuthentication" Nullable="false" />
+          <Property Type="Boolean" Name="EnableDelegation" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_Appearances_dbo_CaseRecord_CaseRecord_Id">
-          <End Role="CaseRecord" Type="FACCTS_DBModel.CaseRecord" Multiplicity="0..1" />
-          <End Role="Appearances" Type="FACCTS_DBModel.Appearances" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.Appearances" Role="Appearances" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CaseRecord">
               <PropertyRef Name="Id" />
@@ -2530,8 +2237,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Appearances_dbo_Designation_Designation_Id">
-          <End Role="Designation" Type="FACCTS_DBModel.Designation" Multiplicity="0..1" />
-          <End Role="Appearances" Type="FACCTS_DBModel.Appearances" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.Designation" Role="Designation" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.Appearances" Role="Appearances" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Designation">
               <PropertyRef Name="Id" />
@@ -2541,45 +2248,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="MembershipEntity_Application">
-          <End Role="Applications" Type="FACCTS_DBModel.Applications" Multiplicity="1" />
-          <End Role="Memberships" Type="FACCTS_DBModel.Memberships" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Applications">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="Memberships">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="RoleEntity_Application">
-          <End Role="Applications" Type="FACCTS_DBModel.Applications" Multiplicity="1" />
-          <End Role="Roles" Type="FACCTS_DBModel.Roles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Applications">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="Roles">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="User_Application">
-          <End Role="Applications" Type="FACCTS_DBModel.Applications" Multiplicity="1" />
-          <End Role="Users" Type="FACCTS_DBModel.Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Applications">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="Users">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id">
-          <End Role="Attorneys" Type="FACCTS_DBModel.Attorneys" Multiplicity="0..1" />
-          <End Role="CaseRecord" Type="FACCTS_DBModel.CaseRecord" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.Attorneys" Role="Attorneys" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Attorneys">
               <PropertyRef Name="Id" />
@@ -2590,8 +2261,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty1_Id">
-          <End Role="Attorneys" Type="FACCTS_DBModel.Attorneys" Multiplicity="0..1" />
-          <End Role="CaseRecord" Type="FACCTS_DBModel.CaseRecord" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.Attorneys" Role="Attorneys" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Attorneys">
               <PropertyRef Name="Id" />
@@ -2602,8 +2273,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty2_Id">
-          <End Role="Attorneys" Type="FACCTS_DBModel.Attorneys" Multiplicity="0..1" />
-          <End Role="CaseRecord" Type="FACCTS_DBModel.CaseRecord" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.Attorneys" Role="Attorneys" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Attorneys">
               <PropertyRef Name="Id" />
@@ -2614,10 +2285,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CourtCaseOrders_dbo_AvailableCourtOrder_AvailableCourtOrderId">
-          <End Role="AvailableCourtOrder" Type="FACCTS_DBModel.AvailableCourtOrder" Multiplicity="1">
+          <End Type="FACCTS_DBModel.AvailableCourtOrder" Role="AvailableCourtOrder" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="CourtCaseOrders" Type="FACCTS_DBModel.CourtCaseOrders" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CourtCaseOrders" Role="CourtCaseOrders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="AvailableCourtOrder">
               <PropertyRef Name="Id" />
@@ -2628,8 +2299,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CaseHistory_dbo_CaseRecord_CaseRecord_Id">
-          <End Role="CaseRecord" Type="FACCTS_DBModel.CaseRecord" Multiplicity="0..1" />
-          <End Role="CaseHistory" Type="FACCTS_DBModel.CaseHistory" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.CaseHistory" Role="CaseHistory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CaseRecord">
               <PropertyRef Name="Id" />
@@ -2640,10 +2311,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId">
-          <End Role="CourtCaseOrders" Type="FACCTS_DBModel.CourtCaseOrders" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="CaseHistory" Type="FACCTS_DBModel.CaseHistory" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CourtCaseOrders" Role="CourtCaseOrders" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.CaseHistory" Role="CaseHistory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourtCaseOrders">
               <PropertyRef Name="Id" />
@@ -2654,8 +2323,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CaseHistory_dbo_User_CourtClerk_UserId">
-          <End Role="User" Type="FACCTS_DBModel.User" Multiplicity="0..1" />
-          <End Role="CaseHistory" Type="FACCTS_DBModel.CaseHistory" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.CaseHistory" Role="CaseHistory" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -2666,8 +2335,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CaseNotes_dbo_CaseRecord_CaseRecord_Id">
-          <End Role="CaseRecord" Type="FACCTS_DBModel.CaseRecord" Multiplicity="0..1" />
-          <End Role="CaseNotes" Type="FACCTS_DBModel.CaseNotes" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.CaseNotes" Role="CaseNotes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CaseRecord">
               <PropertyRef Name="Id" />
@@ -2678,10 +2347,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CaseNotes_dbo_User_Author_UserId">
-          <End Role="User" Type="FACCTS_DBModel.User" Multiplicity="1">
+          <End Type="FACCTS_DBModel.User" Role="User" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="CaseNotes" Type="FACCTS_DBModel.CaseNotes" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CaseNotes" Role="CaseNotes" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -2692,8 +2361,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CaseRecord_dbo_CaseRecord_CaseRecord_Id">
-          <End Role="CaseRecord" Type="FACCTS_DBModel.CaseRecord" Multiplicity="0..1" />
-          <End Role="CaseRecord1" Type="FACCTS_DBModel.CaseRecord" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CaseRecord">
               <PropertyRef Name="Id" />
@@ -2704,8 +2373,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CaseRecord_dbo_CourtCounty_CourtCounty_Id">
-          <End Role="CourtCounty" Type="FACCTS_DBModel.CourtCounty" Multiplicity="0..1" />
-          <End Role="CaseRecord" Type="FACCTS_DBModel.CaseRecord" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CourtCounty" Role="CourtCounty" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourtCounty">
               <PropertyRef Name="Id" />
@@ -2716,8 +2385,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CaseRecord_dbo_CourtDepartmenets_CourtDepartment_Id">
-          <End Role="CourtDepartmenets" Type="FACCTS_DBModel.CourtDepartmenets" Multiplicity="0..1" />
-          <End Role="CaseRecord" Type="FACCTS_DBModel.CaseRecord" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CourtDepartmenets" Role="CourtDepartmenets" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourtDepartmenets">
               <PropertyRef Name="Id" />
@@ -2728,10 +2397,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CaseRecord_dbo_CourtParty_Party1_Id">
-          <End Role="CourtParty" Type="FACCTS_DBModel.CourtParty" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="CaseRecord" Type="FACCTS_DBModel.CaseRecord" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CourtParty" Role="CourtParty" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourtParty">
               <PropertyRef Name="Id" />
@@ -2742,8 +2409,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CaseRecord_dbo_CourtParty_Party2_Id">
-          <End Role="CourtParty" Type="FACCTS_DBModel.CourtParty" Multiplicity="0..1" />
-          <End Role="CaseRecord" Type="FACCTS_DBModel.CaseRecord" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CourtParty" Role="CourtParty" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourtParty">
               <PropertyRef Name="Id" />
@@ -2754,8 +2421,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Children_dbo_CaseRecord_CaseRecord_Id">
-          <End Role="CaseRecord" Type="FACCTS_DBModel.CaseRecord" Multiplicity="0..1" />
-          <End Role="Children" Type="FACCTS_DBModel.Children" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.Children" Role="Children" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CaseRecord">
               <PropertyRef Name="Id" />
@@ -2766,10 +2433,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CourtCase_dbo_CaseRecord_CaseRecord_Id">
-          <End Role="CaseRecord" Type="FACCTS_DBModel.CaseRecord" Multiplicity="1">
+          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="CourtCase" Type="FACCTS_DBModel.CourtCase" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CourtCase" Role="CourtCase" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CaseRecord">
               <PropertyRef Name="Id" />
@@ -2780,8 +2447,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CourtCaseOrders_dbo_CaseRecord_CaseRecord_Id">
-          <End Role="CaseRecord" Type="FACCTS_DBModel.CaseRecord" Multiplicity="0..1" />
-          <End Role="CourtCaseOrders" Type="FACCTS_DBModel.CourtCaseOrders" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.CourtCaseOrders" Role="CourtCaseOrders" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CaseRecord">
               <PropertyRef Name="Id" />
@@ -2792,8 +2459,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CourtParty_dbo_CaseRecord_CaseRecordByCourtParty1_Id">
-          <End Role="CaseRecord" Type="FACCTS_DBModel.CaseRecord" Multiplicity="0..1" />
-          <End Role="CourtParty" Type="FACCTS_DBModel.CourtParty" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.CourtParty" Role="CourtParty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CaseRecord">
               <PropertyRef Name="Id" />
@@ -2804,8 +2471,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CourtParty_dbo_CaseRecord_CaseRecordByCourtParty2_Id">
-          <End Role="CaseRecord" Type="FACCTS_DBModel.CaseRecord" Multiplicity="0..1" />
-          <End Role="CourtParty" Type="FACCTS_DBModel.CourtParty" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.CourtParty" Role="CourtParty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CaseRecord">
               <PropertyRef Name="Id" />
@@ -2816,8 +2483,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Interpreters_dbo_CaseRecord_CaseRecord_Id">
-          <End Role="CaseRecord" Type="FACCTS_DBModel.CaseRecord" Multiplicity="0..1" />
-          <End Role="Interpreters" Type="FACCTS_DBModel.Interpreters" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.Interpreters" Role="Interpreters" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CaseRecord">
               <PropertyRef Name="Id" />
@@ -2828,8 +2495,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_OtherProtected_dbo_CaseRecord_CaseRecord_Id">
-          <End Role="CaseRecord" Type="FACCTS_DBModel.CaseRecord" Multiplicity="0..1" />
-          <End Role="OtherProtected" Type="FACCTS_DBModel.OtherProtected" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.OtherProtected" Role="OtherProtected" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CaseRecord">
               <PropertyRef Name="Id" />
@@ -2840,8 +2507,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Witnesses_dbo_CaseRecord_CaseRecord_Id">
-          <End Role="CaseRecord" Type="FACCTS_DBModel.CaseRecord" Multiplicity="0..1" />
-          <End Role="Witnesses" Type="FACCTS_DBModel.Witnesses" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.Witnesses" Role="Witnesses" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CaseRecord">
               <PropertyRef Name="Id" />
@@ -2852,10 +2519,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Children_dbo_Sex_Sex_Id">
-          <End Role="Sex" Type="FACCTS_DBModel.Sex" Multiplicity="1">
+          <End Type="FACCTS_DBModel.Sex" Role="Sex" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Children" Type="FACCTS_DBModel.Children" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.Children" Role="Children" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sex">
               <PropertyRef Name="Id" />
@@ -2866,8 +2533,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CourtCase_dbo_User_CourtClerk_UserId">
-          <End Role="User" Type="FACCTS_DBModel.User" Multiplicity="0..1" />
-          <End Role="CourtCase" Type="FACCTS_DBModel.CourtCase" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.CourtCase" Role="CourtCase" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -2878,10 +2545,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CourtDepartmenets_dbo_CourtCounty_CourtCountyId">
-          <End Role="CourtCounty" Type="FACCTS_DBModel.CourtCounty" Multiplicity="1">
+          <End Type="FACCTS_DBModel.CourtCounty" Role="CourtCounty" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="CourtDepartmenets" Type="FACCTS_DBModel.CourtDepartmenets" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CourtDepartmenets" Role="CourtDepartmenets" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourtCounty">
               <PropertyRef Name="Id" />
@@ -2892,8 +2559,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CourtLocations_dbo_CourtCounty_CourtCounty_Id">
-          <End Role="CourtCounty" Type="FACCTS_DBModel.CourtCounty" Multiplicity="0..1" />
-          <End Role="CourtLocations" Type="FACCTS_DBModel.CourtLocations" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CourtCounty" Role="CourtCounty" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.CourtLocations" Role="CourtLocations" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourtCounty">
               <PropertyRef Name="Id" />
@@ -2904,8 +2571,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_FACCTSConfiguration_dbo_CourtCounty_CurrentCourtCounty_Id">
-          <End Role="CourtCounty" Type="FACCTS_DBModel.CourtCounty" Multiplicity="0..1" />
-          <End Role="FACCTSConfiguration" Type="FACCTS_DBModel.FACCTSConfiguration" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CourtCounty" Role="CourtCounty" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.FACCTSConfiguration" Role="FACCTSConfiguration" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourtCounty">
               <PropertyRef Name="Id" />
@@ -2916,8 +2583,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Courtrooms_dbo_CourtLocations_CourtLocation_Id">
-          <End Role="CourtLocations" Type="FACCTS_DBModel.CourtLocations" Multiplicity="0..1" />
-          <End Role="Courtrooms" Type="FACCTS_DBModel.Courtrooms" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CourtLocations" Role="CourtLocations" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.Courtrooms" Role="Courtrooms" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourtLocations">
               <PropertyRef Name="Id" />
@@ -2928,8 +2595,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CourtMember_dbo_CourtMember_SubstituteId">
-          <End Role="CourtMember" Type="FACCTS_DBModel.CourtMember" Multiplicity="0..1" />
-          <End Role="CourtMember1" Type="FACCTS_DBModel.CourtMember" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CourtMember" Role="CourtMember" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.CourtMember" Role="CourtMember1" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourtMember">
               <PropertyRef Name="Id" />
@@ -2940,8 +2607,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CourtMember_dbo_User_Id">
-          <End Role="User" Type="FACCTS_DBModel.User" Multiplicity="1" />
-          <End Role="CourtMember" Type="FACCTS_DBModel.CourtMember" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.User" Role="User" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.CourtMember" Role="CourtMember" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="Id" />
@@ -2952,10 +2619,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CourtParty_dbo_Designation_Designation_Id">
-          <End Role="Designation" Type="FACCTS_DBModel.Designation" Multiplicity="1">
+          <End Type="FACCTS_DBModel.Designation" Role="Designation" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="CourtParty" Type="FACCTS_DBModel.CourtParty" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CourtParty" Role="CourtParty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Designation">
               <PropertyRef Name="Id" />
@@ -2966,10 +2633,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CourtParty_dbo_EyesColor_EyesColor_Id">
-          <End Role="EyesColor" Type="FACCTS_DBModel.EyesColor" Multiplicity="1">
+          <End Type="FACCTS_DBModel.EyesColor" Role="EyesColor" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="CourtParty" Type="FACCTS_DBModel.CourtParty" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CourtParty" Role="CourtParty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EyesColor">
               <PropertyRef Name="Id" />
@@ -2980,10 +2647,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CourtParty_dbo_HairColor_HairColor_Id">
-          <End Role="HairColor" Type="FACCTS_DBModel.HairColor" Multiplicity="1">
+          <End Type="FACCTS_DBModel.HairColor" Role="HairColor" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="CourtParty" Type="FACCTS_DBModel.CourtParty" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CourtParty" Role="CourtParty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="HairColor">
               <PropertyRef Name="Id" />
@@ -2994,10 +2661,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CourtParty_dbo_ParticipantRole_ParticipantRole_Id">
-          <End Role="ParticipantRole" Type="FACCTS_DBModel.ParticipantRole" Multiplicity="1">
+          <End Type="FACCTS_DBModel.ParticipantRole" Role="ParticipantRole" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="CourtParty" Type="FACCTS_DBModel.CourtParty" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CourtParty" Role="CourtParty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ParticipantRole">
               <PropertyRef Name="Id" />
@@ -3008,10 +2675,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CourtParty_dbo_Race_Race_Id">
-          <End Role="Race" Type="FACCTS_DBModel.Race" Multiplicity="1">
+          <End Type="FACCTS_DBModel.Race" Role="Race" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="CourtParty" Type="FACCTS_DBModel.CourtParty" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CourtParty" Role="CourtParty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Race">
               <PropertyRef Name="Id" />
@@ -3022,10 +2689,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_CourtParty_dbo_Sex_Sex_Id">
-          <End Role="Sex" Type="FACCTS_DBModel.Sex" Multiplicity="1">
+          <End Type="FACCTS_DBModel.Sex" Role="Sex" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="CourtParty" Type="FACCTS_DBModel.CourtParty" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CourtParty" Role="CourtParty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Sex">
               <PropertyRef Name="Id" />
@@ -3036,10 +2703,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Interpreters_dbo_CourtParty_InterpreterFor_Id">
-          <End Role="CourtParty" Type="FACCTS_DBModel.CourtParty" Multiplicity="1">
+          <End Type="FACCTS_DBModel.CourtParty" Role="CourtParty" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Interpreters" Type="FACCTS_DBModel.Interpreters" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.Interpreters" Role="Interpreters" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourtParty">
               <PropertyRef Name="Id" />
@@ -3050,10 +2717,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Witnesses_dbo_CourtParty_WitnessFor_Id">
-          <End Role="CourtParty" Type="FACCTS_DBModel.CourtParty" Multiplicity="1">
+          <End Type="FACCTS_DBModel.CourtParty" Role="CourtParty" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Witnesses" Type="FACCTS_DBModel.Witnesses" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.Witnesses" Role="Witnesses" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="CourtParty">
               <PropertyRef Name="Id" />
@@ -3064,8 +2731,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_dbo_Witnesses_dbo_Designation_Designation_Id">
-          <End Role="Designation" Type="FACCTS_DBModel.Designation" Multiplicity="0..1" />
-          <End Role="Witnesses" Type="FACCTS_DBModel.Witnesses" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.Designation" Role="Designation" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.Witnesses" Role="Witnesses" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Designation">
               <PropertyRef Name="Id" />
@@ -3075,47 +2742,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="MembershipEntity_User">
-          <End Role="Users" Type="FACCTS_DBModel.Users" Multiplicity="1" />
-          <End Role="Memberships" Type="FACCTS_DBModel.Memberships" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Memberships">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ProfileEntity_User">
-          <End Role="Users" Type="FACCTS_DBModel.Users" Multiplicity="1" />
-          <End Role="Profiles" Type="FACCTS_DBModel.Profiles" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Profiles">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="RelatedCase">
-          <End Role="CaseRecord" Type="FACCTS_DBModel.CaseRecord" Multiplicity="*" />
-          <End Role="CourtCase" Type="FACCTS_DBModel.CourtCase" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CourtCase" Role="CourtCase" Multiplicity="*" />
         </Association>
         <Association Name="RolePermission">
-          <End Role="Permission" Type="FACCTS_DBModel.Permission" Multiplicity="*" />
-          <End Role="Role" Type="FACCTS_DBModel.Role" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.Permission" Role="Permission" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.Role" Role="Role" Multiplicity="*" />
         </Association>
         <Association Name="RoleUser">
-          <End Role="Role" Type="FACCTS_DBModel.Role" Multiplicity="*" />
-          <End Role="User" Type="FACCTS_DBModel.User" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.Role" Role="Role" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.User" Role="User" Multiplicity="*" />
         </Association>
-        <Association Name="UsersInRoles">
-          <End Role="Roles" Type="FACCTS_DBModel.Roles" Multiplicity="*" />
-          <End Role="Users" Type="FACCTS_DBModel.Users" Multiplicity="*" />
-        </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -3124,665 +2763,591 @@
           <EntitySetMapping Name="C__MigrationHistory">
             <EntityTypeMapping TypeName="FACCTS_DBModel.C__MigrationHistory">
               <MappingFragment StoreEntitySet="__MigrationHistory">
-                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
                 <ScalarProperty Name="ProductVersion" ColumnName="ProductVersion" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="MigrationId" ColumnName="MigrationId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AdfsIntegrationConfiguration">
             <EntityTypeMapping TypeName="FACCTS_DBModel.AdfsIntegrationConfiguration">
               <MappingFragment StoreEntitySet="AdfsIntegrationConfiguration">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
-                <ScalarProperty Name="UsernameAuthenticationEnabled" ColumnName="UsernameAuthenticationEnabled" />
-                <ScalarProperty Name="SamlAuthenticationEnabled" ColumnName="SamlAuthenticationEnabled" />
-                <ScalarProperty Name="JwtAuthenticationEnabled" ColumnName="JwtAuthenticationEnabled" />
-                <ScalarProperty Name="PassThruAuthenticationToken" ColumnName="PassThruAuthenticationToken" />
-                <ScalarProperty Name="AuthenticationTokenLifetime" ColumnName="AuthenticationTokenLifetime" />
-                <ScalarProperty Name="UserNameAuthenticationEndpoint" ColumnName="UserNameAuthenticationEndpoint" />
-                <ScalarProperty Name="FederationEndpoint" ColumnName="FederationEndpoint" />
-                <ScalarProperty Name="IssuerUri" ColumnName="IssuerUri" />
-                <ScalarProperty Name="IssuerThumbprint" ColumnName="IssuerThumbprint" />
                 <ScalarProperty Name="EncryptionCertificate" ColumnName="EncryptionCertificate" />
+                <ScalarProperty Name="IssuerThumbprint" ColumnName="IssuerThumbprint" />
+                <ScalarProperty Name="IssuerUri" ColumnName="IssuerUri" />
+                <ScalarProperty Name="FederationEndpoint" ColumnName="FederationEndpoint" />
+                <ScalarProperty Name="UserNameAuthenticationEndpoint" ColumnName="UserNameAuthenticationEndpoint" />
+                <ScalarProperty Name="AuthenticationTokenLifetime" ColumnName="AuthenticationTokenLifetime" />
+                <ScalarProperty Name="PassThruAuthenticationToken" ColumnName="PassThruAuthenticationToken" />
+                <ScalarProperty Name="JwtAuthenticationEnabled" ColumnName="JwtAuthenticationEnabled" />
+                <ScalarProperty Name="SamlAuthenticationEnabled" ColumnName="SamlAuthenticationEnabled" />
+                <ScalarProperty Name="UsernameAuthenticationEnabled" ColumnName="UsernameAuthenticationEnabled" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Appearances">
             <EntityTypeMapping TypeName="FACCTS_DBModel.Appearances">
               <MappingFragment StoreEntitySet="Appearances">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Appear" ColumnName="Appear" />
-                <ScalarProperty Name="Sworn" ColumnName="Sworn" />
-                <ScalarProperty Name="AttorneyPresent" ColumnName="AttorneyPresent" />
-                <ScalarProperty Name="Designation_Id" ColumnName="Designation_Id" />
                 <ScalarProperty Name="CaseRecord_Id" ColumnName="CaseRecord_Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Applications">
-            <EntityTypeMapping TypeName="FACCTS_DBModel.Applications">
-              <MappingFragment StoreEntitySet="Applications">
-                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
-                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Designation_Id" ColumnName="Designation_Id" />
+                <ScalarProperty Name="AttorneyPresent" ColumnName="AttorneyPresent" />
+                <ScalarProperty Name="Sworn" ColumnName="Sworn" />
+                <ScalarProperty Name="Appear" ColumnName="Appear" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Attorneys">
             <EntityTypeMapping TypeName="FACCTS_DBModel.Attorneys">
               <MappingFragment StoreEntitySet="Attorneys">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
-                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="StateBarId" ColumnName="StateBarId" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="FirmName" ColumnName="FirmName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AvailableCourtOrder">
             <EntityTypeMapping TypeName="FACCTS_DBModel.AvailableCourtOrder">
               <MappingFragment StoreEntitySet="AvailableCourtOrder">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="FileName" ColumnName="FileName" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CaseHistory">
             <EntityTypeMapping TypeName="FACCTS_DBModel.CaseHistory">
               <MappingFragment StoreEntitySet="CaseHistory">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="CaseHistoryEvent" ColumnName="CaseHistoryEvent" />
-                <ScalarProperty Name="CCPOR_ID" ColumnName="CCPOR_ID" />
-                <ScalarProperty Name="CourtCaseOrderId" ColumnName="CourtCaseOrderId" />
-                <ScalarProperty Name="CourtClerk_UserId" ColumnName="CourtClerk_UserId" />
                 <ScalarProperty Name="CaseRecord_Id" ColumnName="CaseRecord_Id" />
+                <ScalarProperty Name="CourtClerk_UserId" ColumnName="CourtClerk_UserId" />
+                <ScalarProperty Name="CourtCaseOrderId" ColumnName="CourtCaseOrderId" />
+                <ScalarProperty Name="CCPOR_ID" ColumnName="CCPOR_ID" />
+                <ScalarProperty Name="CaseHistoryEvent" ColumnName="CaseHistoryEvent" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CaseNotes">
             <EntityTypeMapping TypeName="FACCTS_DBModel.CaseNotes">
               <MappingFragment StoreEntitySet="CaseNotes">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Author_UserId" ColumnName="Author_UserId" />
                 <ScalarProperty Name="CaseRecord_Id" ColumnName="CaseRecord_Id" />
+                <ScalarProperty Name="Author_UserId" ColumnName="Author_UserId" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CaseRecord">
             <EntityTypeMapping TypeName="FACCTS_DBModel.CaseRecord">
               <MappingFragment StoreEntitySet="CaseRecord">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Judge" ColumnName="Judge" />
-                <ScalarProperty Name="Party1_Id" ColumnName="Party1_Id" />
-                <ScalarProperty Name="Party2_Id" ColumnName="Party2_Id" />
-                <ScalarProperty Name="AttorneyForParty1_Id" ColumnName="AttorneyForParty1_Id" />
-                <ScalarProperty Name="AttorneyForParty2_Id" ColumnName="AttorneyForParty2_Id" />
-                <ScalarProperty Name="AttorneyForChild_Id" ColumnName="AttorneyForChild_Id" />
-                <ScalarProperty Name="CourtCounty_Id" ColumnName="CourtCounty_Id" />
-                <ScalarProperty Name="CourtDepartment_Id" ColumnName="CourtDepartment_Id" />
                 <ScalarProperty Name="CaseRecord_Id" ColumnName="CaseRecord_Id" />
+                <ScalarProperty Name="CourtDepartment_Id" ColumnName="CourtDepartment_Id" />
+                <ScalarProperty Name="CourtCounty_Id" ColumnName="CourtCounty_Id" />
+                <ScalarProperty Name="AttorneyForChild_Id" ColumnName="AttorneyForChild_Id" />
+                <ScalarProperty Name="AttorneyForParty2_Id" ColumnName="AttorneyForParty2_Id" />
+                <ScalarProperty Name="AttorneyForParty1_Id" ColumnName="AttorneyForParty1_Id" />
+                <ScalarProperty Name="Party2_Id" ColumnName="Party2_Id" />
+                <ScalarProperty Name="Party1_Id" ColumnName="Party1_Id" />
+                <ScalarProperty Name="Judge" ColumnName="Judge" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Children">
             <EntityTypeMapping TypeName="FACCTS_DBModel.Children">
               <MappingFragment StoreEntitySet="Children">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="RelationshipToProtected" ColumnName="RelationshipToProtected" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="Sex_Id" ColumnName="Sex_Id" />
                 <ScalarProperty Name="CaseRecord_Id" ColumnName="CaseRecord_Id" />
+                <ScalarProperty Name="Sex_Id" ColumnName="Sex_Id" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="RelationshipToProtected" ColumnName="RelationshipToProtected" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Client">
             <EntityTypeMapping TypeName="FACCTS_DBModel.Client">
               <MappingFragment StoreEntitySet="Client">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
-                <ScalarProperty Name="ClientSecret" ColumnName="ClientSecret" />
-                <ScalarProperty Name="RedirectUri" ColumnName="RedirectUri" />
-                <ScalarProperty Name="AllowRefreshToken" ColumnName="AllowRefreshToken" />
-                <ScalarProperty Name="AllowImplicitFlow" ColumnName="AllowImplicitFlow" />
-                <ScalarProperty Name="AllowResourceOwnerFlow" ColumnName="AllowResourceOwnerFlow" />
                 <ScalarProperty Name="AllowCodeFlow" ColumnName="AllowCodeFlow" />
+                <ScalarProperty Name="AllowResourceOwnerFlow" ColumnName="AllowResourceOwnerFlow" />
+                <ScalarProperty Name="AllowImplicitFlow" ColumnName="AllowImplicitFlow" />
+                <ScalarProperty Name="AllowRefreshToken" ColumnName="AllowRefreshToken" />
+                <ScalarProperty Name="RedirectUri" ColumnName="RedirectUri" />
+                <ScalarProperty Name="ClientSecret" ColumnName="ClientSecret" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ClientCertificates">
             <EntityTypeMapping TypeName="FACCTS_DBModel.ClientCertificates">
               <MappingFragment StoreEntitySet="ClientCertificates">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Thumbprint" ColumnName="Thumbprint" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Thumbprint" ColumnName="Thumbprint" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CodeToken">
             <EntityTypeMapping TypeName="FACCTS_DBModel.CodeToken">
               <MappingFragment StoreEntitySet="CodeToken">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Scope" ColumnName="Scope" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="TimeStamp" ColumnName="TimeStamp" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Scope" ColumnName="Scope" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CourtCase">
             <EntityTypeMapping TypeName="FACCTS_DBModel.CourtCase">
               <MappingFragment StoreEntitySet="CourtCase">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CaseNumber" ColumnName="CaseNumber" />
-                <ScalarProperty Name="CCPORStatus" ColumnName="CCPORStatus" />
-                <ScalarProperty Name="CCPORId" ColumnName="CCPORId" />
-                <ScalarProperty Name="CourtClerk_UserId" ColumnName="CourtClerk_UserId" />
                 <ScalarProperty Name="CaseRecord_Id" ColumnName="CaseRecord_Id" />
+                <ScalarProperty Name="CourtClerk_UserId" ColumnName="CourtClerk_UserId" />
+                <ScalarProperty Name="CCPORId" ColumnName="CCPORId" />
+                <ScalarProperty Name="CCPORStatus" ColumnName="CCPORStatus" />
+                <ScalarProperty Name="CaseNumber" ColumnName="CaseNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CourtCaseOrders">
             <EntityTypeMapping TypeName="FACCTS_DBModel.CourtCaseOrders">
               <MappingFragment StoreEntitySet="CourtCaseOrders">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="AvailableCourtOrderId" ColumnName="AvailableCourtOrderId" />
-                <ScalarProperty Name="XMLContent" ColumnName="XMLContent" />
-                <ScalarProperty Name="IsSigned" ColumnName="IsSigned" />
-                <ScalarProperty Name="ServerFileName" ColumnName="ServerFileName" />
                 <ScalarProperty Name="CaseRecord_Id" ColumnName="CaseRecord_Id" />
+                <ScalarProperty Name="ServerFileName" ColumnName="ServerFileName" />
+                <ScalarProperty Name="IsSigned" ColumnName="IsSigned" />
+                <ScalarProperty Name="XMLContent" ColumnName="XMLContent" />
+                <ScalarProperty Name="AvailableCourtOrderId" ColumnName="AvailableCourtOrderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CourtCounty">
             <EntityTypeMapping TypeName="FACCTS_DBModel.CourtCounty">
               <MappingFragment StoreEntitySet="CourtCounty">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="court_code" ColumnName="court_code" />
-                <ScalarProperty Name="county" ColumnName="county" />
-                <ScalarProperty Name="court_name" ColumnName="court_name" />
                 <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="court_name" ColumnName="court_name" />
+                <ScalarProperty Name="county" ColumnName="county" />
+                <ScalarProperty Name="court_code" ColumnName="court_code" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CourtDepartmenets">
             <EntityTypeMapping TypeName="FACCTS_DBModel.CourtDepartmenets">
               <MappingFragment StoreEntitySet="CourtDepartmenets">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Room" ColumnName="Room" />
-                <ScalarProperty Name="BranchOfficer" ColumnName="BranchOfficer" />
-                <ScalarProperty Name="Reporter" ColumnName="Reporter" />
                 <ScalarProperty Name="CourtCountyId" ColumnName="CourtCountyId" />
+                <ScalarProperty Name="Reporter" ColumnName="Reporter" />
+                <ScalarProperty Name="BranchOfficer" ColumnName="BranchOfficer" />
+                <ScalarProperty Name="Room" ColumnName="Room" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CourtLocations">
             <EntityTypeMapping TypeName="FACCTS_DBModel.CourtLocations">
               <MappingFragment StoreEntitySet="CourtLocations">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
                 <ScalarProperty Name="CourtCounty_Id" ColumnName="CourtCounty_Id" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="StreetAddress" ColumnName="StreetAddress" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CourtMember">
             <EntityTypeMapping TypeName="FACCTS_DBModel.CourtMember">
               <MappingFragment StoreEntitySet="CourtMember">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="SubstituteId" ColumnName="SubstituteId" />
-                <ScalarProperty Name="IsCertified" ColumnName="IsCertified" />
-                <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="IsCertified" ColumnName="IsCertified" />
+                <ScalarProperty Name="SubstituteId" ColumnName="SubstituteId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CourtParty">
             <EntityTypeMapping TypeName="FACCTS_DBModel.CourtParty">
               <MappingFragment StoreEntitySet="CourtParty">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="State" ColumnName="State" />
-                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Fax" ColumnName="Fax" />
-                <ScalarProperty Name="Weight" ColumnName="Weight" />
-                <ScalarProperty Name="HeightFt" ColumnName="HeightFt" />
-                <ScalarProperty Name="HeightIns" ColumnName="HeightIns" />
-                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
-                <ScalarProperty Name="Age" ColumnName="Age" />
-                <ScalarProperty Name="Designation_Id" ColumnName="Designation_Id" />
-                <ScalarProperty Name="ParticipantRole_Id" ColumnName="ParticipantRole_Id" />
-                <ScalarProperty Name="Sex_Id" ColumnName="Sex_Id" />
-                <ScalarProperty Name="HairColor_Id" ColumnName="HairColor_Id" />
-                <ScalarProperty Name="EyesColor_Id" ColumnName="EyesColor_Id" />
-                <ScalarProperty Name="Race_Id" ColumnName="Race_Id" />
-                <ScalarProperty Name="CaseRecordByCourtParty1_Id" ColumnName="CaseRecordByCourtParty1_Id" />
                 <ScalarProperty Name="CaseRecordByCourtParty2_Id" ColumnName="CaseRecordByCourtParty2_Id" />
+                <ScalarProperty Name="CaseRecordByCourtParty1_Id" ColumnName="CaseRecordByCourtParty1_Id" />
+                <ScalarProperty Name="Race_Id" ColumnName="Race_Id" />
+                <ScalarProperty Name="EyesColor_Id" ColumnName="EyesColor_Id" />
+                <ScalarProperty Name="HairColor_Id" ColumnName="HairColor_Id" />
+                <ScalarProperty Name="Sex_Id" ColumnName="Sex_Id" />
+                <ScalarProperty Name="ParticipantRole_Id" ColumnName="ParticipantRole_Id" />
+                <ScalarProperty Name="Designation_Id" ColumnName="Designation_Id" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="HeightIns" ColumnName="HeightIns" />
+                <ScalarProperty Name="HeightFt" ColumnName="HeightFt" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Courtrooms">
             <EntityTypeMapping TypeName="FACCTS_DBModel.Courtrooms">
               <MappingFragment StoreEntitySet="Courtrooms">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RoomName" ColumnName="RoomName" />
                 <ScalarProperty Name="CourtLocation_Id" ColumnName="CourtLocation_Id" />
+                <ScalarProperty Name="RoomName" ColumnName="RoomName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Delegation">
             <EntityTypeMapping TypeName="FACCTS_DBModel.Delegation">
               <MappingFragment StoreEntitySet="Delegation">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Realm" ColumnName="Realm" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Realm" ColumnName="Realm" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Designation">
             <EntityTypeMapping TypeName="FACCTS_DBModel.Designation">
               <MappingFragment StoreEntitySet="Designation">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DiagnosticsConfiguration">
             <EntityTypeMapping TypeName="FACCTS_DBModel.DiagnosticsConfiguration">
               <MappingFragment StoreEntitySet="DiagnosticsConfiguration">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="EnableFederationMessageTracing" ColumnName="EnableFederationMessageTracing" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EyesColor">
             <EntityTypeMapping TypeName="FACCTS_DBModel.EyesColor">
               <MappingFragment StoreEntitySet="EyesColor">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FACCTSConfiguration">
             <EntityTypeMapping TypeName="FACCTS_DBModel.FACCTSConfiguration">
               <MappingFragment StoreEntitySet="FACCTSConfiguration">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CaseNumberAutoGeneration" ColumnName="CaseNumberAutoGeneration" />
                 <ScalarProperty Name="CurrentCourtCounty_Id" ColumnName="CurrentCourtCounty_Id" />
+                <ScalarProperty Name="CaseNumberAutoGeneration" ColumnName="CaseNumberAutoGeneration" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FederationMetadataConfiguration">
             <EntityTypeMapping TypeName="FACCTS_DBModel.FederationMetadataConfiguration">
               <MappingFragment StoreEntitySet="FederationMetadataConfiguration">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="FormField">
             <EntityTypeMapping TypeName="FACCTS_DBModel.FormField">
               <MappingFragment StoreEntitySet="FormField">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="form_field_name" ColumnName="form_field_name" />
-                <ScalarProperty Name="form_name" ColumnName="form_name" />
-                <ScalarProperty Name="field_type" ColumnName="field_type" />
-                <ScalarProperty Name="screen_name" ColumnName="screen_name" />
-                <ScalarProperty Name="form_field_id" ColumnName="form_field_id" />
-                <ScalarProperty Name="dupe" ColumnName="dupe" />
-                <ScalarProperty Name="dropdown_options" ColumnName="dropdown_options" />
-                <ScalarProperty Name="bool_options" ColumnName="bool_options" />
-                <ScalarProperty Name="screen_panel" ColumnName="screen_panel" />
-                <ScalarProperty Name="panel_section" ColumnName="panel_section" />
                 <ScalarProperty Name="xml_export" ColumnName="xml_export" />
+                <ScalarProperty Name="panel_section" ColumnName="panel_section" />
+                <ScalarProperty Name="screen_panel" ColumnName="screen_panel" />
+                <ScalarProperty Name="bool_options" ColumnName="bool_options" />
+                <ScalarProperty Name="dropdown_options" ColumnName="dropdown_options" />
+                <ScalarProperty Name="dupe" ColumnName="dupe" />
+                <ScalarProperty Name="form_field_id" ColumnName="form_field_id" />
+                <ScalarProperty Name="screen_name" ColumnName="screen_name" />
+                <ScalarProperty Name="field_type" ColumnName="field_type" />
+                <ScalarProperty Name="form_name" ColumnName="form_name" />
+                <ScalarProperty Name="form_field_name" ColumnName="form_field_name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GlobalConfiguration">
             <EntityTypeMapping TypeName="FACCTS_DBModel.GlobalConfiguration">
               <MappingFragment StoreEntitySet="GlobalConfiguration">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
-                <ScalarProperty Name="IssuerUri" ColumnName="IssuerUri" />
-                <ScalarProperty Name="IssuerContactEmail" ColumnName="IssuerContactEmail" />
-                <ScalarProperty Name="DefaultWSTokenType" ColumnName="DefaultWSTokenType" />
-                <ScalarProperty Name="DefaultHttpTokenType" ColumnName="DefaultHttpTokenType" />
-                <ScalarProperty Name="DefaultTokenLifetime" ColumnName="DefaultTokenLifetime" />
-                <ScalarProperty Name="MaximumTokenLifetime" ColumnName="MaximumTokenLifetime" />
-                <ScalarProperty Name="SsoCookieLifetime" ColumnName="SsoCookieLifetime" />
-                <ScalarProperty Name="RequireEncryption" ColumnName="RequireEncryption" />
-                <ScalarProperty Name="RequireRelyingPartyRegistration" ColumnName="RequireRelyingPartyRegistration" />
-                <ScalarProperty Name="EnableClientCertificateAuthentication" ColumnName="EnableClientCertificateAuthentication" />
-                <ScalarProperty Name="EnforceUsersGroupMembership" ColumnName="EnforceUsersGroupMembership" />
-                <ScalarProperty Name="HttpPort" ColumnName="HttpPort" />
                 <ScalarProperty Name="HttpsPort" ColumnName="HttpsPort" />
+                <ScalarProperty Name="HttpPort" ColumnName="HttpPort" />
+                <ScalarProperty Name="EnforceUsersGroupMembership" ColumnName="EnforceUsersGroupMembership" />
+                <ScalarProperty Name="EnableClientCertificateAuthentication" ColumnName="EnableClientCertificateAuthentication" />
+                <ScalarProperty Name="RequireRelyingPartyRegistration" ColumnName="RequireRelyingPartyRegistration" />
+                <ScalarProperty Name="RequireEncryption" ColumnName="RequireEncryption" />
+                <ScalarProperty Name="SsoCookieLifetime" ColumnName="SsoCookieLifetime" />
+                <ScalarProperty Name="MaximumTokenLifetime" ColumnName="MaximumTokenLifetime" />
+                <ScalarProperty Name="DefaultTokenLifetime" ColumnName="DefaultTokenLifetime" />
+                <ScalarProperty Name="DefaultHttpTokenType" ColumnName="DefaultHttpTokenType" />
+                <ScalarProperty Name="DefaultWSTokenType" ColumnName="DefaultWSTokenType" />
+                <ScalarProperty Name="IssuerContactEmail" ColumnName="IssuerContactEmail" />
+                <ScalarProperty Name="IssuerUri" ColumnName="IssuerUri" />
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HairColor">
             <EntityTypeMapping TypeName="FACCTS_DBModel.HairColor">
               <MappingFragment StoreEntitySet="HairColor">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="IdentityProvider">
             <EntityTypeMapping TypeName="FACCTS_DBModel.IdentityProvider">
               <MappingFragment StoreEntitySet="IdentityProvider">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
-                <ScalarProperty Name="Type" ColumnName="Type" />
-                <ScalarProperty Name="ShowInHrdSelection" ColumnName="ShowInHrdSelection" />
-                <ScalarProperty Name="WSFederationEndpoint" ColumnName="WSFederationEndpoint" />
-                <ScalarProperty Name="IssuerThumbprint" ColumnName="IssuerThumbprint" />
-                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
-                <ScalarProperty Name="ClientSecret" ColumnName="ClientSecret" />
-                <ScalarProperty Name="OAuth2ProviderType" ColumnName="OAuth2ProviderType" />
                 <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="OAuth2ProviderType" ColumnName="OAuth2ProviderType" />
+                <ScalarProperty Name="ClientSecret" ColumnName="ClientSecret" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="IssuerThumbprint" ColumnName="IssuerThumbprint" />
+                <ScalarProperty Name="WSFederationEndpoint" ColumnName="WSFederationEndpoint" />
+                <ScalarProperty Name="ShowInHrdSelection" ColumnName="ShowInHrdSelection" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Interpreters">
             <EntityTypeMapping TypeName="FACCTS_DBModel.Interpreters">
               <MappingFragment StoreEntitySet="Interpreters">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Contact" ColumnName="Contact" />
-                <ScalarProperty Name="InterpreterFor_Id" ColumnName="InterpreterFor_Id" />
                 <ScalarProperty Name="CaseRecord_Id" ColumnName="CaseRecord_Id" />
+                <ScalarProperty Name="InterpreterFor_Id" ColumnName="InterpreterFor_Id" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="KeyMaterialConfiguration">
             <EntityTypeMapping TypeName="FACCTS_DBModel.KeyMaterialConfiguration">
               <MappingFragment StoreEntitySet="KeyMaterialConfiguration">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="SigningCertificateName" ColumnName="SigningCertificateName" />
-                <ScalarProperty Name="DecryptionCertificateName" ColumnName="DecryptionCertificateName" />
-                <ScalarProperty Name="RSASigningKey" ColumnName="RSASigningKey" />
                 <ScalarProperty Name="SymmetricSigningKey" ColumnName="SymmetricSigningKey" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Memberships">
-            <EntityTypeMapping TypeName="FACCTS_DBModel.Memberships">
-              <MappingFragment StoreEntitySet="Memberships">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="PasswordFormat" ColumnName="PasswordFormat" />
-                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
-                <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
-                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
-                <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
-                <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
-                <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
-                <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
-                <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
-                <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
-                <ScalarProperty Name="FailedPasswordAnswerAttemptWindowsStart" ColumnName="FailedPasswordAnswerAttemptWindowsStart" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="RSASigningKey" ColumnName="RSASigningKey" />
+                <ScalarProperty Name="DecryptionCertificateName" ColumnName="DecryptionCertificateName" />
+                <ScalarProperty Name="SigningCertificateName" ColumnName="SigningCertificateName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OAuth2Configuration">
             <EntityTypeMapping TypeName="FACCTS_DBModel.OAuth2Configuration">
               <MappingFragment StoreEntitySet="OAuth2Configuration">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
-                <ScalarProperty Name="EnableConsent" ColumnName="EnableConsent" />
-                <ScalarProperty Name="EnableResourceOwnerFlow" ColumnName="EnableResourceOwnerFlow" />
-                <ScalarProperty Name="EnableImplicitFlow" ColumnName="EnableImplicitFlow" />
                 <ScalarProperty Name="EnableCodeFlow" ColumnName="EnableCodeFlow" />
+                <ScalarProperty Name="EnableImplicitFlow" ColumnName="EnableImplicitFlow" />
+                <ScalarProperty Name="EnableResourceOwnerFlow" ColumnName="EnableResourceOwnerFlow" />
+                <ScalarProperty Name="EnableConsent" ColumnName="EnableConsent" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OtherProtected">
             <EntityTypeMapping TypeName="FACCTS_DBModel.OtherProtected">
               <MappingFragment StoreEntitySet="OtherProtected">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RelationshipToPlaintiff" ColumnName="RelationshipToPlaintiff" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Contact" ColumnName="Contact" />
                 <ScalarProperty Name="CaseRecord_Id" ColumnName="CaseRecord_Id" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="RelationshipToPlaintiff" ColumnName="RelationshipToPlaintiff" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ParticipantRole">
             <EntityTypeMapping TypeName="FACCTS_DBModel.ParticipantRole">
               <MappingFragment StoreEntitySet="ParticipantRole">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ParticipantRoleName" ColumnName="ParticipantRoleName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Permission">
             <EntityTypeMapping TypeName="FACCTS_DBModel.Permission">
               <MappingFragment StoreEntitySet="Permission">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Profiles">
-            <EntityTypeMapping TypeName="FACCTS_DBModel.Profiles">
-              <MappingFragment StoreEntitySet="Profiles">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="PropertyNames" ColumnName="PropertyNames" />
-                <ScalarProperty Name="PropertyValueStrings" ColumnName="PropertyValueStrings" />
-                <ScalarProperty Name="PropertyValueBinary" ColumnName="PropertyValueBinary" />
-                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Race">
             <EntityTypeMapping TypeName="FACCTS_DBModel.Race">
               <MappingFragment StoreEntitySet="Race">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="RaceName" ColumnName="RaceName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RelyingParties">
             <EntityTypeMapping TypeName="FACCTS_DBModel.RelyingParties">
               <MappingFragment StoreEntitySet="RelyingParties">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
-                <ScalarProperty Name="Realm" ColumnName="Realm" />
-                <ScalarProperty Name="TokenLifeTime" ColumnName="TokenLifeTime" />
-                <ScalarProperty Name="ReplyTo" ColumnName="ReplyTo" />
-                <ScalarProperty Name="EncryptingCertificate" ColumnName="EncryptingCertificate" />
-                <ScalarProperty Name="SymmetricSigningKey" ColumnName="SymmetricSigningKey" />
-                <ScalarProperty Name="ExtraData1" ColumnName="ExtraData1" />
-                <ScalarProperty Name="ExtraData2" ColumnName="ExtraData2" />
                 <ScalarProperty Name="ExtraData3" ColumnName="ExtraData3" />
+                <ScalarProperty Name="ExtraData2" ColumnName="ExtraData2" />
+                <ScalarProperty Name="ExtraData1" ColumnName="ExtraData1" />
+                <ScalarProperty Name="SymmetricSigningKey" ColumnName="SymmetricSigningKey" />
+                <ScalarProperty Name="EncryptingCertificate" ColumnName="EncryptingCertificate" />
+                <ScalarProperty Name="ReplyTo" ColumnName="ReplyTo" />
+                <ScalarProperty Name="TokenLifeTime" ColumnName="TokenLifeTime" />
+                <ScalarProperty Name="Realm" ColumnName="Realm" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Role">
             <EntityTypeMapping TypeName="FACCTS_DBModel.Role">
               <MappingFragment StoreEntitySet="Role">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="IsIdentityServerUser" ColumnName="IsIdentityServerUser" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="FACCTS_DBModel.Roles">
-              <MappingFragment StoreEntitySet="Roles">
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Sex">
             <EntityTypeMapping TypeName="FACCTS_DBModel.Sex">
               <MappingFragment StoreEntitySet="Sex">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="SexName" ColumnName="SexName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SimpleHttpConfiguration">
             <EntityTypeMapping TypeName="FACCTS_DBModel.SimpleHttpConfiguration">
               <MappingFragment StoreEntitySet="SimpleHttpConfiguration">
-                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="User">
             <EntityTypeMapping TypeName="FACCTS_DBModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
-                <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
-                <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
-                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
-                <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
-                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
-                <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
-                <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
-                <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
                 <ScalarProperty Name="PasswordVerificationTokenExpirationDate" ColumnName="PasswordVerificationTokenExpirationDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="FACCTS_DBModel.Users">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
+                <ScalarProperty Name="PasswordVerificationToken" ColumnName="PasswordVerificationToken" />
+                <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
+                <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="ConfirmationToken" ColumnName="ConfirmationToken" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
                 <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
+                <ScalarProperty Name="LastPasswordFailureDate" ColumnName="LastPasswordFailureDate" />
+                <ScalarProperty Name="PasswordFailuresSinceLastSuccess" ColumnName="PasswordFailuresSinceLastSuccess" />
+                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Witnesses">
             <EntityTypeMapping TypeName="FACCTS_DBModel.Witnesses">
               <MappingFragment StoreEntitySet="Witnesses">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Contact" ColumnName="Contact" />
-                <ScalarProperty Name="WitnessFor_Id" ColumnName="WitnessFor_Id" />
-                <ScalarProperty Name="Designation_Id" ColumnName="Designation_Id" />
                 <ScalarProperty Name="CaseRecord_Id" ColumnName="CaseRecord_Id" />
+                <ScalarProperty Name="Designation_Id" ColumnName="Designation_Id" />
+                <ScalarProperty Name="WitnessFor_Id" ColumnName="WitnessFor_Id" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WSFederationConfiguration">
             <EntityTypeMapping TypeName="FACCTS_DBModel.WSFederationConfiguration">
               <MappingFragment StoreEntitySet="WSFederationConfiguration">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
-                <ScalarProperty Name="EnableAuthentication" ColumnName="EnableAuthentication" />
-                <ScalarProperty Name="EnableFederation" ColumnName="EnableFederation" />
-                <ScalarProperty Name="EnableHrd" ColumnName="EnableHrd" />
-                <ScalarProperty Name="AllowReplyTo" ColumnName="AllowReplyTo" />
-                <ScalarProperty Name="RequireReplyToWithinRealm" ColumnName="RequireReplyToWithinRealm" />
                 <ScalarProperty Name="RequireSslForReplyTo" ColumnName="RequireSslForReplyTo" />
+                <ScalarProperty Name="RequireReplyToWithinRealm" ColumnName="RequireReplyToWithinRealm" />
+                <ScalarProperty Name="AllowReplyTo" ColumnName="AllowReplyTo" />
+                <ScalarProperty Name="EnableHrd" ColumnName="EnableHrd" />
+                <ScalarProperty Name="EnableFederation" ColumnName="EnableFederation" />
+                <ScalarProperty Name="EnableAuthentication" ColumnName="EnableAuthentication" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="WSTrustConfiguration">
             <EntityTypeMapping TypeName="FACCTS_DBModel.WSTrustConfiguration">
               <MappingFragment StoreEntitySet="WSTrustConfiguration">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
-                <ScalarProperty Name="EnableMessageSecurity" ColumnName="EnableMessageSecurity" />
-                <ScalarProperty Name="EnableMixedModeSecurity" ColumnName="EnableMixedModeSecurity" />
-                <ScalarProperty Name="EnableClientCertificateAuthentication" ColumnName="EnableClientCertificateAuthentication" />
-                <ScalarProperty Name="EnableFederatedAuthentication" ColumnName="EnableFederatedAuthentication" />
                 <ScalarProperty Name="EnableDelegation" ColumnName="EnableDelegation" />
+                <ScalarProperty Name="EnableFederatedAuthentication" ColumnName="EnableFederatedAuthentication" />
+                <ScalarProperty Name="EnableClientCertificateAuthentication" ColumnName="EnableClientCertificateAuthentication" />
+                <ScalarProperty Name="EnableMixedModeSecurity" ColumnName="EnableMixedModeSecurity" />
+                <ScalarProperty Name="EnableMessageSecurity" ColumnName="EnableMessageSecurity" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="RelatedCase" TypeName="FACCTS_DBModel.RelatedCase" StoreEntitySet="RelatedCase">
-            <EndProperty Name="CaseRecord">
-              <ScalarProperty Name="Id" ColumnName="CaseRecordId" />
-            </EndProperty>
             <EndProperty Name="CourtCase">
               <ScalarProperty Name="Id" ColumnName="CourtCaseId" />
             </EndProperty>
+            <EndProperty Name="CaseRecord">
+              <ScalarProperty Name="Id" ColumnName="CaseRecordId" />
+            </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="RolePermission" TypeName="FACCTS_DBModel.RolePermission" StoreEntitySet="RolePermission">
-            <EndProperty Name="Permission">
-              <ScalarProperty Name="Id" ColumnName="Id" />
-            </EndProperty>
             <EndProperty Name="Role">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
             </EndProperty>
+            <EndProperty Name="Permission">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
           </AssociationSetMapping>
           <AssociationSetMapping Name="RoleUser" TypeName="FACCTS_DBModel.RoleUser" StoreEntitySet="RoleUser">
-            <EndProperty Name="Role">
-              <ScalarProperty Name="Id" ColumnName="Role_RoleId" />
-            </EndProperty>
             <EndProperty Name="User">
               <ScalarProperty Name="Id" ColumnName="User_UserId" />
             </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="UsersInRoles" TypeName="FACCTS_DBModel.UsersInRoles" StoreEntitySet="UsersInRoles">
-            <EndProperty Name="Roles">
-              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-            </EndProperty>
-            <EndProperty Name="Users">
-              <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <EndProperty Name="Role">
+              <ScalarProperty Name="Id" ColumnName="Role_RoleId" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>
@@ -3799,7 +3364,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

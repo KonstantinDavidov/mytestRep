@@ -30,6 +30,7 @@ namespace FACCTS.Controls.ViewModels
 
         }
 
+
         protected override void Authorized()
         {
             base.Authorized();
@@ -227,7 +228,7 @@ namespace FACCTS.Controls.ViewModels
             {
                 if (_courtCases == null && IsAuthenticated)
                 {
-                    var data = new FACCTS.Services.Data.CourtCases().GetAll();
+                    var data = DataContainer.CourtCases;
                     if (data != null)
                     {
                         _logger.InfoFormat("Wep api service returned {0} court cases", data.Count());

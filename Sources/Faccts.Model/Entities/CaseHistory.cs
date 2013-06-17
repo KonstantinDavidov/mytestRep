@@ -113,7 +113,7 @@ namespace Faccts.Model.Entities
         private string _cCPOR_ID;
     
         [DataMember]
-        public int CourtCaseOrderId
+        public Nullable<int> CourtCaseOrderId
         {
             get { return _courtCaseOrderId; }
             set
@@ -133,7 +133,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _courtCaseOrderId;
+        private Nullable<int> _courtCaseOrderId;
     
         [DataMember]
         public Nullable<int> CourtClerk_UserId
@@ -313,16 +313,6 @@ namespace Faccts.Model.Entities
             ChangeTracker.ChangeTrackingEnabled = true;
         }
     
-        // This entity type is the dependent end in at least one association that performs cascade deletes.
-        // This event handler will process notifications that occur when the principal end is deleted.
-        internal void HandleCascadeDelete(object sender, ObjectStateChangingEventArgs e)
-        {
-            if (e.NewState == ObjectState.Deleted)
-            {
-                this.MarkAsDeleted();
-            }
-        }
-    
         protected virtual void ClearNavigationProperties()
         {
             CaseRecord = null;
@@ -375,7 +365,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupCourtCaseOrders(CourtCaseOrders previousValue)
+        private void FixupCourtCaseOrders(CourtCaseOrders previousValue, bool skipKeys = false)
         {
             if (IsDeserializing)
             {
@@ -393,6 +383,11 @@ namespace Faccts.Model.Entities
     
                 CourtCaseOrderId = CourtCaseOrders.Id;
             }
+            else if (!skipKeys)
+            {
+                CourtCaseOrderId = null;
+            }
+    
             if (ChangeTracker.ChangeTrackingEnabled)
             {
                 if (ChangeTracker.OriginalValues.ContainsKey("CourtCaseOrders")

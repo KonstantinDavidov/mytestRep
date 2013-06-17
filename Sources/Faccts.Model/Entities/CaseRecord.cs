@@ -94,7 +94,7 @@ namespace Faccts.Model.Entities
         private string _judge;
     
         [DataMember]
-        public int Party1_Id
+        public Nullable<int> Party1_Id
         {
             get { return _party1_Id; }
             set
@@ -114,7 +114,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _party1_Id;
+        private Nullable<int> _party1_Id;
     
         [DataMember]
         public Nullable<int> Party2_Id
@@ -961,16 +961,6 @@ namespace Faccts.Model.Entities
             ChangeTracker.ChangeTrackingEnabled = true;
         }
     
-        // This entity type is the dependent end in at least one association that performs cascade deletes.
-        // This event handler will process notifications that occur when the principal end is deleted.
-        internal void HandleCascadeDelete(object sender, ObjectStateChangingEventArgs e)
-        {
-            if (e.NewState == ObjectState.Deleted)
-            {
-                this.MarkAsDeleted();
-            }
-        }
-    
         protected virtual void ClearNavigationProperties()
         {
             Appearances.Clear();
@@ -1246,7 +1236,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupCourtParty(CourtParty previousValue)
+        private void FixupCourtParty(CourtParty previousValue, bool skipKeys = false)
         {
             if (IsDeserializing)
             {
@@ -1264,6 +1254,11 @@ namespace Faccts.Model.Entities
     
                 Party1_Id = CourtParty.Id;
             }
+            else if (!skipKeys)
+            {
+                Party1_Id = null;
+            }
+    
             if (ChangeTracker.ChangeTrackingEnabled)
             {
                 if (ChangeTracker.OriginalValues.ContainsKey("CourtParty")

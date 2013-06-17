@@ -509,23 +509,11 @@ namespace Faccts.Model.Entities
                     if (_caseRecord != null)
                     {
                         _caseRecord.CollectionChanged -= FixupCaseRecord;
-                        // This is the principal end in an association that performs cascade deletes.
-                        // Remove the cascade delete event handler for any entities in the current collection.
-                        foreach (CaseRecord item in _caseRecord)
-                        {
-                            ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
-                        }
                     }
                     _caseRecord = value;
                     if (_caseRecord != null)
                     {
                         _caseRecord.CollectionChanged += FixupCaseRecord;
-                        // This is the principal end in an association that performs cascade deletes.
-                        // Add the cascade delete event handler for any entities that are already in the new collection.
-                        foreach (CaseRecord item in _caseRecord)
-                        {
-                            ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
-                        }
                     }
                     OnNavigationPropertyChanged("CaseRecord");
                 }
@@ -1223,9 +1211,6 @@ namespace Faccts.Model.Entities
                         }
                         ChangeTracker.RecordAdditionToCollectionProperties("CaseRecord", item);
                     }
-                    // This is the principal end in an association that performs cascade deletes.
-                    // Update the event listener to refer to the new dependent.
-                    ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
                 }
             }
     
@@ -1241,9 +1226,6 @@ namespace Faccts.Model.Entities
                     {
                         ChangeTracker.RecordRemovalFromCollectionProperties("CaseRecord", item);
                     }
-                    // This is the principal end in an association that performs cascade deletes.
-                    // Remove the previous dependent from the event listener.
-                    ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
                 }
             }
         }

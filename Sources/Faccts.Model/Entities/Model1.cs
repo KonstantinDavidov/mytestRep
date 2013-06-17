@@ -358,6 +358,19 @@ namespace Faccts.Model.Entities
     [CollectionDataContract]
     public class TrackableCollection<T> : ObservableCollection<T>
     {
+    
+        public TrackableCollection() : base()
+    	{
+    	}
+           
+        public TrackableCollection(IEnumerable<T> collection): base(collection)
+    	{
+    	}
+           
+        public TrackableCollection(List<T> list) : base(list)
+    	{
+    	}
+    
         protected override void ClearItems()
         {
             new List<T>(this).ForEach(t => Remove(t));

@@ -11,11 +11,5 @@ namespace FACCTS.Server.Models
     {
         [JsonProperty]
         public string CaseNumber { get; set; }
-        [JsonProperty]
-        public DateTime CreationDateTime { get; set; }
-        [JsonProperty]
-        public int CourtCountyId { get; set; }
-        [JsonProperty]
-        public int CourtDepartmentId { get; set; }
     }
 }
