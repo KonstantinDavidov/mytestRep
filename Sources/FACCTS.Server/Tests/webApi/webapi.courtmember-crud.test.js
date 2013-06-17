@@ -89,7 +89,6 @@
 
     // Step 3: Confirm test session updated, then call restore
     function confirmUpdated(member) {
-        debugger;
         okAsync(member.phone === testPhone, "test courtmember phone was updated ");
         restoreTestCourtMember();
     };
@@ -126,7 +125,7 @@
         {
             setup: function () {
                 testCourtMember = {
-                    title: "TEST courtmember " + new Date(),
+                    username: "TEST courtmember " + new Date(),
                     phone: "555555",
                     password: "test",
                 };
@@ -136,7 +135,7 @@
     test('Can add a test Session',
         function () {
             var msgPrefix = 'POST of new test session to ' + testUrl,
-                data = JSON.stringify(testSession);
+                data = JSON.stringify(testCourtMember);
 
             stop();
             $.ajax({
@@ -148,15 +147,16 @@
                 success: function (result) {
                     onCallSuccess(msgPrefix);
                     okAsync(!!result, "returned a newly added courtmember.");
-                    //deleteAddedTestSession(result);
+                    debugger;
+                    deleteAddedCourtMember(result);
                 },
                 error: function (result) { onError(result, msgPrefix); }
             });
         }
     );
 
-    function deleteAddedTestSession(session) {
-        var deleteUrl = '/api/sessions/' + session.id,
+    function deleteAddedCourtMember(courtMember) {
+        var deleteUrl = baseUrl + "/" + courtMember.userId,
             msgPrefix = 'DELETE api call: ' + deleteUrl;
         $.ajax({
             type: 'DELETE',
