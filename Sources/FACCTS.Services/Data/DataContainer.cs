@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel.Composition;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Threading;
@@ -38,6 +39,7 @@ namespace FACCTS.Services.Data
             private set
             {
                 _courtCases = value;
+                RaisePropertyChanged(() => CourtCases);
             }
         }
 
@@ -84,6 +86,28 @@ namespace FACCTS.Services.Data
                 ChangeTracker.ChangeTrackingEnabled = true;   
             }
         }
+
+        protected void RaisePropertyChanged(string propertyName)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+        }
+
+        protected virtual void RaisePropertyChanged<T>(Expression<Func<T>> propertyExpression)
+        {
+            var body = propertyExpression.Body as MemberExpression;
+            if (body == null)
+                throw new ArgumentException("'propertyExpression' should be a member expression");
+
+            var expression = body.Expression as ConstantExpression;
+            if (expression == null)
+                throw new ArgumentException("'propertyExpression' body should be a constant expression");
+
+            object target = Expression.Lambda(expression).Compile().DynamicInvoke();
+
+            RaisePropertyChanged(body.Member.Name);
+        }
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
     }
 
     public class SearchCriteria

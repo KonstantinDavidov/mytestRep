@@ -82,6 +82,7 @@ namespace FACCTS.Controls.ViewModels
             cc.CaseNumber = this.CaseNumber;
             _logger.Info("Saving the new case to the database...");
             CourtCases.CreateNew(cc);
+            DataContainer.SearchCourtCases();
         }
 
         public string Error

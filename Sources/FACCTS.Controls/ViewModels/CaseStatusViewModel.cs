@@ -24,6 +24,23 @@ namespace FACCTS.Controls.ViewModels
         [ImportingConstructor]
         public CaseStatusViewModel(ILogger logger, IWindowManager windowManager) : base()
         {
+            BindSearchCriteria();
+            DataContainer.PropertyChanged += (s, e) =>
+                {
+                    if (e.PropertyName == "CourtCases")
+                    {
+                        this.NotifyOfPropertyChange(() => CourtCases);
+                    }
+                };
+            _logger = logger;
+            _logger.Info("CaseStatusViewModel..ctor()");
+            _windowManager = windowManager;
+            this.DisplayName = "Case Status";
+
+        }
+
+        private void BindSearchCriteria()
+        {
             Observable.Merge<Object>(
                 this.ObservableForProperty(x => x.CaseNumber),
                 this.ObservableForProperty(x => x.FirstActivityStartDate),
@@ -54,11 +71,6 @@ namespace FACCTS.Controls.ViewModels
                     DataContainer.SearchCriteria.Party2LastName = Party2LastName;
                     DataContainer.SearchCriteria.CCPORStatus = CCPORStatus;
                 });
-            _logger = logger;
-            _logger.Info("CaseStatusViewModel..ctor()");
-            _windowManager = windowManager;
-            this.DisplayName = "Case Status";
-
         }
 
 
