@@ -10,34 +10,58 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Data.Entity;
 using FACCTS.Server.Controllers;
+using FACCTS.Server.DataContracts;
 
 namespace FACCTS.Server.Areas.Admin.Controllers
 {
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    public class CourtMembersController : ApiControllerBase
+    public class CourtMembersController : ApiController
     {
+        [Import(typeof(IDataManager))]
+        protected IDataManager DataManager;
+
+        public CourtMembersController()
+        {
+            int r = 2;
+        }
         // GET api/all
         [ActionName("all")]
         public IEnumerable<CourtMember> Get()
         {
-            return this.DataManager.CourtMemberRepository.GetAll();
+            IEnumerable<CourtMember> result = null;
+            //return this.DataManager.CourtMemberRepository.GetAll();
+            try
+            {
+                result = this.DataManager.CourtMemberRepository.GetAll().ToList();
+            }
+            finally 
+            {
+                DataManager.Dispose(); 
+            }
+            return result;
         }
         [ActionName("memberbyid")]
         // GET api/courtmembers/5
         public CourtMember Get(long id)
         {
-            var member = this.DataManager.CourtMemberRepository.GetById(id); ;
-            if (member != null) return member;
-            throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
+            using (DataManager)
+            {
+                var member = this.DataManager.CourtMemberRepository.GetById(id); ;
+                if (member != null) return member;
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
+            }
         }
         [ActionName("memberbyname")]
         // GET api/courtmembers/5
         public CourtMember Get(string username)
         {
-            var member = this.DataManager.CourtMemberRepository.GetAll().Where(cm => cm.Username == username).AsNoTracking().FirstOrDefault();
-            if (member != null) return member;
-            throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
+            using (DataManager)
+            {
+                var member = this.DataManager.CourtMemberRepository.GetAll().Where(cm => cm.Username == username).AsNoTracking().FirstOrDefault();
+                if (member != null) return member;
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
+            }
         }
         [ActionName("substitutes")]
         public IDictionary<int, string> GetAvailableSubstitutes([FromBody]CourtMember member)
@@ -62,9 +86,12 @@ namespace FACCTS.Server.Areas.Admin.Controllers
 
         public HttpResponseMessage Put([FromBody]CourtMember value)
         {
-            this.DataManager.CourtMemberRepository.Update(value);
-            this.DataManager.Commit();
-            return new HttpResponseMessage(HttpStatusCode.NoContent);
+            using (this.DataManager)
+            {
+                this.DataManager.CourtMemberRepository.Update(value);
+                this.DataManager.Commit();
+                return new HttpResponseMessage(HttpStatusCode.NoContent);
+            }
         }
 
         // DELETE api/courtmembers/5

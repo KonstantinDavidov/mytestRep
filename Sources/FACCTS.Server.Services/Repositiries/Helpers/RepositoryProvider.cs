@@ -9,6 +9,7 @@ using System.ComponentModel.Composition;
 namespace FACCTS.Server.Data.Repositiries.Helpers
 {
     [Export(typeof(IRepositoryProvider))]
+    //[PartCreationPolicy(CreationPolicy.NonShared)]
     public class RepositoryProvider : IRepositoryProvider
     {
         [ImportingConstructor]

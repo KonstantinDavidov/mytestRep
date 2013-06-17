@@ -1,5 +1,5 @@
 ﻿(function () {
-    QUnit.config.testTimeout = 10000;
+    QUnit.config.testTimeout = 100000;
 
     var okAsync = QUnit.okAsync,
         stringformat = QUnit.stringformat;
@@ -96,6 +96,7 @@
 
     // Step 4: Restore orig test session in db
     function restoreTestCourtMember() {
+        debugger;
         testCourtMember.phone = origPhone;
         var msgPrefix = 'PUT (restore)' + testMsgBase,
             data = JSON.stringify(testCourtMember);

@@ -14,12 +14,13 @@ using FACCTS.Server.DataContracts;
 namespace FACCTS.Server.Data
 {
     [Export(typeof(IDataManager))]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     internal class DataManager : IDataManager
     {
         [Import(typeof(IRepositoryProvider))]
         protected IRepositoryProvider RepositoryProvider { get; set; }
 
-        private DatabaseContext DbContext { get; set; }
+        public DatabaseContext DbContext { get; set; }
 
         [ImportingConstructor]
         public DataManager(IRepositoryProvider repositoryProvider)
@@ -69,6 +70,7 @@ namespace FACCTS.Server.Data
         {
             get
             {
+                //return new CourtMemberRepository(this.DbContext);
                 return GetRepo<ICourtMemberRepository>();
             }
         }

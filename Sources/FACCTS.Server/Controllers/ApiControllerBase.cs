@@ -10,9 +10,11 @@ using System.Web.Http;
 namespace FACCTS.Server.Controllers
 {
     [Export]
+    [PartCreationPolicy(CreationPolicy.NonShared)]
     public class ApiControllerBase : ApiController
     {
         [Import(typeof(IDataManager))]
         protected IDataManager DataManager;
+        
     }
 }

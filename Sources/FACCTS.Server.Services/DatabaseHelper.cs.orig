@@ -30,7 +30,7 @@ namespace FACCTS.Server.Data
         }
 
 <<<<<<< HEAD
-        private static void SeedFacctsTestData(DatabaseContext context)
+        private static void AddCourtMembers(DatabaseContext context)
         {
             var courtMember1 = new CourtMember
                 {
@@ -42,7 +42,7 @@ namespace FACCTS.Server.Data
                     Phone = "222222",
                     Password = "12345"
                 };
-            
+        
             context.CourtMembers.Add(courtMember1);
             var courtMember2 = new CourtMember
             {
@@ -61,10 +61,10 @@ namespace FACCTS.Server.Data
             Roles.AddUserToRole("DemoCourtMember2", "Courtroom Clerk");
             context.SaveChanges();
         }
-=======
-        
->>>>>>> d504a4105f391eb6532d57c79d208e0bf08aa092
 
+=======
+       
+>>>>>>> 11326d63e6c690474020e691ad4703ff2183405e
         private static void SeedSecurityData(DatabaseContext context)
         {
             RelyingParties relyingParty = new RelyingParties()
@@ -644,9 +644,9 @@ namespace FACCTS.Server.Data
         private static void SeedRolePermissions(DatabaseContext context)
         {
             //Admin
-            var adminPermissions = context.Permissions.ToList();
-            var admin = context.Roles.Where(r => r.RoleId == 1).FirstOrDefault();
-            if (admin != null) adminPermissions.ForEach(p => admin.Permissions.Add(p));
+            //var adminPermissions = context.Permissions.ToList();
+            //var admin = context.Roles.Where(r => r.RoleId == 1).FirstOrDefault();
+            //if (admin != null) adminPermissions.ForEach(p => admin.Permissions.Add(p));
 
             context.SaveChanges();
         }
@@ -685,7 +685,7 @@ namespace FACCTS.Server.Data
         #region FACCTS test data
         private static void SeedFacctsTestData(DatabaseContext context)
         {
-            
+            AddCourtMembers(context);
             //context.Entry()
             List<CourtDepartment> departments = new List<CourtDepartment>()
             {
@@ -714,20 +714,58 @@ namespace FACCTS.Server.Data
                 Reporter = "A Smarth",
             }
             };
+            var cc = context.CourtCounties.FirstOrDefault(x => x.CourtCode == "01200");
+            
+            if (cc != null)
+            //{
+                cc = context.CourtCounties.Attach(cc);
+                departments.ForEach(d =>
+                    {
+                        var proxy = context.CourtDepartments.Create();
+                        proxy.Name = d.Name;
+                        proxy.Room = d.Room;
+                        proxy.BranchOfficer = d.BranchOfficer;
+                        proxy.Reporter = d.Reporter;
+                        proxy = context.CourtDepartments.Add(proxy);
+                        context.Entry(cc).Collection(x => x.Departments).Load();
+                        cc.Departments.Add(proxy);
 
-            var savedDepts = departments.Select(d =>
+                    });
+            }
+
+
+
+            var courtMember1 = new CourtMember
             {
-                return context.CourtDepartments.Add(d);
-            })
-            .ToList();
+                Username = "DemoCourtMember1",
+                FirstName = "f1",
+                LastName = "l1",
+                IsApproved = true,
+                IsCertified = false,
+                Phone = "222222",
+                Password = "12345"
+            };
+
+            context.CourtMembers.Add(courtMember1);
+            var courtMember2 = new CourtMember
+            {
+                Username = "DemoCourtMember2",
+                FirstName = "f2",
+                LastName = "l2",
+                IsApproved = true,
+                IsCertified = true,
+                Substitute = courtMember1,
+                Phone = "333333",
+                Password = "12345"
+            };
+            context.CourtMembers.Add(courtMember2);
             context.SaveChanges();
-            CourtCounty cc = context.CourtCounties.Where(c => c.CourtCode == "01200").FirstOrDefault();
-            savedDepts.ForEach(d =>
-            {
-
-                context.Entry(d).Reference(x => x.CourtCounty).CurrentValue = cc;
-            });
+            Roles.AddUserToRole("DemoCourtMember1", "Court Clerk");
+            Roles.AddUserToRole("DemoCourtMember2", "Courtroom Clerk");
+            context.SaveChanges();
+           
+            //    context.Entry(d).Reference(x => x.CourtCounty).CurrentValue = cc;
+            //});
         }
         #endregion
     }
-}

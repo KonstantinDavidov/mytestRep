@@ -51,7 +51,7 @@ namespace FACCTS.Server
                 ServiceLocator.Current.GetInstance<IRelyingPartyRepository>());
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            WebApiApplication.DataManager = ServiceLocator.Current.GetInstance<IDataManager>();
+            //WebApiApplication.DataManager = ServiceLocator.Current.GetInstance<IDataManager>();
         }
 
         private void ConfigureMEF()
@@ -60,7 +60,7 @@ namespace FACCTS.Server
             
         }
 
-        public static IDataManager DataManager { private get; set; }
+        //public static IDataManager DataManager { private get; set; }
 
 
         protected void Application_End(object sender, EventArgs e)
@@ -75,7 +75,7 @@ namespace FACCTS.Server
         {
             _logger = ServiceLocator.Current.GetInstance<ILog>();
             _logger.Fatal("An unhandled exception occurred in ASP.NET processing: " + Server.GetLastError(), Server.GetLastError());
-            DataManager.Dispose();
+            //DataManager.Dispose();
             
         }
         
