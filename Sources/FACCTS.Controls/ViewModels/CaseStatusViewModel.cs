@@ -288,7 +288,7 @@ namespace FACCTS.Controls.ViewModels
                     if (data != null)
                     {
                         _logger.InfoFormat("Wep api service returned {0} court cases", data.Count());
-                        _courtCases = new ObservableCollection<CourtCase>();
+                        _courtCases = new ObservableCollection<CourtCase>(data.ToList());
                     }
                 }
                 return _courtCases;
