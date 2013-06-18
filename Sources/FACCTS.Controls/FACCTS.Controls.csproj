@@ -134,6 +134,7 @@
     <Compile Include="ViewModels\Case Record\AttorneysViewModel.cs" />
     <Compile Include="ViewModels\Case Record\CaseRecordViewModel.cs" />
     <Compile Include="ViewModels\NewCourtCaseDialogViewModel.cs" />
+    <Compile Include="ViewModels\OneActiveViewModelBase.cs" />
     <Compile Include="ViewModels\UserLoginDialogViewModel.cs" />
     <Compile Include="Views\Case Record\RelatedCasesView.xaml.cs">
       <DependentUpon>RelatedCasesView.xaml</DependentUpon>

@@ -20,7 +20,7 @@ using System.Threading.Tasks;
 namespace FACCTS.Controls.ViewModels
 {
     [Export(typeof(CaseRecordViewModel))]
-    public class CaseRecordViewModel : ReactiveConductor<IScreen>.Collection.OneActive, IReactiveNotifyPropertyChanged
+    public class CaseRecordViewModel : OneActiveViewModelBase
     {
         [ImportingConstructor]
         public CaseRecordViewModel(PersonalInformationViewModel personalInformation
@@ -29,11 +29,9 @@ namespace FACCTS.Controls.ViewModels
             , WitnessInterpereterViewModel witnessInterprererViewModel
             , RelatedCasesViewModel relatedCasesViewModel
             , IWindowManager windowManager
-            , IAuthenticationService authenticationService 
-            , IDataContainer dataContainer)
+            )
             : base()
         {
-            _reactiveHelper = new MakeObjectReactiveHelper(this);
             _windowManager = windowManager;
             this.DisplayName = "Case Record";
             PersonalInformationViewModel = personalInformation;
@@ -41,9 +39,6 @@ namespace FACCTS.Controls.ViewModels
             AttorneysViewModel = attorneysViewModel;
             WitnessInterpereterViewModel = witnessInterprererViewModel;
             RelatedCasesViewModel = relatedCasesViewModel;
-            _authenticationService = authenticationService;
-            _authenticationService.AuthenticationStatusChanged += _authenticationService_AuthenticationStatusChanged;
-            DataContainer = dataContainer;
             Observable.Merge(
                 this.ObservableForProperty(x => x.IsActive),
                 this.ObservableForProperty(x => x.IsAuthenticated)
@@ -54,10 +49,40 @@ namespace FACCTS.Controls.ViewModels
                         this.Authorized();
                     }
                 });
+            
             ActivateControl(0);
         }
 
-        private void Authorized()
+        public override IDataContainer DataContainer
+        {
+            protected get
+            {
+                return base.DataContainer;
+            }
+            set
+            {
+                if (base.DataContainer != null)
+                {
+                    base.DataContainer.PropertyChanged -= DataContainerPropertyChanged;
+                }
+                base.DataContainer = value;
+                if (base.DataContainer != null)
+                {
+                    base.DataContainer.PropertyChanged += DataContainerPropertyChanged;
+                }
+            }
+        }
+
+        private void DataContainerPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+                if (e.PropertyName == "CourtCases")
+                {
+                    _courtCases = null;
+                    this.NotifyOfPropertyChange(() => CourtCases);
+                }
+        }
+
+        protected override void Authorized()
         {
             this.NotifyOfPropertyChange(() => CourtCases);
         }
@@ -80,32 +105,12 @@ namespace FACCTS.Controls.ViewModels
             this.IsAuthenticated = e.AuthenticationStatus == AuthenticationStatus.Authenticated;
         }
 
-        private IAuthenticationService _authenticationService;
-        public IDataContainer DataContainer { get; private set; }
-        private MakeObjectReactiveHelper _reactiveHelper;
         private IWindowManager _windowManager;
         protected PersonalInformationViewModel PersonalInformationViewModel { get; set; }
         protected ChildrenOtherProtectedViewModel ChildrenOtherProtectedViewModel { get; set; }
         protected AttorneysViewModel AttorneysViewModel {get; set;}
         protected WitnessInterpereterViewModel WitnessInterpereterViewModel { get; set; }
         protected RelatedCasesViewModel RelatedCasesViewModel { get; set; }
-
-        private bool _isAuthenticated;
-        public bool IsAuthenticated
-        {
-            get
-            {
-                return _isAuthenticated;
-            }
-            set
-            {
-                if (_isAuthenticated == value)
-                    return;
-                this.NotifyOfPropertyChanging();
-                _isAuthenticated = value;
-                this.NotifyOfPropertyChange();
-            }
-        }
 
         public void ActivateControl(int selectedIndex)
         {
@@ -136,25 +141,6 @@ namespace FACCTS.Controls.ViewModels
         {
             BusinessLogicHelper.CreateNewCase(ServiceLocatorContainer.Locator.GetInstance<NewCourtCaseDialogViewModel>(), _windowManager);
         }
-
-        public IObservable<IObservedChange<object, object>> Changed
-        {
-            get { return _reactiveHelper.Changed; }
-        }
-        public IObservable<IObservedChange<object, object>> Changing
-        {
-            get { return _reactiveHelper.Changing; }
-        }
-        public IDisposable SuppressChangeNotifications()
-        {
-            return _reactiveHelper.SuppressChangeNotifications();
-        }
-        public event PropertyChangingEventHandler PropertyChanging;
-
-        protected void NotifyOfPropertyChanging([CallerMemberName]string propertyName = null)
-        {
-            if (PropertyChanging != null)
-                PropertyChanging(this, new PropertyChangingEventArgs(propertyName));
-        }
+       
     }
 }
