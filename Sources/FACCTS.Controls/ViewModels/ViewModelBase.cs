@@ -2,6 +2,7 @@
 using Caliburn.Micro.ReactiveUI;
 using FACCTS.Services;
 using FACCTS.Services.Authentication;
+using FACCTS.Services.Data;
 using FACCTS.Services.Logger;
 using ReactiveUI;
 using System;
@@ -21,7 +22,8 @@ namespace FACCTS.Controls.ViewModels
         private ILogger _logger = ServiceLocatorContainer.Locator.GetInstance<ILogger>();
 
         public ViewModelBase()
-            : this(ServiceLocatorContainer.Locator.GetInstance<IAuthenticationService>())
+            : this(ServiceLocatorContainer.Locator.GetInstance<IAuthenticationService>(),
+                ServiceLocatorContainer.Locator.GetInstance<IDataContainer>())
         {
             this.WhenAny(x => x.IsAuthenticated, x => x.Value)
                 .Subscribe(x =>
@@ -36,14 +38,15 @@ namespace FACCTS.Controls.ViewModels
 
         protected virtual void Authorized()
         {
-            
+            DataContainer.SearchCourtCases();
         }
 
         [ImportingConstructor]
-        public ViewModelBase(IAuthenticationService authenticationService) : base()
+        public ViewModelBase(IAuthenticationService authenticationService, IDataContainer dataContainer) : base()
         {
             _authenticationService = authenticationService;
             _authenticationService.AuthenticationStatusChanged += _authenticationService_AuthenticationStatusChanged;
+            DataContainer = dataContainer;
         }
 
         private void _authenticationService_AuthenticationStatusChanged(object sender, AuthenticationStatusChangedEventArgs e)
@@ -79,6 +82,21 @@ namespace FACCTS.Controls.ViewModels
                 this.RaiseAndSetIfChanged(ref _title, value);
             }
         }
+
+        private bool _isValid;
+        public virtual bool IsValid
+        {
+            get
+            {
+                return _isValid;
+            }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _isValid, value);
+            }
+        }
+
+        public virtual IDataContainer DataContainer { get; private set; }
         
     }
 }

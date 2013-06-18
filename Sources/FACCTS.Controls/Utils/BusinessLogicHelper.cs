@@ -22,5 +22,17 @@ namespace FACCTS.Controls.Utils
 
             }
         }
+
+        private static string _chars = "0123456789";
+        private static Random _random = new Random();
+        public static string AutoGenerateCaseNumber()
+        {
+            var result = new string(
+                Enumerable.Repeat(_chars, 6)
+                .Select(s => s[_random.Next(s.Length)])
+                .ToArray());
+            result = result.Insert(2, "-");
+            return result;
+        }
     }
 }

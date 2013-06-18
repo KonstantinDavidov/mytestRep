@@ -98,6 +98,22 @@ namespace FACCTS.Server.Data
                 return GetStandardRepo<CourtDepartment>();
             }
         }
+
+        public IFacctsDataRepository<CaseRecord> CaseRecordRepository
+        {
+            get
+            {
+                return GetStandardRepo<CaseRecord>();
+            }
+        }
+
+        public IFacctsDataRepository<CaseHistory> CaseHistoryRepository
+        {
+            get
+            {
+                return GetStandardRepo<CaseHistory>();
+            }
+        }
         #endregion
 
         //Commit

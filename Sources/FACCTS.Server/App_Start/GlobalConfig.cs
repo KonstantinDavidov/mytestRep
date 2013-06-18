@@ -23,6 +23,8 @@ namespace FACCTS.Server.App_Start
             var json = config.Formatters.JsonFormatter;
             json.SerializerSettings.ContractResolver =
                 new CamelCasePropertyNamesContractResolver();
+            json.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize; 
+            json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects; 
 
             // Add model validation, globally
             config.Filters.Add(new ValidationActionFilter());

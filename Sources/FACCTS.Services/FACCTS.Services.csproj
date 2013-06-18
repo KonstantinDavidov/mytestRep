@@ -103,6 +103,8 @@
     <Compile Include="Data\CourtCaseStatuses.cs" />
     <Compile Include="Data\CourtCounties.cs" />
     <Compile Include="Data\CourtDepartments.cs" />
+    <Compile Include="Data\DataContainer.cs" />
+    <Compile Include="Data\IDataContainer.cs" />
     <Compile Include="Data\Routes.cs" />
     <Compile Include="Data\Users.cs" />
     <Compile Include="Dialog\DialogService.cs" />
@@ -126,6 +128,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Faccts.Model\Faccts.Model.csproj">
+      <Project>{90761585-4755-4e44-b9d2-739ada889311}</Project>
+      <Name>Faccts.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FACCTS.Server.Model\FACCTS.Server.Model.csproj">
       <Project>{5a675cbb-2774-4fde-a8c6-40aa46f4fa3f}</Project>
       <Name>FACCTS.Server.Model</Name>

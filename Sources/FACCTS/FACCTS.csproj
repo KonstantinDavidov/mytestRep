@@ -72,6 +72,7 @@
     <Reference Include="NLog">
       <HintPath>..\packages\NLog.2.0.1.2\lib\net45\NLog.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Aero" />
     <Reference Include="ReactiveUI.Blend_Net45">
       <HintPath>..\packages\reactiveui-xaml.4.6.1\lib\net45\ReactiveUI.Blend_Net45.dll</HintPath>
     </Reference>
@@ -236,6 +237,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Themes\DataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Themes\UI.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

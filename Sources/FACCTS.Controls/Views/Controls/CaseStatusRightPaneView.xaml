@@ -13,17 +13,17 @@
     		<RowDefinition Height="Auto"/>
     	</Grid.RowDefinitions>
     	<GroupBox Header="Case Status">
-            <DataGrid HorizontalAlignment="Left" VerticalAlignment="Top" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding CourtCases, Mode=OneWay}">
+            <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding CourtCases, Mode=OneWay}" Style="{StaticResource {x:Type DataGrid}}">
     			<DataGrid.Columns>
-    				<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Case Number"/>
-    				<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Status"/>
-    				<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Last Activity"/>
-    				<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Next Activity"/>
-    				<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="CCPOR ID"/>
-    				<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="CCPOR Status"/>
-    				<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Court Clerk"/>
-    				<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Party 1"/>
-    				<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Party 2"/>
+                    <DataGridTextColumn Binding="{Binding CaseNumber, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="Case Number"/>
+                    <DataGridTextColumn Binding="{Binding Status, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="Status"/>
+                    <DataGridTextColumn Binding="{Binding FirstActivityDate, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="Last Activity"/>
+                    <DataGridTextColumn Binding="{Binding LastActivityDate, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="Next Activity"/>
+                    <DataGridTextColumn Binding="{Binding CCPORId, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="CCPOR ID"/>
+                    <DataGridTextColumn Binding="{Binding CCPORStatus, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="CCPOR Status"/>
+                    <DataGridTextColumn Binding="{Binding CourtClerk, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="Court Clerk"/>
+                    <DataGridTextColumn Binding="{Binding Party1, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="Party 1"/>
+                    <DataGridTextColumn Binding="{Binding Party2, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="Party 2"/>
     			</DataGrid.Columns>
     		</DataGrid>
     	</GroupBox>

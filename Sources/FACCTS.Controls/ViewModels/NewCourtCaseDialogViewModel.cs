@@ -11,6 +11,7 @@ using FACCTS.Services.Data;
 using FACCTS.Services.Logger;
 using System.ComponentModel;
 using FACCTS.Services;
+using FACCTS.Controls.Utils;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -21,7 +22,9 @@ namespace FACCTS.Controls.ViewModels
         public NewCourtCaseDialogViewModel() : base()
         {
             this.Title = "Create New Case";
-                
+            CaseNumber = BusinessLogicHelper.AutoGenerateCaseNumber();
+            this.WhenAny(x => x.CaseNumber, x => x.Value)
+                .Subscribe(s => this.IsValid = !string.IsNullOrEmpty(s));
         }
 
         private ILogger _logger = ServiceLocatorContainer.Locator.GetInstance<ILogger>();
@@ -79,6 +82,7 @@ namespace FACCTS.Controls.ViewModels
             cc.CaseNumber = this.CaseNumber;
             _logger.Info("Saving the new case to the database...");
             CourtCases.CreateNew(cc);
+            DataContainer.SearchCourtCases();
         }
 
         public string Error

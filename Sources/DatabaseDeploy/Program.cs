@@ -14,7 +14,7 @@ namespace DatabaseDeploy
     {
         static void Main(string[] args)
         {
-            Database.SetInitializer<DatabaseContext>(new DropCreateFacctsModelChanged());
+            Database.SetInitializer<DatabaseContext>(new FacctsDatabaseInitializer());
             using (var facctsCtx = new DatabaseContext())
             {
                 facctsCtx.Database.Initialize(force: false);

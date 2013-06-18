@@ -14,7 +14,6 @@ namespace FACCTS.Server.Model.DataModel
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
-        [Required]
         public virtual CourtParty Party1 { get; set; }
 
         public virtual CourtParty Party2 { get; set; }
@@ -56,9 +55,9 @@ namespace FACCTS.Server.Model.DataModel
         public virtual CourtDepartment CourtDepartment { get; set; }
 
 
-        public ICollection<CaseRecord> RelatedCaseRecords { get; set; }
+        public virtual ICollection<CaseRecord> RelatedCaseRecords { get; set; }
 
-        public ICollection<CourtCaseOrder> CourtOrders { get; set; }
+        public virtual ICollection<CourtCaseOrder> CourtOrders { get; set; }
 
         [StringLength(250)]
         public string Judge { get; set; }

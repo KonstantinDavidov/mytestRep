@@ -61,13 +61,13 @@
                         <Run> or </Run><Run FontWeight="Bold"> Edit</Run><Run> to Manually enter a Case Number</Run>
                     </TextBlock>
                     <StackPanel Orientation="Horizontal" Grid.Row="2">
-                        <TextBox Text="{Binding CaseNumber, Mode=TwoWay}" Width="120" Margin="15,3,0,0" IsReadOnly="{Binding IsEditing, Mode=OneWay, Converter={x:Static conv:InvertedBooleanConverter.Instance}}"/>
+                        <TextBox Text="{Binding CaseNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="120" Margin="15,3,0,0" IsReadOnly="{Binding IsEditing, Mode=OneWay, Converter={x:Static conv:InvertedBooleanConverter.Instance}}"/>
                         <Button Content="Edit" Width="75" Margin="10,0,0,0" IsEnabled="{Binding IsEditing, Converter={x:Static conv:InvertedBooleanConverter.Instance}}" cal:Message.Attach="Edit"/>
                     </StackPanel>
                 </Grid>
             </Border>
             <UniformGrid HorizontalAlignment="Right" Margin="8,8,0,8" Grid.Row="1" VerticalAlignment="Top" Rows="1" Columns="2">
-                <Button Content="Create Case" Margin="8" IsDefault="True" cal:Message.Attach="CreateNewCase"/>
+                <Button Content="Create Case" Margin="8" IsDefault="True" cal:Message.Attach="CreateNewCase" IsEnabled="{Binding IsValid, Mode=OneWay}"/>
                 <Button Content="Cancel" Margin="8,8,0,8" IsCancel="True"/>
             </UniformGrid>
         </Grid>

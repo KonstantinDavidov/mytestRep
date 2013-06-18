@@ -12,10 +12,17 @@ namespace FACCTS.Services.Data
 {
     public class CourtCases : WebApiClientBase
     {
-        public IEnumerable<CourtCase> GetAll()
+        protected IEnumerable<Faccts.Model.Entities.CourtCase> GetAllCourtCases()
         {
-            List<CourtCase> output = this.CallServiceGet<List<CourtCase>>(Routes.GetCourtCases.CourtCaseController);
+            List<Faccts.Model.Entities.CourtCase> output = this.CallServiceGet<List<CourtCase>>(Routes.GetCourtCases.CourtCaseController)
+                .Select(x => new Faccts.Model.Entities.CourtCase(x))
+                .ToList();
             return output;
+        }
+
+        public static IEnumerable<Faccts.Model.Entities.CourtCase> GetAll()
+        {
+            return new CourtCases().GetAllCourtCases();
         }
 
         protected CourtCase CreateNewCase(CourtCase courtCase)

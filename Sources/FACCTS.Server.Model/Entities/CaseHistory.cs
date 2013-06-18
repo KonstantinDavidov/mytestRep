@@ -27,14 +27,14 @@ namespace FACCTS.Server.Model.DataModel
         [StringLength(30)]
         public string CCPOR_ID { get; set; }
 
-        [Required]
-        public int CourtCaseOrderId { get; set; }
+        public int? CourtCaseOrderId { get; set; }
         [ForeignKey("CourtCaseOrderId")]
         public virtual CourtCaseOrder Order { get; set; }
 
         [InverseProperty("CaseHistory")]
         public virtual CaseRecord CaseRecord { get; set; }
 
+      
         
     }
 }

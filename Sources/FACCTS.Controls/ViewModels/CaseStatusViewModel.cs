@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
-using FACCTS.Server.Model.DataModel;
 using System.Collections.ObjectModel;
 using FACCTS.Services.Logger;
 using FACCTS.Services.Data;
@@ -14,6 +13,8 @@ using FACCTS.Server.Model.Enums;
 using FACCTS.Services;
 using Caliburn.Micro;
 using FACCTS.Controls.Utils;
+using Faccts.Model.Entities;
+using System.Reactive.Linq;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -23,6 +24,14 @@ namespace FACCTS.Controls.ViewModels
         [ImportingConstructor]
         public CaseStatusViewModel(ILogger logger, IWindowManager windowManager) : base()
         {
+            BindSearchCriteria();
+            DataContainer.PropertyChanged += (s, e) =>
+                {
+                    if (e.PropertyName == "CourtCases")
+                    {
+                        this.NotifyOfPropertyChange(() => CourtCases);
+                    }
+                };
             _logger = logger;
             _logger.Info("CaseStatusViewModel..ctor()");
             _windowManager = windowManager;
@@ -30,12 +39,48 @@ namespace FACCTS.Controls.ViewModels
 
         }
 
+        private void BindSearchCriteria()
+        {
+            Observable.Merge<Object>(
+                this.ObservableForProperty(x => x.CaseNumber),
+                this.ObservableForProperty(x => x.FirstActivityStartDate),
+                this.ObservableForProperty(x => x.FirstActivityEndDate),
+                this.ObservableForProperty(x => x.LastActivityStartDate),
+                this.ObservableForProperty(x => x.LastActivityEndDate),
+                this.ObservableForProperty(x => x.CCPOR_ID),
+                this.ObservableForProperty(x => x.Party1FirstName),
+                this.ObservableForProperty(x => x.Party1MiddleName),
+                this.ObservableForProperty(x => x.Party1LastName),
+                this.ObservableForProperty(x => x.Party2FirstName),
+                this.ObservableForProperty(x => x.Party2MiddleName),
+                this.ObservableForProperty(x => x.Party2LastName),
+                this.ObservableForProperty(x => x.CCPORStatus)
+                ).Subscribe(_ =>
+                {
+                    DataContainer.SearchCriteria.CaseNumber = CaseNumber;
+                    DataContainer.SearchCriteria.FirstActivityStartDate = FirstActivityStartDate;
+                    DataContainer.SearchCriteria.FirstActivityEndDate = FirstActivityEndDate;
+                    DataContainer.SearchCriteria.LastActivityStartDate = LastActivityStartDate;
+                    DataContainer.SearchCriteria.LastActivityEndDate = LastActivityEndDate;
+                    DataContainer.SearchCriteria.CCPOR_ID = CCPOR_ID;
+                    DataContainer.SearchCriteria.Party1FirstName = Party1FirstName;
+                    DataContainer.SearchCriteria.Party1MiddleName = Party1MiddleName;
+                    DataContainer.SearchCriteria.Party1LastName = Party1LastName;
+                    DataContainer.SearchCriteria.Party2FirstName = Party2FirstName;
+                    DataContainer.SearchCriteria.Party2MiddleName = Party2MiddleName;
+                    DataContainer.SearchCriteria.Party2LastName = Party2LastName;
+                    DataContainer.SearchCriteria.CCPORStatus = CCPORStatus;
+                });
+        }
+
+
         protected override void Authorized()
         {
             base.Authorized();
             
             this.NotifyOfPropertyChange(() => CourtCases);
             this.NotifyOfPropertyChange(() => CourtCaseStatuses);
+            this.NotifyOfPropertyChange(() => CourtClerks);
             this.NotifyOfPropertyChange(() => CourtClerks);
         }
 
@@ -198,6 +243,19 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
+        private CCPORStatus _ccporStatus;
+        public CCPORStatus CCPORStatus
+        {
+            get
+            {
+                return _ccporStatus;
+            }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _ccporStatus, value);
+            }
+        }
+
         public void Clear()
         {
             CaseNumber = string.Empty;
@@ -226,11 +284,11 @@ namespace FACCTS.Controls.ViewModels
             {
                 if (_courtCases == null && IsAuthenticated)
                 {
-                    var data = new FACCTS.Services.Data.CourtCases().GetAll();
+                    var data = DataContainer.CourtCases;
                     if (data != null)
                     {
                         _logger.InfoFormat("Wep api service returned {0} court cases", data.Count());
-                        _courtCases = new ObservableCollection<CourtCase>();
+                        _courtCases = new ObservableCollection<CourtCase>(data.ToList());
                     }
                 }
                 return _courtCases;
@@ -279,11 +337,16 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-        public List<User> CourtClerks
+        private List<Faccts.Model.Entities.User> _courtClerks;
+        public List<Faccts.Model.Entities.User> CourtClerks
         {
             get
             {
-                return Users.GetByRole("Court Clerk");
+                if (_courtClerks == null && IsAuthenticated)
+                {
+                    _courtClerks = FACCTS.Services.Data.Users.GetByRole("Court Clerk");
+                }
+                return _courtClerks;
             }
         }
 

@@ -21,9 +21,10 @@ namespace FACCTS.Server.Controllers
     public class CourtCaseController : ApiControllerBase
     {
         [ImportingConstructor]
-        public CourtCaseController(ILog log) : base()
+        public CourtCaseController(ILog log)
+            : base()
         {
-            _logger = _logger;
+            _logger = log;
         }
 
         private ILog _logger;
@@ -34,34 +35,54 @@ namespace FACCTS.Server.Controllers
                 .ToList();
         }
 
-       
+
         public CourtCase Post([FromBody] CourtCaseCreationRequest courtCase)
         {
-            //return CreateNewCourtCase(courtCase);
-            return null;
+            return CreateNewCourtCase(courtCase);
+            //return null;
             //return courtCase;
         }
 
-        //private CourtCase CreateNewCourtCase(CourtCaseCreationRequest request)
-        //{
-        //    try
-        //    {
-        //        CourtCounty court = DataManager.CourtCountyRepository.GetById(request.CourtCountyId);
-        //        CourtDepartment cd = DataManager.CourtDepartmentRepository.GetById(request.CourtDepartmentId);
-        //        CourtCase cc = new CourtCase()
-        //        {
-        //            CaseNumber = request.CaseNumber,
-                   
-        //        };
-        //        DataManager.CourtCaseRepository.Insert(cc);
+        private CourtCase CreateNewCourtCase(CourtCaseCreationRequest request)
+        {
+            CourtCase courtCase;
+            try
+            {
+                courtCase = new CourtCase()
+                {
+                    CaseNumber = request.CaseNumber,
 
-        //        DataManager.Commit();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.Fatal("Creating new court case failed", ex);
-        //        throw;
-        //    }
-        //}
+                };
+                courtCase.CaseRecord = new CaseRecord();
+                courtCase.CaseRecord.CaseHistory = new List<CaseHistory>()
+                {
+                    new CaseHistory()
+                    {
+                        Date = DateTime.Now,
+                        CaseHistoryEvent = Model.Enums.CaseHistoryEvent.New,
+                        CaseRecord = courtCase.CaseRecord,
+                    }
+                };
+                DataManager.CourtCaseRepository.Insert(courtCase);
+
+                DataManager.Commit();
+
+            }
+            catch (Exception ex)
+            {
+                _logger.Fatal("Creating new court case failed", ex);
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.InternalServerError));
+            }
+            try
+            {
+                return DataManager.CourtCaseRepository.GetById(courtCase.Id);
+            }
+            catch (Exception ex)
+            {
+                _logger.Fatal("Inserted record bot found", ex);
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
+            }
+            
+        }
     }
 }

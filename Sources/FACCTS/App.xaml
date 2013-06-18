@@ -9,6 +9,7 @@
                     <local:ClientBootstrap x:Key="bootstrapper" />
                 </ResourceDictionary>
                 <ResourceDictionary Source="pack://application:,,,/Themes/UI.xaml"/>
+                <!--<ResourceDictionary Source="pack://application:,,,/Themes/DataGrid.xaml"/>-->
                 <ResourceDictionary Source="pack://application:,,,/FACCTS.Controls;component/Resources/Buttons.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/FACCTS.Controls;component/Resources/Grids.xaml"/>
                 <ResourceDictionary Source="pack://application:,,,/FACCTS.Controls;component/Resources/Borders.xaml"/>
