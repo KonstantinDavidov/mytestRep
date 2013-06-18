@@ -25,7 +25,7 @@ namespace FACCTS.Controls.ViewModels
             : this(ServiceLocatorContainer.Locator.GetInstance<IAuthenticationService>(),
                 ServiceLocatorContainer.Locator.GetInstance<IDataContainer>())
         {
-            this.WhenAny(x => x.IsAuthenticated, x => x.Value)
+            this.WhenAny(x => x.IsAuthenticated, x => x.IsActive, (x, y) => x.Value && y.Value)
                 .Subscribe(x =>
                 {
                     if (x)
