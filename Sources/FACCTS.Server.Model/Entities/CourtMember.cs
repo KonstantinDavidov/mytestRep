@@ -18,6 +18,7 @@ namespace FACCTS.Server.Model.DataModel
         public virtual CourtMember Substitute { get; set; }
 
         public bool IsCertified { get; set; }
+        public bool IsAvilable { get; set; }
 
         [Column(TypeName = "image")]
         public byte[] Image { get; set; }

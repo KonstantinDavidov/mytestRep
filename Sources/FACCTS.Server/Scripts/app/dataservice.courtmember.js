@@ -11,7 +11,16 @@
                 });
 
                 // Pass Resource Id, Request Type, and Settings
-                amplify.request.define('courtMember', 'ajax', {
+                amplify.request.define('courtMemberbyId', 'ajax', {
+                    url: 'admin/api/member/{id}',
+                    dataType: 'json',
+                    type: 'GET'
+                    //cache: true
+                    //cache: 60000 // 1 minute
+                    //cache: 'persist'
+                });
+                // Pass Resource Id, Request Type, and Settings
+                amplify.request.define('courtMemberbyName', 'ajax', {
                     url: 'admin/api/member/{id}',
                     dataType: 'json',
                     type: 'GET'
