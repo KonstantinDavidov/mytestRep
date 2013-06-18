@@ -4,7 +4,7 @@
 	xmlns:controls="clr-namespace:FACCTS.Controls.Views.Controls"
 	x:Class="FACCTS.Controls.Views.AddToCourtDocketDialogView"
 	x:Name="Window"
-	Title="{Binding Title, Mode=OneWay}" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
+	Title="{Binding DisplayName, Mode=OneWay}" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
 	<Border BorderBrush="Black" BorderThickness="1">
 		<controls:AddToCourtDocketControlView />
 	</Border>

@@ -1,0 +1,98 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ output extension=".cs" #>
+<#@ assembly name="System.Core.dll" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ assembly name="EnvDTE" #>
+<#@ import namespace="EnvDTE" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Xml.Linq" #>
+<# 
+
+string defaultNamespace =string.Empty;
+string definitionFile ="ModelsDef.xml";
+
+IServiceProvider serviceProvider = (IServiceProvider)this.Host;
+DTE dte = serviceProvider.GetService(typeof(DTE)) as DTE;  
+
+try{
+	definitionFile = Host.ResolvePath(definitionFile);
+	Project p = ((Array)dte.ActiveSolutionProjects).GetValue(0) as Project;
+	if(string.IsNullOrEmpty(defaultNamespace)) 
+		defaultNamespace=p.Properties.Item("RootNamespace").Value.ToString()+".ViewModels";
+	
+	
+	var doc = XDocument.Load(Host.ResolvePath(definitionFile));
+	string baseClass= this.GetAttributeValue(doc.Root,"baseClass","ModelBase");
+#>
+
+
+using System;
+using System.ComponentModel;
+using System.Collections.ObjectModel;
+using ReactiveUI;
+
+namespace <#= defaultNamespace #>
+{
+    
+<#
+foreach (var item in doc.Root.Elements("Model"))
+{
+	string modelName =this.GetAttributeValue(item,"name",string.Empty);
+	if(string.IsNullOrEmpty(modelName))continue;#>
+			
+	public partial class <#= modelName #>
+	{<#
+	
+		foreach (var property in item.Elements("Property"))
+		{
+			string propName =this.GetAttributeValue(property,"name",string.Empty);
+			string type =this.GetPropertyTypeString(property);
+			string fieldName = string.Format("_{0}",propName.First().ToString().ToLower()+propName.Substring(1));
+			if(string.IsNullOrEmpty(propName))continue;#>
+
+		private <#= type #> <#= fieldName #>;
+		public <#= type #> <#= propName #>
+		{
+			get{return <#= fieldName #>;}
+			set{
+				if(<#= fieldName #>!=value){
+					<#= fieldName #>=value;
+					this.RaiseAndSetIfChanged(ref <#= fieldName #>, value);
+				}
+			}
+		}
+		<#}#>
+		
+	}
+	
+<#
+
+}
+#>}<#
+
+}
+catch(Exception ex){
+	Write(ex.Message);
+	Error(ex.Message);
+}
+#>
+
+
+<#+ 
+	public string GetAttributeValue(XElement element,string attr,string defaultValue){
+		return element.Attribute(attr)!=null?element.Attribute(attr).Value:defaultValue;
+	}
+	
+	public string GetPropertyTypeString(XElement element){
+		var type = this.GetAttributeValue(element,"type","string");
+		var collectionType = this.GetAttributeValue(element,"collectionType",string.Empty);
+		
+		if(type=="Collection"){
+			return string.Format("ObservableCollection<{0}>",collectionType);
+		}
+		else
+			return type;
+	}
+#>

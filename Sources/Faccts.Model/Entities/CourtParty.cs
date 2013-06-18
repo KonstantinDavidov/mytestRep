@@ -810,6 +810,213 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	public override bool Equals(System.Object obj)
+    	{
+    		// If parameter is null return false.
+            if (obj == null)
+            {
+                return false;
+            }
+    
+            // If parameter cannot be cast to Point return false.
+            CourtParty p = obj as CourtParty;
+            if ((System.Object)p == null)
+            {
+                return false;
+            }
+    
+    			if (this.Id != p.Id)
+    				return false;
+    			if (this.FirstName != p.FirstName)
+    				return false;
+    			if (this.MiddleName != p.MiddleName)
+    				return false;
+    			if (this.LastName != p.LastName)
+    				return false;
+    			if (this.Description != p.Description)
+    				return false;
+    			if (this.Address != p.Address)
+    				return false;
+    			if (this.City != p.City)
+    				return false;
+    			if (this.State != p.State)
+    				return false;
+    			if (this.ZipCode != p.ZipCode)
+    				return false;
+    			if (this.Phone != p.Phone)
+    				return false;
+    			if (this.Fax != p.Fax)
+    				return false;
+    			if (this.Weight != p.Weight)
+    				return false;
+    			if (this.HeightFt != p.HeightFt)
+    				return false;
+    			if (this.HeightIns != p.HeightIns)
+    				return false;
+    			if (this.DateOfBirth != p.DateOfBirth)
+    				return false;
+    			if (this.Age != p.Age)
+    				return false;
+    			if (this.Designation_Id != p.Designation_Id)
+    				return false;
+    			if (this.ParticipantRole_Id != p.ParticipantRole_Id)
+    				return false;
+    			if (this.Sex_Id != p.Sex_Id)
+    				return false;
+    			if (this.HairColor_Id != p.HairColor_Id)
+    				return false;
+    			if (this.EyesColor_Id != p.EyesColor_Id)
+    				return false;
+    			if (this.Race_Id != p.Race_Id)
+    				return false;
+    			if (this.CaseRecordByCourtParty1_Id != p.CaseRecordByCourtParty1_Id)
+    				return false;
+    			if (this.CaseRecordByCourtParty2_Id != p.CaseRecordByCourtParty2_Id)
+    				return false;
+    
+    		return true;
+    	}
+    
+    	public override int GetHashCode()
+    	{
+    		int hashCode = 1;
+    			
+    		hashCode ^= this.Id.GetHashCode();
+    		if (this.Id != null)
+    		{
+    			hashCode ^= this.Id.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.FirstName.GetHashCode();
+    		if (this.FirstName != null)
+    		{
+    			hashCode ^= this.FirstName.GetHashCode();
+    		}
+     
+    		if (this.MiddleName != null)
+    		{
+    			hashCode ^= this.MiddleName.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.LastName.GetHashCode();
+    		if (this.LastName != null)
+    		{
+    			hashCode ^= this.LastName.GetHashCode();
+    		}
+     
+    		if (this.Description != null)
+    		{
+    			hashCode ^= this.Description.GetHashCode();
+    		}
+     
+    		if (this.Address != null)
+    		{
+    			hashCode ^= this.Address.GetHashCode();
+    		}
+     
+    		if (this.City != null)
+    		{
+    			hashCode ^= this.City.GetHashCode();
+    		}
+     
+    		if (this.State != null)
+    		{
+    			hashCode ^= this.State.GetHashCode();
+    		}
+     
+    		if (this.ZipCode != null)
+    		{
+    			hashCode ^= this.ZipCode.GetHashCode();
+    		}
+     
+    		if (this.Phone != null)
+    		{
+    			hashCode ^= this.Phone.GetHashCode();
+    		}
+     
+    		if (this.Fax != null)
+    		{
+    			hashCode ^= this.Fax.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.Weight.GetHashCode();
+    		if (this.Weight != null)
+    		{
+    			hashCode ^= this.Weight.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.HeightFt.GetHashCode();
+    		if (this.HeightFt != null)
+    		{
+    			hashCode ^= this.HeightFt.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.HeightIns.GetHashCode();
+    		if (this.HeightIns != null)
+    		{
+    			hashCode ^= this.HeightIns.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.DateOfBirth.GetHashCode();
+    		if (this.DateOfBirth != null)
+    		{
+    			hashCode ^= this.DateOfBirth.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.Age.GetHashCode();
+    		if (this.Age != null)
+    		{
+    			hashCode ^= this.Age.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.Designation_Id.GetHashCode();
+    		if (this.Designation_Id != null)
+    		{
+    			hashCode ^= this.Designation_Id.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.ParticipantRole_Id.GetHashCode();
+    		if (this.ParticipantRole_Id != null)
+    		{
+    			hashCode ^= this.ParticipantRole_Id.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.Sex_Id.GetHashCode();
+    		if (this.Sex_Id != null)
+    		{
+    			hashCode ^= this.Sex_Id.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.HairColor_Id.GetHashCode();
+    		if (this.HairColor_Id != null)
+    		{
+    			hashCode ^= this.HairColor_Id.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.EyesColor_Id.GetHashCode();
+    		if (this.EyesColor_Id != null)
+    		{
+    			hashCode ^= this.EyesColor_Id.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.Race_Id.GetHashCode();
+    		if (this.Race_Id != null)
+    		{
+    			hashCode ^= this.Race_Id.GetHashCode();
+    		}
+     
+    		if (this.CaseRecordByCourtParty1_Id != null)
+    		{
+    			hashCode ^= this.CaseRecordByCourtParty1_Id.GetHashCode();
+    		}
+     
+    		if (this.CaseRecordByCourtParty2_Id != null)
+    		{
+    			hashCode ^= this.CaseRecordByCourtParty2_Id.GetHashCode();
+    		}
+    		return hashCode;
+    	}
+    
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;
         private ObjectChangeTracker _changeTracker;

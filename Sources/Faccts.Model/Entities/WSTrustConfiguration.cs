@@ -178,6 +178,87 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	public override bool Equals(System.Object obj)
+    	{
+    		// If parameter is null return false.
+            if (obj == null)
+            {
+                return false;
+            }
+    
+            // If parameter cannot be cast to Point return false.
+            WSTrustConfiguration p = obj as WSTrustConfiguration;
+            if ((System.Object)p == null)
+            {
+                return false;
+            }
+    
+    			if (this.Id != p.Id)
+    				return false;
+    			if (this.Enabled != p.Enabled)
+    				return false;
+    			if (this.EnableMessageSecurity != p.EnableMessageSecurity)
+    				return false;
+    			if (this.EnableMixedModeSecurity != p.EnableMixedModeSecurity)
+    				return false;
+    			if (this.EnableClientCertificateAuthentication != p.EnableClientCertificateAuthentication)
+    				return false;
+    			if (this.EnableFederatedAuthentication != p.EnableFederatedAuthentication)
+    				return false;
+    			if (this.EnableDelegation != p.EnableDelegation)
+    				return false;
+    
+    		return true;
+    	}
+    
+    	public override int GetHashCode()
+    	{
+    		int hashCode = 1;
+    			
+    		hashCode ^= this.Id.GetHashCode();
+    		if (this.Id != null)
+    		{
+    			hashCode ^= this.Id.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.Enabled.GetHashCode();
+    		if (this.Enabled != null)
+    		{
+    			hashCode ^= this.Enabled.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.EnableMessageSecurity.GetHashCode();
+    		if (this.EnableMessageSecurity != null)
+    		{
+    			hashCode ^= this.EnableMessageSecurity.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.EnableMixedModeSecurity.GetHashCode();
+    		if (this.EnableMixedModeSecurity != null)
+    		{
+    			hashCode ^= this.EnableMixedModeSecurity.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.EnableClientCertificateAuthentication.GetHashCode();
+    		if (this.EnableClientCertificateAuthentication != null)
+    		{
+    			hashCode ^= this.EnableClientCertificateAuthentication.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.EnableFederatedAuthentication.GetHashCode();
+    		if (this.EnableFederatedAuthentication != null)
+    		{
+    			hashCode ^= this.EnableFederatedAuthentication.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.EnableDelegation.GetHashCode();
+    		if (this.EnableDelegation != null)
+    		{
+    			hashCode ^= this.EnableDelegation.GetHashCode();
+    		}
+    		return hashCode;
+    	}
+    
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;
         private ObjectChangeTracker _changeTracker;

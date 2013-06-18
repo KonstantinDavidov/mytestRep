@@ -148,6 +148,54 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	public override bool Equals(System.Object obj)
+    	{
+    		// If parameter is null return false.
+            if (obj == null)
+            {
+                return false;
+            }
+    
+            // If parameter cannot be cast to Point return false.
+            FACCTSConfiguration p = obj as FACCTSConfiguration;
+            if ((System.Object)p == null)
+            {
+                return false;
+            }
+    
+    			if (this.Id != p.Id)
+    				return false;
+    			if (this.CaseNumberAutoGeneration != p.CaseNumberAutoGeneration)
+    				return false;
+    			if (this.CurrentCourtCounty_Id != p.CurrentCourtCounty_Id)
+    				return false;
+    
+    		return true;
+    	}
+    
+    	public override int GetHashCode()
+    	{
+    		int hashCode = 1;
+    			
+    		hashCode ^= this.Id.GetHashCode();
+    		if (this.Id != null)
+    		{
+    			hashCode ^= this.Id.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.CaseNumberAutoGeneration.GetHashCode();
+    		if (this.CaseNumberAutoGeneration != null)
+    		{
+    			hashCode ^= this.CaseNumberAutoGeneration.GetHashCode();
+    		}
+     
+    		if (this.CurrentCourtCounty_Id != null)
+    		{
+    			hashCode ^= this.CurrentCourtCounty_Id.GetHashCode();
+    		}
+    		return hashCode;
+    	}
+    
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;
         private ObjectChangeTracker _changeTracker;

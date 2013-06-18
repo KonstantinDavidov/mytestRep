@@ -12,7 +12,7 @@
 		<Grid>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition/>
-				<ColumnDefinition Width="Auto" MinWidth="50"/>
+                <ColumnDefinition Width="Auto"   MinWidth="150"/>
 			</Grid.ColumnDefinitions>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
@@ -24,7 +24,7 @@
 				<Grid>
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="Auto"/>
-						<ColumnDefinition/>
+                        <ColumnDefinition/>
 					</Grid.ColumnDefinitions>
 					<Grid.RowDefinitions>
 						<RowDefinition Height="Auto"/>
@@ -36,10 +36,10 @@
 					<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="1" Margin="0,12" Text="Time:" FontWeight="Bold"/>
 					<TextBlock TextWrapping="Wrap" Text="Courtroom:" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,12" FontWeight="Bold"/>
 					<TextBlock TextWrapping="Wrap" Grid.Row="3" VerticalAlignment="Center" Margin="0,12" Text="Department:" FontWeight="Bold"/>
-					<TextBlock Grid.Column="1" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Center" Padding="0" Margin="15,0"/>
-					<xctk:DateTimeUpDown Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="15,0" Format="ShortTime"/>
-					<ComboBox Grid.Column="1" Margin="15,0,15,0" Grid.Row="2" VerticalAlignment="Center"/>
-					<ComboBox Grid.Column="1" Margin="15,0, 15, 0" Grid.Row="3" VerticalAlignment="Center"/>
+					<TextBlock Grid.Column="1" TextWrapping="Wrap" Text="{Binding CaseNumber, Mode=OneWay}" VerticalAlignment="Center" Padding="0" Margin="15,0"/>
+					<xctk:DateTimeUpDown Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="15,0" Format="ShortTime" Value="{Binding Time, Mode=TwoWay}" TextAlignment="Left"/>
+					<ComboBox Grid.Column="1" Margin="15,0,15,0" Grid.Row="2" VerticalAlignment="Center" ItemsSource="{Binding Courtrooms, Mode=OneWay}" SelectedItem="{Binding Courtroom, Mode=TwoWay}"/>
+					<ComboBox Grid.Column="1" Margin="15,0, 15, 0" Grid.Row="3" VerticalAlignment="Center" ItemsSource="{Binding Departments, Mode=OneWay}" SelectedItem="{Binding Department, Mode=TwoWay}"/>
 				</Grid>
 			</Border>
 			<Border HorizontalAlignment="Left" Style="{DynamicResource OrdinalBorder}" VerticalAlignment="Top" Grid.Column="1"/>
@@ -59,12 +59,12 @@
 						<RowDefinition Height="Auto"/>
 					</Grid.RowDefinitions>
 					<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="hearing Issues:" VerticalAlignment="Top" FontWeight="Bold" Margin="0,5"/>
-					<CheckBox Content="Permanent RO" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Margin="0,5"/>
-					<CheckBox Content="CC / CV" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" Margin="0,5"/>
-					<CheckBox Content="CS" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="3" Margin="0,5"/>
-					<CheckBox Content="SS" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4" Margin="0,5"/>
-					<CheckBox x:Name="checkBox" Content="Other" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="5" Margin="0,5"/>
-					<TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="95.7" Grid.Row="6" IsEnabled="{Binding IsChecked, ElementName=checkBox, FallbackValue=False, Mode=OneWay}"/>
+					<CheckBox Content="Permanent RO" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Margin="0,5" IsChecked="{Binding IsPermanentRO, Mode=TwoWay}"/>
+					<CheckBox Content="CC / CV" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" Margin="0,5" IsChecked="{Binding IsCCorCV, Mode=TwoWay}"/>
+					<CheckBox Content="CS" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="3" Margin="0,5" IsChecked="{Binding IsCS, Mode=TwoWay}"/>
+					<CheckBox Content="SS" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4" Margin="0,5" IsChecked="{Binding IsSS, Mode=TwoWay}"/>
+                    <CheckBox x:Name="checkBox" Content="Other" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="5" Margin="0,5" IsChecked="{Binding IsOtherHearingIssue, Mode=TwoWay}"/>
+                    <TextBox HorizontalAlignment="Stretch" Height="23" TextWrapping="Wrap" Text="{Binding OtherHearingIssueText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Grid.Row="6" IsEnabled="{Binding IsChecked, ElementName=checkBox, FallbackValue=False, Mode=OneWay}"/>
 				</Grid>
 			</Border>
             

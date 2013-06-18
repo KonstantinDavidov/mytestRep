@@ -118,6 +118,55 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	public override bool Equals(System.Object obj)
+    	{
+    		// If parameter is null return false.
+            if (obj == null)
+            {
+                return false;
+            }
+    
+            // If parameter cannot be cast to Point return false.
+            C__MigrationHistory p = obj as C__MigrationHistory;
+            if ((System.Object)p == null)
+            {
+                return false;
+            }
+    
+    			if (this.MigrationId != p.MigrationId)
+    				return false;
+    			if (this.Model != p.Model)
+    				return false;
+    			if (this.ProductVersion != p.ProductVersion)
+    				return false;
+    
+    		return true;
+    	}
+    
+    	public override int GetHashCode()
+    	{
+    		int hashCode = 1;
+    			
+    		hashCode ^= this.MigrationId.GetHashCode();
+    		if (this.MigrationId != null)
+    		{
+    			hashCode ^= this.MigrationId.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.Model.GetHashCode();
+    		if (this.Model != null)
+    		{
+    			hashCode ^= this.Model.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.ProductVersion.GetHashCode();
+    		if (this.ProductVersion != null)
+    		{
+    			hashCode ^= this.ProductVersion.GetHashCode();
+    		}
+    		return hashCode;
+    	}
+    
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;
         private ObjectChangeTracker _changeTracker;

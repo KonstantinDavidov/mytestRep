@@ -238,6 +238,113 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	public override bool Equals(System.Object obj)
+    	{
+    		// If parameter is null return false.
+            if (obj == null)
+            {
+                return false;
+            }
+    
+            // If parameter cannot be cast to Point return false.
+            RelyingParties p = obj as RelyingParties;
+            if ((System.Object)p == null)
+            {
+                return false;
+            }
+    
+    			if (this.Id != p.Id)
+    				return false;
+    			if (this.Name != p.Name)
+    				return false;
+    			if (this.Enabled != p.Enabled)
+    				return false;
+    			if (this.Realm != p.Realm)
+    				return false;
+    			if (this.TokenLifeTime != p.TokenLifeTime)
+    				return false;
+    			if (this.ReplyTo != p.ReplyTo)
+    				return false;
+    			if (this.EncryptingCertificate != p.EncryptingCertificate)
+    				return false;
+    			if (this.SymmetricSigningKey != p.SymmetricSigningKey)
+    				return false;
+    			if (this.ExtraData1 != p.ExtraData1)
+    				return false;
+    			if (this.ExtraData2 != p.ExtraData2)
+    				return false;
+    			if (this.ExtraData3 != p.ExtraData3)
+    				return false;
+    
+    		return true;
+    	}
+    
+    	public override int GetHashCode()
+    	{
+    		int hashCode = 1;
+    			
+    		hashCode ^= this.Id.GetHashCode();
+    		if (this.Id != null)
+    		{
+    			hashCode ^= this.Id.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.Name.GetHashCode();
+    		if (this.Name != null)
+    		{
+    			hashCode ^= this.Name.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.Enabled.GetHashCode();
+    		if (this.Enabled != null)
+    		{
+    			hashCode ^= this.Enabled.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.Realm.GetHashCode();
+    		if (this.Realm != null)
+    		{
+    			hashCode ^= this.Realm.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.TokenLifeTime.GetHashCode();
+    		if (this.TokenLifeTime != null)
+    		{
+    			hashCode ^= this.TokenLifeTime.GetHashCode();
+    		}
+     
+    		if (this.ReplyTo != null)
+    		{
+    			hashCode ^= this.ReplyTo.GetHashCode();
+    		}
+     
+    		if (this.EncryptingCertificate != null)
+    		{
+    			hashCode ^= this.EncryptingCertificate.GetHashCode();
+    		}
+     
+    		if (this.SymmetricSigningKey != null)
+    		{
+    			hashCode ^= this.SymmetricSigningKey.GetHashCode();
+    		}
+     
+    		if (this.ExtraData1 != null)
+    		{
+    			hashCode ^= this.ExtraData1.GetHashCode();
+    		}
+     
+    		if (this.ExtraData2 != null)
+    		{
+    			hashCode ^= this.ExtraData2.GetHashCode();
+    		}
+     
+    		if (this.ExtraData3 != null)
+    		{
+    			hashCode ^= this.ExtraData3.GetHashCode();
+    		}
+    		return hashCode;
+    	}
+    
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;
         private ObjectChangeTracker _changeTracker;

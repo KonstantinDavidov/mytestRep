@@ -324,7 +324,15 @@
                                 <DiscreteObjectKeyFrame KeyTime="00:00:00.1000000" Value="{x:Static Visibility.Visible}" />
                             </ObjectAnimationUsingKeyFrames>
                         </Storyboard>
-                        <Storyboard x:Key="FocusedOn">
+                        <Storyboard x:Key="DisabledOff">
+                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="DisabledVisualElement" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                <DiscreteObjectKeyFrame KeyTime="00:00:00.1000000" Value="{x:Static Visibility.Collapsed}" />
+                            </ObjectAnimationUsingKeyFrames>
+                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="DisabledOverlay" Storyboard.TargetProperty="(UIElement.Visibility)">
+                                <DiscreteObjectKeyFrame KeyTime="00:00:00.1000000" Value="{x:Static Visibility.Collapsed}" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+            <Storyboard x:Key="FocusedOn">
                             <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="FocusVisualElement" Storyboard.TargetProperty="(UIElement.Opacity)">
                                 <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1" />
                             </DoubleAnimationUsingKeyFrames>
@@ -346,7 +354,9 @@
                         <Border x:Name="BackgoundPressed_Highlight" Margin="1" BorderThickness="1,0,1,1" CornerRadius="1" Opacity="0" BorderBrush="{DynamicResource PressedHighlightBrush}"/>
                         <Border x:Name="DisabledVisualElement" IsHitTestVisible="false" Background="{DynamicResource DisabledBackgroundBrush}" BorderBrush="{DynamicResource DisabledBorderBrush}" BorderThickness="1" Opacity="0" />
 
-                        <ContentPresenter x:Name="contentPresenter" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" />
+                        <ContentPresenter x:Name="contentPresenter" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" 
+                                          RecognizesAccessKey="True"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
                         <TextBlock Panel.ZIndex="1" x:Name="DisabledOverlay" Text="{TemplateBinding Content}" Foreground="#FF8E96A2" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}" Visibility="Collapsed" />
                         <Border x:Name="FocusVisualElement" Margin="-1" BorderBrush="{DynamicResource FocusBrush}" BorderThickness="1" CornerRadius="2.75" IsHitTestVisible="false" Opacity="0" />
                         <Border x:Name="DefaultBorder" Margin="-1" BorderBrush="{DynamicResource FocusBrush}" BorderThickness="1" CornerRadius="2.75" IsHitTestVisible="false" Opacity="0" />
@@ -397,8 +407,11 @@
                             <Trigger.EnterActions>
                                 <BeginStoryboard Storyboard="{StaticResource DisabledOn}" />
                             </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard Storyboard="{StaticResource DisabledOff}" />
+                            </Trigger.ExitActions>
 
-                            <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
+                    <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
                             <Setter Property="Opacity" TargetName="DisabledVisualElement" Value="1" />
                         </Trigger>
                     </ControlTemplate.Triggers>

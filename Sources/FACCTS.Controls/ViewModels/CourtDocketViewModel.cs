@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 using ReactiveUI;
 using Caliburn.Micro;
 using FACCTS.Services;
+using Faccts.Model.Entities;
+using System.Collections.ObjectModel;
 
 namespace FACCTS.Controls.ViewModels
 {
     [Export(typeof(CourtDocketViewModel))]
-    public class CourtDocketViewModel : ViewModelBase
+    public partial class CourtDocketViewModel : ViewModelBase
     {
         private IWindowManager _windowManager;
         [ImportingConstructor]
@@ -21,6 +23,28 @@ namespace FACCTS.Controls.ViewModels
         {
             _windowManager = windowManager;
             this.DisplayName = "Court Docket";
+        }
+
+        protected override void Authorized()
+        {
+            base.Authorized();
+            this.NotifyOfPropertyChange(() => CourtCases);
+        }
+
+        private CourtCase _currentCourtCase;
+        public CourtCase CurrentCourtCase
+        {
+            get
+            {
+                return _currentCourtCase;
+            }
+            set
+            {
+                if (_currentCourtCase == value)
+                    return;
+
+                this.RaiseAndSetIfChanged(ref _currentCourtCase, value);
+            }
         }
 
 
@@ -37,9 +61,24 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
+        private ObservableCollection<CourtCase> _courtCases;
+        public ObservableCollection<CourtCase> CourtCases
+        {
+            get
+            {
+                if (this.IsAuthenticated && _courtCases == null)
+                {
+                    _courtCases = new ObservableCollection<CourtCase>(DataContainer.CourtCases);
+                }
+                return _courtCases;
+            }
+        }
+
         public void AddCase()
         {
-            _windowManager.ShowDialog(ServiceLocatorContainer.Locator.GetInstance<AddToCourtDocketDialogViewModel>());
+            var vm = ServiceLocatorContainer.Locator.GetInstance<AddToCourtDocketDialogViewModel>();
+            vm.CurrentCourtCase = CurrentCourtCase;
+            _windowManager.ShowDialog(vm);
         }
     }
 }

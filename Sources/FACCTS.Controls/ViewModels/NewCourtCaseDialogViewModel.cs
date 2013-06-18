@@ -16,12 +16,12 @@ using FACCTS.Controls.Utils;
 namespace FACCTS.Controls.ViewModels
 {
     [Export]
-    public class NewCourtCaseDialogViewModel : ViewModelBase, IDataErrorInfo
+    public partial class NewCourtCaseDialogViewModel :  ViewModelBase, IDataErrorInfo
     {
 
         public NewCourtCaseDialogViewModel() : base()
         {
-            this.Title = "Create New Case";
+            this.DisplayName = "Create New Case";
             CaseNumber = BusinessLogicHelper.AutoGenerateCaseNumber();
             this.WhenAny(x => x.CaseNumber, x => x.Value)
                 .Subscribe(s => this.IsValid = !string.IsNullOrEmpty(s));
@@ -35,35 +35,7 @@ namespace FACCTS.Controls.ViewModels
 
         }
 
-        #region UI properties
         
-        private bool _isEditing;
-        public bool IsEditing
-        {
-            get
-            {
-                return _isEditing;
-            }
-            set
-            {
-                this.RaiseAndSetIfChanged(ref _isEditing, value);
-            }
-        }
-       
-
-        private string _caseNumber;
-        public string CaseNumber
-        {
-            get
-            {
-                return _caseNumber;
-            }
-            set
-            {
-                this.RaiseAndSetIfChanged(ref _caseNumber, value);
-            }
-        }
-        #endregion
 
         public void CreateNewCase()
         {
