@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FACCTS.Server.DataContracts;
+using FACCTS.Server.Model.DataModel.Configuration;
 
 namespace FACCTS.Server.Data
 {
@@ -66,6 +67,15 @@ namespace FACCTS.Server.Data
                 return GetStandardRepo<Role>();
             }
         }
+
+        public IFacctsDictionaryDataRepository<FACCTSConfiguration> FACCTSConfigurationRepository
+        {
+            get
+            {
+                return GetStandardDictionaryRepo<FACCTSConfiguration>();
+            }
+        }
+
         public ICourtMemberRepository CourtMemberRepository
         {
             get

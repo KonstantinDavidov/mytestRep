@@ -39,7 +39,7 @@
 					<TextBlock Grid.Column="1" TextWrapping="Wrap" Text="{Binding CaseNumber, Mode=OneWay}" VerticalAlignment="Center" Padding="0" Margin="15,0"/>
 					<xctk:DateTimeUpDown Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="15,0" Format="ShortTime" Value="{Binding Time, Mode=TwoWay}" TextAlignment="Left"/>
 					<ComboBox Grid.Column="1" Margin="15,0,15,0" Grid.Row="2" VerticalAlignment="Center" ItemsSource="{Binding Courtrooms, Mode=OneWay}" SelectedItem="{Binding Courtroom, Mode=TwoWay}"/>
-					<ComboBox Grid.Column="1" Margin="15,0, 15, 0" Grid.Row="3" VerticalAlignment="Center" ItemsSource="{Binding Departments, Mode=OneWay}" SelectedItem="{Binding Department, Mode=TwoWay}"/>
+                    <ComboBox Grid.Column="1" Margin="15,0, 15, 0" Grid.Row="3" VerticalAlignment="Center" ItemsSource="{Binding Departments, Mode=OneWay}" SelectedItem="{Binding Department, Mode=TwoWay}" DisplayMemberPath="Room"/>
 				</Grid>
 			</Border>
 			<Border HorizontalAlignment="Left" Style="{DynamicResource OrdinalBorder}" VerticalAlignment="Top" Grid.Column="1"/>

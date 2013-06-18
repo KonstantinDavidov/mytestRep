@@ -1,4 +1,5 @@
 ﻿using FACCTS.Server.Model.DataModel;
+using FACCTS.Server.Model.DataModel.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace FACCTS.Server.DataContracts
         IFacctsDataRepository<CourtDepartment> CourtDepartmentRepository { get; }
         IFacctsDataRepository<CaseRecord> CaseRecordRepository { get; }
         IFacctsDataRepository<CaseHistory> CaseHistoryRepository { get; }
+        IFacctsDictionaryDataRepository<FACCTSConfiguration> FACCTSConfigurationRepository { get; }
 
         // Save pending changes to the data store.
         void Commit();

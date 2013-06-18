@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
 using System.Reactive.Linq;
+using System.Collections.ObjectModel;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -17,7 +18,13 @@ namespace FACCTS.Controls.ViewModels
         public AddToCourtDocketDialogViewModel() : base()
         {
             this.DisplayName = "Add Case to Docket";
+            if (this.IsAuthenticated && this.Departments == null)
+            {
+                this.Departments = new ObservableCollection<CourtDepartmenets>(DataContainer.AvailableDepartments);
+            }
         }
+
+        
 
         public void AddCase()
         {
