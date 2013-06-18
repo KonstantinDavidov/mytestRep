@@ -10,7 +10,6 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FACCTS.Services;
 using FACCTS.Services.Authentication;
 
 namespace FACCTS.Controls.ViewModels

@@ -131,11 +131,15 @@
     <Compile Include="Utils\BusinessLogicHelper.cs" />
     <Compile Include="Utils\WatermarkAdorner.cs" />
     <Compile Include="Utils\WatermarkService.cs" />
+    <Compile Include="ViewModels\AddToCourtDocketDialogViewModel.cs" />
     <Compile Include="ViewModels\Case Record\AttorneysViewModel.cs" />
     <Compile Include="ViewModels\Case Record\CaseRecordViewModel.cs" />
     <Compile Include="ViewModels\NewCourtCaseDialogViewModel.cs" />
     <Compile Include="ViewModels\OneActiveViewModelBase.cs" />
     <Compile Include="ViewModels\UserLoginDialogViewModel.cs" />
+    <Compile Include="Views\AddToCourtDocketDialogView.xaml.cs">
+      <DependentUpon>AddToCourtDocketDialogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Case Record\RelatedCasesView.xaml.cs">
       <DependentUpon>RelatedCasesView.xaml</DependentUpon>
     </Compile>
@@ -162,6 +166,9 @@
     </Compile>
     <Compile Include="Views\Case Record\ChildrenOtherProtectedView.xaml.cs">
       <DependentUpon>ChildrenOtherProtectedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\AddToCourtDocketControlView.xaml.cs">
+      <DependentUpon>AddToCourtDocketControlView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\AttorneysPartyView.xaml.cs">
       <DependentUpon>AttorneysPartyView.xaml</DependentUpon>
@@ -262,6 +269,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\AddToCourtDocketDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Case Record\RelatedCasesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -279,6 +290,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Case Record\ChildrenOtherProtectedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\AddToCourtDocketControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

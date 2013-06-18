@@ -16,8 +16,41 @@ namespace Faccts.Model.Entities
 
             this.CCPORId = courtCaseDto.CCPORId;
             this.CCPORStatus = (int?)courtCaseDto.CCPORStatus;
+            this.CaseStatus = courtCaseDto.CaseStatus;
             RaiseNavigationPropertyLoading(() => User);
             RaiseNavigationPropertyLoading(() => CaseRecord);
+        }
+
+        private FACCTS.Server.Model.Enums.CaseStatus _caseStatus;
+        public FACCTS.Server.Model.Enums.CaseStatus CaseStatus
+        {
+            get
+            {
+                return _caseStatus;
+            }
+            private set
+            {
+                if (_caseStatus == value)
+                    return;
+
+                OnPropertyChanged("CaseStatus");
+            }
+
+        }
+
+        public DateTime? LastActivity
+        {
+            get
+            {
+                if (this.CaseRecord == null || this.CaseRecord.CaseHistory == null)
+                    return null;
+                var latestHistoryRecord = this.CaseRecord.CaseHistory.OrderByDescending(x => x.Date).FirstOrDefault(x => x.Date <= DateTime.Now);
+                if (latestHistoryRecord != null)
+                {
+                    return latestHistoryRecord.Date;
+                }
+                return null;
+            }
         }
     }
 }

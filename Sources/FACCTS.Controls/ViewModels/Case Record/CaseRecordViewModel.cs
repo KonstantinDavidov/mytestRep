@@ -141,6 +141,24 @@ namespace FACCTS.Controls.ViewModels
         {
             BusinessLogicHelper.CreateNewCase(ServiceLocatorContainer.Locator.GetInstance<NewCourtCaseDialogViewModel>(), _windowManager);
         }
+
+        private CourtCase _currentCourtCase;
+        public CourtCase CurrentCourtCase
+        {
+            get
+            {
+                return _currentCourtCase;
+            }
+            set
+            {
+                if (_currentCourtCase == value)
+                    return;
+
+                this.NotifyOfPropertyChanging();
+                _currentCourtCase = value;
+                this.NotifyOfPropertyChange();
+            }
+        }
        
     }
 }

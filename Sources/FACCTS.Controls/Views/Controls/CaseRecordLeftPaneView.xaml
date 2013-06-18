@@ -17,7 +17,7 @@
             <RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<GroupBox Header="Court Cases">
-			<ListBox VerticalAlignment="Stretch" ItemsSource="{Binding CourtCases, Mode=OneWay}" DisplayMemberPath="CaseNumber"/>
+			<ListBox VerticalAlignment="Stretch" ItemsSource="{Binding CourtCases, Mode=OneWay}" DisplayMemberPath="CaseNumber" SelectedItem="{Binding CurrentCourtCase, Mode=TwoWay}"/>
 		</GroupBox>
 		<GroupBox Header="Court Case Edit" Grid.Row="1">
 			<ListBox x:Name="listBox">

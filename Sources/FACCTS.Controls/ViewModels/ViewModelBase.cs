@@ -97,6 +97,11 @@ namespace FACCTS.Controls.ViewModels
         }
 
         public virtual IDataContainer DataContainer { get; private set; }
+
+        public virtual void Cancel()
+        {
+            TryClose(false);
+        }
         
     }
 }
