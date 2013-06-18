@@ -147,7 +147,6 @@
                 success: function (result) {
                     onCallSuccess(msgPrefix);
                     okAsync(!!result, "returned a newly added courtmember.");
-                    debugger;
                     deleteAddedCourtMember(result);
                 },
                 error: function (result) { onError(result, msgPrefix); }

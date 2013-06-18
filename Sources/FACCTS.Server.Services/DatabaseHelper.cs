@@ -37,6 +37,7 @@ namespace FACCTS.Server.Data
                 FirstName = "f1",
                 LastName = "l1",
                 IsApproved = true,
+                IsAvilable = true,
                 IsCertified = false,
                 Phone = "222222",
                 Password = "12345"
@@ -49,6 +50,7 @@ namespace FACCTS.Server.Data
                 FirstName = "f2",
                 LastName = "l2",
                 IsApproved = true,
+                IsAvilable = false,
                 IsCertified = true,
                 Substitute = courtMember1,
                 Phone = "333333",

@@ -7,6 +7,7 @@
 
     var baseUrl = "/FACCTS.Server/Admin"
     var apiUrls = [
+        '/api/CourtMemberBrief',
         '/api/courtmembers/all',
         '/api/CourtMembers/1',
         '/api/CourtMembers/substitutes'

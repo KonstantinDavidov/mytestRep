@@ -11,4 +11,5 @@
             sessionBriefs : sessionBriefs,
             selectedMember : selectedMember
         };
+
         });

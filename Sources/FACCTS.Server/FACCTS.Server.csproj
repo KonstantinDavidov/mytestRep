@@ -423,6 +423,10 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Scripts\app\model.courtmember.js" />
+    <Content Include="Scripts\app\model.courtmemberbrief.js" />
+    <Content Include="Scripts\app\model.js" />
+    <Content Include="Scripts\app\model.mapper.js" />
     <Content Include="Scripts\app\route-config.js" />
     <Content Include="Scripts\app\router.js" />
     <Content Include="Scripts\app\vm.courtsettings.js" />
@@ -436,7 +440,6 @@
     <Content Include="Scripts\jquery-2.0.2.min.map" />
     <None Include="Scripts\lib\amplify-vsdoc.js" />
     <Content Include="Scripts\app\bootstrapper.js" />
-    <Content Include="Scripts\app\dataServiceCourtMember.js" />
     <Content Include="Scripts\app\dataservice.courtmember.js" />
     <Content Include="Scripts\app\vm.courtstaff.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -498,6 +501,8 @@
     <Content Include="Scripts\lib\underscore.min.js" />
     <Content Include="Scripts\lib\r.js" />
     <Content Include="Scripts\lib\require.js" />
+    <Content Include="Tests\dataService.CourtMember.test.js" />
+    <Content Include="Tests\main.tests.js" />
     <Content Include="Tests\qunit\qunit-composite.css" />
     <Content Include="Tests\qunit\qunit-composite.js" />
     <Content Include="Tests\qunit\qunit.css" />
