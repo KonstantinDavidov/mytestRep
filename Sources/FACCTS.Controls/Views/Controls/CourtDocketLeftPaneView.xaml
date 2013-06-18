@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+            xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d" 
              d:DesignHeight="471" d:DesignWidth="303" Background="{DynamicResource ControlBackgroundBrush}">
     <Grid>
@@ -34,7 +36,7 @@
     	</GroupBox>
     	<Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
             <UniformGrid Rows="1" Columns="2" HorizontalAlignment="Left">
-                <Button Content="Add Case" />
+                <Button Content="Add Case" cal:Message.Attach="AddCase"/>
                 <Button Content="View Cases" />
             </UniformGrid>
     		
