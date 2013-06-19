@@ -41,13 +41,25 @@ namespace FACCTS.Controls.ViewModels
                 .Subscribe(_ =>
                 {
                     if (!this.NewCourtDate.HasValue)
+                    {
                         IsValid = false;
+                        return;
+                    }
                     if (this.Courtroom == null || this.Department == null)
+                    {
                         IsValid = false;
+                        return;
+                    }
                     if (!(this.NoPOS || this.FCSReferral || this.GetAttyToPrepare || this.IsOtherReason))
+                    {
                         IsValid = false;
-                    if (this.IsOtherReason && string.IsNullOrWhiteSpace(this.OtherReason))
+                        return;
+                    } else
+                    if (!(this.NoPOS || this.FCSReferral || this.GetAttyToPrepare) && this.IsOtherReason && string.IsNullOrWhiteSpace(this.OtherReason))
+                    {
                         IsValid = false;
+                        return;
+                    }
                     IsValid = true;
                 });
             this.NoServiceRequired = true;
