@@ -180,6 +180,9 @@
     <Compile Include="Views\Case Record\ChildrenOtherProtectedView.xaml.cs">
       <DependentUpon>ChildrenOtherProtectedView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\CaseRecord\RestrainingPartyIDInfoControlView.xaml.cs">
+      <DependentUpon>RestrainingPartyIDInfoControlView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\ModalDialogViews\AddToCourtDocketControlView.xaml.cs">
       <DependentUpon>AddToCourtDocketControlView.xaml</DependentUpon>
     </Compile>
@@ -222,7 +225,7 @@
     <Compile Include="Views\Controls\ModalDialogViews\ReissueCaseControlView.xaml.cs">
       <DependentUpon>ReissueCaseControlView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\PartyControlView.xaml.cs">
+    <Compile Include="Views\Controls\CaseRecord\PartyControlView.xaml.cs">
       <DependentUpon>PartyControlView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\ReissuanceControlView.xaml.cs">
@@ -322,6 +325,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Controls\CaseRecord\RestrainingPartyIDInfoControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Controls\ModalDialogViews\AddToCourtDocketControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -378,7 +385,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\PartyControlView.xaml">
+    <Page Include="Views\Controls\CaseRecord\PartyControlView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

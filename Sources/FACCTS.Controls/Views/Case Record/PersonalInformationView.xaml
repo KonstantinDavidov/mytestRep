@@ -4,16 +4,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:localcontrols="clr-namespace:FACCTS.Controls.Views.Controls"
+			 xmlns:controls="clr-namespace:FACCTS.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="399" d:DesignWidth="533">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition MaxHeight="220"/>
+            <RowDefinition MaxHeight="220"/>
+            <RowDefinition MaxHeight="110"/>
         </Grid.RowDefinitions>
         <localcontrols:PartyControlView Grid.Row="0"/>
         <localcontrols:PartyControlView Grid.Row="1"/>
-        <Button Content="Save" HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="2" Width="75"/>
+		<controls:RestrainingPartyIDInfoControlView Grid.Row="2"/>
     </Grid>
 </UserControl>
