@@ -13,8 +13,9 @@
         config.dataserviceInit();
 
         var findDs = function () {
+            debugger;
             var ds = window.testFn(amplify);
-            config.useMocks(true); // this helps me NOT mock datacontext
+            config.useMocks(false); // this helps me NOT mock datacontext
             return ds;
             //return window.testFn($); // purely for the course to test the non amplify version
         };
@@ -27,11 +28,11 @@
                 var ds = findDs();
 
                 //ACT
-                ds.getSessionBriefs({
+                ds.getCourtMemberBriefs({
 
                     //ASSERT
                     success: function (result) {
-                        ok(result && result.length > 0, 'Got SessionBriefs');
+                        ok(result && result.length > 0, 'Got CourtMemberBriefs');
                         start();
                     },
                     error: function (result) {

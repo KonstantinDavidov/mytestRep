@@ -44,7 +44,7 @@
             },
 
             toggleActivity = function (show) {
-                $('#busyindicator').activity(show);
+                //$('#busyindicator').activity(show);
             },
 
             transitionTo = function ($view, route, group) {
