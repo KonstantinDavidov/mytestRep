@@ -752,10 +752,8 @@ namespace FACCTS.Server.Data
                         proxy.City = x.City;
                         context.Entry(cc).Collection(y => y.CourtLocations).Load();
                         cc.CourtLocations.Add(proxy);
-                        //proxy = context.CourtLocations.Add(proxy);
                         if (x.Courtrooms != null)
                         {
-                            //context.Entry(proxy).Collection(y => y.Courtrooms).Load();
                             proxy.Courtrooms = new HashSet<Courtroom>();
                             foreach (var cr in x.Courtrooms)
                             {

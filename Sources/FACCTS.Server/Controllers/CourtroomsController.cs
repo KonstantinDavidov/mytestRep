@@ -19,7 +19,14 @@ namespace FACCTS.Server.Controllers
         // GET api/courtrooms/5
         public List<Courtroom> Get(int courtCountyId)
         {
-            return DataManager.CourtCountyRepository.GetById(courtCountyId).CourtLocations.SelectMany(x => x.Courtrooms).ToList();
+            var courtCounty = DataManager.CourtCountyRepository.GetAll("CourtLocations").SingleOrDefault(x => x.Id == courtCountyId);
+            if (courtCounty == null)
+            {
+                 throw new HttpResponseException(
+                Request.CreateResponse(
+                HttpStatusCode.NotFound));
+            }
+            return courtCounty.CourtLocations.SelectMany(x => DataManager.CourtroomRepository.GetAll("CourtLocation").Where(y => y.CourtLocation.Id == x.Id)).ToList();
         }
 
     }

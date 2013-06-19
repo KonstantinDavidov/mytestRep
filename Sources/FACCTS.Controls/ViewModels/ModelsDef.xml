@@ -20,7 +20,6 @@
     <Property name="OtherHearingIssueText" type="string"/>
     <Property name="Courtrooms" type="Collection" collectionType="Faccts.Model.Entities.Courtrooms"/>
     <Property name="Departments" type="Collection" collectionType="Faccts.Model.Entities.CourtDepartmenets"/>
-    
   </Model>
   
   <xs:schema 

@@ -108,6 +108,19 @@ namespace FACCTS.Services.Data
             }
         }
 
+        private List<Courtrooms> _availableCourtrooms;
+        public List<Courtrooms> AvailableCourtrooms
+        {
+            get
+            {
+                if (_availableCourtrooms == null)
+                {
+                    _availableCourtrooms = CourtRooms.GetAll(this.FacctsConfiguration.CurrentCourtCounty_Id);
+                }
+                return _availableCourtrooms;
+            }
+        }
+
         protected void RaisePropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
