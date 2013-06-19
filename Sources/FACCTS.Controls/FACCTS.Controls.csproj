@@ -127,6 +127,7 @@
     <Compile Include="Converters\ObjectToBooleanConverter.cs" />
     <Compile Include="Interfaces\IPasswordSupplier.cs" />
     <Compile Include="IShell.cs" />
+    <Compile Include="ViewModels\Case Record\SeparateCaseDialogViewModel.cs" />
     <Compile Include="ViewModels\ModelTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -166,6 +167,9 @@
     </Compile>
     <Compile Include="Views\Case Record\CaseRecordView.xaml.cs">
       <DependentUpon>CaseRecordView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Case Record\SeparateCaseDialogView.xaml.cs">
+      <DependentUpon>SeparateCaseDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CaseStatusView.xaml.cs">
       <DependentUpon>CaseStatusView.xaml</DependentUpon>
@@ -217,6 +221,9 @@
     </Compile>
     <Compile Include="Views\Case Record\WitnessInterpereterView.xaml.cs">
       <DependentUpon>WitnessInterpereterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\SeparateCaseControlView.xaml.cs">
+      <DependentUpon>SeparateCaseControlView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CourtDocketView.xaml.cs">
       <DependentUpon>CourtDocketView.xaml</DependentUpon>
@@ -291,6 +298,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Case Record\SeparateCaseDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\CaseStatusView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -358,6 +369,10 @@
     <Page Include="Views\Case Record\WitnessInterpereterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\SeparateCaseControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\CourtDocketView.xaml">
       <SubType>Designer</SubType>
@@ -450,6 +465,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\alert.png" />
     <Content Include="ViewModels\ModelsDef.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

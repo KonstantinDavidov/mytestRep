@@ -186,5 +186,51 @@ namespace FACCTS.Controls.ViewModels
 				
 	}
 	
+			
+	public partial class RelatedCasesViewModel
+	{
+		private bool _canConsolidate;
+		public bool CanConsolidate
+		{
+			get{return _canConsolidate;}
+			set{
+				if(_canConsolidate!=value){
+					_canConsolidate=value;
+					this.RaiseAndSetIfChanged(ref _canConsolidate, value);
+				}
+			}
+		}
+		
+		private bool _canSeparate;
+		public bool CanSeparate
+		{
+			get{return _canSeparate;}
+			set{
+				if(_canSeparate!=value){
+					_canSeparate=value;
+					this.RaiseAndSetIfChanged(ref _canSeparate, value);
+				}
+			}
+		}
+				
+	}
+	
+			
+	public partial class SeparateCaseDialogViewModel
+	{
+		private string _caseNumber;
+		public string CaseNumber
+		{
+			get{return _caseNumber;}
+			set{
+				if(_caseNumber!=value){
+					_caseNumber=value;
+					this.RaiseAndSetIfChanged(ref _caseNumber, value);
+				}
+			}
+		}
+				
+	}
+	
 }
 

@@ -77,9 +77,9 @@
 			</Grid>
 		</Border>
         <GroupBox Grid.Row="1" Grid.ColumnSpan="3" cal:View.Model="{Binding ActiveItem, Mode=OneWay}" Header="{Binding ActiveItem.DisplayName, Mode=OneWay}"/>
-		<Border BorderBrush="Black" BorderThickness="1" Grid.RowSpan="2" Grid.Row="2" Grid.ColumnSpan="3" Style="{DynamicResource OrdinalBorder}" VerticalAlignment="Bottom">
+		<Border BorderThickness="1" Grid.RowSpan="2" Grid.Row="2" Grid.ColumnSpan="3" Style="{DynamicResource OrdinalBorder}" VerticalAlignment="Bottom">
 			<UniformGrid VerticalAlignment="Top" Rows="1" Columns="2" HorizontalAlignment="Left">
-				<Button Content="Save" VerticalAlignment="Top"/>
+				<Button Content="Save" VerticalAlignment="Top" Width="75"/>
 			</UniformGrid>
 		</Border>
 	</Grid>

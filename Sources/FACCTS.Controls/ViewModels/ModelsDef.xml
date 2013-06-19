@@ -21,6 +21,15 @@
     <Property name="Courtrooms" type="Collection" collectionType="Faccts.Model.Entities.Courtrooms"/>
     <Property name="Departments" type="Collection" collectionType="Faccts.Model.Entities.CourtDepartmenets"/>
   </Model>
+
+  <Model name="RelatedCasesViewModel">
+    <Property name="CanConsolidate" type="bool"/>
+    <Property name="CanSeparate" type="bool"/>
+  </Model>
+
+  <Model name="SeparateCaseDialogViewModel">
+    <Property name="CaseNumber" type="string"/>
+  </Model>
   
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
