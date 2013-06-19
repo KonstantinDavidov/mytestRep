@@ -226,5 +226,81 @@ namespace FACCTS.Controls.ViewModels
 				
 	}
 	
+			
+	public partial class DropDismissDialogViewModel
+	{
+		private string _caseNumber;
+		public string CaseNumber
+		{
+			get{return _caseNumber;}
+			set{
+				if(_caseNumber!=value){
+					this.RaiseAndSetIfChanged(ref _caseNumber, value);
+				}
+			}
+		}
+		
+		private Faccts.Model.Entities.CourtCase _currentCourtCase;
+		public Faccts.Model.Entities.CourtCase CurrentCourtCase
+		{
+			get{return _currentCourtCase;}
+			set{
+				if(_currentCourtCase!=value){
+					this.RaiseAndSetIfChanged(ref _currentCourtCase, value);
+				}
+			}
+		}
+		
+		private bool _dismiss;
+		public bool Dismiss
+		{
+			get{return _dismiss;}
+			set{
+				if(_dismiss!=value){
+					this.RaiseAndSetIfChanged(ref _dismiss, value);
+				}
+			}
+		}
+				
+	}
+	
+			
+	public partial class CourtDocketViewModel
+	{
+		private bool _canDropDismiss;
+		public bool CanDropDismiss
+		{
+			get{return _canDropDismiss;}
+			set{
+				if(_canDropDismiss!=value){
+					this.RaiseAndSetIfChanged(ref _canDropDismiss, value);
+				}
+			}
+		}
+		
+		private Faccts.Model.Entities.CourtCase _currentCourtCase;
+		public Faccts.Model.Entities.CourtCase CurrentCourtCase
+		{
+			get{return _currentCourtCase;}
+			set{
+				if(_currentCourtCase!=value){
+					this.RaiseAndSetIfChanged(ref _currentCourtCase, value);
+				}
+			}
+		}
+		
+		private DateTime? _calendarDate;
+		public DateTime? CalendarDate
+		{
+			get{return _calendarDate;}
+			set{
+				if(_calendarDate!=value){
+					this.RaiseAndSetIfChanged(ref _calendarDate, value);
+				}
+			}
+		}
+				
+	}
+	
 }
 

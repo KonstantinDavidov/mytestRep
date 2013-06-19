@@ -31,6 +31,18 @@
     <Property name="CaseNumber" type="string"/>
     <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
   </Model>
+
+  <Model name="DropDismissDialogViewModel">
+    <Property name="CaseNumber" type="string"/>
+    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
+    <Property name="Dismiss" type="bool"/>
+  </Model>
+  
+  <Model name="CourtDocketViewModel">
+    <Property name="CanDropDismiss" type="bool"/>
+    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
+    <Property name="CalendarDate" type="DateTime?"/>
+  </Model>
   
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -63,6 +75,7 @@
         <xs:enumeration value="double"></xs:enumeration>
         <xs:enumeration value="bool"></xs:enumeration>
         <xs:enumeration value="DateTime"></xs:enumeration>
+        <xs:enumeration value="DateTime?"></xs:enumeration>
         <xs:enumeration value="Collection"></xs:enumeration>
         <xs:enumeration value="Faccts.Model.Entities.Courtrooms"></xs:enumeration>
         <xs:enumeration value="Faccts.Model.Entities.CourtDepartmenets"></xs:enumeration>

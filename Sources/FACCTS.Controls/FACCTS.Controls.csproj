@@ -129,6 +129,7 @@
     <Compile Include="Interfaces\IPasswordSupplier.cs" />
     <Compile Include="IShell.cs" />
     <Compile Include="ViewModels\Case Record\SeparateCaseDialogViewModel.cs" />
+    <Compile Include="ViewModels\DropDismissDialogViewModel.cs" />
     <Compile Include="ViewModels\ModelTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -208,6 +209,9 @@
     <Compile Include="Views\Controls\CourtOrders\CourtOrdersRightPaneView.xaml.cs">
       <DependentUpon>CourtOrdersRightPaneView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\ModalDialogViews\DropDismissCaseControlView.xaml.cs">
+      <DependentUpon>DropDismissCaseControlView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\ModalDialogViews\NewCourtCaseControlView.xaml.cs">
       <DependentUpon>NewCourtCaseControlView.xaml</DependentUpon>
     </Compile>
@@ -231,6 +235,9 @@
     </Compile>
     <Compile Include="Views\CourtOrdersView.xaml.cs">
       <DependentUpon>CourtOrdersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DropDismissDialogView.xaml.cs">
+      <DependentUpon>DropDismissDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewCourtCaseDialogView.xaml.cs">
       <DependentUpon>NewCourtCaseDialogView.xaml</DependentUpon>
@@ -351,6 +358,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Controls\ModalDialogViews\DropDismissCaseControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Controls\ModalDialogViews\NewCourtCaseControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -382,6 +393,10 @@
     <Page Include="Views\CourtOrdersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DropDismissDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\NewCourtCaseDialogView.xaml">
       <Generator>MSBuild:Compile</Generator>
