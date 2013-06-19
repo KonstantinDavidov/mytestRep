@@ -178,40 +178,40 @@
     <Compile Include="Views\Case Record\ChildrenOtherProtectedView.xaml.cs">
       <DependentUpon>ChildrenOtherProtectedView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\AddToCourtDocketControlView.xaml.cs">
+    <Compile Include="Views\Controls\ModalDialogViews\AddToCourtDocketControlView.xaml.cs">
       <DependentUpon>AddToCourtDocketControlView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\AttorneysPartyView.xaml.cs">
       <DependentUpon>AttorneysPartyView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\CaseRecordLeftPaneView.xaml.cs">
+    <Compile Include="Views\Controls\CaseRecord\CaseRecordLeftPaneView.xaml.cs">
       <DependentUpon>CaseRecordLeftPaneView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\CaseRecordRightPaneView.xaml.cs">
+    <Compile Include="Views\Controls\CaseRecord\CaseRecordRightPaneView.xaml.cs">
       <DependentUpon>CaseRecordRightPaneView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\CaseStatusLeftPaneView.xaml.cs">
+    <Compile Include="Views\Controls\CaseStatus\CaseStatusLeftPaneView.xaml.cs">
       <DependentUpon>CaseStatusLeftPaneView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\CaseStatusRightPaneView.xaml.cs">
+    <Compile Include="Views\Controls\CaseStatus\CaseStatusRightPaneView.xaml.cs">
       <DependentUpon>CaseStatusRightPaneView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\CourtDocketLeftPaneView.xaml.cs">
+    <Compile Include="Views\Controls\CourtDocket\CourtDocketLeftPaneView.xaml.cs">
       <DependentUpon>CourtDocketLeftPaneView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\CourtDocketRightPaneView.xaml.cs">
+    <Compile Include="Views\Controls\CourtDocket\CourtDocketRightPaneView.xaml.cs">
       <DependentUpon>CourtDocketRightPaneView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\CourtOrdersLeftPaneView.xaml.cs">
+    <Compile Include="Views\Controls\CourtOrders\CourtOrdersLeftPaneView.xaml.cs">
       <DependentUpon>CourtOrdersLeftPaneView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\CourtOrdersRightPaneView.xaml.cs">
+    <Compile Include="Views\Controls\CourtOrders\CourtOrdersRightPaneView.xaml.cs">
       <DependentUpon>CourtOrdersRightPaneView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\NewCourtCaseControlView.xaml.cs">
+    <Compile Include="Views\Controls\ModalDialogViews\NewCourtCaseControlView.xaml.cs">
       <DependentUpon>NewCourtCaseControlView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\NewCourtDateControlView.xaml.cs">
+    <Compile Include="Views\Controls\ModalDialogViews\NewCourtDateControlView.xaml.cs">
       <DependentUpon>NewCourtDateControlView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\PartyControlView.xaml.cs">
@@ -223,7 +223,7 @@
     <Compile Include="Views\Case Record\WitnessInterpereterView.xaml.cs">
       <DependentUpon>WitnessInterpereterView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\SeparateCaseControlView.xaml.cs">
+    <Compile Include="Views\Controls\ModalDialogViews\SeparateCaseControlView.xaml.cs">
       <DependentUpon>SeparateCaseControlView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CourtDocketView.xaml.cs">
@@ -247,7 +247,7 @@
     <Compile Include="Views\ReissuanceDialogView.xaml.cs">
       <DependentUpon>ReissuanceDialogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\ShowExceptionControlView.xaml.cs">
+    <Compile Include="Views\Controls\ModalDialogViews\ShowExceptionControlView.xaml.cs">
       <DependentUpon>ShowExceptionControlView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShowExceptionDialogView.xaml.cs">
@@ -256,7 +256,7 @@
     <Compile Include="Views\UserLoginDialogView.xaml.cs">
       <DependentUpon>UserLoginDialogView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\UserLoginControlView.xaml.cs">
+    <Compile Include="Views\Controls\ModalDialogViews\UserLoginControlView.xaml.cs">
       <DependentUpon>UserLoginControlView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NewCourtDateDialogView.xaml.cs">
@@ -311,7 +311,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\AddToCourtDocketControlView.xaml">
+    <Page Include="Views\Controls\ModalDialogViews\AddToCourtDocketControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -319,43 +319,43 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\CaseRecordLeftPaneView.xaml">
+    <Page Include="Views\Controls\CaseRecord\CaseRecordLeftPaneView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\CaseRecordRightPaneView.xaml">
+    <Page Include="Views\Controls\CaseRecord\CaseRecordRightPaneView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\CaseStatusLeftPaneView.xaml">
+    <Page Include="Views\Controls\CaseStatus\CaseStatusLeftPaneView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\CaseStatusRightPaneView.xaml">
+    <Page Include="Views\Controls\CaseStatus\CaseStatusRightPaneView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\CourtDocketLeftPaneView.xaml">
+    <Page Include="Views\Controls\CourtDocket\CourtDocketLeftPaneView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\CourtDocketRightPaneView.xaml">
+    <Page Include="Views\Controls\CourtDocket\CourtDocketRightPaneView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\CourtOrdersLeftPaneView.xaml">
+    <Page Include="Views\Controls\CourtOrders\CourtOrdersLeftPaneView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\CourtOrdersRightPaneView.xaml">
+    <Page Include="Views\Controls\CourtOrders\CourtOrdersRightPaneView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\NewCourtCaseControlView.xaml">
+    <Page Include="Views\Controls\ModalDialogViews\NewCourtCaseControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\NewCourtDateControlView.xaml">
+    <Page Include="Views\Controls\ModalDialogViews\NewCourtDateControlView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -371,7 +371,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\SeparateCaseControlView.xaml">
+    <Page Include="Views\Controls\ModalDialogViews\SeparateCaseControlView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -403,7 +403,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\ShowExceptionControlView.xaml">
+    <Page Include="Views\Controls\ModalDialogViews\ShowExceptionControlView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -415,7 +415,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\UserLoginControlView.xaml">
+    <Page Include="Views\Controls\ModalDialogViews\UserLoginControlView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
