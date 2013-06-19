@@ -30,6 +30,9 @@ namespace FACCTS.Server.Model.DataModel
         [StringLength(20)]
         public string PostalCode { get; set; }
 
+        [StringLength(100)]
+        public string City { get; set; }
+
         [InverseProperty("CourtLocations")]
         public virtual CourtCounty CourtCounty { get; set; }
 

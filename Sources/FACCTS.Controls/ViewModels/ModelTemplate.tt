@@ -58,7 +58,6 @@ foreach (var item in doc.Root.Elements("Model"))
 			get{return <#= fieldName #>;}
 			set{
 				if(<#= fieldName #>!=value){
-					<#= fieldName #>=value;
 					this.RaiseAndSetIfChanged(ref <#= fieldName #>, value);
 				}
 			}

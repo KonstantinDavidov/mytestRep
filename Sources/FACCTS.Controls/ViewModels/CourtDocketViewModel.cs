@@ -9,6 +9,7 @@ using Caliburn.Micro;
 using FACCTS.Services;
 using Faccts.Model.Entities;
 using System.Collections.ObjectModel;
+using System.Reactive.Linq;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -23,42 +24,19 @@ namespace FACCTS.Controls.ViewModels
         {
             _windowManager = windowManager;
             this.DisplayName = "Court Docket";
+            this.WhenAny(x => x.CurrentCourtCase, x => x.Value)
+                .Subscribe(x =>
+                {
+                    this.CanDropDismiss = x != null;
+                });
+                
+                
         }
 
         protected override void Authorized()
         {
             base.Authorized();
             this.NotifyOfPropertyChange(() => CourtCases);
-        }
-
-        private CourtCase _currentCourtCase;
-        public CourtCase CurrentCourtCase
-        {
-            get
-            {
-                return _currentCourtCase;
-            }
-            set
-            {
-                if (_currentCourtCase == value)
-                    return;
-
-                this.RaiseAndSetIfChanged(ref _currentCourtCase, value);
-            }
-        }
-
-
-        private DateTime? _calendarDate;
-        public DateTime? CalendarDate
-        {
-            get
-            {
-                return _calendarDate;
-            }
-            set
-            {
-                this.RaiseAndSetIfChanged(ref _calendarDate, value);
-            }
         }
 
         private ObservableCollection<CourtCase> _courtCases;
@@ -80,5 +58,24 @@ namespace FACCTS.Controls.ViewModels
             vm.CurrentCourtCase = CurrentCourtCase;
             _windowManager.ShowDialog(vm);
         }
+
+        public void Drop()
+        {
+            DropDismiss(false);
+        }
+
+        public void Dismiss()
+        {
+            DropDismiss(true);
+        }
+
+        private void DropDismiss(bool dismiss)
+        {
+            var vm = ServiceLocatorContainer.Locator.GetInstance<DropDismissDialogViewModel>();
+            vm.Dismiss = dismiss;
+            vm.CurrentCourtCase = CurrentCourtCase;
+            _windowManager.ShowDialog(vm);
+        }
+
     }
 }

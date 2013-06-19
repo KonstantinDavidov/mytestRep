@@ -124,6 +124,14 @@ namespace FACCTS.Server.Data
                 return GetStandardRepo<CaseHistory>();
             }
         }
+
+        public IFacctsDataRepository<Courtroom> CourtroomRepository
+        {
+            get
+            {
+                return GetStandardRepo<Courtroom>();
+            }
+        }
         #endregion
 
         //Commit

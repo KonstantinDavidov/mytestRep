@@ -20,7 +20,28 @@
     <Property name="OtherHearingIssueText" type="string"/>
     <Property name="Courtrooms" type="Collection" collectionType="Faccts.Model.Entities.Courtrooms"/>
     <Property name="Departments" type="Collection" collectionType="Faccts.Model.Entities.CourtDepartmenets"/>
-    
+  </Model>
+
+  <Model name="RelatedCasesViewModel">
+    <Property name="CanConsolidate" type="bool"/>
+    <Property name="CanSeparate" type="bool"/>
+  </Model>
+
+  <Model name="SeparateCaseDialogViewModel">
+    <Property name="CaseNumber" type="string"/>
+    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
+  </Model>
+
+  <Model name="DropDismissDialogViewModel">
+    <Property name="CaseNumber" type="string"/>
+    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
+    <Property name="Dismiss" type="bool"/>
+  </Model>
+  
+  <Model name="CourtDocketViewModel">
+    <Property name="CanDropDismiss" type="bool"/>
+    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
+    <Property name="CalendarDate" type="DateTime?"/>
   </Model>
   
   <xs:schema 
@@ -54,6 +75,7 @@
         <xs:enumeration value="double"></xs:enumeration>
         <xs:enumeration value="bool"></xs:enumeration>
         <xs:enumeration value="DateTime"></xs:enumeration>
+        <xs:enumeration value="DateTime?"></xs:enumeration>
         <xs:enumeration value="Collection"></xs:enumeration>
         <xs:enumeration value="Faccts.Model.Entities.Courtrooms"></xs:enumeration>
         <xs:enumeration value="Faccts.Model.Entities.CourtDepartmenets"></xs:enumeration>

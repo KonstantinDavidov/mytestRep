@@ -14,6 +14,7 @@ namespace FACCTS.Services.Data
         SearchCriteria SearchCriteria { get; }
         FACCTSConfiguration FacctsConfiguration { get; }
         List<CourtDepartmenets> AvailableDepartments { get; }
+        List<Courtrooms> AvailableCourtrooms { get; }
 
         void SearchCourtCases();
     }

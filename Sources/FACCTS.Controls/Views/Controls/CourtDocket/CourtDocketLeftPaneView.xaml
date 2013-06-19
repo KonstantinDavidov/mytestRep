@@ -18,7 +18,7 @@
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<GroupBox Header="Court Case List">
-			<ListBox x:Name="listBox" ItemsSource="{Binding CourtCases, Mode=OneWay}" SelectedItem="{Binding CurrentCourtCase, Mode=TwoWay}" DisplayMemberPath="CaseNumber"/>
+            <ListBox x:Name="listBox" ItemsSource="{Binding CourtCases, Mode=OneWay}" SelectedItem="{Binding CurrentCourtCase, Mode=TwoWay}" DisplayMemberPath="CaseNumber"/>
 		</GroupBox>
 		<GroupBox Header="Court Docket Calendar" Grid.Row="1">
 			<Grid>
