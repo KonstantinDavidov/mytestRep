@@ -908,6 +908,102 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	public override bool Equals(System.Object obj)
+    	{
+    		// If parameter is null return false.
+            if (obj == null)
+            {
+                return false;
+            }
+    
+            // If parameter cannot be cast to Point return false.
+            CaseRecord p = obj as CaseRecord;
+            if ((System.Object)p == null)
+            {
+                return false;
+            }
+    
+    			if (this.Id != p.Id)
+    				return false;
+    			if (this.Judge != p.Judge)
+    				return false;
+    			if (this.Party1_Id != p.Party1_Id)
+    				return false;
+    			if (this.Party2_Id != p.Party2_Id)
+    				return false;
+    			if (this.AttorneyForParty1_Id != p.AttorneyForParty1_Id)
+    				return false;
+    			if (this.AttorneyForParty2_Id != p.AttorneyForParty2_Id)
+    				return false;
+    			if (this.AttorneyForChild_Id != p.AttorneyForChild_Id)
+    				return false;
+    			if (this.CourtCounty_Id != p.CourtCounty_Id)
+    				return false;
+    			if (this.CourtDepartment_Id != p.CourtDepartment_Id)
+    				return false;
+    			if (this.CaseRecord_Id != p.CaseRecord_Id)
+    				return false;
+    
+    		return true;
+    	}
+    
+    	public override int GetHashCode()
+    	{
+    		int hashCode = 1;
+    			
+    		hashCode ^= this.Id.GetHashCode();
+    		if (this.Id != null)
+    		{
+    			hashCode ^= this.Id.GetHashCode();
+    		}
+     
+    		if (this.Judge != null)
+    		{
+    			hashCode ^= this.Judge.GetHashCode();
+    		}
+     
+    		if (this.Party1_Id != null)
+    		{
+    			hashCode ^= this.Party1_Id.GetHashCode();
+    		}
+     
+    		if (this.Party2_Id != null)
+    		{
+    			hashCode ^= this.Party2_Id.GetHashCode();
+    		}
+     
+    		if (this.AttorneyForParty1_Id != null)
+    		{
+    			hashCode ^= this.AttorneyForParty1_Id.GetHashCode();
+    		}
+     
+    		if (this.AttorneyForParty2_Id != null)
+    		{
+    			hashCode ^= this.AttorneyForParty2_Id.GetHashCode();
+    		}
+     
+    		if (this.AttorneyForChild_Id != null)
+    		{
+    			hashCode ^= this.AttorneyForChild_Id.GetHashCode();
+    		}
+     
+    		if (this.CourtCounty_Id != null)
+    		{
+    			hashCode ^= this.CourtCounty_Id.GetHashCode();
+    		}
+     
+    		if (this.CourtDepartment_Id != null)
+    		{
+    			hashCode ^= this.CourtDepartment_Id.GetHashCode();
+    		}
+     
+    		if (this.CaseRecord_Id != null)
+    		{
+    			hashCode ^= this.CaseRecord_Id.GetHashCode();
+    		}
+    		return hashCode;
+    	}
+    
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;
         private ObjectChangeTracker _changeTracker;

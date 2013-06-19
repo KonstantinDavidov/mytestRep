@@ -219,6 +219,77 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	public override bool Equals(System.Object obj)
+    	{
+    		// If parameter is null return false.
+            if (obj == null)
+            {
+                return false;
+            }
+    
+            // If parameter cannot be cast to Point return false.
+            Interpreters p = obj as Interpreters;
+            if ((System.Object)p == null)
+            {
+                return false;
+            }
+    
+    			if (this.Id != p.Id)
+    				return false;
+    			if (this.FirstName != p.FirstName)
+    				return false;
+    			if (this.LastName != p.LastName)
+    				return false;
+    			if (this.Contact != p.Contact)
+    				return false;
+    			if (this.InterpreterFor_Id != p.InterpreterFor_Id)
+    				return false;
+    			if (this.CaseRecord_Id != p.CaseRecord_Id)
+    				return false;
+    
+    		return true;
+    	}
+    
+    	public override int GetHashCode()
+    	{
+    		int hashCode = 1;
+    			
+    		hashCode ^= this.Id.GetHashCode();
+    		if (this.Id != null)
+    		{
+    			hashCode ^= this.Id.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.FirstName.GetHashCode();
+    		if (this.FirstName != null)
+    		{
+    			hashCode ^= this.FirstName.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.LastName.GetHashCode();
+    		if (this.LastName != null)
+    		{
+    			hashCode ^= this.LastName.GetHashCode();
+    		}
+     
+    		if (this.Contact != null)
+    		{
+    			hashCode ^= this.Contact.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.InterpreterFor_Id.GetHashCode();
+    		if (this.InterpreterFor_Id != null)
+    		{
+    			hashCode ^= this.InterpreterFor_Id.GetHashCode();
+    		}
+     
+    		if (this.CaseRecord_Id != null)
+    		{
+    			hashCode ^= this.CaseRecord_Id.GetHashCode();
+    		}
+    		return hashCode;
+    	}
+    
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;
         private ObjectChangeTracker _changeTracker;

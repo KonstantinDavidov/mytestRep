@@ -12,6 +12,8 @@ namespace FACCTS.Services.Data
     {
         TrackableCollection<CourtCase> CourtCases { get; }
         SearchCriteria SearchCriteria { get; }
+        FACCTSConfiguration FacctsConfiguration { get; }
+        List<CourtDepartmenets> AvailableDepartments { get; }
 
         void SearchCourtCases();
     }

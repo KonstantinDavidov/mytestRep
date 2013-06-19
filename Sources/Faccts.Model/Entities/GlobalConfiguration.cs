@@ -298,6 +298,151 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	public override bool Equals(System.Object obj)
+    	{
+    		// If parameter is null return false.
+            if (obj == null)
+            {
+                return false;
+            }
+    
+            // If parameter cannot be cast to Point return false.
+            GlobalConfiguration p = obj as GlobalConfiguration;
+            if ((System.Object)p == null)
+            {
+                return false;
+            }
+    
+    			if (this.Id != p.Id)
+    				return false;
+    			if (this.SiteName != p.SiteName)
+    				return false;
+    			if (this.IssuerUri != p.IssuerUri)
+    				return false;
+    			if (this.IssuerContactEmail != p.IssuerContactEmail)
+    				return false;
+    			if (this.DefaultWSTokenType != p.DefaultWSTokenType)
+    				return false;
+    			if (this.DefaultHttpTokenType != p.DefaultHttpTokenType)
+    				return false;
+    			if (this.DefaultTokenLifetime != p.DefaultTokenLifetime)
+    				return false;
+    			if (this.MaximumTokenLifetime != p.MaximumTokenLifetime)
+    				return false;
+    			if (this.SsoCookieLifetime != p.SsoCookieLifetime)
+    				return false;
+    			if (this.RequireEncryption != p.RequireEncryption)
+    				return false;
+    			if (this.RequireRelyingPartyRegistration != p.RequireRelyingPartyRegistration)
+    				return false;
+    			if (this.EnableClientCertificateAuthentication != p.EnableClientCertificateAuthentication)
+    				return false;
+    			if (this.EnforceUsersGroupMembership != p.EnforceUsersGroupMembership)
+    				return false;
+    			if (this.HttpPort != p.HttpPort)
+    				return false;
+    			if (this.HttpsPort != p.HttpsPort)
+    				return false;
+    
+    		return true;
+    	}
+    
+    	public override int GetHashCode()
+    	{
+    		int hashCode = 1;
+    			
+    		hashCode ^= this.Id.GetHashCode();
+    		if (this.Id != null)
+    		{
+    			hashCode ^= this.Id.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.SiteName.GetHashCode();
+    		if (this.SiteName != null)
+    		{
+    			hashCode ^= this.SiteName.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.IssuerUri.GetHashCode();
+    		if (this.IssuerUri != null)
+    		{
+    			hashCode ^= this.IssuerUri.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.IssuerContactEmail.GetHashCode();
+    		if (this.IssuerContactEmail != null)
+    		{
+    			hashCode ^= this.IssuerContactEmail.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.DefaultWSTokenType.GetHashCode();
+    		if (this.DefaultWSTokenType != null)
+    		{
+    			hashCode ^= this.DefaultWSTokenType.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.DefaultHttpTokenType.GetHashCode();
+    		if (this.DefaultHttpTokenType != null)
+    		{
+    			hashCode ^= this.DefaultHttpTokenType.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.DefaultTokenLifetime.GetHashCode();
+    		if (this.DefaultTokenLifetime != null)
+    		{
+    			hashCode ^= this.DefaultTokenLifetime.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.MaximumTokenLifetime.GetHashCode();
+    		if (this.MaximumTokenLifetime != null)
+    		{
+    			hashCode ^= this.MaximumTokenLifetime.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.SsoCookieLifetime.GetHashCode();
+    		if (this.SsoCookieLifetime != null)
+    		{
+    			hashCode ^= this.SsoCookieLifetime.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.RequireEncryption.GetHashCode();
+    		if (this.RequireEncryption != null)
+    		{
+    			hashCode ^= this.RequireEncryption.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.RequireRelyingPartyRegistration.GetHashCode();
+    		if (this.RequireRelyingPartyRegistration != null)
+    		{
+    			hashCode ^= this.RequireRelyingPartyRegistration.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.EnableClientCertificateAuthentication.GetHashCode();
+    		if (this.EnableClientCertificateAuthentication != null)
+    		{
+    			hashCode ^= this.EnableClientCertificateAuthentication.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.EnforceUsersGroupMembership.GetHashCode();
+    		if (this.EnforceUsersGroupMembership != null)
+    		{
+    			hashCode ^= this.EnforceUsersGroupMembership.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.HttpPort.GetHashCode();
+    		if (this.HttpPort != null)
+    		{
+    			hashCode ^= this.HttpPort.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.HttpsPort.GetHashCode();
+    		if (this.HttpsPort != null)
+    		{
+    			hashCode ^= this.HttpsPort.GetHashCode();
+    		}
+    		return hashCode;
+    	}
+    
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;
         private ObjectChangeTracker _changeTracker;

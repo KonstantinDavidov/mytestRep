@@ -264,6 +264,98 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	public override bool Equals(System.Object obj)
+    	{
+    		// If parameter is null return false.
+            if (obj == null)
+            {
+                return false;
+            }
+    
+            // If parameter cannot be cast to Point return false.
+            Appearances p = obj as Appearances;
+            if ((System.Object)p == null)
+            {
+                return false;
+            }
+    
+    			if (this.Id != p.Id)
+    				return false;
+    			if (this.Date != p.Date)
+    				return false;
+    			if (this.FirstName != p.FirstName)
+    				return false;
+    			if (this.LastName != p.LastName)
+    				return false;
+    			if (this.Appear != p.Appear)
+    				return false;
+    			if (this.Sworn != p.Sworn)
+    				return false;
+    			if (this.AttorneyPresent != p.AttorneyPresent)
+    				return false;
+    			if (this.Designation_Id != p.Designation_Id)
+    				return false;
+    			if (this.CaseRecord_Id != p.CaseRecord_Id)
+    				return false;
+    
+    		return true;
+    	}
+    
+    	public override int GetHashCode()
+    	{
+    		int hashCode = 1;
+    			
+    		hashCode ^= this.Id.GetHashCode();
+    		if (this.Id != null)
+    		{
+    			hashCode ^= this.Id.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.Date.GetHashCode();
+    		if (this.Date != null)
+    		{
+    			hashCode ^= this.Date.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.FirstName.GetHashCode();
+    		if (this.FirstName != null)
+    		{
+    			hashCode ^= this.FirstName.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.LastName.GetHashCode();
+    		if (this.LastName != null)
+    		{
+    			hashCode ^= this.LastName.GetHashCode();
+    		}
+     
+    		if (this.Appear != null)
+    		{
+    			hashCode ^= this.Appear.GetHashCode();
+    		}
+     
+    		if (this.Sworn != null)
+    		{
+    			hashCode ^= this.Sworn.GetHashCode();
+    		}
+     
+    		if (this.AttorneyPresent != null)
+    		{
+    			hashCode ^= this.AttorneyPresent.GetHashCode();
+    		}
+     
+    		if (this.Designation_Id != null)
+    		{
+    			hashCode ^= this.Designation_Id.GetHashCode();
+    		}
+     
+    		if (this.CaseRecord_Id != null)
+    		{
+    			hashCode ^= this.CaseRecord_Id.GetHashCode();
+    		}
+    		return hashCode;
+    	}
+    
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;
         private ObjectChangeTracker _changeTracker;

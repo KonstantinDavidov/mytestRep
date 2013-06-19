@@ -209,6 +209,62 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	public override bool Equals(System.Object obj)
+    	{
+    		// If parameter is null return false.
+            if (obj == null)
+            {
+                return false;
+            }
+    
+            // If parameter cannot be cast to Point return false.
+            Role p = obj as Role;
+            if ((System.Object)p == null)
+            {
+                return false;
+            }
+    
+    			if (this.Id != p.Id)
+    				return false;
+    			if (this.RoleName != p.RoleName)
+    				return false;
+    			if (this.Description != p.Description)
+    				return false;
+    			if (this.IsIdentityServerUser != p.IsIdentityServerUser)
+    				return false;
+    
+    		return true;
+    	}
+    
+    	public override int GetHashCode()
+    	{
+    		int hashCode = 1;
+    			
+    		hashCode ^= this.Id.GetHashCode();
+    		if (this.Id != null)
+    		{
+    			hashCode ^= this.Id.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.RoleName.GetHashCode();
+    		if (this.RoleName != null)
+    		{
+    			hashCode ^= this.RoleName.GetHashCode();
+    		}
+     
+    		if (this.Description != null)
+    		{
+    			hashCode ^= this.Description.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.IsIdentityServerUser.GetHashCode();
+    		if (this.IsIdentityServerUser != null)
+    		{
+    			hashCode ^= this.IsIdentityServerUser.GetHashCode();
+    		}
+    		return hashCode;
+    	}
+    
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;
         private ObjectChangeTracker _changeTracker;

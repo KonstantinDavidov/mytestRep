@@ -1,0 +1,73 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="FACCTS.Controls.Views.Controls.AddToCourtDocketControlView" 
+            xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+            xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d" 
+             d:DesignHeight="303" d:DesignWidth="430" Width="430" Height="305">
+	<Border BorderBrush="Black" BorderThickness="1" Padding="40,40,20,20" Background="{DynamicResource ControlBackgroundBrush}">
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+                <ColumnDefinition Width="Auto"   MinWidth="150"/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			<TextBlock HorizontalAlignment="Left" Style="{DynamicResource TextBlockDialogHeading}" Text="Confirm: Add Case to Court Docket" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+			<Border Style="{DynamicResource OrdinalBorder}" Grid.Row="1">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+					<TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,12" Text="Case Number:" FontWeight="Bold"/>
+					<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="1" Margin="0,12" Text="Time:" FontWeight="Bold"/>
+					<TextBlock TextWrapping="Wrap" Text="Courtroom:" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,12" FontWeight="Bold"/>
+					<TextBlock TextWrapping="Wrap" Grid.Row="3" VerticalAlignment="Center" Margin="0,12" Text="Department:" FontWeight="Bold"/>
+					<TextBlock Grid.Column="1" TextWrapping="Wrap" Text="{Binding CaseNumber, Mode=OneWay}" VerticalAlignment="Center" Padding="0" Margin="15,0"/>
+					<xctk:DateTimeUpDown Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="15,0" Format="ShortTime" Value="{Binding Time, Mode=TwoWay}" TextAlignment="Left"/>
+					<ComboBox Grid.Column="1" Margin="15,0,15,0" Grid.Row="2" VerticalAlignment="Center" ItemsSource="{Binding Courtrooms, Mode=OneWay}" SelectedItem="{Binding Courtroom, Mode=TwoWay}"/>
+                    <ComboBox Grid.Column="1" Margin="15,0, 15, 0" Grid.Row="3" VerticalAlignment="Center" ItemsSource="{Binding Departments, Mode=OneWay}" SelectedItem="{Binding Department, Mode=TwoWay}" DisplayMemberPath="Room"/>
+				</Grid>
+			</Border>
+			<Border HorizontalAlignment="Left" Style="{DynamicResource OrdinalBorder}" VerticalAlignment="Top" Grid.Column="1"/>
+			<UniformGrid HorizontalAlignment="Right" Grid.Row="2" Grid.ColumnSpan="2" Rows="1" Columns="2" VerticalAlignment="Top">
+				<Button Content="Add Case" Width="75" IsDefault="True" cal:Message.Attach="AddCase"/>
+				<Button Content="Cancel" Width="75" IsCancel="True" cal:Message.Attach="Cancel"/>
+			</UniformGrid>
+			<Border Style="{DynamicResource OrdinalBorder}" Grid.Column="1" Grid.Row="1">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+					<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="hearing Issues:" VerticalAlignment="Top" FontWeight="Bold" Margin="0,5"/>
+					<CheckBox Content="Permanent RO" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Margin="0,5" IsChecked="{Binding IsPermanentRO, Mode=TwoWay}"/>
+					<CheckBox Content="CC / CV" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="2" Margin="0,5" IsChecked="{Binding IsCCorCV, Mode=TwoWay}"/>
+					<CheckBox Content="CS" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="3" Margin="0,5" IsChecked="{Binding IsCS, Mode=TwoWay}"/>
+					<CheckBox Content="SS" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="4" Margin="0,5" IsChecked="{Binding IsSS, Mode=TwoWay}"/>
+                    <CheckBox x:Name="checkBox" Content="Other" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="5" Margin="0,5" IsChecked="{Binding IsOtherHearingIssue, Mode=TwoWay}"/>
+                    <TextBox HorizontalAlignment="Stretch" Height="23" TextWrapping="Wrap" Text="{Binding OtherHearingIssueText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Grid.Row="6" IsEnabled="{Binding IsChecked, ElementName=checkBox, FallbackValue=False, Mode=OneWay}"/>
+				</Grid>
+			</Border>
+            
+		</Grid>
+	</Border>
+</UserControl>

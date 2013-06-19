@@ -87,6 +87,27 @@ namespace FACCTS.Services.Data
             }
         }
 
+        public FACCTSConfiguration FacctsConfiguration
+        {
+            get
+            {
+                return FACCTSConfigurations.Configuration;
+            }
+        }
+
+        private List<CourtDepartmenets> _availableDepartments;
+        public List<CourtDepartmenets> AvailableDepartments
+        {
+            get
+            {
+                if (_availableDepartments == null)
+                {
+                    _availableDepartments = CourtDepartments.GetByCourtCountyId(this.FacctsConfiguration.CurrentCourtCounty_Id);
+                }
+                return _availableDepartments;
+            }
+        }
+
         protected void RaisePropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)

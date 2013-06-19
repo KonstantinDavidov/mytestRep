@@ -161,6 +161,8 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Partials\CourtCase.cs" />
+    <Compile Include="Entities\Partials\CourtCounty.cs" />
+    <Compile Include="Entities\Partials\CourtDepartmenets.cs" />
     <Compile Include="Entities\Partials\User.cs" />
     <Compile Include="Entities\ParticipantRole.cs">
       <DependentUpon>Model1.tt</DependentUpon>

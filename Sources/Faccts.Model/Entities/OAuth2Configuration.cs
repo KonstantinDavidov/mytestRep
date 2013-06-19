@@ -163,6 +163,79 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	public override bool Equals(System.Object obj)
+    	{
+    		// If parameter is null return false.
+            if (obj == null)
+            {
+                return false;
+            }
+    
+            // If parameter cannot be cast to Point return false.
+            OAuth2Configuration p = obj as OAuth2Configuration;
+            if ((System.Object)p == null)
+            {
+                return false;
+            }
+    
+    			if (this.Id != p.Id)
+    				return false;
+    			if (this.Enabled != p.Enabled)
+    				return false;
+    			if (this.EnableConsent != p.EnableConsent)
+    				return false;
+    			if (this.EnableResourceOwnerFlow != p.EnableResourceOwnerFlow)
+    				return false;
+    			if (this.EnableImplicitFlow != p.EnableImplicitFlow)
+    				return false;
+    			if (this.EnableCodeFlow != p.EnableCodeFlow)
+    				return false;
+    
+    		return true;
+    	}
+    
+    	public override int GetHashCode()
+    	{
+    		int hashCode = 1;
+    			
+    		hashCode ^= this.Id.GetHashCode();
+    		if (this.Id != null)
+    		{
+    			hashCode ^= this.Id.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.Enabled.GetHashCode();
+    		if (this.Enabled != null)
+    		{
+    			hashCode ^= this.Enabled.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.EnableConsent.GetHashCode();
+    		if (this.EnableConsent != null)
+    		{
+    			hashCode ^= this.EnableConsent.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.EnableResourceOwnerFlow.GetHashCode();
+    		if (this.EnableResourceOwnerFlow != null)
+    		{
+    			hashCode ^= this.EnableResourceOwnerFlow.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.EnableImplicitFlow.GetHashCode();
+    		if (this.EnableImplicitFlow != null)
+    		{
+    			hashCode ^= this.EnableImplicitFlow.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.EnableCodeFlow.GetHashCode();
+    		if (this.EnableCodeFlow != null)
+    		{
+    			hashCode ^= this.EnableCodeFlow.GetHashCode();
+    		}
+    		return hashCode;
+    	}
+    
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;
         private ObjectChangeTracker _changeTracker;

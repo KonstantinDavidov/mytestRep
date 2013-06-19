@@ -1,26 +1,36 @@
 ﻿using Caliburn.Micro;
 using Caliburn.Micro.ReactiveUI;
+using Faccts.Model.Entities;
 using FACCTS.Controls.Utils;
 using FACCTS.Services;
+using FACCTS.Services.Authentication;
+using FACCTS.Services.Data;
+using ReactiveUI;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.ComponentModel.Composition;
 using System.Linq;
+using System.Reactive.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FACCTS.Controls.ViewModels
 {
     [Export(typeof(CaseRecordViewModel))]
-    public class CaseRecordViewModel : ReactiveConductor<IScreen>.Collection.OneActive
+    public class CaseRecordViewModel : OneActiveViewModelBase
     {
         [ImportingConstructor]
         public CaseRecordViewModel(PersonalInformationViewModel personalInformation
             , ChildrenOtherProtectedViewModel childrenViewModel
             , AttorneysViewModel attorneysViewModel
             , WitnessInterpereterViewModel witnessInterprererViewModel
-            , RelatedCasesViewModel relatedCasesViewModel,
-              IWindowManager windowManager) : base()
+            , RelatedCasesViewModel relatedCasesViewModel
+            , IWindowManager windowManager
+            )
+            : base()
         {
             _windowManager = windowManager;
             this.DisplayName = "Case Record";
@@ -29,7 +39,70 @@ namespace FACCTS.Controls.ViewModels
             AttorneysViewModel = attorneysViewModel;
             WitnessInterpereterViewModel = witnessInterprererViewModel;
             RelatedCasesViewModel = relatedCasesViewModel;
+            Observable.Merge(
+                this.ObservableForProperty(x => x.IsActive),
+                this.ObservableForProperty(x => x.IsAuthenticated)
+                ).Subscribe(_ =>
+                {
+                    if (this.IsAuthenticated && this.IsActive)
+                    {
+                        this.Authorized();
+                    }
+                });
+            
             ActivateControl(0);
+        }
+
+        public override IDataContainer DataContainer
+        {
+            protected get
+            {
+                return base.DataContainer;
+            }
+            set
+            {
+                if (base.DataContainer != null)
+                {
+                    base.DataContainer.PropertyChanged -= DataContainerPropertyChanged;
+                }
+                base.DataContainer = value;
+                if (base.DataContainer != null)
+                {
+                    base.DataContainer.PropertyChanged += DataContainerPropertyChanged;
+                }
+            }
+        }
+
+        private void DataContainerPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+                if (e.PropertyName == "CourtCases")
+                {
+                    _courtCases = null;
+                    this.NotifyOfPropertyChange(() => CourtCases);
+                }
+        }
+
+        protected override void Authorized()
+        {
+            this.NotifyOfPropertyChange(() => CourtCases);
+        }
+
+        private ObservableCollection<CourtCase> _courtCases;
+        public ObservableCollection<CourtCase> CourtCases
+        {
+            get
+            {
+                if (IsAuthenticated && _courtCases == null)
+                {
+                    _courtCases = new ObservableCollection<CourtCase>(DataContainer.CourtCases);
+                }
+                return _courtCases;
+            }
+        }
+
+        private void _authenticationService_AuthenticationStatusChanged(object sender, AuthenticationStatusChangedEventArgs e)
+        {
+            this.IsAuthenticated = e.AuthenticationStatus == AuthenticationStatus.Authenticated;
         }
 
         private IWindowManager _windowManager;
@@ -68,5 +141,24 @@ namespace FACCTS.Controls.ViewModels
         {
             BusinessLogicHelper.CreateNewCase(ServiceLocatorContainer.Locator.GetInstance<NewCourtCaseDialogViewModel>(), _windowManager);
         }
+
+        private CourtCase _currentCourtCase;
+        public CourtCase CurrentCourtCase
+        {
+            get
+            {
+                return _currentCourtCase;
+            }
+            set
+            {
+                if (_currentCourtCase == value)
+                    return;
+
+                this.NotifyOfPropertyChanging();
+                _currentCourtCase = value;
+                this.NotifyOfPropertyChange();
+            }
+        }
+       
     }
 }

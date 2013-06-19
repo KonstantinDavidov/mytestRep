@@ -233,6 +233,7 @@
     <Compile Include="Controllers\CourtCountiesController.cs" />
     <Compile Include="Controllers\CourtDepartmentsController.cs" />
     <Compile Include="Controllers\EyesColorController.cs" />
+    <Compile Include="Controllers\FACCTSConfigurationController.cs" />
     <Compile Include="Controllers\HairColorController.cs" />
     <Compile Include="Controllers\InitialConfigurationController.cs" />
     <Compile Include="Controllers\OAuth2FacctsAuthorizeController.cs" />

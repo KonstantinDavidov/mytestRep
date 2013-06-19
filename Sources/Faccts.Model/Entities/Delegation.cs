@@ -133,6 +133,62 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	public override bool Equals(System.Object obj)
+    	{
+    		// If parameter is null return false.
+            if (obj == null)
+            {
+                return false;
+            }
+    
+            // If parameter cannot be cast to Point return false.
+            Delegation p = obj as Delegation;
+            if ((System.Object)p == null)
+            {
+                return false;
+            }
+    
+    			if (this.Id != p.Id)
+    				return false;
+    			if (this.UserName != p.UserName)
+    				return false;
+    			if (this.Realm != p.Realm)
+    				return false;
+    			if (this.Description != p.Description)
+    				return false;
+    
+    		return true;
+    	}
+    
+    	public override int GetHashCode()
+    	{
+    		int hashCode = 1;
+    			
+    		hashCode ^= this.Id.GetHashCode();
+    		if (this.Id != null)
+    		{
+    			hashCode ^= this.Id.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.UserName.GetHashCode();
+    		if (this.UserName != null)
+    		{
+    			hashCode ^= this.UserName.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.Realm.GetHashCode();
+    		if (this.Realm != null)
+    		{
+    			hashCode ^= this.Realm.GetHashCode();
+    		}
+     
+    		if (this.Description != null)
+    		{
+    			hashCode ^= this.Description.GetHashCode();
+    		}
+    		return hashCode;
+    	}
+    
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;
         private ObjectChangeTracker _changeTracker;

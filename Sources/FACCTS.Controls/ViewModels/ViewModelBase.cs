@@ -25,7 +25,7 @@ namespace FACCTS.Controls.ViewModels
             : this(ServiceLocatorContainer.Locator.GetInstance<IAuthenticationService>(),
                 ServiceLocatorContainer.Locator.GetInstance<IDataContainer>())
         {
-            this.WhenAny(x => x.IsAuthenticated, x => x.Value)
+            this.WhenAny(x => x.IsAuthenticated, x => x.IsActive, (x, y) => x.Value && y.Value)
                 .Subscribe(x =>
                 {
                     if (x)
@@ -34,6 +34,7 @@ namespace FACCTS.Controls.ViewModels
                         Authorized();
                     }
                 });
+            IsAuthenticated = _authenticationService.IsAuthenticated;
         }
 
         protected virtual void Authorized()
@@ -70,19 +71,6 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-        private string _title;
-        public virtual string Title
-        {
-            get
-            {
-                return _title;
-            }
-            set
-            {
-                this.RaiseAndSetIfChanged(ref _title, value);
-            }
-        }
-
         private bool _isValid;
         public virtual bool IsValid
         {
@@ -97,6 +85,11 @@ namespace FACCTS.Controls.ViewModels
         }
 
         public virtual IDataContainer DataContainer { get; private set; }
+
+        public virtual void Cancel()
+        {
+            TryClose(false);
+        }
         
     }
 }
