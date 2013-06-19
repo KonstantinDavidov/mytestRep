@@ -29,6 +29,7 @@
 
   <Model name="SeparateCaseDialogViewModel">
     <Property name="CaseNumber" type="string"/>
+    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
   </Model>
   
   <xs:schema 

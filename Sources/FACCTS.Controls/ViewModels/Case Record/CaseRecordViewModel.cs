@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Caliburn.Micro.ReactiveUI;
 using Faccts.Model.Entities;
+using FACCTS.Controls.Events;
 using FACCTS.Controls.Utils;
 using FACCTS.Services;
 using FACCTS.Services.Authentication;
@@ -19,9 +20,12 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Controls.ViewModels
 {
+    
     [Export(typeof(CaseRecordViewModel))]
     public class CaseRecordViewModel : OneActiveViewModelBase
     {
+        private IEventAggregator _eventAggregator;
+
         [ImportingConstructor]
         public CaseRecordViewModel(PersonalInformationViewModel personalInformation
             , ChildrenOtherProtectedViewModel childrenViewModel
@@ -29,6 +33,7 @@ namespace FACCTS.Controls.ViewModels
             , WitnessInterpereterViewModel witnessInterprererViewModel
             , RelatedCasesViewModel relatedCasesViewModel
             , IWindowManager windowManager
+            , IEventAggregator eventAggregator
             )
             : base()
         {
@@ -39,6 +44,7 @@ namespace FACCTS.Controls.ViewModels
             AttorneysViewModel = attorneysViewModel;
             WitnessInterpereterViewModel = witnessInterprererViewModel;
             RelatedCasesViewModel = relatedCasesViewModel;
+            _eventAggregator = eventAggregator;
             Observable.Merge(
                 this.ObservableForProperty(x => x.IsActive),
                 this.ObservableForProperty(x => x.IsAuthenticated)
@@ -156,6 +162,7 @@ namespace FACCTS.Controls.ViewModels
 
                 this.NotifyOfPropertyChanging();
                 _currentCourtCase = value;
+                _eventAggregator.Publish(new CurrentCourtCaseChangedEvent(_currentCourtCase));
                 this.NotifyOfPropertyChange();
             }
         }

@@ -125,6 +125,7 @@
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\InvertedBooleanConverter.cs" />
     <Compile Include="Converters\ObjectToBooleanConverter.cs" />
+    <Compile Include="Events\CurrentCourtCaseChangedEvent.cs" />
     <Compile Include="Interfaces\IPasswordSupplier.cs" />
     <Compile Include="IShell.cs" />
     <Compile Include="ViewModels\Case Record\SeparateCaseDialogViewModel.cs" />
