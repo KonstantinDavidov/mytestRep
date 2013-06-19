@@ -35,7 +35,7 @@
             },
 
             viewIds = {
-                courtstaff: '#courtstaff-view',
+                courtstaff: '#court-staff',
                 courtsettings: '#courtsettings-view'
             },
 

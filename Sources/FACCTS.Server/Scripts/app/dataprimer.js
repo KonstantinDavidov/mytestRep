@@ -11,7 +11,7 @@
                     var data = {
                         courtmember: ko.observable(),
                     };
-
+                    debugger;
                     $.when(
                         datacontext.courtmember.getData({ results: data.courtmember })
                     )
@@ -30,7 +30,9 @@
 
                     .fail(function () { def.reject(); })
 
-                    .done(function () { def.resolve(); });
+                    .done(function () {
+                        def.resolve();
+                    });
 
                 }).promise();
             };

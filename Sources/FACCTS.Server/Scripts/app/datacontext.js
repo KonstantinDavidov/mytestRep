@@ -61,6 +61,7 @@
                     },
                     getData = function (options) {
                         return $.Deferred(function (def) {
+                            debugger;
                             var results = options && options.results,
                                 sortFunction = options && options.sortFunction,
                                 filter = options && options.filter,
@@ -76,6 +77,7 @@
                             if (forceRefresh || !items || !utils.hasProperties(items)) {
                                 getFunction({
                                     success: function (dtoList) {
+                                        debugger;
                                         items = mapToContext(dtoList, items, results, mapper, filter, sortFunction);
                                         def.resolve(results);
                                     },
@@ -137,7 +139,7 @@
             //  dataservice's 'get' method
             //  model mapper
             //----------------------------------
-            courtmember = new EntitySet(dataservice.courtmember.getCourtMemberBriefs, modelmapper.courtmember, model.CourtMember.Nullo);
+            courtmember = new EntitySet(dataservice.courtmember.getCourtMemberBriefs, modelmapper.courtmemberbrief, model.CourtMember.Nullo);
 
         // extend courtmember enttityset 
         courtmember.getCourtmemberById = function (id, callbacks, forceRefresh) {
