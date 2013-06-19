@@ -232,6 +232,7 @@
     <Compile Include="Areas\Admin\Controllers\CourtMemberBriefController.cs" />
     <Compile Include="Controllers\CourtCountiesController.cs" />
     <Compile Include="Controllers\CourtDepartmentsController.cs" />
+    <Compile Include="Controllers\CourtroomsController.cs" />
     <Compile Include="Controllers\EyesColorController.cs" />
     <Compile Include="Controllers\FACCTSConfigurationController.cs" />
     <Compile Include="Controllers\HairColorController.cs" />

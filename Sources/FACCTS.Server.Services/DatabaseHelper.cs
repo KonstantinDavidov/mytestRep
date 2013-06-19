@@ -693,16 +693,82 @@ namespace FACCTS.Server.Data
         private static void SeedFacctsTestData(DatabaseContext context)
         {
             AddCourtMembers(context);
-            FACCTSConfiguration config = context.FACCTSConfiguration.FirstOrDefault();
-            if (config != null)
-            {
-                config = context.FACCTSConfiguration.Attach(config);
-                var currentCourtCounty = context.CourtCounties.FirstOrDefault(x => x.CourtCode == "01200");
-                currentCourtCounty = context.CourtCounties.Attach(currentCourtCounty);
-                config.CurrentCourtCounty = currentCourtCounty;
-            }
+            AddTestConfiguration(context);
+            AddtestCourtDepartments(context);
+            AddTestCourtLocations(context);
+        }
 
-            //context.Entry()
+        private static void AddTestCourtLocations(DatabaseContext context)
+        {
+            var cc = context.FACCTSConfiguration.First().CurrentCourtCounty;
+            List<CourtLocation> courtLocations = new List<CourtLocation>()
+            {
+                new CourtLocation()
+                {
+                    Description = "Main Court",
+                    Name = "Main CourtHouse",
+                    StreetAddress = "26323 South Alisio",
+                    PostalCode = "92034",
+                    City = "Alisio Viejo",
+                    Courtrooms = new List<Courtroom>()
+                    {
+                        new Courtroom()
+                        {
+                            RoomName = "Courtroom A"
+                        },
+                        new Courtroom()
+                        {
+                            RoomName = "Courtroom B"
+                        }
+                    }
+                },
+                new CourtLocation()
+                {
+                    Description = "South Court",
+                    Name = "South County Location" ,
+                    StreetAddress = "100 S Main Street",
+                    City = "Orange",
+                    PostalCode = "92111",
+                    Courtrooms = new List<Courtroom>()
+                    {
+                        new Courtroom()
+                        {
+                            RoomName = "Courtroom 1"
+                        }
+                    }
+                }
+            };
+            if (cc != null)
+            {
+                cc = context.CourtCounties.Attach(cc);
+                
+                courtLocations.ForEach(x =>
+                    {
+                        var proxy = context.CourtLocations.Create();
+                        proxy.Description = x.Description;
+                        proxy.Name = x.Name;
+                        proxy.StreetAddress = x.StreetAddress;
+                        proxy.PostalCode = x.PostalCode;
+                        proxy.City = x.City;
+                        context.Entry(cc).Collection(y => y.CourtLocations).Load();
+                        cc.CourtLocations.Add(proxy);
+                        //proxy = context.CourtLocations.Add(proxy);
+                        if (x.Courtrooms != null)
+                        {
+                            //context.Entry(proxy).Collection(y => y.Courtrooms).Load();
+                            proxy.Courtrooms = new HashSet<Courtroom>();
+                            foreach (var cr in x.Courtrooms)
+                            {
+                                context.Courtrooms.Add(cr);
+                                proxy.Courtrooms.Add(cr);
+                            }
+                        }
+                    });
+            }
+        }
+
+        private static void AddtestCourtDepartments(DatabaseContext context)
+        {
             List<CourtDepartment> departments = new List<CourtDepartment>()
             {
                 new CourtDepartment()
@@ -736,17 +802,29 @@ namespace FACCTS.Server.Data
             {
                 cc = context.CourtCounties.Attach(cc);
                 departments.ForEach(d =>
-                    {
-                        var proxy = context.CourtDepartments.Create();
-                        proxy.Name = d.Name;
-                        proxy.Room = d.Room;
-                        proxy.BranchOfficer = d.BranchOfficer;
-                        proxy.Reporter = d.Reporter;
-                        proxy = context.CourtDepartments.Add(proxy);
-                        context.Entry(cc).Collection(x => x.Departments).Load();
-                        cc.Departments.Add(proxy);
+                {
+                    var proxy = context.CourtDepartments.Create();
+                    proxy.Name = d.Name;
+                    proxy.Room = d.Room;
+                    proxy.BranchOfficer = d.BranchOfficer;
+                    proxy.Reporter = d.Reporter;
+                    proxy = context.CourtDepartments.Add(proxy);
+                    context.Entry(cc).Collection(x => x.Departments).Load();
+                    cc.Departments.Add(proxy);
 
-                    });
+                });
+            }
+        }
+
+        private static void AddTestConfiguration(DatabaseContext context)
+        {
+            FACCTSConfiguration config = context.FACCTSConfiguration.FirstOrDefault();
+            if (config != null)
+            {
+                config = context.FACCTSConfiguration.Attach(config);
+                var currentCourtCounty = context.CourtCounties.FirstOrDefault(x => x.CourtCode == "01200");
+                currentCourtCounty = context.CourtCounties.Attach(currentCourtCounty);
+                config.CurrentCourtCounty = currentCourtCounty;
             }
         }
         #endregion
