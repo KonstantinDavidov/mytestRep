@@ -107,6 +107,7 @@
                 }
                 sammy.run();
                 registerBeforeLeaving();
+                debugger;
                 navigateTo(startupUrl);
             };
 

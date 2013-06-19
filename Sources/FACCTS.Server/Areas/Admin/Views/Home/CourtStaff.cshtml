@@ -11,8 +11,8 @@
                         <td>User Role</td>
                     </tr>
                 </thead>
-                <tbody data-bind="foreach : sessionBriefs">
-                    <tr data-bind="click: $root.goToMail"">
+                <tbody data-bind="foreach: courtmembersbriefs">
+                    <tr class="active" data-bind ="css: { active: $data.userId == $root.selectedcourtmemberbriefid() }, click: $root.onselect">
                         <td data-bind="text: fullName"></td>
                         <td data-bind="text: email"></td>
                         <td data-bind="text: roleName"></td>

@@ -5,11 +5,14 @@
             ids = config.viewIds,
 
             bind = function () {
+                debugger;
                 ko.applyBindings(vm.courtstaff, getView(ids.courtstaff));
-                ko.applyBindings(vm.courtsettings, getView(ids.courtsettings));
+                vm.courtstaff.activate();
+                //ko.applyBindings(vm.courtsettings, getView(ids.courtsettings));
             },
 
             getView = function (viewName) {
+                debugger;
                 return $(viewName).get(0);
             };
 

@@ -10,7 +10,7 @@
 
                     // CourtStaff routes
                     {
-                        view: config.viewIds.favorites,
+                        view: config.viewIds.courtstaff,
                         routes: [
                             {
                                 isDefault: true,
@@ -22,17 +22,17 @@
                         ]
                     },
 
-                    // CourtSettings routes
-                    {
-                        view: config.viewIds.courtsettings,
-                        routes:
-                            [{
-                                route: config.hashes.courtsettings,
-                                title: 'Court Settings',
-                                callback: vm.courtsettings.activate,
-                                group: '.route-top'
-                            }]
-                    },
+                    //// CourtSettings routes
+                    //{
+                    //    view: config.viewIds.courtsettings,
+                    //    routes:
+                    //        [{
+                    //            route: config.hashes.courtsettings,
+                    //            title: 'Court Settings',
+                    //            callback: vm.courtsettings.activate,
+                    //            group: '.route-top'
+                    //        }]
+                    //},
 
                     // Invalid routes
                     {
