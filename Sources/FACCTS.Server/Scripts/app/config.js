@@ -1,6 +1,6 @@
 ﻿define('config',
-    ['toastr', 'mock/mock', 'infuser', 'ko'],
-    function (toastr, mock, infuser, ko) {
+    ['toastr', 'infuser', 'ko'],
+    function (toastr, infuser, ko) {
 
         var
             // properties

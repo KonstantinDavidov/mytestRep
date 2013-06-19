@@ -1,6 +1,7 @@
 ﻿define('model.mapper',
 ['model'],
-    function (model) {
+    function (model) 
+    {
         var courtmember = {
             getDtoId: function(dto) {
                 return dto.userId;
@@ -18,11 +19,12 @@
                 item.password(dto.password);
                 return item;
             }
-        },
+        };
         
-       courtmemberbrief = {
+       var courtmemberbrief = {
            getDtoId: function (dto) { return dto.userId; },
-           fromDto: function (dto, item) {
+           fromDto: function (dto, item) 
+           {
                item = item || new model.CourtMemberBrief().userId(dto.userId);
                item.fullName(dto.fullName);
                item.roleName(dto.roleName);
@@ -31,10 +33,9 @@
            }
        };
 
-        return
-        {
-            courtmember: courtmember,
-            courtmemberbrief: courtmemberbrief
+        return{
+            courtmember : courtmember,
+            courtmemberbrief : courtmemberbrief
         };
     }
 );

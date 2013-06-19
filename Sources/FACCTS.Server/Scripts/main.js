@@ -56,12 +56,12 @@ $(function () {
         return false;
     });
 
-    jUpdateProfileForm.validate({
-        submitHandler: function (form) {
-            copyFormData($(form), jProfileForm);
-            jDialog.dialog('close');
-        }
-    });
+    //jUpdateProfileForm.validate({
+    //    submitHandler: function (form) {
+    //        copyFormData($(form), jProfileForm);
+    //        jDialog.dialog('close');
+    //    }
+    //});
 });
 
 (function () {
@@ -88,8 +88,8 @@ $(function () {
         // Plugins must be loaded after jQuery and Knockout, 
         // since they depend on them.
         requirejs([
-                'ko.bindingHandlers',
-                'ko.debug.helpers'
+                //'ko.bindingHandlers',
+                //'ko.debug.helpers'
         ], boot);
     }
 

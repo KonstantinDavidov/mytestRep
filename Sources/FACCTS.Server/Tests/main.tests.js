@@ -38,8 +38,8 @@
         // we don't want those modules to know that they use plugins.
         requirejs([
                 // These plugins use "define" and we need to load them, so we kick them off here.
-                'ko.bindingHandlers',
-                'ko.debug.helpers'
+                //'ko.bindingHandlers',
+                //'ko.debug.helpers'
         ], boot);
     }
 

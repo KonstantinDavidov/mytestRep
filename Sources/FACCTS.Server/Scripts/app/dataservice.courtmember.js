@@ -4,15 +4,17 @@
         var
             init = function () {
 
+                var baseUrl = '/FACCTS.Server/Admin/api/';
+
                 amplify.request.define('courtMemberBriefs', 'ajax', {
-                    url: 'admin/api/CourtMemberBrief',
+                    url: baseUrl + 'CourtMemberBrief',
                     dataType: 'json',
                     type: 'GET'
                 });
 
                 // Pass Resource Id, Request Type, and Settings
-                amplify.request.define('courtMemberbyId', 'ajax', {
-                    url: 'admin/api/member/{id}',
+                amplify.request.define('courtMemberbyid', 'ajax', {
+                    url: baseUrl + '/memberbyid/{id}',
                     dataType: 'json',
                     type: 'GET'
                     //cache: true
@@ -21,7 +23,7 @@
                 });
                 // Pass Resource Id, Request Type, and Settings
                 amplify.request.define('courtMemberbyName', 'ajax', {
-                    url: 'admin/api/member/{id}',
+                    url: baseUrl + '/memberbyname/{name}',
                     dataType: 'json',
                     type: 'GET'
                     //cache: true
@@ -35,7 +37,7 @@
                 //    type: 'GET'
                 //});
 
-                //amplify.request.define('sessionUpdate', 'ajax', {
+                //amplify.request.define('courtMemberUpdate', 'ajax', {
                 //    url: '/api/sessions',
                 //    dataType: 'json',
                 //    type: 'PUT',
@@ -51,17 +53,18 @@
                 });
             },
 
-            //getSessionBriefs = function (callbacks) {
-            //    return amplify.request({
-            //        resourceId: 'session-briefs',
-            //        success: callbacks.success,
-            //        error: callbacks.error
-            //    });
-            //},
+           getCourtMemberByName = function (callbacks, name) {
+               return amplify.request({
+                   resourceId: 'courtMemberbyname',
+                   data: { name: name },
+                   success: callbacks.success,
+                   error: callbacks.error
+               });
+           },
 
-            getCourtMember = function (callbacks, id) {
+            getCourtMemberById = function (callbacks, id) {
                 return amplify.request({
-                    resourceId: 'courtMember',
+                    resourceId: 'courtMemberbyid',
                     data: { id: id },
                     success: callbacks.success,
                     error: callbacks.error
@@ -80,9 +83,8 @@
         init();
 
         return {
-            getSessions: getSessions,
-            getSessionBriefs: getSessionBriefs,
-            getSession: getSession,
-            updateSession: updateSession
+            getCourtMemberBriefs: getCourtMemberBriefs,
+            getCourtMemberByName: getCourtMemberByName,
+            getCourtMemberById: getCourtMemberById
         };
     });
