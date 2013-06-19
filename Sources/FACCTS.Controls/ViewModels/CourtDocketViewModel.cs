@@ -28,6 +28,7 @@ namespace FACCTS.Controls.ViewModels
                 .Subscribe(x =>
                 {
                     this.CanDropDismiss = x != null;
+                    this.CanReissue = x != null;
                 });
                 
                 
@@ -73,6 +74,13 @@ namespace FACCTS.Controls.ViewModels
         {
             var vm = ServiceLocatorContainer.Locator.GetInstance<DropDismissDialogViewModel>();
             vm.Dismiss = dismiss;
+            vm.CurrentCourtCase = CurrentCourtCase;
+            _windowManager.ShowDialog(vm);
+        }
+
+        public void Reissue()
+        {
+            var vm = ServiceLocatorContainer.Locator.GetInstance<ReissueCaseDialogViewModel>();
             vm.CurrentCourtCase = CurrentCourtCase;
             _windowManager.ShowDialog(vm);
         }

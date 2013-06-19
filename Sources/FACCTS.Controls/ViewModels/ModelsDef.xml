@@ -40,8 +40,30 @@
   
   <Model name="CourtDocketViewModel">
     <Property name="CanDropDismiss" type="bool"/>
+    <Property name="CanReissue" type="bool"/>
     <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
     <Property name="CalendarDate" type="DateTime?"/>
+  </Model>
+  
+  <Model name="ReissueCaseDialogViewModel">
+    <Property name="CaseNumber" type="string"/>
+    <Property name="NewCourtDate" type="DateTime?"/>
+    <Property name="Time" type="DateTime"/>
+    <Property name="Courtroom" type="Faccts.Model.Entities.Courtrooms"/>
+    <Property name="Department" type="Faccts.Model.Entities.CourtDepartmenets"/>
+    <Property name="NoPOS" type="bool"/>
+    <Property name="FCSReferral" type="bool"/>
+    <Property name="GetAttyToPrepare" type="bool"/>
+    <Property name="IsOtherReason" type="bool"/>
+    <Property name="OtherReason" type="string"/>
+    <Property name="ReissuanceAfterDays" type="int"/>
+    <Property name="PaperworkOnDays" type="int"/>
+    <Property name="NoServiceRequired" type="bool"/>
+    <Property name="ReissuanceOnSomeDaysBeforeHearing" type="bool"/>
+    <Property name="AllPaperworksOnSomeDaysBeforeHearing" type="bool"/>
+    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
+    <Property name="Courtrooms" type="Collection" collectionType="Faccts.Model.Entities.Courtrooms"/>
+    <Property name="Departments" type="Collection" collectionType="Faccts.Model.Entities.CourtDepartmenets"/>
   </Model>
   
   <xs:schema 

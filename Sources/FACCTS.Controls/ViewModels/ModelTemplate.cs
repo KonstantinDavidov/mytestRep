@@ -278,6 +278,17 @@ namespace FACCTS.Controls.ViewModels
 			}
 		}
 		
+		private bool _canReissue;
+		public bool CanReissue
+		{
+			get{return _canReissue;}
+			set{
+				if(_canReissue!=value){
+					this.RaiseAndSetIfChanged(ref _canReissue, value);
+				}
+			}
+		}
+		
 		private Faccts.Model.Entities.CourtCase _currentCourtCase;
 		public Faccts.Model.Entities.CourtCase CurrentCourtCase
 		{
@@ -296,6 +307,209 @@ namespace FACCTS.Controls.ViewModels
 			set{
 				if(_calendarDate!=value){
 					this.RaiseAndSetIfChanged(ref _calendarDate, value);
+				}
+			}
+		}
+				
+	}
+	
+			
+	public partial class ReissueCaseDialogViewModel
+	{
+		private string _caseNumber;
+		public string CaseNumber
+		{
+			get{return _caseNumber;}
+			set{
+				if(_caseNumber!=value){
+					this.RaiseAndSetIfChanged(ref _caseNumber, value);
+				}
+			}
+		}
+		
+		private DateTime? _newCourtDate;
+		public DateTime? NewCourtDate
+		{
+			get{return _newCourtDate;}
+			set{
+				if(_newCourtDate!=value){
+					this.RaiseAndSetIfChanged(ref _newCourtDate, value);
+				}
+			}
+		}
+		
+		private DateTime _time;
+		public DateTime Time
+		{
+			get{return _time;}
+			set{
+				if(_time!=value){
+					this.RaiseAndSetIfChanged(ref _time, value);
+				}
+			}
+		}
+		
+		private Faccts.Model.Entities.Courtrooms _courtroom;
+		public Faccts.Model.Entities.Courtrooms Courtroom
+		{
+			get{return _courtroom;}
+			set{
+				if(_courtroom!=value){
+					this.RaiseAndSetIfChanged(ref _courtroom, value);
+				}
+			}
+		}
+		
+		private Faccts.Model.Entities.CourtDepartmenets _department;
+		public Faccts.Model.Entities.CourtDepartmenets Department
+		{
+			get{return _department;}
+			set{
+				if(_department!=value){
+					this.RaiseAndSetIfChanged(ref _department, value);
+				}
+			}
+		}
+		
+		private bool _noPOS;
+		public bool NoPOS
+		{
+			get{return _noPOS;}
+			set{
+				if(_noPOS!=value){
+					this.RaiseAndSetIfChanged(ref _noPOS, value);
+				}
+			}
+		}
+		
+		private bool _fCSReferral;
+		public bool FCSReferral
+		{
+			get{return _fCSReferral;}
+			set{
+				if(_fCSReferral!=value){
+					this.RaiseAndSetIfChanged(ref _fCSReferral, value);
+				}
+			}
+		}
+		
+		private bool _getAttyToPrepare;
+		public bool GetAttyToPrepare
+		{
+			get{return _getAttyToPrepare;}
+			set{
+				if(_getAttyToPrepare!=value){
+					this.RaiseAndSetIfChanged(ref _getAttyToPrepare, value);
+				}
+			}
+		}
+		
+		private bool _isOtherReason;
+		public bool IsOtherReason
+		{
+			get{return _isOtherReason;}
+			set{
+				if(_isOtherReason!=value){
+					this.RaiseAndSetIfChanged(ref _isOtherReason, value);
+				}
+			}
+		}
+		
+		private string _otherReason;
+		public string OtherReason
+		{
+			get{return _otherReason;}
+			set{
+				if(_otherReason!=value){
+					this.RaiseAndSetIfChanged(ref _otherReason, value);
+				}
+			}
+		}
+		
+		private int _reissuanceAfterDays;
+		public int ReissuanceAfterDays
+		{
+			get{return _reissuanceAfterDays;}
+			set{
+				if(_reissuanceAfterDays!=value){
+					this.RaiseAndSetIfChanged(ref _reissuanceAfterDays, value);
+				}
+			}
+		}
+		
+		private int _paperworkOnDays;
+		public int PaperworkOnDays
+		{
+			get{return _paperworkOnDays;}
+			set{
+				if(_paperworkOnDays!=value){
+					this.RaiseAndSetIfChanged(ref _paperworkOnDays, value);
+				}
+			}
+		}
+		
+		private bool _noServiceRequired;
+		public bool NoServiceRequired
+		{
+			get{return _noServiceRequired;}
+			set{
+				if(_noServiceRequired!=value){
+					this.RaiseAndSetIfChanged(ref _noServiceRequired, value);
+				}
+			}
+		}
+		
+		private bool _reissuanceOnSomeDaysBeforeHearing;
+		public bool ReissuanceOnSomeDaysBeforeHearing
+		{
+			get{return _reissuanceOnSomeDaysBeforeHearing;}
+			set{
+				if(_reissuanceOnSomeDaysBeforeHearing!=value){
+					this.RaiseAndSetIfChanged(ref _reissuanceOnSomeDaysBeforeHearing, value);
+				}
+			}
+		}
+		
+		private bool _allPaperworksOnSomeDaysBeforeHearing;
+		public bool AllPaperworksOnSomeDaysBeforeHearing
+		{
+			get{return _allPaperworksOnSomeDaysBeforeHearing;}
+			set{
+				if(_allPaperworksOnSomeDaysBeforeHearing!=value){
+					this.RaiseAndSetIfChanged(ref _allPaperworksOnSomeDaysBeforeHearing, value);
+				}
+			}
+		}
+		
+		private Faccts.Model.Entities.CourtCase _currentCourtCase;
+		public Faccts.Model.Entities.CourtCase CurrentCourtCase
+		{
+			get{return _currentCourtCase;}
+			set{
+				if(_currentCourtCase!=value){
+					this.RaiseAndSetIfChanged(ref _currentCourtCase, value);
+				}
+			}
+		}
+		
+		private ObservableCollection<Faccts.Model.Entities.Courtrooms> _courtrooms;
+		public ObservableCollection<Faccts.Model.Entities.Courtrooms> Courtrooms
+		{
+			get{return _courtrooms;}
+			set{
+				if(_courtrooms!=value){
+					this.RaiseAndSetIfChanged(ref _courtrooms, value);
+				}
+			}
+		}
+		
+		private ObservableCollection<Faccts.Model.Entities.CourtDepartmenets> _departments;
+		public ObservableCollection<Faccts.Model.Entities.CourtDepartmenets> Departments
+		{
+			get{return _departments;}
+			set{
+				if(_departments!=value){
+					this.RaiseAndSetIfChanged(ref _departments, value);
 				}
 			}
 		}

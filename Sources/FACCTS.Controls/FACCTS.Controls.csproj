@@ -145,6 +145,7 @@
     <Compile Include="ViewModels\Case Record\CaseRecordViewModel.cs" />
     <Compile Include="ViewModels\NewCourtCaseDialogViewModel.cs" />
     <Compile Include="ViewModels\OneActiveViewModelBase.cs" />
+    <Compile Include="ViewModels\ReissueCaseDialogViewModel.cs" />
     <Compile Include="ViewModels\UserLoginDialogViewModel.cs" />
     <Compile Include="Views\AddToCourtDocketDialogView.xaml.cs">
       <DependentUpon>AddToCourtDocketDialogView.xaml</DependentUpon>
@@ -218,6 +219,9 @@
     <Compile Include="Views\Controls\ModalDialogViews\NewCourtDateControlView.xaml.cs">
       <DependentUpon>NewCourtDateControlView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\ModalDialogViews\ReissueCaseControlView.xaml.cs">
+      <DependentUpon>ReissueCaseControlView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\PartyControlView.xaml.cs">
       <DependentUpon>PartyControlView.xaml</DependentUpon>
     </Compile>
@@ -251,11 +255,11 @@
     <Compile Include="Views\Case Record\PersonalInformationView.xaml.cs">
       <DependentUpon>PersonalInformationView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ReissuanceDialogView.xaml.cs">
-      <DependentUpon>ReissuanceDialogView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Controls\ModalDialogViews\ShowExceptionControlView.xaml.cs">
       <DependentUpon>ShowExceptionControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReissueCaseDialogView.xaml.cs">
+      <DependentUpon>ReissueCaseDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShowExceptionDialogView.xaml.cs">
       <DependentUpon>ShowExceptionDialogView.xaml</DependentUpon>
@@ -370,6 +374,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Controls\ModalDialogViews\ReissueCaseControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Controls\PartyControlView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -414,11 +422,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ReissuanceDialogView.xaml">
+    <Page Include="Views\Controls\ModalDialogViews\ShowExceptionControlView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Controls\ModalDialogViews\ShowExceptionControlView.xaml">
+    <Page Include="Views\ReissueCaseDialogView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -484,9 +492,13 @@
     <Resource Include="Resources\Images\alert.png" />
     <Content Include="ViewModels\ModelsDef.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Fonts\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.7\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.7\tools\Microsoft.Bcl.Build.targets')" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.5\Microsoft.Expression.Blend.WPF.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

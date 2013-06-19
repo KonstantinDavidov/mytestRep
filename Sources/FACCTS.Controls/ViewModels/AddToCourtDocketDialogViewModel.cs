@@ -21,6 +21,9 @@ namespace FACCTS.Controls.ViewModels
             if (this.IsAuthenticated && this.Departments == null)
             {
                 this.Departments = new ObservableCollection<CourtDepartmenets>(DataContainer.AvailableDepartments);
+            }
+            if (this.IsAuthenticated && this.Courtrooms == null)
+            {
                 this.Courtrooms = new ObservableCollection<Courtrooms>(DataContainer.AvailableCourtrooms);
             }
         }
