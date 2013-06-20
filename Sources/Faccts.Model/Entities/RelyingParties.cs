@@ -349,60 +349,38 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.Name.GetHashCode();
     		if (this.Name != null)
     		{
     			hashCode ^= this.Name.GetHashCode();
     		}
     			
     		hashCode ^= this.Enabled.GetHashCode();
-    		if (this.Enabled != null)
-    		{
-    			hashCode ^= this.Enabled.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.Realm.GetHashCode();
     		if (this.Realm != null)
     		{
     			hashCode ^= this.Realm.GetHashCode();
     		}
     			
     		hashCode ^= this.TokenLifeTime.GetHashCode();
-    		if (this.TokenLifeTime != null)
-    		{
-    			hashCode ^= this.TokenLifeTime.GetHashCode();
-    		}
-     
     		if (this.ReplyTo != null)
     		{
     			hashCode ^= this.ReplyTo.GetHashCode();
     		}
-     
     		if (this.EncryptingCertificate != null)
     		{
     			hashCode ^= this.EncryptingCertificate.GetHashCode();
     		}
-     
     		if (this.SymmetricSigningKey != null)
     		{
     			hashCode ^= this.SymmetricSigningKey.GetHashCode();
     		}
-     
     		if (this.ExtraData1 != null)
     		{
     			hashCode ^= this.ExtraData1.GetHashCode();
     		}
-     
     		if (this.ExtraData2 != null)
     		{
     			hashCode ^= this.ExtraData2.GetHashCode();
     		}
-     
     		if (this.ExtraData3 != null)
     		{
     			hashCode ^= this.ExtraData3.GetHashCode();

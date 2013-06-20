@@ -203,20 +203,12 @@ namespace Faccts.Model.Entities
     	public override int GetHashCode()
     	{
     		int hashCode = 1;
-    			
-    		hashCode ^= this.MigrationId.GetHashCode();
     		if (this.MigrationId != null)
     		{
     			hashCode ^= this.MigrationId.GetHashCode();
     		}
     			
     		hashCode ^= this.Model.GetHashCode();
-    		if (this.Model != null)
-    		{
-    			hashCode ^= this.Model.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.ProductVersion.GetHashCode();
     		if (this.ProductVersion != null)
     		{
     			hashCode ^= this.ProductVersion.GetHashCode();

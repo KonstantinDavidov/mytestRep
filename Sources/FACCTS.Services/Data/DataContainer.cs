@@ -134,6 +134,16 @@ namespace FACCTS.Services.Data
             }
         }
 
+        public void UpdateDictionaries()
+        {
+            RaisePropertyChanged(() => Sexes);
+            RaisePropertyChanged(() => HairColors);
+            RaisePropertyChanged(() => EyesColors);
+            RaisePropertyChanged(() => Races);
+            RaisePropertyChanged(() => Designations);
+            RaisePropertyChanged(() => ParticipantRoles);
+        }
+
         public FACCTSConfiguration FacctsConfiguration
         {
             get

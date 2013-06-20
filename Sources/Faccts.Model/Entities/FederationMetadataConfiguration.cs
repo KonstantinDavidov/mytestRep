@@ -187,16 +187,8 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
     			
     		hashCode ^= this.Enabled.GetHashCode();
-    		if (this.Enabled != null)
-    		{
-    			hashCode ^= this.Enabled.GetHashCode();
-    		}
     		return hashCode;
     	}
     

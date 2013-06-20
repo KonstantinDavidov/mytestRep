@@ -367,67 +367,34 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
     			
     		hashCode ^= this.Enabled.GetHashCode();
-    		if (this.Enabled != null)
-    		{
-    			hashCode ^= this.Enabled.GetHashCode();
-    		}
     			
     		hashCode ^= this.UsernameAuthenticationEnabled.GetHashCode();
-    		if (this.UsernameAuthenticationEnabled != null)
-    		{
-    			hashCode ^= this.UsernameAuthenticationEnabled.GetHashCode();
-    		}
     			
     		hashCode ^= this.SamlAuthenticationEnabled.GetHashCode();
-    		if (this.SamlAuthenticationEnabled != null)
-    		{
-    			hashCode ^= this.SamlAuthenticationEnabled.GetHashCode();
-    		}
     			
     		hashCode ^= this.JwtAuthenticationEnabled.GetHashCode();
-    		if (this.JwtAuthenticationEnabled != null)
-    		{
-    			hashCode ^= this.JwtAuthenticationEnabled.GetHashCode();
-    		}
     			
     		hashCode ^= this.PassThruAuthenticationToken.GetHashCode();
-    		if (this.PassThruAuthenticationToken != null)
-    		{
-    			hashCode ^= this.PassThruAuthenticationToken.GetHashCode();
-    		}
     			
     		hashCode ^= this.AuthenticationTokenLifetime.GetHashCode();
-    		if (this.AuthenticationTokenLifetime != null)
-    		{
-    			hashCode ^= this.AuthenticationTokenLifetime.GetHashCode();
-    		}
-     
     		if (this.UserNameAuthenticationEndpoint != null)
     		{
     			hashCode ^= this.UserNameAuthenticationEndpoint.GetHashCode();
     		}
-     
     		if (this.FederationEndpoint != null)
     		{
     			hashCode ^= this.FederationEndpoint.GetHashCode();
     		}
-     
     		if (this.IssuerUri != null)
     		{
     			hashCode ^= this.IssuerUri.GetHashCode();
     		}
-     
     		if (this.IssuerThumbprint != null)
     		{
     			hashCode ^= this.IssuerThumbprint.GetHashCode();
     		}
-     
     		if (this.EncryptionCertificate != null)
     		{
     			hashCode ^= this.EncryptionCertificate.GetHashCode();

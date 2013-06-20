@@ -405,26 +405,18 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
-     
     		if (this.court_code != null)
     		{
     			hashCode ^= this.court_code.GetHashCode();
     		}
-     
     		if (this.county != null)
     		{
     			hashCode ^= this.county.GetHashCode();
     		}
-     
     		if (this.court_name != null)
     		{
     			hashCode ^= this.court_name.GetHashCode();
     		}
-     
     		if (this.location != null)
     		{
     			hashCode ^= this.location.GetHashCode();

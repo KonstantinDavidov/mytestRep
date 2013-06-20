@@ -211,6 +211,7 @@
     <Compile Include="Entities\Partials\CourtCase.cs" />
     <Compile Include="Entities\Partials\CourtCounty.cs" />
     <Compile Include="Entities\Partials\CourtDepartmenets.cs" />
+    <Compile Include="Entities\Partials\CourtParty.cs" />
     <Compile Include="Entities\Partials\Courtrooms.cs" />
     <Compile Include="Entities\Partials\EyesColor.cs" />
     <Compile Include="Entities\Partials\HairColor.cs" />

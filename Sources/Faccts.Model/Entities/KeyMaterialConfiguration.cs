@@ -241,26 +241,18 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
-     
     		if (this.SigningCertificateName != null)
     		{
     			hashCode ^= this.SigningCertificateName.GetHashCode();
     		}
-     
     		if (this.DecryptionCertificateName != null)
     		{
     			hashCode ^= this.DecryptionCertificateName.GetHashCode();
     		}
-     
     		if (this.RSASigningKey != null)
     		{
     			hashCode ^= this.RSASigningKey.GetHashCode();
     		}
-     
     		if (this.SymmetricSigningKey != null)
     		{
     			hashCode ^= this.SymmetricSigningKey.GetHashCode();

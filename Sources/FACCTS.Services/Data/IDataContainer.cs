@@ -23,5 +23,6 @@ namespace FACCTS.Services.Data
         List<ParticipantRole> ParticipantRoles { get; }
 
         void SearchCourtCases(bool reset = false);
+        void UpdateDictionaries();
     }
 }

@@ -694,106 +694,72 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.Username.GetHashCode();
     		if (this.Username != null)
     		{
     			hashCode ^= this.Username.GetHashCode();
     		}
-     
     		if (this.Email != null)
     		{
     			hashCode ^= this.Email.GetHashCode();
     		}
-    			
-    		hashCode ^= this.Password.GetHashCode();
     		if (this.Password != null)
     		{
     			hashCode ^= this.Password.GetHashCode();
     		}
-     
     		if (this.FirstName != null)
     		{
     			hashCode ^= this.FirstName.GetHashCode();
     		}
-     
     		if (this.LastName != null)
     		{
     			hashCode ^= this.LastName.GetHashCode();
     		}
-     
     		if (this.MiddleName != null)
     		{
     			hashCode ^= this.MiddleName.GetHashCode();
     		}
-     
     		if (this.Comment != null)
     		{
     			hashCode ^= this.Comment.GetHashCode();
     		}
     			
     		hashCode ^= this.IsApproved.GetHashCode();
-    		if (this.IsApproved != null)
-    		{
-    			hashCode ^= this.IsApproved.GetHashCode();
-    		}
     			
     		hashCode ^= this.PasswordFailuresSinceLastSuccess.GetHashCode();
-    		if (this.PasswordFailuresSinceLastSuccess != null)
-    		{
-    			hashCode ^= this.PasswordFailuresSinceLastSuccess.GetHashCode();
-    		}
-     
     		if (this.LastPasswordFailureDate != null)
     		{
     			hashCode ^= this.LastPasswordFailureDate.GetHashCode();
     		}
-     
     		if (this.LastActivityDate != null)
     		{
     			hashCode ^= this.LastActivityDate.GetHashCode();
     		}
-     
     		if (this.LastLockoutDate != null)
     		{
     			hashCode ^= this.LastLockoutDate.GetHashCode();
     		}
-     
     		if (this.LastLoginDate != null)
     		{
     			hashCode ^= this.LastLoginDate.GetHashCode();
     		}
-     
     		if (this.ConfirmationToken != null)
     		{
     			hashCode ^= this.ConfirmationToken.GetHashCode();
     		}
-     
     		if (this.CreateDate != null)
     		{
     			hashCode ^= this.CreateDate.GetHashCode();
     		}
     			
     		hashCode ^= this.IsLockedOut.GetHashCode();
-    		if (this.IsLockedOut != null)
-    		{
-    			hashCode ^= this.IsLockedOut.GetHashCode();
-    		}
-     
     		if (this.LastPasswordChangedDate != null)
     		{
     			hashCode ^= this.LastPasswordChangedDate.GetHashCode();
     		}
-     
     		if (this.PasswordVerificationToken != null)
     		{
     			hashCode ^= this.PasswordVerificationToken.GetHashCode();
     		}
-     
     		if (this.PasswordVerificationTokenExpirationDate != null)
     		{
     			hashCode ^= this.PasswordVerificationTokenExpirationDate.GetHashCode();

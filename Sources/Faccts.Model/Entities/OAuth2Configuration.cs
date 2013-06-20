@@ -259,40 +259,16 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
     			
     		hashCode ^= this.Enabled.GetHashCode();
-    		if (this.Enabled != null)
-    		{
-    			hashCode ^= this.Enabled.GetHashCode();
-    		}
     			
     		hashCode ^= this.EnableConsent.GetHashCode();
-    		if (this.EnableConsent != null)
-    		{
-    			hashCode ^= this.EnableConsent.GetHashCode();
-    		}
     			
     		hashCode ^= this.EnableResourceOwnerFlow.GetHashCode();
-    		if (this.EnableResourceOwnerFlow != null)
-    		{
-    			hashCode ^= this.EnableResourceOwnerFlow.GetHashCode();
-    		}
     			
     		hashCode ^= this.EnableImplicitFlow.GetHashCode();
-    		if (this.EnableImplicitFlow != null)
-    		{
-    			hashCode ^= this.EnableImplicitFlow.GetHashCode();
-    		}
     			
     		hashCode ^= this.EnableCodeFlow.GetHashCode();
-    		if (this.EnableCodeFlow != null)
-    		{
-    			hashCode ^= this.EnableCodeFlow.GetHashCode();
-    		}
     		return hashCode;
     	}
     

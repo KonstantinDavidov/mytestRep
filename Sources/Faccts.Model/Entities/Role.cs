@@ -301,27 +301,16 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.RoleName.GetHashCode();
     		if (this.RoleName != null)
     		{
     			hashCode ^= this.RoleName.GetHashCode();
     		}
-     
     		if (this.Description != null)
     		{
     			hashCode ^= this.Description.GetHashCode();
     		}
     			
     		hashCode ^= this.IsIdentityServerUser.GetHashCode();
-    		if (this.IsIdentityServerUser != null)
-    		{
-    			hashCode ^= this.IsIdentityServerUser.GetHashCode();
-    		}
     		return hashCode;
     	}
     

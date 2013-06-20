@@ -8,6 +8,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
+using FACCTS.Services;
+using FACCTS.Services.Authentication;
+using FACCTS.Services.Data;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -16,7 +19,10 @@ namespace FACCTS.Controls.ViewModels
     {
         private IEventAggregator _eventAggregator;
 
-        public PersonalInformationViewModel() : base()
+        public PersonalInformationViewModel() : base(
+            ServiceLocatorContainer.Locator.GetInstance<IAuthenticationService>()
+            , ServiceLocatorContainer.Locator.GetInstance<IDataContainer>()
+            )
         {
             this.WhenAny(x => x.CurrentCourtCase, x => x.Value)
                 .Subscribe(x =>
@@ -32,6 +38,11 @@ namespace FACCTS.Controls.ViewModels
             _eventAggregator.Subscribe(this);
             this.DisplayName = "Personal Information";
             
+        }
+
+        protected override void Authorized()
+        {
+            base.Authorized();
         }
 
         public void Handle(CurrentCourtCaseChangedEvent message)
@@ -50,5 +61,6 @@ namespace FACCTS.Controls.ViewModels
                 return null;
             }
         }
+        
     }
 }

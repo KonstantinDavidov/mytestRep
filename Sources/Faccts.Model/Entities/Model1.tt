@@ -486,12 +486,12 @@ foreach (EntityType entity in code.GetItemsToGenerate<EntityType>(ItemCollection
 <#
 		foreach (EdmProperty edmProperty in entity.Properties.Where(p => p.TypeUsage.EdmType is SimpleType && p.DeclaringType == entity))
 		{
-			if (!ef.IsNullable(edmProperty))
+			if (!(edmProperty.Nullable || ((PrimitiveType)edmProperty.TypeUsage.EdmType).PrimitiveTypeKind == PrimitiveTypeKind.String))
 			{
 #>			
 		hashCode ^= this.<#=code.Escape(edmProperty)#>.GetHashCode();
-<#			} else #> 
-<#			{ #>
+<#			} else  
+			{ #>
 		if (this.<#=code.Escape(edmProperty)#> != null)
 		{
 			hashCode ^= this.<#=code.Escape(edmProperty)#>.GetHashCode();

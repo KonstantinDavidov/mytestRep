@@ -1037,51 +1037,38 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
-     
     		if (this.Judge != null)
     		{
     			hashCode ^= this.Judge.GetHashCode();
     		}
-     
     		if (this.Party1_Id != null)
     		{
     			hashCode ^= this.Party1_Id.GetHashCode();
     		}
-     
     		if (this.Party2_Id != null)
     		{
     			hashCode ^= this.Party2_Id.GetHashCode();
     		}
-     
     		if (this.AttorneyForParty1_Id != null)
     		{
     			hashCode ^= this.AttorneyForParty1_Id.GetHashCode();
     		}
-     
     		if (this.AttorneyForParty2_Id != null)
     		{
     			hashCode ^= this.AttorneyForParty2_Id.GetHashCode();
     		}
-     
     		if (this.AttorneyForChild_Id != null)
     		{
     			hashCode ^= this.AttorneyForChild_Id.GetHashCode();
     		}
-     
     		if (this.CourtCounty_Id != null)
     		{
     			hashCode ^= this.CourtCounty_Id.GetHashCode();
     		}
-     
     		if (this.CourtDepartment_Id != null)
     		{
     			hashCode ^= this.CourtDepartment_Id.GetHashCode();
     		}
-     
     		if (this.CaseRecord_Id != null)
     		{
     			hashCode ^= this.CaseRecord_Id.GetHashCode();

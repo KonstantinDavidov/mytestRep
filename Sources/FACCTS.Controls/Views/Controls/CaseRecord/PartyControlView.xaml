@@ -4,12 +4,20 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:ext="clr-namespace:FACCTS.Controls.MarkupExtension"
+    xmlns:fs="clr-namespace:FACCTS.Services.Data;assembly=FACCTS.Services"
 	mc:Ignorable="d"
 	x:Class="FACCTS.Controls.Views.Controls.PartyControlView"
 	x:Name="UserControl"
 	d:DesignWidth="665.12" d:DesignHeight="234.382"
 	>
-
+    <UserControl.Resources>
+        <ext:MefPartExtension InstanceType="{x:Type fs:IDataContainer}" x:Key="DataContainer"/>
+        <CollectionViewSource x:Key="cvsSex" Source="{Binding Source={StaticResource DataContainer}, Path=Sexes, Mode=OneWay}"/>
+        <CollectionViewSource x:Key="cvsHair" Source="{Binding Source={StaticResource DataContainer}, Path=HairColors, Mode=OneWay}"/>
+        <CollectionViewSource x:Key="cvsEyes" Source="{Binding Source={StaticResource DataContainer}, Path=EyesColors, Mode=OneWay}"/>
+        <CollectionViewSource x:Key="cvsraces" Source="{Binding Source={StaticResource DataContainer}, Path=Races, Mode=OneWay}"/>
+    </UserControl.Resources>
 	<Grid x:Name="LayoutRoot">
 		<GroupBox Header="{Binding Title, ElementName=UserControl, Mode=OneWay}" Grid.IsSharedSizeScope="True">
 			<Grid>
@@ -38,11 +46,11 @@
 						<TextBox TextWrapping="Wrap" Text="{Binding MiddleName, FallbackValue=Ivanovich, Mode=TwoWay}" Grid.Column="2" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Middle Name"/>
 						<TextBox TextWrapping="Wrap" Text="{Binding LastName, FallbackValue=Obama, Mode=TwoWay}" VerticalAlignment="Center" Grid.Column="3" Tag="Last Name" Style="{DynamicResource TextBoxWithAdorner}"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Designation" VerticalAlignment="Center" Grid.Column="4"/>
-						<ComboBox Grid.Column="5" VerticalAlignment="Center"/>
+						<ComboBox Grid.Column="5" VerticalAlignment="Center" SelectedItem="{Binding Designation, Mode=TwoWay}" DisplayMemberPath="DesignationName"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Description" Margin="0,0,0,7.999" Grid.Row="1" VerticalAlignment="Center"/>
 						<TextBox TextWrapping="Wrap" Text="{Binding Description, FallbackValue=Some Description, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Please type the description"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Participant Role" VerticalAlignment="Center" Grid.Row="1" Grid.Column="4"/>
-						<ComboBox Grid.Row="1" Grid.Column="5" VerticalAlignment="Center"/>
+						<ComboBox Grid.Row="1" Grid.Column="5" VerticalAlignment="Center" SelectedItem="{Binding ParticipantRole, Mode=OneWay}" DisplayMemberPath="ParticipantRoleName"/>
 					</Grid>
 				</Border>
 				<Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Margin="0" Grid.Row="1">
@@ -89,13 +97,13 @@
 							<RowDefinition/>
 						</Grid.RowDefinitions>
 						<TextBlock Margin="0,0,0,-0.001" TextWrapping="Wrap" Text="Sex" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-						<ComboBox Margin="0,0,0,-0.001" Grid.Column="1" VerticalAlignment="Center"/>
+                        <ComboBox Margin="0,0,0,-0.001" Grid.Column="1" VerticalAlignment="Center" ItemsSource="{Binding IsAsync=True, Mode=OneWay, Source={StaticResource cvsSex}}" SelectedItem="{Binding Sex, Mode=TwoWay}" DisplayMemberPath="SexName"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Hair" VerticalAlignment="Center" Grid.Column="2"/>
-						<ComboBox Margin="0,0,0,-0.001" VerticalAlignment="Center" Grid.Column="3"/>
+						<ComboBox Margin="0,0,0,-0.001" VerticalAlignment="Center" Grid.Column="3" ItemsSource="{Binding IsAsync=True, Mode=OneWay, Source={StaticResource cvsHair}}" SelectedItem="{Binding HairColor, Mode=TwoWay}" DisplayMemberPath="Color"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Eyes" VerticalAlignment="Center" Grid.Column="4"/>
-						<ComboBox Margin="0,0,0,-0.001" VerticalAlignment="Center" Grid.Column="5"/>
+						<ComboBox Margin="0,0,0,-0.001" VerticalAlignment="Center" Grid.Column="5" ItemsSource="{Binding IsAsync=True, Mode=OneWay, Source={StaticResource cvsEyes}}" SelectedItem="{Binding EyesColor, Mode=TwoWay}" DisplayMemberPath="Color"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="1"><Run Text="Race"/></TextBlock>
-						<ComboBox Margin="0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+						<ComboBox Margin="0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" ItemsSource="{Binding IsAsync=True, Mode=OneWay, Source={StaticResource cvsraces}}" SelectedItem="{Binding Race, Mode=TwoWay}" DisplayMemberPath="RaceName"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Weight" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center"/>
 						<xctk:IntegerUpDown Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Value="{Binding Weight, FallbackValue=0, Mode=TwoWay}"/>
 						<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Height" VerticalAlignment="Center" Grid.Row="1" Grid.Column="4"/>
@@ -106,7 +114,7 @@
 							<TextBlock TextWrapping="Wrap" Text="Ins." VerticalAlignment="Center"/>
 						</StackPanel>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Date of Birth" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2"/>
-						<DatePicker Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" SelectedDate="{Binding DateOfBirth, Mode=TwoWay}"/>
+						<DatePicker Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" SelectedDate="{Binding DateOfBirthNullable}"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Age" VerticalAlignment="Center" Grid.Row="2" Grid.Column="4"/>
 						<StackPanel Grid.RowSpan="3" Grid.Row="2" Grid.Column="5" Orientation="Horizontal" VerticalAlignment="Center">
 							<xctk:IntegerUpDown Width="114.175" Value="{Binding Age, FallbackValue=20, Mode=TwoWay}"/>

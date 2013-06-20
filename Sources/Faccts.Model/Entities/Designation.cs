@@ -314,12 +314,6 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.DesignationName.GetHashCode();
     		if (this.DesignationName != null)
     		{
     			hashCode ^= this.DesignationName.GetHashCode();

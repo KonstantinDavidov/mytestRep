@@ -236,17 +236,8 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
     			
     		hashCode ^= this.CaseNumberAutoGeneration.GetHashCode();
-    		if (this.CaseNumberAutoGeneration != null)
-    		{
-    			hashCode ^= this.CaseNumberAutoGeneration.GetHashCode();
-    		}
-     
     		if (this.CurrentCourtCountyId != null)
     		{
     			hashCode ^= this.CurrentCourtCountyId.GetHashCode();

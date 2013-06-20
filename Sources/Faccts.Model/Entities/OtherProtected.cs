@@ -290,34 +290,20 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
     			
     		hashCode ^= this.RelationshipToPlaintiff.GetHashCode();
-    		if (this.RelationshipToPlaintiff != null)
-    		{
-    			hashCode ^= this.RelationshipToPlaintiff.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.FirstName.GetHashCode();
     		if (this.FirstName != null)
     		{
     			hashCode ^= this.FirstName.GetHashCode();
     		}
-    			
-    		hashCode ^= this.LastName.GetHashCode();
     		if (this.LastName != null)
     		{
     			hashCode ^= this.LastName.GetHashCode();
     		}
-     
     		if (this.Contact != null)
     		{
     			hashCode ^= this.Contact.GetHashCode();
     		}
-     
     		if (this.CaseRecord_Id != null)
     		{
     			hashCode ^= this.CaseRecord_Id.GetHashCode();

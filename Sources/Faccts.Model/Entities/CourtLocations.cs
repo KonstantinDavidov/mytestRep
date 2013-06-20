@@ -363,42 +363,30 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.Name.GetHashCode();
     		if (this.Name != null)
     		{
     			hashCode ^= this.Name.GetHashCode();
     		}
-     
     		if (this.Description != null)
     		{
     			hashCode ^= this.Description.GetHashCode();
     		}
-     
     		if (this.StreetAddress != null)
     		{
     			hashCode ^= this.StreetAddress.GetHashCode();
     		}
-     
     		if (this.State != null)
     		{
     			hashCode ^= this.State.GetHashCode();
     		}
-     
     		if (this.PostalCode != null)
     		{
     			hashCode ^= this.PostalCode.GetHashCode();
     		}
-     
     		if (this.City != null)
     		{
     			hashCode ^= this.City.GetHashCode();
     		}
-     
     		if (this.CourtCounty_Id != null)
     		{
     			hashCode ^= this.CourtCounty_Id.GetHashCode();

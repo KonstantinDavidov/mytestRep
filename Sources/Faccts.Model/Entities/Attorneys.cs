@@ -480,64 +480,46 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.FirstName.GetHashCode();
     		if (this.FirstName != null)
     		{
     			hashCode ^= this.FirstName.GetHashCode();
     		}
-    			
-    		hashCode ^= this.LastName.GetHashCode();
     		if (this.LastName != null)
     		{
     			hashCode ^= this.LastName.GetHashCode();
     		}
-    			
-    		hashCode ^= this.FirmName.GetHashCode();
     		if (this.FirmName != null)
     		{
     			hashCode ^= this.FirmName.GetHashCode();
     		}
-     
     		if (this.StreetAddress != null)
     		{
     			hashCode ^= this.StreetAddress.GetHashCode();
     		}
-     
     		if (this.City != null)
     		{
     			hashCode ^= this.City.GetHashCode();
     		}
-     
     		if (this.State != null)
     		{
     			hashCode ^= this.State.GetHashCode();
     		}
-     
     		if (this.ZipCode != null)
     		{
     			hashCode ^= this.ZipCode.GetHashCode();
     		}
-     
     		if (this.Phone != null)
     		{
     			hashCode ^= this.Phone.GetHashCode();
     		}
-     
     		if (this.Fax != null)
     		{
     			hashCode ^= this.Fax.GetHashCode();
     		}
-     
     		if (this.Email != null)
     		{
     			hashCode ^= this.Email.GetHashCode();
     		}
-     
     		if (this.StateBarId != null)
     		{
     			hashCode ^= this.StateBarId.GetHashCode();

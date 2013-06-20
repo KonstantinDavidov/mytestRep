@@ -281,23 +281,10 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
     			
     		hashCode ^= this.Status.GetHashCode();
-    		if (this.Status != null)
-    		{
-    			hashCode ^= this.Status.GetHashCode();
-    		}
     			
     		hashCode ^= this.Author_UserId.GetHashCode();
-    		if (this.Author_UserId != null)
-    		{
-    			hashCode ^= this.Author_UserId.GetHashCode();
-    		}
-     
     		if (this.CaseRecord_Id != null)
     		{
     			hashCode ^= this.CaseRecord_Id.GetHashCode();

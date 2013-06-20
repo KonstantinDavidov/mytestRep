@@ -240,12 +240,6 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.RaceName.GetHashCode();
     		if (this.RaceName != null)
     		{
     			hashCode ^= this.RaceName.GetHashCode();

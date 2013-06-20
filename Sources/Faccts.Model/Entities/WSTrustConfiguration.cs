@@ -277,46 +277,18 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
     			
     		hashCode ^= this.Enabled.GetHashCode();
-    		if (this.Enabled != null)
-    		{
-    			hashCode ^= this.Enabled.GetHashCode();
-    		}
     			
     		hashCode ^= this.EnableMessageSecurity.GetHashCode();
-    		if (this.EnableMessageSecurity != null)
-    		{
-    			hashCode ^= this.EnableMessageSecurity.GetHashCode();
-    		}
     			
     		hashCode ^= this.EnableMixedModeSecurity.GetHashCode();
-    		if (this.EnableMixedModeSecurity != null)
-    		{
-    			hashCode ^= this.EnableMixedModeSecurity.GetHashCode();
-    		}
     			
     		hashCode ^= this.EnableClientCertificateAuthentication.GetHashCode();
-    		if (this.EnableClientCertificateAuthentication != null)
-    		{
-    			hashCode ^= this.EnableClientCertificateAuthentication.GetHashCode();
-    		}
     			
     		hashCode ^= this.EnableFederatedAuthentication.GetHashCode();
-    		if (this.EnableFederatedAuthentication != null)
-    		{
-    			hashCode ^= this.EnableFederatedAuthentication.GetHashCode();
-    		}
     			
     		hashCode ^= this.EnableDelegation.GetHashCode();
-    		if (this.EnableDelegation != null)
-    		{
-    			hashCode ^= this.EnableDelegation.GetHashCode();
-    		}
     		return hashCode;
     	}
     

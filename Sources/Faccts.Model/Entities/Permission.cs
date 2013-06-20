@@ -228,11 +228,6 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
-     
     		if (this.Name != null)
     		{
     			hashCode ^= this.Name.GetHashCode();

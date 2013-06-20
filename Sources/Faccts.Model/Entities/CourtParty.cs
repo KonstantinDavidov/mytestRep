@@ -972,134 +972,72 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.FirstName.GetHashCode();
     		if (this.FirstName != null)
     		{
     			hashCode ^= this.FirstName.GetHashCode();
     		}
-     
     		if (this.MiddleName != null)
     		{
     			hashCode ^= this.MiddleName.GetHashCode();
     		}
-    			
-    		hashCode ^= this.LastName.GetHashCode();
     		if (this.LastName != null)
     		{
     			hashCode ^= this.LastName.GetHashCode();
     		}
-     
     		if (this.Description != null)
     		{
     			hashCode ^= this.Description.GetHashCode();
     		}
-     
     		if (this.Address != null)
     		{
     			hashCode ^= this.Address.GetHashCode();
     		}
-     
     		if (this.City != null)
     		{
     			hashCode ^= this.City.GetHashCode();
     		}
-     
     		if (this.State != null)
     		{
     			hashCode ^= this.State.GetHashCode();
     		}
-     
     		if (this.ZipCode != null)
     		{
     			hashCode ^= this.ZipCode.GetHashCode();
     		}
-     
     		if (this.Phone != null)
     		{
     			hashCode ^= this.Phone.GetHashCode();
     		}
-     
     		if (this.Fax != null)
     		{
     			hashCode ^= this.Fax.GetHashCode();
     		}
     			
     		hashCode ^= this.Weight.GetHashCode();
-    		if (this.Weight != null)
-    		{
-    			hashCode ^= this.Weight.GetHashCode();
-    		}
     			
     		hashCode ^= this.HeightFt.GetHashCode();
-    		if (this.HeightFt != null)
-    		{
-    			hashCode ^= this.HeightFt.GetHashCode();
-    		}
     			
     		hashCode ^= this.HeightIns.GetHashCode();
-    		if (this.HeightIns != null)
-    		{
-    			hashCode ^= this.HeightIns.GetHashCode();
-    		}
     			
     		hashCode ^= this.DateOfBirth.GetHashCode();
-    		if (this.DateOfBirth != null)
-    		{
-    			hashCode ^= this.DateOfBirth.GetHashCode();
-    		}
     			
     		hashCode ^= this.Age.GetHashCode();
-    		if (this.Age != null)
-    		{
-    			hashCode ^= this.Age.GetHashCode();
-    		}
     			
     		hashCode ^= this.Designation_Id.GetHashCode();
-    		if (this.Designation_Id != null)
-    		{
-    			hashCode ^= this.Designation_Id.GetHashCode();
-    		}
     			
     		hashCode ^= this.ParticipantRole_Id.GetHashCode();
-    		if (this.ParticipantRole_Id != null)
-    		{
-    			hashCode ^= this.ParticipantRole_Id.GetHashCode();
-    		}
     			
     		hashCode ^= this.Sex_Id.GetHashCode();
-    		if (this.Sex_Id != null)
-    		{
-    			hashCode ^= this.Sex_Id.GetHashCode();
-    		}
     			
     		hashCode ^= this.HairColor_Id.GetHashCode();
-    		if (this.HairColor_Id != null)
-    		{
-    			hashCode ^= this.HairColor_Id.GetHashCode();
-    		}
     			
     		hashCode ^= this.EyesColor_Id.GetHashCode();
-    		if (this.EyesColor_Id != null)
-    		{
-    			hashCode ^= this.EyesColor_Id.GetHashCode();
-    		}
     			
     		hashCode ^= this.Race_Id.GetHashCode();
-    		if (this.Race_Id != null)
-    		{
-    			hashCode ^= this.Race_Id.GetHashCode();
-    		}
-     
     		if (this.CaseRecordByCourtParty1_Id != null)
     		{
     			hashCode ^= this.CaseRecordByCourtParty1_Id.GetHashCode();
     		}
-     
     		if (this.CaseRecordByCourtParty2_Id != null)
     		{
     			hashCode ^= this.CaseRecordByCourtParty2_Id.GetHashCode();

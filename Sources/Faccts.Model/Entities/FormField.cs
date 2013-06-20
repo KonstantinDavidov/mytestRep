@@ -367,62 +367,44 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
-     
     		if (this.form_field_name != null)
     		{
     			hashCode ^= this.form_field_name.GetHashCode();
     		}
-     
     		if (this.form_name != null)
     		{
     			hashCode ^= this.form_name.GetHashCode();
     		}
-     
     		if (this.field_type != null)
     		{
     			hashCode ^= this.field_type.GetHashCode();
     		}
-     
     		if (this.screen_name != null)
     		{
     			hashCode ^= this.screen_name.GetHashCode();
     		}
     			
     		hashCode ^= this.form_field_id.GetHashCode();
-    		if (this.form_field_id != null)
-    		{
-    			hashCode ^= this.form_field_id.GetHashCode();
-    		}
-     
     		if (this.dupe != null)
     		{
     			hashCode ^= this.dupe.GetHashCode();
     		}
-     
     		if (this.dropdown_options != null)
     		{
     			hashCode ^= this.dropdown_options.GetHashCode();
     		}
-     
     		if (this.bool_options != null)
     		{
     			hashCode ^= this.bool_options.GetHashCode();
     		}
-     
     		if (this.screen_panel != null)
     		{
     			hashCode ^= this.screen_panel.GetHashCode();
     		}
-     
     		if (this.panel_section != null)
     		{
     			hashCode ^= this.panel_section.GetHashCode();
     		}
-     
     		if (this.xml_export != null)
     		{
     			hashCode ^= this.xml_export.GetHashCode();

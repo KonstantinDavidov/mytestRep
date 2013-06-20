@@ -276,22 +276,14 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.Name.GetHashCode();
     		if (this.Name != null)
     		{
     			hashCode ^= this.Name.GetHashCode();
     		}
-     
     		if (this.FileName != null)
     		{
     			hashCode ^= this.FileName.GetHashCode();
     		}
-     
     		if (this.Code != null)
     		{
     			hashCode ^= this.Code.GetHashCode();

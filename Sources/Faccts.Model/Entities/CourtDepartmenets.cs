@@ -327,40 +327,24 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.Name.GetHashCode();
     		if (this.Name != null)
     		{
     			hashCode ^= this.Name.GetHashCode();
     		}
-    			
-    		hashCode ^= this.Room.GetHashCode();
     		if (this.Room != null)
     		{
     			hashCode ^= this.Room.GetHashCode();
     		}
-    			
-    		hashCode ^= this.BranchOfficer.GetHashCode();
     		if (this.BranchOfficer != null)
     		{
     			hashCode ^= this.BranchOfficer.GetHashCode();
     		}
-    			
-    		hashCode ^= this.Reporter.GetHashCode();
     		if (this.Reporter != null)
     		{
     			hashCode ^= this.Reporter.GetHashCode();
     		}
     			
     		hashCode ^= this.CourtCountyId.GetHashCode();
-    		if (this.CourtCountyId != null)
-    		{
-    			hashCode ^= this.CourtCountyId.GetHashCode();
-    		}
     		return hashCode;
     	}
     

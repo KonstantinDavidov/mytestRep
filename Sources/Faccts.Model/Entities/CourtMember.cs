@@ -361,33 +361,18 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
-     
     		if (this.SubstituteId != null)
     		{
     			hashCode ^= this.SubstituteId.GetHashCode();
     		}
     			
     		hashCode ^= this.IsCertified.GetHashCode();
-    		if (this.IsCertified != null)
-    		{
-    			hashCode ^= this.IsCertified.GetHashCode();
-    		}
     			
     		hashCode ^= this.IsAvilable.GetHashCode();
-    		if (this.IsAvilable != null)
-    		{
-    			hashCode ^= this.IsAvilable.GetHashCode();
-    		}
-     
     		if (this.Image != null)
     		{
     			hashCode ^= this.Image.GetHashCode();
     		}
-     
     		if (this.Phone != null)
     		{
     			hashCode ^= this.Phone.GetHashCode();

@@ -277,43 +277,24 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
-     
     		if (this.Code != null)
     		{
     			hashCode ^= this.Code.GetHashCode();
     		}
     			
     		hashCode ^= this.ClientId.GetHashCode();
-    		if (this.ClientId != null)
-    		{
-    			hashCode ^= this.ClientId.GetHashCode();
-    		}
-     
     		if (this.UserName != null)
     		{
     			hashCode ^= this.UserName.GetHashCode();
     		}
-     
     		if (this.Scope != null)
     		{
     			hashCode ^= this.Scope.GetHashCode();
     		}
     			
     		hashCode ^= this.Type.GetHashCode();
-    		if (this.Type != null)
-    		{
-    			hashCode ^= this.Type.GetHashCode();
-    		}
     			
     		hashCode ^= this.TimeStamp.GetHashCode();
-    		if (this.TimeStamp != null)
-    		{
-    			hashCode ^= this.TimeStamp.GetHashCode();
-    		}
     		return hashCode;
     	}
     

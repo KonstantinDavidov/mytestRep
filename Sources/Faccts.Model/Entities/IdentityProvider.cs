@@ -349,65 +349,40 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.ID.GetHashCode();
-    		if (this.ID != null)
-    		{
-    			hashCode ^= this.ID.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.Name.GetHashCode();
     		if (this.Name != null)
     		{
     			hashCode ^= this.Name.GetHashCode();
     		}
-    			
-    		hashCode ^= this.DisplayName.GetHashCode();
     		if (this.DisplayName != null)
     		{
     			hashCode ^= this.DisplayName.GetHashCode();
     		}
     			
     		hashCode ^= this.Type.GetHashCode();
-    		if (this.Type != null)
-    		{
-    			hashCode ^= this.Type.GetHashCode();
-    		}
     			
     		hashCode ^= this.ShowInHrdSelection.GetHashCode();
-    		if (this.ShowInHrdSelection != null)
-    		{
-    			hashCode ^= this.ShowInHrdSelection.GetHashCode();
-    		}
-     
     		if (this.WSFederationEndpoint != null)
     		{
     			hashCode ^= this.WSFederationEndpoint.GetHashCode();
     		}
-     
     		if (this.IssuerThumbprint != null)
     		{
     			hashCode ^= this.IssuerThumbprint.GetHashCode();
     		}
-     
     		if (this.ClientID != null)
     		{
     			hashCode ^= this.ClientID.GetHashCode();
     		}
-     
     		if (this.ClientSecret != null)
     		{
     			hashCode ^= this.ClientSecret.GetHashCode();
     		}
-     
     		if (this.OAuth2ProviderType != null)
     		{
     			hashCode ^= this.OAuth2ProviderType.GetHashCode();
     		}
     			
     		hashCode ^= this.Enabled.GetHashCode();
-    		if (this.Enabled != null)
-    		{
-    			hashCode ^= this.Enabled.GetHashCode();
-    		}
     		return hashCode;
     	}
     

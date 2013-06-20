@@ -187,16 +187,8 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
     			
     		hashCode ^= this.EnableFederationMessageTracing.GetHashCode();
-    		if (this.EnableFederationMessageTracing != null)
-    		{
-    			hashCode ^= this.EnableFederationMessageTracing.GetHashCode();
-    		}
     		return hashCode;
     	}
     

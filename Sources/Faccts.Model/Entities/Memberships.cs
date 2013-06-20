@@ -559,110 +559,50 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.UserId.GetHashCode();
-    		if (this.UserId != null)
-    		{
-    			hashCode ^= this.UserId.GetHashCode();
-    		}
     			
     		hashCode ^= this.ApplicationId.GetHashCode();
-    		if (this.ApplicationId != null)
-    		{
-    			hashCode ^= this.ApplicationId.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.Password.GetHashCode();
     		if (this.Password != null)
     		{
     			hashCode ^= this.Password.GetHashCode();
     		}
     			
     		hashCode ^= this.PasswordFormat.GetHashCode();
-    		if (this.PasswordFormat != null)
-    		{
-    			hashCode ^= this.PasswordFormat.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.PasswordSalt.GetHashCode();
     		if (this.PasswordSalt != null)
     		{
     			hashCode ^= this.PasswordSalt.GetHashCode();
     		}
-     
     		if (this.Email != null)
     		{
     			hashCode ^= this.Email.GetHashCode();
     		}
-     
     		if (this.PasswordQuestion != null)
     		{
     			hashCode ^= this.PasswordQuestion.GetHashCode();
     		}
-     
     		if (this.PasswordAnswer != null)
     		{
     			hashCode ^= this.PasswordAnswer.GetHashCode();
     		}
     			
     		hashCode ^= this.IsApproved.GetHashCode();
-    		if (this.IsApproved != null)
-    		{
-    			hashCode ^= this.IsApproved.GetHashCode();
-    		}
     			
     		hashCode ^= this.IsLockedOut.GetHashCode();
-    		if (this.IsLockedOut != null)
-    		{
-    			hashCode ^= this.IsLockedOut.GetHashCode();
-    		}
     			
     		hashCode ^= this.CreateDate.GetHashCode();
-    		if (this.CreateDate != null)
-    		{
-    			hashCode ^= this.CreateDate.GetHashCode();
-    		}
     			
     		hashCode ^= this.LastLoginDate.GetHashCode();
-    		if (this.LastLoginDate != null)
-    		{
-    			hashCode ^= this.LastLoginDate.GetHashCode();
-    		}
     			
     		hashCode ^= this.LastPasswordChangedDate.GetHashCode();
-    		if (this.LastPasswordChangedDate != null)
-    		{
-    			hashCode ^= this.LastPasswordChangedDate.GetHashCode();
-    		}
     			
     		hashCode ^= this.LastLockoutDate.GetHashCode();
-    		if (this.LastLockoutDate != null)
-    		{
-    			hashCode ^= this.LastLockoutDate.GetHashCode();
-    		}
     			
     		hashCode ^= this.FailedPasswordAttemptCount.GetHashCode();
-    		if (this.FailedPasswordAttemptCount != null)
-    		{
-    			hashCode ^= this.FailedPasswordAttemptCount.GetHashCode();
-    		}
     			
     		hashCode ^= this.FailedPasswordAttemptWindowStart.GetHashCode();
-    		if (this.FailedPasswordAttemptWindowStart != null)
-    		{
-    			hashCode ^= this.FailedPasswordAttemptWindowStart.GetHashCode();
-    		}
     			
     		hashCode ^= this.FailedPasswordAnswerAttemptCount.GetHashCode();
-    		if (this.FailedPasswordAnswerAttemptCount != null)
-    		{
-    			hashCode ^= this.FailedPasswordAnswerAttemptCount.GetHashCode();
-    		}
     			
     		hashCode ^= this.FailedPasswordAnswerAttemptWindowsStart.GetHashCode();
-    		if (this.FailedPasswordAnswerAttemptWindowsStart != null)
-    		{
-    			hashCode ^= this.FailedPasswordAnswerAttemptWindowsStart.GetHashCode();
-    		}
-     
     		if (this.Comment != null)
     		{
     			hashCode ^= this.Comment.GetHashCode();

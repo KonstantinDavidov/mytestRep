@@ -331,62 +331,34 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.Name.GetHashCode();
     		if (this.Name != null)
     		{
     			hashCode ^= this.Name.GetHashCode();
     		}
-    			
-    		hashCode ^= this.Description.GetHashCode();
     		if (this.Description != null)
     		{
     			hashCode ^= this.Description.GetHashCode();
     		}
-    			
-    		hashCode ^= this.ClientId.GetHashCode();
     		if (this.ClientId != null)
     		{
     			hashCode ^= this.ClientId.GetHashCode();
     		}
-     
     		if (this.ClientSecret != null)
     		{
     			hashCode ^= this.ClientSecret.GetHashCode();
     		}
-     
     		if (this.RedirectUri != null)
     		{
     			hashCode ^= this.RedirectUri.GetHashCode();
     		}
     			
     		hashCode ^= this.AllowRefreshToken.GetHashCode();
-    		if (this.AllowRefreshToken != null)
-    		{
-    			hashCode ^= this.AllowRefreshToken.GetHashCode();
-    		}
     			
     		hashCode ^= this.AllowImplicitFlow.GetHashCode();
-    		if (this.AllowImplicitFlow != null)
-    		{
-    			hashCode ^= this.AllowImplicitFlow.GetHashCode();
-    		}
     			
     		hashCode ^= this.AllowResourceOwnerFlow.GetHashCode();
-    		if (this.AllowResourceOwnerFlow != null)
-    		{
-    			hashCode ^= this.AllowResourceOwnerFlow.GetHashCode();
-    		}
     			
     		hashCode ^= this.AllowCodeFlow.GetHashCode();
-    		if (this.AllowCodeFlow != null)
-    		{
-    			hashCode ^= this.AllowCodeFlow.GetHashCode();
-    		}
     		return hashCode;
     	}
     

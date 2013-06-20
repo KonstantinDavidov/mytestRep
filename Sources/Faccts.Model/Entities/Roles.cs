@@ -291,23 +291,12 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.RoleId.GetHashCode();
-    		if (this.RoleId != null)
-    		{
-    			hashCode ^= this.RoleId.GetHashCode();
-    		}
     			
     		hashCode ^= this.ApplicationId.GetHashCode();
-    		if (this.ApplicationId != null)
-    		{
-    			hashCode ^= this.ApplicationId.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.RoleName.GetHashCode();
     		if (this.RoleName != null)
     		{
     			hashCode ^= this.RoleName.GetHashCode();
     		}
-     
     		if (this.Description != null)
     		{
     			hashCode ^= this.Description.GetHashCode();

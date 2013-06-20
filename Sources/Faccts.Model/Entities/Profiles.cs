@@ -280,34 +280,18 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.UserId.GetHashCode();
-    		if (this.UserId != null)
-    		{
-    			hashCode ^= this.UserId.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.PropertyNames.GetHashCode();
     		if (this.PropertyNames != null)
     		{
     			hashCode ^= this.PropertyNames.GetHashCode();
     		}
-    			
-    		hashCode ^= this.PropertyValueStrings.GetHashCode();
     		if (this.PropertyValueStrings != null)
     		{
     			hashCode ^= this.PropertyValueStrings.GetHashCode();
     		}
     			
     		hashCode ^= this.PropertyValueBinary.GetHashCode();
-    		if (this.PropertyValueBinary != null)
-    		{
-    			hashCode ^= this.PropertyValueBinary.GetHashCode();
-    		}
     			
     		hashCode ^= this.LastUpdatedDate.GetHashCode();
-    		if (this.LastUpdatedDate != null)
-    		{
-    			hashCode ^= this.LastUpdatedDate.GetHashCode();
-    		}
     		return hashCode;
     	}
     

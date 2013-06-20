@@ -347,34 +347,16 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.UserId.GetHashCode();
-    		if (this.UserId != null)
-    		{
-    			hashCode ^= this.UserId.GetHashCode();
-    		}
     			
     		hashCode ^= this.ApplicationId.GetHashCode();
-    		if (this.ApplicationId != null)
-    		{
-    			hashCode ^= this.ApplicationId.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.UserName.GetHashCode();
     		if (this.UserName != null)
     		{
     			hashCode ^= this.UserName.GetHashCode();
     		}
     			
     		hashCode ^= this.IsAnonymous.GetHashCode();
-    		if (this.IsAnonymous != null)
-    		{
-    			hashCode ^= this.IsAnonymous.GetHashCode();
-    		}
     			
     		hashCode ^= this.LastActivityDate.GetHashCode();
-    		if (this.LastActivityDate != null)
-    		{
-    			hashCode ^= this.LastActivityDate.GetHashCode();
-    		}
     		return hashCode;
     	}
     

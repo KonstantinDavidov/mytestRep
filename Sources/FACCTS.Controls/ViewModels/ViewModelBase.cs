@@ -40,6 +40,7 @@ namespace FACCTS.Controls.ViewModels
         protected virtual void Authorized()
         {
             DataContainer.SearchCourtCases();
+            DataContainer.UpdateDictionaries();
         }
 
         [ImportingConstructor]
@@ -84,7 +85,18 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-        public virtual IDataContainer DataContainer { get; private set; }
+        private IDataContainer _dataContainer;
+        public virtual IDataContainer DataContainer 
+        {
+            get
+            {
+                return _dataContainer;
+            }
+            private set
+            {
+                this.RaiseAndSetIfChanged(ref _dataContainer, value);
+            } 
+        }
 
         public virtual void Cancel()
         {

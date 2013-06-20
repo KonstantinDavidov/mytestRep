@@ -13,5 +13,7 @@ namespace Faccts.Model.Entities
             this.Id = dto.Id;
             this.Color = dto.Color;
         }
+
+        
     }
 }

@@ -320,17 +320,10 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.ApplicationId.GetHashCode();
-    		if (this.ApplicationId != null)
-    		{
-    			hashCode ^= this.ApplicationId.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.ApplicationName.GetHashCode();
     		if (this.ApplicationName != null)
     		{
     			hashCode ^= this.ApplicationName.GetHashCode();
     		}
-     
     		if (this.Description != null)
     		{
     			hashCode ^= this.Description.GetHashCode();

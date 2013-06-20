@@ -128,6 +128,7 @@
     <Compile Include="Events\CurrentCourtCaseChangedEvent.cs" />
     <Compile Include="Interfaces\IPasswordSupplier.cs" />
     <Compile Include="IShell.cs" />
+    <Compile Include="MarkupExtension\MefPartExtension.cs" />
     <Compile Include="ViewModels\Case Record\SeparateCaseDialogViewModel.cs" />
     <Compile Include="ViewModels\DropDismissDialogViewModel.cs" />
     <Compile Include="ViewModels\ModelTemplate.cs">

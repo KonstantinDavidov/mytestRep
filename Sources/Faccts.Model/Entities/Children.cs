@@ -335,41 +335,20 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.FirstName.GetHashCode();
     		if (this.FirstName != null)
     		{
     			hashCode ^= this.FirstName.GetHashCode();
     		}
-    			
-    		hashCode ^= this.LastName.GetHashCode();
     		if (this.LastName != null)
     		{
     			hashCode ^= this.LastName.GetHashCode();
     		}
     			
     		hashCode ^= this.RelationshipToProtected.GetHashCode();
-    		if (this.RelationshipToProtected != null)
-    		{
-    			hashCode ^= this.RelationshipToProtected.GetHashCode();
-    		}
     			
     		hashCode ^= this.DateOfBirth.GetHashCode();
-    		if (this.DateOfBirth != null)
-    		{
-    			hashCode ^= this.DateOfBirth.GetHashCode();
-    		}
     			
     		hashCode ^= this.Sex_Id.GetHashCode();
-    		if (this.Sex_Id != null)
-    		{
-    			hashCode ^= this.Sex_Id.GetHashCode();
-    		}
-     
     		if (this.CaseRecord_Id != null)
     		{
     			hashCode ^= this.CaseRecord_Id.GetHashCode();

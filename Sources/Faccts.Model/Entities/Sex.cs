@@ -289,12 +289,6 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.SexName.GetHashCode();
     		if (this.SexName != null)
     		{
     			hashCode ^= this.SexName.GetHashCode();

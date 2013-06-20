@@ -223,23 +223,14 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.UserName.GetHashCode();
     		if (this.UserName != null)
     		{
     			hashCode ^= this.UserName.GetHashCode();
     		}
-    			
-    		hashCode ^= this.Realm.GetHashCode();
     		if (this.Realm != null)
     		{
     			hashCode ^= this.Realm.GetHashCode();
     		}
-     
     		if (this.Description != null)
     		{
     			hashCode ^= this.Description.GetHashCode();

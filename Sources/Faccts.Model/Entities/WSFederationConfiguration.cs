@@ -295,52 +295,20 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
     			
     		hashCode ^= this.Enabled.GetHashCode();
-    		if (this.Enabled != null)
-    		{
-    			hashCode ^= this.Enabled.GetHashCode();
-    		}
     			
     		hashCode ^= this.EnableAuthentication.GetHashCode();
-    		if (this.EnableAuthentication != null)
-    		{
-    			hashCode ^= this.EnableAuthentication.GetHashCode();
-    		}
     			
     		hashCode ^= this.EnableFederation.GetHashCode();
-    		if (this.EnableFederation != null)
-    		{
-    			hashCode ^= this.EnableFederation.GetHashCode();
-    		}
     			
     		hashCode ^= this.EnableHrd.GetHashCode();
-    		if (this.EnableHrd != null)
-    		{
-    			hashCode ^= this.EnableHrd.GetHashCode();
-    		}
     			
     		hashCode ^= this.AllowReplyTo.GetHashCode();
-    		if (this.AllowReplyTo != null)
-    		{
-    			hashCode ^= this.AllowReplyTo.GetHashCode();
-    		}
     			
     		hashCode ^= this.RequireReplyToWithinRealm.GetHashCode();
-    		if (this.RequireReplyToWithinRealm != null)
-    		{
-    			hashCode ^= this.RequireReplyToWithinRealm.GetHashCode();
-    		}
     			
     		hashCode ^= this.RequireSslForReplyTo.GetHashCode();
-    		if (this.RequireSslForReplyTo != null)
-    		{
-    			hashCode ^= this.RequireSslForReplyTo.GetHashCode();
-    		}
     		return hashCode;
     	}
     

@@ -236,16 +236,10 @@ namespace Faccts.Model.Entities
     		int hashCode = 1;
     			
     		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
-    		{
-    			hashCode ^= this.Id.GetHashCode();
-    		}
-     
     		if (this.RoomName != null)
     		{
     			hashCode ^= this.RoomName.GetHashCode();
     		}
-     
     		if (this.CourtLocation_Id != null)
     		{
     			hashCode ^= this.CourtLocation_Id.GetHashCode();
