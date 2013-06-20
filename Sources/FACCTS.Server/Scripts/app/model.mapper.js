@@ -6,8 +6,10 @@
             getDtoId: function(dto) {
                 return dto.userId;
             },
-            fromDto: function(dto, item) {
+            fromDto: function (dto, item) {
+                debugger
                 item = item || new model.CourtMember().userId(dto.userId);
+                //item = new model.CourtMember().userId(dto.userId);
                 item.username(dto.username);
                 item.firstName(dto.firstName);
                 item.lastName(dto.lastName);

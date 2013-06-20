@@ -14,7 +14,7 @@
 
                 // Pass Resource Id, Request Type, and Settings
                 amplify.request.define('courtMemberbyid', 'ajax', {
-                    url: baseUrl + '/memberbyid/{id}',
+                    url: baseUrl + 'courtmembers/memberbyid/{id}',
                     dataType: 'json',
                     type: 'GET'
                     //cache: true
@@ -23,7 +23,7 @@
                 });
                 // Pass Resource Id, Request Type, and Settings
                 amplify.request.define('courtMemberbyName', 'ajax', {
-                    url: baseUrl + '/memberbyname/{name}',
+                    url: baseUrl + 'courtmembers/memberbyname/{name}',
                     dataType: 'json',
                     type: 'GET'
                     //cache: true

@@ -88,39 +88,39 @@
 
         $('button, #login-info a').button();
 
-        $('table.clickable tbody tr').click(function () {
-            $(this).siblings().removeClass('active');
-            $(this).addClass('active');
-        });
+        //$('table.clickable tbody tr').click(function () {
+        //    $(this).siblings().removeClass('active');
+        //    $(this).addClass('active');
+        //});
 
-        var jDialog = $('#dialog-form');
-        var jProfileForm = $('#profile-form');
-        var jUpdateProfileForm = $('#update-profile-form');
+        //var jDialog = $('#dialog-form');
+        //var jProfileForm = $('#profile-form');
+        //var jUpdateProfileForm = $('#update-profile-form');
 
-        jDialog.dialog({
-            autoOpen: false,
-            height: 420,
-            width: 410,
-            modal: true,
-            buttons: {
-                Ok: function () {
-                    jUpdateProfileForm.submit();
-                },
-                Cancel: function () {
-                    $(this).dialog('close');
-                }
-            },
-            close: function () {
-                jUpdateProfileForm.find('input').removeClass('error');
-                jUpdateProfileForm.find('label.error').hide();
-            }
-        });
+        //jDialog.dialog({
+        //    autoOpen: false,
+        //    height: 420,
+        //    width: 410,
+        //    modal: true,
+        //    buttons: {
+        //        Ok: function () {
+        //            jUpdateProfileForm.submit();
+        //        },
+        //        Cancel: function () {
+        //            $(this).dialog('close');
+        //        }
+        //    },
+        //    close: function () {
+        //        jUpdateProfileForm.find('input').removeClass('error');
+        //        jUpdateProfileForm.find('label.error').hide();
+        //    }
+        //});
 
-        $('#profile-update').click(function () {
-            copyFormData($('#profile-form'), jUpdateProfileForm);
-            jDialog.dialog('open');
-            return false;
-        });
+        //$('#profile-update').click(function () {
+        //    copyFormData($('#profile-form'), jUpdateProfileForm);
+        //    jDialog.dialog('open');
+        //    return false;
+        //});
 
         //jUpdateProfileForm.validate({
         //    submitHandler: function (form) {
