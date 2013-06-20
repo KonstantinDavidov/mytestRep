@@ -149,7 +149,7 @@ namespace FACCTS.Services.Data
             {
                 if (_availableDepartments == null)
                 {
-                    _availableDepartments = CourtDepartments.GetByCourtCountyId(this.FacctsConfiguration.CurrentCourtCounty_Id);
+                    _availableDepartments = CourtDepartments.GetByCourtCountyId(this.FacctsConfiguration.CurrentCourtCountyId);
                 }
                 return _availableDepartments;
             }
@@ -162,7 +162,7 @@ namespace FACCTS.Services.Data
             {
                 if (_availableCourtrooms == null)
                 {
-                    _availableCourtrooms = CourtRooms.GetAll(this.FacctsConfiguration.CurrentCourtCounty_Id);
+                    _availableCourtrooms = CourtRooms.GetAll(this.FacctsConfiguration.CurrentCourtCountyId);
                 }
                 return _availableCourtrooms;
             }

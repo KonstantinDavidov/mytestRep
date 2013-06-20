@@ -30,7 +30,7 @@ namespace FACCTS.Services.Data
                 var result =  new FACCTSConfiguration()
                 {
                     Id = config.Id,
-                    CurrentCourtCounty_Id = config.CurrentCourtCountyId,
+                    CurrentCourtCountyId = config.CurrentCourtCountyId,
                     CaseNumberAutoGeneration = config.CaseNumberAutoGeneration,
                 };
                 return result;
