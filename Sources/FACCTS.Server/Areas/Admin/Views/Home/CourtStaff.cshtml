@@ -28,14 +28,14 @@
     <div class="right-side-wrapper" >
         <div class="right-side">
             <div id="user-tabs" >
-                <div data-bind ="with: selectedcourtmember">
+                <div >
                 <ul>
                     <li><a href="#profile">Profile</a></li>
                     <li><a href="#availability">Availability</a></li>
                     <li><a href="#user-role">User Role</a></li>
                 </ul>
-                <div id="profile">
-                        <div class="form-fields-block">
+                <div id="profile" data-bind= "with: selectedcourtmember">
+                        <div class="form-fields-block" >
                             <div class="form-field">
                                 <label for="first-name">First Name</label>
                                 <input type="text" id="first-name" name="first-name" disabled data-bind = "value: firstName">
@@ -66,10 +66,7 @@
                                 <input type="checkbox" id="clets-certified" name="clets-certified" data-bind = "checked: isCertified" disabled>
                                 <label for="clets-certified" class="important">CLETS Certified</label>
                             </div>
-                            <div class="form-element">
-                                <button id="profile-update">Update</button>
-                            </div>
-                        </div>
+                          </div>
                         <hr>
                         <div class="form-fields-block">
                             <div class="form-field">
@@ -82,7 +79,7 @@
                         </div>
                 </div>
 
-                <div id="availability">
+                <div id="availability" data-bind= "with: selectedcourtmember">
                         <div class="form-fields-block">
                             <div class="form-element">
                                 <input type="checkbox" name="availability-available" id="availability-available" data-bind = "checked: isAvilable" >
@@ -356,6 +353,7 @@
                 </div>
             </div>
             <fieldset class="right">
+                <button id="profile-update">Update</button>
                 <button id="save-profile">SAVE</button>
             </fieldset>
         </div>

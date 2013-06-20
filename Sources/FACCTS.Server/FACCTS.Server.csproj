@@ -233,12 +233,14 @@
     <Compile Include="Controllers\CourtCountiesController.cs" />
     <Compile Include="Controllers\CourtDepartmentsController.cs" />
     <Compile Include="Controllers\CourtroomsController.cs" />
+    <Compile Include="Controllers\DesignationController.cs" />
     <Compile Include="Controllers\EyesColorController.cs" />
     <Compile Include="Controllers\FACCTSConfigurationController.cs" />
     <Compile Include="Controllers\HairColorController.cs" />
     <Compile Include="Controllers\InitialConfigurationController.cs" />
     <Compile Include="Controllers\OAuth2FacctsAuthorizeController.cs" />
     <Compile Include="Controllers\OAuth2FacctsTokenController.cs" />
+    <Compile Include="Controllers\ParticipantRoleController.cs" />
     <Compile Include="Controllers\SexController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
