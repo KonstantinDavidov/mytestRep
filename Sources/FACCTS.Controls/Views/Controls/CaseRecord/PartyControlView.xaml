@@ -34,13 +34,13 @@
 							<RowDefinition/>
 						</Grid.RowDefinitions>
 						<TextBlock HorizontalAlignment="Right" Margin="0,0,0,-0.001" TextWrapping="Wrap" Text="First, Middle, Last Name" VerticalAlignment="Center"/>
-						<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="1" VerticalAlignment="Center"/>
-						<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="2" VerticalAlignment="Center"/>
-						<TextBox TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Grid.Column="3"/>
+						<TextBox TextWrapping="Wrap" Text="{Binding FirstName, FallbackValue=Barak, Mode=TwoWay}" Grid.Column="1" VerticalAlignment="Center"/>
+						<TextBox TextWrapping="Wrap" Text="{Binding MiddleName, FallbackValue=Ivanovich, Mode=TwoWay}" Grid.Column="2" VerticalAlignment="Center"/>
+						<TextBox TextWrapping="Wrap" Text="{Binding LastName, FallbackValue=Obama, Mode=TwoWay}" VerticalAlignment="Center" Grid.Column="3"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Designation" VerticalAlignment="Center" Grid.Column="4"/>
 						<ComboBox Grid.Column="5" VerticalAlignment="Center"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Description" Margin="0,0,0,7.999" Grid.Row="1" VerticalAlignment="Center"/>
-						<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center"/>
+						<TextBox TextWrapping="Wrap" Text="{Binding Description, FallbackValue=Some Description, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Participant Role" VerticalAlignment="Center" Grid.Row="1" Grid.Column="4"/>
 						<ComboBox Grid.Row="1" Grid.Column="5" VerticalAlignment="Center"/>
 					</Grid>
@@ -61,15 +61,15 @@
 							<RowDefinition/>
 						</Grid.RowDefinitions>
 						<TextBlock HorizontalAlignment="Right" Margin="0,0,0,-0.001" TextWrapping="Wrap" Text="Address" VerticalAlignment="Center"/>
-						<TextBox Grid.ColumnSpan="3" TextWrapping="Wrap" Text="TextBox" Grid.Column="1" VerticalAlignment="Center"/>
+						<TextBox Grid.ColumnSpan="3" TextWrapping="Wrap" Text="{Binding Address, FallbackValue=Washington, Mode=TwoWay}" Grid.Column="1" VerticalAlignment="Center"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Column="4"><Run Text="Phone"/></TextBlock>
-						<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="5" VerticalAlignment="Center"/>
+						<TextBox TextWrapping="Wrap" Text="{Binding Phone, FallbackValue=9112345678, Mode=TwoWay}" Grid.Column="5" VerticalAlignment="Center"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="City, State, Zip" VerticalAlignment="Center" Grid.Row="1"/>
-						<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
-						<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center"/>
-						<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center"/>
+						<TextBox TextWrapping="Wrap" Text="{Binding City, FallbackValue=New York, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
+						<TextBox TextWrapping="Wrap" Text="{Binding State, FallbackValue=California}" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center"/>
+						<TextBox TextWrapping="Wrap" Text="{Binding ZipCode, FallbackValue=10011, Mode=TwoWay}" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Fax" VerticalAlignment="Center" Grid.Row="1" Grid.Column="4"/>
-						<TextBox Height="23" TextWrapping="Wrap" Text="TextBox" Grid.Row="1" Grid.Column="5" VerticalAlignment="Center"/>
+						<TextBox Height="23" TextWrapping="Wrap" Text="{Binding Fax, FallbackValue=9012345678, Mode=TwoWay}" Grid.Row="1" Grid.Column="5" VerticalAlignment="Center"/>
 					</Grid>
 				</Border>
 				<Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Margin="0,0,0,-7.2" Grid.Row="2">
@@ -97,19 +97,19 @@
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="1"><Run Text="Race"/></TextBlock>
 						<ComboBox Margin="0" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Weight" Grid.Row="1" Grid.Column="2" VerticalAlignment="Center"/>
-						<xctk:IntegerUpDown Grid.Row="1" Grid.Column="3" VerticalAlignment="Center"/>
+						<xctk:IntegerUpDown Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Value="{Binding Weight, FallbackValue=0, Mode=TwoWay}"/>
 						<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Height" VerticalAlignment="Center" Grid.Row="1" Grid.Column="4"/>
 						<StackPanel HorizontalAlignment="Left" VerticalAlignment="Center" Grid.Row="1" Grid.Column="5" Orientation="Horizontal">
-							<TextBox TextWrapping="Wrap" Width="50" VerticalAlignment="Center" VerticalContentAlignment="Stretch"/>
+							<TextBox TextWrapping="Wrap" Width="50" VerticalAlignment="Center" VerticalContentAlignment="Stretch" Text="{Binding HeightFt, FallbackValue=0, Mode=TwoWay}"/>
 							<TextBlock TextWrapping="Wrap" Text="Ft." VerticalAlignment="Center"/>
-							<TextBox TextWrapping="Wrap" Width="50" VerticalAlignment="Center"/>
+							<TextBox TextWrapping="Wrap" Width="50" VerticalAlignment="Center" Text="{Binding HeightIns, FallbackValue=1, Mode=TwoWay}"/>
 							<TextBlock TextWrapping="Wrap" Text="Ins." VerticalAlignment="Center"/>
 						</StackPanel>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Date of Birth" VerticalAlignment="Center" Grid.Row="2" Grid.Column="2"/>
-						<DatePicker Grid.Row="2" Grid.Column="3" VerticalAlignment="Center"/>
+						<DatePicker Grid.Row="2" Grid.Column="3" VerticalAlignment="Center" SelectedDate="{Binding DateOfBirth, Mode=TwoWay}"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Age" VerticalAlignment="Center" Grid.Row="2" Grid.Column="4"/>
 						<StackPanel Grid.RowSpan="3" Grid.Row="2" Grid.Column="5" Orientation="Horizontal" VerticalAlignment="Center">
-							<xctk:IntegerUpDown Width="114.175"/>
+							<xctk:IntegerUpDown Width="114.175" Value="{Binding Age, FallbackValue=20, Mode=TwoWay}"/>
 							<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Yrs." VerticalAlignment="Center"/>
 						</StackPanel>
 					</Grid>
