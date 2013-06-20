@@ -168,6 +168,84 @@ namespace FACCTS.Services.Data
             }
         }
 
+        private List<Sex> _sexes;
+        public List<Sex> Sexes
+        {
+            get
+            {
+                if (_sexes == null)
+                {
+
+                }
+                return _sexes;
+            }
+        }
+
+        private List<HairColor> _hairColors;
+        public List<HairColor> HairColors
+        {
+            get
+            {
+                if (_hairColors == null)
+                {
+
+                }
+                return _hairColors;
+            }
+        }
+
+        private List<EyesColor> _eyesColors;
+        public List<EyesColor> EyesColors
+        {
+            get
+            {
+                if (_eyesColors == null)
+                {
+
+                }
+                return _eyesColors;
+            }
+        }
+
+        private List<Race> _races;
+        public List<Race> Races
+        {
+            get
+            {
+                if (_races == null)
+                {
+
+                }
+                return _races;
+            }
+        }
+
+        private List<Designation> _designations;
+        public List<Designation> Designations
+        {
+            get
+            {
+                if (_designations == null)
+                {
+
+                }
+                return _designations;
+            }
+        }
+
+        private List<ParticipantRole> _participantRoles;
+        public List<ParticipantRole> ParticipantRoles
+        {
+            get
+            {
+                if (_participantRoles == null)
+                {
+
+                }
+                return _participantRoles;
+            }
+        }
+
         protected void RaisePropertyChanged(string propertyName)
         {
             if (PropertyChanged != null)
