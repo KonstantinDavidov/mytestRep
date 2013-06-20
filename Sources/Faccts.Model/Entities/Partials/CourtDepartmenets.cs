@@ -8,7 +8,7 @@ namespace Faccts.Model.Entities
 {
     public partial class CourtDepartmenets
     {
-        public CourtDepartmenets(FACCTS.Server.Model.DataModel.CourtDepartment dto)
+        public CourtDepartmenets(FACCTS.Server.Model.DataModel.CourtDepartment dto) : this()
         {
             this.Id = dto.Id;
             this.Name = dto.Name;

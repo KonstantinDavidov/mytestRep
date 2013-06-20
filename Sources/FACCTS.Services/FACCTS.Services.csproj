@@ -132,9 +132,12 @@
     <Compile Include="Data\CourtDepartments.cs" />
     <Compile Include="Data\CourtRooms.cs" />
     <Compile Include="Data\DataContainer.cs" />
+    <Compile Include="Data\EyesColors.cs" />
     <Compile Include="Data\FACCTSConfigurations.cs" />
+    <Compile Include="Data\HairColors.cs" />
     <Compile Include="Data\IDataContainer.cs" />
     <Compile Include="Data\Routes.cs" />
+    <Compile Include="Data\Sexes.cs" />
     <Compile Include="Data\Users.cs" />
     <Compile Include="Dialog\DialogService.cs" />
     <Compile Include="Dialog\IDialogService.cs" />

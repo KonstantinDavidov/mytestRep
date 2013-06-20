@@ -175,7 +175,7 @@ namespace FACCTS.Services.Data
             {
                 if (_sexes == null)
                 {
-
+                    _sexes = FACCTS.Services.Data.Sexes.GetAll();
                 }
                 return _sexes;
             }
@@ -188,7 +188,7 @@ namespace FACCTS.Services.Data
             {
                 if (_hairColors == null)
                 {
-
+                    _hairColors = FACCTS.Services.Data.HairColors.GetAll();
                 }
                 return _hairColors;
             }
@@ -201,7 +201,7 @@ namespace FACCTS.Services.Data
             {
                 if (_eyesColors == null)
                 {
-
+                    _eyesColors = FACCTS.Services.Data.EyesColors.GetAll();
                 }
                 return _eyesColors;
             }
