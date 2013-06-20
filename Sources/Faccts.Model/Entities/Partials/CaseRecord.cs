@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FACCTS.Server.Model.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,6 +19,21 @@ namespace Faccts.Model.Entities
             this.CourtParty1 = new CourtParty();
             this.CourtParty = new CourtParty();
             this.CourtCaseOrders = new TrackableCollection<CourtCaseOrders>();
+        }
+
+        public DateTime? FileDate
+        {
+            get
+            {
+                if (this.CaseHistory == null || !CaseHistory.Any())
+                {
+                    return null;
+                }
+                var fileEvent = CaseHistory.FirstOrDefault(x => x.CaseHistoryEvent == (int)CaseHistoryEvent.New);
+                if (fileEvent == null)
+                    return null;
+                return fileEvent.Date;
+            }
         }
     }
 }

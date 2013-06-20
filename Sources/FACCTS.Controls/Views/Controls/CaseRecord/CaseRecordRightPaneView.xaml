@@ -4,10 +4,11 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:cal="http://www.caliburnproject.org"
+    xmlns:this="clr-namespace:FACCTS.Controls"
 	mc:Ignorable="d"
 	x:Class="FACCTS.Controls.Views.Controls.CaseRecordRightPaneView"
 	x:Name="UserControl"
-	d:DesignWidth="640" d:DesignHeight="480" Background="{DynamicResource ControlBackgroundBrush}">
+	d:DesignWidth="734.72" d:DesignHeight="480" Background="{DynamicResource ControlBackgroundBrush}">
 
 	<Grid x:Name="LayoutRoot" RenderTransformOrigin="0.575,0.505">
 		<Grid.ColumnDefinitions>
@@ -20,7 +21,7 @@
 			<RowDefinition/>
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
-		<Border BorderBrush="Black" BorderThickness="1" Style="{DynamicResource OrdinalBorder}" VerticalAlignment="Top">
+		<Border BorderThickness="1" Style="{DynamicResource OrdinalBorder}" VerticalAlignment="Top">
 			<Grid x:Name="grid" HorizontalAlignment="Left" VerticalAlignment="Top">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto"/>
@@ -32,48 +33,42 @@
 				</Grid.RowDefinitions>
 				<TextBlock TextWrapping="Wrap" Text="Case Number" VerticalAlignment="Center"/>
 				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="File Date" VerticalAlignment="Center" Grid.Row="1"/>
-				<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="1"/>
-				<DatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1"/>
+				<TextBox TextWrapping="Wrap" Text="{Binding CurrentCourtCase.CaseNumber, FallbackValue=21-1251, Mode=OneWay}" Grid.Column="1" IsReadOnly="True"/>
+				<this:ExtendedDatePicker HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" Editable="False" SelectedDate="{Binding CurrentCourtCase.CaseRecord.FileDate, Mode=OneWay}"/>
 			</Grid>
 		</Border>
-		<Border BorderBrush="Black" BorderThickness="1" Grid.RowSpan="2" Grid.Column="1" VerticalAlignment="Top">
-			<Grid Height="{Binding ActualHeight, ElementName=grid, Mode=OneWay}">
+		<Border BorderThickness="1" Grid.Column="1" Style="{DynamicResource OrdinalBorder}">
+			<Grid>
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto"/>
-					<ColumnDefinition/>
+					<ColumnDefinition Width="Auto"/>
 					<ColumnDefinition Width="Auto"/>
 					<ColumnDefinition Width="Auto"/>
 				</Grid.ColumnDefinitions>
 				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto"/>
-					<RowDefinition Height="Auto"/>
+					<RowDefinition/>
 				</Grid.RowDefinitions>
 				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center"><Run Text="Party 1"/></TextBlock>
-				<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="1"/>
-				<TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Grid.Column="2"/>
-				<CheckBox Content="Attorney" HorizontalAlignment="Left" Margin="0,0,-0.001,0" VerticalAlignment="Top" Grid.Column="3"/>
-				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" FontSize="10.667"/>
-				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Designation" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2" FontSize="10.667"/>
+				<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="1" Style="{DynamicResource TextBoxWithAdorner}" Tag="Name" VerticalAlignment="Center"/>
+				<TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Grid.Column="2" Style="{DynamicResource TextBoxWithAdorner}" Tag="Designation"/>
+				<CheckBox Content="Attorney" HorizontalAlignment="Left" Margin="0,0,-0.001,0" VerticalAlignment="Center" Grid.Column="3"/>
 			</Grid>
 		</Border>
-		<Border BorderBrush="Black" BorderThickness="1" Grid.Column="2" VerticalAlignment="Top">
+		<Border BorderThickness="1" Grid.Column="2" VerticalAlignment="Top" Style="{DynamicResource OrdinalBorder}">
 			<Grid Height="{Binding ActualHeight, ElementName=grid, Mode=OneWay}">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto"/>
-					<ColumnDefinition/>
+					<ColumnDefinition Width="Auto"/>
 					<ColumnDefinition Width="Auto"/>
 					<ColumnDefinition Width="Auto"/>
 				</Grid.ColumnDefinitions>
 				<Grid.RowDefinitions>
-					<RowDefinition Height="Auto"/>
-					<RowDefinition Height="Auto"/>
+					<RowDefinition/>
 				</Grid.RowDefinitions>
 				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center"><Run Text="Party 1"/></TextBlock>
-				<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="1"/>
-				<TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Grid.Column="2"/>
-				<CheckBox Content="Attorney" HorizontalAlignment="Left" Margin="0,0,-0.001,0" VerticalAlignment="Top" Grid.Column="3"/>
-				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Name" VerticalAlignment="Top" Grid.Row="1" Grid.Column="1" FontSize="10.667"/>
-				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Designation" VerticalAlignment="Top" Grid.Row="1" Grid.Column="2" FontSize="10.667"/>
+				<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="1" Style="{DynamicResource TextBoxWithAdorner}" VerticalAlignment="Center" Tag="Name"/>
+				<TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Center" Grid.Column="2" Style="{DynamicResource TextBoxWithAdorner}" Tag="Designation"/>
+				<CheckBox Content="Attorney" HorizontalAlignment="Left" Margin="0,0,-0.001,0" VerticalAlignment="Center" Grid.Column="3"/>
 			</Grid>
 		</Border>
         <GroupBox Grid.Row="1" Grid.ColumnSpan="3" cal:View.Model="{Binding ActiveItem, Mode=OneWay}" Header="{Binding ActiveItem.DisplayName, Mode=OneWay}"/>
