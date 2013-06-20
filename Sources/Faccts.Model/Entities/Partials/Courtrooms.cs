@@ -8,11 +8,6 @@ namespace Faccts.Model.Entities
 {
     public partial class Courtrooms
     {
-        public Courtrooms() : base()
-        {
-
-        }
-
         public Courtrooms(FACCTS.Server.Model.DataModel.Courtroom dto) : this()
         {
             if (dto == null)

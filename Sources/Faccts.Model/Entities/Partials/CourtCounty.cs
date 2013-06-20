@@ -8,7 +8,6 @@ namespace Faccts.Model.Entities
 {
     public partial class CourtCounty
     {
-        public CourtCounty() : base() { }
 
         public CourtCounty(FACCTS.Server.Model.DataModel.CourtCounty dtoCounty) : this()
         {

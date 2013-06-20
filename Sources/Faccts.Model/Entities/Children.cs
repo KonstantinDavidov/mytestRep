@@ -15,14 +15,52 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
+using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
     [KnownType(typeof(CaseRecord))]
     [KnownType(typeof(Sex))]
-    public partial class Children: IObjectWithChangeTracker, INotifyPropertyChanged, INavigationPropertiesLoadable
+    public partial class Children: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
+    		
+    		private MakeObjectReactiveHelper _reactiveHelper;
+    
+    		public Children()
+    		{
+    			_reactiveHelper = new MakeObjectReactiveHelper(this);
+    			Initialize();
+    		}
+    
+    		partial void Initialize();
+    		
+    
+    		public IObservable<IObservedChange<object, object>> Changed 
+    		{
+    			get { return _reactiveHelper.Changed; }
+    		}
+    		public IObservable<IObservedChange<object, object>> Changing 
+    		{
+    			get { return _reactiveHelper.Changing; }
+    		}
+    		public IDisposable SuppressChangeNotifications() 
+    		{
+    			return _reactiveHelper.SuppressChangeNotifications();
+    		}
+    
+    		private PropertyChangingEventHandler _propertyChanging;
+    		public event PropertyChangingEventHandler PropertyChanging
+    		{
+    			add
+    			{
+    				_propertyChanging += value;
+    			}
+    			remove
+    			{
+    				_propertyChanging -= value;
+    			}
+    		}
     
     		public event EventHandler<LoadingNavigationPropertiesEventArgs> OnNavigationPropertyLoading;
     		protected virtual void RaiseNavigationPropertyLoading(string propertyName)
@@ -59,6 +97,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
                     }
+    				OnPropertyChanging("Id");
                     _id = value;
                     OnPropertyChanged("Id");
                 }
@@ -74,6 +113,7 @@ namespace Faccts.Model.Entities
             {
                 if (_firstName != value)
                 {
+    				OnPropertyChanging("FirstName");
                     _firstName = value;
                     OnPropertyChanged("FirstName");
                 }
@@ -89,6 +129,7 @@ namespace Faccts.Model.Entities
             {
                 if (_lastName != value)
                 {
+    				OnPropertyChanging("LastName");
                     _lastName = value;
                     OnPropertyChanged("LastName");
                 }
@@ -104,6 +145,7 @@ namespace Faccts.Model.Entities
             {
                 if (_relationshipToProtected != value)
                 {
+    				OnPropertyChanging("RelationshipToProtected");
                     _relationshipToProtected = value;
                     OnPropertyChanged("RelationshipToProtected");
                 }
@@ -119,6 +161,7 @@ namespace Faccts.Model.Entities
             {
                 if (_dateOfBirth != value)
                 {
+    				OnPropertyChanging("DateOfBirth");
                     _dateOfBirth = value;
                     OnPropertyChanged("DateOfBirth");
                 }
@@ -142,6 +185,7 @@ namespace Faccts.Model.Entities
                             Sex = null;
                         }
                     }
+    				OnPropertyChanging("Sex_Id");
                     _sex_Id = value;
                     OnPropertyChanged("Sex_Id");
                 }
@@ -165,6 +209,7 @@ namespace Faccts.Model.Entities
                             CaseRecord = null;
                         }
                     }
+    				OnPropertyChanging("CaseRecord_Id");
                     _caseRecord_Id = value;
                     OnPropertyChanged("CaseRecord_Id");
                 }
@@ -185,6 +230,7 @@ namespace Faccts.Model.Entities
                 if (!ReferenceEquals(_caseRecord, value))
                 {
                     var previousValue = _caseRecord;
+    				OnNavigationPropertyChanging("CaseRecord");
                     _caseRecord = value;
                     FixupCaseRecord(previousValue);
                     OnNavigationPropertyChanged("CaseRecord");
@@ -202,6 +248,7 @@ namespace Faccts.Model.Entities
                 if (!ReferenceEquals(_sex, value))
                 {
                     var previousValue = _sex;
+    				OnNavigationPropertyChanging("Sex");
                     _sex = value;
                     FixupSex(previousValue);
                     OnNavigationPropertyChanged("Sex");
@@ -226,11 +273,27 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	protected virtual void OnPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
+            }
+        }
+    
         protected virtual void OnNavigationPropertyChanged(String propertyName)
         {
             if (_propertyChanged != null)
             {
                 _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    
+    	protected virtual void OnNavigationPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
             }
         }
     

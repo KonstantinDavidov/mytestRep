@@ -20,13 +20,15 @@ using ReactiveUI;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(CaseRecord))]
-    public partial class Attorneys: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    [KnownType(typeof(Memberships))]
+    [KnownType(typeof(Roles))]
+    [KnownType(typeof(Users))]
+    public partial class Applications: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
     		private MakeObjectReactiveHelper _reactiveHelper;
     
-    		public Attorneys()
+    		public Applications()
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
@@ -85,312 +87,168 @@ namespace Faccts.Model.Entities
     	    #region Simple Properties
     
         [DataMember]
-        public int Id
+        public System.Guid ApplicationId
         {
-            get { return _id; }
+            get { return _applicationId; }
             set
             {
-                if (_id != value)
+                if (_applicationId != value)
                 {
                     if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added)
                     {
-                        throw new InvalidOperationException("The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
+                        throw new InvalidOperationException("The property 'ApplicationId' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
                     }
-    				OnPropertyChanging("Id");
-                    _id = value;
-                    OnPropertyChanged("Id");
+    				OnPropertyChanging("ApplicationId");
+                    _applicationId = value;
+                    OnPropertyChanged("ApplicationId");
                 }
             }
         }
-        private int _id;
+        private System.Guid _applicationId;
     
         [DataMember]
-        public string FirstName
+        public string ApplicationName
         {
-            get { return _firstName; }
+            get { return _applicationName; }
             set
             {
-                if (_firstName != value)
+                if (_applicationName != value)
                 {
-    				OnPropertyChanging("FirstName");
-                    _firstName = value;
-                    OnPropertyChanged("FirstName");
+    				OnPropertyChanging("ApplicationName");
+                    _applicationName = value;
+                    OnPropertyChanged("ApplicationName");
                 }
             }
         }
-        private string _firstName;
+        private string _applicationName;
     
         [DataMember]
-        public string LastName
+        public string Description
         {
-            get { return _lastName; }
+            get { return _description; }
             set
             {
-                if (_lastName != value)
+                if (_description != value)
                 {
-    				OnPropertyChanging("LastName");
-                    _lastName = value;
-                    OnPropertyChanged("LastName");
+    				OnPropertyChanging("Description");
+                    _description = value;
+                    OnPropertyChanged("Description");
                 }
             }
         }
-        private string _lastName;
-    
-        [DataMember]
-        public string FirmName
-        {
-            get { return _firmName; }
-            set
-            {
-                if (_firmName != value)
-                {
-    				OnPropertyChanging("FirmName");
-                    _firmName = value;
-                    OnPropertyChanged("FirmName");
-                }
-            }
-        }
-        private string _firmName;
-    
-        [DataMember]
-        public string StreetAddress
-        {
-            get { return _streetAddress; }
-            set
-            {
-                if (_streetAddress != value)
-                {
-    				OnPropertyChanging("StreetAddress");
-                    _streetAddress = value;
-                    OnPropertyChanged("StreetAddress");
-                }
-            }
-        }
-        private string _streetAddress;
-    
-        [DataMember]
-        public string City
-        {
-            get { return _city; }
-            set
-            {
-                if (_city != value)
-                {
-    				OnPropertyChanging("City");
-                    _city = value;
-                    OnPropertyChanged("City");
-                }
-            }
-        }
-        private string _city;
-    
-        [DataMember]
-        public string State
-        {
-            get { return _state; }
-            set
-            {
-                if (_state != value)
-                {
-    				OnPropertyChanging("State");
-                    _state = value;
-                    OnPropertyChanged("State");
-                }
-            }
-        }
-        private string _state;
-    
-        [DataMember]
-        public string ZipCode
-        {
-            get { return _zipCode; }
-            set
-            {
-                if (_zipCode != value)
-                {
-    				OnPropertyChanging("ZipCode");
-                    _zipCode = value;
-                    OnPropertyChanged("ZipCode");
-                }
-            }
-        }
-        private string _zipCode;
-    
-        [DataMember]
-        public string Phone
-        {
-            get { return _phone; }
-            set
-            {
-                if (_phone != value)
-                {
-    				OnPropertyChanging("Phone");
-                    _phone = value;
-                    OnPropertyChanged("Phone");
-                }
-            }
-        }
-        private string _phone;
-    
-        [DataMember]
-        public string Fax
-        {
-            get { return _fax; }
-            set
-            {
-                if (_fax != value)
-                {
-    				OnPropertyChanging("Fax");
-                    _fax = value;
-                    OnPropertyChanged("Fax");
-                }
-            }
-        }
-        private string _fax;
-    
-        [DataMember]
-        public string Email
-        {
-            get { return _email; }
-            set
-            {
-                if (_email != value)
-                {
-    				OnPropertyChanging("Email");
-                    _email = value;
-                    OnPropertyChanged("Email");
-                }
-            }
-        }
-        private string _email;
-    
-        [DataMember]
-        public string StateBarId
-        {
-            get { return _stateBarId; }
-            set
-            {
-                if (_stateBarId != value)
-                {
-    				OnPropertyChanging("StateBarId");
-                    _stateBarId = value;
-                    OnPropertyChanged("StateBarId");
-                }
-            }
-        }
-        private string _stateBarId;
+        private string _description;
 
         #endregion
 
         #region Navigation Properties
     
         [DataMember]
-        public TrackableCollection<CaseRecord> CaseRecord
+        public TrackableCollection<Memberships> Memberships
         {
             get
             {
-                if (_caseRecord == null)
+                if (_memberships == null)
                 {
-                    _caseRecord = new TrackableCollection<CaseRecord>();
-                    _caseRecord.CollectionChanged += FixupCaseRecord;
+                    _memberships = new TrackableCollection<Memberships>();
+                    _memberships.CollectionChanged += FixupMemberships;
                 }
-                return _caseRecord;
+                return _memberships;
             }
             set
             {
-                if (!ReferenceEquals(_caseRecord, value))
+                if (!ReferenceEquals(_memberships, value))
                 {
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
-    				OnNavigationPropertyChanging("CaseRecord");
-                    if (_caseRecord != null)
+    				OnNavigationPropertyChanging("Memberships");
+                    if (_memberships != null)
                     {
-                        _caseRecord.CollectionChanged -= FixupCaseRecord;
+                        _memberships.CollectionChanged -= FixupMemberships;
                     }
-                    _caseRecord = value;
-                    if (_caseRecord != null)
+                    _memberships = value;
+                    if (_memberships != null)
                     {
-                        _caseRecord.CollectionChanged += FixupCaseRecord;
+                        _memberships.CollectionChanged += FixupMemberships;
                     }
-                    OnNavigationPropertyChanged("CaseRecord");
+                    OnNavigationPropertyChanged("Memberships");
                 }
             }
         }
-        private TrackableCollection<CaseRecord> _caseRecord;
+        private TrackableCollection<Memberships> _memberships;
     
         [DataMember]
-        public TrackableCollection<CaseRecord> CaseRecord1
+        public TrackableCollection<Roles> Roles
         {
             get
             {
-                if (_caseRecord1 == null)
+                if (_roles == null)
                 {
-                    _caseRecord1 = new TrackableCollection<CaseRecord>();
-                    _caseRecord1.CollectionChanged += FixupCaseRecord1;
+                    _roles = new TrackableCollection<Roles>();
+                    _roles.CollectionChanged += FixupRoles;
                 }
-                return _caseRecord1;
+                return _roles;
             }
             set
             {
-                if (!ReferenceEquals(_caseRecord1, value))
+                if (!ReferenceEquals(_roles, value))
                 {
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
-    				OnNavigationPropertyChanging("CaseRecord1");
-                    if (_caseRecord1 != null)
+    				OnNavigationPropertyChanging("Roles");
+                    if (_roles != null)
                     {
-                        _caseRecord1.CollectionChanged -= FixupCaseRecord1;
+                        _roles.CollectionChanged -= FixupRoles;
                     }
-                    _caseRecord1 = value;
-                    if (_caseRecord1 != null)
+                    _roles = value;
+                    if (_roles != null)
                     {
-                        _caseRecord1.CollectionChanged += FixupCaseRecord1;
+                        _roles.CollectionChanged += FixupRoles;
                     }
-                    OnNavigationPropertyChanged("CaseRecord1");
+                    OnNavigationPropertyChanged("Roles");
                 }
             }
         }
-        private TrackableCollection<CaseRecord> _caseRecord1;
+        private TrackableCollection<Roles> _roles;
     
         [DataMember]
-        public TrackableCollection<CaseRecord> CaseRecord2
+        public TrackableCollection<Users> Users
         {
             get
             {
-                if (_caseRecord2 == null)
+                if (_users == null)
                 {
-                    _caseRecord2 = new TrackableCollection<CaseRecord>();
-                    _caseRecord2.CollectionChanged += FixupCaseRecord2;
+                    _users = new TrackableCollection<Users>();
+                    _users.CollectionChanged += FixupUsers;
                 }
-                return _caseRecord2;
+                return _users;
             }
             set
             {
-                if (!ReferenceEquals(_caseRecord2, value))
+                if (!ReferenceEquals(_users, value))
                 {
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
-    				OnNavigationPropertyChanging("CaseRecord2");
-                    if (_caseRecord2 != null)
+    				OnNavigationPropertyChanging("Users");
+                    if (_users != null)
                     {
-                        _caseRecord2.CollectionChanged -= FixupCaseRecord2;
+                        _users.CollectionChanged -= FixupUsers;
                     }
-                    _caseRecord2 = value;
-                    if (_caseRecord2 != null)
+                    _users = value;
+                    if (_users != null)
                     {
-                        _caseRecord2.CollectionChanged += FixupCaseRecord2;
+                        _users.CollectionChanged += FixupUsers;
                     }
-                    OnNavigationPropertyChanged("CaseRecord2");
+                    OnNavigationPropertyChanged("Users");
                 }
             }
         }
-        private TrackableCollection<CaseRecord> _caseRecord2;
+        private TrackableCollection<Users> _users;
 
         #endregion
 
@@ -441,35 +299,17 @@ namespace Faccts.Model.Entities
             }
     
             // If parameter cannot be cast to Point return false.
-            Attorneys p = obj as Attorneys;
+            Applications p = obj as Applications;
             if ((System.Object)p == null)
             {
                 return false;
             }
     
-    			if (this.Id != p.Id)
+    			if (this.ApplicationId != p.ApplicationId)
     				return false;
-    			if (this.FirstName != p.FirstName)
+    			if (this.ApplicationName != p.ApplicationName)
     				return false;
-    			if (this.LastName != p.LastName)
-    				return false;
-    			if (this.FirmName != p.FirmName)
-    				return false;
-    			if (this.StreetAddress != p.StreetAddress)
-    				return false;
-    			if (this.City != p.City)
-    				return false;
-    			if (this.State != p.State)
-    				return false;
-    			if (this.ZipCode != p.ZipCode)
-    				return false;
-    			if (this.Phone != p.Phone)
-    				return false;
-    			if (this.Fax != p.Fax)
-    				return false;
-    			if (this.Email != p.Email)
-    				return false;
-    			if (this.StateBarId != p.StateBarId)
+    			if (this.Description != p.Description)
     				return false;
     
     		return true;
@@ -479,68 +319,21 @@ namespace Faccts.Model.Entities
     	{
     		int hashCode = 1;
     			
-    		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
+    		hashCode ^= this.ApplicationId.GetHashCode();
+    		if (this.ApplicationId != null)
     		{
-    			hashCode ^= this.Id.GetHashCode();
+    			hashCode ^= this.ApplicationId.GetHashCode();
     		}
     			
-    		hashCode ^= this.FirstName.GetHashCode();
-    		if (this.FirstName != null)
+    		hashCode ^= this.ApplicationName.GetHashCode();
+    		if (this.ApplicationName != null)
     		{
-    			hashCode ^= this.FirstName.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.LastName.GetHashCode();
-    		if (this.LastName != null)
-    		{
-    			hashCode ^= this.LastName.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.FirmName.GetHashCode();
-    		if (this.FirmName != null)
-    		{
-    			hashCode ^= this.FirmName.GetHashCode();
+    			hashCode ^= this.ApplicationName.GetHashCode();
     		}
      
-    		if (this.StreetAddress != null)
+    		if (this.Description != null)
     		{
-    			hashCode ^= this.StreetAddress.GetHashCode();
-    		}
-     
-    		if (this.City != null)
-    		{
-    			hashCode ^= this.City.GetHashCode();
-    		}
-     
-    		if (this.State != null)
-    		{
-    			hashCode ^= this.State.GetHashCode();
-    		}
-     
-    		if (this.ZipCode != null)
-    		{
-    			hashCode ^= this.ZipCode.GetHashCode();
-    		}
-     
-    		if (this.Phone != null)
-    		{
-    			hashCode ^= this.Phone.GetHashCode();
-    		}
-     
-    		if (this.Fax != null)
-    		{
-    			hashCode ^= this.Fax.GetHashCode();
-    		}
-     
-    		if (this.Email != null)
-    		{
-    			hashCode ^= this.Email.GetHashCode();
-    		}
-     
-    		if (this.StateBarId != null)
-    		{
-    			hashCode ^= this.StateBarId.GetHashCode();
+    			hashCode ^= this.Description.GetHashCode();
     		}
     		return hashCode;
     	}
@@ -600,16 +393,16 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
-            CaseRecord.Clear();
-            CaseRecord1.Clear();
-            CaseRecord2.Clear();
+            Memberships.Clear();
+            Roles.Clear();
+            Users.Clear();
         }
 
         #endregion
 
         #region Association Fixup
     
-        private void FixupCaseRecord(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupMemberships(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
             {
@@ -618,37 +411,37 @@ namespace Faccts.Model.Entities
     
             if (e.NewItems != null)
             {
-                foreach (CaseRecord item in e.NewItems)
+                foreach (Memberships item in e.NewItems)
                 {
-                    item.Attorneys = this;
+                    item.Applications = this;
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         if (!item.ChangeTracker.ChangeTrackingEnabled)
                         {
                             item.StartTracking();
                         }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CaseRecord", item);
+                        ChangeTracker.RecordAdditionToCollectionProperties("Memberships", item);
                     }
                 }
             }
     
             if (e.OldItems != null)
             {
-                foreach (CaseRecord item in e.OldItems)
+                foreach (Memberships item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.Attorneys, this))
+                    if (ReferenceEquals(item.Applications, this))
                     {
-                        item.Attorneys = null;
+                        item.Applications = null;
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CaseRecord", item);
+                        ChangeTracker.RecordRemovalFromCollectionProperties("Memberships", item);
                     }
                 }
             }
         }
     
-        private void FixupCaseRecord1(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupRoles(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
             {
@@ -657,37 +450,37 @@ namespace Faccts.Model.Entities
     
             if (e.NewItems != null)
             {
-                foreach (CaseRecord item in e.NewItems)
+                foreach (Roles item in e.NewItems)
                 {
-                    item.Attorneys1 = this;
+                    item.Applications = this;
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         if (!item.ChangeTracker.ChangeTrackingEnabled)
                         {
                             item.StartTracking();
                         }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CaseRecord1", item);
+                        ChangeTracker.RecordAdditionToCollectionProperties("Roles", item);
                     }
                 }
             }
     
             if (e.OldItems != null)
             {
-                foreach (CaseRecord item in e.OldItems)
+                foreach (Roles item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.Attorneys1, this))
+                    if (ReferenceEquals(item.Applications, this))
                     {
-                        item.Attorneys1 = null;
+                        item.Applications = null;
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CaseRecord1", item);
+                        ChangeTracker.RecordRemovalFromCollectionProperties("Roles", item);
                     }
                 }
             }
         }
     
-        private void FixupCaseRecord2(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupUsers(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
             {
@@ -696,31 +489,31 @@ namespace Faccts.Model.Entities
     
             if (e.NewItems != null)
             {
-                foreach (CaseRecord item in e.NewItems)
+                foreach (Users item in e.NewItems)
                 {
-                    item.Attorneys2 = this;
+                    item.Applications = this;
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         if (!item.ChangeTracker.ChangeTrackingEnabled)
                         {
                             item.StartTracking();
                         }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CaseRecord2", item);
+                        ChangeTracker.RecordAdditionToCollectionProperties("Users", item);
                     }
                 }
             }
     
             if (e.OldItems != null)
             {
-                foreach (CaseRecord item in e.OldItems)
+                foreach (Users item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.Attorneys2, this))
+                    if (ReferenceEquals(item.Applications, this))
                     {
-                        item.Attorneys2 = null;
+                        item.Applications = null;
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CaseRecord2", item);
+                        ChangeTracker.RecordRemovalFromCollectionProperties("Users", item);
                     }
                 }
             }

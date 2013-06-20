@@ -9,7 +9,7 @@ namespace Faccts.Model.Entities
 {
     public partial class User : INavigationPropertiesLoadable
     {
-        public User(FACCTS.Server.Model.DataModel.User dtoUser)
+        public User(FACCTS.Server.Model.DataModel.User dtoUser) : this()
         {
             this.Id = dtoUser.UserId;
             this.Username = dtoUser.Username;

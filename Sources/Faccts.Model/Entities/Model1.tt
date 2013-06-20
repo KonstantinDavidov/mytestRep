@@ -41,11 +41,48 @@ foreach (EntityType entity in code.GetItemsToGenerate<EntityType>(ItemCollection
     BeginNamespace(namespaceName, code);
     WriteEntityTypeSerializationInfo(entity, ItemCollection, code, ef);
 #>
-<#=Accessibility.ForType(entity)#> <#=code.SpaceAfter(code.AbstractOption(entity))#>partial class <#=code.Escape(entity)#><#=code.StringBefore(" : ", code.GetTypeName(entity.BaseType))#><#=entity.BaseType == null ? ": " : ", "#>IObjectWithChangeTracker, INotifyPropertyChanged, INavigationPropertiesLoadable
+<#=Accessibility.ForType(entity)#> <#=code.SpaceAfter(code.AbstractOption(entity))#>partial class <#=code.Escape(entity)#><#=code.StringBefore(" : ", code.GetTypeName(entity.BaseType))#><#=entity.BaseType == null ? ": " : ", "#>IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
 {
 <#
 	if (entity.BaseType == null)
 	{#>
+		
+		private MakeObjectReactiveHelper _reactiveHelper;
+
+		public <#=code.Escape(entity)#>()
+		{
+			_reactiveHelper = new MakeObjectReactiveHelper(this);
+			Initialize();
+		}
+
+		partial void Initialize();
+		
+
+		public IObservable<IObservedChange<object, object>> Changed 
+		{
+			get { return _reactiveHelper.Changed; }
+		}
+		public IObservable<IObservedChange<object, object>> Changing 
+		{
+			get { return _reactiveHelper.Changing; }
+		}
+		public IDisposable SuppressChangeNotifications() 
+		{
+			return _reactiveHelper.SuppressChangeNotifications();
+		}
+
+		private PropertyChangingEventHandler _propertyChanging;
+		public event PropertyChangingEventHandler PropertyChanging
+		{
+			add
+			{
+				_propertyChanging += value;
+			}
+			remove
+			{
+				_propertyChanging -= value;
+			}
+		}
 
 		public event EventHandler<LoadingNavigationPropertiesEventArgs> OnNavigationPropertyLoading;
 		protected virtual void RaiseNavigationPropertyLoading(string propertyName)
@@ -155,6 +192,7 @@ foreach (EntityType entity in code.GetItemsToGenerate<EntityType>(ItemCollection
 #>
                         var previousValue = <#=code.FieldName(np)#>;
                         <#=code.FieldName(np)#> = null;
+						OnNavigationPropertyChanging("<#=np.Name#>");
                         Fixup<#=np.Name#>(previousValue, skipKeys: true);
                         OnNavigationPropertyChanged("<#=np.Name#>");
 <#
@@ -170,6 +208,7 @@ foreach (EntityType entity in code.GetItemsToGenerate<EntityType>(ItemCollection
 <#
         }
 #>
+				OnPropertyChanging("<#=edmProperty.Name#>");
                 <#=code.FieldName(edmProperty)#> = value;
                 OnPropertyChanged("<#=edmProperty.Name#>");
             }
@@ -210,6 +249,7 @@ foreach (EntityType entity in code.GetItemsToGenerate<EntityType>(ItemCollection
                 }
 
                 Handle<#=edmProperty.Name#>Changing(this, null);
+				OnPropertyChanging("<#=edmProperty.Name#>");
                 <#=code.FieldName(edmProperty)#> = value;
                 OnPropertyChanged("<#=edmProperty.Name#>");
 
@@ -262,6 +302,7 @@ foreach (EntityType entity in code.GetItemsToGenerate<EntityType>(ItemCollection
                 {
                     throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                 }
+				OnNavigationPropertyChanging("<#=navProperty.Name#>");
                 if (<#=code.FieldName(navProperty)#> != null)
                 {
                     <#=code.FieldName(navProperty)#>.CollectionChanged -= Fixup<#=navProperty.Name#>;
@@ -360,6 +401,7 @@ foreach (EntityType entity in code.GetItemsToGenerate<EntityType>(ItemCollection
             }
 #>
                 var previousValue = <#=code.FieldName(navProperty)#>;
+				OnNavigationPropertyChanging("<#=navProperty.Name#>");
                 <#=code.FieldName(navProperty)#> = value;
                 Fixup<#=navProperty.Name#>(previousValue);
                 OnNavigationPropertyChanged("<#=navProperty.Name#>");
@@ -389,11 +431,27 @@ foreach (EntityType entity in code.GetItemsToGenerate<EntityType>(ItemCollection
         }
     }
 
+	protected virtual void OnPropertyChanging(String propertyName)
+    {
+        if (_propertyChanging != null)
+        {
+            _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
+        }
+    }
+
     protected virtual void OnNavigationPropertyChanged(String propertyName)
     {
         if (_propertyChanged != null)
         {
             _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+
+	protected virtual void OnNavigationPropertyChanging(String propertyName)
+    {
+        if (_propertyChanging != null)
+        {
+            _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
         }
     }
 
@@ -1158,8 +1216,38 @@ foreach (ComplexType complex in code.GetItemsToGenerate<ComplexType>(ItemCollect
     fileManager.StartNewFile(complex.Name + ".cs");
     BeginNamespace(namespaceName, code);
 #>
-<#=Accessibility.ForType(complex)#> partial class <#=code.Escape(complex)#> : INotifyComplexPropertyChanging, INotifyPropertyChanged
+<#=Accessibility.ForType(complex)#> partial class <#=code.Escape(complex)#> : INotifyComplexPropertyChanging, IReactiveNotifyPropertyChanged
 {
+
+	private MakeObjectReactiveHelper _reactiveHelper;
+	public <#=code.Escape(complex)#>()
+	{
+		_reactiveHelper = new MakeObjectReactiveHelper(this);
+		Initialize();
+	}
+
+	partial void Initialize();
+	
+
+	public IObservable<IObservedChange<object, object>> Changed 
+	{
+		get { return _reactiveHelper.Changed; }
+	}
+	public IObservable<IObservedChange<object, object>> Changing 
+	{
+		get { return _reactiveHelper.Changing; }
+	}
+	public IDisposable SuppressChangeNotifications() 
+	{
+		return _reactiveHelper.SuppressChangeNotifications();
+	}
+
+	private PropertyChangingEventHandler _propertyChanging;
+	public event PropertyChangingEventHandler PropertyChanging
+	{
+		add { _propertyChanging += value; }
+		remove {_propertyChanging -= value; }
+	}
 <#
     region.Begin("Simple Properties");
 
@@ -1253,6 +1341,14 @@ foreach (ComplexType complex in code.GetItemsToGenerate<ComplexType>(ItemCollect
         if (_propertyChanged != null)
         {
             _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+
+	private void OnPropertyChanging(String propertyName)
+    {
+        if (_propertyChanging != null)
+        {
+            _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
         }
     }
 
@@ -1372,6 +1468,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
+using ReactiveUI;
 <#=String.Join(String.Empty, extraUsings.Select(u => "using " + u + ";" + Environment.NewLine).ToArray())#>
 <#+
     fileManager.EndBlock();
@@ -1719,7 +1816,7 @@ public class ObjectChangeTracker
     }
 
     // Records an addition to collection valued properties on SelfTracking Entities.
-    internal void RecordAdditionToCollectionProperties(string propertyName, object value)
+    public void RecordAdditionToCollectionProperties(string propertyName, object value)
     {
         if (_changeTrackingEnabled)
         {
@@ -1748,7 +1845,7 @@ public class ObjectChangeTracker
     }
 
     // Records a removal to collection valued properties on SelfTracking Entities.
-    internal void RecordRemovalFromCollectionProperties(string propertyName, object value)
+    public void RecordRemovalFromCollectionProperties(string propertyName, object value)
     {
         if (_changeTrackingEnabled)
         {

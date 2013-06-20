@@ -29,6 +29,7 @@ namespace FACCTS.Controls.ViewModels
                 {
                     if (e.PropertyName == "CourtCases")
                     {
+                        _courtCases = null;
                         this.NotifyOfPropertyChange(() => CourtCases);
                     }
                 };
@@ -282,14 +283,9 @@ namespace FACCTS.Controls.ViewModels
         {
             get
             {
-                if (_courtCases == null && IsAuthenticated)
+                if (this.IsAuthenticated && _courtCases == null)
                 {
-                    var data = DataContainer.CourtCases;
-                    if (data != null)
-                    {
-                        _logger.InfoFormat("Wep api service returned {0} court cases", data.Count());
-                        _courtCases = new ObservableCollection<CourtCase>(data.ToList());
-                    }
+                    _courtCases = new ObservableCollection<CourtCase>(DataContainer.CourtCases);
                 }
                 return _courtCases;
             }

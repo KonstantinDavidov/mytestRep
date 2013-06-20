@@ -15,14 +15,52 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
+using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
     [KnownType(typeof(CourtMember))]
     [KnownType(typeof(User))]
-    public partial class CourtMember: IObjectWithChangeTracker, INotifyPropertyChanged, INavigationPropertiesLoadable
+    public partial class CourtMember: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
+    		
+    		private MakeObjectReactiveHelper _reactiveHelper;
+    
+    		public CourtMember()
+    		{
+    			_reactiveHelper = new MakeObjectReactiveHelper(this);
+    			Initialize();
+    		}
+    
+    		partial void Initialize();
+    		
+    
+    		public IObservable<IObservedChange<object, object>> Changed 
+    		{
+    			get { return _reactiveHelper.Changed; }
+    		}
+    		public IObservable<IObservedChange<object, object>> Changing 
+    		{
+    			get { return _reactiveHelper.Changing; }
+    		}
+    		public IDisposable SuppressChangeNotifications() 
+    		{
+    			return _reactiveHelper.SuppressChangeNotifications();
+    		}
+    
+    		private PropertyChangingEventHandler _propertyChanging;
+    		public event PropertyChangingEventHandler PropertyChanging
+    		{
+    			add
+    			{
+    				_propertyChanging += value;
+    			}
+    			remove
+    			{
+    				_propertyChanging -= value;
+    			}
+    		}
     
     		public event EventHandler<LoadingNavigationPropertiesEventArgs> OnNavigationPropertyLoading;
     		protected virtual void RaiseNavigationPropertyLoading(string propertyName)
@@ -66,6 +104,7 @@ namespace Faccts.Model.Entities
                             User = null;
                         }
                     }
+    				OnPropertyChanging("Id");
                     _id = value;
                     OnPropertyChanged("Id");
                 }
@@ -89,6 +128,7 @@ namespace Faccts.Model.Entities
                             CourtMember2 = null;
                         }
                     }
+    				OnPropertyChanging("SubstituteId");
                     _substituteId = value;
                     OnPropertyChanged("SubstituteId");
                 }
@@ -104,12 +144,29 @@ namespace Faccts.Model.Entities
             {
                 if (_isCertified != value)
                 {
+    				OnPropertyChanging("IsCertified");
                     _isCertified = value;
                     OnPropertyChanged("IsCertified");
                 }
             }
         }
         private bool _isCertified;
+    
+        [DataMember]
+        public bool IsAvilable
+        {
+            get { return _isAvilable; }
+            set
+            {
+                if (_isAvilable != value)
+                {
+    				OnPropertyChanging("IsAvilable");
+                    _isAvilable = value;
+                    OnPropertyChanged("IsAvilable");
+                }
+            }
+        }
+        private bool _isAvilable;
     
         [DataMember]
         public byte[] Image
@@ -119,6 +176,7 @@ namespace Faccts.Model.Entities
             {
                 if (_image != value)
                 {
+    				OnPropertyChanging("Image");
                     _image = value;
                     OnPropertyChanged("Image");
                 }
@@ -134,6 +192,7 @@ namespace Faccts.Model.Entities
             {
                 if (_phone != value)
                 {
+    				OnPropertyChanging("Phone");
                     _phone = value;
                     OnPropertyChanged("Phone");
                 }
@@ -165,6 +224,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
+    				OnNavigationPropertyChanging("CourtMember1");
                     if (_courtMember1 != null)
                     {
                         _courtMember1.CollectionChanged -= FixupCourtMember1;
@@ -189,6 +249,7 @@ namespace Faccts.Model.Entities
                 if (!ReferenceEquals(_courtMember2, value))
                 {
                     var previousValue = _courtMember2;
+    				OnNavigationPropertyChanging("CourtMember2");
                     _courtMember2 = value;
                     FixupCourtMember2(previousValue);
                     OnNavigationPropertyChanged("CourtMember2");
@@ -215,6 +276,7 @@ namespace Faccts.Model.Entities
                         }
                     }
                     var previousValue = _user;
+    				OnNavigationPropertyChanging("User");
                     _user = value;
                     FixupUser(previousValue);
                     OnNavigationPropertyChanged("User");
@@ -239,11 +301,27 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	protected virtual void OnPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
+            }
+        }
+    
         protected virtual void OnNavigationPropertyChanged(String propertyName)
         {
             if (_propertyChanged != null)
             {
                 _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    
+    	protected virtual void OnNavigationPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
             }
         }
     
@@ -267,6 +345,8 @@ namespace Faccts.Model.Entities
     			if (this.SubstituteId != p.SubstituteId)
     				return false;
     			if (this.IsCertified != p.IsCertified)
+    				return false;
+    			if (this.IsAvilable != p.IsAvilable)
     				return false;
     			if (this.Image != p.Image)
     				return false;
@@ -295,6 +375,12 @@ namespace Faccts.Model.Entities
     		if (this.IsCertified != null)
     		{
     			hashCode ^= this.IsCertified.GetHashCode();
+    		}
+    			
+    		hashCode ^= this.IsAvilable.GetHashCode();
+    		if (this.IsAvilable != null)
+    		{
+    			hashCode ^= this.IsAvilable.GetHashCode();
     		}
      
     		if (this.Image != null)

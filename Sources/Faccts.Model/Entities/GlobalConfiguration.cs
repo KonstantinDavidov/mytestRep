@@ -15,12 +15,50 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
+using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    public partial class GlobalConfiguration: IObjectWithChangeTracker, INotifyPropertyChanged, INavigationPropertiesLoadable
+    public partial class GlobalConfiguration: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
+    		
+    		private MakeObjectReactiveHelper _reactiveHelper;
+    
+    		public GlobalConfiguration()
+    		{
+    			_reactiveHelper = new MakeObjectReactiveHelper(this);
+    			Initialize();
+    		}
+    
+    		partial void Initialize();
+    		
+    
+    		public IObservable<IObservedChange<object, object>> Changed 
+    		{
+    			get { return _reactiveHelper.Changed; }
+    		}
+    		public IObservable<IObservedChange<object, object>> Changing 
+    		{
+    			get { return _reactiveHelper.Changing; }
+    		}
+    		public IDisposable SuppressChangeNotifications() 
+    		{
+    			return _reactiveHelper.SuppressChangeNotifications();
+    		}
+    
+    		private PropertyChangingEventHandler _propertyChanging;
+    		public event PropertyChangingEventHandler PropertyChanging
+    		{
+    			add
+    			{
+    				_propertyChanging += value;
+    			}
+    			remove
+    			{
+    				_propertyChanging -= value;
+    			}
+    		}
     
     		public event EventHandler<LoadingNavigationPropertiesEventArgs> OnNavigationPropertyLoading;
     		protected virtual void RaiseNavigationPropertyLoading(string propertyName)
@@ -57,6 +95,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
                     }
+    				OnPropertyChanging("Id");
                     _id = value;
                     OnPropertyChanged("Id");
                 }
@@ -72,6 +111,7 @@ namespace Faccts.Model.Entities
             {
                 if (_siteName != value)
                 {
+    				OnPropertyChanging("SiteName");
                     _siteName = value;
                     OnPropertyChanged("SiteName");
                 }
@@ -87,6 +127,7 @@ namespace Faccts.Model.Entities
             {
                 if (_issuerUri != value)
                 {
+    				OnPropertyChanging("IssuerUri");
                     _issuerUri = value;
                     OnPropertyChanged("IssuerUri");
                 }
@@ -102,6 +143,7 @@ namespace Faccts.Model.Entities
             {
                 if (_issuerContactEmail != value)
                 {
+    				OnPropertyChanging("IssuerContactEmail");
                     _issuerContactEmail = value;
                     OnPropertyChanged("IssuerContactEmail");
                 }
@@ -117,6 +159,7 @@ namespace Faccts.Model.Entities
             {
                 if (_defaultWSTokenType != value)
                 {
+    				OnPropertyChanging("DefaultWSTokenType");
                     _defaultWSTokenType = value;
                     OnPropertyChanged("DefaultWSTokenType");
                 }
@@ -132,6 +175,7 @@ namespace Faccts.Model.Entities
             {
                 if (_defaultHttpTokenType != value)
                 {
+    				OnPropertyChanging("DefaultHttpTokenType");
                     _defaultHttpTokenType = value;
                     OnPropertyChanged("DefaultHttpTokenType");
                 }
@@ -147,6 +191,7 @@ namespace Faccts.Model.Entities
             {
                 if (_defaultTokenLifetime != value)
                 {
+    				OnPropertyChanging("DefaultTokenLifetime");
                     _defaultTokenLifetime = value;
                     OnPropertyChanged("DefaultTokenLifetime");
                 }
@@ -162,6 +207,7 @@ namespace Faccts.Model.Entities
             {
                 if (_maximumTokenLifetime != value)
                 {
+    				OnPropertyChanging("MaximumTokenLifetime");
                     _maximumTokenLifetime = value;
                     OnPropertyChanged("MaximumTokenLifetime");
                 }
@@ -177,6 +223,7 @@ namespace Faccts.Model.Entities
             {
                 if (_ssoCookieLifetime != value)
                 {
+    				OnPropertyChanging("SsoCookieLifetime");
                     _ssoCookieLifetime = value;
                     OnPropertyChanged("SsoCookieLifetime");
                 }
@@ -192,6 +239,7 @@ namespace Faccts.Model.Entities
             {
                 if (_requireEncryption != value)
                 {
+    				OnPropertyChanging("RequireEncryption");
                     _requireEncryption = value;
                     OnPropertyChanged("RequireEncryption");
                 }
@@ -207,6 +255,7 @@ namespace Faccts.Model.Entities
             {
                 if (_requireRelyingPartyRegistration != value)
                 {
+    				OnPropertyChanging("RequireRelyingPartyRegistration");
                     _requireRelyingPartyRegistration = value;
                     OnPropertyChanged("RequireRelyingPartyRegistration");
                 }
@@ -222,6 +271,7 @@ namespace Faccts.Model.Entities
             {
                 if (_enableClientCertificateAuthentication != value)
                 {
+    				OnPropertyChanging("EnableClientCertificateAuthentication");
                     _enableClientCertificateAuthentication = value;
                     OnPropertyChanged("EnableClientCertificateAuthentication");
                 }
@@ -237,6 +287,7 @@ namespace Faccts.Model.Entities
             {
                 if (_enforceUsersGroupMembership != value)
                 {
+    				OnPropertyChanging("EnforceUsersGroupMembership");
                     _enforceUsersGroupMembership = value;
                     OnPropertyChanged("EnforceUsersGroupMembership");
                 }
@@ -252,6 +303,7 @@ namespace Faccts.Model.Entities
             {
                 if (_httpPort != value)
                 {
+    				OnPropertyChanging("HttpPort");
                     _httpPort = value;
                     OnPropertyChanged("HttpPort");
                 }
@@ -267,6 +319,7 @@ namespace Faccts.Model.Entities
             {
                 if (_httpsPort != value)
                 {
+    				OnPropertyChanging("HttpsPort");
                     _httpsPort = value;
                     OnPropertyChanged("HttpsPort");
                 }
@@ -290,11 +343,27 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	protected virtual void OnPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
+            }
+        }
+    
         protected virtual void OnNavigationPropertyChanged(String propertyName)
         {
             if (_propertyChanged != null)
             {
                 _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    
+    	protected virtual void OnNavigationPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
             }
         }
     

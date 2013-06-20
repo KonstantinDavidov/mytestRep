@@ -38,9 +38,52 @@ namespace FACCTS.Services.Data
             }
             private set
             {
+                if (_courtCases != null)
+                {
+                    _courtCases.CollectionChanged -= FixupCourtCases;
+                }
                 _courtCases = value;
+                if (_courtCases != null)
+                {
+                    _courtCases.CollectionChanged += FixupCourtCases;
+                }
                 RaisePropertyChanged(() => CourtCases);
             }
+        }
+
+        private void FixupCourtCases(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsSearching)
+            {
+                return;
+            }
+            if (e.NewItems != null)
+            {
+                foreach (CourtCase item in e.NewItems)
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("CourtCases", item);
+                    }
+                }
+                RaisePropertyChanged(() => CourtCases);
+            }
+
+            if (e.OldItems != null)
+            {
+                foreach (CourtCase item in e.OldItems)
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtCases", item);
+                    }
+                }
+            }
+            RaisePropertyChanged(() => CourtCases);
         }
 
         private ObjectChangeTracker _changeTracker;
@@ -74,16 +117,20 @@ namespace FACCTS.Services.Data
             //TODO: implement this when needed
         }
 
-        public void SearchCourtCases()
+        public bool IsSearching { get; private set; }
+
+        public void SearchCourtCases(bool reset = false)
         {
-            ChangeTracker.ChangeTrackingEnabled = false;
+            if (!reset && CourtCases != null)
+                return;
+            IsSearching = true;
             try
             {
                 CourtCases = new TrackableCollection<CourtCase>(FACCTS.Services.Data.CourtCases.GetAll());
             }
             finally
             {
-                ChangeTracker.ChangeTrackingEnabled = true;   
+                IsSearching = false;   
             }
         }
 

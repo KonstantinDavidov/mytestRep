@@ -15,13 +15,51 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
+using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
     [KnownType(typeof(CourtCounty))]
-    public partial class FACCTSConfiguration: IObjectWithChangeTracker, INotifyPropertyChanged, INavigationPropertiesLoadable
+    public partial class FACCTSConfiguration: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
+    		
+    		private MakeObjectReactiveHelper _reactiveHelper;
+    
+    		public FACCTSConfiguration()
+    		{
+    			_reactiveHelper = new MakeObjectReactiveHelper(this);
+    			Initialize();
+    		}
+    
+    		partial void Initialize();
+    		
+    
+    		public IObservable<IObservedChange<object, object>> Changed 
+    		{
+    			get { return _reactiveHelper.Changed; }
+    		}
+    		public IObservable<IObservedChange<object, object>> Changing 
+    		{
+    			get { return _reactiveHelper.Changing; }
+    		}
+    		public IDisposable SuppressChangeNotifications() 
+    		{
+    			return _reactiveHelper.SuppressChangeNotifications();
+    		}
+    
+    		private PropertyChangingEventHandler _propertyChanging;
+    		public event PropertyChangingEventHandler PropertyChanging
+    		{
+    			add
+    			{
+    				_propertyChanging += value;
+    			}
+    			remove
+    			{
+    				_propertyChanging -= value;
+    			}
+    		}
     
     		public event EventHandler<LoadingNavigationPropertiesEventArgs> OnNavigationPropertyLoading;
     		protected virtual void RaiseNavigationPropertyLoading(string propertyName)
@@ -58,6 +96,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
                     }
+    				OnPropertyChanging("Id");
                     _id = value;
                     OnPropertyChanged("Id");
                 }
@@ -73,6 +112,7 @@ namespace Faccts.Model.Entities
             {
                 if (_caseNumberAutoGeneration != value)
                 {
+    				OnPropertyChanging("CaseNumberAutoGeneration");
                     _caseNumberAutoGeneration = value;
                     OnPropertyChanged("CaseNumberAutoGeneration");
                 }
@@ -81,14 +121,14 @@ namespace Faccts.Model.Entities
         private bool _caseNumberAutoGeneration;
     
         [DataMember]
-        public Nullable<int> CurrentCourtCounty_Id
+        public Nullable<int> CurrentCourtCountyId
         {
-            get { return _currentCourtCounty_Id; }
+            get { return _currentCourtCountyId; }
             set
             {
-                if (_currentCourtCounty_Id != value)
+                if (_currentCourtCountyId != value)
                 {
-                    ChangeTracker.RecordOriginalValue("CurrentCourtCounty_Id", _currentCourtCounty_Id);
+                    ChangeTracker.RecordOriginalValue("CurrentCourtCountyId", _currentCourtCountyId);
                     if (!IsDeserializing)
                     {
                         if (CourtCounty != null && CourtCounty.Id != value)
@@ -96,12 +136,13 @@ namespace Faccts.Model.Entities
                             CourtCounty = null;
                         }
                     }
-                    _currentCourtCounty_Id = value;
-                    OnPropertyChanged("CurrentCourtCounty_Id");
+    				OnPropertyChanging("CurrentCourtCountyId");
+                    _currentCourtCountyId = value;
+                    OnPropertyChanged("CurrentCourtCountyId");
                 }
             }
         }
-        private Nullable<int> _currentCourtCounty_Id;
+        private Nullable<int> _currentCourtCountyId;
 
         #endregion
 
@@ -116,6 +157,7 @@ namespace Faccts.Model.Entities
                 if (!ReferenceEquals(_courtCounty, value))
                 {
                     var previousValue = _courtCounty;
+    				OnNavigationPropertyChanging("CourtCounty");
                     _courtCounty = value;
                     FixupCourtCounty(previousValue);
                     OnNavigationPropertyChanged("CourtCounty");
@@ -140,11 +182,27 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	protected virtual void OnPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
+            }
+        }
+    
         protected virtual void OnNavigationPropertyChanged(String propertyName)
         {
             if (_propertyChanged != null)
             {
                 _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    
+    	protected virtual void OnNavigationPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
             }
         }
     
@@ -167,7 +225,7 @@ namespace Faccts.Model.Entities
     				return false;
     			if (this.CaseNumberAutoGeneration != p.CaseNumberAutoGeneration)
     				return false;
-    			if (this.CurrentCourtCounty_Id != p.CurrentCourtCounty_Id)
+    			if (this.CurrentCourtCountyId != p.CurrentCourtCountyId)
     				return false;
     
     		return true;
@@ -189,9 +247,9 @@ namespace Faccts.Model.Entities
     			hashCode ^= this.CaseNumberAutoGeneration.GetHashCode();
     		}
      
-    		if (this.CurrentCourtCounty_Id != null)
+    		if (this.CurrentCourtCountyId != null)
     		{
-    			hashCode ^= this.CurrentCourtCounty_Id.GetHashCode();
+    			hashCode ^= this.CurrentCourtCountyId.GetHashCode();
     		}
     		return hashCode;
     	}
@@ -274,11 +332,11 @@ namespace Faccts.Model.Entities
             {
                 CourtCounty.FACCTSConfiguration.Add(this);
     
-                CurrentCourtCounty_Id = CourtCounty.Id;
+                CurrentCourtCountyId = CourtCounty.Id;
             }
             else if (!skipKeys)
             {
-                CurrentCourtCounty_Id = null;
+                CurrentCourtCountyId = null;
             }
     
             if (ChangeTracker.ChangeTrackingEnabled)

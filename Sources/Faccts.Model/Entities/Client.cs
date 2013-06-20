@@ -15,12 +15,50 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
+using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    public partial class Client: IObjectWithChangeTracker, INotifyPropertyChanged, INavigationPropertiesLoadable
+    public partial class Client: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
+    		
+    		private MakeObjectReactiveHelper _reactiveHelper;
+    
+    		public Client()
+    		{
+    			_reactiveHelper = new MakeObjectReactiveHelper(this);
+    			Initialize();
+    		}
+    
+    		partial void Initialize();
+    		
+    
+    		public IObservable<IObservedChange<object, object>> Changed 
+    		{
+    			get { return _reactiveHelper.Changed; }
+    		}
+    		public IObservable<IObservedChange<object, object>> Changing 
+    		{
+    			get { return _reactiveHelper.Changing; }
+    		}
+    		public IDisposable SuppressChangeNotifications() 
+    		{
+    			return _reactiveHelper.SuppressChangeNotifications();
+    		}
+    
+    		private PropertyChangingEventHandler _propertyChanging;
+    		public event PropertyChangingEventHandler PropertyChanging
+    		{
+    			add
+    			{
+    				_propertyChanging += value;
+    			}
+    			remove
+    			{
+    				_propertyChanging -= value;
+    			}
+    		}
     
     		public event EventHandler<LoadingNavigationPropertiesEventArgs> OnNavigationPropertyLoading;
     		protected virtual void RaiseNavigationPropertyLoading(string propertyName)
@@ -57,6 +95,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
                     }
+    				OnPropertyChanging("Id");
                     _id = value;
                     OnPropertyChanged("Id");
                 }
@@ -72,6 +111,7 @@ namespace Faccts.Model.Entities
             {
                 if (_name != value)
                 {
+    				OnPropertyChanging("Name");
                     _name = value;
                     OnPropertyChanged("Name");
                 }
@@ -87,6 +127,7 @@ namespace Faccts.Model.Entities
             {
                 if (_description != value)
                 {
+    				OnPropertyChanging("Description");
                     _description = value;
                     OnPropertyChanged("Description");
                 }
@@ -102,6 +143,7 @@ namespace Faccts.Model.Entities
             {
                 if (_clientId != value)
                 {
+    				OnPropertyChanging("ClientId");
                     _clientId = value;
                     OnPropertyChanged("ClientId");
                 }
@@ -117,6 +159,7 @@ namespace Faccts.Model.Entities
             {
                 if (_clientSecret != value)
                 {
+    				OnPropertyChanging("ClientSecret");
                     _clientSecret = value;
                     OnPropertyChanged("ClientSecret");
                 }
@@ -132,6 +175,7 @@ namespace Faccts.Model.Entities
             {
                 if (_redirectUri != value)
                 {
+    				OnPropertyChanging("RedirectUri");
                     _redirectUri = value;
                     OnPropertyChanged("RedirectUri");
                 }
@@ -147,6 +191,7 @@ namespace Faccts.Model.Entities
             {
                 if (_allowRefreshToken != value)
                 {
+    				OnPropertyChanging("AllowRefreshToken");
                     _allowRefreshToken = value;
                     OnPropertyChanged("AllowRefreshToken");
                 }
@@ -162,6 +207,7 @@ namespace Faccts.Model.Entities
             {
                 if (_allowImplicitFlow != value)
                 {
+    				OnPropertyChanging("AllowImplicitFlow");
                     _allowImplicitFlow = value;
                     OnPropertyChanged("AllowImplicitFlow");
                 }
@@ -177,6 +223,7 @@ namespace Faccts.Model.Entities
             {
                 if (_allowResourceOwnerFlow != value)
                 {
+    				OnPropertyChanging("AllowResourceOwnerFlow");
                     _allowResourceOwnerFlow = value;
                     OnPropertyChanged("AllowResourceOwnerFlow");
                 }
@@ -192,6 +239,7 @@ namespace Faccts.Model.Entities
             {
                 if (_allowCodeFlow != value)
                 {
+    				OnPropertyChanging("AllowCodeFlow");
                     _allowCodeFlow = value;
                     OnPropertyChanged("AllowCodeFlow");
                 }
@@ -215,11 +263,27 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	protected virtual void OnPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
+            }
+        }
+    
         protected virtual void OnNavigationPropertyChanged(String propertyName)
         {
             if (_propertyChanged != null)
             {
                 _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    
+    	protected virtual void OnNavigationPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
             }
         }
     

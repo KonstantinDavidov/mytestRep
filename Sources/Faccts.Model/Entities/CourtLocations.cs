@@ -15,14 +15,52 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
+using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
     [KnownType(typeof(CourtCounty))]
     [KnownType(typeof(Courtrooms))]
-    public partial class CourtLocations: IObjectWithChangeTracker, INotifyPropertyChanged, INavigationPropertiesLoadable
+    public partial class CourtLocations: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
+    		
+    		private MakeObjectReactiveHelper _reactiveHelper;
+    
+    		public CourtLocations()
+    		{
+    			_reactiveHelper = new MakeObjectReactiveHelper(this);
+    			Initialize();
+    		}
+    
+    		partial void Initialize();
+    		
+    
+    		public IObservable<IObservedChange<object, object>> Changed 
+    		{
+    			get { return _reactiveHelper.Changed; }
+    		}
+    		public IObservable<IObservedChange<object, object>> Changing 
+    		{
+    			get { return _reactiveHelper.Changing; }
+    		}
+    		public IDisposable SuppressChangeNotifications() 
+    		{
+    			return _reactiveHelper.SuppressChangeNotifications();
+    		}
+    
+    		private PropertyChangingEventHandler _propertyChanging;
+    		public event PropertyChangingEventHandler PropertyChanging
+    		{
+    			add
+    			{
+    				_propertyChanging += value;
+    			}
+    			remove
+    			{
+    				_propertyChanging -= value;
+    			}
+    		}
     
     		public event EventHandler<LoadingNavigationPropertiesEventArgs> OnNavigationPropertyLoading;
     		protected virtual void RaiseNavigationPropertyLoading(string propertyName)
@@ -59,6 +97,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
                     }
+    				OnPropertyChanging("Id");
                     _id = value;
                     OnPropertyChanged("Id");
                 }
@@ -74,6 +113,7 @@ namespace Faccts.Model.Entities
             {
                 if (_name != value)
                 {
+    				OnPropertyChanging("Name");
                     _name = value;
                     OnPropertyChanged("Name");
                 }
@@ -89,6 +129,7 @@ namespace Faccts.Model.Entities
             {
                 if (_description != value)
                 {
+    				OnPropertyChanging("Description");
                     _description = value;
                     OnPropertyChanged("Description");
                 }
@@ -104,6 +145,7 @@ namespace Faccts.Model.Entities
             {
                 if (_streetAddress != value)
                 {
+    				OnPropertyChanging("StreetAddress");
                     _streetAddress = value;
                     OnPropertyChanged("StreetAddress");
                 }
@@ -119,6 +161,7 @@ namespace Faccts.Model.Entities
             {
                 if (_state != value)
                 {
+    				OnPropertyChanging("State");
                     _state = value;
                     OnPropertyChanged("State");
                 }
@@ -134,12 +177,29 @@ namespace Faccts.Model.Entities
             {
                 if (_postalCode != value)
                 {
+    				OnPropertyChanging("PostalCode");
                     _postalCode = value;
                     OnPropertyChanged("PostalCode");
                 }
             }
         }
         private string _postalCode;
+    
+        [DataMember]
+        public string City
+        {
+            get { return _city; }
+            set
+            {
+                if (_city != value)
+                {
+    				OnPropertyChanging("City");
+                    _city = value;
+                    OnPropertyChanged("City");
+                }
+            }
+        }
+        private string _city;
     
         [DataMember]
         public Nullable<int> CourtCounty_Id
@@ -157,6 +217,7 @@ namespace Faccts.Model.Entities
                             CourtCounty = null;
                         }
                     }
+    				OnPropertyChanging("CourtCounty_Id");
                     _courtCounty_Id = value;
                     OnPropertyChanged("CourtCounty_Id");
                 }
@@ -177,6 +238,7 @@ namespace Faccts.Model.Entities
                 if (!ReferenceEquals(_courtCounty, value))
                 {
                     var previousValue = _courtCounty;
+    				OnNavigationPropertyChanging("CourtCounty");
                     _courtCounty = value;
                     FixupCourtCounty(previousValue);
                     OnNavigationPropertyChanged("CourtCounty");
@@ -205,6 +267,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
+    				OnNavigationPropertyChanging("Courtrooms");
                     if (_courtrooms != null)
                     {
                         _courtrooms.CollectionChanged -= FixupCourtrooms;
@@ -236,11 +299,27 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	protected virtual void OnPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
+            }
+        }
+    
         protected virtual void OnNavigationPropertyChanged(String propertyName)
         {
             if (_propertyChanged != null)
             {
                 _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    
+    	protected virtual void OnNavigationPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
             }
         }
     
@@ -270,6 +349,8 @@ namespace Faccts.Model.Entities
     			if (this.State != p.State)
     				return false;
     			if (this.PostalCode != p.PostalCode)
+    				return false;
+    			if (this.City != p.City)
     				return false;
     			if (this.CourtCounty_Id != p.CourtCounty_Id)
     				return false;
@@ -311,6 +392,11 @@ namespace Faccts.Model.Entities
     		if (this.PostalCode != null)
     		{
     			hashCode ^= this.PostalCode.GetHashCode();
+    		}
+     
+    		if (this.City != null)
+    		{
+    			hashCode ^= this.City.GetHashCode();
     		}
      
     		if (this.CourtCounty_Id != null)

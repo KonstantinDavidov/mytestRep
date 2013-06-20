@@ -15,6 +15,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
+using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
@@ -28,8 +29,45 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(Sex))]
     [KnownType(typeof(Interpreters))]
     [KnownType(typeof(Witnesses))]
-    public partial class CourtParty: IObjectWithChangeTracker, INotifyPropertyChanged, INavigationPropertiesLoadable
+    public partial class CourtParty: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
+    		
+    		private MakeObjectReactiveHelper _reactiveHelper;
+    
+    		public CourtParty()
+    		{
+    			_reactiveHelper = new MakeObjectReactiveHelper(this);
+    			Initialize();
+    		}
+    
+    		partial void Initialize();
+    		
+    
+    		public IObservable<IObservedChange<object, object>> Changed 
+    		{
+    			get { return _reactiveHelper.Changed; }
+    		}
+    		public IObservable<IObservedChange<object, object>> Changing 
+    		{
+    			get { return _reactiveHelper.Changing; }
+    		}
+    		public IDisposable SuppressChangeNotifications() 
+    		{
+    			return _reactiveHelper.SuppressChangeNotifications();
+    		}
+    
+    		private PropertyChangingEventHandler _propertyChanging;
+    		public event PropertyChangingEventHandler PropertyChanging
+    		{
+    			add
+    			{
+    				_propertyChanging += value;
+    			}
+    			remove
+    			{
+    				_propertyChanging -= value;
+    			}
+    		}
     
     		public event EventHandler<LoadingNavigationPropertiesEventArgs> OnNavigationPropertyLoading;
     		protected virtual void RaiseNavigationPropertyLoading(string propertyName)
@@ -66,6 +104,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
                     }
+    				OnPropertyChanging("Id");
                     _id = value;
                     OnPropertyChanged("Id");
                 }
@@ -81,6 +120,7 @@ namespace Faccts.Model.Entities
             {
                 if (_firstName != value)
                 {
+    				OnPropertyChanging("FirstName");
                     _firstName = value;
                     OnPropertyChanged("FirstName");
                 }
@@ -96,6 +136,7 @@ namespace Faccts.Model.Entities
             {
                 if (_middleName != value)
                 {
+    				OnPropertyChanging("MiddleName");
                     _middleName = value;
                     OnPropertyChanged("MiddleName");
                 }
@@ -111,6 +152,7 @@ namespace Faccts.Model.Entities
             {
                 if (_lastName != value)
                 {
+    				OnPropertyChanging("LastName");
                     _lastName = value;
                     OnPropertyChanged("LastName");
                 }
@@ -126,6 +168,7 @@ namespace Faccts.Model.Entities
             {
                 if (_description != value)
                 {
+    				OnPropertyChanging("Description");
                     _description = value;
                     OnPropertyChanged("Description");
                 }
@@ -141,6 +184,7 @@ namespace Faccts.Model.Entities
             {
                 if (_address != value)
                 {
+    				OnPropertyChanging("Address");
                     _address = value;
                     OnPropertyChanged("Address");
                 }
@@ -156,6 +200,7 @@ namespace Faccts.Model.Entities
             {
                 if (_city != value)
                 {
+    				OnPropertyChanging("City");
                     _city = value;
                     OnPropertyChanged("City");
                 }
@@ -171,6 +216,7 @@ namespace Faccts.Model.Entities
             {
                 if (_state != value)
                 {
+    				OnPropertyChanging("State");
                     _state = value;
                     OnPropertyChanged("State");
                 }
@@ -186,6 +232,7 @@ namespace Faccts.Model.Entities
             {
                 if (_zipCode != value)
                 {
+    				OnPropertyChanging("ZipCode");
                     _zipCode = value;
                     OnPropertyChanged("ZipCode");
                 }
@@ -201,6 +248,7 @@ namespace Faccts.Model.Entities
             {
                 if (_phone != value)
                 {
+    				OnPropertyChanging("Phone");
                     _phone = value;
                     OnPropertyChanged("Phone");
                 }
@@ -216,6 +264,7 @@ namespace Faccts.Model.Entities
             {
                 if (_fax != value)
                 {
+    				OnPropertyChanging("Fax");
                     _fax = value;
                     OnPropertyChanged("Fax");
                 }
@@ -231,6 +280,7 @@ namespace Faccts.Model.Entities
             {
                 if (_weight != value)
                 {
+    				OnPropertyChanging("Weight");
                     _weight = value;
                     OnPropertyChanged("Weight");
                 }
@@ -246,6 +296,7 @@ namespace Faccts.Model.Entities
             {
                 if (_heightFt != value)
                 {
+    				OnPropertyChanging("HeightFt");
                     _heightFt = value;
                     OnPropertyChanged("HeightFt");
                 }
@@ -261,6 +312,7 @@ namespace Faccts.Model.Entities
             {
                 if (_heightIns != value)
                 {
+    				OnPropertyChanging("HeightIns");
                     _heightIns = value;
                     OnPropertyChanged("HeightIns");
                 }
@@ -276,6 +328,7 @@ namespace Faccts.Model.Entities
             {
                 if (_dateOfBirth != value)
                 {
+    				OnPropertyChanging("DateOfBirth");
                     _dateOfBirth = value;
                     OnPropertyChanged("DateOfBirth");
                 }
@@ -291,6 +344,7 @@ namespace Faccts.Model.Entities
             {
                 if (_age != value)
                 {
+    				OnPropertyChanging("Age");
                     _age = value;
                     OnPropertyChanged("Age");
                 }
@@ -314,6 +368,7 @@ namespace Faccts.Model.Entities
                             Designation = null;
                         }
                     }
+    				OnPropertyChanging("Designation_Id");
                     _designation_Id = value;
                     OnPropertyChanged("Designation_Id");
                 }
@@ -337,6 +392,7 @@ namespace Faccts.Model.Entities
                             ParticipantRole = null;
                         }
                     }
+    				OnPropertyChanging("ParticipantRole_Id");
                     _participantRole_Id = value;
                     OnPropertyChanged("ParticipantRole_Id");
                 }
@@ -360,6 +416,7 @@ namespace Faccts.Model.Entities
                             Sex = null;
                         }
                     }
+    				OnPropertyChanging("Sex_Id");
                     _sex_Id = value;
                     OnPropertyChanged("Sex_Id");
                 }
@@ -383,6 +440,7 @@ namespace Faccts.Model.Entities
                             HairColor = null;
                         }
                     }
+    				OnPropertyChanging("HairColor_Id");
                     _hairColor_Id = value;
                     OnPropertyChanged("HairColor_Id");
                 }
@@ -406,6 +464,7 @@ namespace Faccts.Model.Entities
                             EyesColor = null;
                         }
                     }
+    				OnPropertyChanging("EyesColor_Id");
                     _eyesColor_Id = value;
                     OnPropertyChanged("EyesColor_Id");
                 }
@@ -429,6 +488,7 @@ namespace Faccts.Model.Entities
                             Race = null;
                         }
                     }
+    				OnPropertyChanging("Race_Id");
                     _race_Id = value;
                     OnPropertyChanged("Race_Id");
                 }
@@ -452,6 +512,7 @@ namespace Faccts.Model.Entities
                             CaseRecord2 = null;
                         }
                     }
+    				OnPropertyChanging("CaseRecordByCourtParty1_Id");
                     _caseRecordByCourtParty1_Id = value;
                     OnPropertyChanged("CaseRecordByCourtParty1_Id");
                 }
@@ -475,6 +536,7 @@ namespace Faccts.Model.Entities
                             CaseRecord3 = null;
                         }
                     }
+    				OnPropertyChanging("CaseRecordByCourtParty2_Id");
                     _caseRecordByCourtParty2_Id = value;
                     OnPropertyChanged("CaseRecordByCourtParty2_Id");
                 }
@@ -506,6 +568,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
+    				OnNavigationPropertyChanging("CaseRecord");
                     if (_caseRecord != null)
                     {
                         _caseRecord.CollectionChanged -= FixupCaseRecord;
@@ -541,6 +604,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
+    				OnNavigationPropertyChanging("CaseRecord1");
                     if (_caseRecord1 != null)
                     {
                         _caseRecord1.CollectionChanged -= FixupCaseRecord1;
@@ -565,6 +629,7 @@ namespace Faccts.Model.Entities
                 if (!ReferenceEquals(_caseRecord2, value))
                 {
                     var previousValue = _caseRecord2;
+    				OnNavigationPropertyChanging("CaseRecord2");
                     _caseRecord2 = value;
                     FixupCaseRecord2(previousValue);
                     OnNavigationPropertyChanged("CaseRecord2");
@@ -582,6 +647,7 @@ namespace Faccts.Model.Entities
                 if (!ReferenceEquals(_caseRecord3, value))
                 {
                     var previousValue = _caseRecord3;
+    				OnNavigationPropertyChanging("CaseRecord3");
                     _caseRecord3 = value;
                     FixupCaseRecord3(previousValue);
                     OnNavigationPropertyChanged("CaseRecord3");
@@ -599,6 +665,7 @@ namespace Faccts.Model.Entities
                 if (!ReferenceEquals(_designation, value))
                 {
                     var previousValue = _designation;
+    				OnNavigationPropertyChanging("Designation");
                     _designation = value;
                     FixupDesignation(previousValue);
                     OnNavigationPropertyChanged("Designation");
@@ -616,6 +683,7 @@ namespace Faccts.Model.Entities
                 if (!ReferenceEquals(_eyesColor, value))
                 {
                     var previousValue = _eyesColor;
+    				OnNavigationPropertyChanging("EyesColor");
                     _eyesColor = value;
                     FixupEyesColor(previousValue);
                     OnNavigationPropertyChanged("EyesColor");
@@ -633,6 +701,7 @@ namespace Faccts.Model.Entities
                 if (!ReferenceEquals(_hairColor, value))
                 {
                     var previousValue = _hairColor;
+    				OnNavigationPropertyChanging("HairColor");
                     _hairColor = value;
                     FixupHairColor(previousValue);
                     OnNavigationPropertyChanged("HairColor");
@@ -650,6 +719,7 @@ namespace Faccts.Model.Entities
                 if (!ReferenceEquals(_participantRole, value))
                 {
                     var previousValue = _participantRole;
+    				OnNavigationPropertyChanging("ParticipantRole");
                     _participantRole = value;
                     FixupParticipantRole(previousValue);
                     OnNavigationPropertyChanged("ParticipantRole");
@@ -667,6 +737,7 @@ namespace Faccts.Model.Entities
                 if (!ReferenceEquals(_race, value))
                 {
                     var previousValue = _race;
+    				OnNavigationPropertyChanging("Race");
                     _race = value;
                     FixupRace(previousValue);
                     OnNavigationPropertyChanged("Race");
@@ -684,6 +755,7 @@ namespace Faccts.Model.Entities
                 if (!ReferenceEquals(_sex, value))
                 {
                     var previousValue = _sex;
+    				OnNavigationPropertyChanging("Sex");
                     _sex = value;
                     FixupSex(previousValue);
                     OnNavigationPropertyChanged("Sex");
@@ -712,6 +784,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
+    				OnNavigationPropertyChanging("Interpreters");
                     if (_interpreters != null)
                     {
                         _interpreters.CollectionChanged -= FixupInterpreters;
@@ -759,6 +832,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
+    				OnNavigationPropertyChanging("Witnesses");
                     if (_witnesses != null)
                     {
                         _witnesses.CollectionChanged -= FixupWitnesses;
@@ -802,11 +876,27 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	protected virtual void OnPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
+            }
+        }
+    
         protected virtual void OnNavigationPropertyChanged(String propertyName)
         {
             if (_propertyChanged != null)
             {
                 _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    
+    	protected virtual void OnNavigationPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
             }
         }
     

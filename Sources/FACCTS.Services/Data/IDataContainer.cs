@@ -16,6 +16,6 @@ namespace FACCTS.Services.Data
         List<CourtDepartmenets> AvailableDepartments { get; }
         List<Courtrooms> AvailableCourtrooms { get; }
 
-        void SearchCourtCases();
+        void SearchCourtCases(bool reset = false);
     }
 }

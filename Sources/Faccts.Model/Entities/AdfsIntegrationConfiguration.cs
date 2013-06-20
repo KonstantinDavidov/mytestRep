@@ -15,12 +15,50 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
+using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    public partial class AdfsIntegrationConfiguration: IObjectWithChangeTracker, INotifyPropertyChanged, INavigationPropertiesLoadable
+    public partial class AdfsIntegrationConfiguration: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
+    		
+    		private MakeObjectReactiveHelper _reactiveHelper;
+    
+    		public AdfsIntegrationConfiguration()
+    		{
+    			_reactiveHelper = new MakeObjectReactiveHelper(this);
+    			Initialize();
+    		}
+    
+    		partial void Initialize();
+    		
+    
+    		public IObservable<IObservedChange<object, object>> Changed 
+    		{
+    			get { return _reactiveHelper.Changed; }
+    		}
+    		public IObservable<IObservedChange<object, object>> Changing 
+    		{
+    			get { return _reactiveHelper.Changing; }
+    		}
+    		public IDisposable SuppressChangeNotifications() 
+    		{
+    			return _reactiveHelper.SuppressChangeNotifications();
+    		}
+    
+    		private PropertyChangingEventHandler _propertyChanging;
+    		public event PropertyChangingEventHandler PropertyChanging
+    		{
+    			add
+    			{
+    				_propertyChanging += value;
+    			}
+    			remove
+    			{
+    				_propertyChanging -= value;
+    			}
+    		}
     
     		public event EventHandler<LoadingNavigationPropertiesEventArgs> OnNavigationPropertyLoading;
     		protected virtual void RaiseNavigationPropertyLoading(string propertyName)
@@ -57,6 +95,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
                     }
+    				OnPropertyChanging("Id");
                     _id = value;
                     OnPropertyChanged("Id");
                 }
@@ -72,6 +111,7 @@ namespace Faccts.Model.Entities
             {
                 if (_enabled != value)
                 {
+    				OnPropertyChanging("Enabled");
                     _enabled = value;
                     OnPropertyChanged("Enabled");
                 }
@@ -87,6 +127,7 @@ namespace Faccts.Model.Entities
             {
                 if (_usernameAuthenticationEnabled != value)
                 {
+    				OnPropertyChanging("UsernameAuthenticationEnabled");
                     _usernameAuthenticationEnabled = value;
                     OnPropertyChanged("UsernameAuthenticationEnabled");
                 }
@@ -102,6 +143,7 @@ namespace Faccts.Model.Entities
             {
                 if (_samlAuthenticationEnabled != value)
                 {
+    				OnPropertyChanging("SamlAuthenticationEnabled");
                     _samlAuthenticationEnabled = value;
                     OnPropertyChanged("SamlAuthenticationEnabled");
                 }
@@ -117,6 +159,7 @@ namespace Faccts.Model.Entities
             {
                 if (_jwtAuthenticationEnabled != value)
                 {
+    				OnPropertyChanging("JwtAuthenticationEnabled");
                     _jwtAuthenticationEnabled = value;
                     OnPropertyChanged("JwtAuthenticationEnabled");
                 }
@@ -132,6 +175,7 @@ namespace Faccts.Model.Entities
             {
                 if (_passThruAuthenticationToken != value)
                 {
+    				OnPropertyChanging("PassThruAuthenticationToken");
                     _passThruAuthenticationToken = value;
                     OnPropertyChanged("PassThruAuthenticationToken");
                 }
@@ -147,6 +191,7 @@ namespace Faccts.Model.Entities
             {
                 if (_authenticationTokenLifetime != value)
                 {
+    				OnPropertyChanging("AuthenticationTokenLifetime");
                     _authenticationTokenLifetime = value;
                     OnPropertyChanged("AuthenticationTokenLifetime");
                 }
@@ -162,6 +207,7 @@ namespace Faccts.Model.Entities
             {
                 if (_userNameAuthenticationEndpoint != value)
                 {
+    				OnPropertyChanging("UserNameAuthenticationEndpoint");
                     _userNameAuthenticationEndpoint = value;
                     OnPropertyChanged("UserNameAuthenticationEndpoint");
                 }
@@ -177,6 +223,7 @@ namespace Faccts.Model.Entities
             {
                 if (_federationEndpoint != value)
                 {
+    				OnPropertyChanging("FederationEndpoint");
                     _federationEndpoint = value;
                     OnPropertyChanged("FederationEndpoint");
                 }
@@ -192,6 +239,7 @@ namespace Faccts.Model.Entities
             {
                 if (_issuerUri != value)
                 {
+    				OnPropertyChanging("IssuerUri");
                     _issuerUri = value;
                     OnPropertyChanged("IssuerUri");
                 }
@@ -207,6 +255,7 @@ namespace Faccts.Model.Entities
             {
                 if (_issuerThumbprint != value)
                 {
+    				OnPropertyChanging("IssuerThumbprint");
                     _issuerThumbprint = value;
                     OnPropertyChanged("IssuerThumbprint");
                 }
@@ -222,6 +271,7 @@ namespace Faccts.Model.Entities
             {
                 if (_encryptionCertificate != value)
                 {
+    				OnPropertyChanging("EncryptionCertificate");
                     _encryptionCertificate = value;
                     OnPropertyChanged("EncryptionCertificate");
                 }
@@ -245,11 +295,27 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	protected virtual void OnPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
+            }
+        }
+    
         protected virtual void OnNavigationPropertyChanged(String propertyName)
         {
             if (_propertyChanged != null)
             {
                 _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    
+    	protected virtual void OnNavigationPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
             }
         }
     
