@@ -29,23 +29,33 @@
              };
          },
          getCourtMemberBriefs = function () {
-                 datacontext.courtmember.getData({
+                 datacontext.courtmembers.getData({
                  results: courtmembersbriefs
              });
         },
 
         onselect = function(item)
         {
-            selectedcourtmemberbriefid(item.userId);
+            selectedcourtmemberbriefid(item.userId());
+            refresh();
         },
         setSelectedCourtMemberBriefId = function()
         {
             if (courtmembersbriefs().length > 0) {
-                selectedcourtmemberbriefid(courtmembersbriefs()[0]);
+                selectedcourtmemberbriefid(courtmembersbriefs()[0].userId());
             }
         },
          refresh = function (callback) {
-             $.when(datacontext.courtmember.getCourtmemberById(selectedcourtmemberbriefid(), , true))
+             $.when(
+                 datacontext.courtmembers.getCourtmemberById(
+                    selectedcourtmemberbriefid(),
+                    {
+                          success: function(s) {
+                          selectedcourtmember(s);
+                              //callback();
+                          },
+                          error: function(){ alert(error)}//callback
+              }, true))
                  .always(utils.invokeFunctionIfExists(callback));
          };
 

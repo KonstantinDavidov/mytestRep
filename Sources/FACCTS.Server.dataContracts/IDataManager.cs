@@ -14,13 +14,15 @@ namespace FACCTS.Server.DataContracts
         IFacctsDictionaryDataRepository<HairColor> HairColorRepository { get; }
         IFacctsDictionaryDataRepository<EyesColor> EyesColorRepository { get; }
         IFacctsDictionaryDataRepository<Sex> SexRepository { get; }
-        IFacctsDataRepository<CourtCase> CourtCaseRepository { get; }
-        IFacctsDataRepository<Role> FacctsRoleRepository { get; }
+        IFacctsDictionaryDataRepository<ParticipantRole> ParticipantRoleRepository { get; }
+        IFacctsDictionaryDataRepository<Designation> DesignationRepository { get; }
 
         //Entities
         IFacctsDataRepository<CourtParty> CourtPartyRepository { get; }
         ICourtMemberRepository CourtMemberRepository { get; }
         IFacctsDataRepository<User> UserRepository { get; }
+        IFacctsDataRepository<CourtCase> CourtCaseRepository { get; }
+        IFacctsDataRepository<Role> FacctsRoleRepository { get; }
 
         IFacctsDataRepository<CourtCounty> CourtCountyRepository { get; }
         IFacctsDataRepository<CourtDepartment> CourtDepartmentRepository { get; }

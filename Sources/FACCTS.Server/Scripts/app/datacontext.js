@@ -139,20 +139,21 @@
             //  dataservice's 'get' method
             //  model mapper
             //----------------------------------
-            courtmember = new EntitySet(dataservice.courtmember.getCourtMemberBriefs, modelmapper.courtmemberbrief, model.CourtMember.Nullo);
+            courtmembers = new EntitySet(dataservice.courtmember.getCourtMemberBriefs, modelmapper.courtmemberbrief, model.CourtMember.Nullo);
 
         // extend courtmember enttityset 
-        courtmember.getCourtmemberById = function (id, callbacks, forceRefresh) {
+        courtmembers.getCourtmemberById = function (id, callbacks, forceRefresh) {
             return $.Deferred(function (def) {
-                var courtmember = courtmember.getLocalById(id);
-                if (courtmember.isNullo || courtmember.isBrief() || forceRefresh) {
+                var courtmember;// = courtmembers.getLocalById(id);
+                if (forceRefresh) {
                     // if nullo or brief, get fresh from database
                     dataservice.courtmember.getCourtMemberById({
                         success: function (dto) {
-                            // updates the session returned from getLocalById() above
-                            courtmember = courtmember.mapDtoToContext(dto);
-                            courtmember.isBrief(false); // now a full session
-                            if (callbacks && callbacks.success) { callbacks.success(session); }
+                            // updates the courtmember returned from getLocalById() above
+                            //var id = modelmapper.courtmember.getDtoId(dto);
+                            debugger;
+                            courtmember = modelmapper.courtmember.fromDto(dto, courtmember);
+                            if (callbacks && callbacks.success) { callbacks.success(courtmember); }
                             def.resolve(dto);
                         },
                         error: function (response) {
@@ -171,7 +172,7 @@
         };
 
         var datacontext = {
-            courtmember: courtmember
+            courtmembers: courtmembers
         };
 
         // We did this so we can access the datacontext during its construction

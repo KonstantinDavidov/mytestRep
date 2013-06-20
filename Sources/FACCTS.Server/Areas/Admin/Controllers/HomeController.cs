@@ -15,5 +15,11 @@ namespace FACCTS.Server.Areas.Admin.Controllers
             return View();
         }
 
+        public ActionResult CourtStaff()
+        {
+            return View();
+        }
+
+
      }
 }

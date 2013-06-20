@@ -13,7 +13,7 @@
                     };
                     debugger;
                     $.when(
-                        datacontext.courtmember.getData({ results: data.courtmember })
+                        datacontext.courtmembers.getData({ results: data.courtmember })
                     )
 
                     .pipe(function () {

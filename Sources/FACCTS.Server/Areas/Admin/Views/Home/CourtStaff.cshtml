@@ -12,7 +12,7 @@
                     </tr>
                 </thead>
                 <tbody data-bind="foreach: courtmembersbriefs">
-                    <tr class="active" data-bind ="css: { active: $data.userId == $root.selectedcourtmemberbriefid() }, click: $root.onselect">
+                    <tr class="active" data-bind ="css: { active: $data.userId() == $root.selectedcourtmemberbriefid() }, click: $root.onselect">
                         <td data-bind="text: fullName"></td>
                         <td data-bind="text: email"></td>
                         <td data-bind="text: roleName"></td>
@@ -25,51 +25,48 @@
             <button id="remove-court-staff">REMOVE</button>
         </fieldset>
     </div>
-    <div class="right-side-wrapper">
+    <div class="right-side-wrapper" >
         <div class="right-side">
-            <div id="user-tabs">
+            <div id="user-tabs" >
+                <div >
                 <ul>
                     <li><a href="#profile">Profile</a></li>
                     <li><a href="#availability">Availability</a></li>
                     <li><a href="#user-role">User Role</a></li>
                 </ul>
-                <div id="profile">
-                    <form id="profile-form">
-                        <div class="form-fields-block">
+                <div id="profile" data-bind= "with: selectedcourtmember">
+                        <div class="form-fields-block" >
                             <div class="form-field">
                                 <label for="first-name">First Name</label>
-                                <input type="text" id="first-name" name="first-name" value="Amy" disabled>
+                                <input type="text" id="first-name" name="first-name" disabled data-bind = "value: firstName">
                             </div>
                             <div class="form-field">
                                 <label for="middle-name">Middle Name</label>
-                                <input type="text" id="middle-name" name="middle-name" value="Ann" disabled>
+                                <input type="text" id="middle-name" name="middle-name" disabled data-bind = "value: middleName">
                             </div>
                             <div class="form-field">
                                 <label for="last-name">Last Name</label>
-                                <input type="text" id="last-name" name="last-name" value="Smart" disabled>
+                                <input type="text" id="last-name" name="last-name" data-bind = "value: lastName" disabled>
                             </div>
                         </div>
                         <div class="form-fields-block">
                             <div class="form-field">
                                 <label for="user-id">User Id</label>
-                                <input type="text" id="user-id" name="user-id" value="amys" disabled>
+                                <input type="text" id="user-id" name="user-id" data-bind = "value: userId" disabled>
                             </div>
                             <div class="form-field">
                                 <label for="user-email">User Email</label>
-                                <input type="text" id="user-email" name="user-email" value="amys@occ.gov" disabled>
+                                <input type="text" id="user-email" name="user-email" data-bind = "value: email" disabled>
                             </div>
                             <div class="form-field">
                                 <label for="user-phone">User Phone</label>
-                                <input type="text" id="user-phone" name="user-phone" value="234-234-2345" disabled>
+                                <input type="text" id="user-phone" name="user-phone" data-bind = "value: phone" disabled>
                             </div>
                             <div class="form-field checkbox-field">
-                                <input type="checkbox" id="clets-certified" name="clets-certified" value="1" disabled>
+                                <input type="checkbox" id="clets-certified" name="clets-certified" data-bind = "checked: isCertified" disabled>
                                 <label for="clets-certified" class="important">CLETS Certified</label>
                             </div>
-                            <div class="form-element">
-                                <button id="profile-update">Update</button>
-                            </div>
-                        </div>
+                          </div>
                         <hr>
                         <div class="form-fields-block">
                             <div class="form-field">
@@ -80,51 +77,12 @@
                                 <a href="#">Click to change</a>
                             </div>
                         </div>
-                    </form>
-
-                    <div id="dialog-form" title="Update user profile">
-                        <form id="update-profile-form">
-                            <div class="form-fields-block">
-                                <p>
-                                    <label for="update-first-name">First Name</label>
-                                    <input type="text" id="update-first-name" name="first-name" class="text ui-widget-content ui-corner-all" required />
-                                </p>
-                                <p>
-                                    <label for="update-middle-name">Middle Name</label>
-                                    <input type="text" id="update-middle-name" name="middle-name" class="text ui-widget-content ui-corner-all">
-                                </p>
-                                <p>
-                                    <label for="update-last-name">Last Name</label>
-                                    <input type="text" id="update-last-name" name="last-name" class="text ui-widget-content ui-corner-all" required />
-                                </p>
-                            </div>
-                            <div class="form-fields-block">
-                                <p>
-                                    <label for="update-user-id">User Id</label>
-                                    <input type="text" id="update-user-id" name="user-id" class="text ui-widget-content ui-corner-all" required>
-                                </p>
-                                <p>
-                                    <label for="update-user-email">User Email</label>
-                                    <input type="email" id="update-user-email" name="user-email" class="text ui-widget-content ui-corner-all" required>
-                                </p>
-                                <p>
-                                    <label for="update-user-phone">User Phone</label>
-                                    <input type="text" id="update-user-phone" name="user-phone" class="text ui-widget-content ui-corner-all" required>
-                                </p>
-                                <p class="checkbox-field">
-                                    <input type="checkbox" id="update-clets-certified" name="clets-certified" class="text ui-widget-content ui-corner-all">
-                                    <label for="update-clets-certified" class="important">CLETS Certified</label>
-                                </p>
-                            </div>
-                        </form>
-                    </div>
                 </div>
 
-                <div id="availability">
-                    <form id="availability-form">
+                <div id="availability" data-bind= "with: selectedcourtmember">
                         <div class="form-fields-block">
                             <div class="form-element">
-                                <input type="checkbox" name="availability-available" id="availability-available" checked>
+                                <input type="checkbox" name="availability-available" id="availability-available" data-bind = "checked: isAvilable" >
                                 <label for="availability-available">Available</label>
                             </div>
                         </div>
@@ -173,11 +131,9 @@
                             </div>
                         </div>
                         <hr>
-                    </form>
                 </div>
                 <div id="user-role">
-                    <form id="user-role-form">
-                        <table class="user-role-table">
+                   <table class="user-role-table">
                             <tr>
                                 <td class="td-user-role">
                                     <input type="radio" name="user-role" id="administrator" value="administrator" checked>
@@ -393,10 +349,11 @@
                                 </td>
                             </tr>
                         </table>
-                    </form>
+                       </div>
                 </div>
             </div>
             <fieldset class="right">
+                <button id="profile-update">Update</button>
                 <button id="save-profile">SAVE</button>
             </fieldset>
         </div>
