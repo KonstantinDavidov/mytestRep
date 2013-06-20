@@ -38,9 +38,52 @@ namespace FACCTS.Services.Data
             }
             private set
             {
+                if (_courtCases != null)
+                {
+                    _courtCases.CollectionChanged -= FixupCourtCases;
+                }
                 _courtCases = value;
+                if (_courtCases != null)
+                {
+                    _courtCases.CollectionChanged += FixupCourtCases;
+                }
                 RaisePropertyChanged(() => CourtCases);
             }
+        }
+
+        private void FixupCourtCases(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsSearching)
+            {
+                return;
+            }
+            if (e.NewItems != null)
+            {
+                foreach (CourtCase item in e.NewItems)
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("CourtCases", item);
+                    }
+                }
+                RaisePropertyChanged(() => CourtCases);
+            }
+
+            if (e.OldItems != null)
+            {
+                foreach (CourtCase item in e.OldItems)
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtCases", item);
+                    }
+                }
+            }
+            RaisePropertyChanged(() => CourtCases);
         }
 
         private ObjectChangeTracker _changeTracker;
@@ -74,16 +117,20 @@ namespace FACCTS.Services.Data
             //TODO: implement this when needed
         }
 
-        public void SearchCourtCases()
+        public bool IsSearching { get; private set; }
+
+        public void SearchCourtCases(bool reset = false)
         {
-            ChangeTracker.ChangeTrackingEnabled = false;
+            if (!reset && CourtCases != null)
+                return;
+            IsSearching = true;
             try
             {
                 CourtCases = new TrackableCollection<CourtCase>(FACCTS.Services.Data.CourtCases.GetAll());
             }
             finally
             {
-                ChangeTracker.ChangeTrackingEnabled = true;   
+                IsSearching = false;   
             }
         }
 
@@ -102,7 +149,7 @@ namespace FACCTS.Services.Data
             {
                 if (_availableDepartments == null)
                 {
-                    _availableDepartments = CourtDepartments.GetByCourtCountyId(this.FacctsConfiguration.CurrentCourtCounty_Id);
+                    _availableDepartments = CourtDepartments.GetByCourtCountyId(this.FacctsConfiguration.CurrentCourtCountyId);
                 }
                 return _availableDepartments;
             }
@@ -115,9 +162,87 @@ namespace FACCTS.Services.Data
             {
                 if (_availableCourtrooms == null)
                 {
-                    _availableCourtrooms = CourtRooms.GetAll(this.FacctsConfiguration.CurrentCourtCounty_Id);
+                    _availableCourtrooms = CourtRooms.GetAll(this.FacctsConfiguration.CurrentCourtCountyId);
                 }
                 return _availableCourtrooms;
+            }
+        }
+
+        private List<Sex> _sexes;
+        public List<Sex> Sexes
+        {
+            get
+            {
+                if (_sexes == null)
+                {
+                    _sexes = FACCTS.Services.Data.Sexes.GetAll();
+                }
+                return _sexes;
+            }
+        }
+
+        private List<HairColor> _hairColors;
+        public List<HairColor> HairColors
+        {
+            get
+            {
+                if (_hairColors == null)
+                {
+                    _hairColors = FACCTS.Services.Data.HairColors.GetAll();
+                }
+                return _hairColors;
+            }
+        }
+
+        private List<EyesColor> _eyesColors;
+        public List<EyesColor> EyesColors
+        {
+            get
+            {
+                if (_eyesColors == null)
+                {
+                    _eyesColors = FACCTS.Services.Data.EyesColors.GetAll();
+                }
+                return _eyesColors;
+            }
+        }
+
+        private List<Race> _races;
+        public List<Race> Races
+        {
+            get
+            {
+                if (_races == null)
+                {
+
+                }
+                return _races;
+            }
+        }
+
+        private List<Designation> _designations;
+        public List<Designation> Designations
+        {
+            get
+            {
+                if (_designations == null)
+                {
+
+                }
+                return _designations;
+            }
+        }
+
+        private List<ParticipantRole> _participantRoles;
+        public List<ParticipantRole> ParticipantRoles
+        {
+            get
+            {
+                if (_participantRoles == null)
+                {
+
+                }
+                return _participantRoles;
             }
         }
 

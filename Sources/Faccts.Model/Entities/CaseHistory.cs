@@ -15,6 +15,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
+using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
@@ -22,8 +23,45 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(CaseRecord))]
     [KnownType(typeof(CourtCaseOrders))]
     [KnownType(typeof(User))]
-    public partial class CaseHistory: IObjectWithChangeTracker, INotifyPropertyChanged, INavigationPropertiesLoadable
+    public partial class CaseHistory: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
+    		
+    		private MakeObjectReactiveHelper _reactiveHelper;
+    
+    		public CaseHistory()
+    		{
+    			_reactiveHelper = new MakeObjectReactiveHelper(this);
+    			Initialize();
+    		}
+    
+    		partial void Initialize();
+    		
+    
+    		public IObservable<IObservedChange<object, object>> Changed 
+    		{
+    			get { return _reactiveHelper.Changed; }
+    		}
+    		public IObservable<IObservedChange<object, object>> Changing 
+    		{
+    			get { return _reactiveHelper.Changing; }
+    		}
+    		public IDisposable SuppressChangeNotifications() 
+    		{
+    			return _reactiveHelper.SuppressChangeNotifications();
+    		}
+    
+    		private PropertyChangingEventHandler _propertyChanging;
+    		public event PropertyChangingEventHandler PropertyChanging
+    		{
+    			add
+    			{
+    				_propertyChanging += value;
+    			}
+    			remove
+    			{
+    				_propertyChanging -= value;
+    			}
+    		}
     
     		public event EventHandler<LoadingNavigationPropertiesEventArgs> OnNavigationPropertyLoading;
     		protected virtual void RaiseNavigationPropertyLoading(string propertyName)
@@ -60,6 +98,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
                     }
+    				OnPropertyChanging("Id");
                     _id = value;
                     OnPropertyChanged("Id");
                 }
@@ -75,6 +114,7 @@ namespace Faccts.Model.Entities
             {
                 if (_date != value)
                 {
+    				OnPropertyChanging("Date");
                     _date = value;
                     OnPropertyChanged("Date");
                 }
@@ -90,6 +130,7 @@ namespace Faccts.Model.Entities
             {
                 if (_caseHistoryEvent != value)
                 {
+    				OnPropertyChanging("CaseHistoryEvent");
                     _caseHistoryEvent = value;
                     OnPropertyChanged("CaseHistoryEvent");
                 }
@@ -105,6 +146,7 @@ namespace Faccts.Model.Entities
             {
                 if (_cCPOR_ID != value)
                 {
+    				OnPropertyChanging("CCPOR_ID");
                     _cCPOR_ID = value;
                     OnPropertyChanged("CCPOR_ID");
                 }
@@ -128,6 +170,7 @@ namespace Faccts.Model.Entities
                             CourtCaseOrders = null;
                         }
                     }
+    				OnPropertyChanging("CourtCaseOrderId");
                     _courtCaseOrderId = value;
                     OnPropertyChanged("CourtCaseOrderId");
                 }
@@ -151,6 +194,7 @@ namespace Faccts.Model.Entities
                             User = null;
                         }
                     }
+    				OnPropertyChanging("CourtClerk_UserId");
                     _courtClerk_UserId = value;
                     OnPropertyChanged("CourtClerk_UserId");
                 }
@@ -174,6 +218,7 @@ namespace Faccts.Model.Entities
                             CaseRecord = null;
                         }
                     }
+    				OnPropertyChanging("CaseRecord_Id");
                     _caseRecord_Id = value;
                     OnPropertyChanged("CaseRecord_Id");
                 }
@@ -194,6 +239,7 @@ namespace Faccts.Model.Entities
                 if (!ReferenceEquals(_caseRecord, value))
                 {
                     var previousValue = _caseRecord;
+    				OnNavigationPropertyChanging("CaseRecord");
                     _caseRecord = value;
                     FixupCaseRecord(previousValue);
                     OnNavigationPropertyChanged("CaseRecord");
@@ -211,6 +257,7 @@ namespace Faccts.Model.Entities
                 if (!ReferenceEquals(_courtCaseOrders, value))
                 {
                     var previousValue = _courtCaseOrders;
+    				OnNavigationPropertyChanging("CourtCaseOrders");
                     _courtCaseOrders = value;
                     FixupCourtCaseOrders(previousValue);
                     OnNavigationPropertyChanged("CourtCaseOrders");
@@ -228,6 +275,7 @@ namespace Faccts.Model.Entities
                 if (!ReferenceEquals(_user, value))
                 {
                     var previousValue = _user;
+    				OnNavigationPropertyChanging("User");
                     _user = value;
                     FixupUser(previousValue);
                     OnNavigationPropertyChanged("User");
@@ -252,11 +300,27 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	protected virtual void OnPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
+            }
+        }
+    
         protected virtual void OnNavigationPropertyChanged(String propertyName)
         {
             if (_propertyChanged != null)
             {
                 _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    
+    	protected virtual void OnNavigationPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
             }
         }
     

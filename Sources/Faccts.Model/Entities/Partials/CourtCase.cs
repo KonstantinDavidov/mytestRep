@@ -9,7 +9,12 @@ namespace Faccts.Model.Entities
 {
     public partial class CourtCase
     {
-        public CourtCase(FACCTS.Server.Model.DataModel.CourtCase courtCaseDto)
+        partial void Initialize()
+        {
+            this.CaseRecord = new CaseRecord();
+        }
+
+        public CourtCase(FACCTS.Server.Model.DataModel.CourtCase courtCaseDto) : this()
         {
             this.CaseNumber = courtCaseDto.CaseNumber;
             this.Id = courtCaseDto.Id;
@@ -32,7 +37,7 @@ namespace Faccts.Model.Entities
             {
                 if (_caseStatus == value)
                     return;
-
+                _caseStatus = value;
                 OnPropertyChanged("CaseStatus");
             }
 

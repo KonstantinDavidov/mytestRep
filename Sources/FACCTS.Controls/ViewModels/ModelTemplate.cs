@@ -516,5 +516,21 @@ namespace FACCTS.Controls.ViewModels
 				
 	}
 	
+			
+	public partial class PersonalInformationViewModel
+	{
+		private Faccts.Model.Entities.CourtCase _currentCourtCase;
+		public Faccts.Model.Entities.CourtCase CurrentCourtCase
+		{
+			get{return _currentCourtCase;}
+			set{
+				if(_currentCourtCase!=value){
+					this.RaiseAndSetIfChanged(ref _currentCourtCase, value);
+				}
+			}
+		}
+				
+	}
+	
 }
 

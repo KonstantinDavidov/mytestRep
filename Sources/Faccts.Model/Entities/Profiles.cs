@@ -20,14 +20,13 @@ using ReactiveUI;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(CaseRecord))]
-    [KnownType(typeof(CourtParty))]
-    public partial class Interpreters: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    [KnownType(typeof(Users))]
+    public partial class Profiles: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
     		private MakeObjectReactiveHelper _reactiveHelper;
     
-    		public Interpreters()
+    		public Profiles()
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
@@ -86,160 +85,126 @@ namespace Faccts.Model.Entities
     	    #region Simple Properties
     
         [DataMember]
-        public int Id
+        public System.Guid UserId
         {
-            get { return _id; }
+            get { return _userId; }
             set
             {
-                if (_id != value)
+                if (_userId != value)
                 {
                     if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added)
                     {
-                        throw new InvalidOperationException("The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
+                        throw new InvalidOperationException("The property 'UserId' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
                     }
-    				OnPropertyChanging("Id");
-                    _id = value;
-                    OnPropertyChanged("Id");
-                }
-            }
-        }
-        private int _id;
-    
-        [DataMember]
-        public string FirstName
-        {
-            get { return _firstName; }
-            set
-            {
-                if (_firstName != value)
-                {
-    				OnPropertyChanging("FirstName");
-                    _firstName = value;
-                    OnPropertyChanged("FirstName");
-                }
-            }
-        }
-        private string _firstName;
-    
-        [DataMember]
-        public string LastName
-        {
-            get { return _lastName; }
-            set
-            {
-                if (_lastName != value)
-                {
-    				OnPropertyChanging("LastName");
-                    _lastName = value;
-                    OnPropertyChanged("LastName");
-                }
-            }
-        }
-        private string _lastName;
-    
-        [DataMember]
-        public string Contact
-        {
-            get { return _contact; }
-            set
-            {
-                if (_contact != value)
-                {
-    				OnPropertyChanging("Contact");
-                    _contact = value;
-                    OnPropertyChanged("Contact");
-                }
-            }
-        }
-        private string _contact;
-    
-        [DataMember]
-        public int InterpreterFor_Id
-        {
-            get { return _interpreterFor_Id; }
-            set
-            {
-                if (_interpreterFor_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("InterpreterFor_Id", _interpreterFor_Id);
                     if (!IsDeserializing)
                     {
-                        if (CourtParty != null && CourtParty.Id != value)
+                        if (Users != null && Users.UserId != value)
                         {
-                            CourtParty = null;
+                            Users = null;
                         }
                     }
-    				OnPropertyChanging("InterpreterFor_Id");
-                    _interpreterFor_Id = value;
-                    OnPropertyChanged("InterpreterFor_Id");
+    				OnPropertyChanging("UserId");
+                    _userId = value;
+                    OnPropertyChanged("UserId");
                 }
             }
         }
-        private int _interpreterFor_Id;
+        private System.Guid _userId;
     
         [DataMember]
-        public Nullable<int> CaseRecord_Id
+        public string PropertyNames
         {
-            get { return _caseRecord_Id; }
+            get { return _propertyNames; }
             set
             {
-                if (_caseRecord_Id != value)
+                if (_propertyNames != value)
                 {
-                    ChangeTracker.RecordOriginalValue("CaseRecord_Id", _caseRecord_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (CaseRecord != null && CaseRecord.Id != value)
-                        {
-                            CaseRecord = null;
-                        }
-                    }
-    				OnPropertyChanging("CaseRecord_Id");
-                    _caseRecord_Id = value;
-                    OnPropertyChanged("CaseRecord_Id");
+    				OnPropertyChanging("PropertyNames");
+                    _propertyNames = value;
+                    OnPropertyChanged("PropertyNames");
                 }
             }
         }
-        private Nullable<int> _caseRecord_Id;
+        private string _propertyNames;
+    
+        [DataMember]
+        public string PropertyValueStrings
+        {
+            get { return _propertyValueStrings; }
+            set
+            {
+                if (_propertyValueStrings != value)
+                {
+    				OnPropertyChanging("PropertyValueStrings");
+                    _propertyValueStrings = value;
+                    OnPropertyChanged("PropertyValueStrings");
+                }
+            }
+        }
+        private string _propertyValueStrings;
+    
+        [DataMember]
+        public byte[] PropertyValueBinary
+        {
+            get { return _propertyValueBinary; }
+            set
+            {
+                if (_propertyValueBinary != value)
+                {
+    				OnPropertyChanging("PropertyValueBinary");
+                    _propertyValueBinary = value;
+                    OnPropertyChanged("PropertyValueBinary");
+                }
+            }
+        }
+        private byte[] _propertyValueBinary;
+    
+        [DataMember]
+        public System.DateTime LastUpdatedDate
+        {
+            get { return _lastUpdatedDate; }
+            set
+            {
+                if (_lastUpdatedDate != value)
+                {
+    				OnPropertyChanging("LastUpdatedDate");
+                    _lastUpdatedDate = value;
+                    OnPropertyChanged("LastUpdatedDate");
+                }
+            }
+        }
+        private System.DateTime _lastUpdatedDate;
 
         #endregion
 
         #region Navigation Properties
     
         [DataMember]
-        public CaseRecord CaseRecord
+        public Users Users
         {
-            get { return _caseRecord; }
+            get { return _users; }
             set
             {
-                if (!ReferenceEquals(_caseRecord, value))
+                if (!ReferenceEquals(_users, value))
                 {
-                    var previousValue = _caseRecord;
-    				OnNavigationPropertyChanging("CaseRecord");
-                    _caseRecord = value;
-                    FixupCaseRecord(previousValue);
-                    OnNavigationPropertyChanged("CaseRecord");
+                    if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added && value != null)
+                    {
+                        // This the dependent end of an identifying relationship, so the principal end cannot be changed if it is already set,
+                        // otherwise it can only be set to an entity with a primary key that is the same value as the dependent's foreign key.
+                        if (UserId != value.UserId)
+                        {
+                            throw new InvalidOperationException("The principal end of an identifying relationship can only be changed when the dependent end is in the Added state.");
+                        }
+                    }
+                    var previousValue = _users;
+    				OnNavigationPropertyChanging("Users");
+                    _users = value;
+                    FixupUsers(previousValue);
+                    OnNavigationPropertyChanged("Users");
                 }
             }
         }
-        private CaseRecord _caseRecord;
-    
-        [DataMember]
-        public CourtParty CourtParty
-        {
-            get { return _courtParty; }
-            set
-            {
-                if (!ReferenceEquals(_courtParty, value))
-                {
-                    var previousValue = _courtParty;
-    				OnNavigationPropertyChanging("CourtParty");
-                    _courtParty = value;
-                    FixupCourtParty(previousValue);
-                    OnNavigationPropertyChanged("CourtParty");
-                }
-            }
-        }
-        private CourtParty _courtParty;
+        private Users _users;
 
         #endregion
 
@@ -290,23 +255,21 @@ namespace Faccts.Model.Entities
             }
     
             // If parameter cannot be cast to Point return false.
-            Interpreters p = obj as Interpreters;
+            Profiles p = obj as Profiles;
             if ((System.Object)p == null)
             {
                 return false;
             }
     
-    			if (this.Id != p.Id)
+    			if (this.UserId != p.UserId)
     				return false;
-    			if (this.FirstName != p.FirstName)
+    			if (this.PropertyNames != p.PropertyNames)
     				return false;
-    			if (this.LastName != p.LastName)
+    			if (this.PropertyValueStrings != p.PropertyValueStrings)
     				return false;
-    			if (this.Contact != p.Contact)
+    			if (this.PropertyValueBinary != p.PropertyValueBinary)
     				return false;
-    			if (this.InterpreterFor_Id != p.InterpreterFor_Id)
-    				return false;
-    			if (this.CaseRecord_Id != p.CaseRecord_Id)
+    			if (this.LastUpdatedDate != p.LastUpdatedDate)
     				return false;
     
     		return true;
@@ -316,38 +279,34 @@ namespace Faccts.Model.Entities
     	{
     		int hashCode = 1;
     			
-    		hashCode ^= this.Id.GetHashCode();
-    		if (this.Id != null)
+    		hashCode ^= this.UserId.GetHashCode();
+    		if (this.UserId != null)
     		{
-    			hashCode ^= this.Id.GetHashCode();
+    			hashCode ^= this.UserId.GetHashCode();
     		}
     			
-    		hashCode ^= this.FirstName.GetHashCode();
-    		if (this.FirstName != null)
+    		hashCode ^= this.PropertyNames.GetHashCode();
+    		if (this.PropertyNames != null)
     		{
-    			hashCode ^= this.FirstName.GetHashCode();
+    			hashCode ^= this.PropertyNames.GetHashCode();
     		}
     			
-    		hashCode ^= this.LastName.GetHashCode();
-    		if (this.LastName != null)
+    		hashCode ^= this.PropertyValueStrings.GetHashCode();
+    		if (this.PropertyValueStrings != null)
     		{
-    			hashCode ^= this.LastName.GetHashCode();
-    		}
-     
-    		if (this.Contact != null)
-    		{
-    			hashCode ^= this.Contact.GetHashCode();
+    			hashCode ^= this.PropertyValueStrings.GetHashCode();
     		}
     			
-    		hashCode ^= this.InterpreterFor_Id.GetHashCode();
-    		if (this.InterpreterFor_Id != null)
+    		hashCode ^= this.PropertyValueBinary.GetHashCode();
+    		if (this.PropertyValueBinary != null)
     		{
-    			hashCode ^= this.InterpreterFor_Id.GetHashCode();
+    			hashCode ^= this.PropertyValueBinary.GetHashCode();
     		}
-     
-    		if (this.CaseRecord_Id != null)
+    			
+    		hashCode ^= this.LastUpdatedDate.GetHashCode();
+    		if (this.LastUpdatedDate != null)
     		{
-    			hashCode ^= this.CaseRecord_Id.GetHashCode();
+    			hashCode ^= this.LastUpdatedDate.GetHashCode();
     		}
     		return hashCode;
     	}
@@ -417,87 +376,45 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
-            CaseRecord = null;
-            CourtParty = null;
+            Users = null;
         }
 
         #endregion
 
         #region Association Fixup
     
-        private void FixupCaseRecord(CaseRecord previousValue, bool skipKeys = false)
+        private void FixupUsers(Users previousValue)
         {
             if (IsDeserializing)
             {
                 return;
             }
     
-            if (previousValue != null && previousValue.Interpreters.Contains(this))
+            if (previousValue != null && ReferenceEquals(previousValue.Profiles, this))
             {
-                previousValue.Interpreters.Remove(this);
+                previousValue.Profiles = null;
             }
     
-            if (CaseRecord != null)
+            if (Users != null)
             {
-                CaseRecord.Interpreters.Add(this);
-    
-                CaseRecord_Id = CaseRecord.Id;
-            }
-            else if (!skipKeys)
-            {
-                CaseRecord_Id = null;
+                Users.Profiles = this;
+                UserId = Users.UserId;
             }
     
             if (ChangeTracker.ChangeTrackingEnabled)
             {
-                if (ChangeTracker.OriginalValues.ContainsKey("CaseRecord")
-                    && (ChangeTracker.OriginalValues["CaseRecord"] == CaseRecord))
+                if (ChangeTracker.OriginalValues.ContainsKey("Users")
+                    && (ChangeTracker.OriginalValues["Users"] == Users))
                 {
-                    ChangeTracker.OriginalValues.Remove("CaseRecord");
+                    ChangeTracker.OriginalValues.Remove("Users");
                 }
                 else
                 {
-                    ChangeTracker.RecordOriginalValue("CaseRecord", previousValue);
+                    ChangeTracker.RecordOriginalValue("Users", previousValue);
                 }
-                if (CaseRecord != null && !CaseRecord.ChangeTracker.ChangeTrackingEnabled)
+                if (Users != null && !Users.ChangeTracker.ChangeTrackingEnabled)
                 {
-                    CaseRecord.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupCourtParty(CourtParty previousValue)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.Interpreters.Contains(this))
-            {
-                previousValue.Interpreters.Remove(this);
-            }
-    
-            if (CourtParty != null)
-            {
-                CourtParty.Interpreters.Add(this);
-    
-                InterpreterFor_Id = CourtParty.Id;
-            }
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("CourtParty")
-                    && (ChangeTracker.OriginalValues["CourtParty"] == CourtParty))
-                {
-                    ChangeTracker.OriginalValues.Remove("CourtParty");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("CourtParty", previousValue);
-                }
-                if (CourtParty != null && !CourtParty.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    CourtParty.StartTracking();
+                    Users.StartTracking();
                 }
             }
         }

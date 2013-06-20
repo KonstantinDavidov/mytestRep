@@ -22,7 +22,7 @@ namespace FACCTS.Controls.ViewModels
         public NewCourtCaseDialogViewModel() : base()
         {
             this.DisplayName = "Create New Case";
-            CaseNumber = BusinessLogicHelper.AutoGenerateCaseNumber();
+            
             this.WhenAny(x => x.CaseNumber, x => x.Value)
                 .Subscribe(s => this.IsValid = !string.IsNullOrEmpty(s));
         }
@@ -33,6 +33,12 @@ namespace FACCTS.Controls.ViewModels
         {
             base.Authorized();
 
+        }
+
+        protected override void OnActivate()
+        {
+            base.OnActivate();
+            CaseNumber = BusinessLogicHelper.AutoGenerateCaseNumber();
         }
 
         
@@ -53,8 +59,24 @@ namespace FACCTS.Controls.ViewModels
             CourtCase cc = new CourtCase();
             cc.CaseNumber = this.CaseNumber;
             _logger.Info("Saving the new case to the database...");
-            CourtCases.CreateNew(cc);
-            DataContainer.SearchCourtCases();
+            Faccts.Model.Entities.CourtCase newCase = new Faccts.Model.Entities.CourtCase()
+            {
+                CaseNumber = this.CaseNumber,
+                CaseRecord = new Faccts.Model.Entities.CaseRecord()
+                {
+                    CaseHistory = new Faccts.Model.Entities.TrackableCollection<Faccts.Model.Entities.CaseHistory>()
+                    {
+                        new Faccts.Model.Entities.CaseHistory()
+                        {
+                            Date = DateTime.Now,
+                            CaseHistoryEvent = (int)CaseHistoryEvent.New,
+                        },
+                    }
+                },
+            };
+            DataContainer.CourtCases.Add(newCase);
+            //CourtCases.CreateNew(cc);
+            //DataContainer.SearchCourtCases();
         }
 
         public string Error

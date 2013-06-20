@@ -15,6 +15,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
+using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
@@ -167,7 +168,7 @@ namespace Faccts.Model.Entities
         }
     
         // Records an addition to collection valued properties on SelfTracking Entities.
-        internal void RecordAdditionToCollectionProperties(string propertyName, object value)
+        public void RecordAdditionToCollectionProperties(string propertyName, object value)
         {
             if (_changeTrackingEnabled)
             {
@@ -196,7 +197,7 @@ namespace Faccts.Model.Entities
         }
     
         // Records a removal to collection valued properties on SelfTracking Entities.
-        internal void RecordRemovalFromCollectionProperties(string propertyName, object value)
+        public void RecordRemovalFromCollectionProperties(string propertyName, object value)
         {
             if (_changeTrackingEnabled)
             {

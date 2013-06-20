@@ -15,7 +15,13 @@ namespace FACCTS.Services.Data
         FACCTSConfiguration FacctsConfiguration { get; }
         List<CourtDepartmenets> AvailableDepartments { get; }
         List<Courtrooms> AvailableCourtrooms { get; }
+        List<Sex> Sexes { get; }
+        List<HairColor> HairColors { get; }
+        List<EyesColor> EyesColors { get; }
+        List<Race> Races { get; }
+        List<Designation> Designations { get; }
+        List<ParticipantRole> ParticipantRoles { get; }
 
-        void SearchCourtCases();
+        void SearchCourtCases(bool reset = false);
     }
 }

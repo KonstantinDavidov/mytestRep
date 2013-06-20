@@ -15,6 +15,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
+using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
@@ -23,8 +24,45 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(CourtDepartmenets))]
     [KnownType(typeof(CourtLocations))]
     [KnownType(typeof(FACCTSConfiguration))]
-    public partial class CourtCounty: IObjectWithChangeTracker, INotifyPropertyChanged, INavigationPropertiesLoadable
+    public partial class CourtCounty: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
+    		
+    		private MakeObjectReactiveHelper _reactiveHelper;
+    
+    		public CourtCounty()
+    		{
+    			_reactiveHelper = new MakeObjectReactiveHelper(this);
+    			Initialize();
+    		}
+    
+    		partial void Initialize();
+    		
+    
+    		public IObservable<IObservedChange<object, object>> Changed 
+    		{
+    			get { return _reactiveHelper.Changed; }
+    		}
+    		public IObservable<IObservedChange<object, object>> Changing 
+    		{
+    			get { return _reactiveHelper.Changing; }
+    		}
+    		public IDisposable SuppressChangeNotifications() 
+    		{
+    			return _reactiveHelper.SuppressChangeNotifications();
+    		}
+    
+    		private PropertyChangingEventHandler _propertyChanging;
+    		public event PropertyChangingEventHandler PropertyChanging
+    		{
+    			add
+    			{
+    				_propertyChanging += value;
+    			}
+    			remove
+    			{
+    				_propertyChanging -= value;
+    			}
+    		}
     
     		public event EventHandler<LoadingNavigationPropertiesEventArgs> OnNavigationPropertyLoading;
     		protected virtual void RaiseNavigationPropertyLoading(string propertyName)
@@ -61,6 +99,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
                     }
+    				OnPropertyChanging("Id");
                     _id = value;
                     OnPropertyChanged("Id");
                 }
@@ -76,6 +115,7 @@ namespace Faccts.Model.Entities
             {
                 if (_court_code != value)
                 {
+    				OnPropertyChanging("court_code");
                     _court_code = value;
                     OnPropertyChanged("court_code");
                 }
@@ -91,6 +131,7 @@ namespace Faccts.Model.Entities
             {
                 if (_county != value)
                 {
+    				OnPropertyChanging("county");
                     _county = value;
                     OnPropertyChanged("county");
                 }
@@ -106,6 +147,7 @@ namespace Faccts.Model.Entities
             {
                 if (_court_name != value)
                 {
+    				OnPropertyChanging("court_name");
                     _court_name = value;
                     OnPropertyChanged("court_name");
                 }
@@ -121,6 +163,7 @@ namespace Faccts.Model.Entities
             {
                 if (_location != value)
                 {
+    				OnPropertyChanging("location");
                     _location = value;
                     OnPropertyChanged("location");
                 }
@@ -152,6 +195,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
+    				OnNavigationPropertyChanging("CaseRecord");
                     if (_caseRecord != null)
                     {
                         _caseRecord.CollectionChanged -= FixupCaseRecord;
@@ -187,6 +231,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
+    				OnNavigationPropertyChanging("CourtDepartmenets");
                     if (_courtDepartmenets != null)
                     {
                         _courtDepartmenets.CollectionChanged -= FixupCourtDepartmenets;
@@ -234,6 +279,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
+    				OnNavigationPropertyChanging("CourtLocations");
                     if (_courtLocations != null)
                     {
                         _courtLocations.CollectionChanged -= FixupCourtLocations;
@@ -269,6 +315,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
+    				OnNavigationPropertyChanging("FACCTSConfiguration");
                     if (_fACCTSConfiguration != null)
                     {
                         _fACCTSConfiguration.CollectionChanged -= FixupFACCTSConfiguration;
@@ -300,11 +347,27 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	protected virtual void OnPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
+            }
+        }
+    
         protected virtual void OnNavigationPropertyChanged(String propertyName)
         {
             if (_propertyChanged != null)
             {
                 _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    
+    	protected virtual void OnNavigationPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
             }
         }
     

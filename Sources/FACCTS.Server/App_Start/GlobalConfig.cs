@@ -23,6 +23,7 @@ namespace FACCTS.Server.App_Start
             var json = config.Formatters.JsonFormatter;
             json.SerializerSettings.ContractResolver =
                 new CamelCasePropertyNamesContractResolver();
+            json.SerializerSettings.Formatting = Newtonsoft.Json.Formatting.Indented;
             json.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize; 
             json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects; 
 

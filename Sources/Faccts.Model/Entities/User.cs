@@ -15,6 +15,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
+using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
@@ -24,8 +25,45 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(CourtCase))]
     [KnownType(typeof(CourtMember))]
     [KnownType(typeof(Role))]
-    public partial class User: IObjectWithChangeTracker, INotifyPropertyChanged, INavigationPropertiesLoadable
+    public partial class User: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
+    		
+    		private MakeObjectReactiveHelper _reactiveHelper;
+    
+    		public User()
+    		{
+    			_reactiveHelper = new MakeObjectReactiveHelper(this);
+    			Initialize();
+    		}
+    
+    		partial void Initialize();
+    		
+    
+    		public IObservable<IObservedChange<object, object>> Changed 
+    		{
+    			get { return _reactiveHelper.Changed; }
+    		}
+    		public IObservable<IObservedChange<object, object>> Changing 
+    		{
+    			get { return _reactiveHelper.Changing; }
+    		}
+    		public IDisposable SuppressChangeNotifications() 
+    		{
+    			return _reactiveHelper.SuppressChangeNotifications();
+    		}
+    
+    		private PropertyChangingEventHandler _propertyChanging;
+    		public event PropertyChangingEventHandler PropertyChanging
+    		{
+    			add
+    			{
+    				_propertyChanging += value;
+    			}
+    			remove
+    			{
+    				_propertyChanging -= value;
+    			}
+    		}
     
     		public event EventHandler<LoadingNavigationPropertiesEventArgs> OnNavigationPropertyLoading;
     		protected virtual void RaiseNavigationPropertyLoading(string propertyName)
@@ -62,6 +100,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
                     }
+    				OnPropertyChanging("Id");
                     _id = value;
                     OnPropertyChanged("Id");
                 }
@@ -77,6 +116,7 @@ namespace Faccts.Model.Entities
             {
                 if (_username != value)
                 {
+    				OnPropertyChanging("Username");
                     _username = value;
                     OnPropertyChanged("Username");
                 }
@@ -92,6 +132,7 @@ namespace Faccts.Model.Entities
             {
                 if (_email != value)
                 {
+    				OnPropertyChanging("Email");
                     _email = value;
                     OnPropertyChanged("Email");
                 }
@@ -107,6 +148,7 @@ namespace Faccts.Model.Entities
             {
                 if (_password != value)
                 {
+    				OnPropertyChanging("Password");
                     _password = value;
                     OnPropertyChanged("Password");
                 }
@@ -122,6 +164,7 @@ namespace Faccts.Model.Entities
             {
                 if (_firstName != value)
                 {
+    				OnPropertyChanging("FirstName");
                     _firstName = value;
                     OnPropertyChanged("FirstName");
                 }
@@ -137,6 +180,7 @@ namespace Faccts.Model.Entities
             {
                 if (_lastName != value)
                 {
+    				OnPropertyChanging("LastName");
                     _lastName = value;
                     OnPropertyChanged("LastName");
                 }
@@ -152,6 +196,7 @@ namespace Faccts.Model.Entities
             {
                 if (_middleName != value)
                 {
+    				OnPropertyChanging("MiddleName");
                     _middleName = value;
                     OnPropertyChanged("MiddleName");
                 }
@@ -167,6 +212,7 @@ namespace Faccts.Model.Entities
             {
                 if (_comment != value)
                 {
+    				OnPropertyChanging("Comment");
                     _comment = value;
                     OnPropertyChanged("Comment");
                 }
@@ -182,6 +228,7 @@ namespace Faccts.Model.Entities
             {
                 if (_isApproved != value)
                 {
+    				OnPropertyChanging("IsApproved");
                     _isApproved = value;
                     OnPropertyChanged("IsApproved");
                 }
@@ -197,6 +244,7 @@ namespace Faccts.Model.Entities
             {
                 if (_passwordFailuresSinceLastSuccess != value)
                 {
+    				OnPropertyChanging("PasswordFailuresSinceLastSuccess");
                     _passwordFailuresSinceLastSuccess = value;
                     OnPropertyChanged("PasswordFailuresSinceLastSuccess");
                 }
@@ -212,6 +260,7 @@ namespace Faccts.Model.Entities
             {
                 if (_lastPasswordFailureDate != value)
                 {
+    				OnPropertyChanging("LastPasswordFailureDate");
                     _lastPasswordFailureDate = value;
                     OnPropertyChanged("LastPasswordFailureDate");
                 }
@@ -227,6 +276,7 @@ namespace Faccts.Model.Entities
             {
                 if (_lastActivityDate != value)
                 {
+    				OnPropertyChanging("LastActivityDate");
                     _lastActivityDate = value;
                     OnPropertyChanged("LastActivityDate");
                 }
@@ -242,6 +292,7 @@ namespace Faccts.Model.Entities
             {
                 if (_lastLockoutDate != value)
                 {
+    				OnPropertyChanging("LastLockoutDate");
                     _lastLockoutDate = value;
                     OnPropertyChanged("LastLockoutDate");
                 }
@@ -257,6 +308,7 @@ namespace Faccts.Model.Entities
             {
                 if (_lastLoginDate != value)
                 {
+    				OnPropertyChanging("LastLoginDate");
                     _lastLoginDate = value;
                     OnPropertyChanged("LastLoginDate");
                 }
@@ -272,6 +324,7 @@ namespace Faccts.Model.Entities
             {
                 if (_confirmationToken != value)
                 {
+    				OnPropertyChanging("ConfirmationToken");
                     _confirmationToken = value;
                     OnPropertyChanged("ConfirmationToken");
                 }
@@ -287,6 +340,7 @@ namespace Faccts.Model.Entities
             {
                 if (_createDate != value)
                 {
+    				OnPropertyChanging("CreateDate");
                     _createDate = value;
                     OnPropertyChanged("CreateDate");
                 }
@@ -302,6 +356,7 @@ namespace Faccts.Model.Entities
             {
                 if (_isLockedOut != value)
                 {
+    				OnPropertyChanging("IsLockedOut");
                     _isLockedOut = value;
                     OnPropertyChanged("IsLockedOut");
                 }
@@ -317,6 +372,7 @@ namespace Faccts.Model.Entities
             {
                 if (_lastPasswordChangedDate != value)
                 {
+    				OnPropertyChanging("LastPasswordChangedDate");
                     _lastPasswordChangedDate = value;
                     OnPropertyChanged("LastPasswordChangedDate");
                 }
@@ -332,6 +388,7 @@ namespace Faccts.Model.Entities
             {
                 if (_passwordVerificationToken != value)
                 {
+    				OnPropertyChanging("PasswordVerificationToken");
                     _passwordVerificationToken = value;
                     OnPropertyChanged("PasswordVerificationToken");
                 }
@@ -347,6 +404,7 @@ namespace Faccts.Model.Entities
             {
                 if (_passwordVerificationTokenExpirationDate != value)
                 {
+    				OnPropertyChanging("PasswordVerificationTokenExpirationDate");
                     _passwordVerificationTokenExpirationDate = value;
                     OnPropertyChanged("PasswordVerificationTokenExpirationDate");
                 }
@@ -378,6 +436,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
+    				OnNavigationPropertyChanging("CaseHistory");
                     if (_caseHistory != null)
                     {
                         _caseHistory.CollectionChanged -= FixupCaseHistory;
@@ -413,6 +472,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
+    				OnNavigationPropertyChanging("CaseNotes");
                     if (_caseNotes != null)
                     {
                         _caseNotes.CollectionChanged -= FixupCaseNotes;
@@ -460,6 +520,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
+    				OnNavigationPropertyChanging("CourtCase");
                     if (_courtCase != null)
                     {
                         _courtCase.CollectionChanged -= FixupCourtCase;
@@ -484,6 +545,7 @@ namespace Faccts.Model.Entities
                 if (!ReferenceEquals(_courtMember, value))
                 {
                     var previousValue = _courtMember;
+    				OnNavigationPropertyChanging("CourtMember");
                     _courtMember = value;
                     FixupCourtMember(previousValue);
                     OnNavigationPropertyChanged("CourtMember");
@@ -512,6 +574,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
+    				OnNavigationPropertyChanging("Role");
                     if (_role != null)
                     {
                         _role.CollectionChanged -= FixupRole;
@@ -543,11 +606,27 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	protected virtual void OnPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
+            }
+        }
+    
         protected virtual void OnNavigationPropertyChanged(String propertyName)
         {
             if (_propertyChanged != null)
             {
                 _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    
+    	protected virtual void OnNavigationPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
             }
         }
     

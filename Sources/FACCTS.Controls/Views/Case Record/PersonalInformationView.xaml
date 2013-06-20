@@ -13,8 +13,8 @@
             <RowDefinition MaxHeight="220"/>
             <RowDefinition MaxHeight="110"/>
         </Grid.RowDefinitions>
-        <localcontrols:PartyControlView Grid.Row="0"/>
-        <localcontrols:PartyControlView Grid.Row="1"/>
+        <localcontrols:PartyControlView Grid.Row="0" DataContext="{Binding CaseRecord.CourtParty, Mode=OneWay}"/>
+        <localcontrols:PartyControlView Grid.Row="1" DataContext="{Binding CaseRecord.CourtParty1, Mode=OneWay}"/>
 		<controls:RestrainingPartyIDInfoControlView Grid.Row="2"/>
     </Grid>
 </UserControl>

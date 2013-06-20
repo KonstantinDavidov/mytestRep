@@ -15,12 +15,50 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
+using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    public partial class WSFederationConfiguration: IObjectWithChangeTracker, INotifyPropertyChanged, INavigationPropertiesLoadable
+    public partial class WSFederationConfiguration: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
+    		
+    		private MakeObjectReactiveHelper _reactiveHelper;
+    
+    		public WSFederationConfiguration()
+    		{
+    			_reactiveHelper = new MakeObjectReactiveHelper(this);
+    			Initialize();
+    		}
+    
+    		partial void Initialize();
+    		
+    
+    		public IObservable<IObservedChange<object, object>> Changed 
+    		{
+    			get { return _reactiveHelper.Changed; }
+    		}
+    		public IObservable<IObservedChange<object, object>> Changing 
+    		{
+    			get { return _reactiveHelper.Changing; }
+    		}
+    		public IDisposable SuppressChangeNotifications() 
+    		{
+    			return _reactiveHelper.SuppressChangeNotifications();
+    		}
+    
+    		private PropertyChangingEventHandler _propertyChanging;
+    		public event PropertyChangingEventHandler PropertyChanging
+    		{
+    			add
+    			{
+    				_propertyChanging += value;
+    			}
+    			remove
+    			{
+    				_propertyChanging -= value;
+    			}
+    		}
     
     		public event EventHandler<LoadingNavigationPropertiesEventArgs> OnNavigationPropertyLoading;
     		protected virtual void RaiseNavigationPropertyLoading(string propertyName)
@@ -57,6 +95,7 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
                     }
+    				OnPropertyChanging("Id");
                     _id = value;
                     OnPropertyChanged("Id");
                 }
@@ -72,6 +111,7 @@ namespace Faccts.Model.Entities
             {
                 if (_enabled != value)
                 {
+    				OnPropertyChanging("Enabled");
                     _enabled = value;
                     OnPropertyChanged("Enabled");
                 }
@@ -87,6 +127,7 @@ namespace Faccts.Model.Entities
             {
                 if (_enableAuthentication != value)
                 {
+    				OnPropertyChanging("EnableAuthentication");
                     _enableAuthentication = value;
                     OnPropertyChanged("EnableAuthentication");
                 }
@@ -102,6 +143,7 @@ namespace Faccts.Model.Entities
             {
                 if (_enableFederation != value)
                 {
+    				OnPropertyChanging("EnableFederation");
                     _enableFederation = value;
                     OnPropertyChanged("EnableFederation");
                 }
@@ -117,6 +159,7 @@ namespace Faccts.Model.Entities
             {
                 if (_enableHrd != value)
                 {
+    				OnPropertyChanging("EnableHrd");
                     _enableHrd = value;
                     OnPropertyChanged("EnableHrd");
                 }
@@ -132,6 +175,7 @@ namespace Faccts.Model.Entities
             {
                 if (_allowReplyTo != value)
                 {
+    				OnPropertyChanging("AllowReplyTo");
                     _allowReplyTo = value;
                     OnPropertyChanged("AllowReplyTo");
                 }
@@ -147,6 +191,7 @@ namespace Faccts.Model.Entities
             {
                 if (_requireReplyToWithinRealm != value)
                 {
+    				OnPropertyChanging("RequireReplyToWithinRealm");
                     _requireReplyToWithinRealm = value;
                     OnPropertyChanged("RequireReplyToWithinRealm");
                 }
@@ -162,6 +207,7 @@ namespace Faccts.Model.Entities
             {
                 if (_requireSslForReplyTo != value)
                 {
+    				OnPropertyChanging("RequireSslForReplyTo");
                     _requireSslForReplyTo = value;
                     OnPropertyChanged("RequireSslForReplyTo");
                 }
@@ -185,11 +231,27 @@ namespace Faccts.Model.Entities
             }
         }
     
+    	protected virtual void OnPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
+            }
+        }
+    
         protected virtual void OnNavigationPropertyChanged(String propertyName)
         {
             if (_propertyChanged != null)
             {
                 _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    
+    	protected virtual void OnNavigationPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
             }
         }
     

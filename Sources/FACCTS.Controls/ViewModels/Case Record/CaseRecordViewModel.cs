@@ -101,6 +101,10 @@ namespace FACCTS.Controls.ViewModels
                 if (IsAuthenticated && _courtCases == null)
                 {
                     _courtCases = new ObservableCollection<CourtCase>(DataContainer.CourtCases);
+                    if (CurrentCourtCase == null)
+                    {
+                        CurrentCourtCase = _courtCases.FirstOrDefault();
+                    }
                 }
                 return _courtCases;
             }
