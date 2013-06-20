@@ -213,8 +213,11 @@
     <Compile Include="Entities\Partials\CourtDepartmenets.cs" />
     <Compile Include="Entities\Partials\CourtParty.cs" />
     <Compile Include="Entities\Partials\Courtrooms.cs" />
+    <Compile Include="Entities\Partials\Designation.cs" />
     <Compile Include="Entities\Partials\EyesColor.cs" />
     <Compile Include="Entities\Partials\HairColor.cs" />
+    <Compile Include="Entities\Partials\ParticipantRole.cs" />
+    <Compile Include="Entities\Partials\Race.cs" />
     <Compile Include="Entities\Partials\Sex.cs" />
     <Compile Include="Entities\Partials\User.cs" />
     <Compile Include="Entities\ParticipantRole.cs">

@@ -17,6 +17,8 @@
         <CollectionViewSource x:Key="cvsHair" Source="{Binding Source={StaticResource DataContainer}, Path=HairColors, Mode=OneWay}"/>
         <CollectionViewSource x:Key="cvsEyes" Source="{Binding Source={StaticResource DataContainer}, Path=EyesColors, Mode=OneWay}"/>
         <CollectionViewSource x:Key="cvsraces" Source="{Binding Source={StaticResource DataContainer}, Path=Races, Mode=OneWay}"/>
+        <CollectionViewSource x:Key="cvsDesignations" Source="{Binding Source={StaticResource DataContainer}, Path=Designations, Mode=OneWay}"/>
+        <CollectionViewSource x:Key="cvsParticipantRoles" Source="{Binding Source={StaticResource DataContainer}, Path=ParticipantRoles, Mode=OneWay}"/>
     </UserControl.Resources>
 	<Grid x:Name="LayoutRoot">
 		<GroupBox Header="{Binding Title, ElementName=UserControl, Mode=OneWay}" Grid.IsSharedSizeScope="True">
@@ -46,11 +48,11 @@
 						<TextBox TextWrapping="Wrap" Text="{Binding MiddleName, FallbackValue=Ivanovich, Mode=TwoWay}" Grid.Column="2" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Middle Name"/>
 						<TextBox TextWrapping="Wrap" Text="{Binding LastName, FallbackValue=Obama, Mode=TwoWay}" VerticalAlignment="Center" Grid.Column="3" Tag="Last Name" Style="{DynamicResource TextBoxWithAdorner}"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Designation" VerticalAlignment="Center" Grid.Column="4"/>
-						<ComboBox Grid.Column="5" VerticalAlignment="Center" SelectedItem="{Binding Designation, Mode=TwoWay}" DisplayMemberPath="DesignationName"/>
+						<ComboBox Grid.Column="5" VerticalAlignment="Center" SelectedItem="{Binding Designation, Mode=TwoWay}" DisplayMemberPath="DesignationName" ItemsSource="{Binding Mode=OneWay, Source={StaticResource cvsDesignations}}"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Description" Margin="0,0,0,7.999" Grid.Row="1" VerticalAlignment="Center"/>
 						<TextBox TextWrapping="Wrap" Text="{Binding Description, FallbackValue=Some Description, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Please type the description"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Participant Role" VerticalAlignment="Center" Grid.Row="1" Grid.Column="4"/>
-						<ComboBox Grid.Row="1" Grid.Column="5" VerticalAlignment="Center" SelectedItem="{Binding ParticipantRole, Mode=OneWay}" DisplayMemberPath="ParticipantRoleName"/>
+						<ComboBox Grid.Row="1" Grid.Column="5" VerticalAlignment="Center" SelectedItem="{Binding ParticipantRole, Mode=TwoWay}" DisplayMemberPath="ParticipantRoleName" ItemsSource="{Binding Mode=OneWay, Source={StaticResource cvsParticipantRoles}}"/>
 					</Grid>
 				</Border>
 				<Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Margin="0" Grid.Row="1">

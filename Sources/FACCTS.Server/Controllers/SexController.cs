@@ -13,7 +13,7 @@ namespace FACCTS.Server.Controllers
 {
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    //[Authorize]
+    [Authorize]
     public class SexController : ApiControllerBase
     {
         // GET api/sex

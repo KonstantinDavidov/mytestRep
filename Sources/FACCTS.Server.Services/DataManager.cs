@@ -147,6 +147,14 @@ namespace FACCTS.Server.Data
             }
         }
 
+        public IFacctsDictionaryDataRepository<Race> RaceRepository
+        {
+            get
+            {
+                return GetStandardDictionaryRepo<Race>();
+            }
+        }
+
         #endregion
 
         //Commit

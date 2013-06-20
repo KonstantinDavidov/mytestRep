@@ -11,12 +11,7 @@ namespace Faccts.Model.Entities
     {
         partial void Initialize()
         {
-            this.WhenAny(x => x.DateOfBirthNullable, x => x.Value.GetValueOrDefault())
-                .Subscribe(x =>
-                {
-                    this.DateOfBirth = x;
-                }
-                );
+           
         }
 
         private DateTime? _dateOfBirthNullable;
@@ -39,6 +34,10 @@ namespace Faccts.Model.Entities
                     return;
                 this.OnPropertyChanging("DateOfBirthNullable");
                 _dateOfBirthNullable = value;
+                if (_dateOfBirthNullable.HasValue)
+                {
+                    this.DateOfBirth = _dateOfBirthNullable.Value;
+                }
                 this.OnPropertyChanged("DateOfBirthNullable");
             }
 

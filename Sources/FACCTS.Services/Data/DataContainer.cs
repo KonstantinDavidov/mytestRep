@@ -224,7 +224,7 @@ namespace FACCTS.Services.Data
             {
                 if (_races == null)
                 {
-
+                    _races = FACCTS.Services.Data.Races.GetAll();
                 }
                 return _races;
             }
@@ -237,7 +237,7 @@ namespace FACCTS.Services.Data
             {
                 if (_designations == null)
                 {
-
+                    _designations = FACCTS.Services.Data.Designations.GetAll();
                 }
                 return _designations;
             }
@@ -250,7 +250,7 @@ namespace FACCTS.Services.Data
             {
                 if (_participantRoles == null)
                 {
-
+                    _participantRoles = FACCTS.Services.Data.ParticipantRoles.GetAll();
                 }
                 return _participantRoles;
             }

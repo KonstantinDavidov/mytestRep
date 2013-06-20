@@ -9,21 +9,21 @@ using System.Web.Http;
 
 namespace FACCTS.Server.Controllers
 {
+    [Authorize]
     [Export]
     [PartCreationPolicy(CreationPolicy.NonShared)]
-    [Authorize]
-    public class DesignationController : ApiControllerBase
+    public class RaceController : ApiControllerBase
     {
         // GET api/Designation
-        public IEnumerable<Designation> Get()
+        public IEnumerable<Race> Get()
         {
-            return DataManager.DesignationRepository.GetAll();
+            return DataManager.RaceRepository.GetAll();
         }
 
         // GET api/Designation/5
-        public Designation Get(int id)
+        public Race Get(int id)
         {
-            var entity = DataManager.DesignationRepository.GetById(id);
+            var entity = DataManager.RaceRepository.GetById(id);
             if (entity == null)
             {
                 throw new HttpResponseException(

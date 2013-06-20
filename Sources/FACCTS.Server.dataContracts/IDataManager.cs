@@ -30,6 +30,7 @@ namespace FACCTS.Server.DataContracts
         IFacctsDataRepository<CaseHistory> CaseHistoryRepository { get; }
         IFacctsDictionaryDataRepository<FACCTSConfiguration> FACCTSConfigurationRepository { get; }
         IFacctsDataRepository<Courtroom> CourtroomRepository { get; }
+        IFacctsDictionaryDataRepository<Race> RaceRepository { get; }
 
         // Save pending changes to the data store.
         void Commit();
