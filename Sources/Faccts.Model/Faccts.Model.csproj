@@ -95,9 +95,6 @@
     <Compile Include="Entities\Appearances.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Applications.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\Attorneys.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -193,9 +190,6 @@
     <Compile Include="Entities\KeyMaterialConfiguration.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Memberships.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\Model1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -226,9 +220,6 @@
     <Compile Include="Entities\Permission.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Profiles.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\Race.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -238,9 +229,6 @@
     <Compile Include="Entities\Role.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Roles.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\Sex.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -248,9 +236,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\User.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Users.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Witnesses.cs">

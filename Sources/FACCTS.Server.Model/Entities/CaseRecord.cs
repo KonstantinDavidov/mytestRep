@@ -24,11 +24,6 @@ namespace FACCTS.Server.Model.DataModel
         [InverseProperty("CaseRecord")]
         public virtual ICollection<OtherProtected> OtherProtected { get; set; }
 
-        public virtual Attorney AttorneyForParty1 { get; set; }
-
-        //public bool Party1ProPer { get; set; }
-
-        public virtual Attorney AttorneyForParty2 { get; set; }
 
         public virtual Attorney AttorneyForChild { get; set; }
 

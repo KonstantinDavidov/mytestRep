@@ -20,6 +20,7 @@ using ReactiveUI;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
+    [KnownType(typeof(Attorneys))]
     [KnownType(typeof(CaseRecord))]
     [KnownType(typeof(Designation))]
     [KnownType(typeof(EyesColor))]
@@ -353,6 +354,22 @@ namespace Faccts.Model.Entities
         private int _age;
     
         [DataMember]
+        public Nullable<bool> HasAttorney
+        {
+            get { return _hasAttorney; }
+            set
+            {
+                if (_hasAttorney != value)
+                {
+    				OnPropertyChanging("HasAttorney");
+                    _hasAttorney = value;
+                    OnPropertyChanged("HasAttorney");
+                }
+            }
+        }
+        private Nullable<bool> _hasAttorney;
+    
+        [DataMember]
         public int Designation_Id
         {
             get { return _designation_Id; }
@@ -497,6 +514,30 @@ namespace Faccts.Model.Entities
         private int _race_Id;
     
         [DataMember]
+        public Nullable<int> Attorney_Id
+        {
+            get { return _attorney_Id; }
+            set
+            {
+                if (_attorney_Id != value)
+                {
+                    ChangeTracker.RecordOriginalValue("Attorney_Id", _attorney_Id);
+                    if (!IsDeserializing)
+                    {
+                        if (Attorneys != null && Attorneys.Id != value)
+                        {
+                            Attorneys = null;
+                        }
+                    }
+    				OnPropertyChanging("Attorney_Id");
+                    _attorney_Id = value;
+                    OnPropertyChanged("Attorney_Id");
+                }
+            }
+        }
+        private Nullable<int> _attorney_Id;
+    
+        [DataMember]
         public Nullable<int> CaseRecordByCourtParty1_Id
         {
             get { return _caseRecordByCourtParty1_Id; }
@@ -547,6 +588,24 @@ namespace Faccts.Model.Entities
         #endregion
 
         #region Navigation Properties
+    
+        [DataMember]
+        public Attorneys Attorneys
+        {
+            get { return _attorneys; }
+            set
+            {
+                if (!ReferenceEquals(_attorneys, value))
+                {
+                    var previousValue = _attorneys;
+    				OnNavigationPropertyChanging("Attorneys");
+                    _attorneys = value;
+                    FixupAttorneys(previousValue);
+                    OnNavigationPropertyChanged("Attorneys");
+                }
+            }
+        }
+        private Attorneys _attorneys;
     
         [DataMember]
         public TrackableCollection<CaseRecord> CaseRecord
@@ -947,6 +1006,8 @@ namespace Faccts.Model.Entities
     				return false;
     			if (this.Age != p.Age)
     				return false;
+    			if (this.HasAttorney != p.HasAttorney)
+    				return false;
     			if (this.Designation_Id != p.Designation_Id)
     				return false;
     			if (this.ParticipantRole_Id != p.ParticipantRole_Id)
@@ -958,6 +1019,8 @@ namespace Faccts.Model.Entities
     			if (this.EyesColor_Id != p.EyesColor_Id)
     				return false;
     			if (this.Race_Id != p.Race_Id)
+    				return false;
+    			if (this.Attorney_Id != p.Attorney_Id)
     				return false;
     			if (this.CaseRecordByCourtParty1_Id != p.CaseRecordByCourtParty1_Id)
     				return false;
@@ -1022,6 +1085,10 @@ namespace Faccts.Model.Entities
     		hashCode ^= this.DateOfBirth.GetHashCode();
     			
     		hashCode ^= this.Age.GetHashCode();
+    		if (this.HasAttorney != null)
+    		{
+    			hashCode ^= this.HasAttorney.GetHashCode();
+    		}
     			
     		hashCode ^= this.Designation_Id.GetHashCode();
     			
@@ -1034,6 +1101,10 @@ namespace Faccts.Model.Entities
     		hashCode ^= this.EyesColor_Id.GetHashCode();
     			
     		hashCode ^= this.Race_Id.GetHashCode();
+    		if (this.Attorney_Id != null)
+    		{
+    			hashCode ^= this.Attorney_Id.GetHashCode();
+    		}
     		if (this.CaseRecordByCourtParty1_Id != null)
     		{
     			hashCode ^= this.CaseRecordByCourtParty1_Id.GetHashCode();
@@ -1110,6 +1181,7 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
+            Attorneys = null;
             CaseRecord.Clear();
             CaseRecord1.Clear();
             CaseRecord2 = null;
@@ -1127,6 +1199,47 @@ namespace Faccts.Model.Entities
         #endregion
 
         #region Association Fixup
+    
+        private void FixupAttorneys(Attorneys previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.CourtParty.Contains(this))
+            {
+                previousValue.CourtParty.Remove(this);
+            }
+    
+            if (Attorneys != null)
+            {
+                Attorneys.CourtParty.Add(this);
+    
+                Attorney_Id = Attorneys.Id;
+            }
+            else if (!skipKeys)
+            {
+                Attorney_Id = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("Attorneys")
+                    && (ChangeTracker.OriginalValues["Attorneys"] == Attorneys))
+                {
+                    ChangeTracker.OriginalValues.Remove("Attorneys");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("Attorneys", previousValue);
+                }
+                if (Attorneys != null && !Attorneys.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    Attorneys.StartTracking();
+                }
+            }
+        }
     
         private void FixupCaseRecord2(CaseRecord previousValue, bool skipKeys = false)
         {

@@ -215,7 +215,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <AdornerDecorator Margin="0,3">
-                        <local:TextBoxClearButton TextWrapping="Wrap" Text="{Binding Text, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" VerticalAlignment="Top" >
+                        <local:TextBoxClearButton TextWrapping="{TemplateBinding TextWrapping}" Text="{Binding Text, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}" VerticalAlignment="{TemplateBinding VerticalAlignment}" HorizontalAlignment="{TemplateBinding HorizontalAlignment}" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" IsEnabled="{TemplateBinding IsEnabled}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" MinWidth="{TemplateBinding MinWidth}" MinHeight="{TemplateBinding MinHeight}" MaxWidth="{TemplateBinding MaxWidth}" MaxHeight="{TemplateBinding MaxHeight}" >
                             <utils:WatermarkService.Watermark>
                                 <TextBlock Text="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag,Mode=OneWay}"/>
                             </utils:WatermarkService.Watermark>

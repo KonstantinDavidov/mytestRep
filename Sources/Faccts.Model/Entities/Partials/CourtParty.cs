@@ -11,7 +11,13 @@ namespace Faccts.Model.Entities
     {
         partial void Initialize()
         {
-           
+            this.WhenAny(x => x.FirstName, x => x.LastName, x => x.MiddleName, (x, y, z) => new { FirstName = x.Value, LastName = y.Value, MiddleName = z.Value })
+                .Subscribe(x =>
+                {
+                    this.OnPropertyChanged("FullName");
+                }
+                );
+            this.Attorneys = new Attorneys();
         }
 
         private DateTime? _dateOfBirthNullable;
@@ -41,6 +47,14 @@ namespace Faccts.Model.Entities
                 this.OnPropertyChanged("DateOfBirthNullable");
             }
 
+        }
+
+        public string FullName
+        {
+            get
+            {
+                return string.Format("{0} {1} {2}", this.LastName, this.FirstName, this.MiddleName);
+            }
         }
     }
 }

@@ -68,6 +68,10 @@
   <Model name="PersonalInformationViewModel">
     <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
   </Model>
+
+  <Model name="AttorneysViewModel">
+    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
+  </Model>
   
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
