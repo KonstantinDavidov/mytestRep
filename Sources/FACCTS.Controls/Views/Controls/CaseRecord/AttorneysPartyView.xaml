@@ -3,10 +3,13 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:sys="clr-namespace:System;assembly=mscorlib.dll"
 			 xmlns:Converters="clr-namespace:FACCTS.Controls.Converters" x:Name="userControl" x:Class="FACCTS.Controls.Views.Controls.AttorneysPartyView" 
 			 mc:Ignorable="d" 
-			 d:DesignHeight="248" d:DesignWidth="823" Background="{DynamicResource ControlBackgroundBrush}">
+			 d:DesignHeight="248" d:DesignWidth="823" Background="{DynamicResource ControlBackgroundBrush}"
+			 xmlns:utils="clr-namespace:FACCTS.Controls.Utils">
 	<UserControl.Resources>
+		<Converters:NullableBoolleanToBooleanConverter x:Key="NullableBoolleanToBooleanConverter"/>
 		<Converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
 	</UserControl.Resources>
 	<GroupBox Header="{Binding DisplayName, ElementName=userControl, FallbackValue=Attroney for Party 1, Mode=OneWay}" Grid.IsSharedSizeScope="True">
@@ -22,7 +25,7 @@
 			
 			<CheckBox Content="Pro Per" Margin="0" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" IsChecked="{Binding HasAttorney, Converter={StaticResource InvertedBooleanConverter}, Mode=TwoWay}"/>
 			
-			<Grid Grid.ColumnSpan="8" Grid.Row="1" DataContext="{Binding Attorneys, Mode=OneWay}">
+			<Grid Grid.ColumnSpan="8" Grid.Row="1" DataContext="{Binding Attorneys, Mode=OneWay}" IsEnabled="{Binding DataContext.HasAttorney, ConverterParameter={x:Static utils:StringToBoolean.False}, Converter={StaticResource NullableBoolleanToBooleanConverter}, ElementName=userControl, FallbackValue=True}">
 				<Grid.RowDefinitions>
 					<RowDefinition/>
 					<RowDefinition/>
@@ -48,7 +51,7 @@
 				<TextBox Grid.ColumnSpan="2" TextWrapping="Wrap" Text="{Binding FirstName, Mode=TwoWay}" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="First Name"/>
 				<TextBox TextWrapping="Wrap" Text="{Binding LastName}" Grid.Column="3" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Last Name"/>
 				<TextBox Grid.ColumnSpan="3" TextWrapping="Wrap" Text="{Binding FirmName, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Please type the firm name"/>
-				<TextBox Grid.ColumnSpan="3" Height="23" TextWrapping="Wrap" Text="{Binding StreetAddress, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Please type the street address"/>
+				<TextBox Grid.ColumnSpan="3" TextWrapping="Wrap" Text="{Binding StreetAddress, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Please type the street address"/>
 				<TextBox TextWrapping="Wrap" Text="{Binding City, Mode=TwoWay}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="City"/>
 				<TextBox TextWrapping="Wrap" Text="{Binding State, Mode=TwoWay}" Grid.Row="3" Grid.Column="2" Margin="0,-0.001,0,0" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="State"/>
 				<TextBox TextWrapping="Wrap" Text="{Binding ZipCode, Mode=TwoWay}" Grid.Row="3" Grid.Column="3" Margin="0,-0.001,0,0" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Zip Code"/>
