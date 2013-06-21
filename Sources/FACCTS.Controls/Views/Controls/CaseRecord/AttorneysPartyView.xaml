@@ -23,8 +23,6 @@
 				<RowDefinition Height="*"/>
 			</Grid.RowDefinitions>
 			
-			<CheckBox Content="Pro Per" Margin="0" Grid.Column="1" Grid.ColumnSpan="3" VerticalAlignment="Center" IsChecked="{Binding HasAttorney, Converter={StaticResource InvertedBooleanConverter}, Mode=TwoWay}"/>
-			
 			<Grid Grid.ColumnSpan="8" Grid.Row="1" DataContext="{Binding Attorneys, Mode=OneWay}" IsEnabled="{Binding DataContext.HasAttorney, ConverterParameter={x:Static utils:StringToBoolean.False}, Converter={StaticResource NullableBoolleanToBooleanConverter}, ElementName=userControl, FallbackValue=True}">
 				<Grid.RowDefinitions>
 					<RowDefinition/>
@@ -63,6 +61,10 @@
 				<TextBox Height="23" TextWrapping="Wrap" Text="{Binding Phone, Mode=TwoWay}" Grid.Row="3" Grid.Column="6" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Phone"/>
 				<TextBox Height="23" TextWrapping="Wrap" Text="{Binding Fax, Mode=TwoWay}" Grid.Row="4" Grid.Column="6" Margin="0,0,0,-0.001" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Fax"/>
 			</Grid>
+			<StackPanel VerticalAlignment="Center" Grid.Column="1">
+				<CheckBox Content="Pro Per" Margin="0,5" VerticalAlignment="Center" IsChecked="{Binding HasAttorney, Converter={StaticResource InvertedBooleanConverter}, Mode=TwoWay}" Visibility="{Binding IsProPerVisible, Converter={StaticResource BoolToVisibilityConverter}, ElementName=userControl, FallbackValue=True, Mode=OneWay}"/>
+				<CheckBox Content="Same as Party 1" Margin="0,5" Visibility="{Binding IsSameAsParty1Visible, Converter={StaticResource BoolToVisibilityConverter}, ElementName=userControl, Mode=OneWay}"/>
+			</StackPanel>
 		</Grid>
 	</GroupBox>
 </UserControl>

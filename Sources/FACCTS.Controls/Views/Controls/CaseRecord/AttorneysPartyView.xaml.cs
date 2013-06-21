@@ -46,6 +46,52 @@ namespace FACCTS.Controls.Views.Controls
 
         #endregion
 
+        #region IsProPerVisible
+
+        /// <summary>
+        /// IsProPerVisible Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty IsProPerVisibleProperty =
+            DependencyProperty.Register("IsProPerVisible", typeof(bool), typeof(AttorneysPartyView),
+                new FrameworkPropertyMetadata((bool)true));
+
+        /// <summary>
+        /// Gets or sets the IsProPerVisible property. This dependency property 
+        /// indicates ....
+        /// </summary>
+        public bool IsProPerVisible
+        {
+            get { return (bool)GetValue(IsProPerVisibleProperty); }
+            set { SetValue(IsProPerVisibleProperty, value); }
+        }
+
+        #endregion
+
+        #region IsSameAsParty1Visible
+
+        /// <summary>
+        /// IsSameAsParty1Visible Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty IsSameAsParty1VisibleProperty =
+            DependencyProperty.Register("IsSameAsParty1Visible", typeof(bool), typeof(AttorneysPartyView),
+                new FrameworkPropertyMetadata((bool)false));
+
+        /// <summary>
+        /// Gets or sets the IsSameAsParty1Visible property. This dependency property 
+        /// indicates ....
+        /// </summary>
+        public bool IsSameAsParty1Visible
+        {
+            get { return (bool)GetValue(IsSameAsParty1VisibleProperty); }
+            set { SetValue(IsSameAsParty1VisibleProperty, value); }
+        }
+
+        #endregion
+
+        
+
+        
+
         
     }
 }
