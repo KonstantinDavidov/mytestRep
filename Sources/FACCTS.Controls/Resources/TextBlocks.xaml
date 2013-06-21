@@ -180,6 +180,7 @@
                 <MultiTrigger.Conditions>
                     <Condition Property="IsMouseOver" Value="True" />
                     <Condition Property="HasText" Value="True" />
+                    <Condition Property="IsReadOnly" Value="False" />
                 </MultiTrigger.Conditions>
                 <Setter TargetName="PART_SearchIconBorder" Property="Visibility" Value="Visible"/>
             </MultiTrigger>

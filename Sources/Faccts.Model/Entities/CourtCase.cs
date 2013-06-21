@@ -317,62 +317,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-    	public override bool Equals(System.Object obj)
-    	{
-    		// If parameter is null return false.
-            if (obj == null)
-            {
-                return false;
-            }
-    
-            // If parameter cannot be cast to Point return false.
-            CourtCase p = obj as CourtCase;
-            if ((System.Object)p == null)
-            {
-                return false;
-            }
-    
-    			if (this.Id != p.Id)
-    				return false;
-    			if (this.CaseNumber != p.CaseNumber)
-    				return false;
-    			if (this.CCPORStatus != p.CCPORStatus)
-    				return false;
-    			if (this.CCPORId != p.CCPORId)
-    				return false;
-    			if (this.CourtClerk_UserId != p.CourtClerk_UserId)
-    				return false;
-    			if (this.CaseRecord_Id != p.CaseRecord_Id)
-    				return false;
-    
-    		return true;
-    	}
-    
-    	public override int GetHashCode()
-    	{
-    		int hashCode = 1;
-    			
-    		hashCode ^= this.Id.GetHashCode();
-    		if (this.CaseNumber != null)
-    		{
-    			hashCode ^= this.CaseNumber.GetHashCode();
-    		}
-    		if (this.CCPORStatus != null)
-    		{
-    			hashCode ^= this.CCPORStatus.GetHashCode();
-    		}
-    		if (this.CCPORId != null)
-    		{
-    			hashCode ^= this.CCPORId.GetHashCode();
-    		}
-    		if (this.CourtClerk_UserId != null)
-    		{
-    			hashCode ^= this.CourtClerk_UserId.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.CaseRecord_Id.GetHashCode();
-    		return hashCode;
-    	}
+    	
     
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;

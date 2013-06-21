@@ -159,38 +159,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-    	public override bool Equals(System.Object obj)
-    	{
-    		// If parameter is null return false.
-            if (obj == null)
-            {
-                return false;
-            }
-    
-            // If parameter cannot be cast to Point return false.
-            FederationMetadataConfiguration p = obj as FederationMetadataConfiguration;
-            if ((System.Object)p == null)
-            {
-                return false;
-            }
-    
-    			if (this.Id != p.Id)
-    				return false;
-    			if (this.Enabled != p.Enabled)
-    				return false;
-    
-    		return true;
-    	}
-    
-    	public override int GetHashCode()
-    	{
-    		int hashCode = 1;
-    			
-    		hashCode ^= this.Id.GetHashCode();
-    			
-    		hashCode ^= this.Enabled.GetHashCode();
-    		return hashCode;
-    	}
+    	
     
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;

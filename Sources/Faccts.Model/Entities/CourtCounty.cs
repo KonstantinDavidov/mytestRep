@@ -371,58 +371,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-    	public override bool Equals(System.Object obj)
-    	{
-    		// If parameter is null return false.
-            if (obj == null)
-            {
-                return false;
-            }
-    
-            // If parameter cannot be cast to Point return false.
-            CourtCounty p = obj as CourtCounty;
-            if ((System.Object)p == null)
-            {
-                return false;
-            }
-    
-    			if (this.Id != p.Id)
-    				return false;
-    			if (this.court_code != p.court_code)
-    				return false;
-    			if (this.county != p.county)
-    				return false;
-    			if (this.court_name != p.court_name)
-    				return false;
-    			if (this.location != p.location)
-    				return false;
-    
-    		return true;
-    	}
-    
-    	public override int GetHashCode()
-    	{
-    		int hashCode = 1;
-    			
-    		hashCode ^= this.Id.GetHashCode();
-    		if (this.court_code != null)
-    		{
-    			hashCode ^= this.court_code.GetHashCode();
-    		}
-    		if (this.county != null)
-    		{
-    			hashCode ^= this.county.GetHashCode();
-    		}
-    		if (this.court_name != null)
-    		{
-    			hashCode ^= this.court_name.GetHashCode();
-    		}
-    		if (this.location != null)
-    		{
-    			hashCode ^= this.location.GetHashCode();
-    		}
-    		return hashCode;
-    	}
+    	
     
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;

@@ -291,62 +291,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-    	public override bool Equals(System.Object obj)
-    	{
-    		// If parameter is null return false.
-            if (obj == null)
-            {
-                return false;
-            }
-    
-            // If parameter cannot be cast to Point return false.
-            CourtDepartmenets p = obj as CourtDepartmenets;
-            if ((System.Object)p == null)
-            {
-                return false;
-            }
-    
-    			if (this.Id != p.Id)
-    				return false;
-    			if (this.Name != p.Name)
-    				return false;
-    			if (this.Room != p.Room)
-    				return false;
-    			if (this.BranchOfficer != p.BranchOfficer)
-    				return false;
-    			if (this.Reporter != p.Reporter)
-    				return false;
-    			if (this.CourtCountyId != p.CourtCountyId)
-    				return false;
-    
-    		return true;
-    	}
-    
-    	public override int GetHashCode()
-    	{
-    		int hashCode = 1;
-    			
-    		hashCode ^= this.Id.GetHashCode();
-    		if (this.Name != null)
-    		{
-    			hashCode ^= this.Name.GetHashCode();
-    		}
-    		if (this.Room != null)
-    		{
-    			hashCode ^= this.Room.GetHashCode();
-    		}
-    		if (this.BranchOfficer != null)
-    		{
-    			hashCode ^= this.BranchOfficer.GetHashCode();
-    		}
-    		if (this.Reporter != null)
-    		{
-    			hashCode ^= this.Reporter.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.CourtCountyId.GetHashCode();
-    		return hashCode;
-    	}
+    	
     
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;
