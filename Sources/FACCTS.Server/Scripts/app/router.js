@@ -56,7 +56,7 @@
 
                     if (!isRedirecting && !response.val) {
                         isRedirecting = true;
-                        logger.warning(response.message);
+                        //logger.warning(response.message);
                         // Keep hash url the same in address bar
                         context.app.setLocation(currentHash);
                     }
@@ -70,6 +70,7 @@
             },
 
             registerRoute = function (options) {
+                debugger;
                 if (!options.callback) {
                     throw Error('callback must be specified.');
                 }
@@ -79,14 +80,15 @@
                 }
 
                 sammy.get(options.route, function (context) { //context is 'this'
-                    store.save(config.stateKeys.lastView, context.path);
+                    debugger;
+                    //store.save(config.stateKeys.lastView, context.path);
                     options.callback(context.params); // Activate the viewmodel
                     $('.view').hide();
-                    presenter.transitionTo(
-                        $(options.view),
-                        context.path,
-                        options.group
-                    );
+                    //presenter.transitionTo(
+                    //    $(options.view),
+                    //    context.path,
+                    //    options.group
+                    //);
                     if (this.title) {
                         this.title(options.title);
                     }
@@ -94,13 +96,14 @@
             },
 
             run = function () {
-                var url = store.fetch(config.stateKeys.lastView);
+                //var url = store.fetch(config.stateKeys.lastView);
 
                 // 1) if i browse to a location, use it
                 // 2) otherwise, use the url i grabbed from storage
                 // 3) otherwise use the default route
-                startupUrl = sammy.getLocation() || url || defaultRoute;
-
+                debugger;
+                //startupUrl = sammy.getLocation() || url || defaultRoute;
+                startupUrl = defaultRoute;
                 if (!startupUrl) {
                     logger.error('No route was indicated.');
                     return;
