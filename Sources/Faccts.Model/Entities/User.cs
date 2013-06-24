@@ -24,6 +24,8 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(CaseNotes))]
     [KnownType(typeof(CourtCase))]
     [KnownType(typeof(CourtMember))]
+    [KnownType(typeof(ManualIntegrationTasks))]
+    [KnownType(typeof(ScheduledIntegrationTasks))]
     [KnownType(typeof(Role))]
     public partial class User: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
@@ -555,6 +557,78 @@ namespace Faccts.Model.Entities
         private CourtMember _courtMember;
     
         [DataMember]
+        public TrackableCollection<ManualIntegrationTasks> ManualIntegrationTasks
+        {
+            get
+            {
+                if (_manualIntegrationTasks == null)
+                {
+                    _manualIntegrationTasks = new TrackableCollection<ManualIntegrationTasks>();
+                    _manualIntegrationTasks.CollectionChanged += FixupManualIntegrationTasks;
+                }
+                return _manualIntegrationTasks;
+            }
+            set
+            {
+                if (!ReferenceEquals(_manualIntegrationTasks, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("ManualIntegrationTasks");
+                    if (_manualIntegrationTasks != null)
+                    {
+                        _manualIntegrationTasks.CollectionChanged -= FixupManualIntegrationTasks;
+                    }
+                    _manualIntegrationTasks = value;
+                    if (_manualIntegrationTasks != null)
+                    {
+                        _manualIntegrationTasks.CollectionChanged += FixupManualIntegrationTasks;
+                    }
+                    OnNavigationPropertyChanged("ManualIntegrationTasks");
+                }
+            }
+        }
+        private TrackableCollection<ManualIntegrationTasks> _manualIntegrationTasks;
+    
+        [DataMember]
+        public TrackableCollection<ScheduledIntegrationTasks> ScheduledIntegrationTasks
+        {
+            get
+            {
+                if (_scheduledIntegrationTasks == null)
+                {
+                    _scheduledIntegrationTasks = new TrackableCollection<ScheduledIntegrationTasks>();
+                    _scheduledIntegrationTasks.CollectionChanged += FixupScheduledIntegrationTasks;
+                }
+                return _scheduledIntegrationTasks;
+            }
+            set
+            {
+                if (!ReferenceEquals(_scheduledIntegrationTasks, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("ScheduledIntegrationTasks");
+                    if (_scheduledIntegrationTasks != null)
+                    {
+                        _scheduledIntegrationTasks.CollectionChanged -= FixupScheduledIntegrationTasks;
+                    }
+                    _scheduledIntegrationTasks = value;
+                    if (_scheduledIntegrationTasks != null)
+                    {
+                        _scheduledIntegrationTasks.CollectionChanged += FixupScheduledIntegrationTasks;
+                    }
+                    OnNavigationPropertyChanged("ScheduledIntegrationTasks");
+                }
+            }
+        }
+        private TrackableCollection<ScheduledIntegrationTasks> _scheduledIntegrationTasks;
+    
+        [DataMember]
         public TrackableCollection<Role> Role
         {
             get
@@ -691,6 +765,8 @@ namespace Faccts.Model.Entities
             CaseNotes.Clear();
             CourtCase.Clear();
             CourtMember = null;
+            ManualIntegrationTasks.Clear();
+            ScheduledIntegrationTasks.Clear();
             Role.Clear();
         }
 
@@ -869,6 +945,84 @@ namespace Faccts.Model.Entities
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         ChangeTracker.RecordRemovalFromCollectionProperties("CourtCase", item);
+                    }
+                }
+            }
+        }
+    
+        private void FixupManualIntegrationTasks(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (ManualIntegrationTasks item in e.NewItems)
+                {
+                    item.User = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("ManualIntegrationTasks", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (ManualIntegrationTasks item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.User, this))
+                    {
+                        item.User = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("ManualIntegrationTasks", item);
+                    }
+                }
+            }
+        }
+    
+        private void FixupScheduledIntegrationTasks(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (ScheduledIntegrationTasks item in e.NewItems)
+                {
+                    item.User = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("ScheduledIntegrationTasks", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (ScheduledIntegrationTasks item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.User, this))
+                    {
+                        item.User = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("ScheduledIntegrationTasks", item);
                     }
                 }
             }

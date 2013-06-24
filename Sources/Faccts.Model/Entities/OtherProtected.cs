@@ -105,6 +105,22 @@ namespace Faccts.Model.Entities
         private int _id;
     
         [DataMember]
+        public int EntityType
+        {
+            get { return _entityType; }
+            set
+            {
+                if (_entityType != value)
+                {
+    				OnPropertyChanging("EntityType");
+                    _entityType = value;
+                    OnPropertyChanged("EntityType");
+                }
+            }
+        }
+        private int _entityType;
+    
+        [DataMember]
         public bool RelationshipToPlaintiff
         {
             get { return _relationshipToPlaintiff; }

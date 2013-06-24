@@ -1,0 +1,12 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:controls="clr-namespace:FACCTS.Controls"
+	x:Class="FACCTS.Controls.Views.SeparateCaseDialogView"
+	x:Name="Window"
+	Title="{Binding DisplayName, FallbackValue=Separate Case, Mode=TwoWay}"
+	Width="477" Height="301" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+	<Border BorderBrush="Black" BorderThickness="1" Padding="40,40,20,20">
+		<controls:SeparateCaseControlView/>
+	</Border>
+</Window>

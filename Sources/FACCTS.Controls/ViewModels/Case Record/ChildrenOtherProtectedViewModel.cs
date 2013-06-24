@@ -1,18 +1,47 @@
-﻿using System;
+﻿using Caliburn.Micro;
+using Faccts.Model.Entities;
+using FACCTS.Controls.Events;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ReactiveUI;
 
 namespace FACCTS.Controls.ViewModels
 {
     [Export(typeof(ChildrenOtherProtectedViewModel))]
-    public class ChildrenOtherProtectedViewModel : ViewModelBase
+    public partial class ChildrenOtherProtectedViewModel : ViewModelBase, IHandle<CurrentCourtCaseChangedEvent>
     {
-        public ChildrenOtherProtectedViewModel() : base()
+        private IEventAggregator _eventAggregator;
+
+        [ImportingConstructor]
+        public ChildrenOtherProtectedViewModel(IEventAggregator eventAggregator) : base()
         {
+            _eventAggregator = eventAggregator;
+            _eventAggregator.Subscribe(this);
+            this.WhenAny(x => x.CurrentCourtCase, x => x.Value)
+                .Subscribe(x =>
+                {
+                    this.NotifyOfPropertyChange(() => CaseRecord);
+                });
             this.DisplayName = "Children - Other Protected";
+        }
+
+        public void Handle(CurrentCourtCaseChangedEvent message)
+        {
+            this.CurrentCourtCase = message.CourtCase;
+        }
+
+        public CaseRecord CaseRecord
+        {
+            get
+            {
+                if (CurrentCourtCase == null || CurrentCourtCase.CaseRecord == null)
+                    return null;
+                return CurrentCourtCase.CaseRecord;
+            }
         }
     }
 }

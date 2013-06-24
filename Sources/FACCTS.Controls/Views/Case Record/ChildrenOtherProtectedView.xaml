@@ -12,7 +12,7 @@
     		<RowDefinition Height="Auto"/>
     	</Grid.RowDefinitions>
     	<GroupBox Header="List Children">
-    		<Grid>
+    		<Grid DataContext="{Binding CaseRecord, Mode=OneWay}">
     			<Grid.ColumnDefinitions>
     				<ColumnDefinition/>
     				<ColumnDefinition Width="Auto"/>
@@ -21,8 +21,9 @@
     				<RowDefinition/>
     				<RowDefinition Height="Auto"/>
     			</Grid.RowDefinitions>
-    			<DataGrid Grid.ColumnSpan="2">
+    			<DataGrid Grid.ColumnSpan="2" ItemsSource="{Binding Children, Mode=OneWay}">
     				<DataGrid.Columns>
+                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Entity Type"/>
     					<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="First Name"/>
     					<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Lsat Name"/>
     					<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Relationship to Protected"/>

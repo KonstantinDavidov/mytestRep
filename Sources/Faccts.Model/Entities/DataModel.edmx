@@ -38,6 +38,7 @@
           <EntitySet Name="IdentityProvider" EntityType="FACCTS_DBModel.Store.IdentityProvider" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Interpreters" EntityType="FACCTS_DBModel.Store.Interpreters" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="KeyMaterialConfiguration" EntityType="FACCTS_DBModel.Store.KeyMaterialConfiguration" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ManualIntegrationTasks" EntityType="FACCTS_DBModel.Store.ManualIntegrationTasks" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OAuth2Configuration" EntityType="FACCTS_DBModel.Store.OAuth2Configuration" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OtherProtected" EntityType="FACCTS_DBModel.Store.OtherProtected" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ParticipantRole" EntityType="FACCTS_DBModel.Store.ParticipantRole" store:Type="Tables" Schema="dbo" />
@@ -48,6 +49,7 @@
           <EntitySet Name="Role" EntityType="FACCTS_DBModel.Store.Role" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RolePermission" EntityType="FACCTS_DBModel.Store.RolePermission" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RoleUser" EntityType="FACCTS_DBModel.Store.RoleUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ScheduledIntegrationTasks" EntityType="FACCTS_DBModel.Store.ScheduledIntegrationTasks" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Sex" EntityType="FACCTS_DBModel.Store.Sex" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SimpleHttpConfiguration" EntityType="FACCTS_DBModel.Store.SimpleHttpConfiguration" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="FACCTS_DBModel.Store.User" store:Type="Tables" Schema="dbo" />
@@ -198,6 +200,10 @@
             <End Role="CourtParty" EntitySet="CourtParty" />
             <End Role="Interpreters" EntitySet="Interpreters" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_ManualIntegrationTasks_dbo_User_UserId" Association="FACCTS_DBModel.Store.FK_dbo_ManualIntegrationTasks_dbo_User_UserId">
+            <End Role="User" EntitySet="User" />
+            <End Role="ManualIntegrationTasks" EntitySet="ManualIntegrationTasks" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_OtherProtected_dbo_CaseRecord_CaseRecord_Id" Association="FACCTS_DBModel.Store.FK_dbo_OtherProtected_dbo_CaseRecord_CaseRecord_Id">
             <End Role="CaseRecord" EntitySet="CaseRecord" />
             <End Role="OtherProtected" EntitySet="OtherProtected" />
@@ -225,6 +231,10 @@
           <AssociationSet Name="FK_dbo_RoleUser_dbo_User_User_UserId" Association="FACCTS_DBModel.Store.FK_dbo_RoleUser_dbo_User_User_UserId">
             <End Role="User" EntitySet="User" />
             <End Role="RoleUser" EntitySet="RoleUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ScheduledIntegrationTasks_dbo_User_UserId" Association="FACCTS_DBModel.Store.FK_dbo_ScheduledIntegrationTasks_dbo_User_UserId">
+            <End Role="User" EntitySet="User" />
+            <End Role="ScheduledIntegrationTasks" EntitySet="ScheduledIntegrationTasks" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_Witnesses_dbo_CaseRecord_CaseRecord_Id" Association="FACCTS_DBModel.Store.FK_dbo_Witnesses_dbo_CaseRecord_CaseRecord_Id">
             <End Role="CaseRecord" EntitySet="CaseRecord" />
@@ -343,6 +353,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EntityType" Type="int" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="RelationshipToProtected" Type="bit" Nullable="false" />
@@ -618,6 +629,18 @@
           <Property Name="RSASigningKey" Type="nvarchar(max)" />
           <Property Name="SymmetricSigningKey" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="ManualIntegrationTasks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ReceiveTime" Type="datetime" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="EndTime" Type="datetime" Nullable="false" />
+          <Property Name="Info" Type="nvarchar" MaxLength="500" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="State" Type="tinyint" Nullable="false" />
+        </EntityType>
         <EntityType Name="OAuth2Configuration">
           <Key>
             <PropertyRef Name="Id" />
@@ -634,6 +657,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EntityType" Type="int" Nullable="false" />
           <Property Name="RelationshipToPlaintiff" Type="bit" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="100" />
@@ -709,6 +733,18 @@
           </Key>
           <Property Name="Role_RoleId" Type="int" Nullable="false" />
           <Property Name="User_UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ScheduledIntegrationTasks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="RepeatPeriod" Type="tinyint" Nullable="false" />
+          <Property Name="Info" Type="nvarchar" MaxLength="500" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="State" Type="tinyint" Nullable="false" />
         </EntityType>
         <EntityType Name="Sex">
           <Key>
@@ -1242,6 +1278,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_dbo_ManualIntegrationTasks_dbo_User_UserId">
+          <End Role="User" Type="FACCTS_DBModel.Store.User" Multiplicity="0..1" />
+          <End Role="ManualIntegrationTasks" Type="FACCTS_DBModel.Store.ManualIntegrationTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ManualIntegrationTasks">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_OtherProtected_dbo_CaseRecord_CaseRecord_Id">
           <End Role="CaseRecord" Type="FACCTS_DBModel.Store.CaseRecord" Multiplicity="0..1" />
           <End Role="OtherProtected" Type="FACCTS_DBModel.Store.OtherProtected" Multiplicity="*" />
@@ -1336,6 +1384,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_dbo_ScheduledIntegrationTasks_dbo_User_UserId">
+          <End Role="User" Type="FACCTS_DBModel.Store.User" Multiplicity="0..1" />
+          <End Role="ScheduledIntegrationTasks" Type="FACCTS_DBModel.Store.ScheduledIntegrationTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ScheduledIntegrationTasks">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_Witnesses_dbo_CaseRecord_CaseRecord_Id">
           <End Role="CaseRecord" Type="FACCTS_DBModel.Store.CaseRecord" Multiplicity="0..1" />
           <End Role="Witnesses" Type="FACCTS_DBModel.Store.Witnesses" Multiplicity="*" />
@@ -1411,6 +1471,7 @@
           <EntitySet Name="IdentityProvider" EntityType="FACCTS_DBModel.IdentityProvider" />
           <EntitySet Name="Interpreters" EntityType="FACCTS_DBModel.Interpreters" />
           <EntitySet Name="KeyMaterialConfiguration" EntityType="FACCTS_DBModel.KeyMaterialConfiguration" />
+          <EntitySet Name="ManualIntegrationTasks" EntityType="FACCTS_DBModel.ManualIntegrationTasks" />
           <EntitySet Name="OAuth2Configuration" EntityType="FACCTS_DBModel.OAuth2Configuration" />
           <EntitySet Name="OtherProtected" EntityType="FACCTS_DBModel.OtherProtected" />
           <EntitySet Name="ParticipantRole" EntityType="FACCTS_DBModel.ParticipantRole" />
@@ -1418,6 +1479,7 @@
           <EntitySet Name="Race" EntityType="FACCTS_DBModel.Race" />
           <EntitySet Name="RelyingParties" EntityType="FACCTS_DBModel.RelyingParties" />
           <EntitySet Name="Role" EntityType="FACCTS_DBModel.Role" />
+          <EntitySet Name="ScheduledIntegrationTasks" EntityType="FACCTS_DBModel.ScheduledIntegrationTasks" />
           <EntitySet Name="Sex" EntityType="FACCTS_DBModel.Sex" />
           <EntitySet Name="SimpleHttpConfiguration" EntityType="FACCTS_DBModel.SimpleHttpConfiguration" />
           <EntitySet Name="User" EntityType="FACCTS_DBModel.User" />
@@ -1584,6 +1646,14 @@
             <End Role="Designation" EntitySet="Designation" />
             <End Role="Witnesses" EntitySet="Witnesses" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_ManualIntegrationTasks_dbo_User_UserId" Association="FACCTS_DBModel.FK_dbo_ManualIntegrationTasks_dbo_User_UserId">
+            <End Role="User" EntitySet="User" />
+            <End Role="ManualIntegrationTasks" EntitySet="ManualIntegrationTasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_ScheduledIntegrationTasks_dbo_User_UserId" Association="FACCTS_DBModel.FK_dbo_ScheduledIntegrationTasks_dbo_User_UserId">
+            <End Role="User" EntitySet="User" />
+            <End Role="ScheduledIntegrationTasks" EntitySet="ScheduledIntegrationTasks" />
+          </AssociationSet>
           <AssociationSet Name="RelatedCase" Association="FACCTS_DBModel.RelatedCase">
             <End Role="CaseRecord" EntitySet="CaseRecord" />
             <End Role="CourtCase" EntitySet="CourtCase" />
@@ -1730,6 +1800,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="EntityType" Nullable="false" />
           <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="Boolean" Name="RelationshipToProtected" Nullable="false" />
@@ -2046,6 +2117,19 @@
           <Property Type="String" Name="RSASigningKey" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="SymmetricSigningKey" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="ManualIntegrationTasks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="ReceiveTime" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="StartTime" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="EndTime" Nullable="false" Precision="3" />
+          <Property Type="String" Name="Info" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="UserId" />
+          <Property Type="Byte" Name="State" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="FACCTS_DBModel.FK_dbo_ManualIntegrationTasks_dbo_User_UserId" FromRole="ManualIntegrationTasks" ToRole="User" />
+        </EntityType>
         <EntityType Name="OAuth2Configuration">
           <Key>
             <PropertyRef Name="Id" />
@@ -2062,6 +2146,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="EntityType" Nullable="false" />
           <Property Type="Boolean" Name="RelationshipToPlaintiff" Nullable="false" />
           <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -2120,6 +2205,19 @@
           <NavigationProperty Name="Permission" Relationship="FACCTS_DBModel.RolePermission" FromRole="Role" ToRole="Permission" />
           <NavigationProperty Name="User" Relationship="FACCTS_DBModel.RoleUser" FromRole="Role" ToRole="User" />
         </EntityType>
+        <EntityType Name="ScheduledIntegrationTasks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="DateTime" Name="StartTime" Nullable="false" Precision="3" />
+          <Property Type="Byte" Name="RepeatPeriod" Nullable="false" />
+          <Property Type="String" Name="Info" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="UserId" />
+          <Property Type="Boolean" Name="Enabled" Nullable="false" />
+          <Property Type="Byte" Name="State" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="FACCTS_DBModel.FK_dbo_ScheduledIntegrationTasks_dbo_User_UserId" FromRole="ScheduledIntegrationTasks" ToRole="User" />
+        </EntityType>
         <EntityType Name="Sex">
           <Key>
             <PropertyRef Name="Id" />
@@ -2164,6 +2262,8 @@
           <NavigationProperty Name="CaseNotes" Relationship="FACCTS_DBModel.FK_dbo_CaseNotes_dbo_User_Author_UserId" FromRole="User" ToRole="CaseNotes" />
           <NavigationProperty Name="CourtCase" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_User_CourtClerk_UserId" FromRole="User" ToRole="CourtCase" />
           <NavigationProperty Name="CourtMember" Relationship="FACCTS_DBModel.FK_dbo_CourtMember_dbo_User_Id" FromRole="User" ToRole="CourtMember" />
+          <NavigationProperty Name="ManualIntegrationTasks" Relationship="FACCTS_DBModel.FK_dbo_ManualIntegrationTasks_dbo_User_UserId" FromRole="User" ToRole="ManualIntegrationTasks" />
+          <NavigationProperty Name="ScheduledIntegrationTasks" Relationship="FACCTS_DBModel.FK_dbo_ScheduledIntegrationTasks_dbo_User_UserId" FromRole="User" ToRole="ScheduledIntegrationTasks" />
           <NavigationProperty Name="Role" Relationship="FACCTS_DBModel.RoleUser" FromRole="User" ToRole="Role" />
         </EntityType>
         <EntityType Name="Witnesses">
@@ -2712,6 +2812,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_dbo_ManualIntegrationTasks_dbo_User_UserId">
+          <End Type="FACCTS_DBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.ManualIntegrationTasks" Role="ManualIntegrationTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ManualIntegrationTasks">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_ScheduledIntegrationTasks_dbo_User_UserId">
+          <End Type="FACCTS_DBModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.ScheduledIntegrationTasks" Role="ScheduledIntegrationTasks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ScheduledIntegrationTasks">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="RelatedCase">
           <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="*" />
           <End Type="FACCTS_DBModel.CourtCase" Role="CourtCase" Multiplicity="*" />
@@ -2846,6 +2970,7 @@
                 <ScalarProperty Name="RelationshipToProtected" ColumnName="RelationshipToProtected" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="EntityType" ColumnName="EntityType" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -3141,6 +3266,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ManualIntegrationTasks">
+            <EntityTypeMapping TypeName="FACCTS_DBModel.ManualIntegrationTasks">
+              <MappingFragment StoreEntitySet="ManualIntegrationTasks">
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Info" ColumnName="Info" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="ReceiveTime" ColumnName="ReceiveTime" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="OAuth2Configuration">
             <EntityTypeMapping TypeName="FACCTS_DBModel.OAuth2Configuration">
               <MappingFragment StoreEntitySet="OAuth2Configuration">
@@ -3161,6 +3299,7 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="RelationshipToPlaintiff" ColumnName="RelationshipToPlaintiff" />
+                <ScalarProperty Name="EntityType" ColumnName="EntityType" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -3212,6 +3351,19 @@
                 <ScalarProperty Name="IsIdentityServerUser" ColumnName="IsIdentityServerUser" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ScheduledIntegrationTasks">
+            <EntityTypeMapping TypeName="FACCTS_DBModel.ScheduledIntegrationTasks">
+              <MappingFragment StoreEntitySet="ScheduledIntegrationTasks">
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Info" ColumnName="Info" />
+                <ScalarProperty Name="RepeatPeriod" ColumnName="RepeatPeriod" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

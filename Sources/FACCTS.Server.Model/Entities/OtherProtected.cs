@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FACCTS.Server.Model.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,9 +11,17 @@ namespace FACCTS.Server.Model.DataModel
 {
     public partial class OtherProtected
     {
+        public OtherProtected()
+        {
+            this.EntityType = FACCTSEntity.Person;
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
+        [Required]
+        public FACCTSEntity EntityType { get; set; } 
 
         public bool RelationshipToPlaintiff { get; set; }
 

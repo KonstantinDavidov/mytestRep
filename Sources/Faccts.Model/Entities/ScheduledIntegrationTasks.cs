@@ -20,14 +20,13 @@ using ReactiveUI;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(CaseRecord))]
-    [KnownType(typeof(Sex))]
-    public partial class Children: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    [KnownType(typeof(User))]
+    public partial class ScheduledIntegrationTasks: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
     		private MakeObjectReactiveHelper _reactiveHelper;
     
-    		public Children()
+    		public ScheduledIntegrationTasks()
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
@@ -106,172 +105,130 @@ namespace Faccts.Model.Entities
         private int _id;
     
         [DataMember]
-        public int EntityType
+        public System.DateTime StartTime
         {
-            get { return _entityType; }
+            get { return _startTime; }
             set
             {
-                if (_entityType != value)
+                if (_startTime != value)
                 {
-    				OnPropertyChanging("EntityType");
-                    _entityType = value;
-                    OnPropertyChanged("EntityType");
+    				OnPropertyChanging("StartTime");
+                    _startTime = value;
+                    OnPropertyChanged("StartTime");
                 }
             }
         }
-        private int _entityType;
+        private System.DateTime _startTime;
     
         [DataMember]
-        public string FirstName
+        public byte RepeatPeriod
         {
-            get { return _firstName; }
+            get { return _repeatPeriod; }
             set
             {
-                if (_firstName != value)
+                if (_repeatPeriod != value)
                 {
-    				OnPropertyChanging("FirstName");
-                    _firstName = value;
-                    OnPropertyChanged("FirstName");
+    				OnPropertyChanging("RepeatPeriod");
+                    _repeatPeriod = value;
+                    OnPropertyChanged("RepeatPeriod");
                 }
             }
         }
-        private string _firstName;
+        private byte _repeatPeriod;
     
         [DataMember]
-        public string LastName
+        public string Info
         {
-            get { return _lastName; }
+            get { return _info; }
             set
             {
-                if (_lastName != value)
+                if (_info != value)
                 {
-    				OnPropertyChanging("LastName");
-                    _lastName = value;
-                    OnPropertyChanged("LastName");
+    				OnPropertyChanging("Info");
+                    _info = value;
+                    OnPropertyChanged("Info");
                 }
             }
         }
-        private string _lastName;
+        private string _info;
     
         [DataMember]
-        public bool RelationshipToProtected
+        public Nullable<int> UserId
         {
-            get { return _relationshipToProtected; }
+            get { return _userId; }
             set
             {
-                if (_relationshipToProtected != value)
+                if (_userId != value)
                 {
-    				OnPropertyChanging("RelationshipToProtected");
-                    _relationshipToProtected = value;
-                    OnPropertyChanged("RelationshipToProtected");
-                }
-            }
-        }
-        private bool _relationshipToProtected;
-    
-        [DataMember]
-        public System.DateTime DateOfBirth
-        {
-            get { return _dateOfBirth; }
-            set
-            {
-                if (_dateOfBirth != value)
-                {
-    				OnPropertyChanging("DateOfBirth");
-                    _dateOfBirth = value;
-                    OnPropertyChanged("DateOfBirth");
-                }
-            }
-        }
-        private System.DateTime _dateOfBirth;
-    
-        [DataMember]
-        public int Sex_Id
-        {
-            get { return _sex_Id; }
-            set
-            {
-                if (_sex_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("Sex_Id", _sex_Id);
+                    ChangeTracker.RecordOriginalValue("UserId", _userId);
                     if (!IsDeserializing)
                     {
-                        if (Sex != null && Sex.Id != value)
+                        if (User != null && User.Id != value)
                         {
-                            Sex = null;
+                            User = null;
                         }
                     }
-    				OnPropertyChanging("Sex_Id");
-                    _sex_Id = value;
-                    OnPropertyChanged("Sex_Id");
+    				OnPropertyChanging("UserId");
+                    _userId = value;
+                    OnPropertyChanged("UserId");
                 }
             }
         }
-        private int _sex_Id;
+        private Nullable<int> _userId;
     
         [DataMember]
-        public Nullable<int> CaseRecord_Id
+        public bool Enabled
         {
-            get { return _caseRecord_Id; }
+            get { return _enabled; }
             set
             {
-                if (_caseRecord_Id != value)
+                if (_enabled != value)
                 {
-                    ChangeTracker.RecordOriginalValue("CaseRecord_Id", _caseRecord_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (CaseRecord != null && CaseRecord.Id != value)
-                        {
-                            CaseRecord = null;
-                        }
-                    }
-    				OnPropertyChanging("CaseRecord_Id");
-                    _caseRecord_Id = value;
-                    OnPropertyChanged("CaseRecord_Id");
+    				OnPropertyChanging("Enabled");
+                    _enabled = value;
+                    OnPropertyChanged("Enabled");
                 }
             }
         }
-        private Nullable<int> _caseRecord_Id;
+        private bool _enabled;
+    
+        [DataMember]
+        public byte State
+        {
+            get { return _state; }
+            set
+            {
+                if (_state != value)
+                {
+    				OnPropertyChanging("State");
+                    _state = value;
+                    OnPropertyChanged("State");
+                }
+            }
+        }
+        private byte _state;
 
         #endregion
 
         #region Navigation Properties
     
         [DataMember]
-        public CaseRecord CaseRecord
+        public User User
         {
-            get { return _caseRecord; }
+            get { return _user; }
             set
             {
-                if (!ReferenceEquals(_caseRecord, value))
+                if (!ReferenceEquals(_user, value))
                 {
-                    var previousValue = _caseRecord;
-    				OnNavigationPropertyChanging("CaseRecord");
-                    _caseRecord = value;
-                    FixupCaseRecord(previousValue);
-                    OnNavigationPropertyChanged("CaseRecord");
+                    var previousValue = _user;
+    				OnNavigationPropertyChanging("User");
+                    _user = value;
+                    FixupUser(previousValue);
+                    OnNavigationPropertyChanged("User");
                 }
             }
         }
-        private CaseRecord _caseRecord;
-    
-        [DataMember]
-        public Sex Sex
-        {
-            get { return _sex; }
-            set
-            {
-                if (!ReferenceEquals(_sex, value))
-                {
-                    var previousValue = _sex;
-    				OnNavigationPropertyChanging("Sex");
-                    _sex = value;
-                    FixupSex(previousValue);
-                    OnNavigationPropertyChanged("Sex");
-                }
-            }
-        }
-        private Sex _sex;
+        private User _user;
 
         #endregion
 
@@ -368,99 +325,52 @@ namespace Faccts.Model.Entities
             ChangeTracker.ChangeTrackingEnabled = true;
         }
     
-        // This entity type is the dependent end in at least one association that performs cascade deletes.
-        // This event handler will process notifications that occur when the principal end is deleted.
-        internal void HandleCascadeDelete(object sender, ObjectStateChangingEventArgs e)
-        {
-            if (e.NewState == ObjectState.Deleted)
-            {
-                this.MarkAsDeleted();
-            }
-        }
-    
         protected virtual void ClearNavigationProperties()
         {
-            CaseRecord = null;
-            Sex = null;
+            User = null;
         }
 
         #endregion
 
         #region Association Fixup
     
-        private void FixupCaseRecord(CaseRecord previousValue, bool skipKeys = false)
+        private void FixupUser(User previousValue, bool skipKeys = false)
         {
             if (IsDeserializing)
             {
                 return;
             }
     
-            if (previousValue != null && previousValue.Children.Contains(this))
+            if (previousValue != null && previousValue.ScheduledIntegrationTasks.Contains(this))
             {
-                previousValue.Children.Remove(this);
+                previousValue.ScheduledIntegrationTasks.Remove(this);
             }
     
-            if (CaseRecord != null)
+            if (User != null)
             {
-                CaseRecord.Children.Add(this);
+                User.ScheduledIntegrationTasks.Add(this);
     
-                CaseRecord_Id = CaseRecord.Id;
+                UserId = User.Id;
             }
             else if (!skipKeys)
             {
-                CaseRecord_Id = null;
+                UserId = null;
             }
     
             if (ChangeTracker.ChangeTrackingEnabled)
             {
-                if (ChangeTracker.OriginalValues.ContainsKey("CaseRecord")
-                    && (ChangeTracker.OriginalValues["CaseRecord"] == CaseRecord))
+                if (ChangeTracker.OriginalValues.ContainsKey("User")
+                    && (ChangeTracker.OriginalValues["User"] == User))
                 {
-                    ChangeTracker.OriginalValues.Remove("CaseRecord");
+                    ChangeTracker.OriginalValues.Remove("User");
                 }
                 else
                 {
-                    ChangeTracker.RecordOriginalValue("CaseRecord", previousValue);
+                    ChangeTracker.RecordOriginalValue("User", previousValue);
                 }
-                if (CaseRecord != null && !CaseRecord.ChangeTracker.ChangeTrackingEnabled)
+                if (User != null && !User.ChangeTracker.ChangeTrackingEnabled)
                 {
-                    CaseRecord.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupSex(Sex previousValue)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.Children.Contains(this))
-            {
-                previousValue.Children.Remove(this);
-            }
-    
-            if (Sex != null)
-            {
-                Sex.Children.Add(this);
-    
-                Sex_Id = Sex.Id;
-            }
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("Sex")
-                    && (ChangeTracker.OriginalValues["Sex"] == Sex))
-                {
-                    ChangeTracker.OriginalValues.Remove("Sex");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("Sex", previousValue);
-                }
-                if (Sex != null && !Sex.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    Sex.StartTracking();
+                    User.StartTracking();
                 }
             }
         }

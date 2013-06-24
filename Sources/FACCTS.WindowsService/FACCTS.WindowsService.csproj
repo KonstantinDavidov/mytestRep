@@ -79,6 +79,10 @@
       <Project>{ff6f3be2-f68c-492d-bada-e0e4c9524d53}</Project>
       <Name>FACCTS.Server.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FACCTS.Server.Integration\FACCTS.Server.Integration.csproj">
+      <Project>{1e5971a8-1083-4fa4-a7f8-c64af6da4196}</Project>
+      <Name>FACCTS.Server.Integration</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FACCTS.WCFService\FACCTS.WCFService.csproj">
       <Project>{15b3e0d2-6217-493a-a690-158c497f5318}</Project>
       <Name>FACCTS.WCFService</Name>
