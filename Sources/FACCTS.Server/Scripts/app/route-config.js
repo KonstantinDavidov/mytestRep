@@ -20,7 +20,8 @@
                                 group: '.route-top'
                             }
                         ]
-                    },
+                    }
+                    //,
 
                     //// CourtSettings routes
                     //{
@@ -35,21 +36,23 @@
                     //},
 
                     // Invalid routes
-                    {
-                        view: '',
-                        route: /.*/,
-                        title: '',
-                        callback: function () {
-                            logger.error(config.toasts.invalidRoute);
-                        }
-                    }
+                    //{
+                    //    view: '',
+                    //    route: /.*/,
+                    //    title: '',
+                    //    callback: function () {
+                    //        logger.error(config.toasts.invalidRoute);
+                    //    }
+                    //}
                 ];
 
-                for (var i = 0; i < routeData.length; i++) { 
+                for (var i = 0; i < routeData.length; i++) {
+                    debugger;
                     router.register(routeData[i]);
                 }
 
                 // Crank up the router
+                debugger;
                 router.run();
             };
 
