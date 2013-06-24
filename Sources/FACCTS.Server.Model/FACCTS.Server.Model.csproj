@@ -105,6 +105,7 @@
     <Compile Include="Entities\HairColor.cs" />
     <Compile Include="Entities\IdentityProvider.cs" />
     <Compile Include="Entities\Interpreter.cs" />
+    <Compile Include="Entities\ManualIntegrationTask.cs" />
     <Compile Include="Entities\OtherProtected.cs" />
     <Compile Include="Entities\ParticipantRole.cs" />
     <Compile Include="Entities\Permission.cs" />
@@ -114,6 +115,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Entities\Role.cs" />
+    <Compile Include="Entities\ScheduledIntegrationTask.cs" />
     <Compile Include="Entities\Sex.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Witness.cs" />
@@ -121,6 +123,8 @@
     <Compile Include="Enums\CaseNoteStatus.cs" />
     <Compile Include="Enums\CaseStatus.cs" />
     <Compile Include="Enums\CCPORStatus.cs" />
+    <Compile Include="Enums\IntegrationTaskRepeatPeriod.cs" />
+    <Compile Include="Enums\IntegrationTaskState.cs" />
     <Compile Include="Enums\FACCTSEntity.cs" />
     <Compile Include="Enums\IdentificationIDType.cs" />
     <Compile Include="Enums\Relationship.cs" />

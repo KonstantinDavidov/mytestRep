@@ -10,21 +10,23 @@ namespace FACCTS.WCFService
 {
     internal static class MefCongif
     {
-        public static void RegisterMef()
+        public static void RegisterMef(object obj)
         {
-            CompositionContainer container = GetCompositionContainer();
+            CompositionContainer container = GetCompositionContainer(obj);
 
             ServiceLocator.Current = new MefServiceLocator(container);
         }
 
-        private static CompositionContainer GetCompositionContainer()
+        private static CompositionContainer GetCompositionContainer(object obj)
         {
-            string path = Path.GetDirectoryName(Assembly.GetAssembly(typeof(IntegrationService)).Location);
+            string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
             var catalog = new AggregateCatalog();
+            catalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
             catalog.Catalogs.Add(new DirectoryCatalog(path, "FACCTS.Server.*.dll"));
 
             var container = new CompositionContainer(catalog);
+            container.ComposeParts(obj);
 
             var batch = new CompositionBatch();
 

@@ -4,7 +4,7 @@
         var
             init = function () {
 
-                var baseUrl = '/FACCTS.Server/Admin/api/';
+                var baseUrl = 'Admin/api/';
 
                 amplify.request.define('courtMemberBriefs', 'ajax', {
                     url: baseUrl + 'CourtMemberBrief',
