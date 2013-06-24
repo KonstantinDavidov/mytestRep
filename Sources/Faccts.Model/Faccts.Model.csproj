@@ -190,6 +190,9 @@
     <Compile Include="Entities\KeyMaterialConfiguration.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\ManualIntegrationTasks.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Model1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -203,6 +206,7 @@
     </Compile>
     <Compile Include="Entities\Partials\Attorneys.cs" />
     <Compile Include="Entities\Partials\CaseRecord.cs" />
+    <Compile Include="Entities\Partials\Children.cs" />
     <Compile Include="Entities\Partials\CourtCase.cs" />
     <Compile Include="Entities\Partials\CourtCounty.cs" />
     <Compile Include="Entities\Partials\CourtDepartmenets.cs" />
@@ -230,6 +234,9 @@
     <Compile Include="Entities\Role.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\ScheduledIntegrationTasks.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Sex.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -248,6 +255,7 @@
     <Compile Include="Entities\WSTrustConfiguration.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="EnumExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

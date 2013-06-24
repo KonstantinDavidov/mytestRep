@@ -1,0 +1,36 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="FACCTS.Controls.RestrainingPartyIDInfoControlView"
+	x:Name="UserControl"
+	d:DesignWidth="640" d:DesignHeight="106.24" Background="{DynamicResource ControlBackgroundBrush}">
+
+	<Grid x:Name="LayoutRoot">
+		<GroupBox Header="Restraining Party Identification Information">
+			<Border Style="{DynamicResource OrdinalBorder}">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<DockPanel VerticalAlignment="Center" >
+						<TextBlock TextWrapping="Wrap" Text="ID Type" DockPanel.Dock="Left"/>
+						<ComboBox DockPanel.Dock="Right" Margin="10,0"/>
+					</DockPanel>
+					<DockPanel Grid.Column="1"  VerticalAlignment="Center">
+						<TextBlock TextWrapping="Wrap" Text="ID Number"/>
+						<TextBox TextWrapping="Wrap" Text="TextBox" DockPanel.Dock="Right" Margin="10,0"/>
+					</DockPanel>
+					<DockPanel VerticalAlignment="Center" Grid.Column="2">
+						<TextBlock TextWrapping="Wrap" Text="ID Issued Date" VerticalAlignment="Center"/>
+						<TextBox TextWrapping="Wrap" Text="TextBox" DockPanel.Dock="Right" Margin="10,0"/>
+					</DockPanel>
+				</Grid>
+			</Border>
+		</GroupBox>
+	</Grid>
+</UserControl>

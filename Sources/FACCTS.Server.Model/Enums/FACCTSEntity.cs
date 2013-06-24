@@ -9,11 +9,11 @@ namespace FACCTS.Server.Model.Enums
 {
     public enum FACCTSEntity
     {
-        [Description("Person")]
+        [Description("PERSON")]
         Person,
-        [Description("Govt. Agency")]
+        [Description("GOVT. AGENCY")]
         GovtAgency,
-        [Description("Entity")]
+        [Description("ENTITY")]
         Entity,
     }
 }

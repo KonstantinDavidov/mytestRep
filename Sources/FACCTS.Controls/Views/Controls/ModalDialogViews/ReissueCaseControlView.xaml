@@ -1,0 +1,96 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+    xmlns:cal="http://www.caliburnproject.org"
+	mc:Ignorable="d"
+	x:Class="FACCTS.Controls.ReissueCaseControlView"
+	x:Name="UserControl"
+	d:DesignWidth="640" d:DesignHeight="480" Background="{DynamicResource ControlBackgroundBrush}">
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition/>
+			<RowDefinition Height="0.5*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<TextBlock HorizontalAlignment="Left" Style="{DynamicResource TextBlockDialogHeading}" Text="Confirmation: Reissue Case" VerticalAlignment="Top"/>
+		<Grid Grid.Row="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="Auto" MinWidth="150"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>
+				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Case Number" VerticalAlignment="Center" FontWeight="Bold"/>
+                <TextBlock HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" Text="New Court Date" VerticalAlignment="Center" FontWeight="Bold"/>
+                <TextBlock HorizontalAlignment="Left" Grid.Row="2" TextWrapping="Wrap" Text="Time" VerticalAlignment="Center" FontWeight="Bold"/>
+                <TextBlock HorizontalAlignment="Left" Grid.Row="3" TextWrapping="Wrap" Text="Courtroom" VerticalAlignment="Center" FontWeight="Bold"/>
+				<TextBlock Grid.Column="1" TextWrapping="Wrap" Text="{Binding CaseNumber, FallbackValue=22-1251, Mode=OneWay}" VerticalAlignment="Center" Margin="10,0,0,0"/>
+                <DatePicker Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="10,0,0,0" SelectedDate="{Binding NewCourtDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock HorizontalAlignment="Left" Grid.Row="4" TextWrapping="Wrap" Text="Department" VerticalAlignment="Center" FontWeight="Bold"/>
+				<xctk:TimePicker Grid.Column="1" Grid.Row="2" VerticalAlignment="Center" Margin="10,0,0,0" Value="{Binding Time, Mode=TwoWay}"/>
+                <ComboBox Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" Margin="10,0,0,0" SelectedItem="{Binding Courtroom, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=&lt;Please select&gt;}" ItemsSource="{Binding Courtrooms, Mode=OneWay, IsAsync=True}" DisplayMemberPath="RoomName"/>
+                <ComboBox Grid.Column="1" Grid.Row="4" VerticalAlignment="Center" Margin="10,0,0,0" SelectedItem="{Binding Department, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, TargetNullValue=&lt;Please select&gt;}" ItemsSource="{Binding Departments, Mode=OneWay, IsAsync=True}" DisplayMemberPath="Room"/>
+			</Grid>
+			<Border BorderThickness="1" Grid.Column="1" Padding="10,10,0,0">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+						<RowDefinition/>
+					</Grid.RowDefinitions>
+					<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Reasons" VerticalAlignment="Center" FontFamily="Segoe UI"/>
+					<CheckBox Content="No POS" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" IsChecked="{Binding NoPOS, FallbackValue=True, Mode=TwoWay}"/>
+					<CheckBox Content="FCS Referral" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" IsChecked="{Binding FCSReferral, FallbackValue=True, Mode=TwoWay}"/>
+					<CheckBox Content="Get Atty to Prepare" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Center" IsChecked="{Binding GetAttyToPrepare, FallbackValue=False, Mode=TwoWay}"/>
+					<CheckBox x:Name="checkBox" Content="Other" HorizontalAlignment="Left" Grid.Row="4" VerticalAlignment="Center" IsChecked="{Binding IsOtherReason, FallbackValue=False, Mode=TwoWay}"/>
+                    <TextBox Grid.Row="5" TextWrapping="Wrap" Text="{Binding OtherReason, FallbackValue=Other Reason Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" VerticalContentAlignment="Stretch" Margin="0,0,10,0" IsEnabled="{Binding IsChecked, ElementName=checkBox}"/>
+				</Grid>
+			</Border>
+		</Grid>
+		<Grid Grid.Row="2">
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+			<RadioButton Content="No Service Required" HorizontalAlignment="Left" VerticalAlignment="Center" IsChecked="{Binding NoServiceRequired, Mode=TwoWay}"/>
+            <RadioButton x:Name="radioButton" HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Center" IsChecked="{Binding ReissuanceOnSomeDaysBeforeHearing, Mode=TwoWay}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBox>Reissuance on </TextBox>
+                    <xctk:IntegerUpDown Width="60" Value="{Binding ReissuanceAfterDays, FallbackValue=30, Mode=TwoWay}" IsEnabled="{Binding IsChecked, ElementName=radioButton, Mode=OneWay}"/>
+                    <TextBox> days before the hearing</TextBox>
+                </StackPanel>
+            </RadioButton>
+            <RadioButton x:Name="radioButton1" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" IsChecked="{Binding AllPaperworksOnSomeDaysBeforeHearing, Mode=TwoWay}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBox>All Paperwork on </TextBox>
+                    <xctk:IntegerUpDown Width="60" Value="{Binding PaperworkOnDays, FallbackValue=30, Mode=TwoWay}" IsEnabled="{Binding IsChecked, ElementName=radioButton1, Mode=OneWay}"/>
+                    <TextBox>days before the hearing</TextBox>
+                </StackPanel>
+            </RadioButton>
+		</Grid>
+		<UniformGrid HorizontalAlignment="Right" VerticalAlignment="Top" Grid.Row="3" Rows="1" Columns="2" Margin="0,10">
+			<Button Content="Reissue" Width="75" Margin="5,0,5,0" cal:Message.Attach="Reissue" IsEnabled="{Binding IsValid, Mode=OneWay}"/>
+			<Button Content="Cancel" Width="75" Margin="5,0,5,0" cal:Message.Attach="Cancel"/>
+		</UniformGrid>
+	</Grid>
+</UserControl>

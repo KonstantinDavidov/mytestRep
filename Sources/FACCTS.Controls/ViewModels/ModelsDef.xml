@@ -74,6 +74,10 @@
     <Property name="AttorneyForChildrenIsTheSameThenParty1" type="bool"/>
     <Property name="AttorneyForChildrenIsTheSameThenParty2" type="bool"/>
   </Model>
+
+  <Model name="ChildrenOtherProtectedViewModel">
+    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
+  </Model>
   
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
