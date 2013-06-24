@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ServiceModel;
 using FACCTS.WCFService;
+using FACCTS.Server.Integration;
 using log4net;
 using FACCTS.Server.Common;
 
@@ -25,7 +26,7 @@ namespace FACCTS.WindowsService
             InitializeComponent();
 
             log4net.Config.XmlConfigurator.Configure();
-            MefCongif.RegisterMef();
+            MefCongif.RegisterMef(this);
 
             _logger = ServiceLocator.Current.GetInstance<ILog>();
         }
@@ -35,6 +36,10 @@ namespace FACCTS.WindowsService
             _logger.Info("Starting FACCTS Windows service...");
             StartWCFService();
             _logger.Info("FACCTS Windows service started.");
+
+            _logger.Info("Stating IntegrationTasksManager ...");
+            IntegrationTasksManager.Start();
+            _logger.Info("IntegrationTasksManager started.");
         }
 
         protected override void OnStop()
@@ -42,6 +47,10 @@ namespace FACCTS.WindowsService
             _logger.Info("Stopping FACCTS WindowsService ...");
             StopWCFService();
             _logger.Info("FACCTS Windows service stopped.");
+
+            _logger.Info("Stopping IntegrationTasksManager ...");
+            IntegrationTasksManager.Stop();
+            _logger.Info("IntegrationTasksManager stopped.");
         }
 
         protected void StartWCFService()
@@ -57,6 +66,7 @@ namespace FACCTS.WindowsService
             catch (Exception exc)
             {
                 _logger.Fatal("Error occured while hosting FACCTS WCF service!", exc);
+                throw;
             }
             _logger.Info("FACCTS WCF service hosted.");
         }
