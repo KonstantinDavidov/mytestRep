@@ -40,7 +40,7 @@ namespace Faccts.Model.Entities
         {
             get
             {
-                return ((FACCTS.Server.Model.Enums.FACCTSEntity)this.RelationshipToProtected).ToDescription();
+                return ((FACCTS.Server.Model.Enums.Relationship)this.RelationshipToProtected).ToDescription();
             }
         }
         
