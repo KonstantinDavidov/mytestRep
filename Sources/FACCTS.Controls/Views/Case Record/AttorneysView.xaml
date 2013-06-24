@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:localcontrols="clr-namespace:FACCTS.Controls.Views.Controls"
+             xmlns:this="clr-namespace:FACCTS.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="575" d:DesignWidth="757">
     <Grid>
@@ -14,6 +15,6 @@
     	</Grid.RowDefinitions>
         <localcontrols:AttorneysPartyView Grid.Row="0"    DisplayName="Attorney for Party 1" DataContext="{Binding CaseRecord.CourtParty, Mode=OneWay}"/>
         <localcontrols:AttorneysPartyView Grid.Row="1"    DisplayName="Attorney for Party 2" DataContext="{Binding CaseRecord.CourtParty1, Mode=OneWay}"/>
-        <localcontrols:AttorneysPartyView Grid.Row="2"    DisplayName="Attorney for Child" IsProPerVisible="False" IsSameAsParty1Visible="True"/>
+        <this:AttorneyChildrenView Grid.Row="2" />
     </Grid>
 </UserControl>

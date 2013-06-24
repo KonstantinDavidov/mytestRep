@@ -219,7 +219,7 @@ namespace FACCTS.Controls.Utils
             }
             else if (c is TextBoxBase)
             {
-                return string.IsNullOrWhiteSpace((c as TextBox).Text);
+                return string.IsNullOrWhiteSpace((c as TextBox).Text) && c.IsEnabled;
             }
             else if (c is ItemsControl)
             {

@@ -184,6 +184,12 @@
     <Compile Include="Views\Case Record\ChildrenOtherProtectedView.xaml.cs">
       <DependentUpon>ChildrenOtherProtectedView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\CaseRecord\AttorneyChildrenView.xaml.cs">
+      <DependentUpon>AttorneyChildrenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CaseRecord\AttorneyView.xaml.cs">
+      <DependentUpon>AttorneyView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\CaseRecord\RestrainingPartyIDInfoControlView.xaml.cs">
       <DependentUpon>RestrainingPartyIDInfoControlView.xaml</DependentUpon>
     </Compile>
@@ -328,6 +334,14 @@
     <Page Include="Views\Case Record\ChildrenOtherProtectedView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\CaseRecord\AttorneyChildrenView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\CaseRecord\AttorneyView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Controls\CaseRecord\RestrainingPartyIDInfoControlView.xaml">
       <Generator>MSBuild:Compile</Generator>
