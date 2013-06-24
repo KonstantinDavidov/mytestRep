@@ -169,6 +169,18 @@
             </Setter.Value>
         </Setter>
     </Style>
+	<Style x:Key="RadioButtonToggleStyle" TargetType="{x:Type RadioButton}">
+		<Setter Property="SnapsToDevicePixels" Value="true" />
+		<Setter Property="FocusVisualStyle" Value="{DynamicResource RadioButtonFocusVisual}" />
+		<Setter Property="Foreground" Value="{StaticResource OutsideFontColor}" />
+		<Setter Property="FontFamily" Value="Trebuchet MS" />
+		<Setter Property="FontSize" Value="12" />
+		<Setter Property="HorizontalContentAlignment" Value="Left" />
+		<Setter Property="VerticalContentAlignment" Value="Top" />
+		<Setter Property="Padding" Value="4,1,0,0" />
+
+		<Setter Property="Template" Value="{DynamicResource RadioButtonTemplate}" />
+	</Style>
 	<!-- Resource dictionary entries should be defined here. -->
     
     

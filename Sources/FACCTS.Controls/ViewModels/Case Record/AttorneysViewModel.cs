@@ -25,18 +25,25 @@ namespace FACCTS.Controls.ViewModels
                     this.NotifyOfPropertyChange(() => CaseRecord);
                 });
 
-            this.WhenAny(x => x.AttorneyForChildrenIsTheSameThenParty1, x => x.Value)
+            this.WhenAny(
+                x => x.AttorneyForChildrenIsTheSameThenParty1,
+                x => x.AttorneyForChildrenIsTheSameThenParty2,
+                (x, y) => new { IsParty1 = x.Value, IsParty2 = y.Value})
                 .Subscribe(x =>
                     {
                         if (CaseRecord == null)
                             return;
-                        if (x)
+                        if (!x.IsParty1 && !x.IsParty2)
+                        {
+                            CaseRecord.Attorneys = new Attorneys(); 
+                        } else
+                        if (x.IsParty1)
                         {
                             CaseRecord.Attorneys = CaseRecord.CourtParty.Attorneys;
                         }
                         else
                         {
-                            CaseRecord.Attorneys = new Attorneys();
+                            CaseRecord.Attorneys = CaseRecord.CourtParty1.Attorneys;
                         }
                     }
                 );

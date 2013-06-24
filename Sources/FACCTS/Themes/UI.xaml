@@ -623,63 +623,17 @@
         
 <ControlTemplate x:Key="RadioButtonTemplate" TargetType="{x:Type RadioButton}">
                     <ControlTemplate.Resources>
-                        <Storyboard x:Key="HoverOn">
-                            <DoubleAnimation Duration="00:00:00.1000000" Storyboard.TargetName="CircleOver" Storyboard.TargetProperty="Opacity" To="1" />
-                        </Storyboard>
-                        <Storyboard x:Key="HoverOff">
-                            <DoubleAnimation Duration="00:00:00.4000000" Storyboard.TargetName="CircleOver" Storyboard.TargetProperty="Opacity" To="0" />
-                        </Storyboard>
-                        <Storyboard x:Key="PressedOn">
-                            <DoubleAnimation Duration="00:00:00.1000000" Storyboard.TargetName="CirclePress" Storyboard.TargetProperty="Opacity" To="1" />
-                        </Storyboard>
-                        <Storyboard x:Key="PressedOff">
-                            <DoubleAnimation Duration="00:00:00.4000000" Storyboard.TargetName="CirclePress" Storyboard.TargetProperty="Opacity" To="0" />
-                        </Storyboard>
+                        <Storyboard x:Key="HoverOn"/>
+                        <Storyboard x:Key="HoverOff"/>
+                        <Storyboard x:Key="PressedOn"/>
+                        <Storyboard x:Key="PressedOff"/>
                         <Storyboard x:Key="DisabledOn" />
-                        <Storyboard x:Key="CheckedOn">
-                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="CheckIcon" Storyboard.TargetProperty="(UIElement.Visibility)">
-                                <DiscreteObjectKeyFrame KeyTime="00:00:00.1000000" Value="{x:Static Visibility.Visible}" />
-                            </ObjectAnimationUsingKeyFrames>
-                        </Storyboard>
-                        <Storyboard x:Key="CheckedOff">
-                            <ObjectAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="CheckIcon" Storyboard.TargetProperty="(UIElement.Visibility)">
-                                <DiscreteObjectKeyFrame KeyTime="00:00:00.4000000" Value="{x:Static Visibility.Collapsed}" />
-                            </ObjectAnimationUsingKeyFrames>
-                        </Storyboard>
-                        <Storyboard x:Key="FocusedOn">
-                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="FocusedVisualElement" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="1" />
-                            </DoubleAnimationUsingKeyFrames>
-                        </Storyboard>
-                        <Storyboard x:Key="FocusedOff">
-                            <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="FocusedVisualElement" Storyboard.TargetProperty="(UIElement.Opacity)">
-                                <SplineDoubleKeyFrame KeyTime="00:00:00.3000000" Value="0" />
-                            </DoubleAnimationUsingKeyFrames>
-                        </Storyboard>
+                        <Storyboard x:Key="CheckedOn"/>
+                        <Storyboard x:Key="CheckedOff"/>
+                        <Storyboard x:Key="FocusedOn"/>
+                        <Storyboard x:Key="FocusedOff"/>
                     </ControlTemplate.Resources>
-                    <BulletDecorator Background="Transparent">
-                        <BulletDecorator.Bullet>
-                            <Grid>
-                                <Ellipse x:Name="Background" Margin="1" Width="14" Height="14" Fill="{DynamicResource RadioButtonBackgroundBrush}" Stroke="{DynamicResource RadioButtonBorderBrush}" StrokeThickness="1" />
-                                <Ellipse x:Name="CircleFill" Margin="3.045,3.157,2.955,2.843" StrokeThickness="1" Fill="{DynamicResource RadioButtonInnerCircleBrush}" Stroke="{DynamicResource RadioButtonInnerCircleBorderBrush}"/>
-                                <Ellipse x:Name="CircleOver" Margin="2.847,2.847,3.153,3.153" StrokeThickness="1" Opacity="0" Fill="{DynamicResource RadioButtonMouseOverBrush}" Stroke="{DynamicResource RadioButtonMouseOverBorderBrush}">
-                                </Ellipse>
-                                <Ellipse x:Name="CirclePress" Margin="2.73,2.73,3.27,3.27" StrokeThickness="1" Opacity="0" Fill="{DynamicResource RadioButtonPressBrush}" Stroke="{DynamicResource RadioButtonPressBorderBrush}"/>
-                                <Ellipse x:Name="CheckIcon" Margin="4.47,4.498,3.53,3.502" StrokeThickness="1" Visibility="Collapsed" Stroke="{DynamicResource RadioButtonCheckIconBorderBrush}" Fill="{DynamicResource RadioButtonCheckIconBrush}">
-                                </Ellipse>
-                                <Ellipse x:Name="DisabledVisualElement" Width="14" Height="14" Opacity="0.35" Visibility="Visible" >
-                                    <Ellipse.Stroke>
-                                        <SolidColorBrush Color="{DynamicResource WhiteColor}"/>
-                                    </Ellipse.Stroke>
-                                    <Ellipse.Fill>
-                                        <SolidColorBrush Color="{DynamicResource WhiteColor}"/>
-                                    </Ellipse.Fill>
-                                </Ellipse>
-                                <Ellipse x:Name="FocusedVisualElement" Width="16" Height="16" Stroke="{DynamicResource FocusBrush}" StrokeThickness="1" IsHitTestVisible="false" Opacity="0" />
-                            </Grid>
-                        </BulletDecorator.Bullet>
-                        <ContentPresenter Grid.Column="1" x:Name="contentPresenter" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Margin="{TemplateBinding Padding}" />
-                    </BulletDecorator>
+                    <ToggleButton Content="{TemplateBinding Content}" HorizontalAlignment="Left" Height="16" VerticalAlignment="Top" Width="87.5166666666667" IsChecked="{Binding IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{TemplateBinding IsEnabled}"/>
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused" Value="True">
