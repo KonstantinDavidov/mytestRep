@@ -9,7 +9,6 @@
           <EntitySet Name="__MigrationHistory" EntityType="FACCTS_DBModel.Store.__MigrationHistory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AdfsIntegrationConfiguration" EntityType="FACCTS_DBModel.Store.AdfsIntegrationConfiguration" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Appearances" EntityType="FACCTS_DBModel.Store.Appearances" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Applications" EntityType="FACCTS_DBModel.Store.Applications" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Attorneys" EntityType="FACCTS_DBModel.Store.Attorneys" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AvailableCourtOrder" EntityType="FACCTS_DBModel.Store.AvailableCourtOrder" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CaseHistory" EntityType="FACCTS_DBModel.Store.CaseHistory" store:Type="Tables" Schema="dbo" />
@@ -39,24 +38,19 @@
           <EntitySet Name="IdentityProvider" EntityType="FACCTS_DBModel.Store.IdentityProvider" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Interpreters" EntityType="FACCTS_DBModel.Store.Interpreters" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="KeyMaterialConfiguration" EntityType="FACCTS_DBModel.Store.KeyMaterialConfiguration" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Memberships" EntityType="FACCTS_DBModel.Store.Memberships" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OAuth2Configuration" EntityType="FACCTS_DBModel.Store.OAuth2Configuration" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OtherProtected" EntityType="FACCTS_DBModel.Store.OtherProtected" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ParticipantRole" EntityType="FACCTS_DBModel.Store.ParticipantRole" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Permission" EntityType="FACCTS_DBModel.Store.Permission" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Profiles" EntityType="FACCTS_DBModel.Store.Profiles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Race" EntityType="FACCTS_DBModel.Store.Race" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RelatedCase" EntityType="FACCTS_DBModel.Store.RelatedCase" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RelyingParties" EntityType="FACCTS_DBModel.Store.RelyingParties" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Role" EntityType="FACCTS_DBModel.Store.Role" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RolePermission" EntityType="FACCTS_DBModel.Store.RolePermission" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Roles" EntityType="FACCTS_DBModel.Store.Roles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RoleUser" EntityType="FACCTS_DBModel.Store.RoleUser" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Sex" EntityType="FACCTS_DBModel.Store.Sex" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="SimpleHttpConfiguration" EntityType="FACCTS_DBModel.Store.SimpleHttpConfiguration" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="User" EntityType="FACCTS_DBModel.Store.User" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Users" EntityType="FACCTS_DBModel.Store.Users" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="UsersInRoles" EntityType="FACCTS_DBModel.Store.UsersInRoles" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Witnesses" EntityType="FACCTS_DBModel.Store.Witnesses" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="WSFederationConfiguration" EntityType="FACCTS_DBModel.Store.WSFederationConfiguration" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="WSTrustConfiguration" EntityType="FACCTS_DBModel.Store.WSTrustConfiguration" store:Type="Tables" Schema="dbo" />
@@ -89,14 +83,6 @@
             <End Role="CaseNotes" EntitySet="CaseNotes" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id" Association="FACCTS_DBModel.Store.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id">
-            <End Role="Attorneys" EntitySet="Attorneys" />
-            <End Role="CaseRecord" EntitySet="CaseRecord" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty1_Id" Association="FACCTS_DBModel.Store.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty1_Id">
-            <End Role="Attorneys" EntitySet="Attorneys" />
-            <End Role="CaseRecord" EntitySet="CaseRecord" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty2_Id" Association="FACCTS_DBModel.Store.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty2_Id">
             <End Role="Attorneys" EntitySet="Attorneys" />
             <End Role="CaseRecord" EntitySet="CaseRecord" />
           </AssociationSet>
@@ -159,6 +145,10 @@
           <AssociationSet Name="FK_dbo_CourtMember_dbo_User_Id" Association="FACCTS_DBModel.Store.FK_dbo_CourtMember_dbo_User_Id">
             <End Role="User" EntitySet="User" />
             <End Role="CourtMember" EntitySet="CourtMember" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id" Association="FACCTS_DBModel.Store.FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id">
+            <End Role="Attorneys" EntitySet="Attorneys" />
+            <End Role="CourtParty" EntitySet="CourtParty" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_CourtParty_dbo_CaseRecord_CaseRecordByCourtParty1_Id" Association="FACCTS_DBModel.Store.FK_dbo_CourtParty_dbo_CaseRecord_CaseRecordByCourtParty1_Id">
             <End Role="CaseRecord" EntitySet="CaseRecord" />
@@ -248,34 +238,6 @@
             <End Role="Designation" EntitySet="Designation" />
             <End Role="Witnesses" EntitySet="Witnesses" />
           </AssociationSet>
-          <AssociationSet Name="MembershipEntity_Application" Association="FACCTS_DBModel.Store.MembershipEntity_Application">
-            <End Role="Applications" EntitySet="Applications" />
-            <End Role="Memberships" EntitySet="Memberships" />
-          </AssociationSet>
-          <AssociationSet Name="MembershipEntity_User" Association="FACCTS_DBModel.Store.MembershipEntity_User">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Memberships" EntitySet="Memberships" />
-          </AssociationSet>
-          <AssociationSet Name="ProfileEntity_User" Association="FACCTS_DBModel.Store.ProfileEntity_User">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Profiles" EntitySet="Profiles" />
-          </AssociationSet>
-          <AssociationSet Name="RoleEntity_Application" Association="FACCTS_DBModel.Store.RoleEntity_Application">
-            <End Role="Applications" EntitySet="Applications" />
-            <End Role="Roles" EntitySet="Roles" />
-          </AssociationSet>
-          <AssociationSet Name="User_Application" Association="FACCTS_DBModel.Store.User_Application">
-            <End Role="Applications" EntitySet="Applications" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="UsersInRole_Role" Association="FACCTS_DBModel.Store.UsersInRole_Role">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="UsersInRoles" EntitySet="UsersInRoles" />
-          </AssociationSet>
-          <AssociationSet Name="UsersInRole_User" Association="FACCTS_DBModel.Store.UsersInRole_User">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="UsersInRoles" EntitySet="UsersInRoles" />
-          </AssociationSet>
         </EntityContainer>
         <EntityType Name="__MigrationHistory">
           <Key>
@@ -315,14 +277,6 @@
           <Property Name="AttorneyPresent" Type="bit" />
           <Property Name="Designation_Id" Type="int" />
           <Property Name="CaseRecord_Id" Type="int" />
-        </EntityType>
-        <EntityType Name="Applications">
-          <Key>
-            <PropertyRef Name="ApplicationId" />
-          </Key>
-          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ApplicationName" Type="nvarchar" Nullable="false" MaxLength="235" />
-          <Property Name="Description" Type="nvarchar" MaxLength="256" />
         </EntityType>
         <EntityType Name="Attorneys">
           <Key>
@@ -379,8 +333,6 @@
           <Property Name="Judge" Type="nvarchar" MaxLength="250" />
           <Property Name="Party1_Id" Type="int" />
           <Property Name="Party2_Id" Type="int" />
-          <Property Name="AttorneyForParty1_Id" Type="int" />
-          <Property Name="AttorneyForParty2_Id" Type="int" />
           <Property Name="AttorneyForChild_Id" Type="int" />
           <Property Name="CourtCounty_Id" Type="int" />
           <Property Name="CourtDepartment_Id" Type="int" />
@@ -521,12 +473,14 @@
           <Property Name="HeightIns" Type="decimal" Nullable="false" Scale="2" />
           <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
           <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="HasAttorney" Type="bit" />
           <Property Name="Designation_Id" Type="int" Nullable="false" />
           <Property Name="ParticipantRole_Id" Type="int" Nullable="false" />
           <Property Name="Sex_Id" Type="int" Nullable="false" />
           <Property Name="HairColor_Id" Type="int" Nullable="false" />
           <Property Name="EyesColor_Id" Type="int" Nullable="false" />
           <Property Name="Race_Id" Type="int" Nullable="false" />
+          <Property Name="Attorney_Id" Type="int" />
           <Property Name="CaseRecordByCourtParty1_Id" Type="int" />
           <Property Name="CaseRecordByCourtParty2_Id" Type="int" />
         </EntityType>
@@ -664,30 +618,6 @@
           <Property Name="RSASigningKey" Type="nvarchar(max)" />
           <Property Name="SymmetricSigningKey" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="Memberships">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="PasswordFormat" Type="int" Nullable="false" />
-          <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="Email" Type="nvarchar" MaxLength="256" />
-          <Property Name="PasswordQuestion" Type="nvarchar" MaxLength="256" />
-          <Property Name="PasswordAnswer" Type="nvarchar" MaxLength="128" />
-          <Property Name="IsApproved" Type="bit" Nullable="false" />
-          <Property Name="IsLockedOut" Type="bit" Nullable="false" />
-          <Property Name="CreateDate" Type="datetime" Nullable="false" />
-          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
-          <Property Name="LastPasswordChangedDate" Type="datetime" Nullable="false" />
-          <Property Name="LastLockoutDate" Type="datetime" Nullable="false" />
-          <Property Name="FailedPasswordAttemptCount" Type="int" Nullable="false" />
-          <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" Nullable="false" />
-          <Property Name="FailedPasswordAnswerAttemptCount" Type="int" Nullable="false" />
-          <Property Name="FailedPasswordAnswerAttemptWindowsStart" Type="datetime" Nullable="false" />
-          <Property Name="Comment" Type="nvarchar" MaxLength="256" />
-        </EntityType>
         <EntityType Name="OAuth2Configuration">
           <Key>
             <PropertyRef Name="Id" />
@@ -723,16 +653,6 @@
           </Key>
           <Property Name="Id" Type="bigint" Nullable="false" />
           <Property Name="Name" Type="nvarchar(max)" />
-        </EntityType>
-        <EntityType Name="Profiles">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="PropertyNames" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="PropertyValueStrings" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="PropertyValueBinary" Type="varbinary(max)" Nullable="false" />
-          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Race">
           <Key>
@@ -782,15 +702,6 @@
           <Property Name="RoleId" Type="int" Nullable="false" />
           <Property Name="Id" Type="bigint" Nullable="false" />
         </EntityType>
-        <EntityType Name="Roles">
-          <Key>
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="Description" Type="nvarchar" MaxLength="256" />
-        </EntityType>
         <EntityType Name="RoleUser">
           <Key>
             <PropertyRef Name="Role_RoleId" />
@@ -837,24 +748,6 @@
           <Property Name="LastPasswordChangedDate" Type="datetime" />
           <Property Name="PasswordVerificationToken" Type="nvarchar(max)" />
           <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" />
-        </EntityType>
-        <EntityType Name="Users">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="IsAnonymous" Type="bit" Nullable="false" />
-          <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UsersInRoles">
-          <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="Witnesses">
           <Key>
@@ -988,30 +881,6 @@
             </Principal>
             <Dependent Role="CaseRecord">
               <PropertyRef Name="AttorneyForChild_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty1_Id">
-          <End Role="Attorneys" Type="FACCTS_DBModel.Store.Attorneys" Multiplicity="0..1" />
-          <End Role="CaseRecord" Type="FACCTS_DBModel.Store.CaseRecord" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Attorneys">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CaseRecord">
-              <PropertyRef Name="AttorneyForParty1_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty2_Id">
-          <End Role="Attorneys" Type="FACCTS_DBModel.Store.Attorneys" Multiplicity="0..1" />
-          <End Role="CaseRecord" Type="FACCTS_DBModel.Store.CaseRecord" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Attorneys">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CaseRecord">
-              <PropertyRef Name="AttorneyForParty2_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1200,6 +1069,18 @@
             </Principal>
             <Dependent Role="CourtMember">
               <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id">
+          <End Role="Attorneys" Type="FACCTS_DBModel.Store.Attorneys" Multiplicity="0..1" />
+          <End Role="CourtParty" Type="FACCTS_DBModel.Store.CourtParty" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Attorneys">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CourtParty">
+              <PropertyRef Name="Attorney_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1493,90 +1374,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="MembershipEntity_Application">
-          <End Role="Applications" Type="FACCTS_DBModel.Store.Applications" Multiplicity="1" />
-          <End Role="Memberships" Type="FACCTS_DBModel.Store.Memberships" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Applications">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="Memberships">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="MembershipEntity_User">
-          <End Role="Users" Type="FACCTS_DBModel.Store.Users" Multiplicity="1" />
-          <End Role="Memberships" Type="FACCTS_DBModel.Store.Memberships" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Memberships">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ProfileEntity_User">
-          <End Role="Users" Type="FACCTS_DBModel.Store.Users" Multiplicity="1" />
-          <End Role="Profiles" Type="FACCTS_DBModel.Store.Profiles" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Profiles">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="RoleEntity_Application">
-          <End Role="Applications" Type="FACCTS_DBModel.Store.Applications" Multiplicity="1" />
-          <End Role="Roles" Type="FACCTS_DBModel.Store.Roles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Applications">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="Roles">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="User_Application">
-          <End Role="Applications" Type="FACCTS_DBModel.Store.Applications" Multiplicity="1" />
-          <End Role="Users" Type="FACCTS_DBModel.Store.Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Applications">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="Users">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="UsersInRole_Role">
-          <End Role="Roles" Type="FACCTS_DBModel.Store.Roles" Multiplicity="1" />
-          <End Role="UsersInRoles" Type="FACCTS_DBModel.Store.UsersInRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="RoleId" />
-            </Principal>
-            <Dependent Role="UsersInRoles">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="UsersInRole_User">
-          <End Role="Users" Type="FACCTS_DBModel.Store.Users" Multiplicity="1" />
-          <End Role="UsersInRoles" Type="FACCTS_DBModel.Store.UsersInRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="UsersInRoles">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -1585,7 +1382,6 @@
           <EntitySet Name="C__MigrationHistory" EntityType="FACCTS_DBModel.C__MigrationHistory" />
           <EntitySet Name="AdfsIntegrationConfiguration" EntityType="FACCTS_DBModel.AdfsIntegrationConfiguration" />
           <EntitySet Name="Appearances" EntityType="FACCTS_DBModel.Appearances" />
-          <EntitySet Name="Applications" EntityType="FACCTS_DBModel.Applications" />
           <EntitySet Name="Attorneys" EntityType="FACCTS_DBModel.Attorneys" />
           <EntitySet Name="AvailableCourtOrder" EntityType="FACCTS_DBModel.AvailableCourtOrder" />
           <EntitySet Name="CaseHistory" EntityType="FACCTS_DBModel.CaseHistory" />
@@ -1615,20 +1411,16 @@
           <EntitySet Name="IdentityProvider" EntityType="FACCTS_DBModel.IdentityProvider" />
           <EntitySet Name="Interpreters" EntityType="FACCTS_DBModel.Interpreters" />
           <EntitySet Name="KeyMaterialConfiguration" EntityType="FACCTS_DBModel.KeyMaterialConfiguration" />
-          <EntitySet Name="Memberships" EntityType="FACCTS_DBModel.Memberships" />
           <EntitySet Name="OAuth2Configuration" EntityType="FACCTS_DBModel.OAuth2Configuration" />
           <EntitySet Name="OtherProtected" EntityType="FACCTS_DBModel.OtherProtected" />
           <EntitySet Name="ParticipantRole" EntityType="FACCTS_DBModel.ParticipantRole" />
           <EntitySet Name="Permission" EntityType="FACCTS_DBModel.Permission" />
-          <EntitySet Name="Profiles" EntityType="FACCTS_DBModel.Profiles" />
           <EntitySet Name="Race" EntityType="FACCTS_DBModel.Race" />
           <EntitySet Name="RelyingParties" EntityType="FACCTS_DBModel.RelyingParties" />
           <EntitySet Name="Role" EntityType="FACCTS_DBModel.Role" />
-          <EntitySet Name="Roles" EntityType="FACCTS_DBModel.Roles" />
           <EntitySet Name="Sex" EntityType="FACCTS_DBModel.Sex" />
           <EntitySet Name="SimpleHttpConfiguration" EntityType="FACCTS_DBModel.SimpleHttpConfiguration" />
           <EntitySet Name="User" EntityType="FACCTS_DBModel.User" />
-          <EntitySet Name="Users" EntityType="FACCTS_DBModel.Users" />
           <EntitySet Name="Witnesses" EntityType="FACCTS_DBModel.Witnesses" />
           <EntitySet Name="WSFederationConfiguration" EntityType="FACCTS_DBModel.WSFederationConfiguration" />
           <EntitySet Name="WSTrustConfiguration" EntityType="FACCTS_DBModel.WSTrustConfiguration" />
@@ -1640,29 +1432,13 @@
             <End Role="Designation" EntitySet="Designation" />
             <End Role="Appearances" EntitySet="Appearances" />
           </AssociationSet>
-          <AssociationSet Name="MembershipEntity_Application" Association="FACCTS_DBModel.MembershipEntity_Application">
-            <End Role="Applications" EntitySet="Applications" />
-            <End Role="Memberships" EntitySet="Memberships" />
-          </AssociationSet>
-          <AssociationSet Name="RoleEntity_Application" Association="FACCTS_DBModel.RoleEntity_Application">
-            <End Role="Applications" EntitySet="Applications" />
-            <End Role="Roles" EntitySet="Roles" />
-          </AssociationSet>
-          <AssociationSet Name="User_Application" Association="FACCTS_DBModel.User_Application">
-            <End Role="Applications" EntitySet="Applications" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id" Association="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id">
             <End Role="Attorneys" EntitySet="Attorneys" />
             <End Role="CaseRecord" EntitySet="CaseRecord" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty1_Id" Association="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty1_Id">
+          <AssociationSet Name="FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id" Association="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id">
             <End Role="Attorneys" EntitySet="Attorneys" />
-            <End Role="CaseRecord" EntitySet="CaseRecord" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty2_Id" Association="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty2_Id">
-            <End Role="Attorneys" EntitySet="Attorneys" />
-            <End Role="CaseRecord" EntitySet="CaseRecord" />
+            <End Role="CourtParty" EntitySet="CourtParty" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_CourtCaseOrders_dbo_AvailableCourtOrder_AvailableCourtOrderId" Association="FACCTS_DBModel.FK_dbo_CourtCaseOrders_dbo_AvailableCourtOrder_AvailableCourtOrderId">
             <End Role="AvailableCourtOrder" EntitySet="AvailableCourtOrder" />
@@ -1808,14 +1584,6 @@
             <End Role="Designation" EntitySet="Designation" />
             <End Role="Witnesses" EntitySet="Witnesses" />
           </AssociationSet>
-          <AssociationSet Name="MembershipEntity_User" Association="FACCTS_DBModel.MembershipEntity_User">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Memberships" EntitySet="Memberships" />
-          </AssociationSet>
-          <AssociationSet Name="ProfileEntity_User" Association="FACCTS_DBModel.ProfileEntity_User">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Profiles" EntitySet="Profiles" />
-          </AssociationSet>
           <AssociationSet Name="RelatedCase" Association="FACCTS_DBModel.RelatedCase">
             <End Role="CaseRecord" EntitySet="CaseRecord" />
             <End Role="CourtCase" EntitySet="CourtCase" />
@@ -1827,10 +1595,6 @@
           <AssociationSet Name="RoleUser" Association="FACCTS_DBModel.RoleUser">
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
-          </AssociationSet>
-          <AssociationSet Name="UsersInRoles" Association="FACCTS_DBModel.UsersInRoles">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
@@ -1874,17 +1638,6 @@
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_Appearances_dbo_CaseRecord_CaseRecord_Id" FromRole="Appearances" ToRole="CaseRecord" />
           <NavigationProperty Name="Designation" Relationship="FACCTS_DBModel.FK_dbo_Appearances_dbo_Designation_Designation_Id" FromRole="Appearances" ToRole="Designation" />
         </EntityType>
-        <EntityType Name="Applications">
-          <Key>
-            <PropertyRef Name="ApplicationId" />
-          </Key>
-          <Property Type="Guid" Name="ApplicationId" Nullable="false" />
-          <Property Type="String" Name="ApplicationName" Nullable="false" MaxLength="235" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Description" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Memberships" Relationship="FACCTS_DBModel.MembershipEntity_Application" FromRole="Applications" ToRole="Memberships" />
-          <NavigationProperty Name="Roles" Relationship="FACCTS_DBModel.RoleEntity_Application" FromRole="Applications" ToRole="Roles" />
-          <NavigationProperty Name="Users" Relationship="FACCTS_DBModel.User_Application" FromRole="Applications" ToRole="Users" />
-        </EntityType>
         <EntityType Name="Attorneys">
           <Key>
             <PropertyRef Name="Id" />
@@ -1902,8 +1655,7 @@
           <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="StateBarId" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id" FromRole="Attorneys" ToRole="CaseRecord" />
-          <NavigationProperty Name="CaseRecord1" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty1_Id" FromRole="Attorneys" ToRole="CaseRecord" />
-          <NavigationProperty Name="CaseRecord2" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty2_Id" FromRole="Attorneys" ToRole="CaseRecord" />
+          <NavigationProperty Name="CourtParty" Relationship="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id" FromRole="Attorneys" ToRole="CourtParty" />
         </EntityType>
         <EntityType Name="AvailableCourtOrder">
           <Key>
@@ -1949,16 +1701,12 @@
           <Property Type="String" Name="Judge" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="Party1_Id" />
           <Property Type="Int32" Name="Party2_Id" />
-          <Property Type="Int32" Name="AttorneyForParty1_Id" />
-          <Property Type="Int32" Name="AttorneyForParty2_Id" />
           <Property Type="Int32" Name="AttorneyForChild_Id" />
           <Property Type="Int32" Name="CourtCounty_Id" />
           <Property Type="Int32" Name="CourtDepartment_Id" />
           <Property Type="Int32" Name="CaseRecord_Id" />
           <NavigationProperty Name="Appearances" Relationship="FACCTS_DBModel.FK_dbo_Appearances_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseRecord" ToRole="Appearances" />
           <NavigationProperty Name="Attorneys" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id" FromRole="CaseRecord" ToRole="Attorneys" />
-          <NavigationProperty Name="Attorneys1" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty1_Id" FromRole="CaseRecord" ToRole="Attorneys" />
-          <NavigationProperty Name="Attorneys2" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty2_Id" FromRole="CaseRecord" ToRole="Attorneys" />
           <NavigationProperty Name="CaseHistory" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseRecord" ToRole="CaseHistory" />
           <NavigationProperty Name="CaseNotes" Relationship="FACCTS_DBModel.FK_dbo_CaseNotes_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseRecord" ToRole="CaseNotes" />
           <NavigationProperty Name="CaseRecord1" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseRecord" ToRole="CaseRecord1" />
@@ -2131,14 +1879,17 @@
           <Property Type="Decimal" Name="HeightIns" Nullable="false" Precision="18" Scale="2" />
           <Property Type="DateTime" Name="DateOfBirth" Nullable="false" Precision="3" />
           <Property Type="Int32" Name="Age" Nullable="false" />
+          <Property Type="Boolean" Name="HasAttorney" />
           <Property Type="Int32" Name="Designation_Id" Nullable="false" />
           <Property Type="Int32" Name="ParticipantRole_Id" Nullable="false" />
           <Property Type="Int32" Name="Sex_Id" Nullable="false" />
           <Property Type="Int32" Name="HairColor_Id" Nullable="false" />
           <Property Type="Int32" Name="EyesColor_Id" Nullable="false" />
           <Property Type="Int32" Name="Race_Id" Nullable="false" />
+          <Property Type="Int32" Name="Attorney_Id" />
           <Property Type="Int32" Name="CaseRecordByCourtParty1_Id" />
           <Property Type="Int32" Name="CaseRecordByCourtParty2_Id" />
+          <NavigationProperty Name="Attorneys" Relationship="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id" FromRole="CourtParty" ToRole="Attorneys" />
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_CourtParty_Party1_Id" FromRole="CourtParty" ToRole="CaseRecord" />
           <NavigationProperty Name="CaseRecord1" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_CourtParty_Party2_Id" FromRole="CourtParty" ToRole="CaseRecord" />
           <NavigationProperty Name="CaseRecord2" Relationship="FACCTS_DBModel.FK_dbo_CourtParty_dbo_CaseRecord_CaseRecordByCourtParty1_Id" FromRole="CourtParty" ToRole="CaseRecord" />
@@ -2295,32 +2046,6 @@
           <Property Type="String" Name="RSASigningKey" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="SymmetricSigningKey" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Memberships">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Type="Guid" Name="UserId" Nullable="false" />
-          <Property Type="Guid" Name="ApplicationId" Nullable="false" />
-          <Property Type="String" Name="Password" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="PasswordFormat" Nullable="false" />
-          <Property Type="String" Name="PasswordSalt" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Email" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="PasswordQuestion" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="PasswordAnswer" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="Boolean" Name="IsApproved" Nullable="false" />
-          <Property Type="Boolean" Name="IsLockedOut" Nullable="false" />
-          <Property Type="DateTime" Name="CreateDate" Nullable="false" Precision="3" />
-          <Property Type="DateTime" Name="LastLoginDate" Nullable="false" Precision="3" />
-          <Property Type="DateTime" Name="LastPasswordChangedDate" Nullable="false" Precision="3" />
-          <Property Type="DateTime" Name="LastLockoutDate" Nullable="false" Precision="3" />
-          <Property Type="Int32" Name="FailedPasswordAttemptCount" Nullable="false" />
-          <Property Type="DateTime" Name="FailedPasswordAttemptWindowStart" Nullable="false" Precision="3" />
-          <Property Type="Int32" Name="FailedPasswordAnswerAttemptCount" Nullable="false" />
-          <Property Type="DateTime" Name="FailedPasswordAnswerAttemptWindowsStart" Nullable="false" Precision="3" />
-          <Property Type="String" Name="Comment" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Applications" Relationship="FACCTS_DBModel.MembershipEntity_Application" FromRole="Memberships" ToRole="Applications" />
-          <NavigationProperty Name="Users" Relationship="FACCTS_DBModel.MembershipEntity_User" FromRole="Memberships" ToRole="Users" />
-        </EntityType>
         <EntityType Name="OAuth2Configuration">
           <Key>
             <PropertyRef Name="Id" />
@@ -2360,17 +2085,6 @@
           <Property Type="String" Name="Name" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Role" Relationship="FACCTS_DBModel.RolePermission" FromRole="Permission" ToRole="Role" />
         </EntityType>
-        <EntityType Name="Profiles">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Type="Guid" Name="UserId" Nullable="false" />
-          <Property Type="String" Name="PropertyNames" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="PropertyValueStrings" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="Binary" Name="PropertyValueBinary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Type="DateTime" Name="LastUpdatedDate" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Users" Relationship="FACCTS_DBModel.ProfileEntity_User" FromRole="Profiles" ToRole="Users" />
-        </EntityType>
         <EntityType Name="Race">
           <Key>
             <PropertyRef Name="Id" />
@@ -2405,17 +2119,6 @@
           <Property Type="Boolean" Name="IsIdentityServerUser" Nullable="false" />
           <NavigationProperty Name="Permission" Relationship="FACCTS_DBModel.RolePermission" FromRole="Role" ToRole="Permission" />
           <NavigationProperty Name="User" Relationship="FACCTS_DBModel.RoleUser" FromRole="Role" ToRole="User" />
-        </EntityType>
-        <EntityType Name="Roles">
-          <Key>
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Type="Guid" Name="RoleId" Nullable="false" />
-          <Property Type="Guid" Name="ApplicationId" Nullable="false" />
-          <Property Type="String" Name="RoleName" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Description" MaxLength="256" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Applications" Relationship="FACCTS_DBModel.RoleEntity_Application" FromRole="Roles" ToRole="Applications" />
-          <NavigationProperty Name="Users" Relationship="FACCTS_DBModel.UsersInRoles" FromRole="Roles" ToRole="Users" />
         </EntityType>
         <EntityType Name="Sex">
           <Key>
@@ -2462,20 +2165,6 @@
           <NavigationProperty Name="CourtCase" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_User_CourtClerk_UserId" FromRole="User" ToRole="CourtCase" />
           <NavigationProperty Name="CourtMember" Relationship="FACCTS_DBModel.FK_dbo_CourtMember_dbo_User_Id" FromRole="User" ToRole="CourtMember" />
           <NavigationProperty Name="Role" Relationship="FACCTS_DBModel.RoleUser" FromRole="User" ToRole="Role" />
-        </EntityType>
-        <EntityType Name="Users">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Type="Guid" Name="UserId" Nullable="false" />
-          <Property Type="Guid" Name="ApplicationId" Nullable="false" />
-          <Property Type="String" Name="UserName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Boolean" Name="IsAnonymous" Nullable="false" />
-          <Property Type="DateTime" Name="LastActivityDate" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Applications" Relationship="FACCTS_DBModel.User_Application" FromRole="Users" ToRole="Applications" />
-          <NavigationProperty Name="Memberships" Relationship="FACCTS_DBModel.MembershipEntity_User" FromRole="Users" ToRole="Memberships" />
-          <NavigationProperty Name="Profiles" Relationship="FACCTS_DBModel.ProfileEntity_User" FromRole="Users" ToRole="Profiles" />
-          <NavigationProperty Name="Roles" Relationship="FACCTS_DBModel.UsersInRoles" FromRole="Users" ToRole="Roles" />
         </EntityType>
         <EntityType Name="Witnesses">
           <Key>
@@ -2541,42 +2230,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="MembershipEntity_Application">
-          <End Type="FACCTS_DBModel.Applications" Role="Applications" Multiplicity="1" />
-          <End Type="FACCTS_DBModel.Memberships" Role="Memberships" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Applications">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="Memberships">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="RoleEntity_Application">
-          <End Type="FACCTS_DBModel.Applications" Role="Applications" Multiplicity="1" />
-          <End Type="FACCTS_DBModel.Roles" Role="Roles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Applications">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="Roles">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="User_Application">
-          <End Type="FACCTS_DBModel.Applications" Role="Applications" Multiplicity="1" />
-          <End Type="FACCTS_DBModel.Users" Role="Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Applications">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="Users">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id">
           <End Type="FACCTS_DBModel.Attorneys" Role="Attorneys" Multiplicity="0..1" />
           <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="*" />
@@ -2589,27 +2242,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty1_Id">
+        <Association Name="FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id">
           <End Type="FACCTS_DBModel.Attorneys" Role="Attorneys" Multiplicity="0..1" />
-          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CourtParty" Role="CourtParty" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Attorneys">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="CaseRecord">
-              <PropertyRef Name="AttorneyForParty1_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty2_Id">
-          <End Type="FACCTS_DBModel.Attorneys" Role="Attorneys" Multiplicity="0..1" />
-          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Attorneys">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CaseRecord">
-              <PropertyRef Name="AttorneyForParty2_Id" />
+            <Dependent Role="CourtParty">
+              <PropertyRef Name="Attorney_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3071,30 +2712,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="MembershipEntity_User">
-          <End Type="FACCTS_DBModel.Users" Role="Users" Multiplicity="1" />
-          <End Type="FACCTS_DBModel.Memberships" Role="Memberships" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Memberships">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="ProfileEntity_User">
-          <End Type="FACCTS_DBModel.Users" Role="Users" Multiplicity="1" />
-          <End Type="FACCTS_DBModel.Profiles" Role="Profiles" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Profiles">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="RelatedCase">
           <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="*" />
           <End Type="FACCTS_DBModel.CourtCase" Role="CourtCase" Multiplicity="*" />
@@ -3106,10 +2723,6 @@
         <Association Name="RoleUser">
           <End Type="FACCTS_DBModel.Role" Role="Role" Multiplicity="*" />
           <End Type="FACCTS_DBModel.User" Role="User" Multiplicity="*" />
-        </Association>
-        <Association Name="UsersInRoles">
-          <End Type="FACCTS_DBModel.Roles" Role="Roles" Multiplicity="*" />
-          <End Type="FACCTS_DBModel.Users" Role="Users" Multiplicity="*" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -3156,15 +2769,6 @@
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Applications">
-            <EntityTypeMapping TypeName="FACCTS_DBModel.Applications">
-              <MappingFragment StoreEntitySet="Applications">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
-                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3226,8 +2830,6 @@
                 <ScalarProperty Name="CourtDepartment_Id" ColumnName="CourtDepartment_Id" />
                 <ScalarProperty Name="CourtCounty_Id" ColumnName="CourtCounty_Id" />
                 <ScalarProperty Name="AttorneyForChild_Id" ColumnName="AttorneyForChild_Id" />
-                <ScalarProperty Name="AttorneyForParty2_Id" ColumnName="AttorneyForParty2_Id" />
-                <ScalarProperty Name="AttorneyForParty1_Id" ColumnName="AttorneyForParty1_Id" />
                 <ScalarProperty Name="Party2_Id" ColumnName="Party2_Id" />
                 <ScalarProperty Name="Party1_Id" ColumnName="Party1_Id" />
                 <ScalarProperty Name="Judge" ColumnName="Judge" />
@@ -3365,12 +2967,14 @@
               <MappingFragment StoreEntitySet="CourtParty">
                 <ScalarProperty Name="CaseRecordByCourtParty2_Id" ColumnName="CaseRecordByCourtParty2_Id" />
                 <ScalarProperty Name="CaseRecordByCourtParty1_Id" ColumnName="CaseRecordByCourtParty1_Id" />
+                <ScalarProperty Name="Attorney_Id" ColumnName="Attorney_Id" />
                 <ScalarProperty Name="Race_Id" ColumnName="Race_Id" />
                 <ScalarProperty Name="EyesColor_Id" ColumnName="EyesColor_Id" />
                 <ScalarProperty Name="HairColor_Id" ColumnName="HairColor_Id" />
                 <ScalarProperty Name="Sex_Id" ColumnName="Sex_Id" />
                 <ScalarProperty Name="ParticipantRole_Id" ColumnName="ParticipantRole_Id" />
                 <ScalarProperty Name="Designation_Id" ColumnName="Designation_Id" />
+                <ScalarProperty Name="HasAttorney" ColumnName="HasAttorney" />
                 <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="HeightIns" ColumnName="HeightIns" />
@@ -3537,31 +3141,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Memberships">
-            <EntityTypeMapping TypeName="FACCTS_DBModel.Memberships">
-              <MappingFragment StoreEntitySet="Memberships">
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="FailedPasswordAnswerAttemptWindowsStart" ColumnName="FailedPasswordAnswerAttemptWindowsStart" />
-                <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
-                <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
-                <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
-                <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
-                <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
-                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
-                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
-                <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
-                <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
-                <ScalarProperty Name="PasswordFormat" ColumnName="PasswordFormat" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="OAuth2Configuration">
             <EntityTypeMapping TypeName="FACCTS_DBModel.OAuth2Configuration">
               <MappingFragment StoreEntitySet="OAuth2Configuration">
@@ -3602,17 +3181,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Profiles">
-            <EntityTypeMapping TypeName="FACCTS_DBModel.Profiles">
-              <MappingFragment StoreEntitySet="Profiles">
-                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
-                <ScalarProperty Name="PropertyValueBinary" ColumnName="PropertyValueBinary" />
-                <ScalarProperty Name="PropertyValueStrings" ColumnName="PropertyValueStrings" />
-                <ScalarProperty Name="PropertyNames" ColumnName="PropertyNames" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Race">
             <EntityTypeMapping TypeName="FACCTS_DBModel.Race">
               <MappingFragment StoreEntitySet="Race">
@@ -3645,16 +3213,6 @@
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="FACCTS_DBModel.Roles">
-              <MappingFragment StoreEntitySet="Roles">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3697,17 +3255,6 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="FACCTS_DBModel.Users">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
-                <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3773,14 +3320,6 @@
             </EndProperty>
             <EndProperty Name="Role">
               <ScalarProperty Name="Id" ColumnName="Role_RoleId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="UsersInRoles" TypeName="FACCTS_DBModel.UsersInRoles" StoreEntitySet="UsersInRoles">
-            <EndProperty Name="Users">
-              <ScalarProperty Name="UserId" ColumnName="UserId" />
-            </EndProperty>
-            <EndProperty Name="Roles">
-              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

@@ -207,58 +207,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-    	public override bool Equals(System.Object obj)
-    	{
-    		// If parameter is null return false.
-            if (obj == null)
-            {
-                return false;
-            }
-    
-            // If parameter cannot be cast to Point return false.
-            KeyMaterialConfiguration p = obj as KeyMaterialConfiguration;
-            if ((System.Object)p == null)
-            {
-                return false;
-            }
-    
-    			if (this.Id != p.Id)
-    				return false;
-    			if (this.SigningCertificateName != p.SigningCertificateName)
-    				return false;
-    			if (this.DecryptionCertificateName != p.DecryptionCertificateName)
-    				return false;
-    			if (this.RSASigningKey != p.RSASigningKey)
-    				return false;
-    			if (this.SymmetricSigningKey != p.SymmetricSigningKey)
-    				return false;
-    
-    		return true;
-    	}
-    
-    	public override int GetHashCode()
-    	{
-    		int hashCode = 1;
-    			
-    		hashCode ^= this.Id.GetHashCode();
-    		if (this.SigningCertificateName != null)
-    		{
-    			hashCode ^= this.SigningCertificateName.GetHashCode();
-    		}
-    		if (this.DecryptionCertificateName != null)
-    		{
-    			hashCode ^= this.DecryptionCertificateName.GetHashCode();
-    		}
-    		if (this.RSASigningKey != null)
-    		{
-    			hashCode ^= this.RSASigningKey.GetHashCode();
-    		}
-    		if (this.SymmetricSigningKey != null)
-    		{
-    			hashCode ^= this.SymmetricSigningKey.GetHashCode();
-    		}
-    		return hashCode;
-    	}
+    	
     
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;

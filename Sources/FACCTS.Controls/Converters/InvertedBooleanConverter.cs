@@ -22,12 +22,18 @@ namespace FACCTS.Controls.Converters
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return !(bool)value;
+            if (value == null)
+                return null;
+            bool v = ((bool?)value).GetValueOrDefault();
+            return !v;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return !(bool)value;
+            if (value == null)
+                return null;
+            bool v = ((bool?)value).GetValueOrDefault();
+            return !v;
         }
 
         #endregion

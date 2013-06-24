@@ -75,6 +75,10 @@ namespace FACCTS.Server.Model.DataModel
 
         public int Age { get; set; }
 
+        public bool? HasAttorney { get; set; }
+
+        public virtual Attorney Attorney { get; set; }
+
         public virtual CaseRecord CaseRecordByCourtParty1 { get; set; }
 
         public virtual CaseRecord CaseRecordByCourtParty2 {get; set;}

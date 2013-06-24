@@ -20,6 +20,7 @@ using ReactiveUI;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
+    [KnownType(typeof(Attorneys))]
     [KnownType(typeof(CaseRecord))]
     [KnownType(typeof(Designation))]
     [KnownType(typeof(EyesColor))]
@@ -353,6 +354,22 @@ namespace Faccts.Model.Entities
         private int _age;
     
         [DataMember]
+        public Nullable<bool> HasAttorney
+        {
+            get { return _hasAttorney; }
+            set
+            {
+                if (_hasAttorney != value)
+                {
+    				OnPropertyChanging("HasAttorney");
+                    _hasAttorney = value;
+                    OnPropertyChanged("HasAttorney");
+                }
+            }
+        }
+        private Nullable<bool> _hasAttorney;
+    
+        [DataMember]
         public int Designation_Id
         {
             get { return _designation_Id; }
@@ -497,6 +514,30 @@ namespace Faccts.Model.Entities
         private int _race_Id;
     
         [DataMember]
+        public Nullable<int> Attorney_Id
+        {
+            get { return _attorney_Id; }
+            set
+            {
+                if (_attorney_Id != value)
+                {
+                    ChangeTracker.RecordOriginalValue("Attorney_Id", _attorney_Id);
+                    if (!IsDeserializing)
+                    {
+                        if (Attorneys != null && Attorneys.Id != value)
+                        {
+                            Attorneys = null;
+                        }
+                    }
+    				OnPropertyChanging("Attorney_Id");
+                    _attorney_Id = value;
+                    OnPropertyChanged("Attorney_Id");
+                }
+            }
+        }
+        private Nullable<int> _attorney_Id;
+    
+        [DataMember]
         public Nullable<int> CaseRecordByCourtParty1_Id
         {
             get { return _caseRecordByCourtParty1_Id; }
@@ -547,6 +588,24 @@ namespace Faccts.Model.Entities
         #endregion
 
         #region Navigation Properties
+    
+        [DataMember]
+        public Attorneys Attorneys
+        {
+            get { return _attorneys; }
+            set
+            {
+                if (!ReferenceEquals(_attorneys, value))
+                {
+                    var previousValue = _attorneys;
+    				OnNavigationPropertyChanging("Attorneys");
+                    _attorneys = value;
+                    FixupAttorneys(previousValue);
+                    OnNavigationPropertyChanged("Attorneys");
+                }
+            }
+        }
+        private Attorneys _attorneys;
     
         [DataMember]
         public TrackableCollection<CaseRecord> CaseRecord
@@ -900,150 +959,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-    	public override bool Equals(System.Object obj)
-    	{
-    		// If parameter is null return false.
-            if (obj == null)
-            {
-                return false;
-            }
-    
-            // If parameter cannot be cast to Point return false.
-            CourtParty p = obj as CourtParty;
-            if ((System.Object)p == null)
-            {
-                return false;
-            }
-    
-    			if (this.Id != p.Id)
-    				return false;
-    			if (this.FirstName != p.FirstName)
-    				return false;
-    			if (this.MiddleName != p.MiddleName)
-    				return false;
-    			if (this.LastName != p.LastName)
-    				return false;
-    			if (this.Description != p.Description)
-    				return false;
-    			if (this.Address != p.Address)
-    				return false;
-    			if (this.City != p.City)
-    				return false;
-    			if (this.State != p.State)
-    				return false;
-    			if (this.ZipCode != p.ZipCode)
-    				return false;
-    			if (this.Phone != p.Phone)
-    				return false;
-    			if (this.Fax != p.Fax)
-    				return false;
-    			if (this.Weight != p.Weight)
-    				return false;
-    			if (this.HeightFt != p.HeightFt)
-    				return false;
-    			if (this.HeightIns != p.HeightIns)
-    				return false;
-    			if (this.DateOfBirth != p.DateOfBirth)
-    				return false;
-    			if (this.Age != p.Age)
-    				return false;
-    			if (this.Designation_Id != p.Designation_Id)
-    				return false;
-    			if (this.ParticipantRole_Id != p.ParticipantRole_Id)
-    				return false;
-    			if (this.Sex_Id != p.Sex_Id)
-    				return false;
-    			if (this.HairColor_Id != p.HairColor_Id)
-    				return false;
-    			if (this.EyesColor_Id != p.EyesColor_Id)
-    				return false;
-    			if (this.Race_Id != p.Race_Id)
-    				return false;
-    			if (this.CaseRecordByCourtParty1_Id != p.CaseRecordByCourtParty1_Id)
-    				return false;
-    			if (this.CaseRecordByCourtParty2_Id != p.CaseRecordByCourtParty2_Id)
-    				return false;
-    
-    		return true;
-    	}
-    
-    	public override int GetHashCode()
-    	{
-    		int hashCode = 1;
-    			
-    		hashCode ^= this.Id.GetHashCode();
-    		if (this.FirstName != null)
-    		{
-    			hashCode ^= this.FirstName.GetHashCode();
-    		}
-    		if (this.MiddleName != null)
-    		{
-    			hashCode ^= this.MiddleName.GetHashCode();
-    		}
-    		if (this.LastName != null)
-    		{
-    			hashCode ^= this.LastName.GetHashCode();
-    		}
-    		if (this.Description != null)
-    		{
-    			hashCode ^= this.Description.GetHashCode();
-    		}
-    		if (this.Address != null)
-    		{
-    			hashCode ^= this.Address.GetHashCode();
-    		}
-    		if (this.City != null)
-    		{
-    			hashCode ^= this.City.GetHashCode();
-    		}
-    		if (this.State != null)
-    		{
-    			hashCode ^= this.State.GetHashCode();
-    		}
-    		if (this.ZipCode != null)
-    		{
-    			hashCode ^= this.ZipCode.GetHashCode();
-    		}
-    		if (this.Phone != null)
-    		{
-    			hashCode ^= this.Phone.GetHashCode();
-    		}
-    		if (this.Fax != null)
-    		{
-    			hashCode ^= this.Fax.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.Weight.GetHashCode();
-    			
-    		hashCode ^= this.HeightFt.GetHashCode();
-    			
-    		hashCode ^= this.HeightIns.GetHashCode();
-    			
-    		hashCode ^= this.DateOfBirth.GetHashCode();
-    			
-    		hashCode ^= this.Age.GetHashCode();
-    			
-    		hashCode ^= this.Designation_Id.GetHashCode();
-    			
-    		hashCode ^= this.ParticipantRole_Id.GetHashCode();
-    			
-    		hashCode ^= this.Sex_Id.GetHashCode();
-    			
-    		hashCode ^= this.HairColor_Id.GetHashCode();
-    			
-    		hashCode ^= this.EyesColor_Id.GetHashCode();
-    			
-    		hashCode ^= this.Race_Id.GetHashCode();
-    		if (this.CaseRecordByCourtParty1_Id != null)
-    		{
-    			hashCode ^= this.CaseRecordByCourtParty1_Id.GetHashCode();
-    		}
-    		if (this.CaseRecordByCourtParty2_Id != null)
-    		{
-    			hashCode ^= this.CaseRecordByCourtParty2_Id.GetHashCode();
-    		}
-    		return hashCode;
-    	}
+    	
     
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;
@@ -1110,6 +1026,7 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
+            Attorneys = null;
             CaseRecord.Clear();
             CaseRecord1.Clear();
             CaseRecord2 = null;
@@ -1127,6 +1044,47 @@ namespace Faccts.Model.Entities
         #endregion
 
         #region Association Fixup
+    
+        private void FixupAttorneys(Attorneys previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.CourtParty.Contains(this))
+            {
+                previousValue.CourtParty.Remove(this);
+            }
+    
+            if (Attorneys != null)
+            {
+                Attorneys.CourtParty.Add(this);
+    
+                Attorney_Id = Attorneys.Id;
+            }
+            else if (!skipKeys)
+            {
+                Attorney_Id = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("Attorneys")
+                    && (ChangeTracker.OriginalValues["Attorneys"] == Attorneys))
+                {
+                    ChangeTracker.OriginalValues.Remove("Attorneys");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("Attorneys", previousValue);
+                }
+                if (Attorneys != null && !Attorneys.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    Attorneys.StartTracking();
+                }
+            }
+        }
     
         private void FixupCaseRecord2(CaseRecord previousValue, bool skipKeys = false)
         {

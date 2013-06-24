@@ -239,64 +239,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-    	public override bool Equals(System.Object obj)
-    	{
-    		// If parameter is null return false.
-            if (obj == null)
-            {
-                return false;
-            }
-    
-            // If parameter cannot be cast to Point return false.
-            CodeToken p = obj as CodeToken;
-            if ((System.Object)p == null)
-            {
-                return false;
-            }
-    
-    			if (this.Id != p.Id)
-    				return false;
-    			if (this.Code != p.Code)
-    				return false;
-    			if (this.ClientId != p.ClientId)
-    				return false;
-    			if (this.UserName != p.UserName)
-    				return false;
-    			if (this.Scope != p.Scope)
-    				return false;
-    			if (this.Type != p.Type)
-    				return false;
-    			if (this.TimeStamp != p.TimeStamp)
-    				return false;
-    
-    		return true;
-    	}
-    
-    	public override int GetHashCode()
-    	{
-    		int hashCode = 1;
-    			
-    		hashCode ^= this.Id.GetHashCode();
-    		if (this.Code != null)
-    		{
-    			hashCode ^= this.Code.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.ClientId.GetHashCode();
-    		if (this.UserName != null)
-    		{
-    			hashCode ^= this.UserName.GetHashCode();
-    		}
-    		if (this.Scope != null)
-    		{
-    			hashCode ^= this.Scope.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.Type.GetHashCode();
-    			
-    		hashCode ^= this.TimeStamp.GetHashCode();
-    		return hashCode;
-    	}
+    	
     
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;

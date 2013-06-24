@@ -249,48 +249,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-    	public override bool Equals(System.Object obj)
-    	{
-    		// If parameter is null return false.
-            if (obj == null)
-            {
-                return false;
-            }
-    
-            // If parameter cannot be cast to Point return false.
-            CaseNotes p = obj as CaseNotes;
-            if ((System.Object)p == null)
-            {
-                return false;
-            }
-    
-    			if (this.Id != p.Id)
-    				return false;
-    			if (this.Status != p.Status)
-    				return false;
-    			if (this.Author_UserId != p.Author_UserId)
-    				return false;
-    			if (this.CaseRecord_Id != p.CaseRecord_Id)
-    				return false;
-    
-    		return true;
-    	}
-    
-    	public override int GetHashCode()
-    	{
-    		int hashCode = 1;
-    			
-    		hashCode ^= this.Id.GetHashCode();
-    			
-    		hashCode ^= this.Status.GetHashCode();
-    			
-    		hashCode ^= this.Author_UserId.GetHashCode();
-    		if (this.CaseRecord_Id != null)
-    		{
-    			hashCode ^= this.CaseRecord_Id.GetHashCode();
-    		}
-    		return hashCode;
-    	}
+    	
     
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;

@@ -5,64 +5,55 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="79dc3391d7254955a090adf5a102fd7f" Name="Diagram1">
-        <EntityTypeShape EntityType="FACCTS_DBModel.C__MigrationHistory" Width="1.5" PointX="1.60077206864989" PointY="30.042713045162479" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.AdfsIntegrationConfiguration" Width="1.5" PointX="11.174126643302909" PointY="12.096676548987942" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Appearances" Width="1.5" PointX="0.61612304701289311" PointY="13.918621770068361" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Applications" Width="1.5" PointX="5.4128903101258405" PointY="16.428886212608258" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Attorneys" Width="1.5" PointX="5.306977626544878" PointY="13.27595407388916" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.AvailableCourtOrder" Width="1.5" PointX="2.5663614918321191" PointY="29.38626401004673" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.CaseHistory" Width="1.5" PointX="5.4042813300175041" PointY="28.928259803414466" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.CaseNotes" Width="1.5" PointX="1.7979887676415911" PointY="25.827309292660704" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.CaseRecord" Width="1.5" PointX="8.4933881314906223" PointY="5.3271116788159647" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Children" Width="1.5" PointX="10.297490167570064" PointY="24.3917385006285" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Client" Width="1.5" PointX="3.0090782786761774" PointY="9.4822043671655489" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.ClientCertificates" Width="1.5" PointX="2.2101899954537814" PointY="19.725150057917997" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.CodeToken" Width="1.5" PointX="3.6554349398498585" PointY="2.5548134011006045" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.CourtCase" Width="1.5" PointX="6.5382265199619471" PointY="6.4304398328207615" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.CourtCaseOrders" Width="1.5" PointX="7.3126344435441464" PointY="18.419863217705796" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.CourtCounty" Width="1.5" PointX="6.3107865780176535" PointY="15.917419455907037" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.CourtDepartmenets" Width="1.5" PointX="6.1074977489688891" PointY="27.445571286345633" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.CourtLocations" Width="1.5" PointX="10.681401209291723" PointY="25.454313602975716" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.CourtMember" Width="1.5" PointX="10.425546615582681" PointY="13.237066036666308" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.CourtParty" Width="1.5" PointX="2.7339808692848218" PointY="2.95045502621236" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Courtrooms" Width="1.5" PointX="4.1589821428800846" PointY="2.9922502352820013" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Delegation" Width="1.5" PointX="6.8785541462146469" PointY="8.4546247462065072" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Designation" Width="1.5" PointX="6.5490820009955586" PointY="8.7090550999664966" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.DiagnosticsConfiguration" Width="1.5" PointX="4.759004794414623" PointY="25.428024244228389" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.EyesColor" Width="1.5" PointX="11.801125556137937" PointY="30.327191605385018" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.FACCTSConfiguration" Width="1.5" PointX="8.7968972589806178" PointY="23.851906921645583" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.FederationMetadataConfiguration" Width="1.5" PointX="5.670162473651656" PointY="23.983983736477786" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.FormField" Width="1.5" PointX="11.238548045623372" PointY="26.786521149234158" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.GlobalConfiguration" Width="1.5" PointX="9.05582739648215" PointY="10.072520990889762" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.HairColor" Width="1.5" PointX="0.8808187660206197" PointY="31.088181390933777" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.IdentityProvider" Width="1.5" PointX="10.68125664381369" PointY="8.0039343275148109" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Interpreters" Width="1.5" PointX="10.84819788618395" PointY="27.732077119747213" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.KeyMaterialConfiguration" Width="1.5" PointX="10.667696199690781" PointY="22.926211188978613" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Memberships" Width="1.5" PointX="4.9123512547986348" PointY="18.965845593701044" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.OAuth2Configuration" Width="1.5" PointX="0.16669621698870146" PointY="11.340323110735195" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.OtherProtected" Width="1.5" PointX="11.259694369165084" PointY="9.41196898064202" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.ParticipantRole" Width="1.5" PointX="11.263686010271165" PointY="24.509518753974476" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Permission" Width="1.5" PointX="4.9879197948556024" PointY="5.0319585078544717" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Profiles" Width="1.5" PointX="8.6772724914724346" PointY="29.439215241670244" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Race" Width="1.5" PointX="0.84784927072368987" PointY="1.0387714062997939" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.RelyingParties" Width="1.5" PointX="8.1990502309981039" PointY="24.007246475670136" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Role" Width="1.5" PointX="2.6102893811698489" PointY="21.173166910732707" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Roles" Width="1.5" PointX="10.110551447659056" PointY="24.976857286401493" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Sex" Width="1.5" PointX="0.2988698223134828" PointY="24.302676927439251" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.SimpleHttpConfiguration" Width="1.5" PointX="11.053541186756242" PointY="1.6972154088771043" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.User" Width="1.5" PointX="0.48954020463374448" PointY="17.72893665066405" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Users" Width="1.5" PointX="4.0830809977292457" PointY="8.2024342604924154" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Witnesses" Width="1.5" PointX="2.4251639910159466" PointY="3.0866847201654153" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.WSFederationConfiguration" Width="1.5" PointX="2.2738959520468005" PointY="22.610733936825177" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.WSTrustConfiguration" Width="1.5" PointX="4.5027880801366589" PointY="26.538007480342877" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.C__MigrationHistory" Width="1.5" PointX="0.30729370206002782" PointY="31.68279689535629" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.AdfsIntegrationConfiguration" Width="1.5" PointX="7.8885525743889406" PointY="1.2544137543320719" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Appearances" Width="1.5" PointX="11.511073887120501" PointY="1.1346193259277471" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Attorneys" Width="1.5" PointX="3.9577149394702698" PointY="7.4475619231572194" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.AvailableCourtOrder" Width="1.5" PointX="8.874928094854079" PointY="0.62241859763042007" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CaseHistory" Width="1.5" PointX="8.4760629499685312" PointY="30.940014257533484" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CaseNotes" Width="1.5" PointX="8.4395645672639681" PointY="9.6164796993213137" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CaseRecord" Width="1.5" PointX="0.61631282447665592" PointY="30.154886572693886" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Children" Width="1.5" PointX="11.154890136399722" PointY="12.589506557485791" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Client" Width="1.5" PointX="10.43666281850853" PointY="18.295582809623138" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.ClientCertificates" Width="1.5" PointX="7.1524157836811693" PointY="14.966279215629342" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CodeToken" Width="1.5" PointX="2.20410808650968" PointY="17.036362313216721" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CourtCase" Width="1.5" PointX="7.0635831221302894" PointY="2.8024686140951087" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CourtCaseOrders" Width="1.5" PointX="1.3612864880642326" PointY="18.869196691955064" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CourtCounty" Width="1.5" PointX="0.20626124190458156" PointY="19.440262952558818" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CourtDepartmenets" Width="1.5" PointX="1.8327590757202166" PointY="15.822658993221195" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CourtLocations" Width="1.5" PointX="6.7430852124202456" PointY="31.109739765110305" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CourtMember" Width="1.5" PointX="4.5415606240469781" PointY="3.6389555948036518" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CourtParty" Width="1.5" PointX="8.1068152655413446" PointY="14.897614262484765" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Courtrooms" Width="1.5" PointX="10.861077440372238" PointY="15.894377700935294" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Delegation" Width="1.5" PointX="4.9455769178204134" PointY="2.3322891305816773" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Designation" Width="1.5" PointX="11.352834552225113" PointY="30.065441831045526" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.DiagnosticsConfiguration" Width="1.5" PointX="4.0625904519402383" PointY="10.493868519782028" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.EyesColor" Width="1.5" PointX="2.3145063846905281" PointY="31.28325341608527" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.FACCTSConfiguration" Width="1.5" PointX="7.627665603360005" PointY="15.553746782035448" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.FederationMetadataConfiguration" Width="1.5" PointX="9.2723982954734936" PointY="22.11604696051965" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.FormField" Width="1.5" PointX="9.5205542172866657" PointY="9.4400047703832417" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.GlobalConfiguration" Width="1.5" PointX="4.2153138575215419" PointY="17.853170656530732" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.HairColor" Width="1.5" PointX="9.6769407492489279" PointY="3.9997778851537862" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.IdentityProvider" Width="1.5" PointX="5.4068220357442378" PointY="27.893728418226228" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Interpreters" Width="1.5" PointX="11.064195759158674" PointY="23.684709813298987" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.KeyMaterialConfiguration" Width="1.5" PointX="2.5865744792793759" PointY="4.226211967052059" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.OAuth2Configuration" Width="1.5" PointX="10.400647898391192" PointY="6.780175540028222" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.OtherProtected" Width="1.5" PointX="4.85942013415481" PointY="23.395765747593607" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.ParticipantRole" Width="1.5" PointX="11.064619263198516" PointY="30.004545270467432" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Permission" Width="1.5" PointX="3.2012671992188633" PointY="14.848759434581156" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Race" Width="1.5" PointX="5.8599875186849326" PointY="11.936723148420789" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.RelyingParties" Width="1.5" PointX="1.9152666357882633" PointY="16.740819625901441" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Role" Width="1.5" PointX="6.25952015363589" PointY="7.81217973298029" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Sex" Width="1.5" PointX="2.3260454155160324" PointY="8.3423531392320776" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.SimpleHttpConfiguration" Width="1.5" PointX="10.736419345595138" PointY="4.3468438854193518" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.User" Width="1.5" PointX="11.448283156123145" PointY="16.996283196376769" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Witnesses" Width="1.5" PointX="10.017700311736064" PointY="14.771310574734262" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.WSFederationConfiguration" Width="1.5" PointX="8.412942905171283" PointY="8.54155579607075" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.WSTrustConfiguration" Width="1.5" PointX="7.4508385543948226" PointY="26.25765767426121" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Appearances_dbo_CaseRecord_CaseRecord_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Appearances_dbo_Designation_Designation_Id" />
-        <AssociationConnector Association="FACCTS_DBModel.MembershipEntity_Application" />
-        <AssociationConnector Association="FACCTS_DBModel.RoleEntity_Application" />
-        <AssociationConnector Association="FACCTS_DBModel.User_Application" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id" />
-        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty1_Id" />
-        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForParty2_Id" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCaseOrders_dbo_AvailableCourtOrder_AvailableCourtOrderId" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CaseRecord_CaseRecord_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId" />
@@ -99,12 +90,9 @@
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Interpreters_dbo_CourtParty_InterpreterFor_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Witnesses_dbo_CourtParty_WitnessFor_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Witnesses_dbo_Designation_Designation_Id" />
-        <AssociationConnector Association="FACCTS_DBModel.MembershipEntity_User" />
-        <AssociationConnector Association="FACCTS_DBModel.ProfileEntity_User" />
         <AssociationConnector Association="FACCTS_DBModel.RelatedCase" />
         <AssociationConnector Association="FACCTS_DBModel.RolePermission" />
         <AssociationConnector Association="FACCTS_DBModel.RoleUser" />
-        <AssociationConnector Association="FACCTS_DBModel.UsersInRoles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

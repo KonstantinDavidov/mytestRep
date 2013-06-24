@@ -1,0 +1,70 @@
+﻿<UserControl
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:sys="clr-namespace:System;assembly=mscorlib.dll"
+			 xmlns:Converters="clr-namespace:FACCTS.Controls.Converters" x:Name="userControl" x:Class="FACCTS.Controls.Views.Controls.AttorneysPartyView" 
+			 mc:Ignorable="d" 
+			 d:DesignHeight="248" d:DesignWidth="823" Background="{DynamicResource ControlBackgroundBrush}"
+			 xmlns:utils="clr-namespace:FACCTS.Controls.Utils">
+	<UserControl.Resources>
+		<Converters:NullableBoolleanToBooleanConverter x:Key="NullableBoolleanToBooleanConverter"/>
+		<Converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
+	</UserControl.Resources>
+	<GroupBox Header="{Binding DisplayName, ElementName=userControl, FallbackValue=Attroney for Party 1, Mode=OneWay}" Grid.IsSharedSizeScope="True">
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" SharedSizeGroup="Column1"/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" MinHeight="50"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			
+			<Grid Grid.ColumnSpan="8" Grid.Row="1" DataContext="{Binding Attorneys, Mode=OneWay}" IsEnabled="{Binding DataContext.HasAttorney, ConverterParameter={x:Static utils:StringToBoolean.False}, Converter={StaticResource NullableBoolleanToBooleanConverter}, ElementName=userControl, FallbackValue=True}">
+				<Grid.RowDefinitions>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition/>
+					<RowDefinition/>
+				</Grid.RowDefinitions>	
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto" SharedSizeGroup="Column1"/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition/>
+					<ColumnDefinition Width="20"/>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition/>
+					<ColumnDefinition Width="10"/>
+				</Grid.ColumnDefinitions>
+				<TextBlock HorizontalAlignment="Right" Margin="0" TextWrapping="Wrap" Text="First, Last name" VerticalAlignment="Center"/>
+				<TextBlock HorizontalAlignment="Right" Margin="0" TextWrapping="Wrap" Text="Firm name" VerticalAlignment="Center" Grid.Row="1"/>
+				<TextBlock HorizontalAlignment="Right" Margin="0" TextWrapping="Wrap" Text="Street Address" VerticalAlignment="Center" Grid.Row="2"/>
+				<TextBlock HorizontalAlignment="Right" Margin="0" TextWrapping="Wrap" Text="City, State, Zip" VerticalAlignment="Center" Grid.Row="3"/>
+				<TextBlock HorizontalAlignment="Right" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="4"><Run Text="Email"/></TextBlock>
+				<TextBox Grid.ColumnSpan="2" TextWrapping="Wrap" Text="{Binding FirstName, Mode=TwoWay}" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="First Name"/>
+				<TextBox TextWrapping="Wrap" Text="{Binding LastName}" Grid.Column="3" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Last Name"/>
+				<TextBox Grid.ColumnSpan="3" TextWrapping="Wrap" Text="{Binding FirmName, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Please type the firm name"/>
+				<TextBox Grid.ColumnSpan="3" TextWrapping="Wrap" Text="{Binding StreetAddress, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Please type the street address"/>
+				<TextBox TextWrapping="Wrap" Text="{Binding City, Mode=TwoWay}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="City"/>
+				<TextBox TextWrapping="Wrap" Text="{Binding State, Mode=TwoWay}" Grid.Row="3" Grid.Column="2" Margin="0,-0.001,0,0" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="State"/>
+				<TextBox TextWrapping="Wrap" Text="{Binding ZipCode, Mode=TwoWay}" Grid.Row="3" Grid.Column="3" Margin="0,-0.001,0,0" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Zip Code"/>
+				<TextBox TextWrapping="Wrap" Text="{Binding Email, Mode=TwoWay}" Grid.Row="4" Grid.Column="1" Margin="0,-0.001,0,0" Grid.ColumnSpan="3" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Please type te email"/>
+				<TextBlock TextWrapping="Wrap" Text="State Bar ID" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+				<TextBlock TextWrapping="Wrap" Text="Phone" Grid.Row="3" Grid.Column="5" VerticalAlignment="Center" Margin="0,4,0,3.999" HorizontalAlignment="Right"/>
+				<TextBlock TextWrapping="Wrap" Text="Fax" Grid.Row="4" Grid.Column="5" VerticalAlignment="Center" Margin="0,4,0,3.999" HorizontalAlignment="Right"/>
+				<TextBox Height="23" TextWrapping="Wrap" Text="{Binding StateBarId, Mode=TwoWay}" Grid.Column="6" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="State Bar ID"/>
+				<TextBox Height="23" TextWrapping="Wrap" Text="{Binding Phone, Mode=TwoWay}" Grid.Row="3" Grid.Column="6" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Phone"/>
+				<TextBox Height="23" TextWrapping="Wrap" Text="{Binding Fax, Mode=TwoWay}" Grid.Row="4" Grid.Column="6" Margin="0,0,0,-0.001" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Fax"/>
+			</Grid>
+			<StackPanel VerticalAlignment="Center" Grid.Column="1">
+				<CheckBox Content="Pro Per" Margin="0,5" VerticalAlignment="Center" IsChecked="{Binding HasAttorney, Converter={StaticResource InvertedBooleanConverter}, Mode=TwoWay}" Visibility="{Binding IsProPerVisible, Converter={StaticResource BoolToVisibilityConverter}, ElementName=userControl, FallbackValue=True, Mode=OneWay}"/>
+				<CheckBox Content="Same as Party 1" Margin="0,5" Visibility="{Binding IsSameAsParty1Visible, Converter={StaticResource BoolToVisibilityConverter}, ElementName=userControl, Mode=OneWay}"/>
+			</StackPanel>
+		</Grid>
+	</GroupBox>
+</UserControl>

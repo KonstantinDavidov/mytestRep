@@ -324,66 +324,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-    	public override bool Equals(System.Object obj)
-    	{
-    		// If parameter is null return false.
-            if (obj == null)
-            {
-                return false;
-            }
-    
-            // If parameter cannot be cast to Point return false.
-            CaseHistory p = obj as CaseHistory;
-            if ((System.Object)p == null)
-            {
-                return false;
-            }
-    
-    			if (this.Id != p.Id)
-    				return false;
-    			if (this.Date != p.Date)
-    				return false;
-    			if (this.CaseHistoryEvent != p.CaseHistoryEvent)
-    				return false;
-    			if (this.CCPOR_ID != p.CCPOR_ID)
-    				return false;
-    			if (this.CourtCaseOrderId != p.CourtCaseOrderId)
-    				return false;
-    			if (this.CourtClerk_UserId != p.CourtClerk_UserId)
-    				return false;
-    			if (this.CaseRecord_Id != p.CaseRecord_Id)
-    				return false;
-    
-    		return true;
-    	}
-    
-    	public override int GetHashCode()
-    	{
-    		int hashCode = 1;
-    			
-    		hashCode ^= this.Id.GetHashCode();
-    			
-    		hashCode ^= this.Date.GetHashCode();
-    			
-    		hashCode ^= this.CaseHistoryEvent.GetHashCode();
-    		if (this.CCPOR_ID != null)
-    		{
-    			hashCode ^= this.CCPOR_ID.GetHashCode();
-    		}
-    		if (this.CourtCaseOrderId != null)
-    		{
-    			hashCode ^= this.CourtCaseOrderId.GetHashCode();
-    		}
-    		if (this.CourtClerk_UserId != null)
-    		{
-    			hashCode ^= this.CourtClerk_UserId.GetHashCode();
-    		}
-    		if (this.CaseRecord_Id != null)
-    		{
-    			hashCode ^= this.CaseRecord_Id.GetHashCode();
-    		}
-    		return hashCode;
-    	}
+    	
     
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;

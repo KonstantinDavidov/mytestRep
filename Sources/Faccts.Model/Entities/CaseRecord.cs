@@ -182,54 +182,6 @@ namespace Faccts.Model.Entities
         private Nullable<int> _party2_Id;
     
         [DataMember]
-        public Nullable<int> AttorneyForParty1_Id
-        {
-            get { return _attorneyForParty1_Id; }
-            set
-            {
-                if (_attorneyForParty1_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("AttorneyForParty1_Id", _attorneyForParty1_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (Attorneys1 != null && Attorneys1.Id != value)
-                        {
-                            Attorneys1 = null;
-                        }
-                    }
-    				OnPropertyChanging("AttorneyForParty1_Id");
-                    _attorneyForParty1_Id = value;
-                    OnPropertyChanged("AttorneyForParty1_Id");
-                }
-            }
-        }
-        private Nullable<int> _attorneyForParty1_Id;
-    
-        [DataMember]
-        public Nullable<int> AttorneyForParty2_Id
-        {
-            get { return _attorneyForParty2_Id; }
-            set
-            {
-                if (_attorneyForParty2_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("AttorneyForParty2_Id", _attorneyForParty2_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (Attorneys2 != null && Attorneys2.Id != value)
-                        {
-                            Attorneys2 = null;
-                        }
-                    }
-    				OnPropertyChanging("AttorneyForParty2_Id");
-                    _attorneyForParty2_Id = value;
-                    OnPropertyChanged("AttorneyForParty2_Id");
-                }
-            }
-        }
-        private Nullable<int> _attorneyForParty2_Id;
-    
-        [DataMember]
         public Nullable<int> AttorneyForChild_Id
         {
             get { return _attorneyForChild_Id; }
@@ -382,42 +334,6 @@ namespace Faccts.Model.Entities
             }
         }
         private Attorneys _attorneys;
-    
-        [DataMember]
-        public Attorneys Attorneys1
-        {
-            get { return _attorneys1; }
-            set
-            {
-                if (!ReferenceEquals(_attorneys1, value))
-                {
-                    var previousValue = _attorneys1;
-    				OnNavigationPropertyChanging("Attorneys1");
-                    _attorneys1 = value;
-                    FixupAttorneys1(previousValue);
-                    OnNavigationPropertyChanged("Attorneys1");
-                }
-            }
-        }
-        private Attorneys _attorneys1;
-    
-        [DataMember]
-        public Attorneys Attorneys2
-        {
-            get { return _attorneys2; }
-            set
-            {
-                if (!ReferenceEquals(_attorneys2, value))
-                {
-                    var previousValue = _attorneys2;
-    				OnNavigationPropertyChanging("Attorneys2");
-                    _attorneys2 = value;
-                    FixupAttorneys2(previousValue);
-                    OnNavigationPropertyChanged("Attorneys2");
-                }
-            }
-        }
-        private Attorneys _attorneys2;
     
         [DataMember]
         public TrackableCollection<CaseHistory> CaseHistory
@@ -993,88 +909,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-    	public override bool Equals(System.Object obj)
-    	{
-    		// If parameter is null return false.
-            if (obj == null)
-            {
-                return false;
-            }
-    
-            // If parameter cannot be cast to Point return false.
-            CaseRecord p = obj as CaseRecord;
-            if ((System.Object)p == null)
-            {
-                return false;
-            }
-    
-    			if (this.Id != p.Id)
-    				return false;
-    			if (this.Judge != p.Judge)
-    				return false;
-    			if (this.Party1_Id != p.Party1_Id)
-    				return false;
-    			if (this.Party2_Id != p.Party2_Id)
-    				return false;
-    			if (this.AttorneyForParty1_Id != p.AttorneyForParty1_Id)
-    				return false;
-    			if (this.AttorneyForParty2_Id != p.AttorneyForParty2_Id)
-    				return false;
-    			if (this.AttorneyForChild_Id != p.AttorneyForChild_Id)
-    				return false;
-    			if (this.CourtCounty_Id != p.CourtCounty_Id)
-    				return false;
-    			if (this.CourtDepartment_Id != p.CourtDepartment_Id)
-    				return false;
-    			if (this.CaseRecord_Id != p.CaseRecord_Id)
-    				return false;
-    
-    		return true;
-    	}
-    
-    	public override int GetHashCode()
-    	{
-    		int hashCode = 1;
-    			
-    		hashCode ^= this.Id.GetHashCode();
-    		if (this.Judge != null)
-    		{
-    			hashCode ^= this.Judge.GetHashCode();
-    		}
-    		if (this.Party1_Id != null)
-    		{
-    			hashCode ^= this.Party1_Id.GetHashCode();
-    		}
-    		if (this.Party2_Id != null)
-    		{
-    			hashCode ^= this.Party2_Id.GetHashCode();
-    		}
-    		if (this.AttorneyForParty1_Id != null)
-    		{
-    			hashCode ^= this.AttorneyForParty1_Id.GetHashCode();
-    		}
-    		if (this.AttorneyForParty2_Id != null)
-    		{
-    			hashCode ^= this.AttorneyForParty2_Id.GetHashCode();
-    		}
-    		if (this.AttorneyForChild_Id != null)
-    		{
-    			hashCode ^= this.AttorneyForChild_Id.GetHashCode();
-    		}
-    		if (this.CourtCounty_Id != null)
-    		{
-    			hashCode ^= this.CourtCounty_Id.GetHashCode();
-    		}
-    		if (this.CourtDepartment_Id != null)
-    		{
-    			hashCode ^= this.CourtDepartment_Id.GetHashCode();
-    		}
-    		if (this.CaseRecord_Id != null)
-    		{
-    			hashCode ^= this.CaseRecord_Id.GetHashCode();
-    		}
-    		return hashCode;
-    	}
+    	
     
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;
@@ -1133,8 +968,6 @@ namespace Faccts.Model.Entities
         {
             Appearances.Clear();
             Attorneys = null;
-            Attorneys1 = null;
-            Attorneys2 = null;
             CaseHistory.Clear();
             CaseNotes.Clear();
             CaseRecord1.Clear();
@@ -1195,88 +1028,6 @@ namespace Faccts.Model.Entities
                 if (Attorneys != null && !Attorneys.ChangeTracker.ChangeTrackingEnabled)
                 {
                     Attorneys.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupAttorneys1(Attorneys previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.CaseRecord1.Contains(this))
-            {
-                previousValue.CaseRecord1.Remove(this);
-            }
-    
-            if (Attorneys1 != null)
-            {
-                Attorneys1.CaseRecord1.Add(this);
-    
-                AttorneyForParty1_Id = Attorneys1.Id;
-            }
-            else if (!skipKeys)
-            {
-                AttorneyForParty1_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("Attorneys1")
-                    && (ChangeTracker.OriginalValues["Attorneys1"] == Attorneys1))
-                {
-                    ChangeTracker.OriginalValues.Remove("Attorneys1");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("Attorneys1", previousValue);
-                }
-                if (Attorneys1 != null && !Attorneys1.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    Attorneys1.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupAttorneys2(Attorneys previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.CaseRecord2.Contains(this))
-            {
-                previousValue.CaseRecord2.Remove(this);
-            }
-    
-            if (Attorneys2 != null)
-            {
-                Attorneys2.CaseRecord2.Add(this);
-    
-                AttorneyForParty2_Id = Attorneys2.Id;
-            }
-            else if (!skipKeys)
-            {
-                AttorneyForParty2_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("Attorneys2")
-                    && (ChangeTracker.OriginalValues["Attorneys2"] == Attorneys2))
-                {
-                    ChangeTracker.OriginalValues.Remove("Attorneys2");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("Attorneys2", previousValue);
-                }
-                if (Attorneys2 != null && !Attorneys2.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    Attorneys2.StartTracking();
                 }
             }
         }

@@ -124,12 +124,14 @@
   <ItemGroup>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\InvertedBooleanConverter.cs" />
+    <Compile Include="Converters\NullableBoolleanToBooleanConverter.cs" />
     <Compile Include="Converters\ObjectToBooleanConverter.cs" />
     <Compile Include="Events\CurrentCourtCaseChangedEvent.cs" />
     <Compile Include="ExtendedDatePicker.cs" />
     <Compile Include="Interfaces\IPasswordSupplier.cs" />
     <Compile Include="IShell.cs" />
     <Compile Include="MarkupExtension\MefPartExtension.cs" />
+    <Compile Include="Utils\StringToBoolean.cs" />
     <Compile Include="ViewModels\Case Record\SeparateCaseDialogViewModel.cs" />
     <Compile Include="ViewModels\DropDismissDialogViewModel.cs" />
     <Compile Include="ViewModels\ModelTemplate.cs">
@@ -188,7 +190,7 @@
     <Compile Include="Views\Controls\ModalDialogViews\AddToCourtDocketControlView.xaml.cs">
       <DependentUpon>AddToCourtDocketControlView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\AttorneysPartyView.xaml.cs">
+    <Compile Include="Views\Controls\CaseRecord\AttorneysPartyView.xaml.cs">
       <DependentUpon>AttorneysPartyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\CaseRecord\CaseRecordLeftPaneView.xaml.cs">
@@ -335,7 +337,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\AttorneysPartyView.xaml">
+    <Page Include="Views\Controls\CaseRecord\AttorneysPartyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

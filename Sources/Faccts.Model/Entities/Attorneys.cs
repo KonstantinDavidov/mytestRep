@@ -21,6 +21,7 @@ namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
     [KnownType(typeof(CaseRecord))]
+    [KnownType(typeof(CourtParty))]
     public partial class Attorneys: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -321,76 +322,40 @@ namespace Faccts.Model.Entities
         private TrackableCollection<CaseRecord> _caseRecord;
     
         [DataMember]
-        public TrackableCollection<CaseRecord> CaseRecord1
+        public TrackableCollection<CourtParty> CourtParty
         {
             get
             {
-                if (_caseRecord1 == null)
+                if (_courtParty == null)
                 {
-                    _caseRecord1 = new TrackableCollection<CaseRecord>();
-                    _caseRecord1.CollectionChanged += FixupCaseRecord1;
+                    _courtParty = new TrackableCollection<CourtParty>();
+                    _courtParty.CollectionChanged += FixupCourtParty;
                 }
-                return _caseRecord1;
+                return _courtParty;
             }
             set
             {
-                if (!ReferenceEquals(_caseRecord1, value))
+                if (!ReferenceEquals(_courtParty, value))
                 {
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
-    				OnNavigationPropertyChanging("CaseRecord1");
-                    if (_caseRecord1 != null)
+    				OnNavigationPropertyChanging("CourtParty");
+                    if (_courtParty != null)
                     {
-                        _caseRecord1.CollectionChanged -= FixupCaseRecord1;
+                        _courtParty.CollectionChanged -= FixupCourtParty;
                     }
-                    _caseRecord1 = value;
-                    if (_caseRecord1 != null)
+                    _courtParty = value;
+                    if (_courtParty != null)
                     {
-                        _caseRecord1.CollectionChanged += FixupCaseRecord1;
+                        _courtParty.CollectionChanged += FixupCourtParty;
                     }
-                    OnNavigationPropertyChanged("CaseRecord1");
+                    OnNavigationPropertyChanged("CourtParty");
                 }
             }
         }
-        private TrackableCollection<CaseRecord> _caseRecord1;
-    
-        [DataMember]
-        public TrackableCollection<CaseRecord> CaseRecord2
-        {
-            get
-            {
-                if (_caseRecord2 == null)
-                {
-                    _caseRecord2 = new TrackableCollection<CaseRecord>();
-                    _caseRecord2.CollectionChanged += FixupCaseRecord2;
-                }
-                return _caseRecord2;
-            }
-            set
-            {
-                if (!ReferenceEquals(_caseRecord2, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("CaseRecord2");
-                    if (_caseRecord2 != null)
-                    {
-                        _caseRecord2.CollectionChanged -= FixupCaseRecord2;
-                    }
-                    _caseRecord2 = value;
-                    if (_caseRecord2 != null)
-                    {
-                        _caseRecord2.CollectionChanged += FixupCaseRecord2;
-                    }
-                    OnNavigationPropertyChanged("CaseRecord2");
-                }
-            }
-        }
-        private TrackableCollection<CaseRecord> _caseRecord2;
+        private TrackableCollection<CourtParty> _courtParty;
 
         #endregion
 
@@ -432,100 +397,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-    	public override bool Equals(System.Object obj)
-    	{
-    		// If parameter is null return false.
-            if (obj == null)
-            {
-                return false;
-            }
-    
-            // If parameter cannot be cast to Point return false.
-            Attorneys p = obj as Attorneys;
-            if ((System.Object)p == null)
-            {
-                return false;
-            }
-    
-    			if (this.Id != p.Id)
-    				return false;
-    			if (this.FirstName != p.FirstName)
-    				return false;
-    			if (this.LastName != p.LastName)
-    				return false;
-    			if (this.FirmName != p.FirmName)
-    				return false;
-    			if (this.StreetAddress != p.StreetAddress)
-    				return false;
-    			if (this.City != p.City)
-    				return false;
-    			if (this.State != p.State)
-    				return false;
-    			if (this.ZipCode != p.ZipCode)
-    				return false;
-    			if (this.Phone != p.Phone)
-    				return false;
-    			if (this.Fax != p.Fax)
-    				return false;
-    			if (this.Email != p.Email)
-    				return false;
-    			if (this.StateBarId != p.StateBarId)
-    				return false;
-    
-    		return true;
-    	}
-    
-    	public override int GetHashCode()
-    	{
-    		int hashCode = 1;
-    			
-    		hashCode ^= this.Id.GetHashCode();
-    		if (this.FirstName != null)
-    		{
-    			hashCode ^= this.FirstName.GetHashCode();
-    		}
-    		if (this.LastName != null)
-    		{
-    			hashCode ^= this.LastName.GetHashCode();
-    		}
-    		if (this.FirmName != null)
-    		{
-    			hashCode ^= this.FirmName.GetHashCode();
-    		}
-    		if (this.StreetAddress != null)
-    		{
-    			hashCode ^= this.StreetAddress.GetHashCode();
-    		}
-    		if (this.City != null)
-    		{
-    			hashCode ^= this.City.GetHashCode();
-    		}
-    		if (this.State != null)
-    		{
-    			hashCode ^= this.State.GetHashCode();
-    		}
-    		if (this.ZipCode != null)
-    		{
-    			hashCode ^= this.ZipCode.GetHashCode();
-    		}
-    		if (this.Phone != null)
-    		{
-    			hashCode ^= this.Phone.GetHashCode();
-    		}
-    		if (this.Fax != null)
-    		{
-    			hashCode ^= this.Fax.GetHashCode();
-    		}
-    		if (this.Email != null)
-    		{
-    			hashCode ^= this.Email.GetHashCode();
-    		}
-    		if (this.StateBarId != null)
-    		{
-    			hashCode ^= this.StateBarId.GetHashCode();
-    		}
-    		return hashCode;
-    	}
+    	
     
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;
@@ -583,8 +455,7 @@ namespace Faccts.Model.Entities
         protected virtual void ClearNavigationProperties()
         {
             CaseRecord.Clear();
-            CaseRecord1.Clear();
-            CaseRecord2.Clear();
+            CourtParty.Clear();
         }
 
         #endregion
@@ -630,7 +501,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupCaseRecord1(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupCourtParty(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
             {
@@ -639,70 +510,31 @@ namespace Faccts.Model.Entities
     
             if (e.NewItems != null)
             {
-                foreach (CaseRecord item in e.NewItems)
+                foreach (CourtParty item in e.NewItems)
                 {
-                    item.Attorneys1 = this;
+                    item.Attorneys = this;
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         if (!item.ChangeTracker.ChangeTrackingEnabled)
                         {
                             item.StartTracking();
                         }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CaseRecord1", item);
+                        ChangeTracker.RecordAdditionToCollectionProperties("CourtParty", item);
                     }
                 }
             }
     
             if (e.OldItems != null)
             {
-                foreach (CaseRecord item in e.OldItems)
+                foreach (CourtParty item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.Attorneys1, this))
+                    if (ReferenceEquals(item.Attorneys, this))
                     {
-                        item.Attorneys1 = null;
+                        item.Attorneys = null;
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CaseRecord1", item);
-                    }
-                }
-            }
-        }
-    
-        private void FixupCaseRecord2(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (CaseRecord item in e.NewItems)
-                {
-                    item.Attorneys2 = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CaseRecord2", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (CaseRecord item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.Attorneys2, this))
-                    {
-                        item.Attorneys2 = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CaseRecord2", item);
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtParty", item);
                     }
                 }
             }

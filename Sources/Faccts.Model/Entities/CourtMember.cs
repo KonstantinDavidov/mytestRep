@@ -325,60 +325,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-    	public override bool Equals(System.Object obj)
-    	{
-    		// If parameter is null return false.
-            if (obj == null)
-            {
-                return false;
-            }
-    
-            // If parameter cannot be cast to Point return false.
-            CourtMember p = obj as CourtMember;
-            if ((System.Object)p == null)
-            {
-                return false;
-            }
-    
-    			if (this.Id != p.Id)
-    				return false;
-    			if (this.SubstituteId != p.SubstituteId)
-    				return false;
-    			if (this.IsCertified != p.IsCertified)
-    				return false;
-    			if (this.IsAvilable != p.IsAvilable)
-    				return false;
-    			if (this.Image != p.Image)
-    				return false;
-    			if (this.Phone != p.Phone)
-    				return false;
-    
-    		return true;
-    	}
-    
-    	public override int GetHashCode()
-    	{
-    		int hashCode = 1;
-    			
-    		hashCode ^= this.Id.GetHashCode();
-    		if (this.SubstituteId != null)
-    		{
-    			hashCode ^= this.SubstituteId.GetHashCode();
-    		}
-    			
-    		hashCode ^= this.IsCertified.GetHashCode();
-    			
-    		hashCode ^= this.IsAvilable.GetHashCode();
-    		if (this.Image != null)
-    		{
-    			hashCode ^= this.Image.GetHashCode();
-    		}
-    		if (this.Phone != null)
-    		{
-    			hashCode ^= this.Phone.GetHashCode();
-    		}
-    		return hashCode;
-    	}
+    	
     
         event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
         private event PropertyChangedEventHandler _propertyChanged;
