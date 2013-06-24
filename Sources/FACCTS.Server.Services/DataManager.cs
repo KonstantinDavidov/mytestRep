@@ -155,6 +155,16 @@ namespace FACCTS.Server.Data
             }
         }
 
+        public IFacctsDataRepository<ManualIntegrationTask> ManualIntegrationTaskRepository
+        {
+            get { return GetStandardRepo<ManualIntegrationTask>(); }
+        }
+
+        public IFacctsDataRepository<ScheduledIntegrationTask> ScheduledIntegrationTaskRepository
+        {
+            get { return GetStandardRepo<ScheduledIntegrationTask>(); }
+        }
+
         #endregion
 
         //Commit

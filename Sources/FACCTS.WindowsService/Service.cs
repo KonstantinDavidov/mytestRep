@@ -51,7 +51,7 @@ namespace FACCTS.WindowsService
             {
                 if (_serviceHost != null)
                     _serviceHost.Close();
-                _serviceHost = new ServiceHost(typeof(IntegrationService));
+                _serviceHost = new ServiceHost(typeof(IntegrationWCFService));
                 _serviceHost.Open();
             }
             catch (Exception exc)

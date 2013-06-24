@@ -1,4 +1,5 @@
 ﻿using FACCTS.Server.Common;
+using FACCTS.Server.Data.EntityConfigurations;
 using FACCTS.Server.DataContracts;
 using FACCTS.Server.Model.DataModel;
 using FACCTS.Server.Model.DataModel.Configuration;
@@ -61,6 +62,9 @@ namespace FACCTS.Server.Data
                        m.MapRightKey("Id");
                        m.ToTable("RolePermission");
                    });
+
+            modelBuilder.Configurations.Add(new ManualIntegrationTaskConfiguration());
+            modelBuilder.Configurations.Add(new ScheduledIntegrationTaskConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
@@ -133,6 +137,8 @@ namespace FACCTS.Server.Data
         public DbSet<CourtMember> CourtMembers { get; set; }
         public DbSet<CourtDepartment> CourtDepartments { get; set; }
         public DbSet<FACCTSConfiguration> FACCTSConfiguration { get; set; }
+        public DbSet<ManualIntegrationTask> ManualIntegrationTasks { get; set; }
+        public DbSet<ScheduledIntegrationTask> ScheduledIntegrationTasks { get; set; }
         #endregion
 
         public new IDbSet<TEntity> Set<TEntity>() where TEntity : class

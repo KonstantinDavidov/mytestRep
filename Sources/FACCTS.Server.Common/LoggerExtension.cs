@@ -32,5 +32,10 @@ namespace FACCTS.Server.Common
         {
             logger.InfoFormat("{0} finished.", methodName);
         }
+
+        public static void FatalMethod(this ILog logger, Exception exception, [CallerMemberName] string methodName = null)
+        {
+            logger.Fatal(string.Format("Method {0} crashed!", methodName), exception);
+        }
     }
 }
