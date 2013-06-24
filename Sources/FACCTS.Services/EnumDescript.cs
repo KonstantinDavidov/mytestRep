@@ -76,7 +76,7 @@ namespace FACCTS.Services
                 return false;
             }
 
-            if (obj.GetType() != this.Value.GetType())
+            if (obj.GetType() != this.GetType())
             {
                 return false;
             }

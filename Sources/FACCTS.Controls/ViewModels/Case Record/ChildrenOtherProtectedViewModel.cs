@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
+using FACCTS.Services;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -41,6 +42,22 @@ namespace FACCTS.Controls.ViewModels
                 if (CurrentCourtCase == null || CurrentCourtCase.CaseRecord == null)
                     return null;
                 return CurrentCourtCase.CaseRecord;
+            }
+        }
+
+        private List<EnumDescript<FACCTS.Server.Model.Enums.Relationship>> _relationShips;
+        public List<EnumDescript<FACCTS.Server.Model.Enums.Relationship>> Relationships
+        {
+            get
+            {
+                if (_relationShips == null)
+                {
+                    _relationShips = Enum.GetValues(typeof(FACCTS.Server.Model.Enums.Relationship))
+                        .Cast<FACCTS.Server.Model.Enums.Relationship>()
+                        .Select(x => new EnumDescript<FACCTS.Server.Model.Enums.Relationship>(x))
+                        .ToList();
+                }
+                return _relationShips;
             }
         }
     }

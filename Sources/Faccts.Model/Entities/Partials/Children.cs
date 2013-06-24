@@ -22,10 +22,12 @@ namespace Faccts.Model.Entities
                 .Subscribe(x =>
                 {
                     this.OnPropertyChanged("RelationshipName");
+                    this.OnPropertyChanged("RelationshipToProtectedEnum");
                 });
 
             this.EntityType = (int)FACCTS.Server.Model.Enums.FACCTSEntity.Person;
             this.RelationshipToProtected = (int)FACCTS.Server.Model.Enums.Relationship.Child;
+            //this.Sex = new Sex();
         }
 
         public string EntityTypeName
@@ -41,6 +43,18 @@ namespace Faccts.Model.Entities
             get
             {
                 return ((FACCTS.Server.Model.Enums.Relationship)this.RelationshipToProtected).ToDescription();
+            }
+        }
+
+        public FACCTS.Server.Model.Enums.Relationship RelationshipToProtectedEnum
+        {
+            get
+            {
+                return (FACCTS.Server.Model.Enums.Relationship)this.RelationshipToProtected;
+            }
+            set
+            {
+                this.RelationshipToProtected = (int)value;
             }
         }
         

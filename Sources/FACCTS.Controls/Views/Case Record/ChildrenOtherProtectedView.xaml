@@ -4,9 +4,15 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:Converters="clr-namespace:FACCTS.Controls.Converters" x:Class="FACCTS.Controls.Views.ChildrenOtherProtectedView" 
+             xmlns:ext="clr-namespace:FACCTS.Controls.MarkupExtension"
+             xmlns:fs="clr-namespace:FACCTS.Services.Data;assembly=FACCTS.Services"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="416" Background="{DynamicResource ControlBackgroundBrush}">
-	<Grid>
+    <UserControl.Resources>
+        <ext:MefPartExtension InstanceType="{x:Type fs:IDataContainer}" x:Key="DataContainer"/>
+        <CollectionViewSource x:Key="cvsSex" Source="{Binding Source={StaticResource DataContainer}, Path=Sexes, Mode=OneWay}"/>
+    </UserControl.Resources>
+	<Grid x:Name="LayoutRoot">
 		<Grid.RowDefinitions>
 			<RowDefinition/>
 			<RowDefinition/>
@@ -27,8 +33,30 @@
 						<DataGridTextColumn Binding="{Binding EntityTypeName, Mode=OneWay}" Header="Entity Type" IsReadOnly="True" Width="0.1*"/>
                         <DataGridTextColumn Binding="{Binding FirstName, Mode=TwoWay}" Header="First Name" Width="0.2*"/>
                         <DataGridTextColumn Binding="{Binding LastName, Mode=TwoWay}" Header="Last Name" Width="0.2*"/>
-                        <DataGridTextColumn Binding="{Binding RelationshipName, Mode=OneWay}" Header="Relationship to Protected" Width="0.2*"/>
-                        <DataGridTextColumn Binding="{Binding Sex.SexName, Mode=OneWay}" Header="Sex" Width="0.1*"/>
+                        <DataGridTemplateColumn Header="Relationship to Protected" Width="0.2*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding RelationshipName, Mode=OneWay}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate>
+                                    <ComboBox ItemsSource="{Binding Path=DataContext.Relationships, ElementName=LayoutRoot, Mode=OneWay}" SelectedValuePath="Value" SelectedValue="{Binding RelationshipToProtectedEnum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn  Header="Sex" Width="0.1*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Sex.SexName, Mode=OneWay}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate>
+                                    <ComboBox ItemsSource="{Binding Source={StaticResource cvsSex}, Mode=OneWay}" DisplayMemberPath="SexName" SelectedItem="{Binding Sex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+                        </DataGridTemplateColumn>
                         <DataGridTextColumn Binding="{Binding DateOfBirth, Mode=OneWay}" Header="Date of Birth" Width="0.2*"/>
 					</DataGrid.Columns>
 				</DataGrid>
