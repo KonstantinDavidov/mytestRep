@@ -15,6 +15,7 @@ namespace FACCTS.Server.Model.DataModel
         public Child()
         {
             this.EntityType = FACCTSEntity.Person;
+            this.RelationshipToProtected = Relationship.Child;
         }
 
         [Key]
@@ -32,7 +33,7 @@ namespace FACCTS.Server.Model.DataModel
         [Required]
         public string LastName { get; set; }
 
-        public bool RelationshipToProtected { get; set; }
+        public Relationship RelationshipToProtected { get; set; }
 
         [Required]
         public virtual Sex Sex { get; set; }

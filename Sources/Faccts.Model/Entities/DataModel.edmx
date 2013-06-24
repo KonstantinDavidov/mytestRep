@@ -356,7 +356,7 @@
           <Property Name="EntityType" Type="int" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="100" />
-          <Property Name="RelationshipToProtected" Type="bit" Nullable="false" />
+          <Property Name="RelationshipToProtected" Type="int" Nullable="false" />
           <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
           <Property Name="Sex_Id" Type="int" Nullable="false" />
           <Property Name="CaseRecord_Id" Type="int" />
@@ -658,7 +658,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="EntityType" Type="int" Nullable="false" />
-          <Property Name="RelationshipToPlaintiff" Type="bit" Nullable="false" />
+          <Property Name="RelationshipToPlaintiff" Type="int" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="Contact" Type="nvarchar(max)" />
@@ -1803,7 +1803,7 @@
           <Property Type="Int32" Name="EntityType" Nullable="false" />
           <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="Boolean" Name="RelationshipToProtected" Nullable="false" />
+          <Property Type="Int32" Name="RelationshipToProtected" Nullable="false" />
           <Property Type="DateTime" Name="DateOfBirth" Nullable="false" Precision="3" />
           <Property Type="Int32" Name="Sex_Id" Nullable="false" />
           <Property Type="Int32" Name="CaseRecord_Id" />
@@ -2147,7 +2147,7 @@
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="EntityType" Nullable="false" />
-          <Property Type="Boolean" Name="RelationshipToPlaintiff" Nullable="false" />
+          <Property Type="Int32" Name="RelationshipToPlaintiff" Nullable="false" />
           <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Contact" MaxLength="Max" FixedLength="false" Unicode="true" />

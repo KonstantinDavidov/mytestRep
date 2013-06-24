@@ -154,7 +154,7 @@ namespace Faccts.Model.Entities
         private string _lastName;
     
         [DataMember]
-        public bool RelationshipToProtected
+        public int RelationshipToProtected
         {
             get { return _relationshipToProtected; }
             set
@@ -167,7 +167,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private bool _relationshipToProtected;
+        private int _relationshipToProtected;
     
         [DataMember]
         public System.DateTime DateOfBirth

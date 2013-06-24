@@ -21,14 +21,14 @@
     				<RowDefinition/>
     				<RowDefinition Height="Auto"/>
     			</Grid.RowDefinitions>
-    			<DataGrid Grid.ColumnSpan="2" ItemsSource="{Binding Children, Mode=OneWay}">
+    			<DataGrid Grid.ColumnSpan="2" ItemsSource="{Binding Children, Mode=TwoWay}" CanUserAddRows="True" AutoGenerateColumns="False">
     				<DataGrid.Columns>
-                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Entity Type"/>
-    					<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="First Name"/>
-    					<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Lsat Name"/>
-    					<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Relationship to Protected"/>
-    					<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Sex"/>
-    					<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Date of Birth"/>
+                        <DataGridTextColumn Binding="{Binding EntityTypeName, Mode=OneWay}" Header="Entity Type" IsReadOnly="True"/>
+                        <DataGridTextColumn Binding="{Binding FirstName, Mode=TwoWay}" Header="First Name"/>
+                        <DataGridTextColumn Binding="{Binding LastName, Mode=TwoWay}" Header="Lsat Name"/>
+    					<DataGridTextColumn Binding="{Binding RelationshipName, Mode=OneWay}" Header="Relationship to Protected"/>
+                        <DataGridTextColumn Binding="{Binding Sex.SexName, Mode=OneWay}" Header="Sex"/>
+                        <DataGridTextColumn Binding="{Binding DateOfBirth, Mode=OneWay}" Header="Date of Birth"/>
     				</DataGrid.Columns>
     			</DataGrid>
     			<UniformGrid HorizontalAlignment="Right" Grid.Row="1" Grid.Column="1" Rows="1" Columns="2">

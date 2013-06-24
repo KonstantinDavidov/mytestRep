@@ -121,7 +121,7 @@ namespace Faccts.Model.Entities
         private int _entityType;
     
         [DataMember]
-        public bool RelationshipToPlaintiff
+        public int RelationshipToPlaintiff
         {
             get { return _relationshipToPlaintiff; }
             set
@@ -134,7 +134,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private bool _relationshipToPlaintiff;
+        private int _relationshipToPlaintiff;
     
         [DataMember]
         public string FirstName

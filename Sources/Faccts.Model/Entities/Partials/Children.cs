@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
+using System.ComponentModel;
 
 namespace Faccts.Model.Entities
 {
@@ -17,8 +18,14 @@ namespace Faccts.Model.Entities
                     this.OnPropertyChanged("EntityTypeName");
                 }
                 );
+            this.WhenAny(x => x.RelationshipToProtected, x => x.Value)
+                .Subscribe(x =>
+                {
+                    this.OnPropertyChanged("RelationshipName");
+                });
 
             this.EntityType = (int)FACCTS.Server.Model.Enums.FACCTSEntity.Person;
+            this.RelationshipToProtected = (int)FACCTS.Server.Model.Enums.Relationship.Child;
         }
 
         public string EntityTypeName
@@ -28,5 +35,14 @@ namespace Faccts.Model.Entities
                 return ((FACCTS.Server.Model.Enums.FACCTSEntity)this.EntityType).ToDescription();
             }
         }
+
+        public string RelationshipName
+        {
+            get
+            {
+                return ((FACCTS.Server.Model.Enums.FACCTSEntity)this.RelationshipToProtected).ToDescription();
+            }
+        }
+        
     }
 }
