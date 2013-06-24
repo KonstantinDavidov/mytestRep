@@ -25,6 +25,22 @@ namespace FACCTS.Controls.ViewModels
                     this.NotifyOfPropertyChange(() => CaseRecord);
                 });
 
+            this.WhenAny(x => x.AttorneyForChildrenIsTheSameThenParty1, x => x.Value)
+                .Subscribe(x =>
+                    {
+                        if (CaseRecord == null)
+                            return;
+                        if (x)
+                        {
+                            CaseRecord.Attorneys = CaseRecord.CourtParty.Attorneys;
+                        }
+                        else
+                        {
+                            CaseRecord.Attorneys = new Attorneys();
+                        }
+                    }
+                );
+
             _eventAggregator = eventAggregator;
             _eventAggregator.Subscribe(this);
             this.DisplayName = "Attorneys";
@@ -45,9 +61,6 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-        public void CopyAttorneyFromParty1()
-        {
-            //TODO: implement CopyAttorneyFromParty1()
-        }
+        
     }
 }

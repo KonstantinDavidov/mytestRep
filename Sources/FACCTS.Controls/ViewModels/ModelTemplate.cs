@@ -545,6 +545,17 @@ namespace FACCTS.Controls.ViewModels
 				}
 			}
 		}
+		
+		private bool _attorneyForChildrenIsTheSameThenParty1;
+		public bool AttorneyForChildrenIsTheSameThenParty1
+		{
+			get{return _attorneyForChildrenIsTheSameThenParty1;}
+			set{
+				if(_attorneyForChildrenIsTheSameThenParty1!=value){
+					this.RaiseAndSetIfChanged(ref _attorneyForChildrenIsTheSameThenParty1, value);
+				}
+			}
+		}
 				
 	}
 	

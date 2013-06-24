@@ -71,6 +71,7 @@
 
   <Model name="AttorneysViewModel">
     <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
+    <Property name="AttorneyForChildrenIsTheSameThenParty1" type="bool"/>
   </Model>
   
   <xs:schema 
