@@ -1,0 +1,36 @@
+describe field_form_CCMS;
++------------------+--------------+------+-----+---------+-------+
+| Field            | Type         | Null | Key | Default | Extra |
++------------------+--------------+------+-----+---------+-------+
+| id               | int(4)       | NO   |     | 0       |       |
+| form_field_name  | varchar(150) | YES  |     | NULL    |       |
+| form_name        | varchar(125) | YES  |     | NULL    |       |
+| field_type       | varchar(12)  | YES  |     | NULL    |       |
+| screen_name      | varchar(60)  | YES  |     | NULL    |       |
+| form_field_id    | int(4)       | YES  |     | NULL    |       |
+| dupe             | varchar(5)   | YES  |     | NULL    |       |
+| dropdown_options | varchar(160) | YES  |     | NULL    |       |
+| bool_options     | varchar(64)  | YES  |     | NULL    |       |
+| screen_panel     | varchar(32)  | YES  |     | NULL    |       |
+| panel_section    | varchar(32)  | YES  |     | NULL    |       |
+| xml_export       | varchar(200) | YES  |     | NULL    |       |
++------------------+--------------+------+-----+---------+-------+
+12 rows in set (0.00 sec)
+
+
+show create table field_form_CCMS;
+
+
+field_form_CCMS | CREATE TABLE `field_form_CCMS` (
+  `id` int(4) NOT NULL DEFAULT '0',
+  `form_field_name` varchar(150) DEFAULT NULL,
+  `form_name` varchar(125) DEFAULT NULL,
+  `field_type` varchar(12) DEFAULT NULL,
+  `screen_name` varchar(60) DEFAULT NULL,
+  `form_field_id` int(4) DEFAULT NULL,
+  `dupe` varchar(5) DEFAULT NULL,
+  `dropdown_options` varchar(160) DEFAULT NULL,
+  `bool_options` varchar(64) DEFAULT NULL,
+  `screen_panel` varchar(32) DEFAULT NULL,
+  `panel_section` varchar(32) DEFAULT NULL,
+  `xml_export` varchar(200) DEFAULT NULL
