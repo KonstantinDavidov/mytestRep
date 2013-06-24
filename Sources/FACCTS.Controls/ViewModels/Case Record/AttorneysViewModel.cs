@@ -44,5 +44,10 @@ namespace FACCTS.Controls.ViewModels
                 return CurrentCourtCase.CaseRecord;
             }
         }
+
+        public void CopyAttorneyFromParty1()
+        {
+            //TODO: implement CopyAttorneyFromParty1()
+        }
     }
 }
