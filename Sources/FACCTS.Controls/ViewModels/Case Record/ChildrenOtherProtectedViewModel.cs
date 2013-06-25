@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
 using FACCTS.Services;
+using FACCTS.Services.Dialog;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -16,11 +17,15 @@ namespace FACCTS.Controls.ViewModels
     public partial class ChildrenOtherProtectedViewModel : ViewModelBase, IHandle<CurrentCourtCaseChangedEvent>
     {
         private IEventAggregator _eventAggregator;
+        private IDialogService _dialogService;
 
         [ImportingConstructor]
-        public ChildrenOtherProtectedViewModel(IEventAggregator eventAggregator) : base()
+        public ChildrenOtherProtectedViewModel(IEventAggregator eventAggregator,
+            IDialogService dialogService
+            ) : base()
         {
             _eventAggregator = eventAggregator;
+            _dialogService = dialogService;
             _eventAggregator.Subscribe(this);
             this.WhenAny(x => x.CurrentCourtCase, x => x.Value)
                 .Subscribe(x =>
@@ -58,6 +63,24 @@ namespace FACCTS.Controls.ViewModels
                         .ToList();
                 }
                 return _relationShips;
+            }
+        }
+
+        public void AddChild()
+        {
+            var newChild = new Children()
+            {
+                FirstName = "First Name",
+                Sex = DataContainer.Sexes.FirstOrDefault(),
+            };
+            CaseRecord.Children.Add(newChild);
+        }
+
+        public void RemoveChild(Children child)
+        {
+            if (_dialogService.MessageBox("Do you really want to delete the child from the Court Case record?", "Deletion of the Child", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
+            {
+                CaseRecord.Children.Remove(child);
             }
         }
     }

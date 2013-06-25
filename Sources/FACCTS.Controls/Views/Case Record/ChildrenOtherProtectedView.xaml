@@ -6,11 +6,15 @@
              xmlns:Converters="clr-namespace:FACCTS.Controls.Converters" x:Class="FACCTS.Controls.Views.ChildrenOtherProtectedView" 
              xmlns:ext="clr-namespace:FACCTS.Controls.MarkupExtension"
              xmlns:fs="clr-namespace:FACCTS.Services.Data;assembly=FACCTS.Services"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+             xmlns:cal="http://www.caliburnproject.org"
+			 xmlns:utils="clr-namespace:FACCTS.Controls.Utils"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="416" Background="{DynamicResource ControlBackgroundBrush}">
     <UserControl.Resources>
-        <ext:MefPartExtension InstanceType="{x:Type fs:IDataContainer}" x:Key="DataContainer"/>
-        <CollectionViewSource x:Key="cvsSex" Source="{Binding Source={StaticResource DataContainer}, Path=Sexes, Mode=OneWay}"/>
+    	<Converters:ObjectToBooleanConverter x:Key="ObjectToBooleanConverter"/>
+        <ext:MefPart InstanceType="{x:Type fs:IDataContainer}" x:Key="DataContainer"/>
+        <CollectionViewSource x:Key="cvsSex" Source="{Binding Sexes, Mode=OneWay, Source={StaticResource DataContainer}}"/>
     </UserControl.Resources>
 	<Grid x:Name="LayoutRoot">
 		<Grid.RowDefinitions>
@@ -19,7 +23,7 @@
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<GroupBox Header="List Children">
-			<Grid DataContext="{Binding CaseRecord, Mode=OneWay}">
+			<Grid >
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition/>
 					<ColumnDefinition Width="Auto"/>
@@ -28,7 +32,8 @@
 					<RowDefinition/>
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
-				<DataGrid x:Name="dataGrid" Grid.ColumnSpan="2" ItemsSource="{Binding Children, Mode=TwoWay}" CanUserAddRows="True" AutoGenerateColumns="False">
+                <Border DataContext="{Binding CaseRecord, Mode=OneWay}" Grid.ColumnSpan="2">
+				    <DataGrid x:Name="dataGrid"  ItemsSource="{Binding Children, Mode=TwoWay}" CanUserAddRows="False" AutoGenerateColumns="False">
 					<DataGrid.Columns>
 						<DataGridTextColumn Binding="{Binding EntityTypeName, Mode=OneWay}" Header="Entity Type" IsReadOnly="True" Width="0.1*"/>
                         <DataGridTextColumn Binding="{Binding FirstName, Mode=TwoWay}" Header="First Name" Width="0.2*"/>
@@ -45,25 +50,34 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellEditingTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridTemplateColumn  Header="Sex" Width="0.1*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding Sex.SexName, Mode=OneWay}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                            <DataGridTemplateColumn.CellEditingTemplate>
-                                <DataTemplate>
-                                    <ComboBox ItemsSource="{Binding Source={StaticResource cvsSex}, Mode=OneWay}" DisplayMemberPath="SexName" SelectedItem="{Binding Sex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellEditingTemplate>
-                        </DataGridTemplateColumn>
-                        <DataGridTextColumn Binding="{Binding DateOfBirth, Mode=OneWay}" Header="Date of Birth" Width="0.2*"/>
-					</DataGrid.Columns>
+                         <DataGridComboBoxColumn ItemsSource="{Binding Source={StaticResource cvsSex}, Mode=OneWay}" DisplayMemberPath="SexName" SelectedItemBinding="{Binding Sex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Sex" Width="0.1*"/>
+                            <DataGridTemplateColumn Header="Date of Birth" Width="0.2*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding DateOfBirthNullable, Mode=OneWay, StringFormat=\{0:d\}}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <DatePicker SelectedDate="{Binding DateOfBirthNullable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FirstDayOfWeek="Monday" DisplayDateStart="{x:Static utils:StringToDateTime.TwentyYearsAgo}" DisplayDate="{x:Static utils:StringToDateTime.Today}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
 				</DataGrid>
-				<UniformGrid HorizontalAlignment="Right" Grid.Row="1" Grid.Column="1" Rows="1" Columns="2">
-					<Button Content="Add" Width="75"/>
-					<Button Content="Remove" Width="75"/>
-				</UniformGrid>
+                </Border>
+                <UniformGrid HorizontalAlignment="Right" Grid.Row="1" Grid.Column="1" Rows="1" Columns="2">
+					<Button Content="Add" Width="75" cal:Message.Attach="AddChild"/>
+                    <Button Content="Remove" Width="75" IsEnabled="{Binding SelectedItem, Converter={StaticResource ObjectToBooleanConverter}, ElementName=dataGrid, FallbackValue=False}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="RemoveChild">
+                                    <cal:Parameter Value="{Binding ElementName=dataGrid, Path=SelectedItem}" />
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </UniformGrid>
 			</Grid>
 		</GroupBox>
 		<GroupBox Header="Others Protected" Grid.Row="1">

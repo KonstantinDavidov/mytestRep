@@ -57,6 +57,36 @@ namespace Faccts.Model.Entities
                 this.RelationshipToProtected = (int)value;
             }
         }
+
+        private DateTime? _dateOfBirthNullable;
+        public DateTime? DateOfBirthNullable
+        {
+            get
+            {
+                if (DateTime.Now.Subtract(TimeSpan.FromDays(365 * 200)) >= this.DateOfBirth)
+                {
+                    _dateOfBirthNullable = null;
+                }
+                else
+                {
+                    _dateOfBirthNullable = this.DateOfBirth;
+                }
+                return _dateOfBirthNullable;
+            }
+            set
+            {
+                if (value == _dateOfBirthNullable)
+                    return;
+                this.OnPropertyChanging("DateOfBirthNullable");
+                _dateOfBirthNullable = value;
+                if (_dateOfBirthNullable.HasValue)
+                {
+                    this.DateOfBirth = _dateOfBirthNullable.Value;
+                }
+                this.OnPropertyChanged("DateOfBirthNullable");
+            }
+
+        }
         
     }
 }
