@@ -10,10 +10,12 @@ namespace FACCTS.Server.Model.Enums
     {
         Placed = 0,
 
-        Running = 1,
+        Ready = 1,
 
-        Finished = 2,
+        Running = 2,
 
-        Error = 3
+        Finished = 3,
+
+        Error = 4
     }
 }
