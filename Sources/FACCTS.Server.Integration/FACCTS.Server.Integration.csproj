@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Helpers.cs" />
     <Compile Include="IntegrationTasksManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service References\CCPOR_RequestService\Reference.cs">
@@ -67,7 +68,9 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Service References\CCPOR_RequestService\FACCTS.Server.Integration.CCPOR_RequestService.NotifyResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -110,6 +113,14 @@
     <ProjectReference Include="..\FACCTS.Server.Common\FACCTS.Server.Common.csproj">
       <Project>{ff6f3be2-f68c-492d-bada-e0e4c9524d53}</Project>
       <Name>FACCTS.Server.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FACCTS.Server.dataContracts\FACCTS.Server.DataContracts.csproj">
+      <Project>{d5e0d9f2-0c8f-40e0-be66-8d33ec1dfc97}</Project>
+      <Name>FACCTS.Server.DataContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FACCTS.Server.Model\FACCTS.Server.Model.csproj">
+      <Project>{5a675cbb-2774-4fde-a8c6-40aa46f4fa3f}</Project>
+      <Name>FACCTS.Server.Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

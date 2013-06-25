@@ -19,6 +19,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using FACCTS.Server.DataContracts;
+using FACCTS.Server.Integration;
 using Thinktecture.IdentityServer.Repositories;
 
 namespace FACCTS.Server
@@ -52,6 +53,9 @@ namespace FACCTS.Server
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             //WebApiApplication.DataManager = ServiceLocator.Current.GetInstance<IDataManager>();
+            
+            //Start processing integration tasks
+            //IntegrationTasksManager.Start();
         }
 
         private void ConfigureMEF()
