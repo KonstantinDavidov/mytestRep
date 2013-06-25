@@ -25,8 +25,8 @@ namespace FACCTS.Server.Model.DataModel
         [StringLength(255)]
         public string LastName { get; set; }
 
-        [DataType(DataType.MultilineText)]
-        public string Contact { get; set; }
+        [StringLength(150)]
+        public string Language { get; set; }
 
         [InverseProperty("Interpreters")]
         public virtual CaseRecord CaseRecord { get; set; }

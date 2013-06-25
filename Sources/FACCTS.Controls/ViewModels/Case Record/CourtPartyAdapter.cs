@@ -8,10 +8,11 @@ using ReactiveUI;
 
 namespace FACCTS.Controls.ViewModels
 {
-    public class WitnessForAdapter : ViewModelBase
+    public class CourtPartyAdapter : ViewModelBase
     {
         private bool _isParty1;
-        public WitnessForAdapter(CourtParty courtParty, bool isParty1 = true)
+        private string _prefix;
+        public CourtPartyAdapter(CourtParty courtParty, bool isParty1 = true, string prefix = "Witness for:")
             : base()
         {
             if (courtParty == null)
@@ -34,15 +35,16 @@ namespace FACCTS.Controls.ViewModels
                             {
                                 if (string.IsNullOrWhiteSpace(UnderlyingObject.FullName))
                                 {
-                                    DisplayName = string.Format("Witness for: {0}", _isParty1 ? "Party 1" : "Party 2");
+                                    DisplayName = string.Format("{0} {1}", _prefix, _isParty1 ? "Party 1" : "Party 2");
                                 }
                                 else
                                 {
-                                    DisplayName = string.Format("Witness for: {0}", UnderlyingObject.FullName);
+                                    DisplayName = string.Format("{0} {1}", _prefix, UnderlyingObject.FullName);
                                 }
                             }
                             );
             _isParty1 = isParty1;
+            _prefix = prefix;
         }
 
         public CourtParty UnderlyingObject

@@ -35,7 +35,7 @@
         <EntityTypeShape EntityType="FACCTS_DBModel.GlobalConfiguration" Width="1.5" PointX="5.6210267569967662" PointY="24.832610797524737" />
         <EntityTypeShape EntityType="FACCTS_DBModel.HairColor" Width="1.5" PointX="9.9089385969140285" PointY="10.210985635505518" />
         <EntityTypeShape EntityType="FACCTS_DBModel.IdentityProvider" Width="1.5" PointX="9.8193353646524884" PointY="0.33412605539622064" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Interpreters" Width="1.5" PointX="2.2810014031273318" PointY="7.4355338548475567" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Interpreters" Width="1.5" PointX="2.75" PointY="6.375" />
         <EntityTypeShape EntityType="FACCTS_DBModel.KeyMaterialConfiguration" Width="1.5" PointX="4.11003131424544" PointY="0.025480523717347776" />
         <EntityTypeShape EntityType="FACCTS_DBModel.ManualIntegrationTasks" Width="1.5" PointX="7.3044079017380295" PointY="7.363129753322867" />
         <EntityTypeShape EntityType="FACCTS_DBModel.OAuth2Configuration" Width="1.5" PointX="7.3713311736338447" PointY="9.4699906899919686" />

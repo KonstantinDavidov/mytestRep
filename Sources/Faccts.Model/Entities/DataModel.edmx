@@ -622,7 +622,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="255" />
           <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="255" />
-          <Property Name="Contact" Type="nvarchar(max)" />
+          <Property Name="Language" Type="nvarchar" MaxLength="150" />
           <Property Name="InterpreterFor_Id" Type="int" Nullable="false" />
           <Property Name="CaseRecord_Id" Type="int" />
         </EntityType>
@@ -641,9 +641,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="ReceiveTime" Type="datetime" Nullable="false" />
-          <Property Name="StartTime" Type="datetime" Nullable="false" />
-          <Property Name="EndTime" Type="datetime" Nullable="false" />
+          <Property Name="ReceiveTime" Type="datetime" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
           <Property Name="Info" Type="nvarchar" MaxLength="500" />
           <Property Name="UserId" Type="int" />
           <Property Name="State" Type="tinyint" Nullable="false" />
@@ -2126,7 +2126,7 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="FirstName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="LastName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Contact" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Language" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="InterpreterFor_Id" Nullable="false" />
           <Property Type="Int32" Name="CaseRecord_Id" />
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_Interpreters_dbo_CaseRecord_CaseRecord_Id" FromRole="Interpreters" ToRole="CaseRecord" />
@@ -2147,9 +2147,9 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="ReceiveTime" Nullable="false" Precision="3" />
-          <Property Type="DateTime" Name="StartTime" Nullable="false" Precision="3" />
-          <Property Type="DateTime" Name="EndTime" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="ReceiveTime" Precision="3" />
+          <Property Type="DateTime" Name="StartTime" Precision="3" />
+          <Property Type="DateTime" Name="EndTime" Precision="3" />
           <Property Type="String" Name="Info" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="UserId" />
           <Property Type="Byte" Name="State" Nullable="false" />
@@ -3296,9 +3296,9 @@
           <EntitySetMapping Name="Interpreters">
             <EntityTypeMapping TypeName="FACCTS_DBModel.Interpreters">
               <MappingFragment StoreEntitySet="Interpreters">
+                <ScalarProperty Name="Language" ColumnName="Language" />
                 <ScalarProperty Name="CaseRecord_Id" ColumnName="CaseRecord_Id" />
                 <ScalarProperty Name="InterpreterFor_Id" ColumnName="InterpreterFor_Id" />
-                <ScalarProperty Name="Contact" ColumnName="Contact" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

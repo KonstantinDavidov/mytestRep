@@ -32,6 +32,7 @@ namespace FACCTS.Controls.ViewModels
                 {
                     this.NotifyOfPropertyChange(() => CaseRecord);
                     this.NotifyOfPropertyChange(() => WitnessesFor);
+                    this.NotifyOfPropertyChange(() => InterpretersFor);
                 }
                 );
 
@@ -72,14 +73,50 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-        public List<WitnessForAdapter> WitnessesFor
+        public void AddInterpreter()
+        {
+            var newInterpreter = new Interpreters()
+            {
+                CourtParty = CaseRecord.CourtParty,
+                Language = "English",
+            };
+            CaseRecord.Interpreters.Add(newInterpreter);
+        }
+
+        public void RemoveInterpreter(Interpreters interpreter)
+        {
+            if (_dialogService.MessageBox("Do you really want to remove the interpreter?", "Interpreter removal", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
+            {
+                CaseRecord.Interpreters.Remove(interpreter);
+            }
+        }
+
+        public List<CourtPartyAdapter> WitnessesFor
         {
             get
             {
-                List<WitnessForAdapter> result = new List<WitnessForAdapter>()
+                if (CaseRecord == null)
+                    return null;
+                List<CourtPartyAdapter> result = new List<CourtPartyAdapter>()
                 {
-                    new WitnessForAdapter(CaseRecord.CourtParty),
-                    new WitnessForAdapter(CaseRecord.CourtParty1, false),
+                    new CourtPartyAdapter(CaseRecord.CourtParty),
+                    new CourtPartyAdapter(CaseRecord.CourtParty1, false),
+                };
+
+                return result;
+            }
+        }
+
+        public List<CourtPartyAdapter> InterpretersFor
+        {
+            get
+            {
+                if (CaseRecord == null)
+                    return null;
+                List<CourtPartyAdapter> result = new List<CourtPartyAdapter>()
+                {
+                    new CourtPartyAdapter(CaseRecord.CourtParty, true, "Interpreter For:"),
+                    new CourtPartyAdapter(CaseRecord.CourtParty1, false, "Interpreter For:"),
                 };
 
                 return result;

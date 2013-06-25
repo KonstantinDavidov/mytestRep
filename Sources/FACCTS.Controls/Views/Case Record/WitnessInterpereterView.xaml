@@ -19,6 +19,8 @@
                               Source="{Binding Source={StaticResource DataContainer}, Path=Designations, Mode=OneWay}" />
         <CollectionViewSource Source="{Binding WitnessesFor, Mode=OneWay}"
                               x:Key="cvsWitnessesFor" />
+        <CollectionViewSource Source="{Binding InterpretersFor, Mode=OneWay}"
+                              x:Key="cvsInterpretersFor" />
     </UserControl.Resources>
 	<Grid x:Name="LayoutRoot" IsEnabled="{Binding CaseRecord, Converter={StaticResource ObjectToBooleanConverter}, FallbackValue=False, Mode=OneWay}">
 		<Grid.RowDefinitions>
@@ -85,18 +87,38 @@
 					<RowDefinition/>
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
-				<DataGrid x:Name="dataGrid" Grid.ColumnSpan="2">
-					<DataGrid.Columns>
-						<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="First Name"/>
-						<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Last Name"/>
-						<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Interpreter For"/>
-						<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Language"/>
-					</DataGrid.Columns>
-				</DataGrid>
-				<UniformGrid HorizontalAlignment="Right" Grid.Row="1" Rows="1" Columns="2">
-					<Button Content="Add" Width="75"/>
-					<Button Content="Remove" Width="75" IsEnabled="{Binding SelectedItem, Converter={StaticResource ObjectToBooleanConverter}, ElementName=dataGrid, Mode=OneWay}"/>
-				</UniformGrid>
+                <Border Grid.ColumnSpan="2" DataContext="{Binding CaseRecord, Mode=OneWay}">
+				    <DataGrid x:Name="dataGrid" ItemsSource="{Binding Interpreters,Mode=OneWay}" AutoGenerateColumns="False" CanUserAddRows="False">
+					    <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding FirstName, Mode=TwoWay}" Header="First Name" Width="0.2*"/>
+                            <DataGridTextColumn Binding="{Binding LastName, Mode=TwoWay}"
+                                                Header="Last Name"
+                                                Width="0.2*" />
+                            <DataGridComboBoxColumn ItemsSource="{Binding Source={StaticResource cvsInterpretersFor}, Mode=OneWay}"
+                                                    SelectedValuePath="UnderlyingObject"
+                                                    SelectedValueBinding="{Binding CourtParty, Mode=TwoWay}"
+                                                    Header="Interpreter For"
+                                                    Width="0.4*" />
+                            <DataGridTextColumn Binding="{Binding Language, Mode=TwoWay}"
+                                                Header="Language"
+                                                Width="0.2*" />
+					    </DataGrid.Columns>
+				    </DataGrid>
+                </Border>
+                <UniformGrid HorizontalAlignment="Right" Grid.Row="1" Rows="1" Columns="2">
+					<Button Content="Add" Width="75" cal:Message.Attach="AddInterpreter"/>
+                    <Button Content="Remove"
+                            Width="75"
+                            IsEnabled="{Binding SelectedItem, Converter={StaticResource ObjectToBooleanConverter}, ElementName=dataGrid, Mode=OneWay}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="RemoveInterpreter">
+                                    <cal:Parameter Value="{Binding SelectedItem, ElementName=dataGrid, Mode=OneWay}" />
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </UniformGrid>
 			</Grid>
 		</GroupBox>
             
