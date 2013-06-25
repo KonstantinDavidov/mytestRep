@@ -23,7 +23,7 @@
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<GroupBox Header="List Children">
-			<Grid >
+            <Grid IsEnabled="{Binding CaseRecord, Mode=OneWay, Converter={StaticResource ObjectToBooleanConverter}, FallbackValue=False}">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition/>
 					<ColumnDefinition Width="Auto"/>
@@ -81,7 +81,7 @@
 			</Grid>
 		</GroupBox>
 		<GroupBox Header="Others Protected" Grid.Row="1">
-			<Grid>
+            <Grid IsEnabled="{Binding CaseRecord, Mode=OneWay, Converter={StaticResource ObjectToBooleanConverter}, FallbackValue=False}">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition/>
 					<ColumnDefinition Width="Auto"/>
@@ -90,19 +90,53 @@
 					<RowDefinition/>
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
-				<DataGrid Grid.ColumnSpan="2">
-					<DataGrid.Columns>
-                        <DataGridTextColumn Binding="{x:Null}" Header="Entity Type" IsReadOnly="True" Width="0.2*"/>
-                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Relationship to Plaintiff" Width="0.2*"/>
-                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="First name" Width="0.2*"/>
-                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Last name" Width="0.2*"/>
-                        <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Contact" Width="0.2*"/>
-					</DataGrid.Columns>
-				</DataGrid>
+                <Border Grid.ColumnSpan="2" DataContext="{Binding CaseRecord, Mode=OneWay}">
+                    <DataGrid ItemsSource="{Binding OtherProtected, Mode=TwoWay}" CanUserAddRows="False" x:Name="dgOtherProtected" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding EntityTypeName, Mode=OneWay}" Header="Entity Type" IsReadOnly="True" Width="0.1*"/>
+                            <DataGridTextColumn Binding="{Binding FirstName, Mode=TwoWay}" Header="First Name" Width="0.2*"/>
+                            <DataGridTextColumn Binding="{Binding LastName, Mode=TwoWay}" Header="Last Name" Width="0.2*"/>
+                            <DataGridTemplateColumn Header="Relationship to Protected" Width="0.2*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding RelationshipName, Mode=OneWay}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <ComboBox ItemsSource="{Binding Path=DataContext.Relationships, ElementName=LayoutRoot, Mode=OneWay}" SelectedValuePath="Value" SelectedValue="{Binding RelationshipToPlaintiffEnum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                            <DataGridComboBoxColumn ItemsSource="{Binding Source={StaticResource cvsSex}, Mode=OneWay}" DisplayMemberPath="SexName" SelectedItemBinding="{Binding Sex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Sex" Width="0.1*"/>
+                            <DataGridTemplateColumn Header="Date of Birth" Width="0.2*">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding DateOfBirthNullable, Mode=OneWay, StringFormat=\{0:d\}}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                                <DataGridTemplateColumn.CellEditingTemplate>
+                                    <DataTemplate>
+                                        <DatePicker SelectedDate="{Binding DateOfBirthNullable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FirstDayOfWeek="Monday" DisplayDateStart="{x:Static utils:StringToDateTime.TwentyYearsAgo}" DisplayDate="{x:Static utils:StringToDateTime.Today}"/>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellEditingTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+				
 				<UniformGrid HorizontalAlignment="Right" Grid.Row="1" Grid.Column="1" Rows="1" Columns="2">
-					<Button Content="Add" Width="75"/>
-					<Button Content="Remove" Width="75"/>
-				</UniformGrid>
+					<Button Content="Add" Width="75" cal:Message.Attach="AddOtherProtected"/>
+                    <Button Content="Remove" Width="75" IsEnabled="{Binding SelectedItem, Converter={StaticResource ObjectToBooleanConverter}, ElementName=dgOtherProtected, FallbackValue=False, Mode=OneWay}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="RemoveOtherProtected" >
+                                    <cal:Parameter Value="{Binding ElementName=dgOtherProtected, Path=SelectedItem}" />
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </UniformGrid>
 			</Grid>
 		</GroupBox>
 		<Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Row="2" CornerRadius="4">

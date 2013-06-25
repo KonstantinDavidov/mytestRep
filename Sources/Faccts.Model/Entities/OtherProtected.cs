@@ -21,6 +21,7 @@ namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
     [KnownType(typeof(CaseRecord))]
+    [KnownType(typeof(Sex))]
     public partial class OtherProtected: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -169,22 +170,6 @@ namespace Faccts.Model.Entities
         private string _lastName;
     
         [DataMember]
-        public string Contact
-        {
-            get { return _contact; }
-            set
-            {
-                if (_contact != value)
-                {
-    				OnPropertyChanging("Contact");
-                    _contact = value;
-                    OnPropertyChanged("Contact");
-                }
-            }
-        }
-        private string _contact;
-    
-        [DataMember]
         public Nullable<int> CaseRecord_Id
         {
             get { return _caseRecord_Id; }
@@ -207,6 +192,46 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<int> _caseRecord_Id;
+    
+        [DataMember]
+        public System.DateTime DateOfBirth
+        {
+            get { return _dateOfBirth; }
+            set
+            {
+                if (_dateOfBirth != value)
+                {
+    				OnPropertyChanging("DateOfBirth");
+                    _dateOfBirth = value;
+                    OnPropertyChanged("DateOfBirth");
+                }
+            }
+        }
+        private System.DateTime _dateOfBirth;
+    
+        [DataMember]
+        public Nullable<int> Sex_Id
+        {
+            get { return _sex_Id; }
+            set
+            {
+                if (_sex_Id != value)
+                {
+                    ChangeTracker.RecordOriginalValue("Sex_Id", _sex_Id);
+                    if (!IsDeserializing)
+                    {
+                        if (Sex != null && Sex.Id != value)
+                        {
+                            Sex = null;
+                        }
+                    }
+    				OnPropertyChanging("Sex_Id");
+                    _sex_Id = value;
+                    OnPropertyChanged("Sex_Id");
+                }
+            }
+        }
+        private Nullable<int> _sex_Id;
 
         #endregion
 
@@ -229,6 +254,24 @@ namespace Faccts.Model.Entities
             }
         }
         private CaseRecord _caseRecord;
+    
+        [DataMember]
+        public Sex Sex
+        {
+            get { return _sex; }
+            set
+            {
+                if (!ReferenceEquals(_sex, value))
+                {
+                    var previousValue = _sex;
+    				OnNavigationPropertyChanging("Sex");
+                    _sex = value;
+                    FixupSex(previousValue);
+                    OnNavigationPropertyChanged("Sex");
+                }
+            }
+        }
+        private Sex _sex;
 
         #endregion
 
@@ -328,6 +371,7 @@ namespace Faccts.Model.Entities
         protected virtual void ClearNavigationProperties()
         {
             CaseRecord = null;
+            Sex = null;
         }
 
         #endregion
@@ -371,6 +415,47 @@ namespace Faccts.Model.Entities
                 if (CaseRecord != null && !CaseRecord.ChangeTracker.ChangeTrackingEnabled)
                 {
                     CaseRecord.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupSex(Sex previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.OtherProtected.Contains(this))
+            {
+                previousValue.OtherProtected.Remove(this);
+            }
+    
+            if (Sex != null)
+            {
+                Sex.OtherProtected.Add(this);
+    
+                Sex_Id = Sex.Id;
+            }
+            else if (!skipKeys)
+            {
+                Sex_Id = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("Sex")
+                    && (ChangeTracker.OriginalValues["Sex"] == Sex))
+                {
+                    ChangeTracker.OriginalValues.Remove("Sex");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("Sex", previousValue);
+                }
+                if (Sex != null && !Sex.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    Sex.StartTracking();
                 }
             }
         }

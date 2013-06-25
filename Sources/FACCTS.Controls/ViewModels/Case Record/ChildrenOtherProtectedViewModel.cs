@@ -83,5 +83,24 @@ namespace FACCTS.Controls.ViewModels
                 CaseRecord.Children.Remove(child);
             }
         }
+
+        public void AddOtherProtected()
+        {
+            var newOP = new OtherProtected()
+            {
+                FirstName = "First name",
+                Sex = DataContainer.Sexes.FirstOrDefault(),
+            };
+            CaseRecord.OtherProtected.Add(newOP);
+        }
+
+        public void RemoveOtherProtected(OtherProtected otherProtected)
+        {
+            if (_dialogService.MessageBox("Do you really want to delete the other protected person from the Court Case record?", "Deletion of the Other Protected", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
+            {
+                CaseRecord.OtherProtected.Remove(otherProtected);
+            }
+            
+        }
     }
 }
