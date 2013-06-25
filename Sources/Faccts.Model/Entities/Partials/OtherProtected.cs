@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
-using System.ComponentModel;
 
 namespace Faccts.Model.Entities
 {
-    public partial class Children
+    public partial class OtherProtected
     {
         partial void Initialize()
         {
@@ -18,16 +17,15 @@ namespace Faccts.Model.Entities
                     this.OnPropertyChanged("EntityTypeName");
                 }
                 );
-            this.WhenAny(x => x.RelationshipToProtected, x => x.Value)
+            this.WhenAny(x => x.RelationshipToPlaintiff, x => x.Value)
                 .Subscribe(x =>
                 {
                     this.OnPropertyChanged("RelationshipName");
-                    this.OnPropertyChanged("RelationshipToProtectedEnum");
+                    this.OnPropertyChanged("RelationshipToPlaintiffEnum");
                 });
 
             this.EntityType = (int)FACCTS.Server.Model.Enums.FACCTSEntity.Person;
-            this.RelationshipToProtected = (int)FACCTS.Server.Model.Enums.Relationship.Child;
-            //this.Sex = new Sex();
+            this.RelationshipToPlaintiff = (int)FACCTS.Server.Model.Enums.Relationship.Child;
         }
 
         public string EntityTypeName
@@ -42,19 +40,19 @@ namespace Faccts.Model.Entities
         {
             get
             {
-                return ((FACCTS.Server.Model.Enums.Relationship)this.RelationshipToProtected).ToDescription();
+                return ((FACCTS.Server.Model.Enums.Relationship)this.RelationshipToPlaintiff).ToDescription();
             }
         }
 
-        public FACCTS.Server.Model.Enums.Relationship RelationshipToProtectedEnum
+        public FACCTS.Server.Model.Enums.Relationship RelationshipToPlaintiffEnum
         {
             get
             {
-                return (FACCTS.Server.Model.Enums.Relationship)this.RelationshipToProtected;
+                return (FACCTS.Server.Model.Enums.Relationship)this.RelationshipToPlaintiff;
             }
             set
             {
-                this.RelationshipToProtected = (int)value;
+                this.RelationshipToPlaintiff = (int)value;
             }
         }
 
@@ -87,6 +85,7 @@ namespace Faccts.Model.Entities
             }
 
         }
-        
+
+
     }
 }

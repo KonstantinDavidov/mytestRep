@@ -208,6 +208,10 @@
             <End Role="CaseRecord" EntitySet="CaseRecord" />
             <End Role="OtherProtected" EntitySet="OtherProtected" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_OtherProtected_dbo_Sex_Sex_Id" Association="FACCTS_DBModel.Store.FK_dbo_OtherProtected_dbo_Sex_Sex_Id">
+            <End Role="Sex" EntitySet="Sex" />
+            <End Role="OtherProtected" EntitySet="OtherProtected" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_RelatedCase_dbo_CaseRecord_CaseRecordId" Association="FACCTS_DBModel.Store.FK_dbo_RelatedCase_dbo_CaseRecord_CaseRecordId">
             <End Role="CaseRecord" EntitySet="CaseRecord" />
             <End Role="RelatedCase" EntitySet="RelatedCase" />
@@ -661,7 +665,8 @@
           <Property Name="RelationshipToPlaintiff" Type="int" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="100" />
           <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="100" />
-          <Property Name="Contact" Type="nvarchar(max)" />
+          <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
+          <Property Name="Sex_Id" Type="int" />
           <Property Name="CaseRecord_Id" Type="int" />
         </EntityType>
         <EntityType Name="ParticipantRole">
@@ -1302,6 +1307,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_dbo_OtherProtected_dbo_Sex_Sex_Id">
+          <End Role="Sex" Type="FACCTS_DBModel.Store.Sex" Multiplicity="0..1" />
+          <End Role="OtherProtected" Type="FACCTS_DBModel.Store.OtherProtected" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sex">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OtherProtected">
+              <PropertyRef Name="Sex_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_RelatedCase_dbo_CaseRecord_CaseRecordId">
           <End Role="CaseRecord" Type="FACCTS_DBModel.Store.CaseRecord" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -1665,6 +1682,10 @@
           <AssociationSet Name="RoleUser" Association="FACCTS_DBModel.RoleUser">
             <End Role="Role" EntitySet="Role" />
             <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OtherProtected_dbo_Sex_Sex_Id" Association="FACCTS_DBModel.FK_dbo_OtherProtected_dbo_Sex_Sex_Id">
+            <End Role="Sex" EntitySet="Sex" />
+            <End Role="OtherProtected" EntitySet="OtherProtected" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
@@ -2150,9 +2171,11 @@
           <Property Type="Int32" Name="RelationshipToPlaintiff" Nullable="false" />
           <Property Type="String" Name="FirstName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="LastName" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="Contact" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="CaseRecord_Id" />
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_OtherProtected_dbo_CaseRecord_CaseRecord_Id" FromRole="OtherProtected" ToRole="CaseRecord" />
+          <Property Type="DateTime" Name="DateOfBirth" Nullable="false" Precision="3" />
+          <Property Type="Int32" Name="Sex_Id" />
+          <NavigationProperty Name="Sex" Relationship="FACCTS_DBModel.FK_dbo_OtherProtected_dbo_Sex_Sex_Id" FromRole="OtherProtected" ToRole="Sex" />
         </EntityType>
         <EntityType Name="ParticipantRole">
           <Key>
@@ -2226,6 +2249,7 @@
           <Property Type="String" Name="SexName" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Children" Relationship="FACCTS_DBModel.FK_dbo_Children_dbo_Sex_Sex_Id" FromRole="Sex" ToRole="Children" />
           <NavigationProperty Name="CourtParty" Relationship="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Sex_Sex_Id" FromRole="Sex" ToRole="CourtParty" />
+          <NavigationProperty Name="OtherProtected" Relationship="FACCTS_DBModel.FK_dbo_OtherProtected_dbo_Sex_Sex_Id" FromRole="Sex" ToRole="OtherProtected" />
         </EntityType>
         <EntityType Name="SimpleHttpConfiguration">
           <Key>
@@ -2848,6 +2872,18 @@
           <End Type="FACCTS_DBModel.Role" Role="Role" Multiplicity="*" />
           <End Type="FACCTS_DBModel.User" Role="User" Multiplicity="*" />
         </Association>
+        <Association Name="FK_dbo_OtherProtected_dbo_Sex_Sex_Id">
+          <End Type="FACCTS_DBModel.Sex" Role="Sex" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.OtherProtected" Role="OtherProtected" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sex">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OtherProtected">
+              <PropertyRef Name="Sex_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3294,8 +3330,9 @@
           <EntitySetMapping Name="OtherProtected">
             <EntityTypeMapping TypeName="FACCTS_DBModel.OtherProtected">
               <MappingFragment StoreEntitySet="OtherProtected">
+                <ScalarProperty Name="Sex_Id" ColumnName="Sex_Id" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="CaseRecord_Id" ColumnName="CaseRecord_Id" />
-                <ScalarProperty Name="Contact" ColumnName="Contact" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="RelationshipToPlaintiff" ColumnName="RelationshipToPlaintiff" />

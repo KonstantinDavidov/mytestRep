@@ -34,8 +34,10 @@ namespace FACCTS.Server.Model.DataModel
         [Required]
         public string LastName { get; set; }
 
-        [DataType(DataType.MultilineText)]
-        public string Contact { get; set; }
+        public DateTime DateOfBirth { get; set; }
+
+        public virtual Sex Sex { get; set; }
+
         [InverseProperty("OtherProtected")]
         public virtual CaseRecord CaseRecord { get; set; }
     }

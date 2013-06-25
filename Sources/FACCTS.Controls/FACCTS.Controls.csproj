@@ -123,7 +123,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
-    <Compile Include="Converters\EnumToIntConverter.cs" />
     <Compile Include="Converters\InvertedBooleanConverter.cs" />
     <Compile Include="Converters\NullableBoolleanToBooleanConverter.cs" />
     <Compile Include="Converters\ObjectToBooleanConverter.cs" />
@@ -133,6 +132,7 @@
     <Compile Include="IShell.cs" />
     <Compile Include="MarkupExtension\MefPartExtension.cs" />
     <Compile Include="Utils\StringToBoolean.cs" />
+    <Compile Include="Utils\StringToDateTime.cs" />
     <Compile Include="ViewModels\Case Record\SeparateCaseDialogViewModel.cs" />
     <Compile Include="ViewModels\DropDismissDialogViewModel.cs" />
     <Compile Include="ViewModels\ModelTemplate.cs">

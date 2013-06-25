@@ -39,7 +39,7 @@
         <EntityTypeShape EntityType="FACCTS_DBModel.KeyMaterialConfiguration" Width="1.5" PointX="4.11003131424544" PointY="0.025480523717347776" />
         <EntityTypeShape EntityType="FACCTS_DBModel.ManualIntegrationTasks" Width="1.5" PointX="7.3044079017380295" PointY="7.363129753322867" />
         <EntityTypeShape EntityType="FACCTS_DBModel.OAuth2Configuration" Width="1.5" PointX="7.3713311736338447" PointY="9.4699906899919686" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.OtherProtected" Width="1.5" PointX="7.0712145041074681" PointY="14.001222482883009" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.OtherProtected" Width="1.5" PointX="8.125" PointY="14.125" />
         <EntityTypeShape EntityType="FACCTS_DBModel.ParticipantRole" Width="1.5" PointX="2.8258948581413805" PointY="22.256168286435383" />
         <EntityTypeShape EntityType="FACCTS_DBModel.Permission" Width="1.5" PointX="10.465666282207549" PointY="1.9895462254013616" />
         <EntityTypeShape EntityType="FACCTS_DBModel.Race" Width="1.5" PointX="11.535158162720109" PointY="18.237389647512412" />
@@ -97,6 +97,7 @@
         <AssociationConnector Association="FACCTS_DBModel.RelatedCase" />
         <AssociationConnector Association="FACCTS_DBModel.RolePermission" />
         <AssociationConnector Association="FACCTS_DBModel.RoleUser" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_OtherProtected_dbo_Sex_Sex_Id" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

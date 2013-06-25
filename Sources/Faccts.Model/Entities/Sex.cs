@@ -22,6 +22,7 @@ namespace Faccts.Model.Entities
     [DataContract(IsReference = true)]
     [KnownType(typeof(Children))]
     [KnownType(typeof(CourtParty))]
+    [KnownType(typeof(OtherProtected))]
     public partial class Sex: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -220,6 +221,42 @@ namespace Faccts.Model.Entities
             }
         }
         private TrackableCollection<CourtParty> _courtParty;
+    
+        [DataMember]
+        public TrackableCollection<OtherProtected> OtherProtected
+        {
+            get
+            {
+                if (_otherProtected == null)
+                {
+                    _otherProtected = new TrackableCollection<OtherProtected>();
+                    _otherProtected.CollectionChanged += FixupOtherProtected;
+                }
+                return _otherProtected;
+            }
+            set
+            {
+                if (!ReferenceEquals(_otherProtected, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("OtherProtected");
+                    if (_otherProtected != null)
+                    {
+                        _otherProtected.CollectionChanged -= FixupOtherProtected;
+                    }
+                    _otherProtected = value;
+                    if (_otherProtected != null)
+                    {
+                        _otherProtected.CollectionChanged += FixupOtherProtected;
+                    }
+                    OnNavigationPropertyChanged("OtherProtected");
+                }
+            }
+        }
+        private TrackableCollection<OtherProtected> _otherProtected;
 
         #endregion
 
@@ -320,6 +357,7 @@ namespace Faccts.Model.Entities
         {
             Children.Clear();
             CourtParty.Clear();
+            OtherProtected.Clear();
         }
 
         #endregion
@@ -412,6 +450,45 @@ namespace Faccts.Model.Entities
                     // This is the principal end in an association that performs cascade deletes.
                     // Remove the previous dependent from the event listener.
                     ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
+                }
+            }
+        }
+    
+        private void FixupOtherProtected(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (OtherProtected item in e.NewItems)
+                {
+                    item.Sex = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("OtherProtected", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (OtherProtected item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Sex, this))
+                    {
+                        item.Sex = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("OtherProtected", item);
+                    }
                 }
             }
         }
