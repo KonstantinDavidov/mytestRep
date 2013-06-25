@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ModelsDef>
+  
+ 
+
+  <Model name="NewCourtCaseDialogViewModel">
+    <Property name="CaseNumber" type="string"/>
+    <Property name="IsEditing" type="bool"/>
+  </Model>
+  
+ 
+  <xs:schema 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="ModelsDef">
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element name="Model" minOccurs="1" maxOccurs="unbounded">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Property" minOccurs="1" maxOccurs="unbounded">
+                  <xs:complexType>
+                    <xs:attribute name="name" type="xs:string" use="required" />
+                    <xs:attribute name="type" type="systemTypes" default="string" />
+                    <xs:attribute name="collectionType" type="xs:string" use="optional" />
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+              <xs:attribute name="name" type="xs:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="baseClass" type="xs:string" default="ModelBase" />
+      </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="systemTypes">
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="string"></xs:enumeration>
+        <xs:enumeration value="int"></xs:enumeration>
+        <xs:enumeration value="decimal"></xs:enumeration>
+        <xs:enumeration value="double"></xs:enumeration>
+        <xs:enumeration value="bool"></xs:enumeration>
+        <xs:enumeration value="DateTime"></xs:enumeration>
+        <xs:enumeration value="DateTime?"></xs:enumeration>
+        <xs:enumeration value="Collection"></xs:enumeration>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:schema>
+</ModelsDef>
