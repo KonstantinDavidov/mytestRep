@@ -221,6 +221,7 @@
     <Compile Include="Entities\Partials\RestrainingPartyIDInfo.cs" />
     <Compile Include="Entities\Partials\Sex.cs" />
     <Compile Include="Entities\Partials\User.cs" />
+    <Compile Include="Entities\Partials\Witnesses.cs" />
     <Compile Include="Entities\ParticipantRole.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
