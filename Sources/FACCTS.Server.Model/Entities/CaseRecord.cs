@@ -56,5 +56,7 @@ namespace FACCTS.Server.Model.DataModel
 
         [StringLength(250)]
         public string Judge { get; set; }
+
+        public RestrainingPartyIdentificationInformation RestrainingPartyIdentificationInformation { get; set; }
     }
 }

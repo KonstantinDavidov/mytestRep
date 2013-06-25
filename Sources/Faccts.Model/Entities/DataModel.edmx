@@ -345,6 +345,9 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Judge" Type="nvarchar" MaxLength="250" />
+          <Property Name="RP_IDType" Type="int" Nullable="false" />
+          <Property Name="RP_IDNumber" Type="nvarchar(max)" />
+          <Property Name="RP_IssuedDate" Type="datetime" />
           <Property Name="Party1_Id" Type="int" />
           <Property Name="Party2_Id" Type="int" />
           <Property Name="AttorneyForChild_Id" Type="int" />
@@ -1815,6 +1818,7 @@
           <NavigationProperty Name="OtherProtected" Relationship="FACCTS_DBModel.FK_dbo_OtherProtected_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseRecord" ToRole="OtherProtected" />
           <NavigationProperty Name="Witnesses" Relationship="FACCTS_DBModel.FK_dbo_Witnesses_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseRecord" ToRole="Witnesses" />
           <NavigationProperty Name="CourtCase1" Relationship="FACCTS_DBModel.RelatedCase" FromRole="CaseRecord" ToRole="CourtCase" />
+          <Property Name="RestrainingpartyIdentificationInformation" Type="FACCTS_DBModel.RestrainingPartyIDInfo" Nullable="false" />
         </EntityType>
         <EntityType Name="Children">
           <Key>
@@ -2884,6 +2888,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="RestrainingPartyIDInfo" >
+          <Property Type="Int32" Name="IDType" Nullable="false" />
+          <Property Type="String" Name="IDNumber" Nullable="false" />
+          <Property Type="DateTime" Name="IDIssuedDate" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2994,6 +3003,11 @@
                 <ScalarProperty Name="Party1_Id" ColumnName="Party1_Id" />
                 <ScalarProperty Name="Judge" ColumnName="Judge" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ComplexProperty Name="RestrainingpartyIdentificationInformation">
+                  <ScalarProperty Name="IDIssuedDate" ColumnName="RP_IssuedDate" />
+                  <ScalarProperty Name="IDNumber" ColumnName="RP_IDNumber" />
+                  <ScalarProperty Name="IDType" ColumnName="RP_IDType" />
+                </ComplexProperty>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

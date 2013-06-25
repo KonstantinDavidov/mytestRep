@@ -21,6 +21,7 @@ namespace Faccts.Model.Entities
             this.CourtCaseOrders = new TrackableCollection<CourtCaseOrders>();
             this.Attorneys = new Attorneys();
             this.Children = new TrackableCollection<Children>();
+            this.RestrainingpartyIdentificationInformation = new RestrainingPartyIDInfo();
         }
 
         public DateTime? FileDate

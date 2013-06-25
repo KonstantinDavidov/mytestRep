@@ -279,6 +279,48 @@ namespace Faccts.Model.Entities
 
         #endregion
 
+        #region Complex Properties
+    
+        [DataMember]
+        public RestrainingPartyIDInfo RestrainingpartyIdentificationInformation
+        {
+            get
+            {
+                if (!_restrainingpartyIdentificationInformationInitialized && _restrainingpartyIdentificationInformation == null)
+                {
+                    _restrainingpartyIdentificationInformation = new RestrainingPartyIDInfo();
+                    ((INotifyComplexPropertyChanging)_restrainingpartyIdentificationInformation).ComplexPropertyChanging += HandleRestrainingpartyIdentificationInformationChanging;
+                }
+                _restrainingpartyIdentificationInformationInitialized = true;
+                return _restrainingpartyIdentificationInformation;
+            }
+            set
+            {
+                _restrainingpartyIdentificationInformationInitialized = true;
+                if (!Equals(_restrainingpartyIdentificationInformation, value))
+                {
+                    if (_restrainingpartyIdentificationInformation != null)
+                    {
+                        ((INotifyComplexPropertyChanging)_restrainingpartyIdentificationInformation).ComplexPropertyChanging -= HandleRestrainingpartyIdentificationInformationChanging;
+                    }
+    
+                    HandleRestrainingpartyIdentificationInformationChanging(this, null);
+    				OnPropertyChanging("RestrainingpartyIdentificationInformation");
+                    _restrainingpartyIdentificationInformation = value;
+                    OnPropertyChanged("RestrainingpartyIdentificationInformation");
+    
+                    if (value != null)
+                    {
+                        ((INotifyComplexPropertyChanging)_restrainingpartyIdentificationInformation).ComplexPropertyChanging += HandleRestrainingpartyIdentificationInformationChanging;
+                    }
+                }
+            }
+        }
+        private RestrainingPartyIDInfo _restrainingpartyIdentificationInformation;
+        private bool _restrainingpartyIdentificationInformationInitialized;
+
+        #endregion
+
         #region Navigation Properties
     
         [DataMember]
@@ -963,6 +1005,15 @@ namespace Faccts.Model.Entities
             IsDeserializing = false;
             ChangeTracker.ChangeTrackingEnabled = true;
         }
+        // Records the original values for the complex property RestrainingpartyIdentificationInformation
+        private void HandleRestrainingpartyIdentificationInformationChanging(object sender, EventArgs args)
+        {
+            if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
+            {
+                ChangeTracker.State = ObjectState.Modified;
+            }
+        }
+    
     
         protected virtual void ClearNavigationProperties()
         {

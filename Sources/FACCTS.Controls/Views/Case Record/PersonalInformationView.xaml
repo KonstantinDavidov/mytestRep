@@ -11,7 +11,7 @@
 	<UserControl.Resources>
 		<Converters:ObjectToBooleanConverter x:Key="ObjectToBooleanConverter"/>
 	</UserControl.Resources>
-	<Grid IsEnabled="{Binding CaseRecord, Converter={StaticResource ObjectToBooleanConverter}, FallbackValue=False, Mode=OneWay}">
+	<Grid IsEnabled="{Binding CaseRecord, Converter={StaticResource ObjectToBooleanConverter}, FallbackValue=False, Mode=OneWay}" x:Name="LayoutRoot">
 		<Grid.RowDefinitions>
 			<RowDefinition MaxHeight="220"/>
 			<RowDefinition MaxHeight="220"/>
@@ -19,6 +19,6 @@
 		</Grid.RowDefinitions>
 		<localcontrols:PartyControlView Grid.Row="0" DataContext="{Binding CaseRecord.CourtParty, Mode=OneWay}"/>
 		<localcontrols:PartyControlView Grid.Row="1" DataContext="{Binding CaseRecord.CourtParty1, Mode=OneWay}"/>
-		<controls:RestrainingPartyIDInfoControlView Grid.Row="2"/>
+        <controls:RestrainingPartyIDInfoControlView Grid.Row="2" DataContext="{Binding CaseRecord.RestrainingpartyIdentificationInformation, Mode=OneWay}" IDTypeItemsSource="{Binding DataContext.IdentificationIDTypes, Mode=OneWay, ElementName=LayoutRoot}"/>
 	</Grid>
 </UserControl>

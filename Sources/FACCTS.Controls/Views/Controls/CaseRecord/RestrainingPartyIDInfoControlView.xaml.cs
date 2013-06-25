@@ -22,5 +22,28 @@ namespace FACCTS.Controls
 		{
 			this.InitializeComponent();
 		}
+
+        #region IDTypeItemsSource
+
+        /// <summary>
+        /// IDTypeItemsSource Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty IDTypeItemsSourceProperty =
+            DependencyProperty.Register("IDTypeItemsSource", typeof(System.Collections.IEnumerable), typeof(RestrainingPartyIDInfoControlView),
+                new FrameworkPropertyMetadata(null));
+
+        /// <summary>
+        /// Gets or sets the IDTypeItemsSource property. This dependency property 
+        /// indicates ....
+        /// </summary>
+        public System.Collections.IEnumerable IDTypeItemsSource
+        {
+            get { return (System.Collections.IEnumerable)GetValue(IDTypeItemsSourceProperty); }
+            set { SetValue(IDTypeItemsSourceProperty, value); }
+        }
+
+        #endregion
+
+        
 	}
 }

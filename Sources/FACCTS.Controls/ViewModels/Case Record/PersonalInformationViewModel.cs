@@ -61,6 +61,22 @@ namespace FACCTS.Controls.ViewModels
                 return null;
             }
         }
+
+        private List<EnumDescript<FACCTS.Server.Model.Enums.IdentificationIDType>> _identificationIDTypes;
+        public List<EnumDescript<FACCTS.Server.Model.Enums.IdentificationIDType>> IdentificationIDTypes
+        {
+            get
+            {
+                if (_identificationIDTypes == null)
+                {
+                    _identificationIDTypes = Enum.GetValues(typeof(FACCTS.Server.Model.Enums.IdentificationIDType))
+                        .Cast<FACCTS.Server.Model.Enums.IdentificationIDType>()
+                        .Select(x => new EnumDescript<FACCTS.Server.Model.Enums.IdentificationIDType>(x))
+                        .ToList();
+                }
+                return _identificationIDTypes;
+            }
+        }
         
     }
 }
