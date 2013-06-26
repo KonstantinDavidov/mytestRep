@@ -68,6 +68,11 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
     <Compile Include="Operations\IManualTaskOperation.cs" />
+    <Compile Include="Service References\IntegrationWCFServiceRef\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
@@ -85,10 +90,24 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\CCPOR_ResponseService\Untitled.wsdl" />
+    <None Include="Service References\IntegrationWCFServiceRef\IntegrationWCFService.wsdl" />
+    <None Include="Service References\IntegrationWCFServiceRef\item.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\IntegrationWCFServiceRef\item1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\IntegrationWCFServiceRef\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\IntegrationWCFServiceRef\item3.xsd">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\CCPOR_RequestService\" />
     <WCFMetadataStorage Include="Service References\CCPOR_ResponseService\" />
+    <WCFMetadataStorage Include="Service References\IntegrationWCFServiceRef\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\CCPOR_RequestService\configuration91.svcinfo" />
@@ -128,7 +147,21 @@
       <Name>FACCTS.Server.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Service References\IntegrationWCFServiceRef\item.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\IntegrationWCFServiceRef\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\IntegrationWCFServiceRef\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\IntegrationWCFServiceRef\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

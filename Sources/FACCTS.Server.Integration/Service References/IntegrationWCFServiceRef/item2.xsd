@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/FACCTS.Server.Model.Enums" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/FACCTS.Server.Model.Enums" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="IntegrationTaskState">
+    <xs:annotation>
+      <xs:appinfo>
+        <ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Placed" />
+      <xs:enumeration value="Ready" />
+      <xs:enumeration value="Running" />
+      <xs:enumeration value="Finished" />
+      <xs:enumeration value="Error" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="IntegrationTaskState" nillable="true" type="tns:IntegrationTaskState" />
+  <xs:simpleType name="IntegrationTaskRepeatPeriod">
+    <xs:annotation>
+      <xs:appinfo>
+        <ActualType Name="unsignedByte" Namespace="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="OnceADay" />
+      <xs:enumeration value="OnceAWeek" />
+      <xs:enumeration value="OnceAMonth" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="IntegrationTaskRepeatPeriod" nillable="true" type="tns:IntegrationTaskRepeatPeriod" />
+</xs:schema>
