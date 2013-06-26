@@ -20,6 +20,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACCTS.Server", "FACCTS.Server\FACCTS.Server.csproj", "{D304C7F3-B619-4BA8-AF79-A6C77C6BE97C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACCTS.Server.Common", "FACCTS.Server.Common\FACCTS.Server.Common.csproj", "{FF6F3BE2-F68C-492D-BADA-E0E4C9524D53}"
+	ProjectSection(ProjectDependencies) = postProject
+		{72716096-406B-4279-9703-B52BCED66890} = {72716096-406B-4279-9703-B52BCED66890}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACCTS.Server.Data", "FACCTS.Server.Services\FACCTS.Server.Data.csproj", "{28230005-EF1C-40FE-B7CF-D0850E920280}"
 EndProject
@@ -42,6 +45,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Faccts.Model", "Faccts.Model\Faccts.Model.csproj", "{90761585-4755-4E44-B9D2-739ADA889311}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACCTS.WCFService", "FACCTS.WCFService\FACCTS.WCFService.csproj", "{15B3E0D2-6217-493A-A690-158C497F5318}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsServiceStopper", "WindowsServiceStopper\WindowsServiceStopper.csproj", "{72716096-406B-4279-9703-B52BCED66890}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsServiceStarter", "WindowsServiceStarter\WindowsServiceStarter.csproj", "{BDF92D3F-B2E7-4261-A713-FAB497D4B8A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -195,6 +202,22 @@ Global
 		{15B3E0D2-6217-493A-A690-158C497F5318}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15B3E0D2-6217-493A-A690-158C497F5318}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15B3E0D2-6217-493A-A690-158C497F5318}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72716096-406B-4279-9703-B52BCED66890}.Analysis (Debug)|Any CPU.ActiveCfg = Debug|Any CPU
+		{72716096-406B-4279-9703-B52BCED66890}.Analysis (Debug)|Any CPU.Build.0 = Debug|Any CPU
+		{72716096-406B-4279-9703-B52BCED66890}.Debug and Contracts|Any CPU.ActiveCfg = Debug|Any CPU
+		{72716096-406B-4279-9703-B52BCED66890}.Debug and Contracts|Any CPU.Build.0 = Debug|Any CPU
+		{72716096-406B-4279-9703-B52BCED66890}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72716096-406B-4279-9703-B52BCED66890}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72716096-406B-4279-9703-B52BCED66890}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72716096-406B-4279-9703-B52BCED66890}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDF92D3F-B2E7-4261-A713-FAB497D4B8A6}.Analysis (Debug)|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDF92D3F-B2E7-4261-A713-FAB497D4B8A6}.Analysis (Debug)|Any CPU.Build.0 = Debug|Any CPU
+		{BDF92D3F-B2E7-4261-A713-FAB497D4B8A6}.Debug and Contracts|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDF92D3F-B2E7-4261-A713-FAB497D4B8A6}.Debug and Contracts|Any CPU.Build.0 = Debug|Any CPU
+		{BDF92D3F-B2E7-4261-A713-FAB497D4B8A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDF92D3F-B2E7-4261-A713-FAB497D4B8A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDF92D3F-B2E7-4261-A713-FAB497D4B8A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDF92D3F-B2E7-4261-A713-FAB497D4B8A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -214,6 +237,8 @@ Global
 		{38CE5C59-909E-4DA6-8E1D-7EEE7312CA9A} = {3B38B188-9D94-4E91-BBD2-C5DFACB9B319}
 		{C129C90C-774C-47D7-A19E-57B31C87AE18} = {3B38B188-9D94-4E91-BBD2-C5DFACB9B319}
 		{0F447B42-A179-4004-AE84-049698F21146} = {D7F7EF57-5EBB-4842-A320-BEE7AE631B9C}
+		{72716096-406B-4279-9703-B52BCED66890} = {D7F7EF57-5EBB-4842-A320-BEE7AE631B9C}
+		{BDF92D3F-B2E7-4261-A713-FAB497D4B8A6} = {D7F7EF57-5EBB-4842-A320-BEE7AE631B9C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.2\lib\NET35
