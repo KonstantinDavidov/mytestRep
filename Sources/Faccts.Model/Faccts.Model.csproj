@@ -215,6 +215,7 @@
     <Compile Include="Entities\Partials\Designation.cs" />
     <Compile Include="Entities\Partials\EyesColor.cs" />
     <Compile Include="Entities\Partials\HairColor.cs" />
+    <Compile Include="Entities\Partials\Interpreters.cs" />
     <Compile Include="Entities\Partials\OtherProtected.cs" />
     <Compile Include="Entities\Partials\ParticipantRole.cs" />
     <Compile Include="Entities\Partials\Race.cs" />

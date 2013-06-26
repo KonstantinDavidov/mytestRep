@@ -40,6 +40,10 @@
 				<Border Grid.ColumnSpan="2" DataContext="{Binding CaseRecord, Mode=OneWay}">
 					<DataGrid ItemsSource="{Binding Witnesses, Mode=OneWay}" x:Name="dgWitness" AutoGenerateColumns="False" CanUserAddRows="False">
 						<DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding EntityTypeName, Mode=OneWay}"
+                                                Header="Entity Type"
+                                                IsReadOnly="True"
+                                                Width="0.1*" />
                             <DataGridComboBoxColumn SelectedValueBinding="{Binding CourtParty, Mode=TwoWay}"
                                                     SelectedValuePath="UnderlyingObject"
                                                     ItemsSource="{Binding Source={StaticResource cvsWitnessesFor}, Mode=OneWay}"
@@ -58,7 +62,7 @@
                                                     DisplayMemberPath="DesignationName"/>
                             <DataGridTextColumn Binding="{Binding Contact, Mode=TwoWay}"
                                                 Header="Contact"
-                                                Width="0.3*" />
+                                                Width="0.2*" />
                         </DataGrid.Columns>
 					</DataGrid>
 				</Border>
@@ -90,6 +94,10 @@
                 <Border Grid.ColumnSpan="2" DataContext="{Binding CaseRecord, Mode=OneWay}">
 				    <DataGrid x:Name="dataGrid" ItemsSource="{Binding Interpreters,Mode=OneWay}" AutoGenerateColumns="False" CanUserAddRows="False">
 					    <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding EntityTypeName, Mode=OneWay}"
+                                                Header="Entity Type"
+                                                IsReadOnly="True"
+                                                Width="0.1*" />
                             <DataGridTextColumn Binding="{Binding FirstName, Mode=TwoWay}" Header="First Name" Width="0.2*"/>
                             <DataGridTextColumn Binding="{Binding LastName, Mode=TwoWay}"
                                                 Header="Last Name"
@@ -98,7 +106,7 @@
                                                     SelectedValuePath="UnderlyingObject"
                                                     SelectedValueBinding="{Binding CourtParty, Mode=TwoWay}"
                                                     Header="Interpreter For"
-                                                    Width="0.4*" />
+                                                    Width="0.3*" />
                             <DataGridTextColumn Binding="{Binding Language, Mode=TwoWay}"
                                                 Header="Language"
                                                 Width="0.2*" />

@@ -620,6 +620,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EntityType" Type="int" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="255" />
           <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="255" />
           <Property Name="Language" Type="nvarchar" MaxLength="150" />
@@ -798,6 +799,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EntityType" Type="int" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="255" />
           <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="255" />
           <Property Name="Contact" Type="nvarchar(max)" />
@@ -2131,6 +2133,7 @@
           <Property Type="Int32" Name="CaseRecord_Id" />
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_Interpreters_dbo_CaseRecord_CaseRecord_Id" FromRole="Interpreters" ToRole="CaseRecord" />
           <NavigationProperty Name="CourtParty" Relationship="FACCTS_DBModel.FK_dbo_Interpreters_dbo_CourtParty_InterpreterFor_Id" FromRole="Interpreters" ToRole="CourtParty" />
+          <Property Type="Int32" Name="EntityType" Nullable="false" />
         </EntityType>
         <EntityType Name="KeyMaterialConfiguration">
           <Key>
@@ -2308,6 +2311,7 @@
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_Witnesses_dbo_CaseRecord_CaseRecord_Id" FromRole="Witnesses" ToRole="CaseRecord" />
           <NavigationProperty Name="CourtParty" Relationship="FACCTS_DBModel.FK_dbo_Witnesses_dbo_CourtParty_WitnessFor_Id" FromRole="Witnesses" ToRole="CourtParty" />
           <NavigationProperty Name="Designation" Relationship="FACCTS_DBModel.FK_dbo_Witnesses_dbo_Designation_Designation_Id" FromRole="Witnesses" ToRole="Designation" />
+          <Property Type="Int32" Name="EntityType" Nullable="false" />
         </EntityType>
         <EntityType Name="WSFederationConfiguration">
           <Key>
@@ -3296,6 +3300,7 @@
           <EntitySetMapping Name="Interpreters">
             <EntityTypeMapping TypeName="FACCTS_DBModel.Interpreters">
               <MappingFragment StoreEntitySet="Interpreters">
+                <ScalarProperty Name="EntityType" ColumnName="EntityType" />
                 <ScalarProperty Name="Language" ColumnName="Language" />
                 <ScalarProperty Name="CaseRecord_Id" ColumnName="CaseRecord_Id" />
                 <ScalarProperty Name="InterpreterFor_Id" ColumnName="InterpreterFor_Id" />
@@ -3464,6 +3469,7 @@
           <EntitySetMapping Name="Witnesses">
             <EntityTypeMapping TypeName="FACCTS_DBModel.Witnesses">
               <MappingFragment StoreEntitySet="Witnesses">
+                <ScalarProperty Name="EntityType" ColumnName="EntityType" />
                 <ScalarProperty Name="CaseRecord_Id" ColumnName="CaseRecord_Id" />
                 <ScalarProperty Name="Designation_Id" ColumnName="Designation_Id" />
                 <ScalarProperty Name="WitnessFor_Id" ColumnName="WitnessFor_Id" />
