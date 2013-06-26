@@ -215,10 +215,13 @@
     <Compile Include="Entities\Partials\Designation.cs" />
     <Compile Include="Entities\Partials\EyesColor.cs" />
     <Compile Include="Entities\Partials\HairColor.cs" />
+    <Compile Include="Entities\Partials\OtherProtected.cs" />
     <Compile Include="Entities\Partials\ParticipantRole.cs" />
     <Compile Include="Entities\Partials\Race.cs" />
+    <Compile Include="Entities\Partials\RestrainingPartyIDInfo.cs" />
     <Compile Include="Entities\Partials\Sex.cs" />
     <Compile Include="Entities\Partials\User.cs" />
+    <Compile Include="Entities\Partials\Witnesses.cs" />
     <Compile Include="Entities\ParticipantRole.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -229,6 +232,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\RelyingParties.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\RestrainingPartyIDInfo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Role.cs">

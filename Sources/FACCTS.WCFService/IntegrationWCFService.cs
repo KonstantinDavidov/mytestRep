@@ -1,6 +1,7 @@
 ﻿using FACCTS.Server.Common;
 using FACCTS.Server.DataContracts;
 using FACCTS.Server.Model.DataModel;
+using FACCTS.Server.Integration;
 using log4net;
 using System;
 using System.ComponentModel.Composition;
@@ -28,6 +29,9 @@ namespace FACCTS.WCFService
                     serviceManager.InsertManualIntegrationTask(task);
                     serviceManager.Commit();
                 }
+
+                //run task processing asynchronously
+                IntegrationTasksManager.Instance.ProcessNewManualTasksAsync();
             }
             catch (Exception exc)
             {

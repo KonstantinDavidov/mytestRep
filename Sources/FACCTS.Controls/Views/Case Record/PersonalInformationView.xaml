@@ -1,20 +1,24 @@
-﻿<UserControl x:Class="FACCTS.Controls.Views.PersonalInformationView"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:localcontrols="clr-namespace:FACCTS.Controls.Views.Controls"
 			 xmlns:controls="clr-namespace:FACCTS.Controls"
+             xmlns:Converters="clr-namespace:FACCTS.Controls.Converters" x:Class="FACCTS.Controls.Views.PersonalInformationView"
              mc:Ignorable="d" 
              d:DesignHeight="399" d:DesignWidth="533">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition MaxHeight="220"/>
-            <RowDefinition MaxHeight="220"/>
-            <RowDefinition MaxHeight="110"/>
-        </Grid.RowDefinitions>
-        <localcontrols:PartyControlView Grid.Row="0" DataContext="{Binding CaseRecord.CourtParty, Mode=OneWay}"/>
-        <localcontrols:PartyControlView Grid.Row="1" DataContext="{Binding CaseRecord.CourtParty1, Mode=OneWay}"/>
-		<controls:RestrainingPartyIDInfoControlView Grid.Row="2"/>
-    </Grid>
+	<UserControl.Resources>
+		<Converters:ObjectToBooleanConverter x:Key="ObjectToBooleanConverter"/>
+	</UserControl.Resources>
+	<Grid IsEnabled="{Binding CaseRecord, Converter={StaticResource ObjectToBooleanConverter}, FallbackValue=False, Mode=OneWay}" x:Name="LayoutRoot">
+		<Grid.RowDefinitions>
+			<RowDefinition MaxHeight="220"/>
+			<RowDefinition MaxHeight="220"/>
+			<RowDefinition MaxHeight="110"/>
+		</Grid.RowDefinitions>
+		<localcontrols:PartyControlView Grid.Row="0" DataContext="{Binding CaseRecord.CourtParty, Mode=OneWay}"/>
+		<localcontrols:PartyControlView Grid.Row="1" DataContext="{Binding CaseRecord.CourtParty1, Mode=OneWay}"/>
+        <controls:RestrainingPartyIDInfoControlView Grid.Row="2" DataContext="{Binding CaseRecord.RestrainingpartyIdentificationInformation, Mode=OneWay}" IDTypeItemsSource="{Binding DataContext.IdentificationIDTypes, Mode=OneWay, ElementName=LayoutRoot}"/>
+	</Grid>
 </UserControl>

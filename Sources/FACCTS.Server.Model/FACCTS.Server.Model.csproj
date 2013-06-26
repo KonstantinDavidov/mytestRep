@@ -114,6 +114,7 @@
     <Compile Include="Entities\RelyingParties.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Entities\RestrainingPartyIdentificationInformation.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\ScheduledIntegrationTask.cs" />
     <Compile Include="Entities\Sex.cs" />

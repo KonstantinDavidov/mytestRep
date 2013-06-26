@@ -138,20 +138,20 @@ namespace Faccts.Model.Entities
         private string _lastName;
     
         [DataMember]
-        public string Contact
+        public string Language
         {
-            get { return _contact; }
+            get { return _language; }
             set
             {
-                if (_contact != value)
+                if (_language != value)
                 {
-    				OnPropertyChanging("Contact");
-                    _contact = value;
-                    OnPropertyChanged("Contact");
+    				OnPropertyChanging("Language");
+                    _language = value;
+                    OnPropertyChanged("Language");
                 }
             }
         }
-        private string _contact;
+        private string _language;
     
         [DataMember]
         public int InterpreterFor_Id

@@ -105,7 +105,7 @@ namespace Faccts.Model.Entities
         private int _id;
     
         [DataMember]
-        public System.DateTime ReceiveTime
+        public Nullable<System.DateTime> ReceiveTime
         {
             get { return _receiveTime; }
             set
@@ -118,10 +118,10 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private System.DateTime _receiveTime;
+        private Nullable<System.DateTime> _receiveTime;
     
         [DataMember]
-        public System.DateTime StartTime
+        public Nullable<System.DateTime> StartTime
         {
             get { return _startTime; }
             set
@@ -134,10 +134,10 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private System.DateTime _startTime;
+        private Nullable<System.DateTime> _startTime;
     
         [DataMember]
-        public System.DateTime EndTime
+        public Nullable<System.DateTime> EndTime
         {
             get { return _endTime; }
             set
@@ -150,7 +150,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private System.DateTime _endTime;
+        private Nullable<System.DateTime> _endTime;
     
         [DataMember]
         public string Info

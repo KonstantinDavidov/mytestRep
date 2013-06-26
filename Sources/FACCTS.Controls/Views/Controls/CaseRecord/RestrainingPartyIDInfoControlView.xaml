@@ -19,15 +19,15 @@
 					</Grid.ColumnDefinitions>
 					<DockPanel VerticalAlignment="Center" >
 						<TextBlock TextWrapping="Wrap" Text="ID Type" DockPanel.Dock="Left"/>
-						<ComboBox DockPanel.Dock="Right" Margin="10,0"/>
+                        <ComboBox DockPanel.Dock="Right" Margin="10,0" ItemsSource="{Binding IDTypeItemsSource, ElementName=UserControl, Mode=OneWay}" SelectedValuePath="Value" SelectedValue="{Binding IDTypeEnum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 					</DockPanel>
 					<DockPanel Grid.Column="1"  VerticalAlignment="Center">
-						<TextBlock TextWrapping="Wrap" Text="ID Number"/>
-						<TextBox TextWrapping="Wrap" Text="TextBox" DockPanel.Dock="Right" Margin="10,0"/>
+						<TextBlock TextWrapping="Wrap" Text="ID Number" VerticalAlignment="Center"/>
+                        <TextBox TextWrapping="Wrap" Text="{Binding IDNumber, Mode=TwoWay}" DockPanel.Dock="Right" Margin="10,0" Style="{DynamicResource TextBoxWithAdorner}" Tag="ID Number"/>
 					</DockPanel>
 					<DockPanel VerticalAlignment="Center" Grid.Column="2">
 						<TextBlock TextWrapping="Wrap" Text="ID Issued Date" VerticalAlignment="Center"/>
-						<TextBox TextWrapping="Wrap" Text="TextBox" DockPanel.Dock="Right" Margin="10,0"/>
+                        <DatePicker DockPanel.Dock="Right" Margin="10,0" SelectedDate="{Binding IDIssuedDateNullable, Mode=TwoWay}"/>
 					</DockPanel>
 				</Grid>
 			</Border>

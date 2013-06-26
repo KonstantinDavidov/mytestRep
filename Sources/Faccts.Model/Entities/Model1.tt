@@ -1220,6 +1220,7 @@ foreach (ComplexType complex in code.GetItemsToGenerate<ComplexType>(ItemCollect
             if (<#=code.FieldName(edmProperty)#> != value)
             {
                 OnComplexPropertyChanging();
+				OnPropertyChanging("<#=edmProperty.Name#>");
                 <#=code.FieldName(edmProperty)#> = value;
                 OnPropertyChanged("<#=edmProperty.Name#>");
             }
