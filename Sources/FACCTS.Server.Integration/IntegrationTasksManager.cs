@@ -10,9 +10,12 @@ using FACCTS.Server.Common;
 using FACCTS.Server.DataContracts;
 using FACCTS.Server.Model.DataModel;
 using FACCTS.Server.Model.Enums;
+using FACCTS.Server.Integration.Operations;
+using System.ComponentModel.Composition;
 
 namespace FACCTS.Server.Integration
 {
+    [Export]
     public class IntegrationTasksManager
     {
         private IntegrationTasksManager()
@@ -49,6 +52,12 @@ namespace FACCTS.Server.Integration
 
         private Timer _scheduledTasksTimer;
 
+        [ImportMany(typeof(IManualTaskOperation))]
+        private IEnumerable<IManualTaskOperation> _mTasksOperations;
+
+        [ImportMany(typeof(IScheduledTaskOperaiton))]
+        private IEnumerable<IScheduledTaskOperaiton> _sTasksOperations;
+
         public static IntegrationTasksManager Instance
         {
             get
@@ -59,7 +68,7 @@ namespace FACCTS.Server.Integration
                     {
                         if (_instance == null)
                         {
-                            _instance = new IntegrationTasksManager();
+                            _instance = ServiceLocator.Current.GetInstance<IntegrationTasksManager>();
                         }
                     }
                 }
@@ -111,14 +120,22 @@ namespace FACCTS.Server.Integration
         {
             _logger.Info("ManualTasksTimer elapsed");
             List<ManualIntegrationTask> readyTasks = PrepareManualTasks();
-            StartManualTasksExecution(readyTasks);
+            if (readyTasks.Count > 0)
+            {
+                _logger.Info(string.Format("Found group of {0} manual tasks ready to run", readyTasks.Count));
+                StartManualTasksExecution(readyTasks);
+            }
         }
 
         private void ScheduledTasksTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             _logger.Info("ScheduledTasksTimer elapsed");
             List<ScheduledIntegrationTask> readyTasks = PrepareScheduledTasks();
-            StartScheduledTasksExecution(readyTasks);
+            if (readyTasks.Count > 0)
+            {
+                _logger.Info(string.Format("Found group of {0} scheduled tasks ready to run", readyTasks.Count));
+                StartScheduledTasksExecution(readyTasks);
+            }
         }
 
         /// <summary>
@@ -191,7 +208,7 @@ namespace FACCTS.Server.Integration
             try
             {
                 _logger.Info(string.Format("Executing manual task {0}", task.Id));
-                //task execution logic
+                _mTasksOperations.FirstOrDefault().ProcessTask(task);
                 task.State = IntegrationTaskState.Finished;
             }
             catch (Exception exc)
@@ -232,7 +249,7 @@ namespace FACCTS.Server.Integration
             try
             {
                 _logger.Info(string.Format("Executing scheduled task {0}", task.Id));
-                //task execution logic
+                _sTasksOperations.FirstOrDefault().ProcessTask(task);
                 task.State = IntegrationTaskState.Finished;
             }
             catch (Exception exc)
