@@ -168,6 +168,22 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<int> _caseRecord_Id;
+    
+        [DataMember]
+        public string Text
+        {
+            get { return _text; }
+            set
+            {
+                if (_text != value)
+                {
+    				OnPropertyChanging("Text");
+                    _text = value;
+                    OnPropertyChanged("Text");
+                }
+            }
+        }
+        private string _text;
 
         #endregion
 

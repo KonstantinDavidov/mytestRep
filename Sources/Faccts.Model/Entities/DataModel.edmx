@@ -336,6 +336,7 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" />
           <Property Name="Author_UserId" Type="int" Nullable="false" />
           <Property Name="CaseRecord_Id" Type="int" />
         </EntityType>
@@ -1788,6 +1789,7 @@
           <Property Type="Int32" Name="CaseRecord_Id" />
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_CaseNotes_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseNotes" ToRole="CaseRecord" />
           <NavigationProperty Name="User" Relationship="FACCTS_DBModel.FK_dbo_CaseNotes_dbo_User_Author_UserId" FromRole="CaseNotes" ToRole="User" />
+          <Property Type="String" Name="Text" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CaseRecord">
           <Key>
@@ -2989,6 +2991,7 @@
           <EntitySetMapping Name="CaseNotes">
             <EntityTypeMapping TypeName="FACCTS_DBModel.CaseNotes">
               <MappingFragment StoreEntitySet="CaseNotes">
+                <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="CaseRecord_Id" ColumnName="CaseRecord_Id" />
                 <ScalarProperty Name="Author_UserId" ColumnName="Author_UserId" />
                 <ScalarProperty Name="Status" ColumnName="Status" />

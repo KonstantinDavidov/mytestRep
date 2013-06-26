@@ -22,6 +22,8 @@ namespace FACCTS.Server.Model.DataModel
         [Required]
         public CaseNoteStatus Status { get; set; }
 
+        public string Text { get; set; }
+
         [InverseProperty("CaseNotes")]
         public virtual CaseRecord CaseRecord { get; set; }
     }

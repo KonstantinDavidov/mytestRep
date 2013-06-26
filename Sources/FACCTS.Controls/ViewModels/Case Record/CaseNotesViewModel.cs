@@ -33,6 +33,7 @@ namespace FACCTS.Controls.ViewModels
                     this.NotifyOfPropertyChange(() => CaseRecord);
                     if (x != null && x.CaseRecord != null)
                     {
+                        SelectedUser = null;
                         var caseNoteForCurrentUser = x.CaseRecord.CaseNotes.FirstOrDefault(y => y.User == authService.CurrentUser);
                         if (caseNoteForCurrentUser == null)
                         {
@@ -41,6 +42,7 @@ namespace FACCTS.Controls.ViewModels
                                     User = authService.CurrentUser,
                                 };
                             this.CaseRecord.CaseNotes.Add(newCN);
+                            SelectedUser = authService.CurrentUser;
                         }
                     }
                     this.NotifyOfPropertyChange(() => AvailableUsers);

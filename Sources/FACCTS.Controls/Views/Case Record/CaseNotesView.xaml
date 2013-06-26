@@ -51,7 +51,7 @@
 				<RowDefinition/>
 				<RowDefinition Height="Auto"/>
 			</Grid.RowDefinitions>
-			<rt:RichTextEditor/>
+			<rt:RichTextEditor IsToolBarVisible="False" Text="{Binding CaseNoteForSelectedUser.Text, Mode=TwoWay}"/>
 			<Border BorderThickness="1" Grid.Row="1" Style="{DynamicResource OrdinalBorder}">
 				<UniformGrid HorizontalAlignment="Left" VerticalAlignment="Top" Rows="1" Columns="2" Margin="0">
 					<Button Content="Make Private" Width="75" Margin="5,0"/>
