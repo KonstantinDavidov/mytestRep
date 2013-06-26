@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 namespace FACCTS.Server.Integration.Operations
 {
     [Export(typeof(IScheduledTaskOperaiton))]
-    public class CommonScheduledTaskOperation : IScheduledTaskOperaiton
+    [PartCreationPolicy(CreationPolicy.NonShared)]
+    internal class CommonScheduledTaskOperation : IScheduledTaskOperaiton
     {
         public void ProcessTask(Model.DataModel.ScheduledIntegrationTask task)
         {
