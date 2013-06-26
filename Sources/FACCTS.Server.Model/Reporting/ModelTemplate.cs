@@ -5,8 +5,9 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using FACCTS.Server.Model.Reporting.Entities;
 using FACCTS.Server.Model.DataModel;
+using System.Collections.Generic;
 
-namespace FACCTS.Server.Model.ViewModels
+namespace FACCTS.Services.ViewModels
 {
     
 			
@@ -182,6 +183,17 @@ namespace FACCTS.Server.Model.ViewModels
 			}
 		}
 		
+		private bool _isAttach;
+		public bool IsAttach
+		{
+			get{return _isAttach;}
+			set
+			{
+				_isAttach = value;
+
+			}
+		}
+		
 		private string _otherDescription;
 		public string OtherDescription
 		{
@@ -207,26 +219,48 @@ namespace FACCTS.Server.Model.ViewModels
 	}
 	
 			
-	public partial class NewCourtCaseDialogViewModel
+	public partial class CH130RestrainedPersonPayment
 	{
-		private int _caseNumber;
-		public int CaseNumber
+		private bool _isEnabled;
+		public bool IsEnabled
 		{
-			get{return _caseNumber;}
+			get{return _isEnabled;}
 			set
 			{
-				_caseNumber = value;
+				_isEnabled = value;
 
 			}
 		}
 		
-		private bool _isEditing;
-		public bool IsEditing
+		private bool _isAttonrneyFees;
+		public bool IsAttonrneyFees
 		{
-			get{return _isEditing;}
+			get{return _isAttonrneyFees;}
 			set
 			{
-				_isEditing = value;
+				_isAttonrneyFees = value;
+
+			}
+		}
+		
+		private string _otherDescription;
+		public string OtherDescription
+		{
+			get{return _otherDescription;}
+			set
+			{
+				_otherDescription = value;
+
+			}
+		}
+		
+		private List<OtherProtected> _otherProtectedPersons;
+		public List<OtherProtected> OtherProtectedPersons
+		{
+			get{return _otherProtectedPersons;}
+			set
+			{
+				_otherProtectedPersons = value;
 
 			}
 		}
@@ -265,6 +299,39 @@ namespace FACCTS.Server.Model.ViewModels
 			set
 			{
 				_conductSection = value;
+
+			}
+		}
+		
+		private CH130ConductChoice _stayAwayOrdersSection;
+		public CH130ConductChoice StayAwayOrdersSection
+		{
+			get{return _stayAwayOrdersSection;}
+			set
+			{
+				_stayAwayOrdersSection = value;
+
+			}
+		}
+		
+		private bool _isNoGuns;
+		public bool IsNoGuns
+		{
+			get{return _isNoGuns;}
+			set
+			{
+				_isNoGuns = value;
+
+			}
+		}
+		
+		private DateTime? _ordersEndDate;
+		public DateTime? OrdersEndDate
+		{
+			get{return _ordersEndDate;}
+			set
+			{
+				_ordersEndDate = value;
 
 			}
 		}

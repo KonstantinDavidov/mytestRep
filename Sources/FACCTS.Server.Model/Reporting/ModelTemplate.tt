@@ -8,7 +8,6 @@
 <#@ import namespace="System" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Xml.Linq" #>
-<#@ import namespace="System.Collections.Generic" #>
 <# 
 
 string defaultNamespace =string.Empty;
@@ -34,6 +33,7 @@ using System.ComponentModel;
 using System.Collections.ObjectModel;
 using FACCTS.Server.Model.Reporting.Entities;
 using FACCTS.Server.Model.DataModel;
+using System.Collections.Generic;
 
 namespace <#= defaultNamespace #>
 {

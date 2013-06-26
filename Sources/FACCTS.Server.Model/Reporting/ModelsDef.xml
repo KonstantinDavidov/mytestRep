@@ -24,16 +24,9 @@
     <Property name="OtherDescription" type="string"/>
     <Property name="OtherProtectedPersons" type="List" collectionType="OtherProtected"/>
   </Model>
-  <Model name="CH130Payment">
+  <Model name="CH130RestrainedPersonPayment">
     <Property name="IsEnabled" type="bool"/>
-    <Property name="Person" type="bool"/>
-    <Property name="Home" type="bool"/>
-    <Property name="Vehicle" type="bool"/>
-    <Property name="ChildCare" type="bool"/>
-    <Property name="Work" type="bool"/>
-    <Property name="OtherProtected" type="bool"/>
-    <Property name="Other" type="bool"/>
-    <Property name="IsAttach" type="bool"/>
+    <Property name="IsAttonrneyFees" type="bool"/>
     <Property name="OtherDescription" type="string"/>
     <Property name="OtherProtectedPersons" type="List" collectionType="OtherProtected"/>
   </Model>
