@@ -1,7 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ModelsDef>
-  
- 
 
   <Model name="NewCourtCaseDialogViewModel">
     <Property name="CaseNumber" type="string"/>

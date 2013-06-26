@@ -1,13 +1,51 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ModelsDef>
   
- 
-
-  <Model name="NewCourtCaseDialogViewModel">
-    <Property name="CaseNumber" type="string"/>
-    <Property name="IsEditing" type="bool"/>
-  </Model>
+ <Model name="CH130ConductChoice">
+   <Property name="IsEnabled" type="bool"/>
+   <Property name="NoAbuse" type="bool"/>
+   <Property name="NoContact" type="bool"/>
+   <Property name="DontTryToLocate" type="bool"/>
+   <Property name="CoversOtherProtectedPerson" type="bool"/>
+   <Property name="Other" type="bool"/>
+   <Property name="OtherDescription" type="string"/>
+ </Model>
   
+  <Model name="CH130StayAwayOrders">
+    <Property name="IsEnabled" type="bool"/>
+    <Property name="Person" type="bool"/>
+    <Property name="Home" type="bool"/>
+    <Property name="Vehicle" type="bool"/>
+    <Property name="ChildCare" type="bool"/>
+    <Property name="Work" type="bool"/>
+    <Property name="OtherProtected" type="bool"/>
+    <Property name="Other" type="bool"/>
+    <Property name="IsAttach" type="bool"/>
+    <Property name="OtherDescription" type="string"/>
+    <Property name="OtherProtectedPersons" type="List" collectionType="OtherProtected"/>
+  </Model>
+  <Model name="CH130Payment">
+    <Property name="IsEnabled" type="bool"/>
+    <Property name="Person" type="bool"/>
+    <Property name="Home" type="bool"/>
+    <Property name="Vehicle" type="bool"/>
+    <Property name="ChildCare" type="bool"/>
+    <Property name="Work" type="bool"/>
+    <Property name="OtherProtected" type="bool"/>
+    <Property name="Other" type="bool"/>
+    <Property name="IsAttach" type="bool"/>
+    <Property name="OtherDescription" type="string"/>
+    <Property name="OtherProtectedPersons" type="List" collectionType="OtherProtected"/>
+  </Model>
+
+  <Model name="CH130">
+    <Property name="Party1" type="Party"/>
+    <Property name="Party2" type="Party"/>
+    <Property name="ConductSection" type="CH130ConductChoice"/>
+    <Property name="StayAwayOrdersSection" type="CH130ConductChoice"/>
+    <Property name="IsNoGuns" type="bool"/>
+    <Property name="OrdersEndDate" type="DateTime?"/>
+  </Model>
  
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -20,7 +58,7 @@
                 <xs:element name="Property" minOccurs="1" maxOccurs="unbounded">
                   <xs:complexType>
                     <xs:attribute name="name" type="xs:string" use="required" />
-                    <xs:attribute name="type" type="systemTypes" default="string" />
+                    <xs:attribute name="type" default="string" />
                     <xs:attribute name="collectionType" type="xs:string" use="optional" />
                   </xs:complexType>
                 </xs:element>
@@ -42,6 +80,7 @@
         <xs:enumeration value="DateTime"></xs:enumeration>
         <xs:enumeration value="DateTime?"></xs:enumeration>
         <xs:enumeration value="Collection"></xs:enumeration>
+        <xs:enumeration value="Party"></xs:enumeration>
       </xs:restriction>
     </xs:simpleType>
   </xs:schema>
