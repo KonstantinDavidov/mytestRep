@@ -5,12 +5,15 @@
              xmlns:rt="clr-namespace:WpfRichText;assembly=WpfRichText"
              xmlns:Converters="clr-namespace:FACCTS.Controls.Converters"
              xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cal="http://www.caliburnproject.org"
              mc:Ignorable="d"
              x:Class="FACCTS.Controls.Views.CaseNotesView"
              d:DesignHeight="450.507"
              d:DesignWidth="601.725">
 
     <UserControl.Resources>
+    	<Converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
 		<Converters:ObjectToBooleanConverter x:Key="ObjectToBooleanConverter"/>
         <CollectionViewSource x:Key="cvsUsers"
                               Source="{Binding AvailableUsers, Mode=OneWay}">
@@ -19,24 +22,14 @@
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
         <DataTemplate x:Key="FullNameItemTemplate">
-        	<TextBlock TextWrapping="NoWrap">
-                <InlineUIContainer>
+        	<TextBlock TextWrapping="NoWrap"><InlineUIContainer>
         			<TextBlock TextWrapping="NoWrap"
-                               >
-                        <Run Text="{Binding FirstName, Mode=OneWay}"/>
-                        <Run Text=" " />
-                    </TextBlock>
-        		</InlineUIContainer>
-                <InlineUIContainer>
-        			<TextBlock TextWrapping="NoWrap">
-                        <Run Text="{Binding MiddleName, Mode=OneWay}" />
-                        <Run Text=" " />
-                    </TextBlock>
-        		</InlineUIContainer>
-                <InlineUIContainer>
+                               ><Run Text="{Binding FirstName, Mode=OneWay}"/><Run Text=" "/><Run Text=" " /></TextBlock>
+        		</InlineUIContainer><Run Text=" "/><InlineUIContainer>
+        			<TextBlock TextWrapping="NoWrap"><Run Text="{Binding MiddleName, Mode=OneWay}" /><Run Text=" "/><Run Text=" " /></TextBlock>
+        		</InlineUIContainer><Run Text=" "/><InlineUIContainer>
         			<TextBlock TextWrapping="NoWrap" Text="{Binding LastName, Mode=OneWay}"/>
-        		</InlineUIContainer>
-            </TextBlock>
+        		</InlineUIContainer></TextBlock>
         </DataTemplate>
 	</UserControl.Resources>
 
@@ -51,12 +44,23 @@
 				<RowDefinition/>
 				<RowDefinition Height="Auto"/>
 			</Grid.RowDefinitions>
-			<rt:RichTextEditor IsToolBarVisible="False" Text="{Binding CaseNoteForSelectedUser.Text, Mode=TwoWay}"/>
-			<Border BorderThickness="1" Grid.Row="1" Style="{DynamicResource OrdinalBorder}">
+            <rt:RichTextEditor IsToolBarVisible="False"
+                               IsContextMenuEnabled="False"
+                               Text="{Binding CaseNoteForSelectedUser.Text, Mode=TwoWay}"
+                               Foreground="Black" IsReadOnly="{Binding CanEditNote, Converter={StaticResource InvertedBooleanConverter}, Mode=OneWay}" />
+            <Border BorderThickness="1" Grid.Row="1" Style="{DynamicResource OrdinalBorder}" Visibility="{Binding CanEditNote, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
 				<UniformGrid HorizontalAlignment="Left" VerticalAlignment="Top" Rows="1" Columns="2" Margin="0">
-					<Button Content="Make Private" Width="75" Margin="5,0"/>
-					<Button Content="Make Public" Width="75" Margin="5,0"/>
-				</UniformGrid>
+                    <Button x:Name="button" Content="Make Private"
+                            Width="75"
+                            Margin="5,0"
+                            IsEnabled="{Binding CaseNoteForSelectedUser.IsPublic,Mode=OneWay}"
+                            cal:Message.Attach="[Event Click] = [Action MakePublic]"/>
+                    <Button Content="Make Public"
+                            Width="75"
+                            Margin="5,0"
+                            IsEnabled="{Binding CaseNoteForSelectedUser.IsPublic, Converter={StaticResource InvertedBooleanConverter}, Mode=OneWay}"
+                            cal:Message.Attach="[Event Click] = [Action MakePrivate]" />
+                </UniformGrid>
 			</Border>
 		</Grid>
 	</Grid>

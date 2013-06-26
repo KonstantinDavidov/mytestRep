@@ -85,6 +85,7 @@
     <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
     <Property name="CaseNoteForSelectedUser" type="Faccts.Model.Entities.CaseNotes"/>
     <Property name="SelectedUser" type="Faccts.Model.Entities.User"/>
+    <Property name="CanEditNote" type="bool"/>
   </Model>
   
   <xs:schema 

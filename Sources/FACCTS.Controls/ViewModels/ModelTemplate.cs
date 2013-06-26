@@ -637,6 +637,17 @@ namespace FACCTS.Controls.ViewModels
 				}
 			}
 		}
+		
+		private bool _canEditNote;
+		public bool CanEditNote
+		{
+			get{return _canEditNote;}
+			set{
+				if(_canEditNote!=value){
+					this.RaiseAndSetIfChanged(ref _canEditNote, value);
+				}
+			}
+		}
 				
 	}
 	

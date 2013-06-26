@@ -62,6 +62,19 @@ namespace FACCTS.Controls.ViewModels
                     this.CaseNoteForSelectedUser = this.CaseRecord.CaseNotes.FirstOrDefault(y => y.User == x);
                 }
                 );
+            this.WhenAny(x => x.CaseNoteForSelectedUser, x => x.Value)
+                .Subscribe(x =>
+                {
+                    if (x != null)
+                    {
+                        this.CanEditNote = x.User == authService.CurrentUser;
+                    }
+                    else
+                    {
+                        this.CanEditNote = false;
+                    }
+                }
+                );
 
             this.DisplayName = "Case Notes";
         }
@@ -96,6 +109,19 @@ namespace FACCTS.Controls.ViewModels
             this.CurrentCourtCase = message.CourtCase;
         }
 
+        public void MakePublic()
+        {
+            if (this.CaseNoteForSelectedUser == null)
+                return;
+            CaseNoteForSelectedUser.IsPublic = true;
+        }
+
+        public void MakePrivate()
+        {
+            if (this.CaseNoteForSelectedUser == null)
+                return;
+            CaseNoteForSelectedUser.IsPublic = false;
+        }
         
     }
 }
