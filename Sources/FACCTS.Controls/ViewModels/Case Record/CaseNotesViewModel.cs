@@ -31,7 +31,35 @@ namespace FACCTS.Controls.ViewModels
                 .Subscribe(x =>
                 {
                     this.NotifyOfPropertyChange(() => CaseRecord);
+                    if (x != null && x.CaseRecord != null)
+                    {
+                        var caseNoteForCurrentUser = x.CaseRecord.CaseNotes.FirstOrDefault(y => y.User == authService.CurrentUser);
+                        if (caseNoteForCurrentUser == null)
+                        {
+                            var newCN = new CaseNotes()
+                                {
+                                    User = authService.CurrentUser,
+                                };
+                            this.CaseRecord.CaseNotes.Add(newCN);
+                        }
+                    }
+                    this.NotifyOfPropertyChange(() => AvailableUsers);
                 });
+            this.WhenAny(x => x.SelectedUser, x => x.Value)
+                .Subscribe(x =>
+                {
+                    if (x == null)
+                    {
+                        this.CaseNoteForSelectedUser= null;
+                        return;
+                    }
+                    if (this.CaseRecord == null || this.CaseRecord.CaseNotes == null)
+                    {
+                        return;
+                    }
+                    this.CaseNoteForSelectedUser = this.CaseRecord.CaseNotes.FirstOrDefault(y => y.User == x);
+                }
+                );
 
             this.DisplayName = "Case Notes";
         }
@@ -46,9 +74,26 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
+        public List<User> AvailableUsers
+        {
+            get
+            {
+                if (CaseRecord == null || CaseRecord.CaseNotes == null)
+                    return null;
+                var r = CaseRecord.CaseNotes.Select(x => x.User).ToList();
+                if (SelectedUser == null)
+                {
+                    SelectedUser = r.FirstOrDefault();
+                }
+                return r;
+            }
+        }
+
         public void Handle(CurrentCourtCaseChangedEvent message)
         {
             this.CurrentCourtCase = message.CourtCase;
         }
+
+        
     }
 }

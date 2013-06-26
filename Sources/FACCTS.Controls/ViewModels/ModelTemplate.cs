@@ -615,6 +615,28 @@ namespace FACCTS.Controls.ViewModels
 				}
 			}
 		}
+		
+		private Faccts.Model.Entities.CaseNotes _caseNoteForSelectedUser;
+		public Faccts.Model.Entities.CaseNotes CaseNoteForSelectedUser
+		{
+			get{return _caseNoteForSelectedUser;}
+			set{
+				if(_caseNoteForSelectedUser!=value){
+					this.RaiseAndSetIfChanged(ref _caseNoteForSelectedUser, value);
+				}
+			}
+		}
+		
+		private Faccts.Model.Entities.User _selectedUser;
+		public Faccts.Model.Entities.User SelectedUser
+		{
+			get{return _selectedUser;}
+			set{
+				if(_selectedUser!=value){
+					this.RaiseAndSetIfChanged(ref _selectedUser, value);
+				}
+			}
+		}
 				
 	}
 	
