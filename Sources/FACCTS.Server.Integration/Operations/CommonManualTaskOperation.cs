@@ -9,7 +9,8 @@ using System.Threading.Tasks;
 namespace FACCTS.Server.Integration.Operations
 {
     [Export(typeof(IManualTaskOperation))]
-    public class CommonManualTaskOperation : IManualTaskOperation
+    [PartCreationPolicy(CreationPolicy.NonShared)]
+    internal class CommonManualTaskOperation : IManualTaskOperation
     {
         public void ProcessTask(ManualIntegrationTask task)
         {

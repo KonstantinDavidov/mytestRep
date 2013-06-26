@@ -17,7 +17,7 @@ namespace FACCTS.Server.Integration
                 case IntegrationTaskRepeatPeriod.OnceADay:
                     return TimeSpan.FromDays(1);
                 case IntegrationTaskRepeatPeriod.OnceAMonth:
-                    return DateTime.Now.AddMonths(1) - DateTime.Now;
+                    return task.StartTime.AddMonths(1) - task.StartTime;
                 case IntegrationTaskRepeatPeriod.OnceAWeek:
                     return TimeSpan.FromDays(7);
                 default:

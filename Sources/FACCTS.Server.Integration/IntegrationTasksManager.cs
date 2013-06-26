@@ -68,7 +68,7 @@ namespace FACCTS.Server.Integration
                     {
                         if (_instance == null)
                         {
-                            _instance = new IntegrationTasksManager();
+                            _instance = ServiceLocator.Current.GetInstance<IntegrationTasksManager>();
                         }
                     }
                 }
@@ -185,7 +185,7 @@ namespace FACCTS.Server.Integration
                     }
                     dataManager.Commit();
                 }
-            }            
+            }
             return sTasks;
         }
 
@@ -208,7 +208,7 @@ namespace FACCTS.Server.Integration
             try
             {
                 _logger.Info(string.Format("Executing manual task {0}", task.Id));
-                //task execution logic
+                _mTasksOperations.FirstOrDefault().ProcessTask(task);
                 task.State = IntegrationTaskState.Finished;
             }
             catch (Exception exc)
@@ -249,7 +249,7 @@ namespace FACCTS.Server.Integration
             try
             {
                 _logger.Info(string.Format("Executing scheduled task {0}", task.Id));
-                //task execution logic
+                _sTasksOperations.FirstOrDefault().ProcessTask(task);
                 task.State = IntegrationTaskState.Finished;
             }
             catch (Exception exc)
