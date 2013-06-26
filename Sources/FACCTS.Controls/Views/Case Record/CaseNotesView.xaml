@@ -1,0 +1,31 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:rt="clr-namespace:WpfRichText;assembly=WpfRichText"
+    mc:Ignorable="d"
+	x:Class="FACCTS.Controls.Views.CaseNotesView"
+	d:DesignHeight="450.507" d:DesignWidth="601.725">
+
+	<Grid x:Name="LayoutRoot">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition MinWidth="150" Width="Auto"/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<ListBox/>
+		<Grid Grid.Column="1">
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+            <rt:RichTextEditor/>
+                <Border BorderThickness="1" Grid.Row="1" Style="{DynamicResource OrdinalBorder}">
+				<UniformGrid HorizontalAlignment="Left" VerticalAlignment="Top" Rows="1" Columns="2" Margin="0">
+					<Button Content="Make Private" Width="75" Margin="5,0"/>
+					<Button Content="Make Public" Width="75" Margin="5,0"/>
+				</UniformGrid>
+			</Border>
+		</Grid>
+	</Grid>
+</UserControl>

@@ -35,6 +35,10 @@ namespace FACCTS.Controls.ViewModels
                     }
                 });
             IsAuthenticated = _authenticationService.IsAuthenticated;
+            if (IsAuthenticated)
+            {
+                Authorized();
+            }
         }
 
         protected virtual void Authorized()

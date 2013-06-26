@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calculations\CourtCase.cs" />
+    <Compile Include="CurrentUserResponse.cs" />
     <Compile Include="Entities\Appearance.cs" />
     <Compile Include="Entities\Attorney.cs" />
     <Compile Include="Entities\AvailableCourtOrder.cs" />
