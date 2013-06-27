@@ -641,8 +641,7 @@
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <PropertyGroup>
-    <PostBuildEvent>$(TargetDir)DatabaseDeploy.exe
-</PostBuildEvent>
+    <PostBuildEvent>$(TargetDir)DatabaseDeploy.exe</PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.7\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.7\tools\Microsoft.Bcl.Build.targets')" />
   <PropertyGroup>

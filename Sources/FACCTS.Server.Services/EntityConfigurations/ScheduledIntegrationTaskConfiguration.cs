@@ -18,7 +18,7 @@ namespace FACCTS.Server.Data.EntityConfigurations
 
             HasOptional(t => t.User).WithMany().HasForeignKey(t => t.UserId);
 
-            Property(t => t.Info).HasMaxLength(500);
+            Property(t => t.Info);
         }
     }
 }

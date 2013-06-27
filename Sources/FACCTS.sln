@@ -41,12 +41,19 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACCTS.Server.Integration", "FACCTS.Server.Integration\FACCTS.Server.Integration.csproj", "{1E5971A8-1083-4FA4-A7F8-C64AF6DA4196}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACCTS.WindowsService", "FACCTS.WindowsService\FACCTS.WindowsService.csproj", "{DACBE331-C6CF-42A7-BB51-3826AA832D83}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BDF92D3F-B2E7-4261-A713-FAB497D4B8A6} = {BDF92D3F-B2E7-4261-A713-FAB497D4B8A6}
+		{72716096-406B-4279-9703-B52BCED66890} = {72716096-406B-4279-9703-B52BCED66890}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Faccts.Model", "Faccts.Model\Faccts.Model.csproj", "{90761585-4755-4E44-B9D2-739ADA889311}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FACCTS.WCFService", "FACCTS.WCFService\FACCTS.WCFService.csproj", "{15B3E0D2-6217-493A-A690-158C497F5318}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsServiceStopper", "WindowsServiceStopper\WindowsServiceStopper.csproj", "{72716096-406B-4279-9703-B52BCED66890}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BDF92D3F-B2E7-4261-A713-FAB497D4B8A6} = {BDF92D3F-B2E7-4261-A713-FAB497D4B8A6}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsServiceStarter", "WindowsServiceStarter\WindowsServiceStarter.csproj", "{BDF92D3F-B2E7-4261-A713-FAB497D4B8A6}"
 EndProject

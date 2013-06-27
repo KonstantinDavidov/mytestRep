@@ -146,6 +146,10 @@
       <Project>{5a675cbb-2774-4fde-a8c6-40aa46f4fa3f}</Project>
       <Name>FACCTS.Server.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FACCTS.Server.Services\FACCTS.Server.Data.csproj">
+      <Project>{28230005-ef1c-40fe-b7cf-d0850e920280}</Project>
+      <Name>FACCTS.Server.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\IntegrationWCFServiceRef\item.disco" />

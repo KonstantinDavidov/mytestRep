@@ -79,9 +79,21 @@
       <Project>{ff6f3be2-f68c-492d-bada-e0e4c9524d53}</Project>
       <Name>FACCTS.Server.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FACCTS.Server.dataContracts\FACCTS.Server.DataContracts.csproj">
+      <Project>{d5e0d9f2-0c8f-40e0-be66-8d33ec1dfc97}</Project>
+      <Name>FACCTS.Server.DataContracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FACCTS.Server.Integration\FACCTS.Server.Integration.csproj">
       <Project>{1e5971a8-1083-4fa4-a7f8-c64af6da4196}</Project>
       <Name>FACCTS.Server.Integration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FACCTS.Server.Model\FACCTS.Server.Model.csproj">
+      <Project>{5a675cbb-2774-4fde-a8c6-40aa46f4fa3f}</Project>
+      <Name>FACCTS.Server.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FACCTS.Server.Services\FACCTS.Server.Data.csproj">
+      <Project>{28230005-ef1c-40fe-b7cf-d0850e920280}</Project>
+      <Name>FACCTS.Server.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\FACCTS.WCFService\FACCTS.WCFService.csproj">
       <Project>{15b3e0d2-6217-493a-a690-158c497f5318}</Project>
@@ -91,7 +103,10 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /y $(ProjectDir)$(OutDir)$(TargetName).* $(SolutionDir)FACCTS.Server\bin\</PostBuildEvent>
+    <PostBuildEvent>$(TargetDir)WindowsServiceStarter.exe</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>$(TargetDir)WindowsServiceStopper.exe</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
