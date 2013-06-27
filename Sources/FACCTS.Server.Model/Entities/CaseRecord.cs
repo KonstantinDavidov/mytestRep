@@ -33,8 +33,6 @@ namespace FACCTS.Server.Model.DataModel
         [InverseProperty("CaseRecord")]
         public virtual ICollection<Interpreter> Interpreters { get; set; }
 
-        [InverseProperty("CaseRecord")]
-        public virtual ICollection<Appearance> Appearances { get; set; }
 
         [InverseProperty("CaseRecord")]
         public virtual ICollection<CaseHistory> CaseHistory { get; set; }

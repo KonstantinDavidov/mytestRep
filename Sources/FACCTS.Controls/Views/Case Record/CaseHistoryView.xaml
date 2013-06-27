@@ -11,16 +11,36 @@
 	<Grid x:Name="LayoutRoot">
 		<DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeRows="False">
 			<DataGrid.Columns>
-				<DataGridTextColumn Binding="{x:Null}" Header="Date"/>
-				<DataGridTextColumn Binding="{x:Null}"  Header="Event"/>
-				<DataGridCheckBoxColumn Binding="{x:Null}" Header="Party 1 Present"/>
-				<DataGridCheckBoxColumn Binding="{x:Null}" Header="Party 1 Sworn"/>
-				<DataGridCheckBoxColumn Binding="{x:Null}" Header="Party 1 Atty"/>
-				<DataGridCheckBoxColumn Binding="{x:Null}" Header="Party 2 Present"/>
-				<DataGridCheckBoxColumn Binding="{x:Null}" Header="Party 2 Sworn"/>
-				<DataGridCheckBoxColumn Binding="{x:Null}"  Header="Party 2 Atty"/>
-				<DataGridTextColumn Binding="{x:Null}" Header="Orders"/>
-				<DataGridTextColumn Binding="{x:Null}" Header="Merge Case ID"/>
+                <DataGridTextColumn Binding="{x:Null}"
+                                    Header="Date"
+                                    Width="0.1*" />
+                <DataGridTextColumn Binding="{x:Null}"
+                                    Header="Event"
+                                    Width="0.1*" />
+                <DataGridCheckBoxColumn Binding="{x:Null}"
+                                        Header="Party 1 Present"
+                                        Width="0.1*" />
+                <DataGridCheckBoxColumn Binding="{x:Null}"
+                                        Header="Party 1 Sworn"
+                                        Width="0.1*" />
+                <DataGridCheckBoxColumn Binding="{x:Null}"
+                                        Header="Party 1 Atty"
+                                        Width="0.1*" />
+                <DataGridCheckBoxColumn Binding="{x:Null}"
+                                        Header="Party 2 Present"
+                                        Width="0.1*" />
+                <DataGridCheckBoxColumn Binding="{x:Null}"
+                                        Header="Party 2 Sworn"
+                                        Width="0.1*" />
+                <DataGridCheckBoxColumn Binding="{x:Null}"
+                                        Header="Party 2 Atty"
+                                        Width="0.1*" />
+                <DataGridTextColumn Binding="{x:Null}"
+                                    Header="Orders"
+                                    Width="0.1*" />
+                <DataGridTextColumn Binding="{x:Null}"
+                                    Header="Merge Case ID"
+                                    Width="0.1*" />
 			</DataGrid.Columns>
 		</DataGrid>
 	</Grid>

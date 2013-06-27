@@ -8,33 +8,25 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    [Table("Appearances")]
+    [ComplexType]
     public partial class Appearance
     {
-        [Key]
-        public int Id { get; set; }
 
-        [Required]
-        public DateTime Date { get; set; }
+        public bool? Party1Appear { get; set; }
 
-        [Required]
-        [StringLength(255)]
-        public string FirstName { get; set; }
+        public bool? Party1Sworn { get; set; }
 
-        [Required]
-        [StringLength(255)]
-        public string LastName { get; set; }
+        public bool? Party1AttorneyPresent { get; set; }
 
-        public virtual Designation Designation { get; set; }
+        public bool? Party1Atty { get; set; }
 
-        public bool? Appear { get; set; }
+        public bool? Party2Appear { get; set; }
 
-        public bool? Sworn { get; set; }
+        public bool? Party2Sworn { get; set; }
 
-        public bool? AttorneyPresent { get; set; }
+        public bool? Party2AttorneyPresent { get; set; }
 
-        [InverseProperty("Appearances")]
-        public virtual CaseRecord CaseRecord { get; set; }
+        public bool? Party2Atty { get; set; }
 
     }
 }

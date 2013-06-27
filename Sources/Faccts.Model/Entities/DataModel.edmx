@@ -8,7 +8,6 @@
         <EntityContainer Name="FACCTS_DBModelStoreContainer">
           <EntitySet Name="__MigrationHistory" EntityType="FACCTS_DBModel.Store.__MigrationHistory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AdfsIntegrationConfiguration" EntityType="FACCTS_DBModel.Store.AdfsIntegrationConfiguration" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Appearances" EntityType="FACCTS_DBModel.Store.Appearances" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Attorneys" EntityType="FACCTS_DBModel.Store.Attorneys" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="AvailableCourtOrder" EntityType="FACCTS_DBModel.Store.AvailableCourtOrder" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CaseHistory" EntityType="FACCTS_DBModel.Store.CaseHistory" store:Type="Tables" Schema="dbo" />
@@ -56,14 +55,6 @@
           <EntitySet Name="Witnesses" EntityType="FACCTS_DBModel.Store.Witnesses" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="WSFederationConfiguration" EntityType="FACCTS_DBModel.Store.WSFederationConfiguration" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="WSTrustConfiguration" EntityType="FACCTS_DBModel.Store.WSTrustConfiguration" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_dbo_Appearances_dbo_CaseRecord_CaseRecord_Id" Association="FACCTS_DBModel.Store.FK_dbo_Appearances_dbo_CaseRecord_CaseRecord_Id">
-            <End Role="CaseRecord" EntitySet="CaseRecord" />
-            <End Role="Appearances" EntitySet="Appearances" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Appearances_dbo_Designation_Designation_Id" Association="FACCTS_DBModel.Store.FK_dbo_Appearances_dbo_Designation_Designation_Id">
-            <End Role="Designation" EntitySet="Designation" />
-            <End Role="Appearances" EntitySet="Appearances" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_CaseHistory_dbo_CaseRecord_CaseRecord_Id" Association="FACCTS_DBModel.Store.FK_dbo_CaseHistory_dbo_CaseRecord_CaseRecord_Id">
             <End Role="CaseRecord" EntitySet="CaseRecord" />
             <End Role="CaseHistory" EntitySet="CaseHistory" />
@@ -278,20 +269,6 @@
           <Property Name="IssuerThumbprint" Type="nvarchar(max)" />
           <Property Name="EncryptionCertificate" Type="nvarchar(max)" />
         </EntityType>
-        <EntityType Name="Appearances">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="Date" Type="datetime" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar" Nullable="false" MaxLength="255" />
-          <Property Name="LastName" Type="nvarchar" Nullable="false" MaxLength="255" />
-          <Property Name="Appear" Type="bit" />
-          <Property Name="Sworn" Type="bit" />
-          <Property Name="AttorneyPresent" Type="bit" />
-          <Property Name="Designation_Id" Type="int" />
-          <Property Name="CaseRecord_Id" Type="int" />
-        </EntityType>
         <EntityType Name="Attorneys">
           <Key>
             <PropertyRef Name="Id" />
@@ -327,6 +304,14 @@
           <Property Name="CaseHistoryEvent" Type="int" Nullable="false" />
           <Property Name="CCPOR_ID" Type="nvarchar" MaxLength="30" />
           <Property Name="CourtCaseOrderId" Type="int" />
+          <Property Name="Appearances_Party1Appear" Type="bit" />
+          <Property Name="Appearances_Party1Sworn" Type="bit" />
+          <Property Name="Appearances_Party1AttorneyPresent" Type="bit" />
+          <Property Name="Appearances_Party1Atty" Type="bit" />
+          <Property Name="Appearances_Party2Appear" Type="bit" />
+          <Property Name="Appearances_Party2Sworn" Type="bit" />
+          <Property Name="Appearances_Party2AttorneyPresent" Type="bit" />
+          <Property Name="Appearances_Party2Atty" Type="bit" />
           <Property Name="CourtClerk_UserId" Type="int" />
           <Property Name="CaseRecord_Id" Type="int" />
         </EntityType>
@@ -646,7 +631,7 @@
           <Property Name="ReceiveTime" Type="datetime" />
           <Property Name="StartTime" Type="datetime" />
           <Property Name="EndTime" Type="datetime" />
-          <Property Name="Info" Type="nvarchar" MaxLength="500" />
+          <Property Name="Info" Type="nvarchar(max)" />
           <Property Name="UserId" Type="int" />
           <Property Name="State" Type="tinyint" Nullable="false" />
         </EntityType>
@@ -751,7 +736,7 @@
           <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="StartTime" Type="datetime" Nullable="false" />
           <Property Name="RepeatPeriod" Type="tinyint" Nullable="false" />
-          <Property Name="Info" Type="nvarchar" MaxLength="500" />
+          <Property Name="Info" Type="nvarchar(max)" />
           <Property Name="UserId" Type="int" />
           <Property Name="Enabled" Type="bit" Nullable="false" />
           <Property Name="State" Type="tinyint" Nullable="false" />
@@ -833,30 +818,6 @@
           <Property Name="EnableFederatedAuthentication" Type="bit" Nullable="false" />
           <Property Name="EnableDelegation" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK_dbo_Appearances_dbo_CaseRecord_CaseRecord_Id">
-          <End Role="CaseRecord" Type="FACCTS_DBModel.Store.CaseRecord" Multiplicity="0..1" />
-          <End Role="Appearances" Type="FACCTS_DBModel.Store.Appearances" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CaseRecord">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Appearances">
-              <PropertyRef Name="CaseRecord_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_Appearances_dbo_Designation_Designation_Id">
-          <End Role="Designation" Type="FACCTS_DBModel.Store.Designation" Multiplicity="0..1" />
-          <End Role="Appearances" Type="FACCTS_DBModel.Store.Appearances" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Designation">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Appearances">
-              <PropertyRef Name="Designation_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_CaseHistory_dbo_CaseRecord_CaseRecord_Id">
           <End Role="CaseRecord" Type="FACCTS_DBModel.Store.CaseRecord" Multiplicity="0..1" />
           <End Role="CaseHistory" Type="FACCTS_DBModel.Store.CaseHistory" Multiplicity="*" />
@@ -1464,7 +1425,6 @@
         <EntityContainer Name="FACCTS_DBEntities" p1:LazyLoadingEnabled="true">
           <EntitySet Name="C__MigrationHistory" EntityType="FACCTS_DBModel.C__MigrationHistory" />
           <EntitySet Name="AdfsIntegrationConfiguration" EntityType="FACCTS_DBModel.AdfsIntegrationConfiguration" />
-          <EntitySet Name="Appearances" EntityType="FACCTS_DBModel.Appearances" />
           <EntitySet Name="Attorneys" EntityType="FACCTS_DBModel.Attorneys" />
           <EntitySet Name="AvailableCourtOrder" EntityType="FACCTS_DBModel.AvailableCourtOrder" />
           <EntitySet Name="CaseHistory" EntityType="FACCTS_DBModel.CaseHistory" />
@@ -1509,14 +1469,6 @@
           <EntitySet Name="Witnesses" EntityType="FACCTS_DBModel.Witnesses" />
           <EntitySet Name="WSFederationConfiguration" EntityType="FACCTS_DBModel.WSFederationConfiguration" />
           <EntitySet Name="WSTrustConfiguration" EntityType="FACCTS_DBModel.WSTrustConfiguration" />
-          <AssociationSet Name="FK_dbo_Appearances_dbo_CaseRecord_CaseRecord_Id" Association="FACCTS_DBModel.FK_dbo_Appearances_dbo_CaseRecord_CaseRecord_Id">
-            <End Role="CaseRecord" EntitySet="CaseRecord" />
-            <End Role="Appearances" EntitySet="Appearances" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Appearances_dbo_Designation_Designation_Id" Association="FACCTS_DBModel.FK_dbo_Appearances_dbo_Designation_Designation_Id">
-            <End Role="Designation" EntitySet="Designation" />
-            <End Role="Appearances" EntitySet="Appearances" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id" Association="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id">
             <End Role="Attorneys" EntitySet="Attorneys" />
             <End Role="CaseRecord" EntitySet="CaseRecord" />
@@ -1719,22 +1671,6 @@
           <Property Type="String" Name="IssuerThumbprint" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="EncryptionCertificate" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Appearances">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
-          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="LastName" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="Boolean" Name="Appear" />
-          <Property Type="Boolean" Name="Sworn" />
-          <Property Type="Boolean" Name="AttorneyPresent" />
-          <Property Type="Int32" Name="Designation_Id" />
-          <Property Type="Int32" Name="CaseRecord_Id" />
-          <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_Appearances_dbo_CaseRecord_CaseRecord_Id" FromRole="Appearances" ToRole="CaseRecord" />
-          <NavigationProperty Name="Designation" Relationship="FACCTS_DBModel.FK_dbo_Appearances_dbo_Designation_Designation_Id" FromRole="Appearances" ToRole="Designation" />
-        </EntityType>
         <EntityType Name="Attorneys">
           <Key>
             <PropertyRef Name="Id" />
@@ -1778,6 +1714,7 @@
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseHistory" ToRole="CaseRecord" />
           <NavigationProperty Name="CourtCaseOrders" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId" FromRole="CaseHistory" ToRole="CourtCaseOrders" />
           <NavigationProperty Name="User" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_User_CourtClerk_UserId" FromRole="CaseHistory" ToRole="User" />
+          <Property Name="Appearance" Type="FACCTS_DBModel.Appearance" Nullable="false" />
         </EntityType>
         <EntityType Name="CaseNotes">
           <Key>
@@ -1803,7 +1740,6 @@
           <Property Type="Int32" Name="CourtCounty_Id" />
           <Property Type="Int32" Name="CourtDepartment_Id" />
           <Property Type="Int32" Name="CaseRecord_Id" />
-          <NavigationProperty Name="Appearances" Relationship="FACCTS_DBModel.FK_dbo_Appearances_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseRecord" ToRole="Appearances" />
           <NavigationProperty Name="Attorneys" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id" FromRole="CaseRecord" ToRole="Attorneys" />
           <NavigationProperty Name="CaseHistory" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseRecord" ToRole="CaseHistory" />
           <NavigationProperty Name="CaseNotes" Relationship="FACCTS_DBModel.FK_dbo_CaseNotes_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseRecord" ToRole="CaseNotes" />
@@ -2027,7 +1963,6 @@
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="DesignationName" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Appearances" Relationship="FACCTS_DBModel.FK_dbo_Appearances_dbo_Designation_Designation_Id" FromRole="Designation" ToRole="Appearances" />
           <NavigationProperty Name="CourtParty" Relationship="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Designation_Designation_Id" FromRole="Designation" ToRole="CourtParty" />
           <NavigationProperty Name="Witnesses" Relationship="FACCTS_DBModel.FK_dbo_Witnesses_dbo_Designation_Designation_Id" FromRole="Designation" ToRole="Witnesses" />
         </EntityType>
@@ -2155,7 +2090,7 @@
           <Property Type="DateTime" Name="ReceiveTime" Precision="3" />
           <Property Type="DateTime" Name="StartTime" Precision="3" />
           <Property Type="DateTime" Name="EndTime" Precision="3" />
-          <Property Type="String" Name="Info" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Info" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="UserId" />
           <Property Type="Byte" Name="State" Nullable="false" />
           <NavigationProperty Name="User" Relationship="FACCTS_DBModel.FK_dbo_ManualIntegrationTasks_dbo_User_UserId" FromRole="ManualIntegrationTasks" ToRole="User" />
@@ -2244,7 +2179,7 @@
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="DateTime" Name="StartTime" Nullable="false" Precision="3" />
           <Property Type="Byte" Name="RepeatPeriod" Nullable="false" />
-          <Property Type="String" Name="Info" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Info" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="UserId" />
           <Property Type="Boolean" Name="Enabled" Nullable="false" />
           <Property Type="Byte" Name="State" Nullable="false" />
@@ -2340,30 +2275,6 @@
           <Property Type="Boolean" Name="EnableFederatedAuthentication" Nullable="false" />
           <Property Type="Boolean" Name="EnableDelegation" Nullable="false" />
         </EntityType>
-        <Association Name="FK_dbo_Appearances_dbo_CaseRecord_CaseRecord_Id">
-          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="0..1" />
-          <End Type="FACCTS_DBModel.Appearances" Role="Appearances" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CaseRecord">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Appearances">
-              <PropertyRef Name="CaseRecord_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_Appearances_dbo_Designation_Designation_Id">
-          <End Type="FACCTS_DBModel.Designation" Role="Designation" Multiplicity="0..1" />
-          <End Type="FACCTS_DBModel.Appearances" Role="Appearances" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Designation">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Appearances">
-              <PropertyRef Name="Designation_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id">
           <End Type="FACCTS_DBModel.Attorneys" Role="Attorneys" Multiplicity="0..1" />
           <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="*" />
@@ -2899,6 +2810,16 @@
           <Property Type="String" Name="IDNumber" Nullable="false" />
           <Property Type="DateTime" Name="IDIssuedDate" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="Appearance" >
+          <Property Type="Boolean" Name="Party1Appear" Nullable="true" />
+          <Property Type="Boolean" Name="Party1Sworn" Nullable="true" />
+          <Property Type="Boolean" Name="Party1AttorneyPresent" Nullable="true" />
+          <Property Type="Boolean" Name="Party1Atty" Nullable="true" />
+          <Property Type="Boolean" Name="Party2Appear" Nullable="true" />
+          <Property Type="Boolean" Name="Party2AttorneyPresent" Nullable="true" />
+          <Property Type="Boolean" Name="Party2Atty" Nullable="true" />
+          <Property Type="Boolean" Name="Party2Sworn" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2928,21 +2849,6 @@
                 <ScalarProperty Name="SamlAuthenticationEnabled" ColumnName="SamlAuthenticationEnabled" />
                 <ScalarProperty Name="UsernameAuthenticationEnabled" ColumnName="UsernameAuthenticationEnabled" />
                 <ScalarProperty Name="Enabled" ColumnName="Enabled" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Appearances">
-            <EntityTypeMapping TypeName="FACCTS_DBModel.Appearances">
-              <MappingFragment StoreEntitySet="Appearances">
-                <ScalarProperty Name="CaseRecord_Id" ColumnName="CaseRecord_Id" />
-                <ScalarProperty Name="Designation_Id" ColumnName="Designation_Id" />
-                <ScalarProperty Name="AttorneyPresent" ColumnName="AttorneyPresent" />
-                <ScalarProperty Name="Sworn" ColumnName="Sworn" />
-                <ScalarProperty Name="Appear" ColumnName="Appear" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2985,6 +2891,16 @@
                 <ScalarProperty Name="CaseHistoryEvent" ColumnName="CaseHistoryEvent" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+                <ComplexProperty Name="Appearance">
+                  <ScalarProperty Name="Party2Atty" ColumnName="Appearances_Party2Atty" />
+                  <ScalarProperty Name="Party2AttorneyPresent" ColumnName="Appearances_Party2AttorneyPresent" />
+                  <ScalarProperty Name="Party2Sworn" ColumnName="Appearances_Party2Sworn" />
+                  <ScalarProperty Name="Party2Appear" ColumnName="Appearances_Party2Appear" />
+                  <ScalarProperty Name="Party1Atty" ColumnName="Appearances_Party1Atty" />
+                  <ScalarProperty Name="Party1AttorneyPresent" ColumnName="Appearances_Party1AttorneyPresent" />
+                  <ScalarProperty Name="Party1Sworn" ColumnName="Appearances_Party1Sworn" />
+                  <ScalarProperty Name="Party1Appear" ColumnName="Appearances_Party1Appear" />
+                </ComplexProperty>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

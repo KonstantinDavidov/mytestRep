@@ -228,6 +228,48 @@ namespace Faccts.Model.Entities
 
         #endregion
 
+        #region Complex Properties
+    
+        [DataMember]
+        public Appearance Appearance
+        {
+            get
+            {
+                if (!_appearanceInitialized && _appearance == null)
+                {
+                    _appearance = new Appearance();
+                    ((INotifyComplexPropertyChanging)_appearance).ComplexPropertyChanging += HandleAppearanceChanging;
+                }
+                _appearanceInitialized = true;
+                return _appearance;
+            }
+            set
+            {
+                _appearanceInitialized = true;
+                if (!Equals(_appearance, value))
+                {
+                    if (_appearance != null)
+                    {
+                        ((INotifyComplexPropertyChanging)_appearance).ComplexPropertyChanging -= HandleAppearanceChanging;
+                    }
+    
+                    HandleAppearanceChanging(this, null);
+    				OnPropertyChanging("Appearance");
+                    _appearance = value;
+                    OnPropertyChanged("Appearance");
+    
+                    if (value != null)
+                    {
+                        ((INotifyComplexPropertyChanging)_appearance).ComplexPropertyChanging += HandleAppearanceChanging;
+                    }
+                }
+            }
+        }
+        private Appearance _appearance;
+        private bool _appearanceInitialized;
+
+        #endregion
+
         #region Navigation Properties
     
         [DataMember]
@@ -378,6 +420,15 @@ namespace Faccts.Model.Entities
             IsDeserializing = false;
             ChangeTracker.ChangeTrackingEnabled = true;
         }
+        // Records the original values for the complex property Appearance
+        private void HandleAppearanceChanging(object sender, EventArgs args)
+        {
+            if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
+            {
+                ChangeTracker.State = ObjectState.Modified;
+            }
+        }
+    
     
         protected virtual void ClearNavigationProperties()
         {

@@ -20,7 +20,6 @@ using ReactiveUI;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(Appearances))]
     [KnownType(typeof(Attorneys))]
     [KnownType(typeof(CaseHistory))]
     [KnownType(typeof(CaseNotes))]
@@ -322,42 +321,6 @@ namespace Faccts.Model.Entities
         #endregion
 
         #region Navigation Properties
-    
-        [DataMember]
-        public TrackableCollection<Appearances> Appearances
-        {
-            get
-            {
-                if (_appearances == null)
-                {
-                    _appearances = new TrackableCollection<Appearances>();
-                    _appearances.CollectionChanged += FixupAppearances;
-                }
-                return _appearances;
-            }
-            set
-            {
-                if (!ReferenceEquals(_appearances, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("Appearances");
-                    if (_appearances != null)
-                    {
-                        _appearances.CollectionChanged -= FixupAppearances;
-                    }
-                    _appearances = value;
-                    if (_appearances != null)
-                    {
-                        _appearances.CollectionChanged += FixupAppearances;
-                    }
-                    OnNavigationPropertyChanged("Appearances");
-                }
-            }
-        }
-        private TrackableCollection<Appearances> _appearances;
     
         [DataMember]
         public Attorneys Attorneys
@@ -1017,7 +980,6 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
-            Appearances.Clear();
             Attorneys = null;
             CaseHistory.Clear();
             CaseNotes.Clear();
@@ -1284,45 +1246,6 @@ namespace Faccts.Model.Entities
                 if (CourtParty1 != null && !CourtParty1.ChangeTracker.ChangeTrackingEnabled)
                 {
                     CourtParty1.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupAppearances(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (Appearances item in e.NewItems)
-                {
-                    item.CaseRecord = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("Appearances", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (Appearances item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.CaseRecord, this))
-                    {
-                        item.CaseRecord = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("Appearances", item);
-                    }
                 }
             }
         }

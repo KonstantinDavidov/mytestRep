@@ -92,7 +92,7 @@
     <Compile Include="Entities\AdfsIntegrationConfiguration.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Appearances.cs">
+    <Compile Include="Entities\Appearance.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Attorneys.cs">
