@@ -31,6 +31,9 @@ try{
 using System;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
+using FACCTS.Server.Model.Reporting.Entities;
+using FACCTS.Server.Model.DataModel;
+using System.Collections.Generic;
 
 namespace <#= defaultNamespace #>
 {
@@ -55,10 +58,10 @@ foreach (var item in doc.Root.Elements("Model"))
 		public <#= type #> <#= propName #>
 		{
 			get{return <#= fieldName #>;}
-			set{
-				if(<#= fieldName #>!=value){
-					<#= fieldName #> = value;
-				}
+			set
+			{
+				<#= fieldName #> = value;
+
 			}
 		}
 		<#}#>
@@ -89,6 +92,9 @@ catch(Exception ex){
 		
 		if(type=="Collection"){
 			return string.Format("ObservableCollection<{0}>",collectionType);
+		}
+		if(type=="List"){
+			return string.Format("List<{0}>",collectionType);
 		}
 		else
 			return type;
