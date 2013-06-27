@@ -517,35 +517,8 @@ namespace FACCTS.Controls.ViewModels
 	}
 	
 			
-	public partial class PersonalInformationViewModel
-	{
-		private Faccts.Model.Entities.CourtCase _currentCourtCase;
-		public Faccts.Model.Entities.CourtCase CurrentCourtCase
-		{
-			get{return _currentCourtCase;}
-			set{
-				if(_currentCourtCase!=value){
-					this.RaiseAndSetIfChanged(ref _currentCourtCase, value);
-				}
-			}
-		}
-				
-	}
-	
-			
 	public partial class AttorneysViewModel
 	{
-		private Faccts.Model.Entities.CourtCase _currentCourtCase;
-		public Faccts.Model.Entities.CourtCase CurrentCourtCase
-		{
-			get{return _currentCourtCase;}
-			set{
-				if(_currentCourtCase!=value){
-					this.RaiseAndSetIfChanged(ref _currentCourtCase, value);
-				}
-			}
-		}
-		
 		private bool _attorneyForChildrenIsTheSameThenParty1;
 		public bool AttorneyForChildrenIsTheSameThenParty1
 		{
@@ -571,51 +544,8 @@ namespace FACCTS.Controls.ViewModels
 	}
 	
 			
-	public partial class ChildrenOtherProtectedViewModel
-	{
-		private Faccts.Model.Entities.CourtCase _currentCourtCase;
-		public Faccts.Model.Entities.CourtCase CurrentCourtCase
-		{
-			get{return _currentCourtCase;}
-			set{
-				if(_currentCourtCase!=value){
-					this.RaiseAndSetIfChanged(ref _currentCourtCase, value);
-				}
-			}
-		}
-				
-	}
-	
-			
-	public partial class WitnessInterpereterViewModel
-	{
-		private Faccts.Model.Entities.CourtCase _currentCourtCase;
-		public Faccts.Model.Entities.CourtCase CurrentCourtCase
-		{
-			get{return _currentCourtCase;}
-			set{
-				if(_currentCourtCase!=value){
-					this.RaiseAndSetIfChanged(ref _currentCourtCase, value);
-				}
-			}
-		}
-				
-	}
-	
-			
 	public partial class CaseNotesViewModel
 	{
-		private Faccts.Model.Entities.CourtCase _currentCourtCase;
-		public Faccts.Model.Entities.CourtCase CurrentCourtCase
-		{
-			get{return _currentCourtCase;}
-			set{
-				if(_currentCourtCase!=value){
-					this.RaiseAndSetIfChanged(ref _currentCourtCase, value);
-				}
-			}
-		}
-		
 		private Faccts.Model.Entities.CaseNotes _caseNoteForSelectedUser;
 		public Faccts.Model.Entities.CaseNotes CaseNoteForSelectedUser
 		{

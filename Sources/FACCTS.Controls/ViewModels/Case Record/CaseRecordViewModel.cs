@@ -144,7 +144,7 @@ namespace FACCTS.Controls.ViewModels
                 case 4:
                     ActivateItem(RelatedCasesViewModel);
                     break;
-                case 7:
+                case 6:
                     ActivateItem(CaseNotesViewModel);
                     break;
                 default:

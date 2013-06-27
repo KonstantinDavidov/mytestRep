@@ -1,0 +1,27 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	mc:Ignorable="d"
+	x:Class="FACCTS.Controls.Views.CaseHistoryView"
+	x:Name="UserControl"
+	d:DesignWidth="640" d:DesignHeight="480">
+
+	<Grid x:Name="LayoutRoot">
+		<DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeRows="False">
+			<DataGrid.Columns>
+				<DataGridTextColumn Binding="{x:Null}" Header="Date"/>
+				<DataGridTextColumn Binding="{x:Null}"  Header="Event"/>
+				<DataGridCheckBoxColumn Binding="{x:Null}" Header="Party 1 Present"/>
+				<DataGridCheckBoxColumn Binding="{x:Null}" Header="Party 1 Sworn"/>
+				<DataGridCheckBoxColumn Binding="{x:Null}" Header="Party 1 Atty"/>
+				<DataGridCheckBoxColumn Binding="{x:Null}" Header="Party 2 Present"/>
+				<DataGridCheckBoxColumn Binding="{x:Null}" Header="Party 2 Sworn"/>
+				<DataGridCheckBoxColumn Binding="{x:Null}"  Header="Party 2 Atty"/>
+				<DataGridTextColumn Binding="{x:Null}" Header="Orders"/>
+				<DataGridTextColumn Binding="{x:Null}" Header="Merge Case ID"/>
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</UserControl>

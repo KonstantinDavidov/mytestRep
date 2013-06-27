@@ -63,24 +63,14 @@
     <Property name="Courtrooms" type="Collection" collectionType="Faccts.Model.Entities.Courtrooms"/>
     <Property name="Departments" type="Collection" collectionType="Faccts.Model.Entities.CourtDepartmenets"/>
   </Model>
-  <Model name="PersonalInformationViewModel">
-    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
-  </Model>
+
 
   <Model name="AttorneysViewModel">
-    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
     <Property name="AttorneyForChildrenIsTheSameThenParty1" type="bool"/>
     <Property name="AttorneyForChildrenIsTheSameThenParty2" type="bool"/>
   </Model>
 
-  <Model name="ChildrenOtherProtectedViewModel">
-    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
-  </Model>
-  <Model name="WitnessInterpereterViewModel">
-    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
-  </Model>
   <Model name="CaseNotesViewModel">
-    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
     <Property name="CaseNoteForSelectedUser" type="Faccts.Model.Entities.CaseNotes"/>
     <Property name="SelectedUser" type="Faccts.Model.Entities.User"/>
     <Property name="CanEditNote" type="bool"/>

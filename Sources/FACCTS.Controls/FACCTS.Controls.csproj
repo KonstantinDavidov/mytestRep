@@ -137,7 +137,9 @@
     <Compile Include="MarkupExtension\MefPartExtension.cs" />
     <Compile Include="Utils\StringToBoolean.cs" />
     <Compile Include="Utils\StringToDateTime.cs" />
+    <Compile Include="ViewModels\Case Record\CaseHistoryViewModel.cs" />
     <Compile Include="ViewModels\Case Record\CaseNotesViewModel.cs" />
+    <Compile Include="ViewModels\Case Record\CaseRecordItemViewModel.cs" />
     <Compile Include="ViewModels\Case Record\SeparateCaseDialogViewModel.cs" />
     <Compile Include="ViewModels\Case Record\CourtPartyAdapter.cs" />
     <Compile Include="ViewModels\DropDismissDialogViewModel.cs" />
@@ -160,6 +162,9 @@
     <Compile Include="ViewModels\UserLoginDialogViewModel.cs" />
     <Compile Include="Views\AddToCourtDocketDialogView.xaml.cs">
       <DependentUpon>AddToCourtDocketDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Case Record\CaseHistoryView.xaml.cs">
+      <DependentUpon>CaseHistoryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Case Record\CaseNotesView.xaml.cs">
       <DependentUpon>CaseNotesView.xaml</DependentUpon>
@@ -318,6 +323,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\AddToCourtDocketDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Case Record\CaseHistoryView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

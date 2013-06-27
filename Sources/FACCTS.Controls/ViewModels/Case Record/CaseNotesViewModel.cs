@@ -13,24 +13,20 @@ using FACCTS.Services.Authentication;
 namespace FACCTS.Controls.ViewModels
 {
     [Export]
-    public partial class CaseNotesViewModel : ViewModelBase, IHandle<CurrentCourtCaseChangedEvent>
+    public partial class CaseNotesViewModel : CaseRecordItemViewModel
     {
-        private IEventAggregator _eventAggregator;
         private IAuthenticationService _authService;
 
         [ImportingConstructor]
-        public CaseNotesViewModel(IEventAggregator eventAggregator,
+        public CaseNotesViewModel(
             IAuthenticationService authService
             ) : base()
         {
-            _eventAggregator = eventAggregator;
-            _eventAggregator.Subscribe(this);
-
+            
             _authService = authService;
             this.WhenAny(x => x.CurrentCourtCase, x => x.Value)
                 .Subscribe(x =>
                 {
-                    this.NotifyOfPropertyChange(() => CaseRecord);
                     if (x != null && x.CaseRecord != null)
                     {
                         SelectedUser = null;
@@ -79,15 +75,7 @@ namespace FACCTS.Controls.ViewModels
             this.DisplayName = "Case Notes";
         }
 
-        public CaseRecord CaseRecord
-        {
-            get
-            {
-                if (CurrentCourtCase == null || CurrentCourtCase.CaseRecord == null)
-                    return null;
-                return CurrentCourtCase.CaseRecord;
-            }
-        }
+       
 
         public List<User> AvailableUsers
         {
@@ -102,11 +90,6 @@ namespace FACCTS.Controls.ViewModels
                 }
                 return r;
             }
-        }
-
-        public void Handle(CurrentCourtCaseChangedEvent message)
-        {
-            this.CurrentCourtCase = message.CourtCase;
         }
 
         public void MakePublic()

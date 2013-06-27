@@ -13,24 +13,19 @@ using FACCTS.Services.Dialog;
 namespace FACCTS.Controls.ViewModels
 {
     [Export(typeof(WitnessInterpereterViewModel))]
-    public partial class WitnessInterpereterViewModel : ViewModelBase, IHandle<CurrentCourtCaseChangedEvent>
+    public partial class WitnessInterpereterViewModel : CaseRecordItemViewModel
     {
-        private IEventAggregator _eventAggregator;
         private IDialogService _dialogService;
 
         [ImportingConstructor]
         public WitnessInterpereterViewModel(
-            IEventAggregator eventAggregator,
             IDialogService dialogService
             ) : base()
         {
-            _eventAggregator = eventAggregator;
             _dialogService = dialogService;
-            _eventAggregator.Subscribe(this);
             this.WhenAny(x => x.CurrentCourtCase, x => x.Value)
                 .Subscribe(x =>
                 {
-                    this.NotifyOfPropertyChange(() => CaseRecord);
                     this.NotifyOfPropertyChange(() => WitnessesFor);
                     this.NotifyOfPropertyChange(() => InterpretersFor);
                 }
@@ -39,20 +34,6 @@ namespace FACCTS.Controls.ViewModels
             this.DisplayName = "Withess and Interpreter";
         }
 
-        public void Handle(CurrentCourtCaseChangedEvent message)
-        {
-            this.CurrentCourtCase = message.CourtCase;
-        }
-
-        public CaseRecord CaseRecord
-        {
-            get
-            {
-                if (CurrentCourtCase == null || CurrentCourtCase.CaseRecord == null)
-                    return null;
-                return CurrentCourtCase.CaseRecord;
-            }
-        }
 
         public void AddWitness()
         {
