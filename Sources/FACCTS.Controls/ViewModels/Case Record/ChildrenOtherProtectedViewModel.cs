@@ -14,41 +14,19 @@ using FACCTS.Services.Dialog;
 namespace FACCTS.Controls.ViewModels
 {
     [Export(typeof(ChildrenOtherProtectedViewModel))]
-    public partial class ChildrenOtherProtectedViewModel : ViewModelBase, IHandle<CurrentCourtCaseChangedEvent>
+    public partial class ChildrenOtherProtectedViewModel : CaseRecordItemViewModel
     {
-        private IEventAggregator _eventAggregator;
         private IDialogService _dialogService;
 
         [ImportingConstructor]
-        public ChildrenOtherProtectedViewModel(IEventAggregator eventAggregator,
+        public ChildrenOtherProtectedViewModel(
             IDialogService dialogService
             ) : base()
         {
-            _eventAggregator = eventAggregator;
             _dialogService = dialogService;
-            _eventAggregator.Subscribe(this);
-            this.WhenAny(x => x.CurrentCourtCase, x => x.Value)
-                .Subscribe(x =>
-                {
-                    this.NotifyOfPropertyChange(() => CaseRecord);
-                });
             this.DisplayName = "Children - Other Protected";
         }
 
-        public void Handle(CurrentCourtCaseChangedEvent message)
-        {
-            this.CurrentCourtCase = message.CourtCase;
-        }
-
-        public CaseRecord CaseRecord
-        {
-            get
-            {
-                if (CurrentCourtCase == null || CurrentCourtCase.CaseRecord == null)
-                    return null;
-                return CurrentCourtCase.CaseRecord;
-            }
-        }
 
         private List<EnumDescript<FACCTS.Server.Model.Enums.Relationship>> _relationShips;
         public List<EnumDescript<FACCTS.Server.Model.Enums.Relationship>> Relationships

@@ -33,7 +33,6 @@
 				<ListBoxItem Content="Attorneys"/>
 				<ListBoxItem Content="Witness and Interpreter"/>
 				<ListBoxItem Content="Related Cases"/>
-				<ListBoxItem Content="Appearence"/>
 				<ListBoxItem Content="Case History"/>
 				<ListBoxItem Content="Case Notes"/>
 			</ListBox>

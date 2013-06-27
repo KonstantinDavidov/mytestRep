@@ -67,6 +67,7 @@ namespace FACCTS.Controls.Utils
             {
                 control.GotKeyboardFocus += Control_GotKeyboardFocus;
                 control.LostKeyboardFocus += Control_Loaded;
+               
             }
 
             if (d is ItemsControl && !(d is ComboBox))
@@ -82,6 +83,8 @@ namespace FACCTS.Controls.Utils
                 prop.AddValueChanged(i, ItemsSourceChanged);
             }
         }
+
+       
 
         #region Event Handlers
 
@@ -219,7 +222,7 @@ namespace FACCTS.Controls.Utils
             }
             else if (c is TextBoxBase)
             {
-                return string.IsNullOrWhiteSpace((c as TextBox).Text) && c.IsEnabled;
+                return string.IsNullOrWhiteSpace((c as TextBox).Text) && !(c as TextBox).IsReadOnly;
             }
             else if (c is ItemsControl)
             {

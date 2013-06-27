@@ -12,19 +12,12 @@ using ReactiveUI;
 namespace FACCTS.Controls.ViewModels
 {
     [Export(typeof(AttorneysViewModel))]
-    public partial class AttorneysViewModel : ViewModelBase, IHandle<CurrentCourtCaseChangedEvent>
+    public partial class AttorneysViewModel : CaseRecordItemViewModel
     {
-        private IEventAggregator _eventAggregator;
 
         [ImportingConstructor]
-        public AttorneysViewModel(IEventAggregator eventAggregator) : base()
+        public AttorneysViewModel() : base()
         {
-            this.WhenAny(x => x.CurrentCourtCase, x => x.Value)
-                .Subscribe(x => 
-                {
-                    this.NotifyOfPropertyChange(() => CaseRecord);
-                });
-
             this.WhenAny(
                 x => x.AttorneyForChildrenIsTheSameThenParty1,
                 x => x.AttorneyForChildrenIsTheSameThenParty2,
@@ -48,26 +41,10 @@ namespace FACCTS.Controls.ViewModels
                     }
                 );
 
-            _eventAggregator = eventAggregator;
-            _eventAggregator.Subscribe(this);
             this.DisplayName = "Attorneys";
         }
 
-        public void Handle(CurrentCourtCaseChangedEvent message)
-        {
-            this.CurrentCourtCase = message.CourtCase;
-        }
-
-        public CaseRecord CaseRecord
-        {
-            get
-            {
-                if (CurrentCourtCase == null || CurrentCourtCase.CaseRecord == null)
-                    return null;
-                return CurrentCourtCase.CaseRecord;
-            }
-        }
-
+        
         
     }
 }

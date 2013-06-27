@@ -85,5 +85,7 @@ namespace FACCTS.Controls.ViewModels
         {
             //TODO: implement the reissuance ont the client and the server
         }
+
+
     }
 }

@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Xceed.Wpf.Toolkit;
 
 namespace FACCTS.Controls
 {
-    public class TextBoxClearButton : TextBox
+    public class TextBoxClearButton : WatermarkTextBox
     {
         static TextBoxClearButton()
         {
@@ -73,7 +74,7 @@ namespace FACCTS.Controls
 
             if (HasText)
             {
-                this.Text = string.Empty;
+                this.Clear();
             }
             IsMouseLeftButtonDown = false;
         }
