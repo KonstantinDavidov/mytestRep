@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using ReactiveUI;
 using System.Reactive.Linq;
 using System.Collections.ObjectModel;
+using Caliburn.Micro;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -28,6 +29,12 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
+        [Import]
+        public CourtDocketViewModel CourtDocketViewModel
+        {
+            private get;
+            set;
+        }
         
 
         public void AddCase()
@@ -42,7 +49,27 @@ namespace FACCTS.Controls.ViewModels
 
         private void ProceedAddition()
         {
-            
+            var totalTime = this.CourtDocketViewModel.CalendarDate.GetValueOrDefault().Add(new TimeSpan(this.Time.Hour, this.Time.Minute, this.Time.Second));
+            CaseHistory ch = new CaseHistory()
+                {
+                    CaseHistoryEvent = (int)FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing,
+                    Date = DateTime.Now,
+                    Hearing = new Hearings()
+                    {
+                        HearingDate = totalTime,
+                        Courtrooms = this.Courtroom,
+                        HearingIssue = new HearingIssue()
+                        {
+                            PermanentRO = this.IsPermanentRO,
+                            ChildCustodyOrChildVisitation = this.IsCCorCV,
+                            ChildSupport = this.IsCS,
+                            SpousalSupport = this.IsSS,
+                            IsOtherIssue = this.IsOtherHearingIssue,
+                            OtheIssueText = this.OtherHearingIssueText,
+                        }
+                    }
+                };
+            Execute.OnUIThread(() => CurrentCourtCase.CaseRecord.CaseHistory.Add(ch));
         }
 
         private Faccts.Model.Entities.CourtCase _currentCourtCase;
@@ -59,8 +86,6 @@ namespace FACCTS.Controls.ViewModels
                     {
                         this.CaseNumber = _currentCourtCase.CaseNumber;
                         this.Time = DateTime.Now.ToLocalTime();
-                        //this.Courtrooms = 
-                        //this.Department = 
                     }
                 }
             }

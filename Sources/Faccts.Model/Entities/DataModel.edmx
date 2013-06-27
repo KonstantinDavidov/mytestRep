@@ -60,6 +60,10 @@
             <End Role="CaseRecord" EntitySet="CaseRecord" />
             <End Role="CaseHistory" EntitySet="CaseHistory" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_CaseHistory_dbo_CourtCase_MergeCase_Id" Association="FACCTS_DBModel.Store.FK_dbo_CaseHistory_dbo_CourtCase_MergeCase_Id">
+            <End Role="CourtCase" EntitySet="CourtCase" />
+            <End Role="CaseHistory" EntitySet="CaseHistory" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId" Association="FACCTS_DBModel.Store.FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId">
             <End Role="CourtCaseOrders" EntitySet="CourtCaseOrders" />
             <End Role="CaseHistory" EntitySet="CaseHistory" />
@@ -321,8 +325,8 @@
           <Property Name="Appearances_Party2Sworn" Type="bit" />
           <Property Name="Appearances_Party2AttorneyPresent" Type="bit" />
           <Property Name="Appearances_Party2Atty" Type="bit" />
-          <Property Name="MergeCaseID" Type="int" />
           <Property Name="CourtClerk_UserId" Type="int" />
+          <Property Name="MergeCase_Id" Type="int" />
           <Property Name="Hearing_Id" Type="int" />
           <Property Name="CaseRecord_Id" Type="int" />
         </EntityType>
@@ -852,6 +856,18 @@
             </Principal>
             <Dependent Role="CaseHistory">
               <PropertyRef Name="CaseRecord_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CaseHistory_dbo_CourtCase_MergeCase_Id">
+          <End Role="CourtCase" Type="FACCTS_DBModel.Store.CourtCase" Multiplicity="0..1" />
+          <End Role="CaseHistory" Type="FACCTS_DBModel.Store.CaseHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourtCase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CaseHistory">
+              <PropertyRef Name="MergeCase_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1703,6 +1719,10 @@
             <End Role="Courtrooms" EntitySet="Courtrooms" />
             <End Role="Hearings" EntitySet="Hearings" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_CaseHistory_dbo_CourtCase_MergeCase_Id" Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCase_MergeCase_Id">
+            <End Role="CourtCase" EntitySet="CourtCase" />
+            <End Role="CaseHistory" EntitySet="CaseHistory" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
           <Key>
@@ -1773,9 +1793,10 @@
           <NavigationProperty Name="CourtCaseOrders" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId" FromRole="CaseHistory" ToRole="CourtCaseOrders" />
           <NavigationProperty Name="User" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_User_CourtClerk_UserId" FromRole="CaseHistory" ToRole="User" />
           <Property Name="Appearance" Type="FACCTS_DBModel.Appearance" Nullable="false" />
-          <Property Type="Int32" Name="MergeCaseID" />
           <Property Type="Int32" Name="Hearing_Id" />
           <NavigationProperty Name="Hearing" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id" FromRole="CaseHistory" ToRole="Hearings" />
+          <Property Type="Int32" Name="MergeCase_Id" />
+          <NavigationProperty Name="MergeCase" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCase_MergeCase_Id" FromRole="CaseHistory" ToRole="CourtCase" />
         </EntityType>
         <EntityType Name="CaseNotes">
           <Key>
@@ -1794,7 +1815,6 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="Judge" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Type="Int32" Name="Party1_Id" />
           <Property Type="Int32" Name="Party2_Id" />
           <Property Type="Int32" Name="AttorneyForChild_Id" />
@@ -1885,6 +1905,7 @@
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CaseRecord_CaseRecord_Id" FromRole="CourtCase" ToRole="CaseRecord" />
           <NavigationProperty Name="User" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_User_CourtClerk_UserId" FromRole="CourtCase" ToRole="User" />
           <NavigationProperty Name="CaseRecord1" Relationship="FACCTS_DBModel.RelatedCase" FromRole="CourtCase" ToRole="CaseRecord" />
+          <NavigationProperty Name="CaseHistory" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCase_MergeCase_Id" FromRole="CourtCase" ToRole="CaseHistory" />
         </EntityType>
         <EntityType Name="CourtCaseOrders">
           <Key>
@@ -2919,13 +2940,25 @@
           </ReferentialConstraint>
         </Association>
         <ComplexType Name="HearingIssue" >
-          <Property Type="Boolean" Name="PermanentRO" Nullable="true" />
-          <Property Type="Boolean" Name="ChildCustodyOrChildVisitation" Nullable="true" />
-          <Property Type="Boolean" Name="ChildSupport" Nullable="true" />
-          <Property Type="Boolean" Name="SpousalSupport" Nullable="true" />
-          <Property Type="Boolean" Name="IsOtherIssue" Nullable="true" />
+          <Property Type="Boolean" Name="PermanentRO" Nullable="false" />
+          <Property Type="Boolean" Name="ChildCustodyOrChildVisitation" Nullable="false" />
+          <Property Type="Boolean" Name="ChildSupport" Nullable="false" />
+          <Property Type="Boolean" Name="SpousalSupport" Nullable="false" />
+          <Property Type="Boolean" Name="IsOtherIssue" Nullable="false" />
           <Property Type="String" Name="OtheIssueText" Nullable="false" />
         </ComplexType>
+        <Association Name="FK_dbo_CaseHistory_dbo_CourtCase_MergeCase_Id">
+          <End Type="FACCTS_DBModel.CourtCase" Role="CourtCase" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.CaseHistory" Role="CaseHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourtCase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CaseHistory">
+              <PropertyRef Name="MergeCase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2990,8 +3023,8 @@
           <EntitySetMapping Name="CaseHistory">
             <EntityTypeMapping TypeName="FACCTS_DBModel.CaseHistory">
               <MappingFragment StoreEntitySet="CaseHistory">
+                <ScalarProperty Name="MergeCase_Id" ColumnName="MergeCase_Id" />
                 <ScalarProperty Name="Hearing_Id" ColumnName="Hearing_Id" />
-                <ScalarProperty Name="MergeCaseID" ColumnName="MergeCaseID" />
                 <ScalarProperty Name="CaseRecord_Id" ColumnName="CaseRecord_Id" />
                 <ScalarProperty Name="CourtClerk_UserId" ColumnName="CourtClerk_UserId" />
                 <ScalarProperty Name="CourtCaseOrderId" ColumnName="CourtCaseOrderId" />

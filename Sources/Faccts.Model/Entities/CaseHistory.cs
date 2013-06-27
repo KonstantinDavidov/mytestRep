@@ -24,6 +24,7 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(CourtCaseOrders))]
     [KnownType(typeof(User))]
     [KnownType(typeof(Hearings))]
+    [KnownType(typeof(CourtCase))]
     public partial class CaseHistory: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -228,22 +229,6 @@ namespace Faccts.Model.Entities
         private Nullable<int> _caseRecord_Id;
     
         [DataMember]
-        public Nullable<int> MergeCaseID
-        {
-            get { return _mergeCaseID; }
-            set
-            {
-                if (_mergeCaseID != value)
-                {
-    				OnPropertyChanging("MergeCaseID");
-                    _mergeCaseID = value;
-                    OnPropertyChanged("MergeCaseID");
-                }
-            }
-        }
-        private Nullable<int> _mergeCaseID;
-    
-        [DataMember]
         public Nullable<int> Hearing_Id
         {
             get { return _hearing_Id; }
@@ -266,6 +251,30 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<int> _hearing_Id;
+    
+        [DataMember]
+        public Nullable<int> MergeCase_Id
+        {
+            get { return _mergeCase_Id; }
+            set
+            {
+                if (_mergeCase_Id != value)
+                {
+                    ChangeTracker.RecordOriginalValue("MergeCase_Id", _mergeCase_Id);
+                    if (!IsDeserializing)
+                    {
+                        if (MergeCase != null && MergeCase.Id != value)
+                        {
+                            MergeCase = null;
+                        }
+                    }
+    				OnPropertyChanging("MergeCase_Id");
+                    _mergeCase_Id = value;
+                    OnPropertyChanged("MergeCase_Id");
+                }
+            }
+        }
+        private Nullable<int> _mergeCase_Id;
 
         #endregion
 
@@ -384,6 +393,24 @@ namespace Faccts.Model.Entities
             }
         }
         private Hearings _hearing;
+    
+        [DataMember]
+        public CourtCase MergeCase
+        {
+            get { return _mergeCase; }
+            set
+            {
+                if (!ReferenceEquals(_mergeCase, value))
+                {
+                    var previousValue = _mergeCase;
+    				OnNavigationPropertyChanging("MergeCase");
+                    _mergeCase = value;
+                    FixupMergeCase(previousValue);
+                    OnNavigationPropertyChanged("MergeCase");
+                }
+            }
+        }
+        private CourtCase _mergeCase;
 
         #endregion
 
@@ -495,6 +522,7 @@ namespace Faccts.Model.Entities
             CourtCaseOrders = null;
             User = null;
             Hearing = null;
+            MergeCase = null;
         }
 
         #endregion
@@ -661,6 +689,47 @@ namespace Faccts.Model.Entities
                 if (Hearing != null && !Hearing.ChangeTracker.ChangeTrackingEnabled)
                 {
                     Hearing.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupMergeCase(CourtCase previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.CaseHistory.Contains(this))
+            {
+                previousValue.CaseHistory.Remove(this);
+            }
+    
+            if (MergeCase != null)
+            {
+                MergeCase.CaseHistory.Add(this);
+    
+                MergeCase_Id = MergeCase.Id;
+            }
+            else if (!skipKeys)
+            {
+                MergeCase_Id = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("MergeCase")
+                    && (ChangeTracker.OriginalValues["MergeCase"] == MergeCase))
+                {
+                    ChangeTracker.OriginalValues.Remove("MergeCase");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("MergeCase", previousValue);
+                }
+                if (MergeCase != null && !MergeCase.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    MergeCase.StartTracking();
                 }
             }
         }

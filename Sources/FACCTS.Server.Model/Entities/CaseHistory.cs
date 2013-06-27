@@ -36,7 +36,7 @@ namespace FACCTS.Server.Model.DataModel
 
         public virtual Appearance Appearances { get; set; }
 
-        public int? MergeCaseID { get; set; }
+        public CourtCase MergeCase { get; set; }
 
         public virtual Hearing Hearing { get; set; }
         

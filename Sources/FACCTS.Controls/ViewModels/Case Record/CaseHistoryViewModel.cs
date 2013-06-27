@@ -12,7 +12,7 @@ namespace FACCTS.Controls.ViewModels
     {
         public CaseHistoryViewModel() : base()
         {
-
+            this.DisplayName = "Case History";
         }
     }
 }

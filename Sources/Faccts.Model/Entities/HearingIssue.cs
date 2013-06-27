@@ -54,7 +54,7 @@ namespace Faccts.Model.Entities
         #region Simple Properties
     
         [DataMember]
-        public Nullable<bool> PermanentRO
+        public bool PermanentRO
         {
             get { return _permanentRO; }
             set
@@ -68,10 +68,10 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<bool> _permanentRO;
+        private bool _permanentRO;
     
         [DataMember]
-        public Nullable<bool> ChildCustodyOrChildVisitation
+        public bool ChildCustodyOrChildVisitation
         {
             get { return _childCustodyOrChildVisitation; }
             set
@@ -85,10 +85,10 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<bool> _childCustodyOrChildVisitation;
+        private bool _childCustodyOrChildVisitation;
     
         [DataMember]
-        public Nullable<bool> ChildSupport
+        public bool ChildSupport
         {
             get { return _childSupport; }
             set
@@ -102,10 +102,10 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<bool> _childSupport;
+        private bool _childSupport;
     
         [DataMember]
-        public Nullable<bool> SpousalSupport
+        public bool SpousalSupport
         {
             get { return _spousalSupport; }
             set
@@ -119,10 +119,10 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<bool> _spousalSupport;
+        private bool _spousalSupport;
     
         [DataMember]
-        public Nullable<bool> IsOtherIssue
+        public bool IsOtherIssue
         {
             get { return _isOtherIssue; }
             set
@@ -136,7 +136,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<bool> _isOtherIssue;
+        private bool _isOtherIssue;
     
         [DataMember]
         public string OtheIssueText
