@@ -225,6 +225,22 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<int> _caseRecord_Id;
+    
+        [DataMember]
+        public int EntityType
+        {
+            get { return _entityType; }
+            set
+            {
+                if (_entityType != value)
+                {
+    				OnPropertyChanging("EntityType");
+                    _entityType = value;
+                    OnPropertyChanged("EntityType");
+                }
+            }
+        }
+        private int _entityType;
 
         #endregion
 

@@ -16,6 +16,8 @@ namespace Faccts.Model.Entities
             this.Email = dtoUser.Email;
             this.Password = dtoUser.Password;
             this.FirstName = dtoUser.FirstName;
+            this.MiddleName = dtoUser.MiddleName;
+            this.LastName = dtoUser.LastName;
             this.Comment = dtoUser.Comment;
 
             this.IsApproved = dtoUser.IsApproved;

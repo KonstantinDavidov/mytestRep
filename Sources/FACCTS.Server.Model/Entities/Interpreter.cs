@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FACCTS.Server.Model.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,6 +14,9 @@ namespace FACCTS.Server.Model.DataModel
     {
         [Key]
         public int Id { get; set; }
+
+        [Required]
+        public FACCTSEntity EntityType { get; set; } 
 
         [Required]
         public virtual CourtParty InterpreterFor { get; set; }

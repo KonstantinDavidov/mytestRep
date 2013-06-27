@@ -79,6 +79,12 @@
   <Model name="WitnessInterpereterViewModel">
     <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
   </Model>
+  <Model name="CaseNotesViewModel">
+    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
+    <Property name="CaseNoteForSelectedUser" type="Faccts.Model.Entities.CaseNotes"/>
+    <Property name="SelectedUser" type="Faccts.Model.Entities.User"/>
+    <Property name="CanEditNote" type="bool"/>
+  </Model>
   
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
@@ -116,6 +122,8 @@
         <xs:enumeration value="Faccts.Model.Entities.Courtrooms"></xs:enumeration>
         <xs:enumeration value="Faccts.Model.Entities.CourtDepartmenets"></xs:enumeration>
         <xs:enumeration value="Faccts.Model.Entities.CourtCase"></xs:enumeration>
+        <xs:enumeration value="Faccts.Model.Entities.CaseNotes"></xs:enumeration>
+        <xs:enumeration value="Faccts.Model.Entities.User"></xs:enumeration>
       </xs:restriction>
     </xs:simpleType>
   </xs:schema>

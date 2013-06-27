@@ -7,7 +7,7 @@ using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
-    public partial class Witnesses
+    public partial class Interpreters
     {
         partial void Initialize()
         {

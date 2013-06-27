@@ -602,5 +602,54 @@ namespace FACCTS.Controls.ViewModels
 				
 	}
 	
+			
+	public partial class CaseNotesViewModel
+	{
+		private Faccts.Model.Entities.CourtCase _currentCourtCase;
+		public Faccts.Model.Entities.CourtCase CurrentCourtCase
+		{
+			get{return _currentCourtCase;}
+			set{
+				if(_currentCourtCase!=value){
+					this.RaiseAndSetIfChanged(ref _currentCourtCase, value);
+				}
+			}
+		}
+		
+		private Faccts.Model.Entities.CaseNotes _caseNoteForSelectedUser;
+		public Faccts.Model.Entities.CaseNotes CaseNoteForSelectedUser
+		{
+			get{return _caseNoteForSelectedUser;}
+			set{
+				if(_caseNoteForSelectedUser!=value){
+					this.RaiseAndSetIfChanged(ref _caseNoteForSelectedUser, value);
+				}
+			}
+		}
+		
+		private Faccts.Model.Entities.User _selectedUser;
+		public Faccts.Model.Entities.User SelectedUser
+		{
+			get{return _selectedUser;}
+			set{
+				if(_selectedUser!=value){
+					this.RaiseAndSetIfChanged(ref _selectedUser, value);
+				}
+			}
+		}
+		
+		private bool _canEditNote;
+		public bool CanEditNote
+		{
+			get{return _canEditNote;}
+			set{
+				if(_canEditNote!=value){
+					this.RaiseAndSetIfChanged(ref _canEditNote, value);
+				}
+			}
+		}
+				
+	}
+	
 }
 

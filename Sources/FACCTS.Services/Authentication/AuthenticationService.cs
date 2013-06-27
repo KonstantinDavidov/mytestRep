@@ -1,10 +1,13 @@
-﻿using FACCTS.Services.Dialog;
+﻿using Faccts.Model.Entities;
+using FACCTS.Services.Data;
+using FACCTS.Services.Dialog;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Configuration;
 using System.Linq;
 using System.Security.Authentication;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using Thinktecture.IdentityModel.Clients;
@@ -84,6 +87,19 @@ namespace FACCTS.Services.Authentication
                 throw new AuthenticationException("FACCTS has not been authenticated. Try to authenticate or call the system administrator please.");
             }
             return _token;
+        }
+
+        private User _currentUser;
+        public User CurrentUser 
+        { 
+            get
+            {
+                if (_currentUser == null)
+                {
+                    _currentUser = Users.GetCurrent();
+                }
+                return _currentUser;
+            }
         }
     }
 }
