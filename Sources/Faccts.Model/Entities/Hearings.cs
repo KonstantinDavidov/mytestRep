@@ -20,14 +20,14 @@ using ReactiveUI;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(CourtLocations))]
-    [KnownType(typeof(Hearings))]
-    public partial class Courtrooms: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    [KnownType(typeof(CaseHistory))]
+    [KnownType(typeof(Courtrooms))]
+    public partial class Hearings: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
     		private MakeObjectReactiveHelper _reactiveHelper;
     
-    		public Courtrooms()
+    		public Hearings()
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
@@ -106,102 +106,160 @@ namespace Faccts.Model.Entities
         private int _id;
     
         [DataMember]
-        public string RoomName
+        public System.DateTime HearingDate
         {
-            get { return _roomName; }
+            get { return _hearingDate; }
             set
             {
-                if (_roomName != value)
+                if (_hearingDate != value)
                 {
-    				OnPropertyChanging("RoomName");
-                    _roomName = value;
-                    OnPropertyChanged("RoomName");
+    				OnPropertyChanging("HearingDate");
+                    _hearingDate = value;
+                    OnPropertyChanged("HearingDate");
                 }
             }
         }
-        private string _roomName;
+        private System.DateTime _hearingDate;
     
         [DataMember]
-        public Nullable<int> CourtLocation_Id
+        public string Judge
         {
-            get { return _courtLocation_Id; }
+            get { return _judge; }
             set
             {
-                if (_courtLocation_Id != value)
+                if (_judge != value)
                 {
-                    ChangeTracker.RecordOriginalValue("CourtLocation_Id", _courtLocation_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (CourtLocations != null && CourtLocations.Id != value)
-                        {
-                            CourtLocations = null;
-                        }
-                    }
-    				OnPropertyChanging("CourtLocation_Id");
-                    _courtLocation_Id = value;
-                    OnPropertyChanged("CourtLocation_Id");
+    				OnPropertyChanging("Judge");
+                    _judge = value;
+                    OnPropertyChanged("Judge");
                 }
             }
         }
-        private Nullable<int> _courtLocation_Id;
+        private string _judge;
+    
+        [DataMember]
+        public Nullable<int> Courtroom_Id
+        {
+            get { return _courtroom_Id; }
+            set
+            {
+                if (_courtroom_Id != value)
+                {
+                    ChangeTracker.RecordOriginalValue("Courtroom_Id", _courtroom_Id);
+                    if (!IsDeserializing)
+                    {
+                        if (Courtrooms != null && Courtrooms.Id != value)
+                        {
+                            Courtrooms = null;
+                        }
+                    }
+    				OnPropertyChanging("Courtroom_Id");
+                    _courtroom_Id = value;
+                    OnPropertyChanged("Courtroom_Id");
+                }
+            }
+        }
+        private Nullable<int> _courtroom_Id;
+
+        #endregion
+
+        #region Complex Properties
+    
+        [DataMember]
+        public HearingIssue HearingIssue
+        {
+            get
+            {
+                if (!_hearingIssueInitialized && _hearingIssue == null)
+                {
+                    _hearingIssue = new HearingIssue();
+                    ((INotifyComplexPropertyChanging)_hearingIssue).ComplexPropertyChanging += HandleHearingIssueChanging;
+                }
+                _hearingIssueInitialized = true;
+                return _hearingIssue;
+            }
+            set
+            {
+                _hearingIssueInitialized = true;
+                if (!Equals(_hearingIssue, value))
+                {
+                    if (_hearingIssue != null)
+                    {
+                        ((INotifyComplexPropertyChanging)_hearingIssue).ComplexPropertyChanging -= HandleHearingIssueChanging;
+                    }
+    
+                    HandleHearingIssueChanging(this, null);
+    				OnPropertyChanging("HearingIssue");
+                    _hearingIssue = value;
+                    OnPropertyChanged("HearingIssue");
+    
+                    if (value != null)
+                    {
+                        ((INotifyComplexPropertyChanging)_hearingIssue).ComplexPropertyChanging += HandleHearingIssueChanging;
+                    }
+                }
+            }
+        }
+        private HearingIssue _hearingIssue;
+        private bool _hearingIssueInitialized;
 
         #endregion
 
         #region Navigation Properties
     
         [DataMember]
-        public CourtLocations CourtLocations
-        {
-            get { return _courtLocations; }
-            set
-            {
-                if (!ReferenceEquals(_courtLocations, value))
-                {
-                    var previousValue = _courtLocations;
-    				OnNavigationPropertyChanging("CourtLocations");
-                    _courtLocations = value;
-                    FixupCourtLocations(previousValue);
-                    OnNavigationPropertyChanged("CourtLocations");
-                }
-            }
-        }
-        private CourtLocations _courtLocations;
-    
-        [DataMember]
-        public TrackableCollection<Hearings> Hearings
+        public TrackableCollection<CaseHistory> CaseHistory
         {
             get
             {
-                if (_hearings == null)
+                if (_caseHistory == null)
                 {
-                    _hearings = new TrackableCollection<Hearings>();
-                    _hearings.CollectionChanged += FixupHearings;
+                    _caseHistory = new TrackableCollection<CaseHistory>();
+                    _caseHistory.CollectionChanged += FixupCaseHistory;
                 }
-                return _hearings;
+                return _caseHistory;
             }
             set
             {
-                if (!ReferenceEquals(_hearings, value))
+                if (!ReferenceEquals(_caseHistory, value))
                 {
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
-    				OnNavigationPropertyChanging("Hearings");
-                    if (_hearings != null)
+    				OnNavigationPropertyChanging("CaseHistory");
+                    if (_caseHistory != null)
                     {
-                        _hearings.CollectionChanged -= FixupHearings;
+                        _caseHistory.CollectionChanged -= FixupCaseHistory;
                     }
-                    _hearings = value;
-                    if (_hearings != null)
+                    _caseHistory = value;
+                    if (_caseHistory != null)
                     {
-                        _hearings.CollectionChanged += FixupHearings;
+                        _caseHistory.CollectionChanged += FixupCaseHistory;
                     }
-                    OnNavigationPropertyChanged("Hearings");
+                    OnNavigationPropertyChanged("CaseHistory");
                 }
             }
         }
-        private TrackableCollection<Hearings> _hearings;
+        private TrackableCollection<CaseHistory> _caseHistory;
+    
+        [DataMember]
+        public Courtrooms Courtrooms
+        {
+            get { return _courtrooms; }
+            set
+            {
+                if (!ReferenceEquals(_courtrooms, value))
+                {
+                    var previousValue = _courtrooms;
+    				OnNavigationPropertyChanging("Courtrooms");
+                    _courtrooms = value;
+                    FixupCourtrooms(previousValue);
+                    OnNavigationPropertyChanged("Courtrooms");
+                }
+            }
+        }
+        private Courtrooms _courtrooms;
 
         #endregion
 
@@ -297,59 +355,68 @@ namespace Faccts.Model.Entities
             IsDeserializing = false;
             ChangeTracker.ChangeTrackingEnabled = true;
         }
+        // Records the original values for the complex property HearingIssue
+        private void HandleHearingIssueChanging(object sender, EventArgs args)
+        {
+            if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
+            {
+                ChangeTracker.State = ObjectState.Modified;
+            }
+        }
+    
     
         protected virtual void ClearNavigationProperties()
         {
-            CourtLocations = null;
-            Hearings.Clear();
+            CaseHistory.Clear();
+            Courtrooms = null;
         }
 
         #endregion
 
         #region Association Fixup
     
-        private void FixupCourtLocations(CourtLocations previousValue, bool skipKeys = false)
+        private void FixupCourtrooms(Courtrooms previousValue, bool skipKeys = false)
         {
             if (IsDeserializing)
             {
                 return;
             }
     
-            if (previousValue != null && previousValue.Courtrooms.Contains(this))
+            if (previousValue != null && previousValue.Hearings.Contains(this))
             {
-                previousValue.Courtrooms.Remove(this);
+                previousValue.Hearings.Remove(this);
             }
     
-            if (CourtLocations != null)
+            if (Courtrooms != null)
             {
-                CourtLocations.Courtrooms.Add(this);
+                Courtrooms.Hearings.Add(this);
     
-                CourtLocation_Id = CourtLocations.Id;
+                Courtroom_Id = Courtrooms.Id;
             }
             else if (!skipKeys)
             {
-                CourtLocation_Id = null;
+                Courtroom_Id = null;
             }
     
             if (ChangeTracker.ChangeTrackingEnabled)
             {
-                if (ChangeTracker.OriginalValues.ContainsKey("CourtLocations")
-                    && (ChangeTracker.OriginalValues["CourtLocations"] == CourtLocations))
+                if (ChangeTracker.OriginalValues.ContainsKey("Courtrooms")
+                    && (ChangeTracker.OriginalValues["Courtrooms"] == Courtrooms))
                 {
-                    ChangeTracker.OriginalValues.Remove("CourtLocations");
+                    ChangeTracker.OriginalValues.Remove("Courtrooms");
                 }
                 else
                 {
-                    ChangeTracker.RecordOriginalValue("CourtLocations", previousValue);
+                    ChangeTracker.RecordOriginalValue("Courtrooms", previousValue);
                 }
-                if (CourtLocations != null && !CourtLocations.ChangeTracker.ChangeTrackingEnabled)
+                if (Courtrooms != null && !Courtrooms.ChangeTracker.ChangeTrackingEnabled)
                 {
-                    CourtLocations.StartTracking();
+                    Courtrooms.StartTracking();
                 }
             }
         }
     
-        private void FixupHearings(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupCaseHistory(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
             {
@@ -358,31 +425,31 @@ namespace Faccts.Model.Entities
     
             if (e.NewItems != null)
             {
-                foreach (Hearings item in e.NewItems)
+                foreach (CaseHistory item in e.NewItems)
                 {
-                    item.Courtrooms = this;
+                    item.Hearing = this;
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         if (!item.ChangeTracker.ChangeTrackingEnabled)
                         {
                             item.StartTracking();
                         }
-                        ChangeTracker.RecordAdditionToCollectionProperties("Hearings", item);
+                        ChangeTracker.RecordAdditionToCollectionProperties("CaseHistory", item);
                     }
                 }
             }
     
             if (e.OldItems != null)
             {
-                foreach (Hearings item in e.OldItems)
+                foreach (CaseHistory item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.Courtrooms, this))
+                    if (ReferenceEquals(item.Hearing, this))
                     {
-                        item.Courtrooms = null;
+                        item.Hearing = null;
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("Hearings", item);
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CaseHistory", item);
                     }
                 }
             }

@@ -25,7 +25,7 @@
         <EntityTypeShape EntityType="FACCTS_DBModel.CourtParty" Width="1.5" PointX="8.8257883492977314" PointY="11.703309988464838" />
         <EntityTypeShape EntityType="FACCTS_DBModel.Courtrooms" Width="1.5" PointX="10.267109182787644" PointY="5.312067764490874" />
         <EntityTypeShape EntityType="FACCTS_DBModel.Delegation" Width="1.5" PointX="8.3466834017758647" PointY="9.220483322264851" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Designation" Width="1.5" PointX="1.6438777771051405" PointY="8.0426782854100125" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Designation" Width="1.5" PointX="2.25" PointY="9.125" />
         <EntityTypeShape EntityType="FACCTS_DBModel.DiagnosticsConfiguration" Width="1.5" PointX="8.4815534653521851" PointY="26.155521598716977" />
         <EntityTypeShape EntityType="FACCTS_DBModel.EyesColor" Width="1.5" PointX="10.83082701211368" PointY="29.219367383615751" />
         <EntityTypeShape EntityType="FACCTS_DBModel.FACCTSConfiguration" Width="1.5" PointX="0.537949238223" PointY="16.896558888674043" />
@@ -95,6 +95,9 @@
         <AssociationConnector Association="FACCTS_DBModel.RolePermission" />
         <AssociationConnector Association="FACCTS_DBModel.RoleUser" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_OtherProtected_dbo_Sex_Sex_Id" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Hearings" Width="1.5" PointX="10.581450891951775" PointY="20.024295831110468" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Hearings_dbo_Courtrooms_Courtroom_Id" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

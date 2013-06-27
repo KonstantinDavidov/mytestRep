@@ -181,6 +181,12 @@
     <Compile Include="Entities\HairColor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\HearingIssue.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Hearings.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\IdentityProvider.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

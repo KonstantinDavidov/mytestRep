@@ -52,8 +52,6 @@ namespace FACCTS.Server.Model.DataModel
 
         public virtual ICollection<CourtCaseOrder> CourtOrders { get; set; }
 
-        [StringLength(250)]
-        public string Judge { get; set; }
 
         public RestrainingPartyIdentificationInformation RestrainingPartyIdentificationInformation { get; set; }
     }

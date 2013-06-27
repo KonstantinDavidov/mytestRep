@@ -129,6 +129,7 @@ namespace FACCTS.Server.Data
         public DbSet<Interpreter> Interpreters { get; set; }
         public DbSet<Witness> Witnesses { get; set; }
         public DbSet<CaseHistory> CaseHistory { get; set; }
+        public DbSet<Hearing> Hearings { get; set; }
         public DbSet<CaseNote> CaseNotes { get; set; }
         public DbSet<RelatedCase> RelatedCases { get; set; }
         public DbSet<AvailableCourtOrder> AvailableCourtOrders { get; set; }

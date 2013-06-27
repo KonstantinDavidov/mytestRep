@@ -104,6 +104,8 @@
     <Compile Include="Entities\EyesColor.cs" />
     <Compile Include="Entities\FormField.cs" />
     <Compile Include="Entities\HairColor.cs" />
+    <Compile Include="Entities\Hearing.cs" />
+    <Compile Include="Entities\HearingIssue.cs" />
     <Compile Include="Entities\IdentityProvider.cs" />
     <Compile Include="Entities\Interpreter.cs" />
     <Compile Include="Entities\ManualIntegrationTask.cs" />

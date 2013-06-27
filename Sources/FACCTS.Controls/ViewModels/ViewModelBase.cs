@@ -50,6 +50,7 @@ namespace FACCTS.Controls.ViewModels
         [ImportingConstructor]
         public ViewModelBase(IAuthenticationService authenticationService, IDataContainer dataContainer) : base()
         {
+            _logger.InfoFormat("{0}.{}1", this.GetType().Name, "ctor");
             _authenticationService = authenticationService;
             _authenticationService.AuthenticationStatusChanged += _authenticationService_AuthenticationStatusChanged;
             DataContainer = dataContainer;
@@ -104,6 +105,7 @@ namespace FACCTS.Controls.ViewModels
 
         public virtual void Cancel()
         {
+            _logger.InfoFormat("Closing {0}", this.GetType().Name);
             TryClose(false);
         }
         

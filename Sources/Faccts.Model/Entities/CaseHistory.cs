@@ -23,6 +23,7 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(CaseRecord))]
     [KnownType(typeof(CourtCaseOrders))]
     [KnownType(typeof(User))]
+    [KnownType(typeof(Hearings))]
     public partial class CaseHistory: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -225,6 +226,46 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<int> _caseRecord_Id;
+    
+        [DataMember]
+        public Nullable<int> MergeCaseID
+        {
+            get { return _mergeCaseID; }
+            set
+            {
+                if (_mergeCaseID != value)
+                {
+    				OnPropertyChanging("MergeCaseID");
+                    _mergeCaseID = value;
+                    OnPropertyChanged("MergeCaseID");
+                }
+            }
+        }
+        private Nullable<int> _mergeCaseID;
+    
+        [DataMember]
+        public Nullable<int> Hearing_Id
+        {
+            get { return _hearing_Id; }
+            set
+            {
+                if (_hearing_Id != value)
+                {
+                    ChangeTracker.RecordOriginalValue("Hearing_Id", _hearing_Id);
+                    if (!IsDeserializing)
+                    {
+                        if (Hearing != null && Hearing.Id != value)
+                        {
+                            Hearing = null;
+                        }
+                    }
+    				OnPropertyChanging("Hearing_Id");
+                    _hearing_Id = value;
+                    OnPropertyChanged("Hearing_Id");
+                }
+            }
+        }
+        private Nullable<int> _hearing_Id;
 
         #endregion
 
@@ -325,6 +366,24 @@ namespace Faccts.Model.Entities
             }
         }
         private User _user;
+    
+        [DataMember]
+        public Hearings Hearing
+        {
+            get { return _hearing; }
+            set
+            {
+                if (!ReferenceEquals(_hearing, value))
+                {
+                    var previousValue = _hearing;
+    				OnNavigationPropertyChanging("Hearing");
+                    _hearing = value;
+                    FixupHearing(previousValue);
+                    OnNavigationPropertyChanged("Hearing");
+                }
+            }
+        }
+        private Hearings _hearing;
 
         #endregion
 
@@ -435,6 +494,7 @@ namespace Faccts.Model.Entities
             CaseRecord = null;
             CourtCaseOrders = null;
             User = null;
+            Hearing = null;
         }
 
         #endregion
@@ -560,6 +620,47 @@ namespace Faccts.Model.Entities
                 if (User != null && !User.ChangeTracker.ChangeTrackingEnabled)
                 {
                     User.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupHearing(Hearings previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.CaseHistory.Contains(this))
+            {
+                previousValue.CaseHistory.Remove(this);
+            }
+    
+            if (Hearing != null)
+            {
+                Hearing.CaseHistory.Add(this);
+    
+                Hearing_Id = Hearing.Id;
+            }
+            else if (!skipKeys)
+            {
+                Hearing_Id = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("Hearing")
+                    && (ChangeTracker.OriginalValues["Hearing"] == Hearing))
+                {
+                    ChangeTracker.OriginalValues.Remove("Hearing");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("Hearing", previousValue);
+                }
+                if (Hearing != null && !Hearing.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    Hearing.StartTracking();
                 }
             }
         }
