@@ -269,6 +269,9 @@
     <Compile Include="Views\NewCourtCaseDialogView.xaml.cs">
       <DependentUpon>NewCourtCaseDialogView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\OutputForms\CH130CivilHarassmentView.xaml.cs">
+      <DependentUpon>CH130CivilHarassmentView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OutputForms\DV110PropertyAndAttorneysFeeView.xaml.cs">
       <DependentUpon>DV110PropertyAndAttorneysFeeView.xaml</DependentUpon>
     </Compile>
@@ -448,6 +451,10 @@
     <Page Include="Views\NewCourtCaseDialogView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutputForms\CH130CivilHarassmentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OutputForms\DV110PropertyAndAttorneysFeeView.xaml">
       <SubType>Designer</SubType>
