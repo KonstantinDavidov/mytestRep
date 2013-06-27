@@ -33,6 +33,7 @@ namespace FACCTS.Controls.ViewModels
             , WitnessInterpereterViewModel witnessInterprererViewModel
             , RelatedCasesViewModel relatedCasesViewModel
             , CaseNotesViewModel caseNotesViewModel
+            , CaseHistoryViewModel caseHistoryViewModel
             , IWindowManager windowManager
             , IEventAggregator eventAggregator
             )
@@ -46,6 +47,7 @@ namespace FACCTS.Controls.ViewModels
             WitnessInterpereterViewModel = witnessInterprererViewModel;
             RelatedCasesViewModel = relatedCasesViewModel;
             CaseNotesViewModel = caseNotesViewModel;
+            CaseHistoryViewModel = caseHistoryViewModel;
             _eventAggregator = eventAggregator;
             Observable.Merge(
                 this.ObservableForProperty(x => x.IsActive),
@@ -124,6 +126,7 @@ namespace FACCTS.Controls.ViewModels
         protected WitnessInterpereterViewModel WitnessInterpereterViewModel { get; set; }
         protected RelatedCasesViewModel RelatedCasesViewModel { get; set; }
         protected CaseNotesViewModel CaseNotesViewModel { get; set; }
+        protected CaseHistoryViewModel CaseHistoryViewModel { get; set; }
 
         public void ActivateControl(int selectedIndex)
         {
@@ -143,6 +146,9 @@ namespace FACCTS.Controls.ViewModels
                     break;
                 case 4:
                     ActivateItem(RelatedCasesViewModel);
+                    break;
+                case 5:
+                    ActivateItem(CaseHistoryViewModel);
                     break;
                 case 6:
                     ActivateItem(CaseNotesViewModel);
