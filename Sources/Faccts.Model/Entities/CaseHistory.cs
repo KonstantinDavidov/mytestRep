@@ -700,17 +700,11 @@ namespace Faccts.Model.Entities
                 return;
             }
     
-            if (previousValue != null && previousValue.CaseHistory.Contains(this))
-            {
-                previousValue.CaseHistory.Remove(this);
-            }
-    
             if (MergeCase != null)
             {
-                MergeCase.CaseHistory.Add(this);
-    
                 MergeCase_Id = MergeCase.Id;
             }
+    
             else if (!skipKeys)
             {
                 MergeCase_Id = null;

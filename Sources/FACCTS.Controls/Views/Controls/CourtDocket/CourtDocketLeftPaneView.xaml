@@ -31,7 +31,7 @@
 					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
-				<Calendar Grid.ColumnSpan="3" SelectedDate="{Binding CalendarDate, Mode=TwoWay}"/>
+				<Calendar Grid.ColumnSpan="3" SelectedDate="{Binding CalendarDate, Mode=TwoWay}" x:Name="Calendar"/>
 				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Filter by Courtroom" VerticalAlignment="Center" Grid.Row="1"/>
 				<ComboBox Grid.Row="1" Grid.Column="1"/>
 				<TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2"><Run Text="Filter by AM/PM"/></TextBlock>
@@ -40,7 +40,20 @@
 		</GroupBox>
 		<Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
 			<UniformGrid Rows="1" Columns="2" HorizontalAlignment="Left">
-				<Button Content="Add Case" cal:Message.Attach="AddCase" IsEnabled="{Binding SelectedItem, Converter={x:Static Converters:ObjectToBooleanConverter.Instance}, ElementName=listBox, Mode=OneWay}"/>
+				<Button Content="Add Case" cal:Message.Attach="AddCase">
+                    <Button.IsEnabled>
+                        <MultiBinding Converter="{x:Static Converters:AndConverter.Instance}">
+                            <Binding Path="SelectedItem"
+                                     Converter="{x:Static Converters:ObjectToBooleanConverter.Instance}"
+                                     ElementName="listBox"
+                                     Mode="OneWay" />
+                            <Binding ElementName="Calendar"
+                                     Path="SelectedDate"
+                                     Mode="OneWay"
+                                     Converter="{x:Static Converters:ObjectToBooleanConverter.Instance}" />
+                        </MultiBinding>
+                    </Button.IsEnabled>
+                </Button>
 				<Button Content="View Cases" />
 			</UniformGrid>
     		
