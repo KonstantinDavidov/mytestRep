@@ -34,6 +34,7 @@
     <Property name="ConductSection" type="CH130ConductChoice"/>
     <Property name="StayAwayOrdersSection" type="CH130ConductChoice"/>
     <Property name="IsNoGuns" type="bool"/>
+    <Property name="CAPROSEntry" type="CAPROSEntry"/>
     <Property name="OrdersEndDate" type="DateTime?"/>
   </Model>
   
