@@ -42,15 +42,15 @@
 				<ComboBox Grid.Column="7"/>
 			</Grid>
 		</Border>
-		<DataGrid Grid.Row="1" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" ItemsSource="{Binding HistoryRecords}" AutoGenerateColumns="False">
+		<DataGrid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding HistoryRecords}" AutoGenerateColumns="False" SelectionMode="Single">
 			<DataGrid.Columns>
 				<DataGridTextColumn Binding="{Binding CaseRecord.CourtCase.CaseNumber, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Case Number" CanUserResize="False" Width="100" IsReadOnly="True"/>
 				<DataGridTextColumn Binding="{Binding Hearing.HearingDate, Mode=OneWay, StringFormat=\{0:d\}}" ClipboardContentBinding="{x:Null}" Header="Next Hearing Date" CanUserResize="False" Width="140" IsReadOnly="True"/>
 				<DataGridTextColumn Binding="{Binding Hearing.Courtrooms.RoomName, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Courtroom" CanUserResize="False" Width="100" IsReadOnly="True"/>
-				<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Session" IsReadOnly="True"/>
+				<DataGridTextColumn Binding="{Binding Hearing.HearingDate, Mode=OneWay, StringFormat={}{tt}}" ClipboardContentBinding="{x:Null}" Header="Session" IsReadOnly="True"/>
 				<DataGridTextColumn Binding="{Binding CaseRecord.CourtParty.FullName, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Party 1" CanUserResize="False" Width="100" IsReadOnly="True"/>
 				<DataGridTextColumn Binding="{Binding CaseRecord.CourtParty1.FullName, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Party 2" CanUserResize="False" Width="100" IsReadOnly="True"/>
-				<DataGridTextColumn Binding="{Binding CaseRecord.Children.Count, ConverterParameter=0, Converter={StaticResource InvertedInt32ToBooleanConverter}, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Children" CanUserResize="False" Width="80" IsReadOnly="True"/>
+				<DataGridCheckBoxColumn Binding="{Binding CaseRecord.Children.Count, ConverterParameter=0, Converter={StaticResource InvertedInt32ToBooleanConverter}, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Children" CanUserResize="False" Width="80" IsReadOnly="True"/>
 				<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Judge" CanUserResize="False" Width="100"/>
 			</DataGrid.Columns>
 		</DataGrid>
