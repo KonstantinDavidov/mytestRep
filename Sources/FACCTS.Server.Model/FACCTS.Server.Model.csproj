@@ -129,9 +129,12 @@
     <Compile Include="Enums\IntegrationTaskState.cs" />
     <Compile Include="Enums\FACCTSEntity.cs" />
     <Compile Include="Enums\IdentificationIDType.cs" />
+    <Compile Include="Enums\OrderItemState.cs" />
     <Compile Include="Enums\Relationship.cs" />
+    <Compile Include="Enums\ServiceReqState.cs" />
     <Compile Include="NullStringConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reporting\Entities\CaseInfo.cs" />
     <Compile Include="Reporting\Entities\Party.cs" />
     <Compile Include="Reporting\ModelTemplate.cs">
       <DependentUpon>ModelTemplate.tt</DependentUpon>
