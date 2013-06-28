@@ -12,6 +12,7 @@ using FACCTS.Services.Logger;
 using System.ComponentModel;
 using FACCTS.Services;
 using FACCTS.Controls.Utils;
+using Caliburn.Micro;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -74,9 +75,7 @@ namespace FACCTS.Controls.ViewModels
                     }
                 },
             };
-            DataContainer.CourtCases.Add(newCase);
-            //CourtCases.CreateNew(cc);
-            //DataContainer.SearchCourtCases();
+            Execute.OnUIThread(() => DataContainer.CourtCases.Add(newCase));
         }
 
         public string Error

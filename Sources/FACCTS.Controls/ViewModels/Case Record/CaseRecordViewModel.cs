@@ -97,14 +97,14 @@ namespace FACCTS.Controls.ViewModels
             this.NotifyOfPropertyChange(() => CourtCases);
         }
 
-        private ObservableCollection<CourtCase> _courtCases;
-        public ObservableCollection<CourtCase> CourtCases
+        private TrackableCollection<CourtCase> _courtCases;
+        public TrackableCollection<CourtCase> CourtCases
         {
             get
             {
                 if (IsAuthenticated && _courtCases == null)
                 {
-                    _courtCases = new ObservableCollection<CourtCase>(DataContainer.CourtCases);
+                    _courtCases = DataContainer.CourtCases;
                     if (CurrentCourtCase == null)
                     {
                         CurrentCourtCase = _courtCases.FirstOrDefault();

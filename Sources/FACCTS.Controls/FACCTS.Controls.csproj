@@ -125,9 +125,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Converters\AndConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\FirstMiddleLastNameToFullNameConverter.cs" />
+    <Compile Include="Converters\Int32ToBooleanConverter.cs" />
     <Compile Include="Converters\InvertedBooleanConverter.cs" />
+    <Compile Include="Converters\InvertedInt32ToBooleanConverter.cs" />
     <Compile Include="Converters\NullableBoolleanToBooleanConverter.cs" />
     <Compile Include="Converters\ObjectToBooleanConverter.cs" />
     <Compile Include="Events\CurrentCourtCaseChangedEvent.cs" />

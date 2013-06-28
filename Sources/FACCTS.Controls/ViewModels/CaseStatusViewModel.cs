@@ -278,14 +278,14 @@ namespace FACCTS.Controls.ViewModels
             //TODO implement Find()
         }
 
-        private ObservableCollection<CourtCase> _courtCases;
-        public ObservableCollection<CourtCase> CourtCases
+        private TrackableCollection<CourtCase> _courtCases;
+        public TrackableCollection<CourtCase> CourtCases
         {
             get
             {
                 if (this.IsAuthenticated && _courtCases == null)
                 {
-                    _courtCases = new ObservableCollection<CourtCase>(DataContainer.CourtCases);
+                    _courtCases = DataContainer.CourtCases;
                 }
                 return _courtCases;
             }

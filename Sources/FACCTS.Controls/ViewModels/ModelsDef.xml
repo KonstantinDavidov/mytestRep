@@ -39,7 +39,6 @@
   <Model name="CourtDocketViewModel">
     <Property name="CanDropDismiss" type="bool"/>
     <Property name="CanReissue" type="bool"/>
-    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
     <Property name="CalendarDate" type="DateTime?"/>
   </Model>
   
