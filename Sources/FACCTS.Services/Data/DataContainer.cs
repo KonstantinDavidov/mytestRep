@@ -1,4 +1,5 @@
 ﻿using Faccts.Model.Entities;
+using FACCTS.Services.Logger;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,9 +16,13 @@ namespace FACCTS.Services.Data
     [Export(typeof(IDataContainer))]
     public class DataContainer : IDataContainer
     {
-        public DataContainer()
+        private ILogger _logger;
+
+        [ImportingConstructor]
+        public DataContainer(ILogger logger)
         {
             //SearchCourtCases();
+            _logger = logger;
         }
 
         private SearchCriteria _searchCriteria = new SearchCriteria();

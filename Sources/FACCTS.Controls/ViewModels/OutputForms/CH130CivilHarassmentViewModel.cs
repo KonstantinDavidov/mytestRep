@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 namespace FACCTS.Controls.ViewModels
 {
     [Export]
-    public partial class CaseHistoryViewModel : CaseRecordItemViewModel
+    public partial class CH130CivilHarassmentViewModel : ViewModelBase
     {
-        public CaseHistoryViewModel() : base()
+        public CH130CivilHarassmentViewModel() : base()
         {
-            this.DisplayName = "Case History";
+            this.DisplayName = "CH130 - Civil Harassment - Restraining Order";
         }
     }
 }

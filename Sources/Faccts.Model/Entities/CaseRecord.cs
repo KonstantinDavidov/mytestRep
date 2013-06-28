@@ -117,22 +117,6 @@ namespace Faccts.Model.Entities
         private int _id;
     
         [DataMember]
-        public string Judge
-        {
-            get { return _judge; }
-            set
-            {
-                if (_judge != value)
-                {
-    				OnPropertyChanging("Judge");
-                    _judge = value;
-                    OnPropertyChanged("Judge");
-                }
-            }
-        }
-        private string _judge;
-    
-        [DataMember]
         public Nullable<int> Party1_Id
         {
             get { return _party1_Id; }
