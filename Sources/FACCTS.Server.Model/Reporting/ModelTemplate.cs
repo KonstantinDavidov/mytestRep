@@ -7,7 +7,7 @@ using FACCTS.Server.Model.Reporting.Entities;
 using FACCTS.Server.Model.DataModel;
 using System.Collections.Generic;
 
-namespace FACCTS.Server.Model.ViewModels
+namespace FACCTS.Server.Model.OrderModels
 {
     
 			
@@ -305,6 +305,17 @@ namespace FACCTS.Server.Model.ViewModels
 			set
 			{
 				_isNoGuns = value;
+
+			}
+		}
+		
+		private CAPROSEntry _cAPROSEntry;
+		public CAPROSEntry CAPROSEntry
+		{
+			get{return _cAPROSEntry;}
+			set
+			{
+				_cAPROSEntry = value;
 
 			}
 		}
