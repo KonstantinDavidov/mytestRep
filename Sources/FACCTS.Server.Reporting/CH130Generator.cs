@@ -10,7 +10,8 @@ namespace FACCTS.Server.Reporting
 {
     public class CH130Generator : Generator<CH130>
     {
-        public override void Run(string pathToPdf, Dictionary<string, string> mapper, CH130 data)
+
+        public override void Run(string pathToPdf, Dictionary<string, string> mapper, object data)
         {
             throw new NotImplementedException();
         }

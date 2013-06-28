@@ -8,5 +8,6 @@ namespace FACCTS.Server.Reporting
 {
     public abstract class Generator<T> : IOrderGenerator where T : new() 
     {
+        public abstract void Run(string pathToPdf, Dictionary<string, string> mapper, object data);
     }
 }

@@ -7,6 +7,6 @@ namespace FACCTS.Server.Reporting
 {
     public interface IOrderGenerator
     {
-        public void Run(string pathToPdf, Dictionary<string, string> mapper, object data);
+        void Run(string pathToPdf, Dictionary<string, string> mapper, object data);
     }
 }
