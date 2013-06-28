@@ -7,7 +7,7 @@ using FACCTS.Server.Model.Reporting.Entities;
 using FACCTS.Server.Model.DataModel;
 using System.Collections.Generic;
 
-namespace FACCTS.Services.ViewModels
+namespace FACCTS.Server.Model.ViewModels
 {
     
 			
@@ -20,6 +20,17 @@ namespace FACCTS.Services.ViewModels
 			set
 			{
 				_isEnabled = value;
+
+			}
+		}
+		
+		private OrderItemState _conductState;
+		public OrderItemState ConductState
+		{
+			get{return _conductState;}
+			set
+			{
+				_conductState = value;
 
 			}
 		}
@@ -57,17 +68,6 @@ namespace FACCTS.Services.ViewModels
 			}
 		}
 		
-		private bool _coversOtherProtectedPerson;
-		public bool CoversOtherProtectedPerson
-		{
-			get{return _coversOtherProtectedPerson;}
-			set
-			{
-				_coversOtherProtectedPerson = value;
-
-			}
-		}
-		
 		private bool _other;
 		public bool Other
 		{
@@ -89,6 +89,17 @@ namespace FACCTS.Services.ViewModels
 
 			}
 		}
+		
+		private ServiceReqState _service;
+		public ServiceReqState Service
+		{
+			get{return _service;}
+			set
+			{
+				_service = value;
+
+			}
+		}
 				
 	}
 	
@@ -102,6 +113,17 @@ namespace FACCTS.Services.ViewModels
 			set
 			{
 				_isEnabled = value;
+
+			}
+		}
+		
+		private OrderItemState _stayAwayState;
+		public OrderItemState StayAwayState
+		{
+			get{return _stayAwayState;}
+			set
+			{
+				_stayAwayState = value;
 
 			}
 		}
@@ -219,57 +241,19 @@ namespace FACCTS.Services.ViewModels
 	}
 	
 			
-	public partial class CH130RestrainedPersonPayment
-	{
-		private bool _isEnabled;
-		public bool IsEnabled
-		{
-			get{return _isEnabled;}
-			set
-			{
-				_isEnabled = value;
-
-			}
-		}
-		
-		private bool _isAttonrneyFees;
-		public bool IsAttonrneyFees
-		{
-			get{return _isAttonrneyFees;}
-			set
-			{
-				_isAttonrneyFees = value;
-
-			}
-		}
-		
-		private string _otherDescription;
-		public string OtherDescription
-		{
-			get{return _otherDescription;}
-			set
-			{
-				_otherDescription = value;
-
-			}
-		}
-		
-		private List<OtherProtected> _otherProtectedPersons;
-		public List<OtherProtected> OtherProtectedPersons
-		{
-			get{return _otherProtectedPersons;}
-			set
-			{
-				_otherProtectedPersons = value;
-
-			}
-		}
-				
-	}
-	
-			
 	public partial class CH130
 	{
+		private CaseInfo _caseInfo;
+		public CaseInfo CaseInfo
+		{
+			get{return _caseInfo;}
+			set
+			{
+				_caseInfo = value;
+
+			}
+		}
+		
 		private Party _party1;
 		public Party Party1
 		{
@@ -332,6 +316,137 @@ namespace FACCTS.Services.ViewModels
 			set
 			{
 				_ordersEndDate = value;
+
+			}
+		}
+				
+	}
+	
+			
+	public partial class CH110ConductChoice
+	{
+		private bool _isEnabled;
+		public bool IsEnabled
+		{
+			get{return _isEnabled;}
+			set
+			{
+				_isEnabled = value;
+
+			}
+		}
+		
+		private bool _noAbuse;
+		public bool NoAbuse
+		{
+			get{return _noAbuse;}
+			set
+			{
+				_noAbuse = value;
+
+			}
+		}
+		
+		private bool _noContact;
+		public bool NoContact
+		{
+			get{return _noContact;}
+			set
+			{
+				_noContact = value;
+
+			}
+		}
+		
+		private bool _dontTryToLocate;
+		public bool DontTryToLocate
+		{
+			get{return _dontTryToLocate;}
+			set
+			{
+				_dontTryToLocate = value;
+
+			}
+		}
+		
+		private bool _coversOtherProtectedPerson;
+		public bool CoversOtherProtectedPerson
+		{
+			get{return _coversOtherProtectedPerson;}
+			set
+			{
+				_coversOtherProtectedPerson = value;
+
+			}
+		}
+		
+		private bool _other;
+		public bool Other
+		{
+			get{return _other;}
+			set
+			{
+				_other = value;
+
+			}
+		}
+		
+		private string _otherDescription;
+		public string OtherDescription
+		{
+			get{return _otherDescription;}
+			set
+			{
+				_otherDescription = value;
+
+			}
+		}
+				
+	}
+	
+			
+	public partial class CH110RestrainedPersonPayment
+	{
+		private bool _isEnabled;
+		public bool IsEnabled
+		{
+			get{return _isEnabled;}
+			set
+			{
+				_isEnabled = value;
+
+			}
+		}
+		
+		private bool _isAttonrneyFees;
+		public bool IsAttonrneyFees
+		{
+			get{return _isAttonrneyFees;}
+			set
+			{
+				_isAttonrneyFees = value;
+
+			}
+		}
+		
+		private string _otherDescription;
+		public string OtherDescription
+		{
+			get{return _otherDescription;}
+			set
+			{
+				_otherDescription = value;
+
+			}
+		}
+		
+		private List<OtherProtected> _otherProtectedPersons;
+		public List<OtherProtected> OtherProtectedPersons
+		{
+			get{return _otherProtectedPersons;}
+			set
+			{
+				_otherProtectedPersons = value;
 
 			}
 		}

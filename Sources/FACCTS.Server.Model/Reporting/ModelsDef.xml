@@ -1,18 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ModelsDef>
-  
+  <!--CH130-->
  <Model name="CH130ConductChoice">
    <Property name="IsEnabled" type="bool"/>
+   <Property name="ConductState" type="OrderItemState"/>
    <Property name="NoAbuse" type="bool"/>
    <Property name="NoContact" type="bool"/>
    <Property name="DontTryToLocate" type="bool"/>
-   <Property name="CoversOtherProtectedPerson" type="bool"/>
    <Property name="Other" type="bool"/>
    <Property name="OtherDescription" type="string"/>
+   <Property name="Service" type="ServiceReqState"/>
  </Model>
   
   <Model name="CH130StayAwayOrders">
     <Property name="IsEnabled" type="bool"/>
+    <Property name="StayAwayState" type="OrderItemState"/>
     <Property name="Person" type="bool"/>
     <Property name="Home" type="bool"/>
     <Property name="Vehicle" type="bool"/>
@@ -24,20 +26,33 @@
     <Property name="OtherDescription" type="string"/>
     <Property name="OtherProtectedPersons" type="List" collectionType="OtherProtected"/>
   </Model>
-  <Model name="CH130RestrainedPersonPayment">
-    <Property name="IsEnabled" type="bool"/>
-    <Property name="IsAttonrneyFees" type="bool"/>
-    <Property name="OtherDescription" type="string"/>
-    <Property name="OtherProtectedPersons" type="List" collectionType="OtherProtected"/>
-  </Model>
 
   <Model name="CH130">
+    <Property name="CaseInfo" type="CaseInfo"/>
     <Property name="Party1" type="Party"/>
     <Property name="Party2" type="Party"/>
     <Property name="ConductSection" type="CH130ConductChoice"/>
     <Property name="StayAwayOrdersSection" type="CH130ConductChoice"/>
     <Property name="IsNoGuns" type="bool"/>
     <Property name="OrdersEndDate" type="DateTime?"/>
+  </Model>
+  
+<!--CH110-->
+  <Model name="CH110ConductChoice">
+    <Property name="IsEnabled" type="bool"/>
+    <Property name="NoAbuse" type="bool"/>
+    <Property name="NoContact" type="bool"/>
+    <Property name="DontTryToLocate" type="bool"/>
+    <Property name="CoversOtherProtectedPerson" type="bool"/>
+    <Property name="Other" type="bool"/>
+    <Property name="OtherDescription" type="string"/>
+  </Model>
+  
+  <Model name="CH110RestrainedPersonPayment">
+    <Property name="IsEnabled" type="bool"/>
+    <Property name="IsAttonrneyFees" type="bool"/>
+    <Property name="OtherDescription" type="string"/>
+    <Property name="OtherProtectedPersons" type="List" collectionType="OtherProtected"/>
   </Model>
  
   <xs:schema 

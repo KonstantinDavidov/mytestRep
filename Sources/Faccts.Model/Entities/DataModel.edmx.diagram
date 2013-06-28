@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="FACCTS_DBModel.AdfsIntegrationConfiguration" Width="1.5" PointX="3.7664668372676084" PointY="8.266134534155082" />
         <EntityTypeShape EntityType="FACCTS_DBModel.Attorneys" Width="1.5" PointX="3.5322406997588649" PointY="30.324466317111842" />
         <EntityTypeShape EntityType="FACCTS_DBModel.AvailableCourtOrder" Width="1.5" PointX="2.9636194514872596" PointY="16.869271435248326" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.CaseHistory" Width="1.5" PointX="10.125" PointY="23.375" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CaseHistory" Width="1.5" PointX="14" PointY="22.75" />
         <EntityTypeShape EntityType="FACCTS_DBModel.CaseNotes" Width="1.5" PointX="10.072595770504602" PointY="21.037974456808517" />
         <EntityTypeShape EntityType="FACCTS_DBModel.CaseRecord" Width="1.5" PointX="10.375" PointY="31.75" />
         <EntityTypeShape EntityType="FACCTS_DBModel.Children" Width="1.5" PointX="0.73480435308758374" PointY="23.287401239987183" />
