@@ -12,6 +12,39 @@ namespace Faccts.Model.Entities
         partial void Initialize()
         {
             this.CaseRecord = new CaseRecord();
+            this.CaseRecord.CaseHistory.CollectionChanged += CaseHistoryChanged;
+        }
+
+        private void CaseHistoryChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            this.OnPropertyChanged("CaseStatus");
+        }
+
+        private static FACCTS.Server.Model.Enums.CaseStatus CaseHistoryEventToStatus(FACCTS.Server.Model.Enums.CaseHistoryEvent chEvent)
+        {
+            FACCTS.Server.Model.Enums.CaseStatus result;
+            switch(chEvent)
+            {
+                case FACCTS.Server.Model.Enums.CaseHistoryEvent.New:
+                    result = FACCTS.Server.Model.Enums.CaseStatus.New;
+                    break;
+                case FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing:
+                    result = FACCTS.Server.Model.Enums.CaseStatus.Active;
+                    break;
+                case FACCTS.Server.Model.Enums.CaseHistoryEvent.Dismissed:
+                    result = FACCTS.Server.Model.Enums.CaseStatus.Dismissed;
+                    break;
+                case FACCTS.Server.Model.Enums.CaseHistoryEvent.Dropped:
+                    result = FACCTS.Server.Model.Enums.CaseStatus.Dropped;
+                    break;
+                case FACCTS.Server.Model.Enums.CaseHistoryEvent.Reissued:
+                    result = FACCTS.Server.Model.Enums.CaseStatus.Reissued;
+                    break;
+                default:
+                    result = FACCTS.Server.Model.Enums.CaseStatus.New;
+                    break;
+            }
+            return result;
         }
 
         public CourtCase(FACCTS.Server.Model.DataModel.CourtCase courtCaseDto) : this()
@@ -21,24 +54,24 @@ namespace Faccts.Model.Entities
 
             this.CCPORId = courtCaseDto.CCPORId;
             this.CCPORStatus = (int?)courtCaseDto.CCPORStatus;
-            this.CaseStatus = courtCaseDto.CaseStatus;
             RaiseNavigationPropertyLoading(() => User);
             RaiseNavigationPropertyLoading(() => CaseRecord);
         }
 
-        private FACCTS.Server.Model.Enums.CaseStatus _caseStatus;
         public FACCTS.Server.Model.Enums.CaseStatus CaseStatus
         {
             get
             {
-                return _caseStatus;
-            }
-            private set
-            {
-                if (_caseStatus == value)
-                    return;
-                _caseStatus = value;
-                OnPropertyChanged("CaseStatus");
+                if (this.CaseRecord == null || this.CaseRecord.CaseHistory == null)
+                {
+                    return FACCTS.Server.Model.Enums.CaseStatus.New;
+                }
+                var latestHistoryRecord = this.CaseRecord.CaseHistory.OrderByDescending(x => x.Date).FirstOrDefault(x => x.Date <= DateTime.Now);
+                if (latestHistoryRecord != null)
+                {
+                    return CaseHistoryEventToStatus((FACCTS.Server.Model.Enums.CaseHistoryEvent)latestHistoryRecord.CaseHistoryEvent);
+                }
+                return FACCTS.Server.Model.Enums.CaseStatus.New;
             }
 
         }

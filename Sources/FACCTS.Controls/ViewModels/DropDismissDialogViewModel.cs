@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
 using System.ComponentModel.Composition;
+using Faccts.Model.Entities;
+using Caliburn.Micro;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -58,12 +60,22 @@ namespace FACCTS.Controls.ViewModels
 
         private void ProceedDrop()
         {
-            //TODO: implement the DROP operation
+            CaseHistory ch = new CaseHistory()
+            {
+                Date = DateTime.Now,
+                CaseHistoryEvent = (int)FACCTS.Server.Model.Enums.CaseHistoryEvent.Dropped,
+            };
+            Execute.OnUIThread(() => this.CurrentCourtCase.CaseRecord.CaseHistory.Add(ch));
         }
 
         private void ProceedDismissal()
         {
-            //TODO: implement the DISMISS operation
+            CaseHistory ch = new CaseHistory()
+            {
+                Date = DateTime.Now,
+                CaseHistoryEvent = (int)FACCTS.Server.Model.Enums.CaseHistoryEvent.Dismissed,
+            };
+            Execute.OnUIThread(() => this.CurrentCourtCase.CaseRecord.CaseHistory.Add(ch));
         }
     }
 }
