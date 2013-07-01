@@ -6,13 +6,28 @@
 			 xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
             xmlns:cal="http://www.caliburnproject.org"
-			 xmlns:Converters="clr-namespace:FACCTS.Controls.Converters" x:Class="FACCTS.Controls.Views.Controls.CourtDocketRightPaneView"
+			 xmlns:Converters="clr-namespace:FACCTS.Controls.Converters" xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" xmlns:Themes1="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="FACCTS.Controls.Views.Controls.CourtDocketRightPaneView"
 			 mc:Ignorable="d" 
 			 d:DesignHeight="300" d:DesignWidth="939.9" Background="{DynamicResource ControlBackgroundBrush}">
 	<UserControl.Resources>
 		<Converters:InvertedInt32ToBooleanConverter x:Key="InvertedInt32ToBooleanConverter"/>
 		<Converters:Int32ToBooleanConverter x:Key="Int32ToBooleanConverter"/>
-	</UserControl.Resources>
+        <Style x:Key="WrappedColumnHeaderStyle"
+               TargetType="{x:Type DataGridColumnHeader}"
+               BasedOn="{StaticResource ColumnHeaderStyle}">
+            <Setter Property="ContentTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock TextWrapping="Wrap"
+                                   Text="{Binding}"></TextBlock>
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
+    </UserControl.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="Auto"/>
@@ -42,16 +57,24 @@
 				<ComboBox Grid.Column="7"/>
 			</Grid>
 		</Border>
-		<DataGrid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding HistoryRecords}" AutoGenerateColumns="False" SelectionMode="Single">
+        <DataGrid Grid.Row="1"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  ItemsSource="{Binding HistoryRecords, Mode=OneWay}" AutoGenerateColumns="False" SelectionMode="Single">
 			<DataGrid.Columns>
-				<DataGridTextColumn Binding="{Binding CaseRecord.CourtCase.CaseNumber, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Case Number" CanUserResize="False" Width="100" IsReadOnly="True"/>
-				<DataGridTextColumn Binding="{Binding Hearing.HearingDate, Mode=OneWay, StringFormat=\{0:d\}}" ClipboardContentBinding="{x:Null}" Header="Next Hearing Date" CanUserResize="False" Width="140" IsReadOnly="True"/>
-				<DataGridTextColumn Binding="{Binding Hearing.Courtrooms.RoomName, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Courtroom" CanUserResize="False" Width="100" IsReadOnly="True"/>
-				<DataGridTextColumn Binding="{Binding Hearing.HearingDate, Mode=OneWay, StringFormat={}{tt}}" ClipboardContentBinding="{x:Null}" Header="Session" IsReadOnly="True"/>
-				<DataGridTextColumn Binding="{Binding CaseRecord.CourtParty.FullName, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Party 1" CanUserResize="False" Width="100" IsReadOnly="True"/>
-				<DataGridTextColumn Binding="{Binding CaseRecord.CourtParty1.FullName, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Party 2" CanUserResize="False" Width="100" IsReadOnly="True"/>
-				<DataGridCheckBoxColumn Binding="{Binding CaseRecord.Children.Count, ConverterParameter=0, Converter={StaticResource InvertedInt32ToBooleanConverter}, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Children" CanUserResize="False" Width="80" IsReadOnly="True"/>
-				<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Judge" CanUserResize="False" Width="100"/>
+				<DataGridTextColumn Binding="{Binding CourtCaseNumber, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Case Number" CanUserResize="False" Width="0.1*" IsReadOnly="True"/>
+                <DataGridTextColumn ClipboardContentBinding="{x:Null}"
+                                    Header="Next Hearing Date"
+                                    CanUserResize="False"
+                                    Width="0.1*"
+                                    IsReadOnly="True"
+                                    HeaderStyle="{StaticResource WrappedColumnHeaderStyle}" />
+				<DataGridTextColumn Binding="{Binding Hearing.Courtrooms.RoomName, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Courtroom" CanUserResize="False" Width="0.1*" IsReadOnly="True"/>
+				<DataGridTextColumn Binding="{Binding Hearing.HearingDate, Mode=OneWay, StringFormat=\{0:t tt\}}" ClipboardContentBinding="{x:Null}" Header="Session" IsReadOnly="True" Width="0.1*"/>
+				<DataGridTextColumn Binding="{Binding CaseRecord.CourtParty.FullName, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Party 1" CanUserResize="False" Width="0.2*" IsReadOnly="True"/>
+				<DataGridTextColumn Binding="{Binding CaseRecord.CourtParty1.FullName, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Party 2" CanUserResize="False" Width="0.2*" IsReadOnly="True"/>
+				<DataGridCheckBoxColumn Binding="{Binding CaseRecord.Children.Count, ConverterParameter=0, Converter={StaticResource InvertedInt32ToBooleanConverter}, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Children" CanUserResize="False" Width="0.08*" IsReadOnly="True"/>
+				<DataGridTextColumn Binding="{Binding Hearing.Judge, Mode=TwoWay}" ClipboardContentBinding="{x:Null}" Header="Judge" CanUserResize="False" Width="0.12*"/>
 			</DataGrid.Columns>
 		</DataGrid>
 		<Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.RowSpan="2" Grid.Row="2" CornerRadius="2" Style="{DynamicResource OrdinalBorder}">

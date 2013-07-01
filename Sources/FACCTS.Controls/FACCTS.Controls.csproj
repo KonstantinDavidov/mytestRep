@@ -54,6 +54,8 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="ReachFramework" />
     <Reference Include="ReactiveUI.Blend_Net45">
@@ -228,6 +230,10 @@
     <Compile Include="Views\Controls\CaseRecord\RestrainingPartyIDInfoControlView.xaml.cs">
       <DependentUpon>RestrainingPartyIDInfoControlView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Controls\CourtDocket\CourtDocketRightPaneView.xaml.cs">
+      <DependentUpon>CourtDocketRightPaneView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Views\Controls\ModalDialogViews\AddToCourtDocketControlView.xaml.cs">
       <DependentUpon>AddToCourtDocketControlView.xaml</DependentUpon>
     </Compile>
@@ -248,9 +254,6 @@
     </Compile>
     <Compile Include="Views\Controls\CourtDocket\CourtDocketLeftPaneView.xaml.cs">
       <DependentUpon>CourtDocketLeftPaneView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Controls\CourtDocket\CourtDocketRightPaneView.xaml.cs">
-      <DependentUpon>CourtDocketRightPaneView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\CourtOrders\CourtOrdersLeftPaneView.xaml.cs">
       <DependentUpon>CourtOrdersLeftPaneView.xaml</DependentUpon>
@@ -420,6 +423,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Controls\CourtDocket\CourtDocketRightPaneView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Controls\ModalDialogViews\AddToCourtDocketControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -445,10 +452,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\CourtDocket\CourtDocketLeftPaneView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Controls\CourtDocket\CourtDocketRightPaneView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
