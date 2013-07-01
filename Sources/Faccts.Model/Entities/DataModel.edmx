@@ -1905,7 +1905,6 @@
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CaseRecord_CaseRecord_Id" FromRole="CourtCase" ToRole="CaseRecord" />
           <NavigationProperty Name="User" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_User_CourtClerk_UserId" FromRole="CourtCase" ToRole="User" />
           <NavigationProperty Name="CaseRecord1" Relationship="FACCTS_DBModel.RelatedCase" FromRole="CourtCase" ToRole="CaseRecord" />
-          <NavigationProperty Name="CaseHistory" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCase_MergeCase_Id" FromRole="CourtCase" ToRole="CaseHistory" />
         </EntityType>
         <EntityType Name="CourtCaseOrders">
           <Key>

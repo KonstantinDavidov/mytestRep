@@ -35,7 +35,7 @@ using FACCTS.Server.Model.Reporting.Entities;
 using FACCTS.Server.Model.DataModel;
 using System.Collections.Generic;
 
-namespace <#= defaultNamespace #>
+namespace FACCTS.Server.Model.OrderModels
 {
     
 <#

@@ -31,7 +31,6 @@ namespace FACCTS.Controls.ViewModels
                     this.CanReissue = x != null;
                 });
                 
-                
         }
 
         protected override void Authorized()
@@ -40,14 +39,14 @@ namespace FACCTS.Controls.ViewModels
             this.NotifyOfPropertyChange(() => CourtCases);
         }
 
-        private ObservableCollection<CourtCase> _courtCases;
-        public ObservableCollection<CourtCase> CourtCases
+        private TrackableCollection<CourtCase> _courtCases;
+        public TrackableCollection<CourtCase> CourtCases
         {
             get
             {
                 if (this.IsAuthenticated && _courtCases == null)
                 {
-                    _courtCases = new ObservableCollection<CourtCase>(DataContainer.CourtCases);
+                    _courtCases = DataContainer.CourtCases;
                 }
                 return _courtCases;
             }
@@ -83,6 +82,62 @@ namespace FACCTS.Controls.ViewModels
             var vm = ServiceLocatorContainer.Locator.GetInstance<ReissueCaseDialogViewModel>();
             vm.CurrentCourtCase = CurrentCourtCase;
             _windowManager.ShowDialog(vm);
+        }
+
+        private TrackableCollection<CaseHistory> _historyRecords;
+        public IEnumerable<CaseHistory> HistoryRecords
+        {
+            get
+            {
+                if (_historyRecords == null)
+                {
+                    return null;
+                }
+                return _historyRecords.Where(x => x.CaseHistoryEvent == (int)FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing);
+            }
+            set
+            {
+                if (!(value is TrackableCollection<CaseHistory>))
+                {
+                    throw new Exception("Please use TrackableCollection for HistoryRecords");
+                }
+                this.RaiseAndSetIfChanged(ref _historyRecords, (TrackableCollection<CaseHistory>)value);
+            }
+        }
+
+        private Faccts.Model.Entities.CourtCase _currentCourtCase;
+        public Faccts.Model.Entities.CourtCase CurrentCourtCase
+        {
+            get { return _currentCourtCase; }
+            set
+            {
+                if (_currentCourtCase != value)
+                {
+                    if (_currentCourtCase != null && _currentCourtCase.CaseRecord != null && _currentCourtCase.CaseRecord.CaseHistory != null)
+                    {
+                        _currentCourtCase.CaseRecord.CaseHistory.CollectionChanged -= CaseHistoryChanged;
+                    }
+                    this.RaiseAndSetIfChanged(ref _currentCourtCase, value);
+                    if (_currentCourtCase != null && _currentCourtCase.CaseRecord != null && _currentCourtCase.CaseRecord.CaseHistory != null)
+                    {
+                        _currentCourtCase.CaseRecord.CaseHistory.CollectionChanged += CaseHistoryChanged;
+                    }
+                    if (_currentCourtCase != null && _currentCourtCase.CaseRecord != null && _currentCourtCase.CaseRecord.CaseHistory != null)
+                    {
+                        HistoryRecords = _currentCourtCase.CaseRecord.CaseHistory;
+                    }
+                    else
+                    {
+                        HistoryRecords = null;
+                    }
+
+                }
+            }
+        }
+
+        private void CaseHistoryChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            NotifyOfPropertyChange(() => HistoryRecords);
         }
 
     }

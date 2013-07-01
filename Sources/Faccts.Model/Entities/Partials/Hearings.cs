@@ -12,5 +12,6 @@ namespace Faccts.Model.Entities
         {
             this.HearingIssue = new HearingIssue();
         }
+        
     }
 }

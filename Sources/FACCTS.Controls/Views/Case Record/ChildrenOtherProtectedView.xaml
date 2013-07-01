@@ -33,7 +33,7 @@
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
                 <Border DataContext="{Binding CaseRecord, Mode=OneWay}" Grid.ColumnSpan="2">
-				    <DataGrid x:Name="dataGrid"  ItemsSource="{Binding Children, Mode=TwoWay}" CanUserAddRows="False" AutoGenerateColumns="False">
+				    <DataGrid x:Name="dataGrid"  ItemsSource="{Binding Children, Mode=TwoWay}" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 					<DataGrid.Columns>
 						<DataGridTextColumn Binding="{Binding EntityTypeName, Mode=OneWay}" Header="Entity Type" IsReadOnly="True" Width="0.1*"/>
                         <DataGridTextColumn Binding="{Binding FirstName, Mode=TwoWay}" Header="First Name" Width="0.2*"/>
@@ -91,7 +91,12 @@
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
                 <Border Grid.ColumnSpan="2" DataContext="{Binding CaseRecord, Mode=OneWay}">
-                    <DataGrid ItemsSource="{Binding OtherProtected, Mode=TwoWay}" CanUserAddRows="False" x:Name="dgOtherProtected" AutoGenerateColumns="False">
+                    <DataGrid ItemsSource="{Binding OtherProtected, Mode=TwoWay}"
+                              CanUserAddRows="False"
+                              x:Name="dgOtherProtected"
+                              AutoGenerateColumns="False"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding EntityTypeName, Mode=OneWay}" Header="Entity Type" IsReadOnly="True" Width="0.1*"/>
                             <DataGridTextColumn Binding="{Binding FirstName, Mode=TwoWay}" Header="First Name" Width="0.2*"/>

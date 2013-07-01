@@ -27,5 +27,14 @@ namespace Faccts.Model.Entities
                 return ((FACCTS.Server.Model.Enums.CaseHistoryEvent)this.CaseHistoryEvent).ToDescription();
             }
         }
+
+        public string CourtCaseNumber
+        {
+            get
+            {
+                return this.CaseRecord.CourtCase[0].CaseNumber;
+            }
+
+        }
     }
 }

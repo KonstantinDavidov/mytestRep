@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{133F5E12-1B5D-4FD7-8D77-39A0C3B015B0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FACCTS.Server.Reporting</RootNamespace>
+    <AssemblyName>FACCTS.Server.Reporting</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="PDFClown">
+      <HintPath>..\lib\PDFClown.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CH130Generator.cs" />
+    <Compile Include="Generator.cs" />
+    <Compile Include="IOrderGenerator.cs" />
+    <Compile Include="OrderGenerator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Configuration\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Resources\ch110.pdf" />
+    <None Include="Resources\ch130.pdf" />
+    <None Include="Resources\dv110.pdf" />
+    <None Include="Resources\dv115.pdf" />
+    <None Include="Resources\dv116.pdf" />
+    <None Include="Resources\dv130.pdf" />
+    <None Include="Resources\dv140.pdf" />
+    <None Include="Resources\dv145.pdf" />
+    <None Include="Resources\dv150.pdf" />
+    <None Include="Resources\dv730.pdf" />
+    <None Include="Resources\ea110.pdf" />
+    <None Include="Resources\ea130.pdf" />
+    <None Include="Resources\fl340.pdf" />
+    <None Include="Resources\fl341.pdf" />
+    <None Include="Resources\fl342.pdf" />
+    <None Include="Resources\fl343.pdf" />
+    <None Include="Resources\fl344.pdf" />
+    <None Include="Resources\MC-020.pdf" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FACCTS.Server.Model\FACCTS.Server.Model.csproj">
+      <Project>{5a675cbb-2774-4fde-a8c6-40aa46f4fa3f}</Project>
+      <Name>FACCTS.Server.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
