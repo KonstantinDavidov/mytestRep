@@ -16,7 +16,7 @@ namespace FACCTS.Server.Reporting
             string handlerTypeName = ConfigurationManager.AppSettings[orderType.Name];
 
             Type handlerType = Type.GetType(handlerTypeName);
-            Type[] genericArgs = { orderType };
+            //Type[] genericArgs = { orderType };
 
             //Type constructed = handlerType.MakeGenericType(genericArgs);
 

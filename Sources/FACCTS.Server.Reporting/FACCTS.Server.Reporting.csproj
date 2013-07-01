@@ -48,30 +48,13 @@
     <Compile Include="IOrderGenerator.cs" />
     <Compile Include="OrderGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configuration\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Resources\ch110.pdf" />
-    <None Include="Resources\ch130.pdf" />
-    <None Include="Resources\dv110.pdf" />
-    <None Include="Resources\dv115.pdf" />
-    <None Include="Resources\dv116.pdf" />
-    <None Include="Resources\dv130.pdf" />
-    <None Include="Resources\dv140.pdf" />
-    <None Include="Resources\dv145.pdf" />
-    <None Include="Resources\dv150.pdf" />
-    <None Include="Resources\dv730.pdf" />
-    <None Include="Resources\ea110.pdf" />
-    <None Include="Resources\ea130.pdf" />
-    <None Include="Resources\fl340.pdf" />
-    <None Include="Resources\fl341.pdf" />
-    <None Include="Resources\fl342.pdf" />
-    <None Include="Resources\fl343.pdf" />
-    <None Include="Resources\fl344.pdf" />
-    <None Include="Resources\MC-020.pdf" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FACCTS.Server.Model\FACCTS.Server.Model.csproj">
