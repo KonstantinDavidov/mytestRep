@@ -37,7 +37,11 @@
                             <ViewModels:DV110PropertyAndAttorneysFeeViewModel/>
                         </TreeViewItem.DataContext>
                     </TreeViewItem>
-                    <TreeViewItem Header="Child Custody"/>
+                    <TreeViewItem Header="Child Custody">
+                        <TreeViewItem.DataContext>
+                            <ViewModels:DV110ChildCustodyViewModel/>
+                        </TreeViewItem.DataContext>
+                    </TreeViewItem>
                     <TreeViewItem Header="Supervision"/>
                     <TreeViewItem Header="Attach DV145 - Travel Restriction"/>
                 </TreeViewItem>

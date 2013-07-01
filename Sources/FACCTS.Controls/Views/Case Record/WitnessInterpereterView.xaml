@@ -38,7 +38,12 @@
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
 				<Border Grid.ColumnSpan="2" DataContext="{Binding CaseRecord, Mode=OneWay}">
-					<DataGrid ItemsSource="{Binding Witnesses, Mode=OneWay}" x:Name="dgWitness" AutoGenerateColumns="False" CanUserAddRows="False">
+                    <DataGrid ItemsSource="{Binding Witnesses, Mode=OneWay}"
+                              x:Name="dgWitness"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch">
 						<DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding EntityTypeName, Mode=OneWay}"
                                                 Header="Entity Type"
@@ -92,7 +97,12 @@
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
                 <Border Grid.ColumnSpan="2" DataContext="{Binding CaseRecord, Mode=OneWay}">
-				    <DataGrid x:Name="dataGrid" ItemsSource="{Binding Interpreters,Mode=OneWay}" AutoGenerateColumns="False" CanUserAddRows="False">
+                    <DataGrid x:Name="dataGrid"
+                              ItemsSource="{Binding Interpreters,Mode=OneWay}"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch">
 					    <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding EntityTypeName, Mode=OneWay}"
                                                 Header="Entity Type"
