@@ -147,6 +147,7 @@
     <Compile Include="Interfaces\IPasswordSupplier.cs" />
     <Compile Include="IShell.cs" />
     <Compile Include="MarkupExtension\MefPartExtension.cs" />
+    <Compile Include="NameValueWrapper.cs" />
     <Compile Include="Utils\StringToBoolean.cs" />
     <Compile Include="Utils\StringToDateTime.cs" />
     <Compile Include="ViewModels\Case Record\CaseHistoryViewModel.cs" />

@@ -12,10 +12,7 @@
              d:DesignHeight="471" d:DesignWidth="303" Background="{DynamicResource ControlBackgroundBrush}">
 	<UserControl.Resources>
 		<Converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
-        <ext:MefPartExtension InstanceType="{x:Type fs:IDataContainer}"
-                              x:Key="DataContainer" />
-        <CollectionViewSource x:Key="cvsCourtrooms"
-                              Source="{Binding Source={StaticResource DataContainer}, Path=AvailableCourtrooms, Mode=OneWay}" />
+        
     </UserControl.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
@@ -41,17 +38,20 @@
 				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Filter by Courtroom" VerticalAlignment="Center" Grid.Row="1"/>
                 <ComboBox Grid.Row="1"
                           Grid.Column="1"
-                          ItemsSource="{Binding Source={StaticResource cvsCourtrooms}, Mode=OneWay}"
-                          DisplayMemberPath="RoomName"
+                          DisplayMemberPath="Name"
+                          SelectedValuePath="UnderlyingObject"
                           SelectedIndex="0"
-                          SelectedItem="{Binding Courtroom, Mode=TwoWay}"/>
+                          SelectedValue="{Binding Courtroom, Mode=TwoWay}"
+                          ItemsSource="{Binding Courtrooms, Mode=OneWay}">
+                </ComboBox>
 				<TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2"><Run Text="Filter by AM/PM" /></TextBlock>
                 <ComboBox Margin="0"
                           Grid.Row="2"
                           Grid.Column="1"
-                          SelectedIndex="{Binding SessionIndex, Mode=TwoWay, FallbackValue=0}">
+                          SelectedIndex="{Binding SessionIndex, Mode=TwoWay, FallbackValue=2}">
                     <ComboBoxItem>AM</ComboBoxItem>
                     <ComboBoxItem>PM</ComboBoxItem>
+                    <ComboBoxItem>Both</ComboBoxItem>
                 </ComboBox>
             </Grid>
 		</GroupBox>

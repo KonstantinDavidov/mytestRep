@@ -145,7 +145,7 @@ namespace FACCTS.Controls.ViewModels
             result &= (this.Courtroom != null && ch.Hearing != null && ch.Hearing.Courtrooms == this.Courtroom) || this.Courtroom == null;
             int hours = ch.Hearing.HearingDate.TimeOfDay.Hours;
             result &= (0 <= hours && hours < 12 && (SessionType)this.SessionIndex == SessionType.AM)
-                || ((12 <= hours && hours <= 23 && (SessionType)this.SessionIndex == SessionType.PM));
+                || ((12 <= hours && hours <= 23 && (SessionType)this.SessionIndex == SessionType.PM)) || (SessionType) SessionIndex == SessionType.Both;
             return result;
         }
 
@@ -198,10 +198,25 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
+        private List<NameValueWrapper<Courtrooms>> _courtrooms;
+        public List<NameValueWrapper<Courtrooms>> Courtrooms
+        {
+            get
+            {
+                if (_courtrooms == null)
+                {
+                    _courtrooms = DataContainer.AvailableCourtrooms.Select(x => new NameValueWrapper<Courtrooms>(x, y => y.RoomName)).ToList();
+                    _courtrooms.Insert(0, new NameValueWrapper<Courtrooms>(null, y => y.RoomName, "All"));
+                }
+                return _courtrooms;
+            }
+        }
+
         protected enum SessionType
         {
             AM = 0,
             PM = 1,
+            Both = 2,
         }
    
     }
