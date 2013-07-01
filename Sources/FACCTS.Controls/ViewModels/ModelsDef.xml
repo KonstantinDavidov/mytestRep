@@ -40,6 +40,8 @@
     <Property name="CanDropDismiss" type="bool"/>
     <Property name="CanReissue" type="bool"/>
     <Property name="CalendarDate" type="DateTime?"/>
+    <Property name="Courtroom" type="Faccts.Model.Entities.Courtrooms"/>
+    <Property name="SessionIndex" type="int"/>
   </Model>
   
   <Model name="ReissueCaseDialogViewModel">

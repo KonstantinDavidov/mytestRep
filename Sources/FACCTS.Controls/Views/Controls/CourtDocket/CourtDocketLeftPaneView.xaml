@@ -43,12 +43,13 @@
                           Grid.Column="1"
                           ItemsSource="{Binding Source={StaticResource cvsCourtrooms}, Mode=OneWay}"
                           DisplayMemberPath="RoomName"
-                          SelectedIndex="0"/>
+                          SelectedIndex="0"
+                          SelectedItem="{Binding Courtroom, Mode=TwoWay}"/>
 				<TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2"><Run Text="Filter by AM/PM" /></TextBlock>
                 <ComboBox Margin="0"
                           Grid.Row="2"
                           Grid.Column="1"
-                          SelectedIndex="0">
+                          SelectedIndex="{Binding SessionIndex, Mode=TwoWay, FallbackValue=0}">
                     <ComboBoxItem>AM</ComboBoxItem>
                     <ComboBoxItem>PM</ComboBoxItem>
                 </ComboBox>
@@ -70,7 +71,7 @@
                         </MultiBinding>
                     </Button.IsEnabled>
                 </Button>
-				<Button Content="View Cases" />
+				<Button Content="View Cases" cal:Message.Attach="RefreshDocket"/>
 			</UniformGrid>
     		
 		</Border>

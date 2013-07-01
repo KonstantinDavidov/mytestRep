@@ -10,6 +10,8 @@ using FACCTS.Services;
 using Faccts.Model.Entities;
 using System.Collections.ObjectModel;
 using System.Reactive.Linq;
+using System.ComponentModel;
+using System.Windows.Data;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -85,24 +87,18 @@ namespace FACCTS.Controls.ViewModels
             _windowManager.ShowDialog(vm);
         }
 
-        private TrackableCollection<CaseHistory> _historyRecords;
-        public IEnumerable<CaseHistory> HistoryRecords
+        
+
+        private ReactiveCollection<CaseHistory> _historyRecords;
+        public ReactiveCollection<CaseHistory> HistoryRecords
         {
             get
             {
-                if (_historyRecords == null)
-                {
-                    return null;
-                }
-                return _historyRecords.Where(x => x.CaseHistoryEvent == (int)FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing);
+                return _historyRecords;
             }
             set
             {
-                if (!(value is TrackableCollection<CaseHistory>))
-                {
-                    throw new Exception("Please use TrackableCollection for HistoryRecords");
-                }
-                this.RaiseAndSetIfChanged(ref _historyRecords, (TrackableCollection<CaseHistory>)value);
+                this.RaiseAndSetIfChanged(ref _historyRecords, value);
             }
         }
 
@@ -125,7 +121,7 @@ namespace FACCTS.Controls.ViewModels
                     }
                     if (_currentCourtCase != null && _currentCourtCase.CaseRecord != null && _currentCourtCase.CaseRecord.CaseHistory != null)
                     {
-                        HistoryRecords = _currentCourtCase.CaseRecord.CaseHistory;
+                        HistoryRecords = _currentCourtCase.CaseRecord.CaseHistory.CreateDerivedCollection(x => x, filter: FilterHistoryRecord, signalReset: this.WhenAny(x => x.CollectionChangedNotifier, x => x) );
                     }
                     else
                     {
@@ -136,10 +132,55 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-        private void CaseHistoryChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        private bool FilterHistoryRecord(CaseHistory ch)
         {
-            NotifyOfPropertyChange(() => HistoryRecords);
+            bool result =  ch.CaseHistoryEvent == (int)FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing;
+            result &= (ch.Hearing != null && this.CalendarDate.HasValue && ch.Hearing.HearingDate.Date == this.CalendarDate.GetValueOrDefault()) || !this.CalendarDate.HasValue;
+            result &= (this.Courtroom != null && ch.Hearing != null && ch.Hearing.Courtrooms == this.Courtroom) || this.Courtroom == null;
+            int hours = ch.Hearing.HearingDate.TimeOfDay.Hours;
+            result &= (0 <= hours && hours < 12 && (SessionType)this.SessionIndex == SessionType.AM)
+                || ((12 <= hours && hours <= 23 && (SessionType)this.SessionIndex == SessionType.PM));
+            return result;
         }
 
+        private void CaseHistoryChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action != System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+            {
+                NotifyCollectionUpdated();
+            }
+            
+        }
+
+        private static Random rnd = new Random();
+        private double _collectionChangedNotifier;
+        public double CollectionChangedNotifier
+        {
+            get
+            {
+                return _collectionChangedNotifier;
+            }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _collectionChangedNotifier, value);
+            }
+        }
+
+        public void RefreshDocket()
+        {
+            NotifyCollectionUpdated();
+        }
+
+        private void NotifyCollectionUpdated()
+        {
+            this.CollectionChangedNotifier = rnd.NextDouble();
+        }
+
+        protected enum SessionType
+        {
+            AM = 0,
+            PM = 1,
+        }
+   
     }
 }

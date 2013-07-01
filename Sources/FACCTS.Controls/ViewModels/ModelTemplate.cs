@@ -299,6 +299,28 @@ namespace FACCTS.Controls.ViewModels
 				}
 			}
 		}
+		
+		private Faccts.Model.Entities.Courtrooms _courtroom;
+		public Faccts.Model.Entities.Courtrooms Courtroom
+		{
+			get{return _courtroom;}
+			set{
+				if(_courtroom!=value){
+					this.RaiseAndSetIfChanged(ref _courtroom, value);
+				}
+			}
+		}
+		
+		private int _sessionIndex;
+		public int SessionIndex
+		{
+			get{return _sessionIndex;}
+			set{
+				if(_sessionIndex!=value){
+					this.RaiseAndSetIfChanged(ref _sessionIndex, value);
+				}
+			}
+		}
 				
 	}
 	
