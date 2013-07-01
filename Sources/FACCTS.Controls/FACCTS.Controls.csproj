@@ -166,6 +166,7 @@
     <Compile Include="ViewModels\NewCourtCaseDialogViewModel.cs" />
     <Compile Include="ViewModels\OneActiveViewModelBase.cs" />
     <Compile Include="ViewModels\OutputForms\CH130CivilHarassmentViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV110ChildCustodyViewModel.cs" />
     <Compile Include="ViewModels\ReissueCaseDialogViewModel.cs" />
     <Compile Include="ViewModels\UserLoginDialogViewModel.cs" />
     <Compile Include="Views\AddToCourtDocketDialogView.xaml.cs">
@@ -284,6 +285,9 @@
     </Compile>
     <Compile Include="Views\OutputForms\CH130CivilHarassmentView.xaml.cs">
       <DependentUpon>CH130CivilHarassmentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\DV110ChildCustodyView.xaml.cs">
+      <DependentUpon>DV110ChildCustodyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OutputForms\DV110PropertyAndAttorneysFeeView.xaml.cs">
       <DependentUpon>DV110PropertyAndAttorneysFeeView.xaml</DependentUpon>
@@ -470,6 +474,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\OutputForms\CH130CivilHarassmentView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OutputForms\DV110ChildCustodyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
