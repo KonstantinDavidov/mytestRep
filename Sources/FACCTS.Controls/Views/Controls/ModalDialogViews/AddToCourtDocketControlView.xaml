@@ -44,7 +44,7 @@
 			</Border>
 			<Border HorizontalAlignment="Left" Style="{DynamicResource OrdinalBorder}" VerticalAlignment="Top" Grid.Column="1"/>
 			<UniformGrid HorizontalAlignment="Right" Grid.Row="2" Grid.ColumnSpan="2" Rows="1" Columns="2" VerticalAlignment="Top">
-				<Button Content="Add Case" Width="75" IsDefault="True" cal:Message.Attach="AddCase"/>
+				<Button Content="Add Case" Width="75" IsDefault="True" cal:Message.Attach="AddCase" IsEnabled="{Binding IsValid, Mode=OneWay, FallbackValue=False}"/>
 				<Button Content="Cancel" Width="75" IsCancel="True" cal:Message.Attach="Cancel"/>
 			</UniformGrid>
 			<Border Style="{DynamicResource OrdinalBorder}" Grid.Column="1" Grid.Row="1">

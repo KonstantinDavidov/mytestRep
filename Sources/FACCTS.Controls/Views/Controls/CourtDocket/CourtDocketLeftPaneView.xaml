@@ -6,11 +6,17 @@
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
             xmlns:cal="http://www.caliburnproject.org"
              xmlns:Converters="clr-namespace:FACCTS.Controls.Converters" x:Class="FACCTS.Controls.Views.Controls.CourtDocketLeftPaneView"
+             xmlns:ext="clr-namespace:FACCTS.Controls.MarkupExtension"
+             xmlns:fs="clr-namespace:FACCTS.Services.Data;assembly=FACCTS.Services"
              mc:Ignorable="d" 
              d:DesignHeight="471" d:DesignWidth="303" Background="{DynamicResource ControlBackgroundBrush}">
 	<UserControl.Resources>
 		<Converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
-	</UserControl.Resources>
+        <ext:MefPartExtension InstanceType="{x:Type fs:IDataContainer}"
+                              x:Key="DataContainer" />
+        <CollectionViewSource x:Key="cvsCourtrooms"
+                              Source="{Binding Source={StaticResource DataContainer}, Path=AvailableCourtrooms, Mode=OneWay}" />
+    </UserControl.Resources>
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition/>
@@ -33,12 +39,22 @@
 				</Grid.RowDefinitions>
 				<Calendar Grid.ColumnSpan="3" SelectedDate="{Binding CalendarDate, Mode=TwoWay}" x:Name="Calendar"/>
 				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Filter by Courtroom" VerticalAlignment="Center" Grid.Row="1"/>
-				<ComboBox Grid.Row="1" Grid.Column="1"/>
-				<TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2"><Run Text="Filter by AM/PM"/></TextBlock>
-				<ComboBox Margin="0" Grid.Row="2" Grid.Column="1"/>
-			</Grid>
+                <ComboBox Grid.Row="1"
+                          Grid.Column="1"
+                          ItemsSource="{Binding Source={StaticResource cvsCourtrooms}, Mode=OneWay}"
+                          DisplayMemberPath="RoomName"
+                          SelectedIndex="0"/>
+				<TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2"><Run Text="Filter by AM/PM" /></TextBlock>
+                <ComboBox Margin="0"
+                          Grid.Row="2"
+                          Grid.Column="1"
+                          SelectedIndex="0">
+                    <ComboBoxItem>AM</ComboBoxItem>
+                    <ComboBoxItem>PM</ComboBoxItem>
+                </ComboBox>
+            </Grid>
 		</GroupBox>
-		<Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
+		<Border BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
 			<UniformGrid Rows="1" Columns="2" HorizontalAlignment="Left">
 				<Button Content="Add Case" cal:Message.Attach="AddCase">
                     <Button.IsEnabled>

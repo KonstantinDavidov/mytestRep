@@ -24,6 +24,7 @@ namespace FACCTS.Controls.ViewModels
         {
             _windowManager = windowManager;
             this.DisplayName = "Court Docket";
+            this.CalendarDate = DateTime.Today;
             this.WhenAny(x => x.CurrentCourtCase, x => x.Value)
                 .Subscribe(x =>
                 {

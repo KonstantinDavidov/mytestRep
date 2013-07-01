@@ -16,8 +16,54 @@ namespace FACCTS.Controls.ViewModels
     public partial class AddToCourtDocketDialogViewModel : ViewModelBase
     {
         [ImportingConstructor]
-        public AddToCourtDocketDialogViewModel() : base()
+        public AddToCourtDocketDialogViewModel(CourtDocketViewModel vmCourtDocket) : base()
         {
+           this.CourtDocketViewModel = vmCourtDocket;
+            this.WhenAny(
+                x => x.Courtroom,
+                x => x.Department,
+                x => x.CourtDocketViewModel.CalendarDate,
+                x => x.Time,
+                x => x.IsPermanentRO,
+                x => x.IsCCorCV,
+                x => x.IsCS,
+                x => x.IsSS,
+                x => x.IsOtherHearingIssue,
+                x => x.OtherHearingIssueText,
+                (courtroom, department, calendarDate, time, isPermanentRO, isCCorCV, isCS, isSS, isOtherHearingIssue, otherHearingIssueText) =>
+                new
+                    {
+                        Courtroom = courtroom.Value,
+                        Department = department.Value,
+                        CalendarDate = calendarDate.Value,
+                        Time = time.Value,
+                        IsPermanentRO = isPermanentRO.Value,
+                        IsCCorCV = isCCorCV.Value,
+                        IsCS = isCS.Value,
+                        IsSS = isSS.Value,
+                        IsOtherHearingIssue = isOtherHearingIssue.Value,
+                        OtherHearingIssueText = otherHearingIssueText.Value
+                    }
+                )
+                .Subscribe(x =>
+                    
+                    {
+                        if (
+                            x == null
+                            || x.Courtroom == null
+                            || x.Department == null
+                            ||
+                            (
+                            !x.IsPermanentRO && !x.IsCCorCV && !x.IsCS && !x.IsSS && (!x.IsOtherHearingIssue || x.IsOtherHearingIssue && string.IsNullOrEmpty(x.OtherHearingIssueText)))
+                            )
+                        {
+                            this.IsValid = false;
+                            return;
+                        }
+                        this.IsValid = true;
+                    });
+
+
             this.DisplayName = "Add Case to Docket";
             if (this.IsAuthenticated && this.Departments == null)
             {
@@ -29,11 +75,18 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-        [Import]
+        
+        private CourtDocketViewModel _courtDocketViewModel;
         public CourtDocketViewModel CourtDocketViewModel
         {
-            private get;
-            set;
+            get
+            {
+                return _courtDocketViewModel;
+            }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _courtDocketViewModel, value);
+            }
         }
         
 
@@ -49,7 +102,7 @@ namespace FACCTS.Controls.ViewModels
 
         private void ProceedAddition()
         {
-            var totalTime = this.CourtDocketViewModel.CalendarDate.GetValueOrDefault().Add(new TimeSpan(this.Time.Hour, this.Time.Minute, this.Time.Second));
+            var totalTime = CourtDocketViewModel.CalendarDate.GetValueOrDefault().Add(new TimeSpan(this.Time.Hour, this.Time.Minute, this.Time.Second));
             CaseHistory ch = new CaseHistory()
                 {
                     CaseHistoryEvent = (int)FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing,
@@ -91,7 +144,6 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-       
        
 
         
