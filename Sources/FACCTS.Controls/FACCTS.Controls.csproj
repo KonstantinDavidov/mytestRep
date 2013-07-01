@@ -171,7 +171,15 @@
     <Compile Include="ViewModels\NewCourtCaseDialogViewModel.cs" />
     <Compile Include="ViewModels\OneActiveViewModelBase.cs" />
     <Compile Include="ViewModels\OutputForms\CH130CivilHarassmentViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV110AttachDV145ViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\DV110ChildCustodyViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV110SupervisionViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV130AttachDV145ViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV130ChildCustodyViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV130FL342ChildSupportViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV130PropertyAndAttorneysFeesViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV130RestrainingOrderViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV130SupervisionViewModel.cs" />
     <Compile Include="ViewModels\ReissueCaseDialogViewModel.cs" />
     <Compile Include="ViewModels\UserLoginDialogViewModel.cs" />
     <Compile Include="Views\AddToCourtDocketDialogView.xaml.cs">
@@ -292,11 +300,17 @@
     <Compile Include="Views\OutputForms\CH130CivilHarassmentView.xaml.cs">
       <DependentUpon>CH130CivilHarassmentView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\OutputForms\DV110AttachDV145View.xaml.cs">
+      <DependentUpon>DV110AttachDV145View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OutputForms\DV110ChildCustodyView.xaml.cs">
       <DependentUpon>DV110ChildCustodyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OutputForms\DV110PropertyAndAttorneysFeeView.xaml.cs">
       <DependentUpon>DV110PropertyAndAttorneysFeeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\DV110SupervisionView.xaml.cs">
+      <DependentUpon>DV110SupervisionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OutputForms\DV110TemporaryRestrainingOrderView.xaml.cs">
       <DependentUpon>DV110TemporaryRestrainingOrderView.xaml</DependentUpon>
@@ -306,6 +320,24 @@
     </Compile>
     <Compile Include="Views\Controls\ModalDialogViews\ShowExceptionControlView.xaml.cs">
       <DependentUpon>ShowExceptionControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\DV130AttachDV145View.xaml.cs">
+      <DependentUpon>DV130AttachDV145View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\DV130ChildCustodyView.xaml.cs">
+      <DependentUpon>DV130ChildCustodyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\DV130FL342ChildSupportView.xaml.cs">
+      <DependentUpon>DV130FL342ChildSupportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\DV130PropertyAndAttorneysFeesView.xaml.cs">
+      <DependentUpon>DV130PropertyAndAttorneysFeesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\DV130RestrainingOrderView.xaml.cs">
+      <DependentUpon>DV130RestrainingOrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\DV130SupervisionView.xaml.cs">
+      <DependentUpon>DV130SupervisionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReissueCaseDialogView.xaml.cs">
       <DependentUpon>ReissueCaseDialogView.xaml</DependentUpon>
@@ -483,11 +515,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\OutputForms\DV110AttachDV145View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\OutputForms\DV110ChildCustodyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OutputForms\DV110PropertyAndAttorneysFeeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OutputForms\DV110SupervisionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -502,6 +542,30 @@
     <Page Include="Views\Controls\ModalDialogViews\ShowExceptionControlView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutputForms\DV130AttachDV145View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OutputForms\DV130ChildCustodyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OutputForms\DV130FL342ChildSupportView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OutputForms\DV130PropertyAndAttorneysFeesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OutputForms\DV130RestrainingOrderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OutputForms\DV130SupervisionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ReissueCaseDialogView.xaml">
       <Generator>MSBuild:Compile</Generator>

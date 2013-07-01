@@ -1,0 +1,335 @@
+﻿<UserControl x:Class="FACCTS.Controls.Views.DV130ChildCustodyView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="700">
+    <StackPanel>
+        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <DataGrid Grid.RowSpan="2">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="First Name"/>
+                        <DataGridTextColumn Header="Last Name"/>
+                        <DataGridTextColumn Header="Date of Birth"/>
+                        <DataGridTextColumn Header="Legal"/>
+                        <DataGridTextColumn Header="Physical"/>
+                        <DataGridTextColumn Header="Included in Ro"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Grid.Column="2" >
+                    <Label >Relationship to</Label>
+                    <TextBox />
+                </StackPanel>
+                <StackPanel Grid.Column="2" Grid.Row="1">
+                    <Label >Third Party Name</Label>
+                    <TextBox />
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+            <StackPanel Orientation="Horizontal">
+                <StackPanel Orientation="Vertical">
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox>
+                            No Visitation For
+                        </CheckBox>
+                        <ComboBox />
+                        <TextBox Width="200" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox>
+                            Parties to Meditation
+                        </CheckBox>
+                        <TextBox Width="200" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox>
+                            See the attached document
+                        </CheckBox>
+                        <TextBox Width="50" />
+                        <Label>pages, date</Label>
+                        <xctk:DateTimeUpDown Format="LongDate" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox>
+                            Visitation to
+                        </CheckBox>
+                        <ComboBox>
+                            <ComboBoxItem>
+                                Mom
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Dad
+                            </ComboBoxItem>
+                            <ComboBoxItem>
+                                Other
+                            </ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="90 0 0 0">
+                        <Label>
+                            Other
+                        </Label>
+                        <TextBox Width="150" />
+                    </StackPanel>
+                </StackPanel>
+                <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <CheckBox>
+                                Weekends start
+                            </CheckBox>
+                            <xctk:DateTimeUpDown Format="LongDate" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button>
+                                Every Weekend
+                            </Button>
+                            <Button>
+                                Every Other Weekend
+                            </Button>
+                            <Label>
+                                From
+                            </Label>
+                            <xctk:DateTimeUpDown Format="LongDate" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <CheckBox>
+                                1st
+                            </CheckBox>
+                            <CheckBox>
+                                2nd
+                            </CheckBox>
+                            <CheckBox>
+                                3rd
+                            </CheckBox>
+                            <CheckBox>
+                                4th
+                            </CheckBox>
+                            <CheckBox>
+                                5th
+                            </CheckBox>
+                            <Label>
+                                To
+                            </Label>
+                            <xctk:DateTimeUpDown Format="LongDate" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label>
+                                Starting From
+                            </Label>
+                            <xctk:DateTimeUpDown Format="LongDate" />
+                            <Label>
+                                At
+                            </Label>
+                            <xctk:DateTimeUpDown Format="LongDate" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <Label>
+                                Ending At
+                            </Label>
+                            <xctk:DateTimeUpDown Format="LongDate" />
+                            <Label>
+                                At
+                            </Label>
+                            <xctk:DateTimeUpDown Format="LongDate" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label FontWeight="Bold" Grid.Column="0" Grid.Row="0">Other Visitation ...</Label>
+                <TextBox TextWrapping="Wrap" AcceptsReturn="True" Width="250" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3"></TextBox>
+                <CheckBox Grid.Column="2" Grid.Row="0">Attach</CheckBox>
+                <Button Grid.Column="2" Grid.Row="1">Clear</Button>
+            </Grid>
+        </Border>
+        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+            <StackPanel Orientation="Vertical">
+                <CheckBox FontWeight="Bold">
+                    Exchagne and Rem..
+                </CheckBox>
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical">
+                        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Label>
+                                        Transport to start from
+                                    </Label>
+                                    <ComboBox />
+                                    <Label>-----</Label>
+                                    <ComboBox />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Label>Location</Label>
+                                    <TextBox Width="200"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Label HorizontalAlignment="Center">
+                            Transport To
+                        </Label>
+                    </StackPanel>
+                    <StackPanel>
+                        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Label>
+                                        Transport to end with
+                                    </Label>
+                                    <ComboBox />
+                                    <Label>-----</Label>
+                                    <ComboBox />
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Label>Location</Label>
+                                    <TextBox Width="200"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Border>
+                        <Label HorizontalAlignment="Center">
+                            Transport From
+                        </Label>
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <CheckBox Grid.Column="0" Grid.Row="0">
+                                Protected
+                            </CheckBox>
+                            <TextBox Width="100" Grid.Column="1" Grid.Row="0" />
+                            <CheckBox Grid.Column="3" Grid.Row="0">
+                                U.S.
+                            </CheckBox>
+                            <CheckBox Grid.Column="4" Grid.Row="0">
+                                CA
+                            </CheckBox>
+                            <CheckBox Grid.Column="5" Grid.Row="0">
+                                Other
+                            </CheckBox>
+                            <TextBox Width="100" Grid.Column="6" Grid.Row="0"/>
+
+                            <CheckBox Grid.Column="0" Grid.Row="1">
+                                Restrained
+                            </CheckBox>
+                            <TextBox Width="100" Grid.Column="1" Grid.Row="1" />
+                            <CheckBox Grid.Column="3" Grid.Row="1">
+                                U.S.
+                            </CheckBox>
+                            <CheckBox Grid.Column="4" Grid.Row="1">
+                                CA
+                            </CheckBox>
+                            <CheckBox Grid.Column="5" Grid.Row="1">
+                                Other
+                            </CheckBox>
+                            <TextBox Width="100" Grid.Column="6" Grid.Row="1"/>
+
+                            <CheckBox Grid.Column="0" Grid.Row="2">
+                                Other
+                            </CheckBox>
+                            <TextBox Width="100" Grid.Column="1" Grid.Row="2" />
+                            <CheckBox Grid.Column="3" Grid.Row="2">
+                                U.S.
+                            </CheckBox>
+                            <CheckBox Grid.Column="4" Grid.Row="2">
+                                CA
+                            </CheckBox>
+                            <CheckBox Grid.Column="5" Grid.Row="2">
+                                Other
+                            </CheckBox>
+                            <TextBox Width="100" Grid.Column="6" Grid.Row="2"/>
+                        </Grid>
+                    </Border>
+                    <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <CheckBox Grid.Column="0" Grid.Row="0">
+                                U.S.
+                            </CheckBox>
+                            <CheckBox Grid.Column="0" Grid.Row="1">
+                                Other
+                            </CheckBox>
+                            <TextBox Grid.Column="1" Grid.Row="1" Width="100" />
+                            <CheckBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2">
+                                Risk of Child Abduction
+                            </CheckBox>
+                        </Grid>
+                    </Border>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Label>
+                        Travel Restriction - Above Shall Not Take Children From
+                    </Label>
+                    <Label>
+                        Harbitation Residence
+                    </Label>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label FontWeight="Bold" Grid.Column="0" Grid.Row="0">
+                    The Court Further Orders
+                </Label>
+                <TextBox TextWrapping="Wrap" AcceptsReturn="True" Width="250" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3"></TextBox>
+                <CheckBox Grid.Column="2" Grid.Row="0">Attach</CheckBox>
+                <Button Grid.Column="2" Grid.Row="1">Clear</Button>
+            </Grid>
+        </Border>
+    </StackPanel>
+</UserControl>
