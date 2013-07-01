@@ -55,7 +55,7 @@
                 <CheckBox Grid.Column="2" Grid.Row="2" Content="Other Protected" VerticalAlignment="Center"/>
                 <CheckBox Grid.Column="3" Grid.Row="0" Content="Other" VerticalAlignment="Center"/>
                 <TextBox TextWrapping="Wrap" AcceptsReturn="True" Width="250" Grid.Column="4" Grid.Row="0" Grid.RowSpan="3"/>
-                <Button Grid.Column="5" Grid.Row="2" Content="CLEAR"/>
+                <Button Grid.Column="5" Grid.Row="2" Content="CLEAR" VerticalAlignment="Center"/>
                 <DataGrid Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="5" VerticalAlignment="Stretch">
                     <DataGrid.Columns>
                     	<DataGridComboBoxColumn Header="Entity" Width="Auto"/>
@@ -67,10 +67,10 @@
                     </DataGrid.Columns>
                 </DataGrid>
                 <CheckBox Grid.Column="5" Grid.Row="3" VerticalAlignment="Bottom" Content="Attach"/>
-                <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="5" HorizontalAlignment="Right">
-                    <Button Width="25" Content="+"/>
-                    <Button Width="25" Content="-"/>
-                </StackPanel>
+                <UniformGrid Rows="1" Columns="2" Margin="0,0,20.84,0" Grid.Row="4" Grid.Column="4" VerticalAlignment="Center" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+                	<Button Content="Add" Margin="0,0,0,-13.923" Width="75"/>
+                	<Button Content="Remove" Margin="0,0,0,-13.923"/>
+                </UniformGrid>
             </Grid>
         </Border>
         <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}" Height="45">
@@ -159,22 +159,10 @@
                 	<RowDefinition />
                 	<RowDefinition />
                 </Grid.RowDefinitions>
-                <Label FontWeight="Bold" Grid.Column="0" Grid.Row="0" Content="Carpos Entry"/>
-                <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
-                    <RadioButton>
-                    	<Label Content="By Clerk"/>
-                    </RadioButton>
-                </StackPanel>
-                <StackPanel Grid.Column="2" Grid.Row="0" Orientation="Horizontal">
-                	<RadioButton>
-                		<Label Content="By Clerk to Law Enforcement" Height="16"/>
-                	</RadioButton>
-                </StackPanel>
-                <StackPanel Grid.Column="3" Grid.Row="0" Orientation="Horizontal">
-                    <RadioButton>
-                    	<Label Content="By Protected" Height="17"/>
-                    </RadioButton>
-                </StackPanel>
+                <RadioButton Margin="0,0,7.817,0" Grid.Column="2" VerticalAlignment="Center">
+            		<Label Content="By Clerk"/>
+            	</RadioButton>
+                <Label FontWeight="Bold" Grid.Column="0" Grid.Row="0" Content="Carpos Entry" VerticalAlignment="Center"/>
                 <DataGrid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Stretch">
                     <DataGrid.Columns>
                     	<DataGridTextColumn Header="Law Enforcement Age"/>
@@ -188,6 +176,12 @@
                         <CheckBox Margin="20 0 0 0" Content="Protected Fee Waiver"/>
                     </StackPanel>
                 </Border>
+                <RadioButton Grid.Column="1" VerticalAlignment="Center">
+                	<Label Content="By Clerk to Law Enforcement" Height="16"/>
+                </RadioButton>
+                <RadioButton Margin="0,0,-0.001,0" Grid.Column="3" VerticalAlignment="Center">
+                	<Label Content="By Protected" Height="17"/>
+                </RadioButton>
             </Grid>
         </Border>
         <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}" Height="73.893">
@@ -203,7 +197,7 @@
                 </Grid.RowDefinitions>
                 <Label FontWeight="Bold" Grid.Column="0" Grid.Row="0" Content="Other Orders" VerticalAlignment="Center"/>
                 <TextBox TextWrapping="Wrap" AcceptsReturn="True" Width="250" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3"/>
-                <CheckBox Grid.Column="2" Grid.Row="0" Content="Attach" VerticalAlignment="Center"/>
+                <CheckBox Grid.Column="2" Grid.Row="0" Content="Attach" VerticalAlignment="Bottom" Margin="0,0,0,6.472"/>
                 <Button Grid.Column="2" Grid.Row="1" Content="Clear" VerticalAlignment="Center"/>
             </Grid>
         </Border>
