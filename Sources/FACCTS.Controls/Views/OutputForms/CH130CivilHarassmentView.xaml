@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
-             d:DesignHeight="720.896" d:DesignWidth="760" Background="{DynamicResource ControlBackgroundBrush}">
+             d:DesignHeight="821.896" d:DesignWidth="760" Background="{DynamicResource ControlBackgroundBrush}">
     <StackPanel Orientation="Vertical">
         <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}" Height="96.799">
         	<Grid>
@@ -29,7 +29,7 @@
         		<TextBox Grid.Column="3" Grid.Row="2" Width="150" VerticalAlignment="Center"/>
         	</Grid>
         </Border>
-        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}" Height="157.237">
+        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}" Height="239.237">
             <Grid>
                 <Grid.ColumnDefinitions>
                 	<ColumnDefinition Width="Auto"/>
@@ -43,7 +43,7 @@
                 	<RowDefinition/>
                 	<RowDefinition/>
                 	<RowDefinition/>
-                	<RowDefinition/>
+                	<RowDefinition Height="4*"/>
                 	<RowDefinition/>
                 </Grid.RowDefinitions>
                 <CheckBox Grid.Column="0" Grid.Row="0" FontWeight="Bold" Content="Stay Away Orders" VerticalAlignment="Center"/>
@@ -123,7 +123,7 @@
         		</Grid.ColumnDefinitions>
         		<Grid.RowDefinitions>
         			<RowDefinition />
-        			<RowDefinition />
+        			<RowDefinition Height="3*"/>
         		</Grid.RowDefinitions>
         		<CheckBox FontWeight="Bold" Grid.Column="0" Grid.Row="0" Content="Restrained person must" VerticalAlignment="Center"/>
         		<CheckBox Grid.Column="1" Grid.Row="0" Content="Attorney's Fee" VerticalAlignment="Center"/>
@@ -157,7 +157,7 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                 	<RowDefinition />
-                	<RowDefinition />
+                	<RowDefinition  Height="2*"/>
                 </Grid.RowDefinitions>
                 <RadioButton Margin="0,0,7.817,0" Grid.Column="2" VerticalAlignment="Center">
             		<Label Content="By Clerk"/>
