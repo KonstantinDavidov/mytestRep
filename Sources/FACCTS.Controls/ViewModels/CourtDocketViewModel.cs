@@ -33,6 +33,12 @@ namespace FACCTS.Controls.ViewModels
                     this.CanDropDismiss = x != null;
                     this.CanReissue = x != null;
                 });
+            this.WhenAny(x => x.CollectionChangedNotifier, x => 0)
+                .Subscribe(_ =>
+                {
+                    this.NotifyOfPropertyChange(() => CanDrop);
+                    this.NotifyOfPropertyChange(() => CanDismiss);
+                });
                 
         }
 
@@ -174,6 +180,22 @@ namespace FACCTS.Controls.ViewModels
         private void NotifyCollectionUpdated()
         {
             this.CollectionChangedNotifier = rnd.NextDouble();
+        }
+
+        public bool CanDrop
+        {
+            get
+            {
+                return CanDropDismiss && CurrentCourtCase.CaseStatus != Server.Model.Enums.CaseStatus.Dropped;
+            }
+        }
+
+        public bool CanDismiss
+        {
+            get
+            {
+                return CanDropDismiss && CurrentCourtCase.CaseStatus != Server.Model.Enums.CaseStatus.Dismissed;
+            }
         }
 
         protected enum SessionType
