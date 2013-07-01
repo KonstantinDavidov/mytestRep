@@ -1,0 +1,235 @@
+﻿<UserControl x:Class="FACCTS.Controls.Views.DV130AttachDV145View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="700">
+    <StackPanel Orientation="Vertical">
+        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+            <StackPanel Orientation="Vertical">
+                <Label FontWeight="Bold">
+                    Findings
+                </Label>
+                <StackPanel Orientation="Vertical" Margin="50 0 0 0">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBox Width="150"/>
+                        <Label>
+                            might take children without permission, because
+                        </Label>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox>
+                            Past RO Violation
+                        </CheckBox>
+                        <CheckBox>
+                            No Ties to California
+                        </CheckBox>
+                    </StackPanel>
+                    <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                        <StackPanel Orientation="Vertical">
+                            <CheckBox>
+                                Has done One of the Following
+                            </CheckBox>
+                            <Grid Margin="50 0 0 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <CheckBox Grid.Column="0" Grid.Row="0">
+                                    Quit Job
+                                </CheckBox>
+                                <CheckBox Grid.Column="0" Grid.Row="1">
+                                    Sold Home
+                                </CheckBox>
+                                <CheckBox Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3">
+                                    Applied for Passport, BirthCertificate, school or medical ...
+                                </CheckBox>
+                                <CheckBox Grid.Column="1" Grid.Row="0">
+                                    Close Bank account
+                                </CheckBox>
+                                <CheckBox Grid.Column="1" Grid.Row="1">
+                                    Ended a Leas...
+                                </CheckBox>
+                                <CheckBox Grid.Column="2" Grid.Row="0">
+                                    Sold/Disposed of Assets
+                                </CheckBox>
+                                <CheckBox Grid.Column="2" Grid.Row="1">
+                                    Hide/Destroyed Document
+                                </CheckBox>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                    <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                        <StackPanel>
+                            <CheckBox>
+                                Has a History of
+                            </CheckBox>
+                            <Grid Margin="50 0 0 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <CheckBox Grid.Column="0" Grid.Row="0">
+                                    Domestic Violence
+                                </CheckBox>
+                                <CheckBox Grid.Column="1" Grid.Row="0">
+                                    Child Abuse
+                                </CheckBox>
+                                <CheckBox Grid.Column="2" Grid.Row="0">
+                                    Non-Cooperative Parenting
+                                </CheckBox>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                    <CheckBox>
+                        Has a Criminal Record
+                    </CheckBox>
+                    <CheckBox>
+                        Has ties to another country, state or Foreign Country
+                    </CheckBox>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+            <StackPanel Orientation="Vertical">
+                <Label>
+                    Orders
+                </Label>
+                <StackPanel Margin="50 0 0 0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5">
+                            <CheckBox>
+                                Post Bond for
+                            </CheckBox>
+                            <TextBox Width="50" />
+                        </StackPanel>
+                        <CheckBox FontWeight="Bold" Grid.Column="0" Grid.Row="1">
+                            NO MOVE kids outside
+                        </CheckBox>
+                        <CheckBox FontWeight="Bold" Grid.Column="0" Grid.Row="2">
+                            NO TRAVEL with kids outside
+                        </CheckBox>
+                        <CheckBox Grid.Column="0" Grid.Row="3">
+                            Notice/Other state (Register ...)
+                        </CheckBox>
+                        <CheckBox Grid.Column="0" Grid.Row="4">
+                            Turn in Passport/Other Docs:
+                        </CheckBox>
+                        <CheckBox Grid.Column="1" Grid.Row="1">
+                            This County
+                        </CheckBox>
+                        <CheckBox Grid.Column="1" Grid.Row="2">
+                            This County
+                        </CheckBox>
+                        <TextBox Grid.Column="1" Grid.Row="3" Width="100"/>
+                        <TextBox Grid.Column="1" Grid.Row="4" Width="100"/>
+                        <CheckBox Grid.Column="2" Grid.Row="1">
+                            California
+                        </CheckBox>
+                        <CheckBox Grid.Column="2" Grid.Row="2">
+                            California
+                        </CheckBox>
+                        <CheckBox Grid.Column="3" Grid.Row="1">
+                            United States
+                        </CheckBox>
+                        <CheckBox Grid.Column="3" Grid.Row="2">
+                            United States
+                        </CheckBox>
+                        <StackPanel Orientation="Horizontal" Grid.Column="4" Grid.Row="1">
+                            <CheckBox>
+                                Other
+                            </CheckBox>
+                            <TextBox Width="100" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Column="4" Grid.Row="2">
+                            <CheckBox>
+                                Other
+                            </CheckBox>
+                            <TextBox Width="100" />
+                        </StackPanel>
+                    </Grid>
+                    <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                        <StackPanel Orientation="Vertical">
+                            <CheckBox>
+                                Provide the Following
+                            </CheckBox>
+                            <Grid Margin="50 0 0 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <CheckBox Grid.Column="0" Grid.Row="0">
+                                    Child Interary
+                                </CheckBox>
+                                <CheckBox Grid.Column="1" Grid.Row="0">
+                                    Copies of Aiplain Tickets
+                                </CheckBox>
+                                <CheckBox Grid.Column="2" Grid.Row="0">
+                                    Address/Phone of Children
+                                </CheckBox>
+                                <CheckBox Grid.Column="3" Grid.Row="0">
+                                    Other Parent Ticket
+                                </CheckBox>
+                                <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5">
+                                    <CheckBox>
+                                        Other
+                                    </CheckBox>
+                                    <TextBox Width="150"/>
+                                </StackPanel>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Label FontWeight="Bold" Grid.Column="0" Grid.Row="0">
+                            The Court Further Orders
+                        </Label>
+                        <TextBox TextWrapping="Wrap" AcceptsReturn="True" Width="250" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3"></TextBox>
+                        <CheckBox Grid.Column="2" Grid.Row="0">Attach</CheckBox>
+                        <Button Grid.Column="2" Grid.Row="1">Clear</Button>
+                    </Grid>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </StackPanel>
+</UserControl>
