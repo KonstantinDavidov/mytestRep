@@ -18,6 +18,7 @@ namespace FACCTS.Controls.ViewModels
         {
             _caseRecordViewModel = caseRecordViewModel;
             this.DisplayName = "Consolidate Cases";
+            this.IsValid = CourtCases != null && CourtCases.Count > 1 && SelectedCourtCase != null;
         }
 
         public List<CourtCase> CourtCases
@@ -34,6 +35,17 @@ namespace FACCTS.Controls.ViewModels
             {
                 return _caseRecordViewModel.CurrentCourtCase;
             }
+        }
+
+        public void PerformMerge()
+        {
+            this.TryClose(true);
+            Task.Factory.StartNew(() => PerformMergeBackground(), TaskCreationOptions.AttachedToParent);
+        }
+
+        private void PerformMergeBackground()
+        {
+            
         }
     }
 }
