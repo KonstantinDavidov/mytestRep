@@ -49,7 +49,7 @@ namespace FACCTS.Controls.ViewModels
             this.CourtCases.Where(x => !Object.ReferenceEquals(x, SelectedCourtCase))
                 .Aggregate(0, (index, cc) =>
                 {
-                    cc.ParentCase = SelectedCourtCase;
+                    Execute.OnUIThread(() => cc.ParentCase = SelectedCourtCase);
                     CaseHistory ch = new CaseHistory()
                     {
                         Date = DateTime.Now,

@@ -24,6 +24,7 @@
     <Property name="CanConsolidate" type="bool"/>
     <Property name="CanSeparate" type="bool"/>
     <Property name="SelectedCourtCases" collectionType="Faccts.Model.Entities.CourtCase" type="Collection"/>
+    <Property name="RelatedCasesChangedNotifier" type="double"/>
   </Model>
 
   <Model name="SeparateCaseDialogViewModel">

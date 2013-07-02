@@ -207,6 +207,17 @@ namespace FACCTS.Controls.ViewModels
 				}
 			}
 		}
+		
+		private double _relatedCasesChangedNotifier;
+		public double RelatedCasesChangedNotifier
+		{
+			get{return _relatedCasesChangedNotifier;}
+			set{
+				if(_relatedCasesChangedNotifier!=value){
+					this.RaiseAndSetIfChanged(ref _relatedCasesChangedNotifier, value);
+				}
+			}
+		}
 				
 	}
 	

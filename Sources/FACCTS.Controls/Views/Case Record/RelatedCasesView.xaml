@@ -17,14 +17,14 @@
     		<RowDefinition Height="Auto"/>
     		<RowDefinition Height="Auto"/>
     	</Grid.RowDefinitions>
-    	<DataGrid Grid.ColumnSpan="2">
+    	<DataGrid Grid.ColumnSpan="2" VerticalAlignment="Stretch" ItemsSource="{Binding RelatedCasesCollection}">
     		<DataGrid.Columns>
-    			<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Case Number"/>
-    			<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Case Type"/>
-    			<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="County"/>
-    			<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="CPO/TRO"/>
-    			<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Expiration Date"/>
-    			<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Lead Case"/>
+    			<DataGridTextColumn Binding="{Binding CaseNumber, Mode=OneWay}" Header="Case Number"/>
+    			<DataGridTextColumn Binding="{Binding Casetype, Mode=OneWay}" Header="Case Type"/>
+    			<DataGridTextColumn Binding="{Binding County, Mode=OneWay}" Header="County"/>
+    			<DataGridTextColumn Binding="{x:Null}" Header="CPO/TRO"/>
+    			<DataGridTextColumn Binding="{x:Null}" Header="Expiration Date"/>
+    			<DataGridTextColumn Binding="{Binding LeadCase}" Header="Lead Case"/>
     		</DataGrid.Columns>
     	</DataGrid>
     	<Border BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
