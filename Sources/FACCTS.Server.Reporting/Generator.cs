@@ -3,11 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using org.pdfclown;
+using org.pdfclown.documents;
+using org.pdfclown.documents.interaction.forms;
+
 
 namespace FACCTS.Server.Reporting
 {
-    public abstract class Generator<T> : IOrderGenerator where T : new() 
+    public abstract class Generator
     {
-        public abstract void Run(string pathToPdf, Dictionary<string, string> mapper, object data);
+        public Byte[] Run(string pathToPdf, Dictionary<string, string> mapper, object data)
+        {
+            org.pdfclown.files.File file = new org.pdfclown.files.File(pathToPdf);
+            Document document = file.Document;
+
+            Form form = document.Form;
+            if (form.Exists())
+            {
+                FillForm(form, mapper, data);
+            }
+
+            return Serialize(file);
+        }
+
+        protected abstract void FillForm(Form form, Dictionary<string, string> mapper, object data);
+
+        protected Byte[] Serialize(org.pdfclown.files.File pdfFile)
+        {
+            using (MemoryStream stream = new MemoryStream())
+            {
+                org.pdfclown.bytes.Stream pdfstream = new org.pdfclown.bytes.Stream(stream);
+                pdfFile.Save(pdfstream, org.pdfclown.files.SerializationModeEnum.Incremental);
+                return pdfstream.ToByteArray();
+            }
+        }
     }
 }

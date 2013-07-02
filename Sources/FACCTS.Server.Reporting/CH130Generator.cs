@@ -5,15 +5,21 @@ using System.Text;
 using System.Threading.Tasks;
 using FACCTS.Server.Reporting;
 using FACCTS.Server.Model.OrderModels;
+using System.IO;
+using org.pdfclown;
+using org.pdfclown.documents;
+using org.pdfclown.documents.interaction.forms;
 
 namespace FACCTS.Server.Reporting
 {
-    public class CH130Generator : Generator<CH130>
+    public class CH130Generator : Generator
     {
-
-        public override void Run(string pathToPdf, Dictionary<string, string> mapper, object data)
+        protected override void FillForm(Form form, Dictionary<string, string> mapper, object data)
         {
-            throw new NotImplementedException();
+            CH130 reportData = data as CH130;
+
+            form.Fields[mapper["caseNumber"]].Value = reportData.CaseInfo.CaseNumber;
+           
         }
     }
 }
