@@ -1,0 +1,191 @@
+﻿<UserControl x:Class="FACCTS.Controls.Views.CH110CivilHarassmentView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="700">
+    <StackPanel Orientation="Vertical">
+        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <CheckBox Grid.Column="0" Grid.Row="0" FontWeight="Bold">
+                    Conduct
+                </CheckBox>
+                <ComboBox Grid.Column="0" Grid.Row="1">
+                    <ComboBoxItem>Not Requested</ComboBoxItem>
+                    <ComboBoxItem>Granted</ComboBoxItem>
+                    <ComboBoxItem>Denied</ComboBoxItem>
+                </ComboBox>
+                <CheckBox Grid.Column="1" Grid.Row="0" >
+                    No Harass, Molest, Attack
+                </CheckBox>
+                <CheckBox Grid.Column="1" Grid.Row="1" >
+                    No Contact
+                </CheckBox>
+                <CheckBox Grid.Column="1" Grid.Row="2" >
+                    Do Not Try To Locate
+                </CheckBox>
+                <CheckBox Grid.Column="2" Grid.Row="2">
+                    Other
+                </CheckBox>
+                <TextBox Grid.Column="3" Grid.Row="2" Width="150">
+                    
+                </TextBox>
+            </Grid>
+        </Border>
+        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}" Height="239.237">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <CheckBox Grid.Column="0" Grid.Row="0" FontWeight="Bold" Content="Stay Away Orders" VerticalAlignment="Center"/>
+                <ComboBox Grid.Column="0" Grid.Row="1">
+                    <ComboBoxItem>Not Requested</ComboBoxItem>
+                    <ComboBoxItem>Granted</ComboBoxItem>
+                    <ComboBoxItem>Denied</ComboBoxItem>
+                </ComboBox>
+                <CheckBox Grid.Column="1" Grid.Row="0" Content="Person" VerticalAlignment="Center"/>
+                <CheckBox Grid.Column="1" Grid.Row="1" Content="Work" VerticalAlignment="Center"/>
+                <CheckBox Grid.Column="1" Grid.Row="2" Content="Child School" VerticalAlignment="Center"/>
+                <CheckBox Grid.Column="1" Grid.Row="3" Content="Child Care" VerticalAlignment="Center"/>
+                <CheckBox Grid.Column="2" Grid.Row="0" Content="Home" VerticalAlignment="Center"/>
+                <CheckBox Grid.Column="2" Grid.Row="1" Content="Vehicle" VerticalAlignment="Center"/>
+                <CheckBox Grid.Column="2" Grid.Row="2" Content="Other Protected" VerticalAlignment="Center"/>
+                <CheckBox Grid.Column="2" Grid.Row="3" Content="Other" VerticalAlignment="Center"/>
+                <TextBox TextWrapping="Wrap" AcceptsReturn="True" Width="250" Grid.Column="4" Grid.Row="0" Grid.RowSpan="4"/>
+                <Button Grid.Column="5" Grid.Row="3" Content="CLEAR" VerticalAlignment="Center"/>
+                <DataGrid Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="5" VerticalAlignment="Stretch">
+                    <DataGrid.Columns>
+                        <DataGridComboBoxColumn Header="Entity" Width="Auto"/>
+                        <DataGridTextColumn Header="Name" Width="Auto"/>
+                        <DataGridComboBoxColumn Header="Sex" Width="Auto"/>
+                        <DataGridTextColumn Header="Age" Width="Auto"/>
+                        <DataGridTextColumn Header="Household" Width="Auto"/>
+                        <DataGridTextColumn Header="Relation to protected" Width="Auto"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <CheckBox Grid.Column="5" Grid.Row="4" VerticalAlignment="Bottom" Content="Attach"/>
+                <UniformGrid Rows="1" Columns="2" Margin="0,0,20.84,0" Grid.Row="5" Grid.Column="4" VerticalAlignment="Center" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+                    <Button Content="Add" Margin="0,0,0,-13.923" Width="75"/>
+                    <Button Content="Remove" Margin="0,0,0,-13.923"/>
+                </UniformGrid>
+            </Grid>
+        </Border>
+        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}" Height="45">
+            <CheckBox FontWeight="Bold" Content="No Guns - Court has Information Of Firearms" VerticalAlignment="Center"/>
+        </Border>
+        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}" Height="97.96">
+            <StackPanel Orientation="Horizontal">
+                <Label FontWeight="Bold" Content="Order Ends At"/>
+                <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}" Width="143.94">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <xctk:DateTimeUpDown Format="LongTime" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
+                        <RadioButton Content="Midnight" Margin="0" VerticalAlignment="Center"/>
+                        <RadioButton Content="Other Time" Margin="0" Grid.RowSpan="2" Grid.Row="1" VerticalAlignment="Center"/>
+                    </Grid>
+                </Border>
+                <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}" Width="207.867">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <xctk:DateTimeUpDown Format="ShortDate" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center"/>
+                        <RadioButton Content=" 3 Years" Height="16" VerticalAlignment="Center" Margin="0"/>
+                        <RadioButton Content="5 years" Margin="0" Grid.RowSpan="2" Grid.Row="1" VerticalAlignment="Center"/>
+                        <RadioButton Content="Other" Margin="0" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center"/>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition  Height="2*"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <RadioButton Grid.Column="2" VerticalAlignment="Center">
+                    By Clerk
+                </RadioButton>
+                <Label FontWeight="Bold" Grid.Column="0" Grid.Row="0" Content="Carpos Entry" VerticalAlignment="Center"/>
+                <DataGrid Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Stretch">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Law Enforcement Age"/>
+                        <DataGridTextColumn Header="Address"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="3" Style="{DynamicResource OrdinalBorder}" VerticalAlignment="Top">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <CheckBox FontWeight="Bold" Grid.Column="0" Grid.Row="0" Content="No Service Fee"/>
+                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2">
+                            <RadioButton Content="Ordered"/>
+                            <RadioButton Content="Not Ordered"/>
+                        </StackPanel>
+                        <CheckBox Grid.Column="1" Grid.Row="1" Content="Order Based on Violance Physical Threat or Stalking"/>
+                        <CheckBox Grid.Column="2" Grid.Row="1" Content="Protected Fee Waiver"/>
+                    </Grid>
+                </Border>
+                <RadioButton Grid.Column="1" VerticalAlignment="Center">
+                    By Clerk to Law Enforcement
+                </RadioButton>
+                <RadioButton VerticalAlignment="Center" Grid.Column="3" Grid.Row="0">
+                    By Protected To
+                </RadioButton>
+            </Grid>
+        </Border>
+    </StackPanel>
+</UserControl>

@@ -82,16 +82,37 @@
                             <ViewModels:DV130AttachDV145ViewModel/>
                         </TreeViewItem.DataContext>
                     </TreeViewItem>
-                    <TreeViewItem Header="Attach FL343 - Spousal / Partner  Support"/>
+                    <TreeViewItem Header="Attach FL343 - Spousal / Partner  Support">
+                        <TreeViewItem.DataContext>
+                            <ViewModels:DV130AttachFL343ViewModel/>
+                        </TreeViewItem.DataContext>
+                    </TreeViewItem>
                 </TreeViewItem>
-                <TreeViewItem Header="CH110 - Civil Harassment - TRO"/>
+                <TreeViewItem Header="CH110 - Civil Harassment - TRO">
+                    <TreeViewItem.DataContext>
+                        <ViewModels:CH110CivilHarassmentViewModel/>
+                    </TreeViewItem.DataContext>
+                </TreeViewItem>
                 <TreeViewItem Header="CH130 - Civil Harassment - RO">
                     <TreeViewItem.DataContext>
                         <ViewModels:CH130CivilHarassmentViewModel />
                     </TreeViewItem.DataContext>
                 </TreeViewItem>
-                <TreeViewItem Header="EA110 - Elderly Abuse - TRO"/>
-                <TreeViewItem Header="EA130 - Elderly Abuse - RO"/>
+                <TreeViewItem Header="EA110 - Elderly Abuse - TRO">
+                    <TreeViewItem.DataContext>
+                        <ViewModels:EA110ElderlyAbuseViewModel/>
+                    </TreeViewItem.DataContext>
+                </TreeViewItem>
+                <TreeViewItem Header="EA130 - Elderly Abuse - RO">
+                    <TreeViewItem.DataContext>
+                        <ViewModels:EA130ElderlyAbuseViewModel/>
+                    </TreeViewItem.DataContext>
+                </TreeViewItem>
+                <TreeViewItem Header="FL344 - Debt and Property Control">
+                    <TreeViewItem.DataContext>
+                        <ViewModels:FL344DebtAndPropertyControlViewModel/>
+                    </TreeViewItem.DataContext>
+                </TreeViewItem>
             </TreeView>
         </GroupBox>
 
