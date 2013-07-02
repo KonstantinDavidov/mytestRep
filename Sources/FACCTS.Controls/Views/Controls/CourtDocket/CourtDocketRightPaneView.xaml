@@ -57,7 +57,10 @@
 				<ComboBox Grid.Column="7"/>
 			</Grid>
 		</Border>
-		<DataGrid Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ItemsSource="{Binding HistoryRecords}" AutoGenerateColumns="False" SelectionMode="Single">
+        <DataGrid Grid.Row="1"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  ItemsSource="{Binding HistoryRecords, Mode=OneWay}" AutoGenerateColumns="False" SelectionMode="Single">
 			<DataGrid.Columns>
 				<DataGridTextColumn Binding="{Binding CourtCaseNumber, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Case Number" CanUserResize="False" Width="0.1*" IsReadOnly="True"/>
                 <DataGridTextColumn ClipboardContentBinding="{x:Null}"
@@ -67,7 +70,8 @@
                                     IsReadOnly="True"
                                     HeaderStyle="{StaticResource WrappedColumnHeaderStyle}" />
 				<DataGridTextColumn Binding="{Binding Hearing.Courtrooms.RoomName, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Courtroom" CanUserResize="False" Width="0.1*" IsReadOnly="True"/>
-				<DataGridTextColumn Binding="{Binding Hearing.HearingDate, Mode=OneWay, StringFormat=\{tt\}}" ClipboardContentBinding="{x:Null}" Header="Session" IsReadOnly="True" Width="0.1*"/>
+				<DataGridTextColumn Binding="{Binding Hearing.CourtDepartment.Room}" ClipboardContentBinding="{x:Null}" Header="Department" Width="0.1*"/>
+				<DataGridTextColumn Binding="{Binding Hearing.HearingDate, Mode=OneWay, StringFormat=\{0:t tt\}}" ClipboardContentBinding="{x:Null}" Header="Session" IsReadOnly="True" Width="0.1*"/>
 				<DataGridTextColumn Binding="{Binding CaseRecord.CourtParty.FullName, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Party 1" CanUserResize="False" Width="0.2*" IsReadOnly="True"/>
 				<DataGridTextColumn Binding="{Binding CaseRecord.CourtParty1.FullName, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Party 2" CanUserResize="False" Width="0.2*" IsReadOnly="True"/>
 				<DataGridCheckBoxColumn Binding="{Binding CaseRecord.Children.Count, ConverterParameter=0, Converter={StaticResource InvertedInt32ToBooleanConverter}, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Children" CanUserResize="False" Width="0.08*" IsReadOnly="True"/>
@@ -83,8 +87,8 @@
 				</Grid.ColumnDefinitions>
 				<UniformGrid HorizontalAlignment="Left" VerticalAlignment="Top" Rows="1" Columns="4">
 					<Button Content="Save" Width="75"/>
-					<Button Content="Drop" Width="75" cal:Message.Attach="Drop" IsEnabled="{Binding CanDropDismiss, Mode=OneWay}"/>
-					<Button Content="Dismiss" Width="75" cal:Message.Attach="Dismiss" IsEnabled="{Binding CanDropDismiss, Mode=OneWay}"/>
+					<Button Content="Drop" Width="75" cal:Message.Attach="Drop" IsEnabled="{Binding CanDrop, Mode=OneWay}"/>
+					<Button Content="Dismiss" Width="75" cal:Message.Attach="Dismiss" IsEnabled="{Binding CanDismiss, Mode=OneWay}"/>
 					<Button Content="Reissue" Width="75" cal:Message.Attach="Reissue" IsEnabled="{Binding CanReissue, Mode=OneWay}"/>
 				</UniformGrid>
 			</Grid>

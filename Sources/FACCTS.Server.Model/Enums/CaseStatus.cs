@@ -13,11 +13,11 @@ namespace FACCTS.Server.Model.Enums
         New = 0,
         [Display(Name = "Active")]
         Active = 1,
-        [Display(Name = "Reissued")]
-        Reissued = 2,
         [Display(Name = "Dropped")]
-        Dropped = 3,
+        Dropped = 2,
         [Display(Name = "Dismissed")]
-        Dismissed = 4,
+        Dismissed = 3,
+        [Display(Name = "Reissued")]
+        Reissued = 4,
     }
 }

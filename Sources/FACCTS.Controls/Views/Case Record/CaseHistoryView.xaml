@@ -21,7 +21,7 @@
     </UserControl.Resources>
 
 	<Grid x:Name="LayoutRoot" IsEnabled="{Binding CaseRecord, Converter={StaticResource ObjectToBooleanConverter}, Mode=OneWay}">
-		<DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeRows="False" ItemsSource="{Binding Mode=OneWay, Source={StaticResource cvsCaseHistory}}">
+		<DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeRows="False" ItemsSource="{Binding Mode=OneWay, Source={StaticResource cvsCaseHistory}}" VerticalAlignment="Stretch">
 			<DataGrid.Columns>
 				<DataGridTextColumn Binding="{Binding Date, Mode=OneWay, StringFormat=\{0:d\}}"
 					Header="Date"

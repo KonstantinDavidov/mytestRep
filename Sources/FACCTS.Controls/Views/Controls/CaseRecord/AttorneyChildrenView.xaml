@@ -11,6 +11,93 @@
 	x:Class="FACCTS.Controls.AttorneyChildrenView"
 	x:Name="UserControl"
 	d:DesignWidth="640" d:DesignHeight="295.68" Background="{DynamicResource ControlBackgroundBrush}">
+	<UserControl.Resources>
+        <ControlTemplate x:Key="RadioButtonToggleTemplate"
+                         TargetType="{x:Type RadioButton}">
+            <ControlTemplate.Resources>
+                <Storyboard x:Key="HoverOn" />
+                <Storyboard x:Key="HoverOff" />
+                <Storyboard x:Key="PressedOn" />
+                <Storyboard x:Key="PressedOff" />
+                <Storyboard x:Key="DisabledOn" />
+                <Storyboard x:Key="CheckedOn" />
+                <Storyboard x:Key="CheckedOff" />
+                <Storyboard x:Key="FocusedOn" />
+                <Storyboard x:Key="FocusedOff" />
+            </ControlTemplate.Resources>
+            <ToggleButton Content="{TemplateBinding Content}"
+                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          Height="{TemplateBinding Height}"
+                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                          Width="{TemplateBinding Width}"
+                          IsChecked="{Binding IsChecked, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                          Margin="{TemplateBinding Padding}" />
+
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsFocused"
+                         Value="True">
+                    <Trigger.ExitActions>
+                        <BeginStoryboard Storyboard="{StaticResource FocusedOff}"
+                                         x:Name="FocusedOff_BeginStoryboard" />
+                    </Trigger.ExitActions>
+                    <Trigger.EnterActions>
+                        <BeginStoryboard Storyboard="{StaticResource FocusedOn}"
+                                         x:Name="FocusedOn_BeginStoryboard" />
+                    </Trigger.EnterActions>
+                </Trigger>
+                <Trigger Property="IsChecked"
+                         Value="false">
+                    <Trigger.ExitActions>
+                        <BeginStoryboard Storyboard="{StaticResource CheckedOn}" />
+                    </Trigger.ExitActions>
+                    <Trigger.EnterActions>
+
+                        <BeginStoryboard Storyboard="{StaticResource CheckedOff}" />
+                    </Trigger.EnterActions>
+                </Trigger>
+                <Trigger Property="IsMouseOver"
+                         Value="true">
+                    <Trigger.ExitActions>
+                        <BeginStoryboard Storyboard="{StaticResource HoverOff}" />
+                    </Trigger.ExitActions>
+                    <Trigger.EnterActions>
+                        <BeginStoryboard Storyboard="{StaticResource HoverOn}" />
+                    </Trigger.EnterActions>
+                </Trigger>
+                <Trigger Property="IsPressed"
+                         Value="true">
+                    <Trigger.ExitActions>
+                        <BeginStoryboard Storyboard="{StaticResource PressedOff}" />
+                    </Trigger.ExitActions>
+                    <Trigger.EnterActions>
+                        <BeginStoryboard Storyboard="{StaticResource PressedOn}" />
+                    </Trigger.EnterActions>
+                </Trigger>
+                <Trigger Property="IsEnabled"
+                         Value="false">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard Storyboard="{StaticResource DisabledOn}" />
+                    </Trigger.EnterActions>
+                    <Setter Property="Foreground"
+                            Value="{DynamicResource DisabledForegroundBrush}" />
+                </Trigger>
+
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <Style x:Key="ToggleRadioButton" TargetType="{x:Type RadioButton}">
+			<Setter Property="SnapsToDevicePixels" Value="true" />
+			<Setter Property="FocusVisualStyle" Value="{DynamicResource RadioButtonFocusVisual}" />
+			<Setter Property="Foreground" Value="{StaticResource OutsideFontColor}" />
+			<Setter Property="FontFamily" Value="Trebuchet MS" />
+			<Setter Property="FontSize" Value="12" />
+			<Setter Property="HorizontalContentAlignment" Value="Left" />
+			<Setter Property="VerticalContentAlignment" Value="Top" />
+			<Setter Property="Padding" Value="4,1,0,0" />
+
+            <Setter Property="Template"
+                    Value="{StaticResource RadioButtonToggleTemplate}" />
+		</Style>
+	</UserControl.Resources>
 
 	<GroupBox Header="Attorney for Children" Grid.IsSharedSizeScope="True">
 		<Grid>
@@ -23,8 +110,8 @@
 				<RowDefinition Height="*"/>
 			</Grid.RowDefinitions>
 			<StackPanel VerticalAlignment="Center" Grid.Column="1" Orientation="Horizontal">
-                <RadioButton Content="Copy Party 1" Margin="8,0" Style="{DynamicResource RadioButtonToggleStyle}" IsChecked="{Binding AttorneyForChildrenIsTheSameThenParty1, Mode=TwoWay}"/>
-                <RadioButton Content="Copy Party 2" Margin="8,0" Style="{DynamicResource RadioButtonToggleStyle}" IsChecked="{Binding AttorneyForChildrenIsTheSameThenParty2, Mode=TwoWay}"/>
+                <RadioButton Content="Copy Party 1" Margin="8,0" Style="{DynamicResource ToggleRadioButton}" IsChecked="{Binding AttorneyForChildrenIsTheSameThenParty1, Mode=TwoWay}"/>
+                <RadioButton Content="Copy Party 2" Margin="8,0" Style="{DynamicResource ToggleRadioButton}" IsChecked="{Binding AttorneyForChildrenIsTheSameThenParty2, Mode=TwoWay}"/>
 			</StackPanel>
 			<ContentControl Grid.Row="1" Grid.ColumnSpan="2" >
                 <this:AttorneyView DataContext="{Binding CaseRecord.Attorneys, Mode=OneWay}"/>

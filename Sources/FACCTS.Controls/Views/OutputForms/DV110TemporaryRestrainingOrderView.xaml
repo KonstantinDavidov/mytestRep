@@ -4,10 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-             mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="700">
+             mc:Ignorable="d"
+             Background="{DynamicResource ControlBackgroundBrush}">
     <StackPanel Orientation="Vertical">
-        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
+        <Border Margin="4 4 4 2" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -41,7 +41,7 @@
                 </CheckBox>
             </Grid>
         </Border>
-        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
+        <Border Margin="4 2 4 2" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -116,7 +116,7 @@
                 </StackPanel>
             </Grid>
         </Border>
-        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
+        <Border Margin="4 2 4 2" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -150,7 +150,7 @@
                 </CheckBox>
             </Grid>
         </Border>
-        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
+        <Border Margin="4 2 4 2" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -173,7 +173,7 @@
                 </ComboBox>
             </Grid>
         </Border>
-        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
+        <Border Margin="4 2 4 2" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -207,7 +207,7 @@
                 <TextBox Grid.Column="3" Grid.Row="1" Width="150"></TextBox>
             </Grid>
         </Border>
-        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
+        <Border Margin="4 2 4 2" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -242,13 +242,13 @@
                 <Button Grid.Column="2" Grid.Row="2">CLEAR</Button>
             </Grid>
         </Border>
-        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
+        <Border Margin="4 2 4 2" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
             <CheckBox FontWeight="Bold">Batter Intervent</CheckBox>
         </Border>
-        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
+        <Border Margin="4 2 4 2" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
             <CheckBox FontWeight="Bold">No Guns - Court Has Information of Firearms</CheckBox>
         </Border>
-        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+        <Border Margin="4 2 4 2" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
             <StackPanel Orientation="Horizontal">
                 <Label FontWeight="Bold">Order Ends At</Label>
                 <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
@@ -261,14 +261,12 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
-                            <RadioButton Width="15"></RadioButton>
-                            <Label>Midnight</Label>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
-                            <RadioButton Width="15"></RadioButton>
-                            <Label>Other</Label>
-                        </StackPanel>
+                        <RadioButton Grid.Column="0" Grid.Row="0">
+                            Midnight
+                        </RadioButton>
+                        <RadioButton Grid.Column="0" Grid.Row="1">
+                            Other
+                        </RadioButton>
                         <xctk:DateTimeUpDown Format="LongTime" Grid.Column="1" Grid.Row="1"></xctk:DateTimeUpDown>
                     </Grid>
                 </Border>
@@ -283,24 +281,21 @@
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
-                            <RadioButton Width="15"></RadioButton>
-                            <Label>3 Years</Label>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1">
-                            <RadioButton Width="15"></RadioButton>
-                            <Label>5 Years</Label>
-                        </StackPanel>
-                        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="1">
-                            <RadioButton Width="15"></RadioButton>
-                            <Label>Other</Label>
-                        </StackPanel>
-                        <xctk:DateTimeUpDown Format="ShortDate" Grid.Column="2" Grid.Row="1"></xctk:DateTimeUpDown>
+                        <RadioButton Grid.Column="0" Grid.Row="0">
+                            3 Years
+                        </RadioButton>
+                            <RadioButton Grid.Column="0" Grid.Row="1">
+                                5 Years
+                            </RadioButton>
+                            <RadioButton Grid.Column="1" Grid.Row="1">
+                                Other Date
+                            </RadioButton>
+                        <xctk:DateTimeUpDown Format="ShortDate" Grid.Column="2" Grid.Row="1"/>
                     </Grid>
                 </Border>
             </StackPanel>
         </Border>
-        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+        <Border Margin="4 2 4 4" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>

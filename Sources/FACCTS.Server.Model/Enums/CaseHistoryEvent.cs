@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -9,15 +10,17 @@ namespace FACCTS.Server.Model.Enums
 {
     public enum CaseHistoryEvent
     {
-        [Display(Name = "New")]
+        [Description("New")]
         New = 0,
-        [Display(Name = "Hearing")]
+        [Description("Hearing")]
         Hearing = 1,
-        [Display(Name = "Dropped")]
+        [Description("Dropped")]
         Dropped = 2,
-        [Display(Name = "Dismissed")]
+        [Description("Dismissed")]
         Dismissed = 3,
-        [Display(Name = "Merged")]
+        [Description("Merged")]
         Merged = 4,
+        [Description("Reissued")]
+        Reissued = 5,
     }
 }

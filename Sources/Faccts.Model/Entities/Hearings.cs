@@ -22,6 +22,7 @@ namespace Faccts.Model.Entities
     [DataContract(IsReference = true)]
     [KnownType(typeof(CaseHistory))]
     [KnownType(typeof(Courtrooms))]
+    [KnownType(typeof(CourtDepartmenets))]
     public partial class Hearings: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -160,6 +161,30 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<int> _courtroom_Id;
+    
+        [DataMember]
+        public Nullable<int> Department_Id
+        {
+            get { return _department_Id; }
+            set
+            {
+                if (_department_Id != value)
+                {
+                    ChangeTracker.RecordOriginalValue("Department_Id", _department_Id);
+                    if (!IsDeserializing)
+                    {
+                        if (CourtDepartment != null && CourtDepartment.Id != value)
+                        {
+                            CourtDepartment = null;
+                        }
+                    }
+    				OnPropertyChanging("Department_Id");
+                    _department_Id = value;
+                    OnPropertyChanged("Department_Id");
+                }
+            }
+        }
+        private Nullable<int> _department_Id;
 
         #endregion
 
@@ -260,6 +285,24 @@ namespace Faccts.Model.Entities
             }
         }
         private Courtrooms _courtrooms;
+    
+        [DataMember]
+        public CourtDepartmenets CourtDepartment
+        {
+            get { return _courtDepartment; }
+            set
+            {
+                if (!ReferenceEquals(_courtDepartment, value))
+                {
+                    var previousValue = _courtDepartment;
+    				OnNavigationPropertyChanging("CourtDepartment");
+                    _courtDepartment = value;
+                    FixupCourtDepartment(previousValue);
+                    OnNavigationPropertyChanged("CourtDepartment");
+                }
+            }
+        }
+        private CourtDepartmenets _courtDepartment;
 
         #endregion
 
@@ -369,6 +412,7 @@ namespace Faccts.Model.Entities
         {
             CaseHistory.Clear();
             Courtrooms = null;
+            CourtDepartment = null;
         }
 
         #endregion
@@ -412,6 +456,47 @@ namespace Faccts.Model.Entities
                 if (Courtrooms != null && !Courtrooms.ChangeTracker.ChangeTrackingEnabled)
                 {
                     Courtrooms.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupCourtDepartment(CourtDepartmenets previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.Hearings.Contains(this))
+            {
+                previousValue.Hearings.Remove(this);
+            }
+    
+            if (CourtDepartment != null)
+            {
+                CourtDepartment.Hearings.Add(this);
+    
+                Department_Id = CourtDepartment.Id;
+            }
+            else if (!skipKeys)
+            {
+                Department_Id = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("CourtDepartment")
+                    && (ChangeTracker.OriginalValues["CourtDepartment"] == CourtDepartment))
+                {
+                    ChangeTracker.OriginalValues.Remove("CourtDepartment");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("CourtDepartment", previousValue);
+                }
+                if (CourtDepartment != null && !CourtDepartment.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    CourtDepartment.StartTracking();
                 }
             }
         }

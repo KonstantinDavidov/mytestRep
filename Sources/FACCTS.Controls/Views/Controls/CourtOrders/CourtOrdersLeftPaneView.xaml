@@ -42,25 +42,77 @@
                             <ViewModels:DV110ChildCustodyViewModel/>
                         </TreeViewItem.DataContext>
                     </TreeViewItem>
-                    <TreeViewItem Header="Supervision"/>
-                    <TreeViewItem Header="Attach DV145 - Travel Restriction"/>
+                    <TreeViewItem Header="Supervision">
+                        <TreeViewItem.DataContext>
+                            <ViewModels:DV110SupervisionViewModel/>
+                        </TreeViewItem.DataContext>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Attach DV145 - Travel Restriction">
+                        <TreeViewItem.DataContext>
+                            <ViewModels:DV110AttachDV145ViewModel/>
+                        </TreeViewItem.DataContext>
+                    </TreeViewItem>
                 </TreeViewItem>
                 <TreeViewItem Header="DV130 - Restraining Order" IsExpanded="True">
-                    <TreeViewItem Header="Property and Attorney's Fees"/>
-                    <TreeViewItem Header="Child Custody"/>
-                    <TreeViewItem Header="Supervision"/>
-                    <TreeViewItem Header="FL342 - Child Support"/>
-                    <TreeViewItem Header="Attach DV145 - Travel Restriction"/>
-                    <TreeViewItem Header="Attach FL343 - Spousal / Partner  Support"/>
+                    <TreeViewItem.DataContext>
+                        <ViewModels:DV130RestrainingOrderViewModel/>
+                    </TreeViewItem.DataContext>
+                    <TreeViewItem Header="Property and Attorney's Fees">
+                        <TreeViewItem.DataContext>
+                            <ViewModels:DV130PropertyAndAttorneysFeesViewModel/>
+                        </TreeViewItem.DataContext>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Child Custody">
+                        <TreeViewItem.DataContext>
+                            <ViewModels:DV130ChildCustodyViewModel/>
+                        </TreeViewItem.DataContext>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Supervision">
+                        <TreeViewItem.DataContext>
+                            <ViewModels:DV130SupervisionViewModel/>
+                        </TreeViewItem.DataContext>
+                    </TreeViewItem>
+                    <TreeViewItem Header="FL342 - Child Support">
+                        <TreeViewItem.DataContext>
+                            <ViewModels:DV130FL342ChildSupportViewModel/>
+                        </TreeViewItem.DataContext>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Attach DV145 - Travel Restriction">
+                        <TreeViewItem.DataContext>
+                            <ViewModels:DV130AttachDV145ViewModel/>
+                        </TreeViewItem.DataContext>
+                    </TreeViewItem>
+                    <TreeViewItem Header="Attach FL343 - Spousal / Partner  Support">
+                        <TreeViewItem.DataContext>
+                            <ViewModels:DV130AttachFL343ViewModel/>
+                        </TreeViewItem.DataContext>
+                    </TreeViewItem>
                 </TreeViewItem>
-                <TreeViewItem Header="CH110 - Civil Harassment - TRO"/>
+                <TreeViewItem Header="CH110 - Civil Harassment - TRO">
+                    <TreeViewItem.DataContext>
+                        <ViewModels:CH110CivilHarassmentViewModel/>
+                    </TreeViewItem.DataContext>
+                </TreeViewItem>
                 <TreeViewItem Header="CH130 - Civil Harassment - RO">
                     <TreeViewItem.DataContext>
                         <ViewModels:CH130CivilHarassmentViewModel />
                     </TreeViewItem.DataContext>
                 </TreeViewItem>
-                <TreeViewItem Header="EA110 - Elderly Abuse - TRO"/>
-                <TreeViewItem Header="EA130 - Elderly Abuse - RO"/>
+                <TreeViewItem Header="EA110 - Elderly Abuse - TRO">
+                    <TreeViewItem.DataContext>
+                        <ViewModels:EA110ElderlyAbuseViewModel/>
+                    </TreeViewItem.DataContext>
+                </TreeViewItem>
+                <TreeViewItem Header="EA130 - Elderly Abuse - RO">
+                    <TreeViewItem.DataContext>
+                        <ViewModels:EA130ElderlyAbuseViewModel/>
+                    </TreeViewItem.DataContext>
+                </TreeViewItem>
+                <TreeViewItem Header="FL344 - Debt and Property Control">
+                    <TreeViewItem.DataContext>
+                        <ViewModels:FL344DebtAndPropertyControlViewModel/>
+                    </TreeViewItem.DataContext>
+                </TreeViewItem>
             </TreeView>
         </GroupBox>
 
