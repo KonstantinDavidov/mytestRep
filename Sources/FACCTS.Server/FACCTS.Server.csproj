@@ -572,6 +572,10 @@
       <Project>{5a675cbb-2774-4fde-a8c6-40aa46f4fa3f}</Project>
       <Name>FACCTS.Server.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\FACCTS.Server.Reporting\FACCTS.Server.Reporting.csproj">
+      <Project>{133f5e12-1b5d-4fd7-8d77-39a0c3b015b0}</Project>
+      <Name>FACCTS.Server.Reporting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FACCTS.Server.Services\FACCTS.Server.Data.csproj">
       <Project>{28230005-ef1c-40fe-b7cf-d0850e920280}</Project>
       <Name>FACCTS.Server.Data</Name>
