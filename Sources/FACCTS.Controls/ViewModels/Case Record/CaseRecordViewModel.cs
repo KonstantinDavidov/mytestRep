@@ -199,6 +199,7 @@ namespace FACCTS.Controls.ViewModels
                 this.NotifyOfPropertyChanging();
                 _selectedCourtCases = value;
                 this.NotifyOfPropertyChange();
+                _eventAggregator.Publish(new SelectedCourtCasesChangedEvent(_selectedCourtCases));
             }
         }
 

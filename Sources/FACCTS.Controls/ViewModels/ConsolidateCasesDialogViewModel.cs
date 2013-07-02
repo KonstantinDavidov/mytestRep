@@ -27,5 +27,13 @@ namespace FACCTS.Controls.ViewModels
                 return _caseRecordViewModel.SelectedCourtCases;
             }
         }
+
+        public CourtCase SelectedCourtCase
+        {
+            get
+            {
+                return _caseRecordViewModel.CurrentCourtCase;
+            }
+        }
     }
 }

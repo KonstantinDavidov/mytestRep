@@ -23,6 +23,7 @@
   <Model name="RelatedCasesViewModel">
     <Property name="CanConsolidate" type="bool"/>
     <Property name="CanSeparate" type="bool"/>
+    <Property name="SelectedCourtCases" collectionType="Faccts.Model.Entities.CourtCase" type="Collection"/>
   </Model>
 
   <Model name="SeparateCaseDialogViewModel">

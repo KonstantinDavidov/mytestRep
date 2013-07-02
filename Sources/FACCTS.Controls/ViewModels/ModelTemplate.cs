@@ -196,6 +196,17 @@ namespace FACCTS.Controls.ViewModels
 				}
 			}
 		}
+		
+		private ObservableCollection<Faccts.Model.Entities.CourtCase> _selectedCourtCases;
+		public ObservableCollection<Faccts.Model.Entities.CourtCase> SelectedCourtCases
+		{
+			get{return _selectedCourtCases;}
+			set{
+				if(_selectedCourtCases!=value){
+					this.RaiseAndSetIfChanged(ref _selectedCourtCases, value);
+				}
+			}
+		}
 				
 	}
 	

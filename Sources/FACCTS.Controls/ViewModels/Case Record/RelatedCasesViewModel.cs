@@ -8,11 +8,13 @@ using ReactiveUI;
 using Caliburn.Micro;
 using FACCTS.Services;
 using FACCTS.Controls.Events;
+using System.Collections.ObjectModel;
+using Faccts.Model.Entities;
 
 namespace FACCTS.Controls.ViewModels
 {
     [Export(typeof(RelatedCasesViewModel))]
-    public partial class RelatedCasesViewModel : ViewModelBase, IHandle<CurrentCourtCaseChangedEvent>
+    public partial class RelatedCasesViewModel : ViewModelBase, IHandle<CurrentCourtCaseChangedEvent>, IHandle<SelectedCourtCasesChangedEvent>
     {
         private IWindowManager _windowManager;
         private IEventAggregator _eventAggregator; 
@@ -24,18 +26,23 @@ namespace FACCTS.Controls.ViewModels
                         this.CanSeparate = x != null;
                     }
                 );
+            this.WhenAny(x => x.SelectedCourtCases, x => x.Value)
+                .Subscribe(x =>
+                {
+                    this.CanConsolidate = x != null && x.Count > 1;
+
+                });
         }
 
         [ImportingConstructor]
         public RelatedCasesViewModel(IWindowManager windowManager
-            , IEventAggregator eventAggregator) : this()
+            , IEventAggregator eventAggregator
+            ) : this()
         {
             _windowManager = windowManager;
             _eventAggregator = eventAggregator;
             _eventAggregator.Subscribe(this);
             this.DisplayName = "Related Cases";
-            //TODO: correct two following lines once that functionality implemented
-            CanConsolidate = true;
             
         }
 
@@ -69,6 +76,11 @@ namespace FACCTS.Controls.ViewModels
         public void Handle(CurrentCourtCaseChangedEvent message)
         {
             this.CurrentCourtCase = message.CourtCase;
+        }
+
+        public void Handle(SelectedCourtCasesChangedEvent message)
+        {
+            this.SelectedCourtCases = new ObservableCollection<CourtCase>(message.SelectedCourtCases);
         }
     }
 }

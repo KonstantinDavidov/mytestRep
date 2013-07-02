@@ -27,12 +27,12 @@
     			<DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Lead Case"/>
     		</DataGrid.Columns>
     	</DataGrid>
-    	<Border BorderBrush="Black" BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
+    	<Border BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
     		<Grid>
     			<Button Content="Save" HorizontalAlignment="Left" Margin="0,0,0,-0.001" VerticalAlignment="Top" Width="75"/>
     		</Grid>
     	</Border>
-    	<Border HorizontalAlignment="Left" Style="{DynamicResource OrdinalBorder}" VerticalAlignment="Top" Grid.Row="1">
+    	<Border Style="{DynamicResource OrdinalBorder}" VerticalAlignment="Top" Grid.Row="1" BorderThickness="1">
     		<UniformGrid HorizontalAlignment="Left" VerticalAlignment="Top" Rows="1" Columns="2" Margin="0,0,-66.4,0">
     			<Button Content="Consolidate" Width="75" Margin="5,0" cal:Message.Attach="Consolidate" IsEnabled="{Binding CanConsolidate, Mode=OneWay}"/>
     			<Button Content="Separate" Width="75" Margin="5,0" cal:Message.Attach="Separate" IsEnabled="{Binding CanSeparate, Mode=OneWay}"/>
