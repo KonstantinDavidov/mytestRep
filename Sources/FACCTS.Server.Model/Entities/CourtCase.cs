@@ -15,6 +15,7 @@ namespace FACCTS.Server.Model.DataModel
         public CourtCase()
             : base()
         {
+            ParentCase = null;
         }
 
         [Key]
@@ -35,6 +36,8 @@ namespace FACCTS.Server.Model.DataModel
 
         [Required]
         public virtual CaseRecord CaseRecord { get; set; }
+
+        public virtual CourtCase ParentCase { get; set; }
 
 
     }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
@@ -13,6 +14,12 @@ namespace Faccts.Model.Entities
         {
             this.CaseRecord = new CaseRecord();
             this.CaseRecord.CaseHistory.CollectionChanged += CaseHistoryChanged;
+            this.WhenAny(x => x.ParentCase, x => x.Value)
+                .Subscribe(x =>
+                {
+                    this.OnPropertyChanged("HasParentCases");
+                }
+                );
         }
 
         private void CaseHistoryChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
@@ -88,6 +95,22 @@ namespace Faccts.Model.Entities
                     return latestHistoryRecord.Date;
                 }
                 return null;
+            }
+        }
+
+        public bool HasParentCase
+        {
+            get
+            {
+                return this.ParentCase != null;
+            }
+        }
+
+        public bool HasChildCases
+        {
+            get
+            {
+                return this.ChildCases != null && this.ChildCases.Any();
             }
         }
     }

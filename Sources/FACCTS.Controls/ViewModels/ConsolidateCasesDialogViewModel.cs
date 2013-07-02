@@ -1,4 +1,5 @@
-﻿using Faccts.Model.Entities;
+﻿using Caliburn.Micro;
+using Faccts.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -45,7 +46,20 @@ namespace FACCTS.Controls.ViewModels
 
         private void PerformMergeBackground()
         {
-            
+            this.CourtCases.Where(x => !Object.ReferenceEquals(x, SelectedCourtCase))
+                .Aggregate(0, (index, cc) =>
+                {
+                    cc.ParentCase = SelectedCourtCase;
+                    CaseHistory ch = new CaseHistory()
+                    {
+                        Date = DateTime.Now,
+                        CaseHistoryEvent = (int)FACCTS.Server.Model.Enums.CaseHistoryEvent.Merged,
+                        MergeCase = SelectedCourtCase,
+
+                    };
+                    Execute.OnUIThread(() => cc.CaseRecord.CaseHistory.Add(ch));
+                    return ++index;
+                });
         }
     }
 }

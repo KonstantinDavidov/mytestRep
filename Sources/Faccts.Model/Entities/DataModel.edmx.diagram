@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="79dc3391d7254955a090adf5a102fd7f" Name="Diagram1" ZoomLevel="111">
+      <Diagram DiagramId="79dc3391d7254955a090adf5a102fd7f" Name="Diagram1" ZoomLevel="76">
         <EntityTypeShape EntityType="FACCTS_DBModel.C__MigrationHistory" Width="1.5" PointX="7.3755804297400545" PointY="29.006910084284335" />
         <EntityTypeShape EntityType="FACCTS_DBModel.AdfsIntegrationConfiguration" Width="1.5" PointX="3.7664668372676084" PointY="8.266134534155082" />
         <EntityTypeShape EntityType="FACCTS_DBModel.Attorneys" Width="1.5" PointX="3.5322406997588649" PointY="30.324466317111842" />
@@ -16,7 +16,7 @@
         <EntityTypeShape EntityType="FACCTS_DBModel.Client" Width="1.5" PointX="2.7381052462095887" PointY="21.018244171989263" />
         <EntityTypeShape EntityType="FACCTS_DBModel.ClientCertificates" Width="1.5" PointX="10.125" PointY="28" />
         <EntityTypeShape EntityType="FACCTS_DBModel.CodeToken" Width="1.5" PointX="0.96865268469259735" PointY="31.832925930541439" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.CourtCase" Width="1.5" PointX="5.2804650856556679" PointY="17.986568504006868" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CourtCase" Width="1.5" PointX="5.5" PointY="17.5" />
         <EntityTypeShape EntityType="FACCTS_DBModel.CourtCaseOrders" Width="1.5" PointX="3.0917108185085054" PointY="1.9837746778427505" />
         <EntityTypeShape EntityType="FACCTS_DBModel.CourtCounty" Width="1.5" PointX="7.261643554671501" PointY="7.8775046802486779" />
         <EntityTypeShape EntityType="FACCTS_DBModel.CourtDepartmenets" Width="1.5" PointX="11.75" PointY="18.5" />
@@ -90,7 +90,6 @@
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Witnesses_dbo_Designation_Designation_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_ManualIntegrationTasks_dbo_User_UserId" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_ScheduledIntegrationTasks_dbo_User_UserId" />
-        <AssociationConnector Association="FACCTS_DBModel.RelatedCase" />
         <AssociationConnector Association="FACCTS_DBModel.RolePermission" />
         <AssociationConnector Association="FACCTS_DBModel.RoleUser" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_OtherProtected_dbo_Sex_Sex_Id" />
@@ -99,6 +98,7 @@
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Hearings_dbo_Courtrooms_Courtroom_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCase_MergeCase_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Hearings_dbo_CourtDepartmenets_Department_Id" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtCase_ParentCase_Id" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -22,6 +22,7 @@ namespace Faccts.Model.Entities
     [DataContract(IsReference = true)]
     [KnownType(typeof(CaseRecord))]
     [KnownType(typeof(User))]
+    [KnownType(typeof(CourtCase))]
     public partial class CourtCase: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -200,6 +201,30 @@ namespace Faccts.Model.Entities
             }
         }
         private int _caseRecord_Id;
+    
+        [DataMember]
+        public Nullable<int> ParentCase_Id
+        {
+            get { return _parentCase_Id; }
+            set
+            {
+                if (_parentCase_Id != value)
+                {
+                    ChangeTracker.RecordOriginalValue("ParentCase_Id", _parentCase_Id);
+                    if (!IsDeserializing)
+                    {
+                        if (ParentCase != null && ParentCase.Id != value)
+                        {
+                            ParentCase = null;
+                        }
+                    }
+    				OnPropertyChanging("ParentCase_Id");
+                    _parentCase_Id = value;
+                    OnPropertyChanged("ParentCase_Id");
+                }
+            }
+        }
+        private Nullable<int> _parentCase_Id;
 
         #endregion
 
@@ -242,40 +267,58 @@ namespace Faccts.Model.Entities
         private User _user;
     
         [DataMember]
-        public TrackableCollection<CaseRecord> CaseRecord1
+        public TrackableCollection<CourtCase> ChildCases
         {
             get
             {
-                if (_caseRecord1 == null)
+                if (_childCases == null)
                 {
-                    _caseRecord1 = new TrackableCollection<CaseRecord>();
-                    _caseRecord1.CollectionChanged += FixupCaseRecord1;
+                    _childCases = new TrackableCollection<CourtCase>();
+                    _childCases.CollectionChanged += FixupChildCases;
                 }
-                return _caseRecord1;
+                return _childCases;
             }
             set
             {
-                if (!ReferenceEquals(_caseRecord1, value))
+                if (!ReferenceEquals(_childCases, value))
                 {
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
-    				OnNavigationPropertyChanging("CaseRecord1");
-                    if (_caseRecord1 != null)
+    				OnNavigationPropertyChanging("ChildCases");
+                    if (_childCases != null)
                     {
-                        _caseRecord1.CollectionChanged -= FixupCaseRecord1;
+                        _childCases.CollectionChanged -= FixupChildCases;
                     }
-                    _caseRecord1 = value;
-                    if (_caseRecord1 != null)
+                    _childCases = value;
+                    if (_childCases != null)
                     {
-                        _caseRecord1.CollectionChanged += FixupCaseRecord1;
+                        _childCases.CollectionChanged += FixupChildCases;
                     }
-                    OnNavigationPropertyChanged("CaseRecord1");
+                    OnNavigationPropertyChanged("ChildCases");
                 }
             }
         }
-        private TrackableCollection<CaseRecord> _caseRecord1;
+        private TrackableCollection<CourtCase> _childCases;
+    
+        [DataMember]
+        public CourtCase ParentCase
+        {
+            get { return _parentCase; }
+            set
+            {
+                if (!ReferenceEquals(_parentCase, value))
+                {
+                    var previousValue = _parentCase;
+    				OnNavigationPropertyChanging("ParentCase");
+                    _parentCase = value;
+                    FixupParentCase(previousValue);
+                    OnNavigationPropertyChanged("ParentCase");
+                }
+            }
+        }
+        private CourtCase _parentCase;
 
         #endregion
 
@@ -386,7 +429,8 @@ namespace Faccts.Model.Entities
         {
             CaseRecord = null;
             User = null;
-            CaseRecord1.Clear();
+            ChildCases.Clear();
+            ParentCase = null;
         }
 
         #endregion
@@ -470,7 +514,48 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupCaseRecord1(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupParentCase(CourtCase previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.ChildCases.Contains(this))
+            {
+                previousValue.ChildCases.Remove(this);
+            }
+    
+            if (ParentCase != null)
+            {
+                ParentCase.ChildCases.Add(this);
+    
+                ParentCase_Id = ParentCase.Id;
+            }
+            else if (!skipKeys)
+            {
+                ParentCase_Id = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("ParentCase")
+                    && (ChangeTracker.OriginalValues["ParentCase"] == ParentCase))
+                {
+                    ChangeTracker.OriginalValues.Remove("ParentCase");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("ParentCase", previousValue);
+                }
+                if (ParentCase != null && !ParentCase.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    ParentCase.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupChildCases(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
             {
@@ -479,31 +564,31 @@ namespace Faccts.Model.Entities
     
             if (e.NewItems != null)
             {
-                foreach (CaseRecord item in e.NewItems)
+                foreach (CourtCase item in e.NewItems)
                 {
-                    item.CourtCase1.Add(this);
+                    item.ParentCase = this;
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         if (!item.ChangeTracker.ChangeTrackingEnabled)
                         {
                             item.StartTracking();
                         }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CaseRecord1", item);
+                        ChangeTracker.RecordAdditionToCollectionProperties("ChildCases", item);
                     }
                 }
             }
     
             if (e.OldItems != null)
             {
-                foreach (CaseRecord item in e.OldItems)
+                foreach (CourtCase item in e.OldItems)
                 {
-                    if (item.CourtCase1.Contains(this))
+                    if (ReferenceEquals(item.ParentCase, this))
                     {
-                        item.CourtCase1.Remove(this);
+                        item.ParentCase = null;
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CaseRecord1", item);
+                        ChangeTracker.RecordRemovalFromCollectionProperties("ChildCases", item);
                     }
                 }
             }

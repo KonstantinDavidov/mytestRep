@@ -44,7 +44,6 @@
           <EntitySet Name="ParticipantRole" EntityType="FACCTS_DBModel.Store.ParticipantRole" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Permission" EntityType="FACCTS_DBModel.Store.Permission" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Race" EntityType="FACCTS_DBModel.Store.Race" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="RelatedCase" EntityType="FACCTS_DBModel.Store.RelatedCase" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RelyingParties" EntityType="FACCTS_DBModel.Store.RelyingParties" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Role" EntityType="FACCTS_DBModel.Store.Role" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RolePermission" EntityType="FACCTS_DBModel.Store.RolePermission" store:Type="Tables" Schema="dbo" />
@@ -115,6 +114,10 @@
           <AssociationSet Name="FK_dbo_CourtCase_dbo_CaseRecord_CaseRecord_Id" Association="FACCTS_DBModel.Store.FK_dbo_CourtCase_dbo_CaseRecord_CaseRecord_Id">
             <End Role="CaseRecord" EntitySet="CaseRecord" />
             <End Role="CourtCase" EntitySet="CourtCase" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CourtCase_dbo_CourtCase_ParentCase_Id" Association="FACCTS_DBModel.Store.FK_dbo_CourtCase_dbo_CourtCase_ParentCase_Id">
+            <End Role="CourtCase" EntitySet="CourtCase" />
+            <End Role="CourtCase1" EntitySet="CourtCase" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_CourtCase_dbo_User_CourtClerk_UserId" Association="FACCTS_DBModel.Store.FK_dbo_CourtCase_dbo_User_CourtClerk_UserId">
             <End Role="User" EntitySet="User" />
@@ -215,14 +218,6 @@
           <AssociationSet Name="FK_dbo_OtherProtected_dbo_Sex_Sex_Id" Association="FACCTS_DBModel.Store.FK_dbo_OtherProtected_dbo_Sex_Sex_Id">
             <End Role="Sex" EntitySet="Sex" />
             <End Role="OtherProtected" EntitySet="OtherProtected" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_RelatedCase_dbo_CaseRecord_CaseRecordId" Association="FACCTS_DBModel.Store.FK_dbo_RelatedCase_dbo_CaseRecord_CaseRecordId">
-            <End Role="CaseRecord" EntitySet="CaseRecord" />
-            <End Role="RelatedCase" EntitySet="RelatedCase" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_RelatedCase_dbo_CourtCase_CourtCaseId" Association="FACCTS_DBModel.Store.FK_dbo_RelatedCase_dbo_CourtCase_CourtCaseId">
-            <End Role="CourtCase" EntitySet="CourtCase" />
-            <End Role="RelatedCase" EntitySet="RelatedCase" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_RolePermission_dbo_Permission_Id" Association="FACCTS_DBModel.Store.FK_dbo_RolePermission_dbo_Permission_Id">
             <End Role="Permission" EntitySet="Permission" />
@@ -413,6 +408,7 @@
           <Property Name="CCPORId" Type="nvarchar" MaxLength="20" />
           <Property Name="CourtClerk_UserId" Type="int" />
           <Property Name="CaseRecord_Id" Type="int" Nullable="false" />
+          <Property Name="ParentCase_Id" Type="int" />
         </EntityType>
         <EntityType Name="CourtCaseOrders">
           <Key>
@@ -708,14 +704,6 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="RaceName" Type="nvarchar" Nullable="false" MaxLength="150" />
-        </EntityType>
-        <EntityType Name="RelatedCase">
-          <Key>
-            <PropertyRef Name="CourtCaseId" />
-            <PropertyRef Name="CaseRecordId" />
-          </Key>
-          <Property Name="CourtCaseId" Type="int" Nullable="false" />
-          <Property Name="CaseRecordId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="RelyingParties">
           <Key>
@@ -1030,6 +1018,18 @@
             </Principal>
             <Dependent Role="CourtCase">
               <PropertyRef Name="CaseRecord_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CourtCase_dbo_CourtCase_ParentCase_Id">
+          <End Role="CourtCase" Type="FACCTS_DBModel.Store.CourtCase" Multiplicity="0..1" />
+          <End Role="CourtCase1" Type="FACCTS_DBModel.Store.CourtCase" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourtCase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CourtCase1">
+              <PropertyRef Name="ParentCase_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1351,32 +1351,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_RelatedCase_dbo_CaseRecord_CaseRecordId">
-          <End Role="CaseRecord" Type="FACCTS_DBModel.Store.CaseRecord" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="RelatedCase" Type="FACCTS_DBModel.Store.RelatedCase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CaseRecord">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RelatedCase">
-              <PropertyRef Name="CaseRecordId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_RelatedCase_dbo_CourtCase_CourtCaseId">
-          <End Role="CourtCase" Type="FACCTS_DBModel.Store.CourtCase" Multiplicity="1" />
-          <End Role="RelatedCase" Type="FACCTS_DBModel.Store.RelatedCase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CourtCase">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="RelatedCase">
-              <PropertyRef Name="CourtCaseId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_RolePermission_dbo_Permission_Id">
           <End Role="Permission" Type="FACCTS_DBModel.Store.Permission" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -1690,10 +1664,6 @@
             <End Role="User" EntitySet="User" />
             <End Role="ScheduledIntegrationTasks" EntitySet="ScheduledIntegrationTasks" />
           </AssociationSet>
-          <AssociationSet Name="RelatedCase" Association="FACCTS_DBModel.RelatedCase">
-            <End Role="CaseRecord" EntitySet="CaseRecord" />
-            <End Role="CourtCase" EntitySet="CourtCase" />
-          </AssociationSet>
           <AssociationSet Name="RolePermission" Association="FACCTS_DBModel.RolePermission">
             <End Role="Permission" EntitySet="Permission" />
             <End Role="Role" EntitySet="Role" />
@@ -1722,6 +1692,10 @@
           <AssociationSet Name="FK_dbo_Hearings_dbo_CourtDepartmenets_Department_Id" Association="FACCTS_DBModel.FK_dbo_Hearings_dbo_CourtDepartmenets_Department_Id">
             <End Role="CourtDepartmenets" EntitySet="CourtDepartmenets" />
             <End Role="Hearings" EntitySet="Hearings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_CourtCase_dbo_CourtCase_ParentCase_Id" Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtCase_ParentCase_Id">
+            <End Role="CourtCase" EntitySet="CourtCase" />
+            <End Role="CourtCase1" EntitySet="CourtCase" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
@@ -1836,7 +1810,6 @@
           <NavigationProperty Name="Interpreters" Relationship="FACCTS_DBModel.FK_dbo_Interpreters_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseRecord" ToRole="Interpreters" />
           <NavigationProperty Name="OtherProtected" Relationship="FACCTS_DBModel.FK_dbo_OtherProtected_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseRecord" ToRole="OtherProtected" />
           <NavigationProperty Name="Witnesses" Relationship="FACCTS_DBModel.FK_dbo_Witnesses_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseRecord" ToRole="Witnesses" />
-          <NavigationProperty Name="CourtCase1" Relationship="FACCTS_DBModel.RelatedCase" FromRole="CaseRecord" ToRole="CourtCase" />
           <Property Name="RestrainingpartyIdentificationInformation" Type="FACCTS_DBModel.RestrainingPartyIDInfo" Nullable="false" />
         </EntityType>
         <EntityType Name="Children">
@@ -1902,7 +1875,9 @@
           <Property Type="Int32" Name="CaseRecord_Id" Nullable="false" />
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CaseRecord_CaseRecord_Id" FromRole="CourtCase" ToRole="CaseRecord" />
           <NavigationProperty Name="User" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_User_CourtClerk_UserId" FromRole="CourtCase" ToRole="User" />
-          <NavigationProperty Name="CaseRecord1" Relationship="FACCTS_DBModel.RelatedCase" FromRole="CourtCase" ToRole="CaseRecord" />
+          <Property Type="Int32" Name="ParentCase_Id" />
+          <NavigationProperty Name="ChildCases" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtCase_ParentCase_Id" FromRole="CourtCase" ToRole="CourtCase1" />
+          <NavigationProperty Name="ParentCase" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtCase_ParentCase_Id" FromRole="CourtCase1" ToRole="CourtCase" />
         </EntityType>
         <EntityType Name="CourtCaseOrders">
           <Key>
@@ -2849,10 +2824,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="RelatedCase">
-          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="*" />
-          <End Type="FACCTS_DBModel.CourtCase" Role="CourtCase" Multiplicity="*" />
-        </Association>
         <Association Name="RolePermission">
           <End Type="FACCTS_DBModel.Permission" Role="Permission" Multiplicity="*" />
           <End Type="FACCTS_DBModel.Role" Role="Role" Multiplicity="*" />
@@ -2955,6 +2926,18 @@
             </Principal>
             <Dependent Role="Hearings">
               <PropertyRef Name="Department_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_CourtCase_dbo_CourtCase_ParentCase_Id">
+          <End Type="FACCTS_DBModel.CourtCase" Role="CourtCase" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.CourtCase" Role="CourtCase1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourtCase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CourtCase1">
+              <PropertyRef Name="ParentCase_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3128,6 +3111,7 @@
           <EntitySetMapping Name="CourtCase">
             <EntityTypeMapping TypeName="FACCTS_DBModel.CourtCase">
               <MappingFragment StoreEntitySet="CourtCase">
+                <ScalarProperty Name="ParentCase_Id" ColumnName="ParentCase_Id" />
                 <ScalarProperty Name="CaseRecord_Id" ColumnName="CaseRecord_Id" />
                 <ScalarProperty Name="CourtClerk_UserId" ColumnName="CourtClerk_UserId" />
                 <ScalarProperty Name="CCPORId" ColumnName="CCPORId" />
@@ -3564,14 +3548,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="RelatedCase" TypeName="FACCTS_DBModel.RelatedCase" StoreEntitySet="RelatedCase">
-            <EndProperty Name="CourtCase">
-              <ScalarProperty Name="Id" ColumnName="CourtCaseId" />
-            </EndProperty>
-            <EndProperty Name="CaseRecord">
-              <ScalarProperty Name="Id" ColumnName="CaseRecordId" />
-            </EndProperty>
-          </AssociationSetMapping>
           <AssociationSetMapping Name="RolePermission" TypeName="FACCTS_DBModel.RolePermission" StoreEntitySet="RolePermission">
             <EndProperty Name="Role">
               <ScalarProperty Name="Id" ColumnName="RoleId" />

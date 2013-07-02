@@ -36,21 +36,6 @@ namespace FACCTS.Server.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
-            //CaseRecord - CourtCase => many to many
-            modelBuilder.Entity<RelatedCase>()
-                .HasKey(x => new { x.CourtCaseId, x.CaseRecordId });
-
-            modelBuilder.Entity<CaseRecord>()
-                .HasMany(x => x.RelatedCases)
-                .WithRequired(x => x.CaseRecord)
-                .HasForeignKey(x => x.CaseRecordId)
-                .WillCascadeOnDelete();
-
-            modelBuilder.Entity<RelatedCase>()
-                .HasRequired(x => x.CourtCase)
-                .WithMany()
-                .HasForeignKey(x => x.CourtCaseId)
-                .WillCascadeOnDelete(false);
 
             //Role => Permissions m-to-m
             modelBuilder.Entity<Role>()
@@ -131,7 +116,6 @@ namespace FACCTS.Server.Data
         public DbSet<CaseHistory> CaseHistory { get; set; }
         public DbSet<Hearing> Hearings { get; set; }
         public DbSet<CaseNote> CaseNotes { get; set; }
-        public DbSet<RelatedCase> RelatedCases { get; set; }
         public DbSet<AvailableCourtOrder> AvailableCourtOrders { get; set; }
         public DbSet<CourtCaseOrder> CourtCaseOrders { get; set; }
         public DbSet<CourtMember> CourtMembers { get; set; }

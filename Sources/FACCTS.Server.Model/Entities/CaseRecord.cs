@@ -40,9 +40,6 @@ namespace FACCTS.Server.Model.DataModel
         [InverseProperty("CaseRecord")]
         public virtual ICollection<CaseNote> CaseNotes { get; set; }
 
-        public ICollection<RelatedCase> RelatedCases { get; set; }
-
-
         public virtual CourtCounty CourtCounty { get; set; }
 
         public virtual ICollection<CaseRecord> RelatedCaseRecords { get; set; }
