@@ -1,23 +1,30 @@
-﻿<UserControl
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:cal="http://www.caliburnproject.org"
-    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
-	mc:Ignorable="d"
-	x:Class="FACCTS.Controls.Views.Controls.CaseRecordLeftPaneView"
-	x:Name="UserControl"
-	d:DesignWidth="375.7" d:DesignHeight="480" Background="{DynamicResource ControlBackgroundBrush}">
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:utils="clr-namespace:FACCTS.Controls.Utils"
+             mc:Ignorable="d"
+             x:Class="FACCTS.Controls.Views.Controls.CaseRecordLeftPaneView"
+             x:Name="UserControl"
+             d:DesignWidth="375.7"
+             d:DesignHeight="480"
+             Background="{DynamicResource ControlBackgroundBrush}">
 
-	<Grid x:Name="LayoutRoot">
+    <Grid x:Name="LayoutRoot">
 		<Grid.RowDefinitions>
 			<RowDefinition/>
 			<RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<GroupBox Header="Court Cases">
-			<ListBox VerticalAlignment="Stretch" ItemsSource="{Binding CourtCases, Mode=OneWay}" DisplayMemberPath="CaseNumber" SelectedItem="{Binding CurrentCourtCase, Mode=TwoWay}" SelectionMode="Multiple"/>
+            <ListBox VerticalAlignment="Stretch"
+                     ItemsSource="{Binding CourtCases, Mode=OneWay}"
+                     DisplayMemberPath="CaseNumber"
+                     SelectedItem="{Binding CurrentCourtCase, Mode=TwoWay}"
+                     SelectionMode="Extended"
+                     cal:Message.Attach="[Event SelectionChanged] = [Action SelectionCourtCasesChanged($eventArgs)]"/>
 		</GroupBox>
 		<GroupBox Header="Court Case Edit" Grid.Row="1">
 			<ListBox x:Name="listBox">

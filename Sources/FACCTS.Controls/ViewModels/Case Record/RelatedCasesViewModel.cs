@@ -41,7 +41,7 @@ namespace FACCTS.Controls.ViewModels
 
         public void Consolidate()
         {
-
+            _windowManager.ShowDialog(ServiceLocatorContainer.Locator.GetInstance<ConsolidateCasesDialogViewModel>());
         }
 
         public void Separate()

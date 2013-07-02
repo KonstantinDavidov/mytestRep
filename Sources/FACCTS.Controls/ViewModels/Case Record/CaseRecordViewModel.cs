@@ -17,6 +17,7 @@ using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -181,6 +182,34 @@ namespace FACCTS.Controls.ViewModels
                 _eventAggregator.Publish(new CurrentCourtCaseChangedEvent(_currentCourtCase));
                 this.NotifyOfPropertyChange();
             }
+        }
+
+        private List<CourtCase> _selectedCourtCases;
+        public List<CourtCase> SelectedCourtCases
+        {
+            get
+            {
+                return _selectedCourtCases;
+            }
+            set
+            {
+                if (_selectedCourtCases == value)
+                    return;
+
+                this.NotifyOfPropertyChanging();
+                _selectedCourtCases = value;
+                this.NotifyOfPropertyChange();
+            }
+        }
+
+        public void SelectionCourtCasesChanged(SelectionChangedEventArgs e)
+        {
+            if (e.Source == null || (e.Source as ListBox) == null)
+                return;
+            this.SelectedCourtCases = (e.Source as ListBox).SelectedItems
+                .Cast<CourtCase>()
+                .ToList();
+            
         }
        
     }
