@@ -12,7 +12,7 @@ namespace FACCTS.Controls.ViewModels
     {
         public ConsolidateCasesDialogViewModel() : base()
         {
-
+            this.DisplayName = "Consolidate Cases";
         }
     }
 }
