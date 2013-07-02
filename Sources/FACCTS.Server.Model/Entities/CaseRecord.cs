@@ -45,9 +45,6 @@ namespace FACCTS.Server.Model.DataModel
 
         public virtual CourtCounty CourtCounty { get; set; }
 
-        public virtual CourtDepartment CourtDepartment { get; set; }
-
-
         public virtual ICollection<CaseRecord> RelatedCaseRecords { get; set; }
 
         public virtual ICollection<CourtCaseOrder> CourtOrders { get; set; }

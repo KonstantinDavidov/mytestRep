@@ -25,7 +25,6 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(CaseNotes))]
     [KnownType(typeof(CaseRecord))]
     [KnownType(typeof(CourtCounty))]
-    [KnownType(typeof(CourtDepartmenets))]
     [KnownType(typeof(CourtParty))]
     [KnownType(typeof(Children))]
     [KnownType(typeof(CourtCase))]
@@ -211,30 +210,6 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<int> _courtCounty_Id;
-    
-        [DataMember]
-        public Nullable<int> CourtDepartment_Id
-        {
-            get { return _courtDepartment_Id; }
-            set
-            {
-                if (_courtDepartment_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("CourtDepartment_Id", _courtDepartment_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (CourtDepartmenets != null && CourtDepartmenets.Id != value)
-                        {
-                            CourtDepartmenets = null;
-                        }
-                    }
-    				OnPropertyChanging("CourtDepartment_Id");
-                    _courtDepartment_Id = value;
-                    OnPropertyChanged("CourtDepartment_Id");
-                }
-            }
-        }
-        private Nullable<int> _courtDepartment_Id;
     
         [DataMember]
         public Nullable<int> CaseRecord_Id
@@ -467,24 +442,6 @@ namespace Faccts.Model.Entities
             }
         }
         private CourtCounty _courtCounty;
-    
-        [DataMember]
-        public CourtDepartmenets CourtDepartmenets
-        {
-            get { return _courtDepartmenets; }
-            set
-            {
-                if (!ReferenceEquals(_courtDepartmenets, value))
-                {
-                    var previousValue = _courtDepartmenets;
-    				OnNavigationPropertyChanging("CourtDepartmenets");
-                    _courtDepartmenets = value;
-                    FixupCourtDepartmenets(previousValue);
-                    OnNavigationPropertyChanged("CourtDepartmenets");
-                }
-            }
-        }
-        private CourtDepartmenets _courtDepartmenets;
     
         [DataMember]
         public CourtParty CourtParty
@@ -970,7 +927,6 @@ namespace Faccts.Model.Entities
             CaseRecord1.Clear();
             CaseRecord2 = null;
             CourtCounty = null;
-            CourtDepartmenets = null;
             CourtParty = null;
             CourtParty1 = null;
             Children.Clear();
@@ -1107,47 +1063,6 @@ namespace Faccts.Model.Entities
                 if (CourtCounty != null && !CourtCounty.ChangeTracker.ChangeTrackingEnabled)
                 {
                     CourtCounty.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupCourtDepartmenets(CourtDepartmenets previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.CaseRecord.Contains(this))
-            {
-                previousValue.CaseRecord.Remove(this);
-            }
-    
-            if (CourtDepartmenets != null)
-            {
-                CourtDepartmenets.CaseRecord.Add(this);
-    
-                CourtDepartment_Id = CourtDepartmenets.Id;
-            }
-            else if (!skipKeys)
-            {
-                CourtDepartment_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("CourtDepartmenets")
-                    && (ChangeTracker.OriginalValues["CourtDepartmenets"] == CourtDepartmenets))
-                {
-                    ChangeTracker.OriginalValues.Remove("CourtDepartmenets");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("CourtDepartmenets", previousValue);
-                }
-                if (CourtDepartmenets != null && !CourtDepartmenets.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    CourtDepartmenets.StartTracking();
                 }
             }
         }

@@ -70,6 +70,7 @@
                                     IsReadOnly="True"
                                     HeaderStyle="{StaticResource WrappedColumnHeaderStyle}" />
 				<DataGridTextColumn Binding="{Binding Hearing.Courtrooms.RoomName, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Courtroom" CanUserResize="False" Width="0.1*" IsReadOnly="True"/>
+				<DataGridTextColumn Binding="{Binding Hearing.CourtDepartment.Room}" ClipboardContentBinding="{x:Null}" Header="Department" Width="0.1*"/>
 				<DataGridTextColumn Binding="{Binding Hearing.HearingDate, Mode=OneWay, StringFormat=\{0:t tt\}}" ClipboardContentBinding="{x:Null}" Header="Session" IsReadOnly="True" Width="0.1*"/>
 				<DataGridTextColumn Binding="{Binding CaseRecord.CourtParty.FullName, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Party 1" CanUserResize="False" Width="0.2*" IsReadOnly="True"/>
 				<DataGridTextColumn Binding="{Binding CaseRecord.CourtParty1.FullName, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Party 2" CanUserResize="False" Width="0.2*" IsReadOnly="True"/>

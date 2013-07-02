@@ -17,6 +17,8 @@ namespace FACCTS.Server.Model.DataModel
 
         public virtual Courtroom Courtroom { get; set; }
 
+        public virtual CourtDepartment Department { get; set; }
+
         [StringLength(250)]
         public string Judge { get; set; }
 

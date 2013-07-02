@@ -20,8 +20,8 @@ using ReactiveUI;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(CaseRecord))]
     [KnownType(typeof(CourtCounty))]
+    [KnownType(typeof(Hearings))]
     public partial class CourtDepartmenets: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -198,42 +198,6 @@ namespace Faccts.Model.Entities
         #region Navigation Properties
     
         [DataMember]
-        public TrackableCollection<CaseRecord> CaseRecord
-        {
-            get
-            {
-                if (_caseRecord == null)
-                {
-                    _caseRecord = new TrackableCollection<CaseRecord>();
-                    _caseRecord.CollectionChanged += FixupCaseRecord;
-                }
-                return _caseRecord;
-            }
-            set
-            {
-                if (!ReferenceEquals(_caseRecord, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("CaseRecord");
-                    if (_caseRecord != null)
-                    {
-                        _caseRecord.CollectionChanged -= FixupCaseRecord;
-                    }
-                    _caseRecord = value;
-                    if (_caseRecord != null)
-                    {
-                        _caseRecord.CollectionChanged += FixupCaseRecord;
-                    }
-                    OnNavigationPropertyChanged("CaseRecord");
-                }
-            }
-        }
-        private TrackableCollection<CaseRecord> _caseRecord;
-    
-        [DataMember]
         public CourtCounty CourtCounty
         {
             get { return _courtCounty; }
@@ -250,6 +214,42 @@ namespace Faccts.Model.Entities
             }
         }
         private CourtCounty _courtCounty;
+    
+        [DataMember]
+        public TrackableCollection<Hearings> Hearings
+        {
+            get
+            {
+                if (_hearings == null)
+                {
+                    _hearings = new TrackableCollection<Hearings>();
+                    _hearings.CollectionChanged += FixupHearings;
+                }
+                return _hearings;
+            }
+            set
+            {
+                if (!ReferenceEquals(_hearings, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("Hearings");
+                    if (_hearings != null)
+                    {
+                        _hearings.CollectionChanged -= FixupHearings;
+                    }
+                    _hearings = value;
+                    if (_hearings != null)
+                    {
+                        _hearings.CollectionChanged += FixupHearings;
+                    }
+                    OnNavigationPropertyChanged("Hearings");
+                }
+            }
+        }
+        private TrackableCollection<Hearings> _hearings;
 
         #endregion
 
@@ -358,8 +358,8 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
-            CaseRecord.Clear();
             CourtCounty = null;
+            Hearings.Clear();
         }
 
         #endregion
@@ -402,7 +402,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupCaseRecord(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupHearings(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
             {
@@ -411,31 +411,31 @@ namespace Faccts.Model.Entities
     
             if (e.NewItems != null)
             {
-                foreach (CaseRecord item in e.NewItems)
+                foreach (Hearings item in e.NewItems)
                 {
-                    item.CourtDepartmenets = this;
+                    item.CourtDepartment = this;
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         if (!item.ChangeTracker.ChangeTrackingEnabled)
                         {
                             item.StartTracking();
                         }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CaseRecord", item);
+                        ChangeTracker.RecordAdditionToCollectionProperties("Hearings", item);
                     }
                 }
             }
     
             if (e.OldItems != null)
             {
-                foreach (CaseRecord item in e.OldItems)
+                foreach (Hearings item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.CourtDepartmenets, this))
+                    if (ReferenceEquals(item.CourtDepartment, this))
                     {
-                        item.CourtDepartmenets = null;
+                        item.CourtDepartment = null;
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CaseRecord", item);
+                        ChangeTracker.RecordRemovalFromCollectionProperties("Hearings", item);
                     }
                 }
             }

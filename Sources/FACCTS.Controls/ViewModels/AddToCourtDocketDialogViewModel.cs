@@ -111,6 +111,7 @@ namespace FACCTS.Controls.ViewModels
                     {
                         HearingDate = totalTime,
                         Courtrooms = this.Courtroom,
+                        CourtDepartment = this.Department,
                         HearingIssue = new HearingIssue()
                         {
                             PermanentRO = this.IsPermanentRO,
