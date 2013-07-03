@@ -7,14 +7,14 @@
 		<?include ConfigurationInitialize.wxi ?>
 
 		<!-- Install to default web site -->
-		<iis:WebSite Id="DefaultWebSite" Description='Default Web Site' SiteId="*">
+		<iis:WebSite Id="DefaultWebSite" Description="WebRoot" SiteId="[IISWEBSITEID]">
 			<iis:WebAddress Id="AllUnassigned" Port="80" />
       <iis:WebAddress Id="AllUnassignedSSL" Port="443" Secure="yes" />
     </iis:WebSite>
 
 		<DirectoryRef Id="MYWEBWEBSITE">
 			<!-- Configuring app pool -->
-			<Component Id="MyWebAppPoolCmp" Guid="" KeyPath="yes">
+			<Component Id="MyWebAppPoolCmp" Guid="{11390C46-9C5E-4532-A988-28EC3A1986BD}" KeyPath="yes">
 				<iis:WebAppPool Id="MyWebAppPool"
 								Name="[WEB_APP_NAME]"
 								Identity="networkService"
@@ -22,17 +22,27 @@
 			</Component>
 		
 			<!-- Configure virtual dir -->
-			<Component Id="MyWebVirtualDirCmp" Guid="{751DEB01-ECC1-48ff-869A-65BCEE9E0528}" KeyPath="yes" >
+			<Component Id="MyWebVirtualDirCmp" Guid="{01DFBC3E-83CA-401E-A49B-B8B749C32D22}" KeyPath="yes" >
 				<iis:WebVirtualDir Id="MyWebVirtualDir" Alias="[VIRTUAL_DIR_VAL]" Directory="MYWEBWEBSITE" WebSite="DefaultWebSite">
-					<iis:WebDirProperties Id="MyWebVirtDirProperties" AnonymousAccess="yes" BasicAuthentication="yes" WindowsAuthentication="no" />
-					<iis:WebApplication Id="MyWebWebApplication" Name="[VIRTUAL_DIR_VAL]" />
+          <iis:WebApplication Id="MyWebWebApplication" Name="[VIRTUAL_DIR_VAL]" />
+					<iis:WebDirProperties Id="MyWebVirtDirProperties" AnonymousAccess="yes" WindowsAuthentication="no" DefaultDocuments="Default.aspx"
+            Script="yes" Read="yes"/>
 				</iis:WebVirtualDir>
 			</Component>
+    
+        <Component Id="ASPNet4Extension" Permanent="yes" Guid="{AF4D0565-FA72-426F-B06B-0794AC00E7FA}">
+          <CreateFolder />
+          <iis:WebServiceExtension Id="ASPNet4Extension" Group="ASP.NET v4.0.30319"
+            Allow="yes" File="[ASPNETISAPIDLL]"
+            Description="ASP.NET v4.0.30319" UIDeletable="no" 
+            />
+      </Component>
 		</DirectoryRef>
 
 		<ComponentGroup Id="MyWebIssConfiguration">
 			<ComponentRef Id="MyWebVirtualDirCmp" />
 			<ComponentRef Id="MyWebAppPoolCmp" />
+      <ComponentRef Id="ASPNet4Extension" />
 		</ComponentGroup>
 		
 	</Fragment>
