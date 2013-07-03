@@ -7,28 +7,24 @@
 		<?include ConfigurationInitialize.wxi ?>
 
 		<!-- Install to default web site -->
-		<iis:WebSite Id="DefaultWebSite" Description='Default Web Site'>
+		<iis:WebSite Id="DefaultWebSite" Description='Default Web Site' SiteId="*">
 			<iis:WebAddress Id="AllUnassigned" Port="80" />
-		</iis:WebSite>
+      <iis:WebAddress Id="AllUnassignedSSL" Port="443" Secure="yes" />
+    </iis:WebSite>
 
 		<DirectoryRef Id="MYWEBWEBSITE">
 			<!-- Configuring app pool -->
 			<Component Id="MyWebAppPoolCmp" Guid="" KeyPath="yes">
-				<util:User Id="MyWebAppPoolUser"
-						   CreateUser="no"
-						   Name="[WEB_APP_POOL_IDENTITY_NAME]"
-						   Password="[WEB_APP_POOL_IDENTITY_PWD]"
-						   Domain="[WEB_APP_POOL_IDENTITY_DOMAIN]" />
 				<iis:WebAppPool Id="MyWebAppPool"
 								Name="[WEB_APP_NAME]"
-								Identity="other"
-								User="MyWebAppPoolUser" />
+								Identity="networkService"
+								/>
 			</Component>
 		
 			<!-- Configure virtual dir -->
 			<Component Id="MyWebVirtualDirCmp" Guid="{751DEB01-ECC1-48ff-869A-65BCEE9E0528}" KeyPath="yes" >
 				<iis:WebVirtualDir Id="MyWebVirtualDir" Alias="[VIRTUAL_DIR_VAL]" Directory="MYWEBWEBSITE" WebSite="DefaultWebSite">
-					<iis:WebDirProperties Id="MyWebVirtDirProperties" AnonymousAccess="no" BasicAuthentication="no" WindowsAuthentication="yes" />
+					<iis:WebDirProperties Id="MyWebVirtDirProperties" AnonymousAccess="yes" BasicAuthentication="yes" WindowsAuthentication="no" />
 					<iis:WebApplication Id="MyWebWebApplication" Name="[VIRTUAL_DIR_VAL]" />
 				</iis:WebVirtualDir>
 			</Component>

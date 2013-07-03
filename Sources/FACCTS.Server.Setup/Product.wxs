@@ -11,14 +11,17 @@
 			* Variables 
 		 -->
     <!-- Configurable install location -->
-    <PropertyRef Id="NETFRAMEWORK40FULL" />
+    <PropertyRef Id="NETFRAMEWORK45" />
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION" />
+    <Condition Message="This application requires .NET Framework 4.5. Please install the .NET Framework then run this installer again.">
+      <![CDATA[Installed OR NETFRAMEWORK45]]>
+    </Condition>
     <!-- Creating directories -->
     <Directory Id="TARGETDIR" Name="SourceDir">
       <!-- Install stuff into program files folder. -->
       <Directory Id="ProgramFilesFolder">
         <!-- In program files create folder with name MyWeb. -->
-        <Directory Id="INSTALLLOCATION" Name="FACCTS">
+        <Directory Id="INSTALLLOCATION" Name="FACCTS.Server">
           <!-- This is the folder where the website content will be located -->
           <Directory Id="MYWEBWEBSITE" Name="Server">
             <!-- Continue in DirectoryRef with specific name -->
@@ -58,7 +61,7 @@
       <Component Id="WebConfigCmp" Guid="">
         <!-- Copy web.config to MYWEBWEBSITE folder. -->
         <File Id="WebConfigFile" KeyPath="yes" Source="$(var.FACCTS.Server.ProjectDir)\Web.config" Vital="yes" />
-        <util:XmlFile Id="ModifyConnectionString"
+        <!--<util:XmlFile Id="ModifyConnectionString"
                 		 Action="setValue"
                 		 Permanent="yes"
                 		 ElementPath="/configuration/connectionStrings/add[\[]@name='MyConnectionString'[\]]"
@@ -66,7 +69,7 @@
                 		 File="[#WebConfigFile]"
                 		 Value="[CONNECTION_STRING]"
                 		 SelectionLanguage="XSLPattern"
-                		 Sequence="1" />
+                		 Sequence="1" />-->
       </Component>
     </DirectoryRef>
     
