@@ -20,7 +20,7 @@ namespace FACCTS.Server.Reporting
             get;
             set;
         }
-
+       
         public Byte[] Run(string pathToPdf, Dictionary<string, string> mapper, object data)
         {
             org.pdfclown.files.File file = new org.pdfclown.files.File(pathToPdf);
@@ -46,5 +46,6 @@ namespace FACCTS.Server.Reporting
                 return pdfstream.ToByteArray();
             }
         }
+        
     }
 }

@@ -19,10 +19,23 @@ namespace FACCTS.Server.Reporting
         {
             CH130 reportData = data as CH130;
 
-            CaseRecord caseRecord = DataManager.CaseRecordRepository.GetById(reportData.CaseInfo.CaseId);
+            CourtCase courtCase = DataManager.CourtCaseRepository.GetById(reportData.CaseInfo.CaseId);
+            //TO DO : filter by participant role
+            var protectedParty = courtCase.CaseRecord.Party1;
+            var restrainedParty = courtCase.CaseRecord.Party2;
 
-            form.Fields[mapper["caseNumber"]].Value = reportData.CaseInfo.CaseNumber;
-           
+            form.Fields[mapper["caseNumber"]].Value = courtCase.CaseNumber;
+            form.Fields[mapper["courtName"]].Value = "TO DO";
+
+            //protected person
+            form.Fields[mapper["protectedName"]].Value = protectedParty.FirstName + " " + protectedParty.LastName;
+            //if(protectedParty.HasAttorney
+
+            //restrained person
+            form.Fields[mapper["restrainedName"]].Value = restrainedParty.FirstName + " " + restrainedParty.LastName;
+            form.Fields[mapper["restrainedAddressStreet"]].Value = restrainedParty.Address;
+            form.Fields[mapper["restrainedAddressCity"]].Value = restrainedParty.City;
         }
+
     }
 }
