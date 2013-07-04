@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Fragment> 
+    
+    <FeatureGroup Id="features">
+      <Feature Id="SetupProject1" Title="SetupProject1" Description="Installs all the files needed for SetupProject1" Level="1" AllowAdvertise="no" ConfigurableDirectory="INSTALLLOCATION">
+        <MergeRef Id="SetupProject1MM"/>
+      </Feature>
+    </FeatureGroup>
+
+    <!-- Content -->
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="CompanyFolder" Name="My Company">
+          <Directory Id="INSTALLLOCATION" Name="SetupProject1">
+            <Merge Id="SetupProject1MM" SourceFile="$(var.SetupProject1MM.TargetPath)" DiskId="1" Language="1033"/>
+          </Directory>
+        </Directory>
+      </Directory>
+    </Directory>
+    
+  </Fragment>
+</Wix>
