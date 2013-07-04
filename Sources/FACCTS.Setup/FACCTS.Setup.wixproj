@@ -37,6 +37,12 @@
   <ItemGroup>
     <Content Include="Filter.xslt" />
   </ItemGroup>
+  <ItemGroup>
+    <WixExtension Include="WixUIExtension">
+      <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
+      <Name>WixUIExtension</Name>
+    </WixExtension>
+  </ItemGroup>
   <Import Project="$(WixTargetsPath)" />
   <PropertyGroup>
     <PreBuildEvent>call "C:\Program Files (x86)\WiX Toolset v3.7\bin\heat.exe" dir "$(SolutionDir)bin\Debug" -t "$(ProjectDir)Filter.xslt"  -var var.FACCTS.TargetDir -dr CLIENT -cg Binaries -ag -scom -sreg -sfrag –srd -o "$(ProjectDir)Binaries.wxs"</PreBuildEvent>

@@ -5,6 +5,10 @@
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
     <Media Id="1" Cabinet="FACCTS.Setup.cab" EmbedCab="yes"/>
+    <UIRef Id="WixUI_InstallDir"/>
+    <UIRef Id="WixUI_ErrorProgressText"/>
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION"/>
 
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder" Name="PFiles">
@@ -29,7 +33,7 @@
       </Directory>
       <Directory Id="DesktopFolder" Name="Desktop"/>
     </Directory>
-    <Feature Id="Complete" Level="1">
+    <Feature Id="Complete" Title="FACCTS" Description="The complete package." Display="expand" Level="1" ConfigurableDirectory="INSTALLLOCATION">
       <ComponentRef Id="MainExecutable"/>
       <ComponentRef Id="ProgramMenuDir"/>
       <ComponentGroupRef Id="ProductComponents"/>
