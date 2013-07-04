@@ -9,6 +9,7 @@ using System.IO;
 using org.pdfclown;
 using org.pdfclown.documents;
 using org.pdfclown.documents.interaction.forms;
+using FACCTS.Server.Model.DataModel;
 
 namespace FACCTS.Server.Reporting
 {
@@ -17,6 +18,8 @@ namespace FACCTS.Server.Reporting
         protected override void FillForm(Form form, Dictionary<string, string> mapper, object data)
         {
             CH130 reportData = data as CH130;
+
+            CaseRecord caseRecord = DataManager.CaseRecordRepository.GetById(reportData.CaseInfo.CaseId);
 
             form.Fields[mapper["caseNumber"]].Value = reportData.CaseInfo.CaseNumber;
            

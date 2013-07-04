@@ -696,6 +696,12 @@ namespace FACCTS.Server.Data
             AddTestConfiguration(context);
             AddtestCourtDepartments(context);
             AddTestCourtLocations(context);
+            AddTestCaseRecord(context);
+        }
+
+        private static void AddTestCaseRecord(DatabaseContext context)
+        {
+            
         }
 
         private static void AddTestCourtLocations(DatabaseContext context)
