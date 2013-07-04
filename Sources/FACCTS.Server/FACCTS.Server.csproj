@@ -645,7 +645,9 @@
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <PropertyGroup>
-    <PostBuildEvent>$(TargetDir)DatabaseDeploy.exe</PostBuildEvent>
+    <PostBuildEvent>$(TargetDir)DatabaseDeploy.exe
+call "C:\Program Files (x86)\WiX Toolset v3.7\bin\heat.exe" dir "$(TargetDir)." -t "$(SolutionDir)FACCTS.Server.Setup\Filter.xslt" -var var.FACCTS.Server.TargetDir -dr INSTALLLOCATION -cg Binaries -gg -scom -sreg -sfrag –srd -o "$(SolutionDir)FACCTS.Server.Setup\$(ProjectName).Binaries.wxs"
+call "C:\Program Files (x86)\WiX Toolset v3.7\bin\heat.exe" project "$(ProjectPath)" -directoryid INSTALLLOCATION -pog Content -gg -scom -sreg -sfrag -o "$(SolutionDir)FACCTS.Server.Setup\$(ProjectName).Content.wxs"</PostBuildEvent>
   </PropertyGroup>
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.7\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.7\tools\Microsoft.Bcl.Build.targets')" />
   <PropertyGroup>

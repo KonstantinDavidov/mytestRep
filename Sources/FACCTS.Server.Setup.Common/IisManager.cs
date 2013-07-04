@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Web.Administration;
 using Microsoft.Win32;
+using System.Security.Cryptography.X509Certificates;
 
 namespace FACCTS.Server.Setup.Common
 {
@@ -96,6 +97,18 @@ namespace FACCTS.Server.Setup.Common
         public static IList<string> GetIisAppPools()
         {
             return (IisVersion < 7) ? GetIis6AppPools() : GetIis7UpwardsAppPools();
+        }
+
+        public static List<string> GetCertificates()
+        {
+            List<string> certificates = new List<string>();
+            X509Store store = new X509Store(StoreLocation.LocalMachine);
+            store.Open(OpenFlags.ReadOnly);
+            foreach (var cert in store.Certificates)
+            {
+                certificates.Add(cert.FriendlyName);
+            }
+            return certificates;
         }
 
         #endregion

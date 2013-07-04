@@ -1,108 +1,77 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
-		 xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension"
-		 xmlns:util="http://schemas.microsoft.com/wix/UtilExtension"
-		 xmlns:netfx="http://schemas.microsoft.com/wix/NetFxExtension">
-	<Product Id="*" Name="FACCTS.Server.Setup" Language="1033" Version="1.0.0.0" Manufacturer="OpenSoft.RU" UpgradeCode="7F0A608C-E04A-410C-A802-551890B7C7D7">
-		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
-		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-		<Media Id="1" Cabinet="FACCTS.Server.Setup.cab" EmbedCab="yes" />
-		<!-- 
-			* Variables 
-		 -->
-		<!-- Configurable install location -->
-		<PropertyRef Id="NETFRAMEWORK45" />
-    <Condition Message="This application requires .NET Framework 4.5. Please install the .NET Framework then run this installer again.">
-      <![CDATA[Installed OR NETFRAMEWORK45]]>
-    </Condition>
-		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION" />
+     xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension">
+	<Product Id="3f57af53-35f5-4a0e-bca4-c2805d5458ee" Name="WixInstallerExampleWebInstaller" Language="1033" Version="1.0.0.0"
+           Manufacturer="WixInstallerExampleWebInstaller" UpgradeCode="02fda74e-074e-40fb-a78f-ca6f588b0f9e">
+		<Package InstallerVersion="200" Compressed="yes" />
 
-		<!-- Creating directories -->
+    <PropertyRef Id="NETFRAMEWORK40FULLINSTALLROOTDIR"/>
+    <SetProperty Id="ASPNETISAPIDLL" Sequence="execute" Before="ConfigureIIs"
+                 Value="[NETFRAMEWORK40FULLINSTALLROOTDIR]aspnet_isapi.dll" />
+    <SetProperty Id="ASPNETREGIIS" Sequence="execute" Before="ConfigureIIs"
+                 Value="[NETFRAMEWORK40FULLINSTALLROOTDIR]aspnet_regiis.exe" />
+
+		<Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+    <Binary Id="IisManager" SourceFile="FACCTS.Server.Setup.CustomActions.CA.dll" />
+
+    <iis:WebSite Id="DefaultWebSite" Description="Default" SiteId="[WEBSITEVALUE]">
+      <iis:WebAddress Id="AllUnassigned" Port="80" />
+    </iis:WebSite>
+
+    <iis:WebAppPool Id="AppPool" Name="[APPPOOLVALUE]" />
+
 		<Directory Id="TARGETDIR" Name="SourceDir">
-			<!-- Install stuff into program files folder. -->
-			<Directory Id="ProgramFilesFolder">
-				<!-- In program files create folder with name MyWeb. -->
-				<Directory Id="INSTALLLOCATION" Name="FACCTS">
-					<!-- This is the folder where the website content will be located -->
-					<Directory Id="MYWEBWEBSITE" Name="Server">
-						<!-- Continue in DirectoryRef with specific name -->
-					</Directory>
-					<!-- Here you can add another directories -->
-				</Directory>
+      <Directory Id="WEBROOT" Name="WebRoot">
+        <Directory Id="INSTALLLOCATION" Name="FACCTS.Server application">
+          
+          <Component Id="VirtualDirectoryComponent" Guid="DED95D72-52AE-4258-9D50-687E65449F95">
+            <CreateFolder />
+
+            <iis:WebVirtualDir Id="VirtualDirectory" Alias="[VIRTUALDIRECTORYVALUE]" Directory="INSTALLLOCATION" WebSite="DefaultWebSite">
+              <iis:WebApplication Id="WebSiteApp" Name="[VIRTUALDIRECTORYVALUE]" WebAppPool="AppPool" />
+              <iis:WebDirProperties Id="WebSite_Properties" AnonymousAccess="yes" WindowsAuthentication="no" DefaultDocuments="Default.aspx" Script="yes"
+                                    Read="yes" />
+            </iis:WebVirtualDir>
+          </Component>
+
+          <Component Id="ASPNet4Extension" Permanent="yes" Guid="399972A9-A1DF-458C-BD99-13990ACBABEB">
+            <CreateFolder />
+            <iis:WebServiceExtension Id="ASPNet4Extension" Group="ASP.NET v4.0.30319" Allow="yes" File="[ASPNETISAPIDLL]"
+                                     Description="ASP.NET v4.0.30319" UIDeletable="no" />
+          </Component>
+          
+        </Directory>
 			</Directory>
 		</Directory>
 
-		<!-- Complete feature which will be installed. -->
-		<Feature Id="Complete"
-						 Title="FACCTS - Server application"
-						 Level="1"
-						 Display="expand"
-						 ConfigurableDirectory="INSTALLLOCATION">
+    <CustomAction Id="MapVirtualDirectory" Directory="INSTALLLOCATION" Return="asyncNoWait"
+                  ExeCommand='[ASPNETREGIIS] -norestart -s "W3SVC/[WEBSITEVALUE]/ROOT/[VIRTUALDIRECTORYVALUE]"' />
 
-			<!-- Main content of the Complete feature. -->
-			<Feature Id="MainContent"
-					 Title="FACCTS Website/WepAPI"
-					 Description="The website content"
-					 Level="1">
+    <CustomAction Id="GetIISWebSites" BinaryKey="IisManager" DllEntry="GetWebSites" Execute="immediate" Return="check" />
+    <CustomAction Id="GetIISAppPools" BinaryKey="IisManager" DllEntry="GetAppPools" Execute="immediate" Return="check" />
 
-				<!-- Include IIS Configuration. -->
-				<ComponentGroupRef Id="MyWebIssConfiguration" />
+    <InstallUISequence>
+      <Custom Action="GetIISWebSites" After="CostFinalize" Overridable="yes">NOT Installed</Custom>
+      <Custom Action="GetIISAppPools" After="CostFinalize" Overridable="yes">NOT Installed</Custom>
+    </InstallUISequence>
 
-				<!-- Include web content. -->
-				<!--<ComponentGroupRef Id="MyWebWebComponents" />-->
+    <InstallExecuteSequence>
+      <Custom Action="MapVirtualDirectory" After="InstallFinalize">ASPNETREGIIS AND NOT Installed</Custom>
+    </InstallExecuteSequence>
 
-				<!-- Perform changes in the web.config file. -->
-				<ComponentRef Id="WebConfigCmp" />
-
-			</Feature>
+		<Feature Id="ProductFeature" Title="Wix Installer Example Web" Level="1">
+			<ComponentGroupRef Id="FACCTS.Server_Project" />
+      <ComponentRef Id="VirtualDirectoryComponent" />
+      <ComponentRef Id="ASPNet4Extension" />
 		</Feature>
+    <ComponentGroup Id="FACCTS.Server_Project" Directory="INSTALLLOCATION">
+      <ComponentGroupRef Id="Binaries"/>
+      <ComponentGroupRef Id="FACCTS.Server.Content"/>
+    </ComponentGroup>
 
-		<DirectoryRef Id="MYWEBWEBSITE">
-			<!-- Component handling the web.config -->
-			<Component Id="WebConfigCmp" Guid="{73988E42-56F4-4704-92AF-CD5E4DDEF9D4}">
-				<!-- Copy web.config to MYWEBWEBSITE folder. -->
-				<File Id="WebConfigFile" KeyPath="yes" Source="$(var.FACCTS.Server.ProjectDir)\Web.config" Vital="yes" />
-				<!--<util:XmlFile Id="ModifyConnectionString"
-										 Action="setValue"
-										 Permanent="yes"
-										 ElementPath="/configuration/connectionStrings/add[\[]@name='MyConnectionString'[\]]"
-										 Name="connectionString"
-										 File="[#WebConfigFile]"
-										 Value="[CONNECTION_STRING]"
-										 SelectionLanguage="XSLPattern"
-										 Sequence="1" />-->
-			</Component>
-		</DirectoryRef>
-		
-		<!-- .NET Framework 3.0 SP 1 must be installed -->
-		<Property Id="FRAMEWORKBASEPATH">
-			<RegistrySearch Id="FindFrameworkDir" Root="HKLM" Key="SOFTWARE\Microsoft\.NETFramework" Name="InstallRoot" Type="raw"/>
-		</Property>
-
-		<Property Id="ASPNETREGIIS" >
-			<DirectorySearch Path="[FRAMEWORKBASEPATH]" Depth="4" Id="FindAspNetRegIis">
-				<FileSearch Name="aspnet_regiis.exe" MinVersion="4.0.3"/>
-			</DirectorySearch>
-		</Property>
-    <Property Id="ASPNETISAPIDLL">
-      <DirectorySearch Path="[FRAMEWORKBASEPATH]" Depth="4" Id="FindAspNetIsapi">
-        <FileSearch Name="aspnet_isapi.dll" MinVersion="4.0.3"/>
-      </DirectorySearch>
-    </Property>
-
-		<!-- Switch ASP.NET to version 4.0 -->
-		<CustomAction Id="MakeWepApp40" Directory="MYWEBWEBSITE" ExeCommand="[ASPNETREGIIS] -norestart -s W3SVC/[IISWEBSITEID]/ROOT/[VIRTUAL_DIR_VAL]" Return="check"/>
-
-		<InstallExecuteSequence>
-			<Custom Action="MakeWepApp40" After="InstallFinalize">ASPNETREGIIS AND NOT Installed</Custom>
-		</InstallExecuteSequence>
-
-		<!-- License and images -->
-		<WixVariable Id="WixUILicenseRtf" Value="License.rtf" />
-
-		<!-- Specify UI -->
-		<UIRef Id="FACCTSInstallerUI" />
-
-
+    <Property Id="WIXUI_INSTALLDIR">INSTALLLOCATION</Property>
+    <UIRef Id="MyCustomUI" />
+    
 	</Product>
 </Wix>
