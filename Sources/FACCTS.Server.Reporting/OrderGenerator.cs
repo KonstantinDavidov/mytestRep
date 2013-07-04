@@ -7,12 +7,15 @@ using System.Configuration;
 using System.Reflection;
 using System.IO;
 using System.Xml.Linq;
+using FACCTS.Server.DataContracts;
+using System.ComponentModel.Composition;
+using FACCTS.Server.Common;
 
 namespace FACCTS.Server.Reporting
 {
     public static class OrderGenerator
     {
-        public static Byte[] GenerateOrder(object orderData, string pathToPdfTemplate, string pathToXmlMapper)
+        public static Byte[] GenerateOrder(object orderData, IDataManager dm, string pathToPdfTemplate, string pathToXmlMapper)
         {
             Byte[] res = null;
 
@@ -40,13 +43,14 @@ namespace FACCTS.Server.Reporting
             }
 
             Dictionary<string, string> mapping = Utils.SerializeXMLToDictionary(doc, "originalValue", "mapValue");
-
+            
             Type handlerType = Type.GetType(handlerTypeName);
             if (handlerType != null)
             {
                 Generator generator = (Generator)Activator.CreateInstance(handlerType);
                 if (generator != null)
                 {
+                    generator.DataManager = dm;
                     res = generator.Run(pathToPdfTemplate, mapping, orderData);
                 }
             }
