@@ -52,4 +52,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(WixCATargetsPath)" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy $(TargetDir)$(TargetName).CA.dll $(SolutionDir)FACCTS.Server.Setup /Y</PostBuildEvent>
+  </PropertyGroup>
 </Project>
