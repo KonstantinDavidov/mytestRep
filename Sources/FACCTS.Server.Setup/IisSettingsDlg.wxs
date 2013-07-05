@@ -2,7 +2,7 @@
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 	<Fragment>
     <EnsureTable Id="ComboBox"/>
-    <Property Id="VIRTUALDIRECTORYVALUE" Value="WixInstallerExampleWeb"/>
+    
     <UI>
       <Dialog Id="IisSettings" Title="WiX Installer Example" Width="370" Height="270">
         <Control Id="Next" Type="PushButton" Default="yes" Text="Next" X="236" Y="243" Width="56" Height="17">

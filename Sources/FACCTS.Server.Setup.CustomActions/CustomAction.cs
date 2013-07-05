@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Deployment.WindowsInstaller;
 using FACCTS.Server.Setup.Common;
+using System.Security.Principal;
 
 namespace FACCTS.Server.Setup.CustomActions
 {
@@ -44,10 +45,19 @@ namespace FACCTS.Server.Setup.CustomActions
             {
                 if (session == null) { throw new ArgumentNullException("session"); }
 
+                // Check if running with admin rights and if not, log a message to
+                // let them know why it's failing.
+                if (false == HasAdminRights())
+                {
+                    session.Log("GetAppPools: " +
+                                "ATTEMPTING TO RUN WITHOUT ADMIN RIGHTS");
+                    return ActionResult.Failure;
+                }
+
                 View comboBoxView = session.Database.OpenView("select * from ComboBox");
 
                 int order = 1;
-
+                session.Log("Trying to retutn the app pool list");
                 foreach (string appPool in IisManager.GetIisAppPools())
                 {
                     Record newComboRecord = new Record("APPPOOLVALUE", order++, appPool);
@@ -63,6 +73,13 @@ namespace FACCTS.Server.Setup.CustomActions
             }
 
             return ActionResult.Failure;
+        }
+
+        private static bool HasAdminRights()
+        {
+            WindowsIdentity identity = WindowsIdentity.GetCurrent();
+            WindowsPrincipal principal = new WindowsPrincipal(identity);
+            return principal.IsInRole(WindowsBuiltInRole.Administrator);
         }
     }
 }

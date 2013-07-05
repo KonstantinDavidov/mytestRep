@@ -1,77 +1,86 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
-     xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension">
-	<Product Id="3f57af53-35f5-4a0e-bca4-c2805d5458ee" Name="WixInstallerExampleWebInstaller" Language="1033" Version="1.0.0.0"
-           Manufacturer="WixInstallerExampleWebInstaller" UpgradeCode="02fda74e-074e-40fb-a78f-ca6f588b0f9e">
-		<Package InstallerVersion="200" Compressed="yes" />
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension">
+    <Product Id="3f57af53-35f5-4a0e-bca4-c2805d5458ee" Name="FACCTS Server Installer" Language="1033" Version="1.0.0.0" Manufacturer="OpenSoft.RU" UpgradeCode="02fda74e-074e-40fb-a78f-ca6f588b0f9e">
+        <Package InstallerVersion="400" Compressed="yes" AdminImage="yes" InstallPrivileges="elevated" InstallScope="perMachine"/>
+      <!-- Major upgrade checks. -->
+      <MajorUpgrade Schedule="afterInstallInitialize"
+                    DowngradeErrorMessage="A later version of [ProductName] is  
+                                    already installed. Setup will now exit."/>
 
-    <PropertyRef Id="NETFRAMEWORK40FULLINSTALLROOTDIR"/>
-    <SetProperty Id="ASPNETISAPIDLL" Sequence="execute" Before="ConfigureIIs"
-                 Value="[NETFRAMEWORK40FULLINSTALLROOTDIR]aspnet_isapi.dll" />
-    <SetProperty Id="ASPNETREGIIS" Sequence="execute" Before="ConfigureIIs"
-                 Value="[NETFRAMEWORK40FULLINSTALLROOTDIR]aspnet_regiis.exe" />
+      <!-- Check to see if IIS is installed. It it's not, error out. -->
+      <Property Id="IIS_MAJOR_VERSION">
+        <RegistrySearch Id="CheckIISVersion"
+                         Root="HKLM"
+                        Key="SOFTWARE\Microsoft\InetStp"
+                        Name="MajorVersion"
+                       Type="raw" />
+      </Property>
 
-		<Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+      <Condition Message="IIS 7 or higher must be installed">
+        Installed OR IIS_MAJOR_VERSION >= "#7"
+      </Condition>
 
-    <Binary Id="IisManager" SourceFile="FACCTS.Server.Setup.CustomActions.CA.dll" />
+      <!-- Go find the IIS root directory from the registry. On most machines 
+         that defaults to C:\inetpub\wwwroot. This will be the directory we 
+         install into. -->
+      <Property Id="IISROOT">
+        <RegistrySearch Id="IISROOT"
+                        Type="directory"
+                        Root="HKLM"
+                        Key="Software\Microsoft\InetStp"
+                        Name="PathWWWRoot" />
+      </Property>
 
-    <iis:WebSite Id="DefaultWebSite" Description="Default" SiteId="[WEBSITEVALUE]">
-      <iis:WebAddress Id="AllUnassigned" Port="80" />
-    </iis:WebSite>
+      <Condition Message="IIS does not appear to be installed correctly, the  
+                       root directory is not set.">
+        Installed OR IISROOT
+      </Condition>
+      <Property Id="VIRTUALDIRECTORYVALUE" Value="FACCTS.Server"/>
+      <Property Id="APPPOOLVALUE" Value="DefaultAppPool"/>
+      <Property Id="WEBSITEVALUE" Value="Default Web Site"/>
 
-    <iis:WebAppPool Id="AppPool" Name="[APPPOOLVALUE]" />
-
-		<Directory Id="TARGETDIR" Name="SourceDir">
-      <Directory Id="WEBROOT" Name="WebRoot">
-        <Directory Id="INSTALLLOCATION" Name="FACCTS.Server application">
-          
-          <Component Id="VirtualDirectoryComponent" Guid="DED95D72-52AE-4258-9D50-687E65449F95">
-            <CreateFolder />
-
-            <iis:WebVirtualDir Id="VirtualDirectory" Alias="[VIRTUALDIRECTORYVALUE]" Directory="INSTALLLOCATION" WebSite="DefaultWebSite">
-              <iis:WebApplication Id="WebSiteApp" Name="[VIRTUALDIRECTORYVALUE]" WebAppPool="AppPool" />
-              <iis:WebDirProperties Id="WebSite_Properties" AnonymousAccess="yes" WindowsAuthentication="no" DefaultDocuments="Default.aspx" Script="yes"
-                                    Read="yes" />
-            </iis:WebVirtualDir>
-          </Component>
-
-          <Component Id="ASPNet4Extension" Permanent="yes" Guid="399972A9-A1DF-458C-BD99-13990ACBABEB">
-            <CreateFolder />
-            <iis:WebServiceExtension Id="ASPNet4Extension" Group="ASP.NET v4.0.30319" Allow="yes" File="[ASPNETISAPIDLL]"
-                                     Description="ASP.NET v4.0.30319" UIDeletable="no" />
-          </Component>
-          
+        <PropertyRef Id="NETFRAMEWORK40FULLINSTALLROOTDIR" />
+        <SetProperty Id="ASPNETISAPIDLL" Sequence="execute" Before="ConfigureIIs" Value="[NETFRAMEWORK40FULLINSTALLROOTDIR]aspnet_isapi.dll" />
+        <SetProperty Id="ASPNETREGIIS" Sequence="execute" Before="ConfigureIIs" Value="[NETFRAMEWORK40FULLINSTALLROOTDIR]aspnet_regiis.exe" />
+        <Media Id="1" Cabinet="faccts.server.cab" EmbedCab="yes" />
+        <EnsureTable Id='ComboBox'/>
+        <Binary Id="IisManager" SourceFile="FACCTS.Server.Setup.CustomActions.CA.dll" />
+        <iis:WebSite Id="DefaultWebSite" Description="Default" SiteId="[WEBSITEVALUE]">
+            <iis:WebAddress Id="AllUnassigned" Port="80" />
+            <iis:WebAddress Id="AllUnsassignedSSL" Port="443" Secure="yes"/>
+        </iis:WebSite>
+        <iis:WebAppPool Id="AppPool" Name="[APPPOOLVALUE]" />
+        <Directory Id="TARGETDIR" Name="SourceDir">
+            <Directory Id="IISROOT" Name="WebRoot">
+                <Directory Id="INSTALLLOCATION" Name="FACCTS.Server">
+                    <Component Id="VirtualDirectoryComponent" Guid="DED95D72-52AE-4258-9D50-687E65449F95">
+                        <CreateFolder />
+                        <iis:WebVirtualDir Id="VirtualDirectory" Alias="[VIRTUALDIRECTORYVALUE]" Directory="INSTALLLOCATION" WebSite="DefaultWebSite">
+                            <iis:WebApplication Id="WebSiteApp" Name="[VIRTUALDIRECTORYVALUE]" WebAppPool="AppPool" />
+                            <iis:WebDirProperties Id="WebSite_Properties" AnonymousAccess="yes" WindowsAuthentication="no" DefaultDocuments="Default.aspx" Script="yes" Read="yes" />
+                        </iis:WebVirtualDir>
+                    </Component>
+                    <Component Id="ASPNet4Extension" Permanent="yes" Guid="399972A9-A1DF-458C-BD99-13990ACBABEB">
+                        <CreateFolder />
+                        <iis:WebServiceExtension Id="ASPNet4Extension" Group="ASP.NET v4.0.30319" Allow="yes" File="[ASPNETISAPIDLL]" Description="ASP.NET v4.0.30319" UIDeletable="no" />
+                    </Component>
+                </Directory>
+            </Directory>
         </Directory>
-			</Directory>
-		</Directory>
-
-    <CustomAction Id="MapVirtualDirectory" Directory="INSTALLLOCATION" Return="asyncNoWait"
-                  ExeCommand='[ASPNETREGIIS] -norestart -s "W3SVC/[WEBSITEVALUE]/ROOT/[VIRTUALDIRECTORYVALUE]"' />
-
-    <CustomAction Id="GetIISWebSites" BinaryKey="IisManager" DllEntry="GetWebSites" Execute="immediate" Return="check" />
-    <CustomAction Id="GetIISAppPools" BinaryKey="IisManager" DllEntry="GetAppPools" Execute="immediate" Return="check" />
-
-    <InstallUISequence>
-      <Custom Action="GetIISWebSites" After="CostFinalize" Overridable="yes">NOT Installed</Custom>
-      <Custom Action="GetIISAppPools" After="CostFinalize" Overridable="yes">NOT Installed</Custom>
-    </InstallUISequence>
-
-    <InstallExecuteSequence>
-      <Custom Action="MapVirtualDirectory" After="InstallFinalize">ASPNETREGIIS AND NOT Installed</Custom>
-    </InstallExecuteSequence>
-
-		<Feature Id="ProductFeature" Title="Wix Installer Example Web" Level="1">
-			<ComponentGroupRef Id="FACCTS.Server_Project" />
-      <ComponentRef Id="VirtualDirectoryComponent" />
-      <ComponentRef Id="ASPNet4Extension" />
-		</Feature>
-    <ComponentGroup Id="FACCTS.Server_Project" Directory="INSTALLLOCATION">
-      <ComponentGroupRef Id="Binaries"/>
-      <ComponentGroupRef Id="FACCTS.Server.Content"/>
-    </ComponentGroup>
-
-    <Property Id="WIXUI_INSTALLDIR">INSTALLLOCATION</Property>
-    <UIRef Id="MyCustomUI" />
-    
-	</Product>
+        <CustomAction Id="MapVirtualDirectory" Directory="INSTALLLOCATION" Return="asyncNoWait" ExeCommand="[ASPNETREGIIS] -norestart -s &quot;W3SVC/[WEBSITEVALUE]/ROOT/[VIRTUALDIRECTORYVALUE]&quot;" />
+        <InstallExecuteSequence>
+            <Custom Action="MapVirtualDirectory" After="InstallFinalize">ASPNETREGIIS AND NOT Installed</Custom>
+        </InstallExecuteSequence>
+        <Feature Id="ProductFeature" Title="FACCTS Server installer" Level="1">
+            <ComponentGroupRef Id="FACCTS.Server_Project" />
+            <ComponentRef Id="VirtualDirectoryComponent" />
+            <ComponentRef Id="ASPNet4Extension" />
+        </Feature>
+        <ComponentGroup Id="FACCTS.Server" Directory="INSTALLLOCATION">
+            <ComponentGroupRef Id="FACCTS.Server_Project" />
+        </ComponentGroup>
+        <Property Id="WIXUI_INSTALLDIR">INSTALLLOCATION</Property>
+        <UIRef Id="MyCustomUI" />
+        <UI />
+    </Product>
 </Wix>
