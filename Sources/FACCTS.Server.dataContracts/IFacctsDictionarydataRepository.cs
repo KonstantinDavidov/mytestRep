@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,6 +11,7 @@ namespace FACCTS.Server.DataContracts
     {
         IQueryable<TEntity> GetAll();
         IQueryable<TEntity> GetAll(params string[] includePaths);
+        IQueryable<TEntity> GetAll(params Expression<Func<TEntity, object>>[] includePaths);
         TEntity GetById(long id);
     }
 }
