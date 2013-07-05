@@ -23,6 +23,7 @@
   <ItemGroup>
     <Compile Include="Binaries.wxs" />
     <Compile Include="Product.wxs" />
+    <Compile Include="SettingsDlg.wxs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FACCTS\FACCTS.csproj">
@@ -38,6 +39,10 @@
     <Content Include="Filter.xslt" />
   </ItemGroup>
   <ItemGroup>
+    <WixExtension Include="WixUtilExtension">
+      <HintPath>$(WixExtDir)\WixUtilExtension.dll</HintPath>
+      <Name>WixUtilExtension</Name>
+    </WixExtension>
     <WixExtension Include="WixUIExtension">
       <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
       <Name>WixUIExtension</Name>
