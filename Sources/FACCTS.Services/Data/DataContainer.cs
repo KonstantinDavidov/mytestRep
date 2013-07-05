@@ -146,7 +146,7 @@ namespace FACCTS.Services.Data
             RaisePropertyChanged(() => EyesColors);
             RaisePropertyChanged(() => Races);
             RaisePropertyChanged(() => Designations);
-            RaisePropertyChanged(() => ParticipantRoles);
+            //RaisePropertyChanged(() => ParticipantRoles);
         }
 
         public FACCTSConfiguration FacctsConfiguration
@@ -248,18 +248,18 @@ namespace FACCTS.Services.Data
             }
         }
 
-        private List<ParticipantRole> _participantRoles;
-        public List<ParticipantRole> ParticipantRoles
-        {
-            get
-            {
-                if (_participantRoles == null)
-                {
-                    _participantRoles = FACCTS.Services.Data.ParticipantRoles.GetAll();
-                }
-                return _participantRoles;
-            }
-        }
+        //private List<ParticipantRole> _participantRoles;
+        //public List<ParticipantRole> ParticipantRoles
+        //{
+        //    get
+        //    {
+        //        if (_participantRoles == null)
+        //        {
+        //            _participantRoles = FACCTS.Services.Data.ParticipantRoles.GetAll();
+        //        }
+        //        return _participantRoles;
+        //    }
+        //}
 
         protected void RaisePropertyChanged(string propertyName)
         {
