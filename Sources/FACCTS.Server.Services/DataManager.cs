@@ -132,13 +132,6 @@ namespace FACCTS.Server.Data
                 return GetStandardRepo<Courtroom>();
             }
         }
-        public IFacctsDictionaryDataRepository<ParticipantRole> ParticipantRoleRepository 
-        {
-            get
-            {
-                return GetStandardDictionaryRepo<ParticipantRole>();
-            }
-        }
         public IFacctsDictionaryDataRepository<Designation> DesignationRepository
         {
             get

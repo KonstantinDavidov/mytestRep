@@ -1,4 +1,5 @@
 ﻿using FACCTS.Server.Model.DataModel;
+using FACCTS.Server.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -17,20 +18,21 @@ namespace FACCTS.Server.Controllers
         // GET api/Designation
         public IEnumerable<ParticipantRole> Get()
         {
-            return DataManager.ParticipantRoleRepository.GetAll();
+            return null;
         }
 
         // GET api/Designation/5
         public ParticipantRole Get(int id)
         {
-            var entity = DataManager.ParticipantRoleRepository.GetById(id);
-            if (entity == null)
-            {
-                throw new HttpResponseException(
-                Request.CreateResponse(
-                HttpStatusCode.NotFound));
-            }
-            return entity;
+            //var entity = DataManager.ParticipantRoleRepository.GetById(id);
+            //if (entity == null)
+            //{
+            //    throw new HttpResponseException(
+            //    Request.CreateResponse(
+            //    HttpStatusCode.NotFound));
+            //}
+            //return entity;
+            return ParticipantRole.Protected;
         }
     }
 }

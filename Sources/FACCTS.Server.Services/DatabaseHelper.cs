@@ -14,6 +14,7 @@ using System.Web.Security;
 using Thinktecture.IdentityModel;
 using Thinktecture.IdentityModel.Constants;
 using CsvHelper;
+using FACCTS.Server.Model.Enums;
 
 namespace FACCTS.Server.Data
 {
@@ -507,7 +508,6 @@ namespace FACCTS.Server.Data
             SeedDesignations(context);
             SeedEyeColors(context);
             SeedHairColor(context);
-            SeedParticipantRole(context);
             SeedRace(context);
             SeedSex(context);
             SeedPdfForm(context);
@@ -590,16 +590,6 @@ namespace FACCTS.Server.Data
         {
             GetRecords<Race>("Race.csv")
                 .Aggregate(context.Races, (dbset, record) =>
-                {
-                    dbset.Add(record);
-                    return dbset;
-                });
-        }
-
-        private static void SeedParticipantRole(DatabaseContext context)
-        {
-            GetRecords<ParticipantRole>("ParticipantRole.csv")
-                .Aggregate(context.ParticipantRoles, (dbset, record) =>
                 {
                     dbset.Add(record);
                     return dbset;
@@ -766,7 +756,7 @@ namespace FACCTS.Server.Data
                 HeightIns = 3,
                 LastName = "Connor",
                 MiddleName = "J",
-                ParticipantRole = context.ParticipantRoles.Where(pr => pr.Id == 1).FirstOrDefault(),
+                ParticipantRole = ParticipantRole.Protected,
                 Phone = "12345",
                 Race = testRace,
                 Sex = testSex,
@@ -792,7 +782,7 @@ namespace FACCTS.Server.Data
                 HeightIns = 3,
                 LastName = "Connor",
                 MiddleName = "J",
-                ParticipantRole = context.ParticipantRoles.Where(pr => pr.Id == 10).FirstOrDefault(),
+                ParticipantRole = ParticipantRole.Restrained,
                 Phone = "12345",
                 Race = testRace,
                 Sex = testSex,
