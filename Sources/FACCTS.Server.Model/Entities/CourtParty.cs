@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using FACCTS.Server.Model.Enums;
 
 namespace FACCTS.Server.Model.DataModel
 {

@@ -8,6 +8,7 @@ namespace FACCTS.Server.Model.Reporting.Entities
 {
     public class CaseInfo
     {
+        public int CaseId { get; set; }
         public string CaseNumber { get; set; }
         public bool IsSealed { get; set; }
         public int CasesOnDocket { get; set; }

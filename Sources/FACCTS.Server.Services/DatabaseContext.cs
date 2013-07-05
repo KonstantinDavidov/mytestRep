@@ -20,16 +20,17 @@ namespace FACCTS.Server.Data
         public DatabaseContext()
             : base("name=FACCTS_DB")
         {
-
+            Configuration.LazyLoadingEnabled = true;
         }
 
         public DatabaseContext(DbConnection dbConn) : base(dbConn, true)
         {
-
+            Configuration.LazyLoadingEnabled = true;
         }
 
         public DatabaseContext(IDatabaseInitializer<DatabaseContext> initializer)
         {
+            Configuration.LazyLoadingEnabled = true;
             Database.SetInitializer<DatabaseContext>(initializer);
         }
 
@@ -68,7 +69,6 @@ namespace FACCTS.Server.Data
         public DbSet<Designation> Designations { get; set; }
         public DbSet<EyesColor> EyesColor { get; set; }
         public DbSet<HairColor> HairColor { get; set; }
-        public DbSet<ParticipantRole> ParticipantRoles { get; set; }
         public DbSet<Race> Races { get; set; }
         public DbSet<Sex> Sex { get; set; }
         public DbSet<CourtLocation> CourtLocations { get; set; }

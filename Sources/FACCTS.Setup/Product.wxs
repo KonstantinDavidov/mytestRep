@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"
+     xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <Product Id="7FD57674-3A04-45F4-B5C9-19DF4C46860A" Name="FACCTS" Language="1033" Codepage="1252" Version="1.0.0.0" Manufacturer="OpenSoft.RU" UpgradeCode="8863BAB5-FFF0-4E47-949C-B7FC3045BC8F">
+    <Package Id="*" Keywords="Installer" Description="FACCTS.Client installer" Comments="Installer for FACCTS client-side application" Manufacturer="OpenSoft.RU" InstallerVersion="200" Languages="1033" SummaryCodepage="1252" Compressed="yes" InstallScope="perMachine" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <Media Id="1" Cabinet="FACCTS.Setup.cab" EmbedCab="yes"/>
+    <UI Id="MyWixUI_InstallDir">
+      <UIRef Id="WixUI_InstallDir"/>
+      <UIRef Id="WixUI_ErrorProgressText"/>
+
+      <DialogRef Id="SettingsDlg"/>
+
+      <Publish Dialog="InstallDirDlg" Control="Next" Event="NewDialog" Value="SettingsDlg" Order="4">WIXUI_DONTVALIDATEPATH OR WIXUI_INSTALLDIR_VALID="1"</Publish>
+      <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="SettingsDlg" Order="1">NOT Installed</Publish>
+    </UI>
+    
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION"/>
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder" Name="PFiles">
+        <Directory Id="INSTALLLOCATION" Name="FACCTS">
+          <Directory Id="CLIENT" Name="FACCTS.Client">
+            <Component Id="MainExecutable" Guid="*">
+              <File Id="FACCTS.exe" Name="$(var.FACCTS.TargetFileName)" DiskId="1" Source="$(var.FACCTS.TargetPath)" KeyPath="yes">
+                <Shortcut Id="StartMenuFACCTS" Directory="ProgramMenuDir" Name="FACCTS" WorkingDirectory="INSTALLDIR" Advertise="yes" Icon="FamilyCourt.ico" IconIndex="0"/>
+                <Shortcut Id="DesktopFACCTS" Directory="DesktopFolder" Name="FACCTS" WorkingDirectory="INSTALLDIR" Advertise="yes" Icon="FamilyCourt.ico" IconIndex="0"/>
+              </File>
+            </Component>
+            <Component Id="ConfigFile" Guid="5657B4E2-4D55-4BC8-A024-ECACF88D374B" KeyPath="yes" Transitive="yes">
+              <Condition><![CDATA[SERVERNAME<>""]]></Condition>
+              <util:XmlFile Id="OAuthEndpoint" Action="setValue" Permanent="yes" File="[CLIENT]FACCTS.exe.config"
+                            ElementPath="/configuration/appSettings/add[\[]@key='OAuthAuthenticationEndpoint'[\]]" Name="value"
+                            Value="https://[SERVERNAME]/FACCTS.Server/authorization/oauth2/token" />
+              <util:XmlFile Id="WepApiEndpoint" Action="setValue" Permanent="yes" File="[CLIENT]FACCTS.exe.config"
+                            ElementPath="/configuration/appSettings/add[\[]@key='WepApiEndpoint'[\]]" Name="value"
+                            Value="https://[SERVERNAME]/FACCTS.Server/api/" />
+            </Component>
+          </Directory>
+        </Directory>
+      </Directory>
+      <Directory Id="ProgramMenuFolder" Name="Programs">
+        <Directory Id="ProgramMenuDir" Name="FACCTS">
+          <Component Id="ProgramMenuDir" Guid="*">
+            <RemoveFolder Id="ProgramMenuDir" On="uninstall"/>
+            <RegistryValue Root="HKCU" Key="Software\[Manufacturer]\[ProductName]" Type="string" Value="" KeyPath="yes"/>
+          </Component>
+        </Directory>
+      </Directory>
+      <Directory Id="DesktopFolder" Name="Desktop"/>
+    </Directory>
+    <Feature Id="Complete" Title="FACCTS" Description="The complete package." Display="expand" Level="1" ConfigurableDirectory="INSTALLLOCATION">
+      <ComponentRef Id="MainExecutable"/>
+      <ComponentRef Id="ProgramMenuDir"/>
+      <ComponentRef Id="ConfigFile"/>
+      <ComponentGroupRef Id="ProductComponents"/>
+    </Feature>
+    <Icon Id="FamilyCourt.ico" SourceFile="$(var.FACCTS.ProjectDir)FamilyCourt.ico"/>
+  </Product>
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="CLIENT">
+      <ComponentGroupRef Id="Binaries"/>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

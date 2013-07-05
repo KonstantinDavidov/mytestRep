@@ -14,6 +14,7 @@ using System.Web.Security;
 using Thinktecture.IdentityModel;
 using Thinktecture.IdentityModel.Constants;
 using CsvHelper;
+using FACCTS.Server.Model.Enums;
 
 namespace FACCTS.Server.Data
 {
@@ -507,7 +508,6 @@ namespace FACCTS.Server.Data
             SeedDesignations(context);
             SeedEyeColors(context);
             SeedHairColor(context);
-            SeedParticipantRole(context);
             SeedRace(context);
             SeedSex(context);
             SeedPdfForm(context);
@@ -575,7 +575,7 @@ namespace FACCTS.Server.Data
 
         private static void SeedSex(DatabaseContext context)
         {
-            GetRecords<Sex>("Sex.csv")
+            GetRecords<FACCTS.Server.Model.DataModel.Sex>("Sex.csv")
                 .Aggregate(context.Sex, (dbset, record) =>
                 {
                     dbset.Add(record);
@@ -590,16 +590,6 @@ namespace FACCTS.Server.Data
         {
             GetRecords<Race>("Race.csv")
                 .Aggregate(context.Races, (dbset, record) =>
-                {
-                    dbset.Add(record);
-                    return dbset;
-                });
-        }
-
-        private static void SeedParticipantRole(DatabaseContext context)
-        {
-            GetRecords<ParticipantRole>("ParticipantRole.csv")
-                .Aggregate(context.ParticipantRoles, (dbset, record) =>
                 {
                     dbset.Add(record);
                     return dbset;
@@ -696,6 +686,135 @@ namespace FACCTS.Server.Data
             AddTestConfiguration(context);
             AddtestCourtDepartments(context);
             AddTestCourtLocations(context);
+            AddTestCaseRecord(context);
+        }
+
+        private static void AddTestCaseRecord(DatabaseContext context)
+        {
+            CourtCase testCourtCase = new CourtCase();
+
+            CaseRecord testCaseRecord = new CaseRecord();
+            FACCTS.Server.Model.DataModel.Sex testSex = context.Sex.FirstOrDefault();
+            Designation testDesignation = context.Designations.FirstOrDefault();
+            EyesColor testEyesColor = context.EyesColor.FirstOrDefault();
+            HairColor testHairColor = context.HairColor.FirstOrDefault();
+            Race testRace = context.Races.FirstOrDefault();
+
+            Attorney testAttorney =  new Attorney()
+            {
+                City = "Saratov",
+                Email = "test@test.test",
+                Fax = "12345",
+                FirmName = "WornerBrothers",
+                FirstName = "Grigory",
+                LastName = "Rusputin",
+                Phone = "89043434123",
+                State = "CA",
+                StateBarId = "Bar",
+                StreetAddress = "MainStreet",
+                ZipCode = "12345"
+            };
+            testCaseRecord.AttorneyForChild = testAttorney;
+            testCaseRecord.Children = new List<Child>()
+            { new Child()
+                { 
+                    DateOfBirth =DateTime.Now,
+                    EntityType = Model.Enums.FACCTSEntity.Person,
+                    FirstName = "Marry",
+                    LastName = "Yang",
+                    RelationshipToProtected = Model.Enums.Relationship.Child,
+                    Sex = testSex
+                }
+            };
+            testCaseRecord.CourtCounty = context.CourtCounties.FirstOrDefault();
+
+            testCaseRecord.OtherProtected = new List<OtherProtected>(){
+                new OtherProtected(){
+                    DateOfBirth = DateTime.Now,
+                    FirstName = "Allan",
+                    LastName="Dallas",
+                    Sex = testSex,
+                    RelationshipToPlaintiff = Model.Enums.Relationship.Friend
+                }
+            };
+
+            testCaseRecord.Party1 = new CourtParty()
+            {
+                Address = "Some address1",
+                Age = 45,
+                Attorney = testAttorney,
+                City = "NY",
+                DateOfBirth = DateTime.Now,
+                Description = "Some description",
+                Designation = testDesignation,
+                EyesColor = testEyesColor,
+                Fax = "12345",
+                FirstName = "Sarah",
+                HairColor = testHairColor,
+                HasAttorney = true,
+                HeightFt = 5,
+                HeightIns = 3,
+                LastName = "Connor",
+                MiddleName = "J",
+                ParticipantRole = ParticipantRole.Protected,
+                Phone = "12345",
+                Race = testRace,
+                Sex = testSex,
+                State = "NJ",
+                Weight = 56,
+                ZipCode = "410001"
+            };
+            testCaseRecord.Party2 = new CourtParty()
+            {
+                Address = "Some address2",
+                Age = 15,
+                Attorney = testAttorney,
+                City = "NY",
+                DateOfBirth = DateTime.Now,
+                Description = "Some description",
+                Designation = testDesignation,
+                EyesColor = testEyesColor,
+                Fax = "12345",
+                FirstName = "John",
+                HairColor = testHairColor,
+                HasAttorney = true,
+                HeightFt = 5,
+                HeightIns = 3,
+                LastName = "Connor",
+                MiddleName = "J",
+                ParticipantRole = ParticipantRole.Restrained,
+                Phone = "12345",
+                Race = testRace,
+                Sex = testSex,
+                State = "NJ",
+                Weight = 56,
+                ZipCode = "410001"
+            };
+            testCaseRecord.Witnesses = new List<Witness>(){
+                new Witness()
+                {
+                    Contact = "Contact",
+                    Designation = testDesignation,
+                    EntityType = Model.Enums.FACCTSEntity.Entity,
+                    FirstName = "Witney",
+                    LastName = "Huiston",
+                    WitnessFor = testCaseRecord.Party2
+                }
+            };
+            testCaseRecord.RestrainingPartyIdentificationInformation = new RestrainingPartyIdentificationInformation()
+                {
+                    IDNumber = "123",
+                    IDType = Model.Enums.IdentificationIDType.AirForceSerial,
+                    IssuedDate = DateTime.Now
+                };
+
+            testCourtCase.CaseNumber = "22-3456";
+            testCourtCase.CaseRecord = testCaseRecord;
+            testCourtCase.CCPORId = "ccporId";
+            testCourtCase.CourtClerk = context.CourtMembers.FirstOrDefault();
+
+            context.CourtCases.Add(testCourtCase);
+            context.SaveChanges();
         }
 
         private static void AddTestCourtLocations(DatabaseContext context)

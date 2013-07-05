@@ -7,12 +7,20 @@ using System.IO;
 using org.pdfclown;
 using org.pdfclown.documents;
 using org.pdfclown.documents.interaction.forms;
-
+using FACCTS.Server.DataContracts;
+using System.ComponentModel.Composition;
+using FACCTS.Server.Common;
 
 namespace FACCTS.Server.Reporting
 {
     public abstract class Generator
     {
+        public IDataManager DataManager
+        {
+            get;
+            set;
+        }
+       
         public Byte[] Run(string pathToPdf, Dictionary<string, string> mapper, object data)
         {
             org.pdfclown.files.File file = new org.pdfclown.files.File(pathToPdf);
@@ -38,5 +46,6 @@ namespace FACCTS.Server.Reporting
                 return pdfstream.ToByteArray();
             }
         }
+                
     }
 }

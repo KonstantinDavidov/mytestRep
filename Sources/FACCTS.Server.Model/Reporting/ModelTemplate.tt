@@ -42,9 +42,11 @@ namespace FACCTS.Server.Model.OrderModels
 foreach (var item in doc.Root.Elements("Model"))
 {
 	string modelName =this.GetAttributeValue(item,"name",string.Empty);
+	string modelType =this.GetAttributeValue(item,"type",string.Empty);
+	modelType = string.IsNullOrEmpty(modelType) ? "class" : modelType;
 	if(string.IsNullOrEmpty(modelName))continue;#>
 			
-	public partial class <#= modelName #>
+	public partial <#= modelType #> <#= modelName #>
 	{<#
 	
 		foreach (var property in item.Elements("Property"))
