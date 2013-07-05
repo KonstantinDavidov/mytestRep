@@ -575,7 +575,7 @@ namespace FACCTS.Server.Data
 
         private static void SeedSex(DatabaseContext context)
         {
-            GetRecords<Sex>("Sex.csv")
+            GetRecords<FACCTS.Server.Model.DataModel.Sex>("Sex.csv")
                 .Aggregate(context.Sex, (dbset, record) =>
                 {
                     dbset.Add(record);
@@ -694,7 +694,7 @@ namespace FACCTS.Server.Data
             CourtCase testCourtCase = new CourtCase();
 
             CaseRecord testCaseRecord = new CaseRecord();
-            Sex testSex = context.Sex.FirstOrDefault();
+            FACCTS.Server.Model.DataModel.Sex testSex = context.Sex.FirstOrDefault();
             Designation testDesignation = context.Designations.FirstOrDefault();
             EyesColor testEyesColor = context.EyesColor.FirstOrDefault();
             HairColor testHairColor = context.HairColor.FirstOrDefault();

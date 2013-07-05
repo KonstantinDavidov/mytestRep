@@ -46,6 +46,6 @@ namespace FACCTS.Server.Reporting
                 return pdfstream.ToByteArray();
             }
         }
-        
+                
     }
 }

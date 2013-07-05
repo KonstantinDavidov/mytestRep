@@ -1,4 +1,5 @@
-﻿using System;
+﻿using org.pdfclown.documents.interaction.forms;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,6 +44,15 @@ namespace FACCTS.Server.Reporting
                 }
             }
             return dict;
+        }
+
+        public static void SetPdfFormFieldValue(Form pdfForm, Dictionary<string, string> mapper, string key, string value)
+        {
+            var field = pdfForm.Fields[mapper[key]];
+            if (field != null && value != null)
+            {
+                field.Value = value;
+            }
         }
     }
 }

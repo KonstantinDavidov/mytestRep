@@ -79,6 +79,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="CryptoHelper.cs" />
     <Compile Include="DateTimeAdapter.cs" />
+    <Compile Include="EnumHelper.cs" />
     <Compile Include="FACCTSException.cs" />
     <Compile Include="IDateTime.cs" />
     <Compile Include="LoggerExtension.cs" />
