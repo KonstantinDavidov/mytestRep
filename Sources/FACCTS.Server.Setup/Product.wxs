@@ -19,6 +19,22 @@
       <Condition Message="IIS 7 or higher must be installed">
         Installed OR IIS_MAJOR_VERSION >= "#7"
       </Condition>
+      
+      <Property Id="SQLEXPRESSINSTALLED" >
+        <RegistrySearch Id="IsSqlExpressServiceInstalled" Root="HKLM" Key="SYSTEM\CurrentControlSet\services\MSSQL$SQLEXPRESS" Name="Description" Type="raw" Win64="no"/>
+      </Property>    
+      <Property Id="SQLSERVER">
+        <RegistrySearch Id="SQLServer2005orLater"
+          Key="Software\Microsoft\Microsoft SQL Server\Instance Names\SQL"
+          Name="MSSQL"
+          Root="HKLM"
+          Type="raw"
+          Win64="no"/>
+    </Property>
+      
+      <Condition Message="SQL Server or SQL Server Express must be installed">
+        Installed OR SQLEXPRESSINSTALLED OR SQLSERVER
+      </Condition>
 
       <!-- Go find the IIS root directory from the registry. On most machines 
          that defaults to C:\inetpub\wwwroot. This will be the directory we 

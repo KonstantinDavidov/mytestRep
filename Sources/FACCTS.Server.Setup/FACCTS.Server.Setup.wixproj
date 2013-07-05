@@ -60,7 +60,6 @@
   <ItemGroup>
     <Content Include="EULA.rtf" />
     <Content Include="FACCTS.Server.Setup.CustomActions.CA.dll" />
-    <Content Include="Filter.xslt" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FACCTS.Server.wxs" />
