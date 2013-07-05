@@ -65,6 +65,7 @@
     <Compile Include="FACCTS.Server.wxs" />
     <Compile Include="IisSettingsDlg.wxs" />
     <Compile Include="Product.wxs" />
+    <Compile Include="SCSqlServerConnection.wxs" />
     <Compile Include="UserInterface.wxs" />
   </ItemGroup>
   <!-- Define default target with name 'Build' -->
