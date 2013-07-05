@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -38,6 +39,13 @@ namespace FACCTS.Server.Data.Repositiries
                     q = q.Include(s);
                     return q;
                 });
+            return query;
+        }
+
+        public virtual IQueryable<TEntity> GetAll(params Expression<Func<TEntity, object>>[] includePaths)
+        {
+            IQueryable<TEntity> query = Entities;
+            query = includePaths.Aggregate(query, (current, expression) => current.Include(expression));
             return query;
         }
 
