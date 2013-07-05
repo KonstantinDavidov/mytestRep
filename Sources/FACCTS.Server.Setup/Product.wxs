@@ -45,20 +45,22 @@
         <Media Id="1" Cabinet="faccts.server.cab" EmbedCab="yes" />
         <EnsureTable Id='ComboBox'/>
         <Binary Id="IisManager" SourceFile="FACCTS.Server.Setup.CustomActions.CA.dll" />
-        <iis:WebSite Id="DefaultWebSite" Description="Default" SiteId="[WEBSITEVALUE]">
-            <iis:WebAddress Id="AllUnassigned" Port="80" />
-            <iis:WebAddress Id="AllUnsassignedSSL" Port="443" Secure="yes"/>
-        </iis:WebSite>
-        <iis:WebAppPool Id="AppPool" Name="[APPPOOLVALUE]" />
+        
+        
         <Directory Id="TARGETDIR" Name="SourceDir">
             <Directory Id="IISROOT" Name="WebRoot">
                 <Directory Id="INSTALLLOCATION" Name="FACCTS.Server">
                     <Component Id="VirtualDirectoryComponent" Guid="DED95D72-52AE-4258-9D50-687E65449F95">
-                        <CreateFolder />
-                        <iis:WebVirtualDir Id="VirtualDirectory" Alias="[VIRTUALDIRECTORYVALUE]" Directory="INSTALLLOCATION" WebSite="DefaultWebSite">
+                      <iis:WebAppPool Id="AppPool" Name="[APPPOOLVALUE]" Identity="networkService"/>
+                      <iis:WebSite Id="DefaultWebSite" Description="[WEBSITEVALUE]" Directory="IISROOT" ConfigureIfExists="yes">
+                        <iis:WebAddress Id="AllUnassigned" Port="80" />
+                        <iis:WebAddress Id="AllUnsassignedSSL" Port="443" Secure="yes"/>
+                      </iis:WebSite>
+                      <iis:WebVirtualDir Id="VirtualDirectory" Alias="[VIRTUALDIRECTORYVALUE]" Directory="INSTALLLOCATION" WebSite="DefaultWebSite">
                             <iis:WebApplication Id="WebSiteApp" Name="[VIRTUALDIRECTORYVALUE]" WebAppPool="AppPool" />
-                            <iis:WebDirProperties Id="WebSite_Properties" AnonymousAccess="yes" WindowsAuthentication="no" DefaultDocuments="Default.aspx" Script="yes" Read="yes" />
-                        </iis:WebVirtualDir>
+                            <iis:WebDirProperties Id="WebSite_Properties" AnonymousAccess="yes" WindowsAuthentication="no" DefaultDocuments="Default.aspx" Script="yes" Read="yes"/>
+                      </iis:WebVirtualDir>
+                      <CreateFolder />
                     </Component>
                     <Component Id="ASPNet4Extension" Permanent="yes" Guid="399972A9-A1DF-458C-BD99-13990ACBABEB">
                         <CreateFolder />
