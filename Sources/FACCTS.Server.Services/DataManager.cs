@@ -183,7 +183,7 @@ namespace FACCTS.Server.Data
             DbContext.Configuration.ProxyCreationEnabled = false;
 
             // Load navigation properties explicitly (avoid serialization trouble)
-            DbContext.Configuration.LazyLoadingEnabled = false;
+            DbContext.Configuration.LazyLoadingEnabled = true;
 
             // Because Web API will perform validation, we don't need/want EF to do so
             DbContext.Configuration.ValidateOnSaveEnabled = false;

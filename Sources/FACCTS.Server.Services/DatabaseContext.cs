@@ -20,16 +20,17 @@ namespace FACCTS.Server.Data
         public DatabaseContext()
             : base("name=FACCTS_DB")
         {
-
+            Configuration.LazyLoadingEnabled = true;
         }
 
         public DatabaseContext(DbConnection dbConn) : base(dbConn, true)
         {
-
+            Configuration.LazyLoadingEnabled = true;
         }
 
         public DatabaseContext(IDatabaseInitializer<DatabaseContext> initializer)
         {
+            Configuration.LazyLoadingEnabled = true;
             Database.SetInitializer<DatabaseContext>(initializer);
         }
 
