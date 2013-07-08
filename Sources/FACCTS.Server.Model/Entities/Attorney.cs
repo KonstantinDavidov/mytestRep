@@ -55,6 +55,15 @@ namespace FACCTS.Server.Model.DataModel
         [StringLength(50)]
         public string StateBarId { get; set; }
 
+        [NotMapped]
+        public string FullName
+        {
+            get
+            {
+                return this.FirstName + " " + this.LastName;
+            }
+        }
+
 
     }
 }

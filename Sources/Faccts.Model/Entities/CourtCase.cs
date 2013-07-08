@@ -87,7 +87,7 @@ namespace Faccts.Model.Entities
     	    #region Simple Properties
     
         [DataMember]
-        public int Id
+        public long Id
         {
             get { return _id; }
             set
@@ -104,7 +104,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _id;
+        private long _id;
     
         [DataMember]
         public string CaseNumber
@@ -203,7 +203,7 @@ namespace Faccts.Model.Entities
         private int _caseRecord_Id;
     
         [DataMember]
-        public Nullable<int> ParentCase_Id
+        public Nullable<long> ParentCase_Id
         {
             get { return _parentCase_Id; }
             set
@@ -224,7 +224,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _parentCase_Id;
+        private Nullable<long> _parentCase_Id;
 
         #endregion
 

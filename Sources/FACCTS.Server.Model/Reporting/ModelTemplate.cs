@@ -243,35 +243,24 @@ namespace FACCTS.Server.Model.OrderModels
 			
 	public partial class CH130
 	{
-		private CaseInfo _caseInfo;
-		public CaseInfo CaseInfo
+		private long _caseId;
+		public long CaseId
 		{
-			get{return _caseInfo;}
+			get{return _caseId;}
 			set
 			{
-				_caseInfo = value;
+				_caseId = value;
 
 			}
 		}
 		
-		private Party _party1;
-		public Party Party1
+		private long _hearingId;
+		public long HearingId
 		{
-			get{return _party1;}
+			get{return _hearingId;}
 			set
 			{
-				_party1 = value;
-
-			}
-		}
-		
-		private Party _party2;
-		public Party Party2
-		{
-			get{return _party2;}
-			set
-			{
-				_party2 = value;
+				_hearingId = value;
 
 			}
 		}

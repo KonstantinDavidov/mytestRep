@@ -12,7 +12,7 @@ namespace Thinktecture.IdentityServer.Models
     public class Client : IValidatableObject
     {
         [UIHint("HiddenInput")]
-        public int ID { get; set; }
+        public long ID { get; set; }
 
         [Display(ResourceType = typeof (Resources.Models.Client), Name = "Name", Description = "NameDescription")]
         [Required]

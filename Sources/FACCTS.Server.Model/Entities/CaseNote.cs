@@ -13,7 +13,7 @@ namespace FACCTS.Server.Model.DataModel
     public partial class CaseNote
     {
         [Key]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Required]
         public virtual User Author { get; set; }

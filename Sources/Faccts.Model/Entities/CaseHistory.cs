@@ -253,7 +253,7 @@ namespace Faccts.Model.Entities
         private Nullable<int> _hearing_Id;
     
         [DataMember]
-        public Nullable<int> MergeCase_Id
+        public Nullable<long> MergeCase_Id
         {
             get { return _mergeCase_Id; }
             set
@@ -274,7 +274,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _mergeCase_Id;
+        private Nullable<long> _mergeCase_Id;
 
         #endregion
 

@@ -54,5 +54,9 @@ namespace FACCTS.Server.Reporting
                 field.Value = value;
             }
         }
+        public static string ToOrderDate(this DateTime date)
+        {
+            return date.ToShortDateString();
+        }
     }
 }

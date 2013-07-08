@@ -22,30 +22,20 @@ namespace FACCTS.Server.Tests.OrdersGenerator
         public void TestReflection()
         {
             CH130 testModel = new CH130();
+            testModel.ConductSection = new CH130ConductChoice();
+            testModel.ConductSection.IsEnabled = true;
+            testModel.ConductSection.NoAbuse = true;
+            testModel.ConductSection.NoContact = false;
+            testModel.ConductSection.Other = true;
+            testModel.ConductSection.OtherDescription = "Some Description";
             
             //string curDir = AppDomain.CurrentDomain.BaseDirectory;
             IDataManager dm = new DataManager( new RepositoryProvider(new RepositoryFactories()));
 
             CourtCase cc = dm.CourtCaseRepository.GetAll().FirstOrDefault();
 
-            testModel.CaseInfo = new CaseInfo();
-            testModel.CaseInfo.CaseId = cc.Id;
-            testModel.CaseInfo.CaseNumber = "22 - 2222";
-            testModel.CaseInfo.CasesCompleteHead = 5;
-            testModel.CaseInfo.CasesOnDocket = 3;
-            testModel.CaseInfo.IsSealed = false;
-            testModel.CaseInfo.IsTempJudge = true;
-            testModel.CaseInfo.TempJudgeName = "John Smith";
-
-            testModel.Party1 = new Model.Reporting.Entities.Party();
-            testModel.Party1.IsPresent = true;
-            testModel.Party1.IsSworn = false;
-            testModel.Party1.Name = "Test Protected";
-            testModel.Party1.Parent = "Mother";
-            testModel.Party1.Designation = new Model.DataModel.Designation() { DesignationName = "Des1", Id = 23 };
-            testModel.Party1.HasAttorney = true;
-            testModel.Party1.ParticipantRole = FACCTS.Server.Model.Enums.ParticipantRole.Protected;
-
+            testModel.CaseId = cc.Id;
+                      
             var res = OrderGenerator.GenerateOrder(testModel, dm, @"..\..\Resources\ch130.pdf",  @"..\..\Resources\Mappers\ch130.xml");
             FileStream file = new FileStream(@"E:\test1.pdf", FileMode.Create, System.IO.FileAccess.Write);
             file.Write(res, 0, res.Length);

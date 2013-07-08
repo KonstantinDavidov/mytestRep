@@ -42,6 +42,15 @@ namespace FACCTS.Server.Model.DataModel
 
         public bool IsHouseHold { get; set; }
 
+        [NotMapped]
+        public string FullName
+        {
+            get
+            {
+                return this.FirstName + " " + this.LastName;
+            }
+        }
+
         [InverseProperty("OtherProtected")]
         public virtual CaseRecord CaseRecord { get; set; }
     }

@@ -18,12 +18,13 @@ namespace FACCTS.Server.Model.DataModel
         }
 
         [Key]
-        public int Id { get; set; }
+        public long Id { get; set; }
         
         public int AvailableCourtOrderId { get; set; }
 
         public AvailableCourtOrder AvailableCourtOrder { get; set; }
 
+        
         [Column(TypeName="xml")]
         public string XMLContent { get; set; }
 

@@ -12,7 +12,7 @@ namespace FACCTS.Server.Model.DataModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         public virtual CourtParty Party1 { get; set; }
 

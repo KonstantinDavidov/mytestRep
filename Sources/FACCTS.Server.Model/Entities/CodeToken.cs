@@ -6,11 +6,11 @@ namespace FACCTS.Server.Model.DataModel
     public partial class CodeToken
     {
         [Key]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         public string Code { get; set; }
 
-        public int ClientId { get; set; }
+        public long ClientId { get; set; }
 
         public string UserName { get; set; }
 
