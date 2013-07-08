@@ -79,6 +79,22 @@
     <Property name="CanEditNote" type="bool"/>
   </Model>
   
+  <Model name="GenerateCourtOrdersControlViewModel">
+    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
+    <Property name="MasterOrder" type="FACCTS.Server.Model.Enums.MasterOrders"/>
+    <!--Properties for attachments-->
+    <Property name="HasDV140CC_CV" type="bool"/>
+    <Property name="HasDV145TravelRestriction" type="bool"/>
+    <Property name="HasDV150Supervision" type="bool"/>
+    <Property name="HasFL342" type="bool"/>
+    <Property name="HasFL343" type="bool"/>
+    <Property name="HasOtherAttachment" type="bool"/>
+    <!--Properties for other orders-->
+    <Property name="HasDV730"/>
+    <Property name="HasDV115"/>
+    <Property name="HasDV116"/>
+  </Model>
+  
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="ModelsDef">
@@ -118,7 +134,7 @@
         <xs:enumeration value="Faccts.Model.Entities.CaseNotes"></xs:enumeration>
         <xs:enumeration value="Faccts.Model.Entities.User"></xs:enumeration>
         <xs:enumeration value="Faccts.Model.Entities.HearingIssue"></xs:enumeration>
-      
+        <xs:enumeration value="FACCTS.Server.Model.Enums.MasterOrders"/>
       </xs:restriction>
     </xs:simpleType>
   </xs:schema>

@@ -131,6 +131,7 @@
     <Compile Include="Enums\IntegrationTaskState.cs" />
     <Compile Include="Enums\FACCTSEntity.cs" />
     <Compile Include="Enums\IdentificationIDType.cs" />
+    <Compile Include="Enums\MasterOrders.cs" />
     <Compile Include="Enums\OrderItemState.cs" />
     <Compile Include="Enums\ParticipantRole.cs" />
     <Compile Include="Enums\Relationship.cs" />

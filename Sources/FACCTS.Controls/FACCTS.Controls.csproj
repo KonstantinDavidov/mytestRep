@@ -159,6 +159,7 @@
     <Compile Include="ViewModels\Case Record\CourtPartyAdapter.cs" />
     <Compile Include="ViewModels\ConsolidateCasesDialogViewModel.cs" />
     <Compile Include="ViewModels\DropDismissDialogViewModel.cs" />
+    <Compile Include="ViewModels\GenerateCourtOrdersControlViewModel.cs" />
     <Compile Include="ViewModels\ModelTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
