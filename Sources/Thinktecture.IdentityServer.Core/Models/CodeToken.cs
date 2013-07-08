@@ -11,7 +11,7 @@ namespace Thinktecture.IdentityServer.Models
     {
         public string Code { get; set; }
 
-        public int ClientId { get; set; }
+        public long ClientId { get; set; }
 
         public string UserName { get; set; }
 

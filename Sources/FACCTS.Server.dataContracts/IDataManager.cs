@@ -30,6 +30,7 @@ namespace FACCTS.Server.DataContracts
         IFacctsDictionaryDataRepository<FACCTSConfiguration> FACCTSConfigurationRepository { get; }
         IFacctsDataRepository<Courtroom> CourtroomRepository { get; }
         IFacctsDictionaryDataRepository<Race> RaceRepository { get; }
+        IFacctsDataRepository<Hearing> HearingRepository { get; }
 
         IFacctsDataRepository<ManualIntegrationTask> ManualIntegrationTaskRepository { get; }
         IFacctsDataRepository<ScheduledIntegrationTask> ScheduledIntegrationTaskRepository { get; }

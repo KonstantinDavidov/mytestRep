@@ -13,7 +13,7 @@ namespace FACCTS.Server.Model.DataModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Required]
         [StringLength(255)]
@@ -83,6 +83,15 @@ namespace FACCTS.Server.Model.DataModel
         public virtual CaseRecord CaseRecordByCourtParty1 { get; set; }
 
         public virtual CaseRecord CaseRecordByCourtParty2 {get; set;}
+
+        [NotMapped]
+        public string FullName
+        {
+            get
+            {
+                return this.FirstName + " " + this.LastName;
+            }
+        }
 
     }
 }

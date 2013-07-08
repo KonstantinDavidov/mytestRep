@@ -13,7 +13,7 @@ namespace FACCTS.Server.Data.Repositiries
     [Export(typeof(ICodeTokenRepository))]
     public class CodeTokenRepository : ICodeTokenRepository
     {
-        public string AddCode(CodeTokenType type, int clientId, string userName, string scope)
+        public string AddCode(CodeTokenType type, long clientId, string userName, string scope)
         {
             using (var entities = DatabaseContext.Get())
             {

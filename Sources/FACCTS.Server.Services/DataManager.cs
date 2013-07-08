@@ -158,6 +158,12 @@ namespace FACCTS.Server.Data
             get { return GetStandardRepo<ScheduledIntegrationTask>(); }
         }
 
+        public IFacctsDataRepository<Hearing> HearingRepository
+        {
+            get { return GetStandardRepo<Hearing>(); }
+        }
+
+
         #endregion
 
         //Commit

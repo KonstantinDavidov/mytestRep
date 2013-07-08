@@ -19,7 +19,7 @@ namespace FACCTS.Server.Model.DataModel
         }
 
         [Key]
-        public int Id { get; set; }
+        public long Id { get; set; }
         
         public int AvailableCourtOrderId { get; set; }
 
@@ -29,6 +29,7 @@ namespace FACCTS.Server.Model.DataModel
 
         public virtual ICollection<OverrunOrders> OverrunOrders { get; set; }
 
+        
         [Column(TypeName="xml")]
         public string XMLContent { get; set; }
 

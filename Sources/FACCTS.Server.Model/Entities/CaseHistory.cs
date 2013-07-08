@@ -12,7 +12,7 @@ namespace FACCTS.Server.Model.DataModel
     public partial class CaseHistory
     {
         [Key]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -27,7 +27,8 @@ namespace FACCTS.Server.Model.DataModel
         [StringLength(30)]
         public string CCPOR_ID { get; set; }
 
-        public int? CourtCaseOrderId { get; set; }
+        public long? CourtCaseOrderId { get; set; }
+
         [ForeignKey("CourtCaseOrderId")]
         public virtual CourtCaseOrder Order { get; set; }
 

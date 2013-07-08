@@ -39,7 +39,12 @@ namespace FACCTS.Server.Reporting
                 cc=>cc.CaseRecord.Party2.HairColor,
                 cc=>cc.CaseRecord.Party2.Race,
                 cc=>cc.CaseRecord.Party2.Sex)
-                .FirstOrDefault(cc => cc.Id == reportData.CaseInfo.CaseId);
+                .FirstOrDefault(cc => cc.Id == reportData.CaseId);
+
+            Hearing caseHearing = DataManager.HearingRepository.GetAll(
+                ch => ch.Department,
+                ch => ch.Courtroom
+                ).FirstOrDefault(ch => ch.Id == reportData.HearingId);
 
             CourtParty protectedParty;
             CourtParty restrainedParty;
@@ -60,10 +65,10 @@ namespace FACCTS.Server.Reporting
             Utils.SetPdfFormFieldValue(form, mapper, "courtName", "TODO"); 
 
             //protected
-            Utils.SetPdfFormFieldValue(form, mapper, "protectedName", protectedParty.FirstName + " " + protectedParty.LastName);
+            Utils.SetPdfFormFieldValue(form, mapper, "protectedName", protectedParty.FullName);
             if (protectedParty.HasAttorney.HasValue && protectedParty.HasAttorney.Value && (protectedParty.Attorney != null))
             {
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedAttorneyName", protectedParty.Attorney.FirstName + " " + protectedParty.Attorney.LastName);
+                Utils.SetPdfFormFieldValue(form, mapper, "protectedAttorneyName", protectedParty.Attorney.FullName);
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAttorneyFirm", protectedParty.Attorney.FirmName);
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAttorneyBarID", protectedParty.Attorney.StateBarId);
 
@@ -88,7 +93,7 @@ namespace FACCTS.Server.Reporting
             
 
             //restrained person
-            Utils.SetPdfFormFieldValue(form, mapper, "restrainedName", restrainedParty.FirstName + " " + restrainedParty.LastName);
+            Utils.SetPdfFormFieldValue(form, mapper, "restrainedName", restrainedParty.FullName);
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedAddressStreet", restrainedParty.Address);
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedAddressCity", restrainedParty.City);
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedAddressState", restrainedParty.State);
@@ -98,7 +103,7 @@ namespace FACCTS.Server.Reporting
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedRace", restrainedParty.Race.RaceName);
 
 
-            Utils.SetPdfFormFieldValue(form, mapper, "restrainedDOB", restrainedParty.DateOfBirth.ToShortDateString());
+            Utils.SetPdfFormFieldValue(form, mapper, "restrainedDOB", restrainedParty.DateOfBirth.ToOrderDate());
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedAge", restrainedParty.Age.ToString());
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedRelationship", "TODO");
             form.Fields[mapper["restrainedSexM"]].Value = restrainedParty.Sex.Id == 1 ? "1" : null ; //CheckBox
@@ -110,7 +115,7 @@ namespace FACCTS.Server.Reporting
                 //First protected
                 var firstProtected = courtCase.CaseRecord.OtherProtected.First();
                 form.Fields[mapper["protectedAddYes"]].Value = "1"; //CheckBox
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Name", firstProtected.FirstName + " " + firstProtected.LastName);
+                Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Name", firstProtected.FullName);
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Sex", firstProtected.Sex.SexName.First().ToString());
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Age", firstProtected.Age.ToString());
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Relation", firstProtected.RelationshipToPlaintiff.ToString());
@@ -120,7 +125,7 @@ namespace FACCTS.Server.Reporting
                 if(courtCase.CaseRecord.OtherProtected.Count > 1)
                 {
                     var secondProtected = courtCase.CaseRecord.OtherProtected.ElementAt(1);
-                    Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]Name", secondProtected.FirstName + " " + secondProtected.LastName);
+                    Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]Name", secondProtected.FullName);
                     Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]Sex", secondProtected.Sex.SexName.First().ToString());
                     Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]Age", secondProtected.Age.ToString());
                     Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]Relation", secondProtected.RelationshipToPlaintiff.ToString());
@@ -136,6 +141,19 @@ namespace FACCTS.Server.Reporting
             }
 
             //Docket
+            //Utils.SetPdfFormFieldValue(form, mapper, "", ); hearingJudicialOfficer
+            Utils.SetPdfFormFieldValue(form, mapper, "hearingDate", caseHearing.HearingDate.ToOrderDate());
+            Utils.SetPdfFormFieldValue(form, mapper, "hearingDepartment", caseHearing.Department.Name);
+            Utils.SetPdfFormFieldValue(form, mapper, "hearingCourtroom", caseHearing.Courtroom.RoomName);
+            Utils.SetPdfFormFieldValue(form, mapper, "hearingJudicialOfficer", caseHearing.Judge);
+
+            //Conduct
+            if (reportData.ConductSection != null && reportData.ConductSection.IsEnabled)
+            {
+                Utils.SetPdfFormFieldValue(form, mapper, "conductOrdersYes", "1");
+                Utils.SetPdfFormFieldValue(form, mapper, "conductHarrassYes", reportData.ConductSection.NoAbuse ? "1" : null);
+                Utils.SetPdfFormFieldValue(form, mapper, "conductContactYes", reportData.ConductSection.NoContact ? "1" : null);
+            }
         }
 
     }
