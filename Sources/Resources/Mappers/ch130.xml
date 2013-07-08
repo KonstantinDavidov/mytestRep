@@ -47,6 +47,7 @@
   <pdfField originalValue="protectedAdd[1]Age" mapValue="protectedAdd[1]Age" />
   <pdfField originalValue="protectedAdd[1]HouseholdYes" mapValue="protectedAdd[1]HouseholdYes" />
   <pdfField originalValue="protectedAdd[1]HouseholdNo" mapValue="protectedAdd[1]HouseholdNo" />
+  <pdfField originalValue="protectedAdd[1]Relation" mapValue="protectedAdd[1]Relation" />
   <pdfField originalValue="protectedAddAttachYes" mapValue="protectedAddAttachYes" />
   <pdfField originalValue="NULL" mapValue="NULL" />
   <pdfField originalValue="NULL" mapValue="NULL" />
