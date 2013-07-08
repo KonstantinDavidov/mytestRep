@@ -614,5 +614,131 @@ namespace FACCTS.Controls.ViewModels
 				
 	}
 	
+			
+	public partial class GenerateCourtOrdersControlViewModel
+	{
+		private Faccts.Model.Entities.CourtCase _currentCourtCase;
+		public Faccts.Model.Entities.CourtCase CurrentCourtCase
+		{
+			get{return _currentCourtCase;}
+			set{
+				if(_currentCourtCase!=value){
+					this.RaiseAndSetIfChanged(ref _currentCourtCase, value);
+				}
+			}
+		}
+		
+		private FACCTS.Server.Model.Enums.MasterOrders _masterOrder;
+		public FACCTS.Server.Model.Enums.MasterOrders MasterOrder
+		{
+			get{return _masterOrder;}
+			set{
+				if(_masterOrder!=value){
+					this.RaiseAndSetIfChanged(ref _masterOrder, value);
+				}
+			}
+		}
+		
+		private bool _hasDV140CC_CV;
+		public bool HasDV140CC_CV
+		{
+			get{return _hasDV140CC_CV;}
+			set{
+				if(_hasDV140CC_CV!=value){
+					this.RaiseAndSetIfChanged(ref _hasDV140CC_CV, value);
+				}
+			}
+		}
+		
+		private bool _hasDV145TravelRestriction;
+		public bool HasDV145TravelRestriction
+		{
+			get{return _hasDV145TravelRestriction;}
+			set{
+				if(_hasDV145TravelRestriction!=value){
+					this.RaiseAndSetIfChanged(ref _hasDV145TravelRestriction, value);
+				}
+			}
+		}
+		
+		private bool _hasDV150Supervision;
+		public bool HasDV150Supervision
+		{
+			get{return _hasDV150Supervision;}
+			set{
+				if(_hasDV150Supervision!=value){
+					this.RaiseAndSetIfChanged(ref _hasDV150Supervision, value);
+				}
+			}
+		}
+		
+		private bool _hasFL342;
+		public bool HasFL342
+		{
+			get{return _hasFL342;}
+			set{
+				if(_hasFL342!=value){
+					this.RaiseAndSetIfChanged(ref _hasFL342, value);
+				}
+			}
+		}
+		
+		private bool _hasFL343;
+		public bool HasFL343
+		{
+			get{return _hasFL343;}
+			set{
+				if(_hasFL343!=value){
+					this.RaiseAndSetIfChanged(ref _hasFL343, value);
+				}
+			}
+		}
+		
+		private bool _hasOtherAttachment;
+		public bool HasOtherAttachment
+		{
+			get{return _hasOtherAttachment;}
+			set{
+				if(_hasOtherAttachment!=value){
+					this.RaiseAndSetIfChanged(ref _hasOtherAttachment, value);
+				}
+			}
+		}
+		
+		private string _hasDV730;
+		public string HasDV730
+		{
+			get{return _hasDV730;}
+			set{
+				if(_hasDV730!=value){
+					this.RaiseAndSetIfChanged(ref _hasDV730, value);
+				}
+			}
+		}
+		
+		private string _hasDV115;
+		public string HasDV115
+		{
+			get{return _hasDV115;}
+			set{
+				if(_hasDV115!=value){
+					this.RaiseAndSetIfChanged(ref _hasDV115, value);
+				}
+			}
+		}
+		
+		private string _hasDV116;
+		public string HasDV116
+		{
+			get{return _hasDV116;}
+			set{
+				if(_hasDV116!=value){
+					this.RaiseAndSetIfChanged(ref _hasDV116, value);
+				}
+			}
+		}
+				
+	}
+	
 }
 

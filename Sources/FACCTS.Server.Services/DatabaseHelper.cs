@@ -513,7 +513,6 @@ namespace FACCTS.Server.Data
             SeedPdfForm(context);
             SeedCourtCounties(context);
             SeedMembershipProviderData(context);
-            SeedAvailavleCourtOrders(context);
             SeedPermissions(context);
             SeedRolePermissions(context);
         }
@@ -526,15 +525,6 @@ namespace FACCTS.Server.Data
                 });
         }
 
-        private static void SeedAvailavleCourtOrders(DatabaseContext context)
-        {
-            GetRecords<AvailableCourtOrder>("AvailableCourtOrders.csv")
-                .Aggregate(context.AvailableCourtOrders, (dbset, record) =>
-                {
-                    dbset.Add(record);
-                    return dbset;
-                });
-        }
 
         private static void SeedMembershipProviderData(DatabaseContext context)
         {
