@@ -24,10 +24,7 @@ namespace FACCTS.Controls.ViewModels
             {
                 if (_masterOrdersList == null)
                 {
-                    _masterOrdersList = Enum.GetValues(typeof(FACCTS.Server.Model.Enums.MasterOrders))
-                        .Cast<FACCTS.Server.Model.Enums.MasterOrders>()
-                        .Select(x => new EnumDescript<FACCTS.Server.Model.Enums.MasterOrders>(x))
-                        .ToList();
+                    _masterOrdersList = EnumDescript<FACCTS.Server.Model.Enums.MasterOrders>.GetList<FACCTS.Server.Model.Enums.MasterOrders>();
                 }
                 return _masterOrdersList;
             }

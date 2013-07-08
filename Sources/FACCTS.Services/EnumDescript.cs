@@ -53,6 +53,17 @@ namespace FACCTS.Services
             return default(T);
         }
 
+        private bool GetIsBrowsable()
+        {
+            FieldInfo fi = _enumValue.GetType().GetField(_enumValue.ToString());
+            BrowsableAttribute[] attributes = (BrowsableAttribute[])fi.GetCustomAttributes(
+                typeof(BrowsableAttribute), false);
+
+
+            if (attributes != null && attributes.Length > 0) return attributes[0].Browsable;
+            else return true;
+        }
+
         public override string ToString()
         {
             return this.ToDescription();
@@ -89,6 +100,17 @@ namespace FACCTS.Services
         public override int GetHashCode()
         {
             return this._enumValue.GetHashCode();
+        }
+
+        public static List<EnumDescript<T>> GetList<T>()
+            where T : struct
+        {
+            return Enum.GetValues(typeof(T))
+                .Cast<T>()
+                .Select(x => new EnumDescript<T>(x))
+                .Where(t => t.GetIsBrowsable())
+                .ToList();
+                
         }
     }
 }
