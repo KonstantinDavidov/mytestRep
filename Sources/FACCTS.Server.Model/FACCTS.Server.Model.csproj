@@ -72,7 +72,6 @@
     <Compile Include="CurrentUserResponse.cs" />
     <Compile Include="Entities\Appearance.cs" />
     <Compile Include="Entities\Attorney.cs" />
-    <Compile Include="Entities\AvailableCourtOrder.cs" />
     <Compile Include="Entities\CaseHistory.cs" />
     <Compile Include="Entities\CaseNote.cs" />
     <Compile Include="Entities\CaseRecord.cs" />
@@ -121,6 +120,7 @@
     <Compile Include="Entities\Sex.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Witness.cs" />
+    <Compile Include="Enums\AttachmentOrders.cs" />
     <Compile Include="Enums\CARPOSEntryType.cs" />
     <Compile Include="Enums\CaseHistoryEvent.cs" />
     <Compile Include="Enums\CaseNoteStatus.cs" />
@@ -133,6 +133,7 @@
     <Compile Include="Enums\IdentificationIDType.cs" />
     <Compile Include="Enums\MasterOrders.cs" />
     <Compile Include="Enums\OrderItemState.cs" />
+    <Compile Include="Enums\OverrunOrders.cs" />
     <Compile Include="Enums\ParticipantRole.cs" />
     <Compile Include="Enums\Relationship.cs" />
     <Compile Include="Enums\ServiceReqState.cs" />

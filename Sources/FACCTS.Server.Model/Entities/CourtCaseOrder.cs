@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FACCTS.Server.Model.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -22,7 +23,11 @@ namespace FACCTS.Server.Model.DataModel
         
         public int AvailableCourtOrderId { get; set; }
 
-        public AvailableCourtOrder AvailableCourtOrder { get; set; }
+        public MasterOrders OrderType { get; set; }
+
+        public virtual ICollection<AttachmentOrders> AttachmentOrders { get; set; }
+
+        public virtual ICollection<OverrunOrders> OverrunOrders { get; set; }
 
         [Column(TypeName="xml")]
         public string XMLContent { get; set; }

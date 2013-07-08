@@ -39,6 +39,8 @@ namespace FACCTS.Server.Model.DataModel
         public CourtCase MergeCase { get; set; }
 
         public virtual Hearing Hearing { get; set; }
+
+        public virtual CourtCaseOrder CourtOrder { get; set; }
         
     }
 }

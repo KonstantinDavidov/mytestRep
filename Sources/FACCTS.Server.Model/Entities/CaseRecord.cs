@@ -44,8 +44,6 @@ namespace FACCTS.Server.Model.DataModel
 
         public virtual ICollection<CaseRecord> RelatedCaseRecords { get; set; }
 
-        public virtual ICollection<CourtCaseOrder> CourtOrders { get; set; }
-
 
         public RestrainingPartyIdentificationInformation RestrainingPartyIdentificationInformation { get; set; }
     }
