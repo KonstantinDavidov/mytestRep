@@ -18,7 +18,7 @@ using Thinktecture.IdentityModel.Constants;
 namespace FACCTS.Server.Data
 {
     [Export]
-    public class FacctsDatabaseInitializer : DropCreateDatabaseAlways<DatabaseContext>
+    public class FacctsDatabaseInitializer : CreateDatabaseIfNotExists<DatabaseContext>
     {
         public FacctsDatabaseInitializer() : base()
         {

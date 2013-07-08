@@ -33,14 +33,14 @@ namespace FACCTS.Server
         protected void Application_Start()
         {
             // create empty config database if it not exists
-           
+            ConfigureMEF();
             DatabasesConfigure.ConfigureDB();
 
             // set the anti CSRF for name (that's a unqiue claim in our system)
             AntiForgeryConfig.UniqueClaimTypeIdentifier = ClaimTypes.Name;
             AreaRegistration.RegisterAllAreas();
 
-            ConfigureMEF();
+            
             _logger = ServiceLocator.Current.GetInstance<ILog>();
             _logger.Info("Application_Start started");
             GlobalConfig.CustomizeConfig(GlobalConfiguration.Configuration);
@@ -69,6 +69,10 @@ namespace FACCTS.Server
 
         protected void Application_End(object sender, EventArgs e)
         {
+            if (_logger == null)
+            {
+                _logger = ServiceLocator.Current.GetInstance<ILog>();
+            }
             _logger.Info("FACCTS shutting down...");
 
             // this would be automatic, but in partial trust scenarios it is not.
