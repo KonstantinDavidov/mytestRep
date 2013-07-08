@@ -232,6 +232,38 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<int> _sex_Id;
+    
+        [DataMember]
+        public int Age
+        {
+            get { return _age; }
+            set
+            {
+                if (_age != value)
+                {
+    				OnPropertyChanging("Age");
+                    _age = value;
+                    OnPropertyChanged("Age");
+                }
+            }
+        }
+        private int _age;
+    
+        [DataMember]
+        public bool IsHouseHold
+        {
+            get { return _isHouseHold; }
+            set
+            {
+                if (_isHouseHold != value)
+                {
+    				OnPropertyChanging("IsHouseHold");
+                    _isHouseHold = value;
+                    OnPropertyChanged("IsHouseHold");
+                }
+            }
+        }
+        private bool _isHouseHold;
 
         #endregion
 

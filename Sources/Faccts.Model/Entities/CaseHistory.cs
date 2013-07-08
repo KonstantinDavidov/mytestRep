@@ -157,7 +157,7 @@ namespace Faccts.Model.Entities
         private string _cCPOR_ID;
     
         [DataMember]
-        public Nullable<int> CourtCaseOrderId
+        public Nullable<long> CourtCaseOrderId
         {
             get { return _courtCaseOrderId; }
             set
@@ -178,7 +178,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _courtCaseOrderId;
+        private Nullable<long> _courtCaseOrderId;
     
         [DataMember]
         public Nullable<int> CourtClerk_UserId
@@ -275,6 +275,30 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<long> _mergeCase_Id;
+    
+        [DataMember]
+        public Nullable<long> CourtOrder_Id
+        {
+            get { return _courtOrder_Id; }
+            set
+            {
+                if (_courtOrder_Id != value)
+                {
+                    ChangeTracker.RecordOriginalValue("CourtOrder_Id", _courtOrder_Id);
+                    if (!IsDeserializing)
+                    {
+                        if (CourtCaseOrders1 != null && CourtCaseOrders1.Id != value)
+                        {
+                            CourtCaseOrders1 = null;
+                        }
+                    }
+    				OnPropertyChanging("CourtOrder_Id");
+                    _courtOrder_Id = value;
+                    OnPropertyChanged("CourtOrder_Id");
+                }
+            }
+        }
+        private Nullable<long> _courtOrder_Id;
 
         #endregion
 
@@ -411,6 +435,24 @@ namespace Faccts.Model.Entities
             }
         }
         private CourtCase _mergeCase;
+    
+        [DataMember]
+        public CourtCaseOrders CourtCaseOrders1
+        {
+            get { return _courtCaseOrders1; }
+            set
+            {
+                if (!ReferenceEquals(_courtCaseOrders1, value))
+                {
+                    var previousValue = _courtCaseOrders1;
+    				OnNavigationPropertyChanging("CourtCaseOrders1");
+                    _courtCaseOrders1 = value;
+                    FixupCourtCaseOrders1(previousValue);
+                    OnNavigationPropertyChanged("CourtCaseOrders1");
+                }
+            }
+        }
+        private CourtCaseOrders _courtCaseOrders1;
 
         #endregion
 
@@ -523,6 +565,7 @@ namespace Faccts.Model.Entities
             User = null;
             Hearing = null;
             MergeCase = null;
+            CourtCaseOrders1 = null;
         }
 
         #endregion
@@ -724,6 +767,47 @@ namespace Faccts.Model.Entities
                 if (MergeCase != null && !MergeCase.ChangeTracker.ChangeTrackingEnabled)
                 {
                     MergeCase.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupCourtCaseOrders1(CourtCaseOrders previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.CaseHistory1.Contains(this))
+            {
+                previousValue.CaseHistory1.Remove(this);
+            }
+    
+            if (CourtCaseOrders1 != null)
+            {
+                CourtCaseOrders1.CaseHistory1.Add(this);
+    
+                CourtOrder_Id = CourtCaseOrders1.Id;
+            }
+            else if (!skipKeys)
+            {
+                CourtOrder_Id = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("CourtCaseOrders1")
+                    && (ChangeTracker.OriginalValues["CourtCaseOrders1"] == CourtCaseOrders1))
+                {
+                    ChangeTracker.OriginalValues.Remove("CourtCaseOrders1");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("CourtCaseOrders1", previousValue);
+                }
+                if (CourtCaseOrders1 != null && !CourtCaseOrders1.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    CourtCaseOrders1.StartTracking();
                 }
             }
         }

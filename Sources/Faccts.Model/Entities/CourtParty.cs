@@ -25,7 +25,6 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(Designation))]
     [KnownType(typeof(EyesColor))]
     [KnownType(typeof(HairColor))]
-    [KnownType(typeof(ParticipantRole))]
     [KnownType(typeof(Race))]
     [KnownType(typeof(Sex))]
     [KnownType(typeof(Interpreters))]
@@ -394,30 +393,6 @@ namespace Faccts.Model.Entities
         private int _designation_Id;
     
         [DataMember]
-        public int ParticipantRole_Id
-        {
-            get { return _participantRole_Id; }
-            set
-            {
-                if (_participantRole_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("ParticipantRole_Id", _participantRole_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (ParticipantRole != null && ParticipantRole.Id != value)
-                        {
-                            ParticipantRole = null;
-                        }
-                    }
-    				OnPropertyChanging("ParticipantRole_Id");
-                    _participantRole_Id = value;
-                    OnPropertyChanged("ParticipantRole_Id");
-                }
-            }
-        }
-        private int _participantRole_Id;
-    
-        [DataMember]
         public int Sex_Id
         {
             get { return _sex_Id; }
@@ -584,6 +559,22 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<int> _caseRecordByCourtParty2_Id;
+    
+        [DataMember]
+        public int ParticipantRole1
+        {
+            get { return _participantRole1; }
+            set
+            {
+                if (_participantRole1 != value)
+                {
+    				OnPropertyChanging("ParticipantRole1");
+                    _participantRole1 = value;
+                    OnPropertyChanged("ParticipantRole1");
+                }
+            }
+        }
+        private int _participantRole1;
 
         #endregion
 
@@ -768,24 +759,6 @@ namespace Faccts.Model.Entities
             }
         }
         private HairColor _hairColor;
-    
-        [DataMember]
-        public ParticipantRole ParticipantRole
-        {
-            get { return _participantRole; }
-            set
-            {
-                if (!ReferenceEquals(_participantRole, value))
-                {
-                    var previousValue = _participantRole;
-    				OnNavigationPropertyChanging("ParticipantRole");
-                    _participantRole = value;
-                    FixupParticipantRole(previousValue);
-                    OnNavigationPropertyChanged("ParticipantRole");
-                }
-            }
-        }
-        private ParticipantRole _participantRole;
     
         [DataMember]
         public Race Race
@@ -1034,7 +1007,6 @@ namespace Faccts.Model.Entities
             Designation = null;
             EyesColor = null;
             HairColor = null;
-            ParticipantRole = null;
             Race = null;
             Sex = null;
             Interpreters.Clear();
@@ -1272,42 +1244,6 @@ namespace Faccts.Model.Entities
                 if (HairColor != null && !HairColor.ChangeTracker.ChangeTrackingEnabled)
                 {
                     HairColor.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupParticipantRole(ParticipantRole previousValue)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.CourtParty.Contains(this))
-            {
-                previousValue.CourtParty.Remove(this);
-            }
-    
-            if (ParticipantRole != null)
-            {
-                ParticipantRole.CourtParty.Add(this);
-    
-                ParticipantRole_Id = ParticipantRole.Id;
-            }
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("ParticipantRole")
-                    && (ChangeTracker.OriginalValues["ParticipantRole"] == ParticipantRole))
-                {
-                    ChangeTracker.OriginalValues.Remove("ParticipantRole");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("ParticipantRole", previousValue);
-                }
-                if (ParticipantRole != null && !ParticipantRole.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    ParticipantRole.StartTracking();
                 }
             }
         }

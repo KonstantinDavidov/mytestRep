@@ -57,7 +57,7 @@
 		</GroupBox>
 		<Border BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
 			<UniformGrid Rows="1" Columns="2" HorizontalAlignment="Left">
-				<Button Content="Add Case" cal:Message.Attach="AddCase">
+				<Button Content="Add Case" cal:Message.Attach="AddCase" Padding="5,3">
                     <Button.IsEnabled>
                         <MultiBinding Converter="{x:Static Converters:AndConverter.Instance}">
                             <Binding Path="SelectedItem"

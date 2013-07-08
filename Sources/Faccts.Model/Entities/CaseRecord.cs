@@ -28,7 +28,6 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(CourtParty))]
     [KnownType(typeof(Children))]
     [KnownType(typeof(CourtCase))]
-    [KnownType(typeof(CourtCaseOrders))]
     [KnownType(typeof(Interpreters))]
     [KnownType(typeof(OtherProtected))]
     [KnownType(typeof(Witnesses))]
@@ -564,42 +563,6 @@ namespace Faccts.Model.Entities
         private TrackableCollection<CourtCase> _courtCase;
     
         [DataMember]
-        public TrackableCollection<CourtCaseOrders> CourtCaseOrders
-        {
-            get
-            {
-                if (_courtCaseOrders == null)
-                {
-                    _courtCaseOrders = new TrackableCollection<CourtCaseOrders>();
-                    _courtCaseOrders.CollectionChanged += FixupCourtCaseOrders;
-                }
-                return _courtCaseOrders;
-            }
-            set
-            {
-                if (!ReferenceEquals(_courtCaseOrders, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("CourtCaseOrders");
-                    if (_courtCaseOrders != null)
-                    {
-                        _courtCaseOrders.CollectionChanged -= FixupCourtCaseOrders;
-                    }
-                    _courtCaseOrders = value;
-                    if (_courtCaseOrders != null)
-                    {
-                        _courtCaseOrders.CollectionChanged += FixupCourtCaseOrders;
-                    }
-                    OnNavigationPropertyChanged("CourtCaseOrders");
-                }
-            }
-        }
-        private TrackableCollection<CourtCaseOrders> _courtCaseOrders;
-    
-        [DataMember]
         public TrackableCollection<CourtParty> CourtParty2
         {
             get
@@ -895,7 +858,6 @@ namespace Faccts.Model.Entities
             CourtParty1 = null;
             Children.Clear();
             CourtCase.Clear();
-            CourtCaseOrders.Clear();
             CourtParty2.Clear();
             CourtParty3.Clear();
             Interpreters.Clear();
@@ -1309,45 +1271,6 @@ namespace Faccts.Model.Entities
                     // This is the principal end in an association that performs cascade deletes.
                     // Remove the previous dependent from the event listener.
                     ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
-                }
-            }
-        }
-    
-        private void FixupCourtCaseOrders(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (CourtCaseOrders item in e.NewItems)
-                {
-                    item.CaseRecord = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CourtCaseOrders", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (CourtCaseOrders item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.CaseRecord, this))
-                    {
-                        item.CaseRecord = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtCaseOrders", item);
-                    }
                 }
             }
         }

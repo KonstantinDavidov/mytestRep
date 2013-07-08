@@ -18,7 +18,6 @@ namespace Faccts.Model.Entities
             this.OtherProtected = new TrackableCollection<OtherProtected>();
             this.CourtParty1 = new CourtParty();
             this.CourtParty = new CourtParty();
-            this.CourtCaseOrders = new TrackableCollection<CourtCaseOrders>();
             this.Attorneys = new Attorneys();
             this.Children = new TrackableCollection<Children>();
             this.RestrainingpartyIdentificationInformation = new RestrainingPartyIDInfo();
