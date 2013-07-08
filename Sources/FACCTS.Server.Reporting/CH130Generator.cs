@@ -43,7 +43,7 @@ namespace FACCTS.Server.Reporting
 
             CourtParty protectedParty;
             CourtParty restrainedParty;
-
+            
 
             if(courtCase.CaseRecord.Party1.ParticipantRole == Model.Enums.ParticipantRole.Protected)
             {
@@ -112,15 +112,30 @@ namespace FACCTS.Server.Reporting
                 form.Fields[mapper["protectedAddYes"]].Value = "1"; //CheckBox
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Name", firstProtected.FirstName + " " + firstProtected.LastName);
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Sex", firstProtected.Sex.SexName.First().ToString());
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Age", "TODO");
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Relation", firstProtected.RelationshipToPlaintiff.ToString()); //TODO
+                Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Age", firstProtected.Age.ToString());
+                Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Relation", firstProtected.RelationshipToPlaintiff.ToString());
+                Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]HouseholdYes", firstProtected.IsHouseHold ? "1" : null); //CheckBox
+                Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]HouseholdNo", firstProtected.IsHouseHold ? null : "1"); //CheckBox
 
                 if(courtCase.CaseRecord.OtherProtected.Count > 1)
                 {
+                    var secondProtected = courtCase.CaseRecord.OtherProtected.ElementAt(1);
+                    Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]Name", secondProtected.FirstName + " " + secondProtected.LastName);
+                    Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]Sex", secondProtected.Sex.SexName.First().ToString());
+                    Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]Age", secondProtected.Age.ToString());
+                    Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]Relation", secondProtected.RelationshipToPlaintiff.ToString());
+                    Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]HouseholdYes", secondProtected.IsHouseHold ? "1" : null); //CheckBox
+                    Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]HouseholdNo", secondProtected.IsHouseHold ? null : "1"); //CheckBox
+
+                    if (courtCase.CaseRecord.OtherProtected.Count > 2)
+                    {
+                        Utils.SetPdfFormFieldValue(form, mapper, "protectedAddAttachYes", "1"); //CheckBox
+                    }
                 }
 
             }
-           
+
+            //Docket
         }
 
     }

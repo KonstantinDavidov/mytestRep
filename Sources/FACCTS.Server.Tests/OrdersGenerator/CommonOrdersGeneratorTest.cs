@@ -47,7 +47,7 @@ namespace FACCTS.Server.Tests.OrdersGenerator
             testModel.Party1.ParticipantRole = FACCTS.Server.Model.Enums.ParticipantRole.Protected;
 
             var res = OrderGenerator.GenerateOrder(testModel, dm, @"..\..\Resources\ch130.pdf",  @"..\..\Resources\Mappers\ch130.xml");
-            FileStream file = new FileStream(@"C:\test.pdf", FileMode.Create, System.IO.FileAccess.Write);
+            FileStream file = new FileStream(@"E:\test1.pdf", FileMode.Create, System.IO.FileAccess.Write);
             file.Write(res, 0, res.Length);
             file.Close();
            

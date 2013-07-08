@@ -38,6 +38,10 @@ namespace FACCTS.Server.Model.DataModel
 
         public virtual Sex Sex { get; set; }
 
+        public int Age { get; set; }
+
+        public bool IsHouseHold { get; set; }
+
         [InverseProperty("OtherProtected")]
         public virtual CaseRecord CaseRecord { get; set; }
     }

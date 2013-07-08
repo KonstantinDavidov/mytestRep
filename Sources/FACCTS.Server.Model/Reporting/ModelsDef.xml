@@ -28,9 +28,7 @@
   </Model>
 
   <Model name="CH130">
-    <Property name="CaseInfo" type="CaseInfo"/>
-    <Property name="Party1" type="Party"/>
-    <Property name="Party2" type="Party"/>
+    <Property name="CaseId" type="long"/>
     <Property name="ConductSection" type="CH130ConductChoice"/>
     <Property name="StayAwayOrdersSection" type="CH130ConductChoice"/>
     <Property name="IsNoGuns" type="bool"/>

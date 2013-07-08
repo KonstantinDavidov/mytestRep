@@ -734,7 +734,27 @@ namespace FACCTS.Server.Data
                     FirstName = "Allan",
                     LastName="Dallas",
                     Sex = testSex,
-                    RelationshipToPlaintiff = Model.Enums.Relationship.Friend
+                    RelationshipToPlaintiff = Model.Enums.Relationship.Friend,
+                    Age = 10,
+                    IsHouseHold = true
+                },
+                new OtherProtected(){
+                    DateOfBirth = DateTime.Now,
+                    FirstName = "Marta",
+                    LastName="Dallas",
+                    Sex = testSex,
+                    RelationshipToPlaintiff = Model.Enums.Relationship.Child,
+                    Age = 1,
+                    IsHouseHold = false
+                },
+                new OtherProtected(){
+                    DateOfBirth = DateTime.Now,
+                    FirstName = "Den",
+                    LastName="Dallas",
+                    Sex = testSex,
+                    RelationshipToPlaintiff = Model.Enums.Relationship.Child,
+                    Age = 7,
+                    IsHouseHold = true
                 }
             };
 
