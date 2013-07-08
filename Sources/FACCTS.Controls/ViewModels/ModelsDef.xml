@@ -90,9 +90,10 @@
     <Property name="HasFL343" type="bool"/>
     <Property name="HasOtherAttachment" type="bool"/>
     <!--Properties for other orders-->
-    <Property name="HasDV730"/>
-    <Property name="HasDV115"/>
-    <Property name="HasDV116"/>
+    <Property name="HasDV730" type="bool"/>
+    <Property name="HasDV115" type="bool"/>
+    <Property name="HasDV116" type="bool"/>
+    <Property name="SelectedIndex" type="int"/>
   </Model>
   
   <xs:schema 

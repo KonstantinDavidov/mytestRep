@@ -705,8 +705,8 @@ namespace FACCTS.Controls.ViewModels
 			}
 		}
 		
-		private string _hasDV730;
-		public string HasDV730
+		private bool _hasDV730;
+		public bool HasDV730
 		{
 			get{return _hasDV730;}
 			set{
@@ -716,8 +716,8 @@ namespace FACCTS.Controls.ViewModels
 			}
 		}
 		
-		private string _hasDV115;
-		public string HasDV115
+		private bool _hasDV115;
+		public bool HasDV115
 		{
 			get{return _hasDV115;}
 			set{
@@ -727,13 +727,24 @@ namespace FACCTS.Controls.ViewModels
 			}
 		}
 		
-		private string _hasDV116;
-		public string HasDV116
+		private bool _hasDV116;
+		public bool HasDV116
 		{
 			get{return _hasDV116;}
 			set{
 				if(_hasDV116!=value){
 					this.RaiseAndSetIfChanged(ref _hasDV116, value);
+				}
+			}
+		}
+		
+		private int _selectedIndex;
+		public int SelectedIndex
+		{
+			get{return _selectedIndex;}
+			set{
+				if(_selectedIndex!=value){
+					this.RaiseAndSetIfChanged(ref _selectedIndex, value);
 				}
 			}
 		}
