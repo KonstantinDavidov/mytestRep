@@ -34,7 +34,7 @@
 			<Button Content="Cancel" Margin="5,0,0,0" IsCancel="True" cal:Message.Attach="Cancel"/>
 		</UniformGrid>
 		<TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding CurrentCourtCase.CaseNumber, FallbackValue=22-1234, Mode=OneWay}" VerticalAlignment="Center" Width="150" Grid.Row="1" Grid.Column="1" Margin="10,0,0,0" IsReadOnly="True"/>
-		<ComboBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Grid.Row="2" Grid.Column="1" Margin="10,0,0,0" SelectedIndex="0" SelectedItem="{Binding MasterOrder, Mode=TwoWay}" ItemsSource="{Binding MasterOrdersList, Mode=OneWay}"/>
+		<ComboBox HorizontalAlignment="Left" VerticalAlignment="Center" Width="150" Grid.Row="2" Grid.Column="1" Margin="10,0,0,0" SelectedIndex="0" ItemsSource="{Binding MasterOrdersList, Mode=OneWay}" SelectedValue="{Binding MasterOrder, Mode=TwoWay}" SelectedValuePath="Value"/>
 		<Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Row="3" Grid.Column="1" Margin="10,10,0,0">
 			<Grid>
 				<Grid.ColumnDefinitions>

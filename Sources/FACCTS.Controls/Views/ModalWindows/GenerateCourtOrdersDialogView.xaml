@@ -5,7 +5,7 @@
         x:Name="Window"
         Title="{Binding DisplayName, Mode=OneWay}"
         Width="640"
-        Height="480">
+        Height="468" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
     <Border BorderBrush="Black"
             BorderThickness="1"
             Padding="40,40,20,20">

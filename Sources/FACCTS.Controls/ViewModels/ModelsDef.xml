@@ -79,7 +79,7 @@
     <Property name="CanEditNote" type="bool"/>
   </Model>
   
-  <Model name="GenerateCourtOrdersControlViewModel">
+  <Model name="GenerateCourtOrdersDialogViewModel">
     <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
     <Property name="MasterOrder" type="FACCTS.Server.Model.Enums.MasterOrders"/>
     <!--Properties for attachments-->

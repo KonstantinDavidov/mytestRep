@@ -16,6 +16,7 @@ using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
 using System.Reactive.Concurrency;
 using System.Windows;
+using FACCTS.Services;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -25,6 +26,7 @@ namespace FACCTS.Controls.ViewModels
         private IAuthenticationService _authenticationService;
         public IDataContainer DataContainer { get; private set; }
         private MakeObjectReactiveHelper _reactiveHelper;
+        private IWindowManager _windowManager;
 
         public CourtOrdersViewModel() : base()
         {
@@ -53,11 +55,15 @@ namespace FACCTS.Controls.ViewModels
 
 
         [ImportingConstructor]
-        public CourtOrdersViewModel(IAuthenticationService authenticationService, IDataContainer dataContainer)
+        public CourtOrdersViewModel(IAuthenticationService authenticationService
+            , IDataContainer dataContainer
+            , IWindowManager windowManager
+            )
         {
             _reactiveHelper = new MakeObjectReactiveHelper(this);
             _authenticationService = authenticationService;
             _authenticationService.AuthenticationStatusChanged += _authenticationService_AuthenticationStatusChanged;
+            _windowManager = windowManager;
             DataContainer = dataContainer;
         }
 
@@ -140,5 +146,10 @@ namespace FACCTS.Controls.ViewModels
             base.OnDeactivate(close);
         }
 
+        public void ShowGenerateDialog()
+        {
+            var vm = ServiceLocatorContainer.Locator.GetInstance<GenerateCourtOrdersDialogViewModel>();
+            _windowManager.ShowDialog(vm);
+        }
     }
 }

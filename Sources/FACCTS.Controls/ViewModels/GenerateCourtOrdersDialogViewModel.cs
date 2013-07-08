@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace FACCTS.Controls.ViewModels
 {
     [Export]
-    public partial class GenerateCourtOrdersControlViewModel : ViewModelBase
+    public partial class GenerateCourtOrdersDialogViewModel : ViewModelBase
     {
 
         public void GeneratePrint()
@@ -32,6 +32,7 @@ namespace FACCTS.Controls.ViewModels
                 return _masterOrdersList;
             }
         }
+
     }
 
     

@@ -615,7 +615,7 @@ namespace FACCTS.Controls.ViewModels
 	}
 	
 			
-	public partial class GenerateCourtOrdersControlViewModel
+	public partial class GenerateCourtOrdersDialogViewModel
 	{
 		private Faccts.Model.Entities.CourtCase _currentCourtCase;
 		public Faccts.Model.Entities.CourtCase CurrentCourtCase
