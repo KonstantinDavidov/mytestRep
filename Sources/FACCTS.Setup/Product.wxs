@@ -16,7 +16,11 @@
       <Publish Dialog="InstallDirDlg" Control="Next" Event="NewDialog" Value="SettingsDlg" Order="4">WIXUI_DONTVALIDATEPATH OR WIXUI_INSTALLDIR_VALID="1"</Publish>
       <Publish Dialog="VerifyReadyDlg" Control="Back" Event="NewDialog" Value="SettingsDlg" Order="1">NOT Installed</Publish>
     </UI>
-    
+
+    <PropertyRef Id="NETFRAMEWORK40FULL"/>
+    <Condition Message='This setup requires the .NET Framework 4.0 installed.'>
+      <![CDATA[Installed OR NETFRAMEWORK40FULL]]>
+    </Condition>
 
     <Property Id="WIXUI_INSTALLDIR" Value="INSTALLLOCATION"/>
 
