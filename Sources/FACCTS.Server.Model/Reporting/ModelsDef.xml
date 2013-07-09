@@ -3,18 +3,16 @@
   <!--CH130-->
  <Model name="CH130ConductChoice">
    <Property name="IsEnabled" type="bool"/>
-   <Property name="ConductState" type="OrderItemState"/>
    <Property name="NoAbuse" type="bool"/>
    <Property name="NoContact" type="bool"/>
    <Property name="DontTryToLocate" type="bool"/>
    <Property name="Other" type="bool"/>
    <Property name="OtherDescription" type="string"/>
-   <Property name="Service" type="ServiceReqState"/>
+   <Property name ="IsOtherAttached" type="bool"/>
  </Model>
   
   <Model name="CH130StayAwayOrders">
     <Property name="IsEnabled" type="bool"/>
-    <Property name="StayAwayState" type="OrderItemState"/>
     <Property name="Person" type="bool"/>
     <Property name="Home" type="bool"/>
     <Property name="Vehicle" type="bool"/>
@@ -24,12 +22,15 @@
     <Property name="Other" type="bool"/>
     <Property name="IsAttach" type="bool"/>
     <Property name="OtherDescription" type="string"/>
-    <Property name="OtherProtectedPersons" type="List" collectionType="OtherProtected"/>
+  </Model>
+
+  <Model name="CH130LawyerFeesAndCostsSection">
+    <Property name="IsEnabled" type="bool"/>
+    <
   </Model>
 
   <Model name="CH130">
-    <Property name="CaseId" type="long"/>
-    <Property name="HearingId" type="long"/>
+    <Property name="CaseHistoryId" type="long"/>
     <Property name="ConductSection" type="CH130ConductChoice"/>
     <Property name="StayAwayOrdersSection" type="CH130ConductChoice"/>
     <Property name="IsNoGuns" type="bool"/>
@@ -46,11 +47,28 @@
     <Property name="CoversOtherProtectedPerson" type="bool"/>
     <Property name="Other" type="bool"/>
     <Property name="OtherDescription" type="string"/>
+    <Property name="Service" type="ServiceReqState"/>
+    <Property name="ConductState" type="OrderItemState"/>
   </Model>
   
   <Model name="CH110RestrainedPersonPayment">
     <Property name="IsEnabled" type="bool"/>
     <Property name="IsAttonrneyFees" type="bool"/>
+    <Property name="OtherDescription" type="string"/>
+    <Property name="OtherProtectedPersons" type="List" collectionType="OtherProtected"/>
+  </Model>
+  
+  <Model name="CH110StayAwayOrders">
+    <Property name="IsEnabled" type="bool"/>
+    <Property name="StayAwayState" type="OrderItemState"/>
+    <Property name="Person" type="bool"/>
+    <Property name="Home" type="bool"/>
+    <Property name="Vehicle" type="bool"/>
+    <Property name="ChildCare" type="bool"/>
+    <Property name="Work" type="bool"/>
+    <Property name="OtherProtected" type="bool"/>
+    <Property name="Other" type="bool"/>
+    <Property name="IsAttach" type="bool"/>
     <Property name="OtherDescription" type="string"/>
     <Property name="OtherProtectedPersons" type="List" collectionType="OtherProtected"/>
   </Model>

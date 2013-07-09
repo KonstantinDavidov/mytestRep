@@ -9,8 +9,6 @@ using System.Collections.Generic;
 
 namespace FACCTS.Server.Model.OrderModels
 {
-    
-			
 	public partial class CH130ConductChoice
 	{
 		private bool _isEnabled;
@@ -20,17 +18,6 @@ namespace FACCTS.Server.Model.OrderModels
 			set
 			{
 				_isEnabled = value;
-
-			}
-		}
-		
-		private OrderItemState _conductState;
-		public OrderItemState ConductState
-		{
-			get{return _conductState;}
-			set
-			{
-				_conductState = value;
 
 			}
 		}
@@ -90,13 +77,13 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 		}
 		
-		private ServiceReqState _service;
-		public ServiceReqState Service
+		private bool _isOtherAttached;
+		public bool IsOtherAttached
 		{
-			get{return _service;}
+			get{return _isOtherAttached;}
 			set
 			{
-				_service = value;
+				_isOtherAttached = value;
 
 			}
 		}
@@ -243,24 +230,13 @@ namespace FACCTS.Server.Model.OrderModels
 			
 	public partial class CH130
 	{
-		private long _caseId;
-		public long CaseId
+		private long _caseHistoryId;
+		public long CaseHistoryId
 		{
-			get{return _caseId;}
+			get{return _caseHistoryId;}
 			set
 			{
-				_caseId = value;
-
-			}
-		}
-		
-		private long _hearingId;
-		public long HearingId
-		{
-			get{return _hearingId;}
-			set
-			{
-				_hearingId = value;
+				_caseHistoryId = value;
 
 			}
 		}
@@ -398,6 +374,28 @@ namespace FACCTS.Server.Model.OrderModels
 			set
 			{
 				_otherDescription = value;
+
+			}
+		}
+		
+		private ServiceReqState _service;
+		public ServiceReqState Service
+		{
+			get{return _service;}
+			set
+			{
+				_service = value;
+
+			}
+		}
+		
+		private OrderItemState _conductState;
+		public OrderItemState ConductState
+		{
+			get{return _conductState;}
+			set
+			{
+				_conductState = value;
 
 			}
 		}

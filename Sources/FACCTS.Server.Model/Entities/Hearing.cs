@@ -13,6 +13,7 @@ namespace FACCTS.Server.Model.DataModel
     {
         public int Id { get; set; }
 
+        [Required]
         public DateTime HearingDate { get; set; }
 
         public virtual Courtroom Courtroom { get; set; }

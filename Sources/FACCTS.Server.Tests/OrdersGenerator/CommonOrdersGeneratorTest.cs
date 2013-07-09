@@ -25,16 +25,18 @@ namespace FACCTS.Server.Tests.OrdersGenerator
             testModel.ConductSection = new CH130ConductChoice();
             testModel.ConductSection.IsEnabled = true;
             testModel.ConductSection.NoAbuse = true;
-            testModel.ConductSection.NoContact = false;
+            testModel.ConductSection.NoContact = true;
+            testModel.ConductSection.DontTryToLocate = true;
+            testModel.ConductSection.IsOtherAttached = true;
             testModel.ConductSection.Other = true;
             testModel.ConductSection.OtherDescription = "Some Description";
             
             //string curDir = AppDomain.CurrentDomain.BaseDirectory;
             IDataManager dm = new DataManager( new RepositoryProvider(new RepositoryFactories()));
 
-            CourtCase cc = dm.CourtCaseRepository.GetAll().FirstOrDefault();
+            CaseHistory cc = dm.CaseHistoryRepository.GetAll().FirstOrDefault();
 
-            testModel.CaseId = cc.Id;
+            testModel.CaseHistoryId = cc.Id;
                       
             var res = OrderGenerator.GenerateOrder(testModel, dm, @"..\..\Resources\ch130.pdf",  @"..\..\Resources\Mappers\ch130.xml");
             FileStream file = new FileStream(@"E:\test1.pdf", FileMode.Create, System.IO.FileAccess.Write);
