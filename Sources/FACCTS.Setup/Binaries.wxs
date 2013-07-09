@@ -5,9 +5,6 @@
             <Component Id="cmp3E52BCC98B5783B18FEA868C4978375D" Guid="*">
                 <File Id="fil61452D44856C55FF12B998CAF229B361" KeyPath="yes" Source="$(var.FACCTS.TargetDir)\Antlr3.Runtime.dll" />
             </Component>
-            <Component Id="cmp2AE04A5C7B63313A4942504505DC8C48" Guid="*">
-                <File Id="fil55C43C79CD0D96BFA434FF9E32A63132" KeyPath="yes" Source="$(var.FACCTS.TargetDir)\app.config" />
-            </Component>
             <Component Id="cmpFFCCCE58C4366153C9145444FF7AA25E" Guid="*">
                 <File Id="fil28FE35F5D6DE8EEAD4BC52E84CB9E5D7" KeyPath="yes" Source="$(var.FACCTS.TargetDir)\BrockAllen.OAuth2.dll" />
             </Component>
@@ -32,12 +29,6 @@
                 <File Id="fil9A17A8770C5943886826025D2F8063C0" KeyPath="yes" Source="$(var.FACCTS.TargetDir)\DatabaseDeploy.exe.config" />
             </Component>
             
-            
-            
-            
-            <Component Id="cmpA430D7601B8935FAF8F5C03226784B02" Guid="*">
-                <File Id="fil8AADC086A92C8FAAFD990A8C2B421D6C" KeyPath="yes" Source="$(var.FACCTS.TargetDir)\DataGridThemes.dll" />
-            </Component>
             <Component Id="cmp00B4F56F4D0F3CE87DB524482BC68C3A" Guid="*">
                 <File Id="fil34AEF08B68F1C84EBAA2759CE2691877" KeyPath="yes" Source="$(var.FACCTS.TargetDir)\EntityFramework.dll" />
             </Component>
@@ -78,6 +69,10 @@
                 <File Id="fil1BF836271D77A50C2828BFFB05CEB432" KeyPath="yes" Source="$(var.FACCTS.TargetDir)\FACCTS.Server.Model.dll" />
             </Component>
             
+            
+            <Component Id="cmpD48C8E98C0230B55AC69E55932A4FFA6" Guid="*">
+                <File Id="fil04399203C5FF639CBCBE0BDC967DA1D9" KeyPath="yes" Source="$(var.FACCTS.TargetDir)\FACCTS.Server.Reporting.dll" />
+            </Component>
             
             <Component Id="cmpCB6E96E3D09BB9B08E7565409E05DB43" Guid="*">
                 <File Id="filA8832CC22AF08BA4517CF771622C5229" KeyPath="yes" Source="$(var.FACCTS.TargetDir)\FACCTS.Server.Tests.dll" />
@@ -123,7 +118,6 @@
                 <File Id="filDF7DD55CD8DF74AF05CDFEA48DCBF6E6" KeyPath="yes" Source="$(var.FACCTS.TargetDir)\Microsoft.Practices.ServiceLocation.dll" />
             </Component>
             
-            
             <Component Id="cmpFE669F44DA70CD4BB3921FB47E151CD1" Guid="*">
                 <File Id="filC0390B339CC2CFA00B193CAA431E82A9" KeyPath="yes" Source="$(var.FACCTS.TargetDir)\Microsoft.Threading.Tasks.dll" />
             </Component>
@@ -146,6 +140,9 @@
                 <File Id="fil4628BD7298F3CFDD7BD301E491EAB912" KeyPath="yes" Source="$(var.FACCTS.TargetDir)\NLog.dll" />
             </Component>
             
+            <Component Id="cmp50CF174D16913A9C31153B2D376CE4EE" Guid="*">
+                <File Id="fil8B40BB0DA436BD874C1FEB536CBC2E1D" KeyPath="yes" Source="$(var.FACCTS.TargetDir)\PDFClown.dll" />
+            </Component>
             <Component Id="cmp6580A1A3642970054664565932564BAF" Guid="*">
                 <File Id="fil13DA7DDD184E17A5D72EAF2428E01590" KeyPath="yes" Source="$(var.FACCTS.TargetDir)\ReactiveUI.Blend_Net45.dll" />
             </Component>
@@ -412,22 +409,6 @@
                     <File Id="fil1CDF25D993CB75E53F2DD77E2A712FAA" KeyPath="yes" Source="$(var.FACCTS.TargetDir)\ko\System.Spatial.resources.dll" />
                 </Component>
             </Directory>
-            <Directory Id="dir62B71A57BCE70D5380BACA6AD28228A1" Name="Logs">
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-            </Directory>
             <Directory Id="dirBFF73AD48ED739709AE2D42222CE3644" Name="pt-BR">
                 <Component Id="cmp7CD1DF860A815FAE546D559E09E93CCA" Guid="*">
                     <File Id="fil45E4778AF7E17C52D2BF399C3ADD660C" KeyPath="yes" Source="$(var.FACCTS.TargetDir)\pt-BR\Xceed.Wpf.AvalonDock.resources.dll" />
@@ -496,7 +477,6 @@
     <Fragment>
         <ComponentGroup Id="Binaries">
             <ComponentRef Id="cmp3E52BCC98B5783B18FEA868C4978375D" />
-            <ComponentRef Id="cmp2AE04A5C7B63313A4942504505DC8C48" />
             <ComponentRef Id="cmpFFCCCE58C4366153C9145444FF7AA25E" />
             <ComponentRef Id="cmp9038946A13DAC036297F028AF6B85273" />
             
@@ -509,10 +489,6 @@
             <ComponentRef Id="cmpA2132617A70B5240E4B933F8AAFD78D2" />
             <ComponentRef Id="cmp02AC29A29EE3B6782D6D2C850E8F5A2F" />
             
-            
-            
-            
-            <ComponentRef Id="cmpA430D7601B8935FAF8F5C03226784B02" />
             <ComponentRef Id="cmp00B4F56F4D0F3CE87DB524482BC68C3A" />
             
             <ComponentRef Id="cmp83B746004905371236C7EDA69EDBBA36" />
@@ -533,6 +509,8 @@
             <ComponentRef Id="cmp22CC2E578E2EF9CABAA38155E51C125B" />
             <ComponentRef Id="cmp47B95D07BE98BAF95D1ACDF4E8DEA5A8" />
             
+            
+            <ComponentRef Id="cmpD48C8E98C0230B55AC69E55932A4FFA6" />
             
             <ComponentRef Id="cmpCB6E96E3D09BB9B08E7565409E05DB43" />
             
@@ -556,7 +534,6 @@
             <ComponentRef Id="cmpBD15C3EF36F69CB3B39EC44100A7A00B" />
             <ComponentRef Id="cmp3A92D29DFDD3E29E0914AF066BAC8C23" />
             
-            
             <ComponentRef Id="cmpFE669F44DA70CD4BB3921FB47E151CD1" />
             <ComponentRef Id="cmpDBC8CBE923F3107082065C7594C58A98" />
             
@@ -567,6 +544,7 @@
             
             <ComponentRef Id="cmp362075882BD0206B8D905912D999710D" />
             
+            <ComponentRef Id="cmp50CF174D16913A9C31153B2D376CE4EE" />
             <ComponentRef Id="cmp6580A1A3642970054664565932564BAF" />
             
             <ComponentRef Id="cmp71FA1BC0DF40A6C84C013E38A93F144A" />
@@ -669,20 +647,6 @@
             <ComponentRef Id="cmpBD53113A24D2BED76A38E7FAD0700596" />
             <ComponentRef Id="cmpF3781A582B133DB400203D245236F00C" />
             <ComponentRef Id="cmp7B17D4B431864738E37D1F0EE98AF8F7" />
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
             <ComponentRef Id="cmp7CD1DF860A815FAE546D559E09E93CCA" />
             <ComponentRef Id="cmpB8C69D7D636D8416F27A409E9F785F53" />
             <ComponentRef Id="cmp46C805525F1BA574071583309089F333" />

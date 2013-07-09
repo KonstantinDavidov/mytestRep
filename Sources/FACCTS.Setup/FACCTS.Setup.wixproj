@@ -36,6 +36,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="EULA.rtf" />
     <Content Include="Filter.xslt" />
   </ItemGroup>
   <ItemGroup>
