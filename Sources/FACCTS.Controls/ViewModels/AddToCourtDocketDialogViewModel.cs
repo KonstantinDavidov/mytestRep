@@ -103,27 +103,26 @@ namespace FACCTS.Controls.ViewModels
         private void ProceedAddition()
         {
             var totalTime = CourtDocketViewModel.CalendarDate.GetValueOrDefault().Add(new TimeSpan(this.Time.Hour, this.Time.Minute, this.Time.Second));
-            CaseHistory ch = new CaseHistory()
-                {
-                    CaseHistoryEvent = (int)FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing,
-                    Date = DateTime.Now,
-                    Hearing = new Hearings()
-                    {
-                        HearingDate = totalTime,
-                        Courtrooms = this.Courtroom,
-                        CourtDepartment = this.Department,
-                        HearingIssue = new HearingIssue()
+            CourtDocketRecord cr = new CourtDocketRecord()
+            {
+                Hearing = new Hearings()
                         {
-                            PermanentRO = this.IsPermanentRO,
-                            ChildCustodyOrChildVisitation = this.IsCCorCV,
-                            ChildSupport = this.IsCS,
-                            SpousalSupport = this.IsSS,
-                            IsOtherIssue = this.IsOtherHearingIssue,
-                            OtheIssueText = this.OtherHearingIssueText,
+                            HearingDate = totalTime,
+                            Courtrooms = this.Courtroom,
+                            CourtDepartment = this.Department,
+                            HearingIssue = new HearingIssue()
+                            {
+                                PermanentRO = this.IsPermanentRO,
+                                ChildCustodyOrChildVisitation = this.IsCCorCV,
+                                ChildSupport = this.IsCS,
+                                SpousalSupport = this.IsSS,
+                                IsOtherIssue = this.IsOtherHearingIssue,
+                                OtheIssueText = this.OtherHearingIssueText,
+                            }
                         }
-                    }
-                };
-            Execute.OnUIThread(() => CurrentCourtCase.CaseRecord.CaseHistory.Add(ch));
+            };
+
+            Execute.OnUIThread(() => DataContainer.CourtDocketRecords.Add(cr));
         }
 
         private Faccts.Model.Entities.CourtCase _currentCourtCase;

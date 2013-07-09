@@ -248,18 +248,73 @@ namespace FACCTS.Services.Data
             }
         }
 
-        //private List<ParticipantRole> _participantRoles;
-        //public List<ParticipantRole> ParticipantRoles
-        //{
-        //    get
-        //    {
-        //        if (_participantRoles == null)
-        //        {
-        //            _participantRoles = FACCTS.Services.Data.ParticipantRoles.GetAll();
-        //        }
-        //        return _participantRoles;
-        //    }
-        //}
+        public TrackableCollection<CourtDocketRecord> CourtDocketRecords
+        {
+            get
+            {
+                if (_courtDocketRecords == null)
+                {
+                    _courtDocketRecords = new TrackableCollection<CourtDocketRecord>();
+                    _courtDocketRecords.CollectionChanged += FixupCourtDocketRecords;
+                }
+                return _courtDocketRecords;
+            }
+            set
+            {
+                if (!ReferenceEquals(_courtDocketRecords, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+                    if (_courtDocketRecords != null)
+                    {
+                        _courtDocketRecords.CollectionChanged -= FixupCourtDocketRecords;
+                    }
+                    _courtDocketRecords = value;
+                    if (_courtDocketRecords != null)
+                    {
+                        _courtDocketRecords.CollectionChanged += FixupCourtDocketRecords;
+                    }
+                    RaisePropertyChanged(() => CourtDocketRecords);
+                }
+            }
+        }
+
+        private void FixupCourtDocketRecords(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsSearching)
+            {
+                return;
+            }
+
+            if (e.NewItems != null)
+            {
+                foreach (CourtDocketRecord item in e.NewItems)
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("CourtDocketRecords", item);
+                    }
+                }
+            }
+
+            if (e.OldItems != null)
+            {
+                foreach (CourtDocketRecord item in e.OldItems)
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtDocketRecords", item);
+                    }
+                }
+            }
+        }
+        private TrackableCollection<CourtDocketRecord> _courtDocketRecords;
 
         protected void RaisePropertyChanged(string propertyName)
         {

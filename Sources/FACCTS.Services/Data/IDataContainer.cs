@@ -24,5 +24,6 @@ namespace FACCTS.Services.Data
 
         void SearchCourtCases(bool reset = false);
         void UpdateDictionaries();
+        TrackableCollection<CourtDocketRecord> CourtDocketRecords { get; }
     }
 }

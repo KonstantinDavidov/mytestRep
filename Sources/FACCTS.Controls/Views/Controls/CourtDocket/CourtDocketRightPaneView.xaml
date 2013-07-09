@@ -1,16 +1,24 @@
-﻿<UserControl
-			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-			 xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-            xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
-            xmlns:cal="http://www.caliburnproject.org"
-			 xmlns:Converters="clr-namespace:FACCTS.Controls.Converters" xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero" xmlns:Themes1="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2" x:Class="FACCTS.Controls.Views.Controls.CourtDocketRightPaneView"
-			 mc:Ignorable="d" 
-			 d:DesignHeight="300" d:DesignWidth="939.9" Background="{DynamicResource ControlBackgroundBrush}">
-	<UserControl.Resources>
-		<Converters:InvertedInt32ToBooleanConverter x:Key="InvertedInt32ToBooleanConverter"/>
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:Converters="clr-namespace:FACCTS.Controls.Converters"
+             xmlns:Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero"
+             xmlns:Themes1="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
+             x:Class="FACCTS.Controls.Views.Controls.CourtDocketRightPaneView"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="939.9"
+             Background="{DynamicResource ControlBackgroundBrush}"
+             xmlns:ext="clr-namespace:FACCTS.Controls.MarkupExtension"
+             xmlns:fs="clr-namespace:FACCTS.Services.Data;assembly=FACCTS.Services">
+    <UserControl.Resources>
+        <ext:MefPartExtension InstanceType="{x:Type fs:IDataContainer}"
+                              x:Key="DataContainer" />
+        <Converters:InvertedInt32ToBooleanConverter x:Key="InvertedInt32ToBooleanConverter"/>
 		<Converters:Int32ToBooleanConverter x:Key="Int32ToBooleanConverter"/>
         <Style x:Key="WrappedColumnHeaderStyle"
                TargetType="{x:Type DataGridColumnHeader}"
@@ -60,7 +68,7 @@
         <DataGrid Grid.Row="1"
                   HorizontalAlignment="Stretch"
                   VerticalAlignment="Stretch"
-                  ItemsSource="{Binding HistoryRecords, Mode=OneWay}" AutoGenerateColumns="False" SelectionMode="Single">
+                  ItemsSource="{Binding Source={StaticResource DataContainer}, Path=CourtDocketRecords, Mode=OneWay}" AutoGenerateColumns="False" SelectionMode="Single">
 			<DataGrid.Columns>
 				<DataGridTextColumn Binding="{Binding CourtCaseNumber, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Case Number" CanUserResize="False" Width="0.1*" IsReadOnly="True"/>
                 <DataGridTextColumn ClipboardContentBinding="{x:Null}"

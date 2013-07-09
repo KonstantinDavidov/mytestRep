@@ -23,6 +23,7 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(CaseRecord))]
     [KnownType(typeof(User))]
     [KnownType(typeof(CourtCase))]
+    [KnownType(typeof(CourtDocketRecord))]
     public partial class CourtCase: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -319,6 +320,42 @@ namespace Faccts.Model.Entities
             }
         }
         private CourtCase _parentCase;
+    
+        [DataMember]
+        public TrackableCollection<CourtDocketRecord> CourtDocketRecord
+        {
+            get
+            {
+                if (_courtDocketRecord == null)
+                {
+                    _courtDocketRecord = new TrackableCollection<CourtDocketRecord>();
+                    _courtDocketRecord.CollectionChanged += FixupCourtDocketRecord;
+                }
+                return _courtDocketRecord;
+            }
+            set
+            {
+                if (!ReferenceEquals(_courtDocketRecord, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("CourtDocketRecord");
+                    if (_courtDocketRecord != null)
+                    {
+                        _courtDocketRecord.CollectionChanged -= FixupCourtDocketRecord;
+                    }
+                    _courtDocketRecord = value;
+                    if (_courtDocketRecord != null)
+                    {
+                        _courtDocketRecord.CollectionChanged += FixupCourtDocketRecord;
+                    }
+                    OnNavigationPropertyChanged("CourtDocketRecord");
+                }
+            }
+        }
+        private TrackableCollection<CourtDocketRecord> _courtDocketRecord;
 
         #endregion
 
@@ -431,6 +468,7 @@ namespace Faccts.Model.Entities
             User = null;
             ChildCases.Clear();
             ParentCase = null;
+            CourtDocketRecord.Clear();
         }
 
         #endregion
@@ -589,6 +627,45 @@ namespace Faccts.Model.Entities
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         ChangeTracker.RecordRemovalFromCollectionProperties("ChildCases", item);
+                    }
+                }
+            }
+        }
+    
+        private void FixupCourtDocketRecord(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (CourtDocketRecord item in e.NewItems)
+                {
+                    item.CourtCase = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("CourtDocketRecord", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (CourtDocketRecord item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.CourtCase, this))
+                    {
+                        item.CourtCase = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtDocketRecord", item);
                     }
                 }
             }
