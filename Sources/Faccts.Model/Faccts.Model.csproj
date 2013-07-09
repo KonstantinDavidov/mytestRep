@@ -131,6 +131,9 @@
     <Compile Include="Entities\CourtDepartmenets.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\CourtDocketRecord.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\CourtLocations.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -291,6 +294,9 @@
       <Project>{5a675cbb-2774-4fde-a8c6-40aa46f4fa3f}</Project>
       <Name>FACCTS.Server.Model</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Entities\DataModel.edmx.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
