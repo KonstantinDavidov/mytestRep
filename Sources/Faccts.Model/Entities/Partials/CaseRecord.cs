@@ -23,6 +23,8 @@ namespace Faccts.Model.Entities
             this.RestrainingpartyIdentificationInformation = new RestrainingPartyIDInfo();
         }
 
+        
+
         public DateTime? FileDate
         {
             get

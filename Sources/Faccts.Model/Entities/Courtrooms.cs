@@ -22,7 +22,6 @@ namespace Faccts.Model.Entities
     [DataContract(IsReference = true)]
     [KnownType(typeof(CourtLocations))]
     [KnownType(typeof(Hearings))]
-    [KnownType(typeof(CourtDocketRecord))]
     public partial class Courtrooms: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -203,42 +202,6 @@ namespace Faccts.Model.Entities
             }
         }
         private TrackableCollection<Hearings> _hearings;
-    
-        [DataMember]
-        public TrackableCollection<CourtDocketRecord> CourtDocketRecords
-        {
-            get
-            {
-                if (_courtDocketRecords == null)
-                {
-                    _courtDocketRecords = new TrackableCollection<CourtDocketRecord>();
-                    _courtDocketRecords.CollectionChanged += FixupCourtDocketRecords;
-                }
-                return _courtDocketRecords;
-            }
-            set
-            {
-                if (!ReferenceEquals(_courtDocketRecords, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("CourtDocketRecords");
-                    if (_courtDocketRecords != null)
-                    {
-                        _courtDocketRecords.CollectionChanged -= FixupCourtDocketRecords;
-                    }
-                    _courtDocketRecords = value;
-                    if (_courtDocketRecords != null)
-                    {
-                        _courtDocketRecords.CollectionChanged += FixupCourtDocketRecords;
-                    }
-                    OnNavigationPropertyChanged("CourtDocketRecords");
-                }
-            }
-        }
-        private TrackableCollection<CourtDocketRecord> _courtDocketRecords;
 
         #endregion
 
@@ -339,7 +302,6 @@ namespace Faccts.Model.Entities
         {
             CourtLocations = null;
             Hearings.Clear();
-            CourtDocketRecords.Clear();
         }
 
         #endregion
@@ -421,45 +383,6 @@ namespace Faccts.Model.Entities
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         ChangeTracker.RecordRemovalFromCollectionProperties("Hearings", item);
-                    }
-                }
-            }
-        }
-    
-        private void FixupCourtDocketRecords(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (CourtDocketRecord item in e.NewItems)
-                {
-                    item.Courtroom = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CourtDocketRecords", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (CourtDocketRecord item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.Courtroom, this))
-                    {
-                        item.Courtroom = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtDocketRecords", item);
                     }
                 }
             }

@@ -93,20 +93,38 @@ namespace FACCTS.Controls.ViewModels
             _windowManager.ShowDialog(vm);
         }
 
-        
-
-        private ReactiveCollection<CaseHistory> _historyRecords;
-        public ReactiveCollection<CaseHistory> HistoryRecords
+        private ReactiveCollection<CourtDocketRecord> _courtDocketRecords;
+        public ReactiveCollection<CourtDocketRecord> CourtDocketRecords
         {
             get
             {
-                return _historyRecords;
-            }
-            set
-            {
-                this.RaiseAndSetIfChanged(ref _historyRecords, value);
+                if (_courtDocketRecords == null)
+                {
+                    DataContainer.CourtDocketRecords.CollectionChanged += (s, e) => NotifyCollectionUpdated();
+                    _courtDocketRecords = DataContainer.CourtDocketRecords.CreateDerivedCollection(x => x, signalReset: this.WhenAny(x => x.CollectionChangedNotifier, x => x));
+                    _courtDocketRecords.ItemsAdded.Subscribe(x =>
+                        {
+                            if (x == null)
+                                return;
+                            if (CurrentCourtCase == null)
+                                return;
+                            x.CourtCase = CurrentCourtCase;
+                            CurrentCourtCase.CaseRecord.CaseHistory.Add(
+                                new CaseHistory()
+                                {
+                                    Hearing = x.Hearing,
+                                    CaseHistoryEvent = (int) FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing,
+                                    Date = DateTime.Now,
+
+                                }
+                                );
+                        }
+                        );
+                }
+                return _courtDocketRecords;
             }
         }
+        
 
         private Faccts.Model.Entities.CourtCase _currentCourtCase;
         public Faccts.Model.Entities.CourtCase CurrentCourtCase
@@ -114,27 +132,7 @@ namespace FACCTS.Controls.ViewModels
             get { return _currentCourtCase; }
             set
             {
-                if (_currentCourtCase != value)
-                {
-                    if (_currentCourtCase != null && _currentCourtCase.CaseRecord != null && _currentCourtCase.CaseRecord.CaseHistory != null)
-                    {
-                        _currentCourtCase.CaseRecord.CaseHistory.CollectionChanged -= CaseHistoryChanged;
-                    }
-                    this.RaiseAndSetIfChanged(ref _currentCourtCase, value);
-                    if (_currentCourtCase != null && _currentCourtCase.CaseRecord != null && _currentCourtCase.CaseRecord.CaseHistory != null)
-                    {
-                        _currentCourtCase.CaseRecord.CaseHistory.CollectionChanged += CaseHistoryChanged;
-                    }
-                    if (_currentCourtCase != null && _currentCourtCase.CaseRecord != null && _currentCourtCase.CaseRecord.CaseHistory != null)
-                    {
-                        HistoryRecords = _currentCourtCase.CaseRecord.CaseHistory.CreateDerivedCollection(x => x, filter: FilterHistoryRecord, signalReset: this.WhenAny(x => x.CollectionChangedNotifier, x => x) );
-                    }
-                    else
-                    {
-                        HistoryRecords = null;
-                    }
-
-                }
+                this.RaiseAndSetIfChanged(ref _currentCourtCase, value);
             }
         }
 

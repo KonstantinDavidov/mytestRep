@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 07/09/2013 14:06:10
+-- Date Created: 07/09/2013 15:44:21
 -- Generated from EDMX file: D:\FACCTS\FACCTSNEW\faccts.net\Sources\Faccts.Model\Entities\DataModel.edmx
 -- --------------------------------------------------
 
@@ -161,8 +161,8 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_CourtDocketRecordCourtCase]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CourtDocketRecordSet] DROP CONSTRAINT [FK_CourtDocketRecordCourtCase];
 GO
-IF OBJECT_ID(N'[dbo].[FK_CourtDocketRecordCourtrooms]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CourtDocketRecordSet] DROP CONSTRAINT [FK_CourtDocketRecordCourtrooms];
+IF OBJECT_ID(N'[dbo].[FK_CourtDocketRecordHearings]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CourtDocketRecordSet] DROP CONSTRAINT [FK_CourtDocketRecordHearings];
 GO
 
 -- --------------------------------------------------
@@ -549,9 +549,9 @@ CREATE TABLE [dbo].[CourtParty] (
     [EyesColor_Id] int  NOT NULL,
     [Race_Id] int  NOT NULL,
     [Attorney_Id] int  NULL,
+    [ParticipantRole1] int  NOT NULL,
     [CaseRecordByCourtParty1_Id] int  NULL,
-    [CaseRecordByCourtParty2_Id] int  NULL,
-    [ParticipantRole1] int  NOT NULL
+    [CaseRecordByCourtParty2_Id] int  NULL
 );
 GO
 
@@ -874,14 +874,9 @@ GO
 
 -- Creating table 'CourtDocketRecordSet'
 CREATE TABLE [dbo].[CourtDocketRecordSet] (
-    [Id] int IDENTITY(1,1) NOT NULL,
+    [Id] bigint  NOT NULL,
     [CourtCaseId] bigint  NOT NULL,
-    [HearingDate] datetime  NOT NULL,
-    [CourtroomId] int  NOT NULL,
-    [CourtDepartmentId] int  NOT NULL,
-    [CourtParty1Id] int  NOT NULL,
-    [HasChildren] bit  NOT NULL,
-    [CourtPartyId] int  NOT NULL
+    [HearingId] int  NOT NULL
 );
 GO
 
@@ -1852,60 +1847,18 @@ ON [dbo].[CourtDocketRecordSet]
     ([CourtCaseId]);
 GO
 
--- Creating foreign key on [CourtroomId] in table 'CourtDocketRecordSet'
+-- Creating foreign key on [HearingId] in table 'CourtDocketRecordSet'
 ALTER TABLE [dbo].[CourtDocketRecordSet]
-ADD CONSTRAINT [FK_CourtDocketRecordCourtrooms]
-    FOREIGN KEY ([CourtroomId])
-    REFERENCES [dbo].[Courtrooms]
+ADD CONSTRAINT [FK_CourtDocketRecordHearings]
+    FOREIGN KEY ([HearingId])
+    REFERENCES [dbo].[Hearings]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
--- Creating non-clustered index for FOREIGN KEY 'FK_CourtDocketRecordCourtrooms'
-CREATE INDEX [IX_FK_CourtDocketRecordCourtrooms]
+-- Creating non-clustered index for FOREIGN KEY 'FK_CourtDocketRecordHearings'
+CREATE INDEX [IX_FK_CourtDocketRecordHearings]
 ON [dbo].[CourtDocketRecordSet]
-    ([CourtroomId]);
-GO
-
--- Creating foreign key on [CourtDepartmentId] in table 'CourtDocketRecordSet'
-ALTER TABLE [dbo].[CourtDocketRecordSet]
-ADD CONSTRAINT [FK_CourtDocketRecordCourtDepartmenets]
-    FOREIGN KEY ([CourtDepartmentId])
-    REFERENCES [dbo].[CourtDepartmenets]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CourtDocketRecordCourtDepartmenets'
-CREATE INDEX [IX_FK_CourtDocketRecordCourtDepartmenets]
-ON [dbo].[CourtDocketRecordSet]
-    ([CourtDepartmentId]);
-GO
-
--- Creating foreign key on [CourtParty1Id] in table 'CourtDocketRecordSet'
-ALTER TABLE [dbo].[CourtDocketRecordSet]
-ADD CONSTRAINT [FK_CourtDocketRecordCourtParty]
-    FOREIGN KEY ([CourtParty1Id])
-    REFERENCES [dbo].[CourtParty]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CourtDocketRecordCourtParty'
-CREATE INDEX [IX_FK_CourtDocketRecordCourtParty]
-ON [dbo].[CourtDocketRecordSet]
-    ([CourtParty1Id]);
-GO
-
--- Creating foreign key on [CourtPartyId] in table 'CourtDocketRecordSet'
-ALTER TABLE [dbo].[CourtDocketRecordSet]
-ADD CONSTRAINT [FK_CourtDocketRecordCourtParty1]
-    FOREIGN KEY ([CourtPartyId])
-    REFERENCES [dbo].[CourtParty]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_CourtDocketRecordCourtParty1'
-CREATE INDEX [IX_FK_CourtDocketRecordCourtParty1]
-ON [dbo].[CourtDocketRecordSet]
-    ([CourtPartyId]);
+    ([HearingId]);
 GO
 
 -- --------------------------------------------------

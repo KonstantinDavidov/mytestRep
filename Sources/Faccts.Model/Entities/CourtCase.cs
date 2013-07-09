@@ -322,40 +322,40 @@ namespace Faccts.Model.Entities
         private CourtCase _parentCase;
     
         [DataMember]
-        public TrackableCollection<CourtDocketRecord> CourtDocketRecords
+        public TrackableCollection<CourtDocketRecord> CourtDocketRecord
         {
             get
             {
-                if (_courtDocketRecords == null)
+                if (_courtDocketRecord == null)
                 {
-                    _courtDocketRecords = new TrackableCollection<CourtDocketRecord>();
-                    _courtDocketRecords.CollectionChanged += FixupCourtDocketRecords;
+                    _courtDocketRecord = new TrackableCollection<CourtDocketRecord>();
+                    _courtDocketRecord.CollectionChanged += FixupCourtDocketRecord;
                 }
-                return _courtDocketRecords;
+                return _courtDocketRecord;
             }
             set
             {
-                if (!ReferenceEquals(_courtDocketRecords, value))
+                if (!ReferenceEquals(_courtDocketRecord, value))
                 {
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
-    				OnNavigationPropertyChanging("CourtDocketRecords");
-                    if (_courtDocketRecords != null)
+    				OnNavigationPropertyChanging("CourtDocketRecord");
+                    if (_courtDocketRecord != null)
                     {
-                        _courtDocketRecords.CollectionChanged -= FixupCourtDocketRecords;
+                        _courtDocketRecord.CollectionChanged -= FixupCourtDocketRecord;
                     }
-                    _courtDocketRecords = value;
-                    if (_courtDocketRecords != null)
+                    _courtDocketRecord = value;
+                    if (_courtDocketRecord != null)
                     {
-                        _courtDocketRecords.CollectionChanged += FixupCourtDocketRecords;
+                        _courtDocketRecord.CollectionChanged += FixupCourtDocketRecord;
                     }
-                    OnNavigationPropertyChanged("CourtDocketRecords");
+                    OnNavigationPropertyChanged("CourtDocketRecord");
                 }
             }
         }
-        private TrackableCollection<CourtDocketRecord> _courtDocketRecords;
+        private TrackableCollection<CourtDocketRecord> _courtDocketRecord;
 
         #endregion
 
@@ -468,7 +468,7 @@ namespace Faccts.Model.Entities
             User = null;
             ChildCases.Clear();
             ParentCase = null;
-            CourtDocketRecords.Clear();
+            CourtDocketRecord.Clear();
         }
 
         #endregion
@@ -632,7 +632,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupCourtDocketRecords(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupCourtDocketRecord(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
             {
@@ -650,7 +650,7 @@ namespace Faccts.Model.Entities
                         {
                             item.StartTracking();
                         }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CourtDocketRecords", item);
+                        ChangeTracker.RecordAdditionToCollectionProperties("CourtDocketRecord", item);
                     }
                 }
             }
@@ -665,7 +665,7 @@ namespace Faccts.Model.Entities
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtDocketRecords", item);
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtDocketRecord", item);
                     }
                 }
             }

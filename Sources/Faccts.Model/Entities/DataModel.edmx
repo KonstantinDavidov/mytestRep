@@ -246,21 +246,9 @@
       <End Role="CourtDocketRecord" EntitySet="CourtDocketRecordSet" />
       <End Role="CourtCase" EntitySet="CourtCase" />
     </AssociationSet>
-    <AssociationSet Name="CourtDocketRecordCourtrooms" Association="FACCTS_DBModel.Store.CourtDocketRecordCourtrooms">
+    <AssociationSet Name="CourtDocketRecordHearings" Association="FACCTS_DBModel.Store.CourtDocketRecordHearings">
       <End Role="CourtDocketRecord" EntitySet="CourtDocketRecordSet" />
-      <End Role="Courtrooms" EntitySet="Courtrooms" />
-    </AssociationSet>
-    <AssociationSet Name="CourtDocketRecordCourtDepartmenets" Association="FACCTS_DBModel.Store.CourtDocketRecordCourtDepartmenets">
-      <End Role="CourtDocketRecord" EntitySet="CourtDocketRecordSet" />
-      <End Role="CourtDepartmenets" EntitySet="CourtDepartmenets" />
-    </AssociationSet>
-    <AssociationSet Name="CourtDocketRecordCourtParty" Association="FACCTS_DBModel.Store.CourtDocketRecordCourtParty">
-      <End Role="CourtDocketRecord" EntitySet="CourtDocketRecordSet" />
-      <End Role="CourtParty" EntitySet="CourtParty" />
-    </AssociationSet>
-    <AssociationSet Name="CourtDocketRecordCourtParty1" Association="FACCTS_DBModel.Store.CourtDocketRecordCourtParty1">
-      <End Role="CourtDocketRecord" EntitySet="CourtDocketRecordSet" />
-      <End Role="CourtParty" EntitySet="CourtParty" />
+      <End Role="Hearings" EntitySet="Hearings" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="C__MigrationHistory">
@@ -496,9 +484,9 @@
     <Property Name="EyesColor_Id" Type="int" Nullable="false" />
     <Property Name="Race_Id" Type="int" Nullable="false" />
     <Property Name="Attorney_Id" Type="int" Nullable="true" />
+    <Property Name="ParticipantRole1" Type="int" Nullable="false" />
     <Property Name="CaseRecordByCourtParty1_Id" Type="int" Nullable="true" />
     <Property Name="CaseRecordByCourtParty2_Id" Type="int" Nullable="true" />
-    <Property Name="ParticipantRole1" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Courtrooms">
     <Key>
@@ -821,14 +809,9 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="bigint" Nullable="false" />
     <Property Name="CourtCaseId" Type="bigint" Nullable="false" />
-    <Property Name="HearingDate" Type="datetime" Nullable="false" />
-    <Property Name="CourtroomId" Type="int" Nullable="false" />
-    <Property Name="CourtDepartmentId" Type="int" Nullable="false" />
-    <Property Name="CourtParty1Id" Type="int" Nullable="false" />
-    <Property Name="HasChildren" Type="bit" Nullable="false" />
-    <Property Name="CourtPartyId" Type="int" Nullable="false" />
+    <Property Name="HearingId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="RolePermission">
     <Key>
@@ -1396,51 +1379,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="CourtDocketRecordCourtrooms">
+  <Association Name="CourtDocketRecordHearings">
     <End Role="CourtDocketRecord" Type="FACCTS_DBModel.Store.CourtDocketRecordSet" Multiplicity="*" />
-    <End Role="Courtrooms" Type="FACCTS_DBModel.Store.Courtrooms" Multiplicity="1" />
+    <End Role="Hearings" Type="FACCTS_DBModel.Store.Hearings" Multiplicity="1" />
     <ReferentialConstraint>
-      <Principal Role="Courtrooms">
+      <Principal Role="Hearings">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="CourtDocketRecord">
-        <PropertyRef Name="CourtroomId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="CourtDocketRecordCourtDepartmenets">
-    <End Role="CourtDocketRecord" Type="FACCTS_DBModel.Store.CourtDocketRecordSet" Multiplicity="*" />
-    <End Role="CourtDepartmenets" Type="FACCTS_DBModel.Store.CourtDepartmenets" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="CourtDepartmenets">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CourtDocketRecord">
-        <PropertyRef Name="CourtDepartmentId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="CourtDocketRecordCourtParty">
-    <End Role="CourtDocketRecord" Type="FACCTS_DBModel.Store.CourtDocketRecordSet" Multiplicity="*" />
-    <End Role="CourtParty" Type="FACCTS_DBModel.Store.CourtParty" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="CourtParty">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CourtDocketRecord">
-        <PropertyRef Name="CourtParty1Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="CourtDocketRecordCourtParty1">
-    <End Role="CourtDocketRecord" Type="FACCTS_DBModel.Store.CourtDocketRecordSet" Multiplicity="*" />
-    <End Role="CourtParty" Type="FACCTS_DBModel.Store.CourtParty" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="CourtParty">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CourtDocketRecord">
-        <PropertyRef Name="CourtPartyId" />
+        <PropertyRef Name="HearingId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1727,21 +1674,9 @@
             <End Role="CourtDocketRecord" EntitySet="CourtDocketRecordSet" />
             <End Role="CourtCase" EntitySet="CourtCase" />
           </AssociationSet>
-          <AssociationSet Name="CourtDocketRecordCourtrooms" Association="FACCTS_DBModel.CourtDocketRecordCourtrooms">
+          <AssociationSet Name="CourtDocketRecordHearings" Association="FACCTS_DBModel.CourtDocketRecordHearings">
             <End Role="CourtDocketRecord" EntitySet="CourtDocketRecordSet" />
-            <End Role="Courtrooms" EntitySet="Courtrooms" />
-          </AssociationSet>
-          <AssociationSet Name="CourtDocketRecordCourtDepartmenets" Association="FACCTS_DBModel.CourtDocketRecordCourtDepartmenets">
-            <End Role="CourtDocketRecord" EntitySet="CourtDocketRecordSet" />
-            <End Role="CourtDepartmenets" EntitySet="CourtDepartmenets" />
-          </AssociationSet>
-          <AssociationSet Name="CourtDocketRecordCourtParty" Association="FACCTS_DBModel.CourtDocketRecordCourtParty">
-            <End Role="CourtDocketRecord" EntitySet="CourtDocketRecordSet" />
-            <End Role="CourtParty" EntitySet="CourtParty" />
-          </AssociationSet>
-          <AssociationSet Name="CourtDocketRecordCourtParty1" Association="FACCTS_DBModel.CourtDocketRecordCourtParty1">
-            <End Role="CourtDocketRecord" EntitySet="CourtDocketRecordSet" />
-            <End Role="CourtParty" EntitySet="CourtParty" />
+            <End Role="Hearings" EntitySet="Hearings" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="C__MigrationHistory">
@@ -1915,7 +1850,7 @@
           <Property Type="Int64" Name="ParentCase_Id" />
           <NavigationProperty Name="ChildCases" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtCase_ParentCase_Id" FromRole="CourtCase" ToRole="CourtCase1" />
           <NavigationProperty Name="ParentCase" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtCase_ParentCase_Id" FromRole="CourtCase1" ToRole="CourtCase" />
-          <NavigationProperty Name="CourtDocketRecords" Relationship="FACCTS_DBModel.CourtDocketRecordCourtCase" FromRole="CourtCase" ToRole="CourtDocketRecord" />
+          <NavigationProperty Name="CourtDocketRecord" Relationship="FACCTS_DBModel.CourtDocketRecordCourtCase" FromRole="CourtCase" ToRole="CourtDocketRecord" />
         </EntityType>
         <EntityType Name="CourtCaseOrders">
           <Key>
@@ -1956,7 +1891,6 @@
           <Property Type="Int32" Name="CourtCountyId" Nullable="false" />
           <NavigationProperty Name="CourtCounty" Relationship="FACCTS_DBModel.FK_dbo_CourtDepartmenets_dbo_CourtCounty_CourtCountyId" FromRole="CourtDepartmenets" ToRole="CourtCounty" />
           <NavigationProperty Name="Hearings" Relationship="FACCTS_DBModel.FK_dbo_Hearings_dbo_CourtDepartmenets_Department_Id" FromRole="CourtDepartmenets" ToRole="Hearings" />
-          <NavigationProperty Name="CourtDocketRecords" Relationship="FACCTS_DBModel.CourtDocketRecordCourtDepartmenets" FromRole="CourtDepartmenets" ToRole="CourtDocketRecord" />
         </EntityType>
         <EntityType Name="CourtLocations">
           <Key>
@@ -2014,8 +1948,6 @@
           <Property Name="EyesColor_Id" Nullable="false" Type="Int32" />
           <Property Name="Race_Id" Nullable="false" Type="Int32" />
           <Property Name="Attorney_Id" Type="Int32" />
-          <Property Name="CaseRecordByCourtParty1_Id" Type="Int32" />
-          <Property Name="CaseRecordByCourtParty2_Id" Type="Int32" />
           <NavigationProperty Name="Attorneys" Relationship="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id" FromRole="CourtParty" ToRole="Attorneys" />
           <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_CourtParty_Party1_Id" FromRole="CourtParty" ToRole="CaseRecord" />
           <NavigationProperty Name="CaseRecord1" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_CourtParty_Party2_Id" FromRole="CourtParty" ToRole="CaseRecord" />
@@ -2029,8 +1961,8 @@
           <NavigationProperty Name="Interpreters" Relationship="FACCTS_DBModel.FK_dbo_Interpreters_dbo_CourtParty_InterpreterFor_Id" FromRole="CourtParty" ToRole="Interpreters" />
           <NavigationProperty Name="Witnesses" Relationship="FACCTS_DBModel.FK_dbo_Witnesses_dbo_CourtParty_WitnessFor_Id" FromRole="CourtParty" ToRole="Witnesses" />
           <Property Name="ParticipantRole1" Nullable="false" Type="Int32" />
-          <NavigationProperty Name="CourtDocketRecordsByParty1" Relationship="FACCTS_DBModel.CourtDocketRecordCourtParty" FromRole="CourtParty" ToRole="CourtDocketRecord" />
-          <NavigationProperty Name="CourtDocketRecordsByParty2" Relationship="FACCTS_DBModel.CourtDocketRecordCourtParty1" FromRole="CourtParty" ToRole="CourtDocketRecord" />
+          <Property Type="Int32" Name="CaseRecordByCourtParty1_Id" a:GetterAccess="Internal" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" Nullable="true" />
+          <Property Type="Int32" Name="CaseRecordByCourtParty2_Id" Nullable="true" />
         </EntityType>
         <EntityType Name="Courtrooms">
           <Key>
@@ -2041,7 +1973,6 @@
           <Property Type="Int32" Name="CourtLocation_Id" />
           <NavigationProperty Name="CourtLocations" Relationship="FACCTS_DBModel.FK_dbo_Courtrooms_dbo_CourtLocations_CourtLocation_Id" FromRole="Courtrooms" ToRole="CourtLocations" />
           <NavigationProperty Name="Hearings" Relationship="FACCTS_DBModel.FK_dbo_Hearings_dbo_Courtrooms_Courtroom_Id" FromRole="Courtrooms" ToRole="Hearings" />
-          <NavigationProperty Name="CourtDocketRecords" Relationship="FACCTS_DBModel.CourtDocketRecordCourtrooms" FromRole="Courtrooms" ToRole="CourtDocketRecord" />
         </EntityType>
         <EntityType Name="Delegation">
           <Key>
@@ -2866,6 +2797,7 @@
           <Property Name="HearingIssue" Type="FACCTS_DBModel.HearingIssue" Nullable="false" />
           <Property Type="Int32" Name="Department_Id" />
           <NavigationProperty Name="CourtDepartment" Relationship="FACCTS_DBModel.FK_dbo_Hearings_dbo_CourtDepartmenets_Department_Id" FromRole="Hearings" ToRole="CourtDepartmenets" />
+          <NavigationProperty Name="CourtDocketRecords" Relationship="FACCTS_DBModel.CourtDocketRecordHearings" FromRole="Hearings" ToRole="CourtDocketRecord" />
         </EntityType>
         <Association Name="FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id">
           <End Type="FACCTS_DBModel.Hearings" Role="Hearings" Multiplicity="0..1" />
@@ -2951,19 +2883,11 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int64" Name="CourtCaseId" Nullable="false" />
+          <Property Type="Int64" Name="Id" Nullable="false" />
           <NavigationProperty Name="CourtCase" Relationship="FACCTS_DBModel.CourtDocketRecordCourtCase" FromRole="CourtDocketRecord" ToRole="CourtCase" />
-          <Property Type="DateTime" Name="HearingDate" Nullable="false" />
-          <Property Type="Int32" Name="CourtroomId" Nullable="false" />
-          <NavigationProperty Name="Courtroom" Relationship="FACCTS_DBModel.CourtDocketRecordCourtrooms" FromRole="CourtDocketRecord" ToRole="Courtrooms" />
-          <NavigationProperty Name="CourtDepartmenets" Relationship="FACCTS_DBModel.CourtDocketRecordCourtDepartmenets" FromRole="CourtDocketRecord" ToRole="CourtDepartmenets" />
-          <Property Type="Int32" Name="CourtDepartmentId" Nullable="false" />
-          <NavigationProperty Name="Party1" Relationship="FACCTS_DBModel.CourtDocketRecordCourtParty" FromRole="CourtDocketRecord" ToRole="CourtParty" />
-          <Property Type="Int32" Name="CourtParty1Id" Nullable="false" />
-          <Property Type="Boolean" Name="HasChildren" Nullable="false" />
-          <NavigationProperty Name="Party2" Relationship="FACCTS_DBModel.CourtDocketRecordCourtParty1" FromRole="CourtDocketRecord" ToRole="CourtParty" />
-          <Property Type="Int32" Name="CourtParty2Id" Nullable="false" />
+          <Property Type="Int64" Name="CourtCaseId" Nullable="false" />
+          <NavigationProperty Name="Hearing" Relationship="FACCTS_DBModel.CourtDocketRecordHearings" FromRole="CourtDocketRecord" ToRole="Hearings" />
+          <Property Type="Int32" Name="HearingId" Nullable="false" />
         </EntityType>
         <Association Name="CourtDocketRecordCourtCase">
           <End Type="FACCTS_DBModel.CourtDocketRecord" Role="CourtDocketRecord" Multiplicity="*" />
@@ -2977,51 +2901,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="CourtDocketRecordCourtrooms">
+        <Association Name="CourtDocketRecordHearings">
           <End Type="FACCTS_DBModel.CourtDocketRecord" Role="CourtDocketRecord" Multiplicity="*" />
-          <End Type="FACCTS_DBModel.Courtrooms" Role="Courtrooms" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.Hearings" Role="Hearings" Multiplicity="1" />
           <ReferentialConstraint>
-            <Principal Role="Courtrooms">
+            <Principal Role="Hearings">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="CourtDocketRecord">
-              <PropertyRef Name="CourtroomId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="CourtDocketRecordCourtDepartmenets">
-          <End Type="FACCTS_DBModel.CourtDocketRecord" Role="CourtDocketRecord" Multiplicity="*" />
-          <End Type="FACCTS_DBModel.CourtDepartmenets" Role="CourtDepartmenets" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="CourtDepartmenets">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CourtDocketRecord">
-              <PropertyRef Name="CourtDepartmentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="CourtDocketRecordCourtParty">
-          <End Type="FACCTS_DBModel.CourtDocketRecord" Role="CourtDocketRecord" Multiplicity="*" />
-          <End Type="FACCTS_DBModel.CourtParty" Role="CourtParty" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="CourtParty">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CourtDocketRecord">
-              <PropertyRef Name="CourtParty1Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="CourtDocketRecordCourtParty1">
-          <End Type="FACCTS_DBModel.CourtDocketRecord" Role="CourtDocketRecord" Multiplicity="*" />
-          <End Type="FACCTS_DBModel.CourtParty" Role="CourtParty" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="CourtParty">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CourtDocketRecord">
-              <PropertyRef Name="CourtParty2Id" />
+              <PropertyRef Name="HearingId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3283,9 +3171,9 @@
           <ScalarProperty Name="EyesColor_Id" ColumnName="EyesColor_Id" />
           <ScalarProperty Name="Race_Id" ColumnName="Race_Id" />
           <ScalarProperty Name="Attorney_Id" ColumnName="Attorney_Id" />
+          <ScalarProperty Name="ParticipantRole1" ColumnName="ParticipantRole1" />
           <ScalarProperty Name="CaseRecordByCourtParty1_Id" ColumnName="CaseRecordByCourtParty1_Id" />
           <ScalarProperty Name="CaseRecordByCourtParty2_Id" ColumnName="CaseRecordByCourtParty2_Id" />
-          <ScalarProperty Name="ParticipantRole1" ColumnName="ParticipantRole1" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -3641,12 +3529,7 @@
         <MappingFragment StoreEntitySet="CourtDocketRecordSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="CourtCaseId" ColumnName="CourtCaseId" />
-          <ScalarProperty Name="HearingDate" ColumnName="HearingDate" />
-          <ScalarProperty Name="CourtroomId" ColumnName="CourtroomId" />
-          <ScalarProperty Name="CourtDepartmentId" ColumnName="CourtDepartmentId" />
-          <ScalarProperty Name="CourtParty1Id" ColumnName="CourtParty1Id" />
-          <ScalarProperty Name="HasChildren" ColumnName="HasChildren" />
-          <ScalarProperty Name="CourtParty2Id" ColumnName="CourtPartyId" />
+          <ScalarProperty Name="HearingId" ColumnName="HearingId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
