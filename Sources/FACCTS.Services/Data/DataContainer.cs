@@ -1,5 +1,6 @@
 ﻿using Faccts.Model.Entities;
 using FACCTS.Services.Logger;
+using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

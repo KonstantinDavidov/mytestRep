@@ -93,37 +93,71 @@ namespace FACCTS.Controls.ViewModels
             _windowManager.ShowDialog(vm);
         }
 
-        private ReactiveCollection<CourtDocketRecord> _courtDocketRecords;
-        public ReactiveCollection<CourtDocketRecord> CourtDocketRecords
+        private TrackableCollection<CourtDocketRecord> _courtDocketRecords;
+        public TrackableCollection<CourtDocketRecord> CourtDocketRecords
         {
             get
             {
                 if (_courtDocketRecords == null)
                 {
-                    DataContainer.CourtDocketRecords.CollectionChanged += (s, e) => NotifyCollectionUpdated();
-                    _courtDocketRecords = DataContainer.CourtDocketRecords.CreateDerivedCollection(x => x, signalReset: this.WhenAny(x => x.CollectionChangedNotifier, x => x));
-                    _courtDocketRecords.ItemsAdded.Subscribe(x =>
+                    var subs = Observable.FromEvent<System.Collections.Specialized.NotifyCollectionChangedEventHandler, System.Collections.Specialized.NotifyCollectionChangedEventArgs>(handler =>
+                    {
+                        System.Collections.Specialized.NotifyCollectionChangedEventHandler eh = (sender, e) =>
+                            {
+                                handler(e);
+                            };
+                        return eh;
+                    }
+                    , a => DataContainer.CourtDocketRecords.CollectionChanged += a, a => DataContainer.CourtDocketRecords.CollectionChanged -= a);
+                    subs.Subscribe(x =>
                         {
+                            if (IsRefreshing)
+                                return;
+                            if (x == null)
+                                return;
                             if (x == null)
                                 return;
                             if (CurrentCourtCase == null)
                                 return;
-                            x.CourtCase = CurrentCourtCase;
-                            CurrentCourtCase.CaseRecord.CaseHistory.Add(
-                                new CaseHistory()
-                                {
-                                    Hearing = x.Hearing,
-                                    CaseHistoryEvent = (int) FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing,
-                                    Date = DateTime.Now,
+                            if (x.NewItems != null)
+                            {
+                                x.NewItems.Cast<CourtDocketRecord>().Aggregate(0, (index, item) =>
+                                    {
+                                        item.CourtCase = CurrentCourtCase;
+                                        CurrentCourtCase.CaseRecord.CaseHistory.Add(
+                                        new CaseHistory()
+                                        {
+                                            Hearing = item.Hearing,
+                                            CaseHistoryEvent = (int)FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing,
+                                            Date = DateTime.Now,
 
-                                }
-                                );
+                                        }
+                                        );
+                                        return ++index;
+                                    }
+                                    );
+                            }
                         }
                         );
+                    _courtDocketRecords = DataContainer.CourtDocketRecords;
                 }
                 return _courtDocketRecords;
             }
         }
+
+        private void CourtDocketRecordsModified(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+            {
+                
+            }
+            if (e.OldItems != null)
+            {
+
+            }
+        }
+
+        
         
 
         private Faccts.Model.Entities.CourtCase _currentCourtCase;
