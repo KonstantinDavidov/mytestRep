@@ -709,7 +709,7 @@ namespace FACCTS.Server.Data
             { new Child()
                 { 
                     DateOfBirth =DateTime.Now,
-                    EntityType = Model.Enums.FACCTSEntity.Person,
+                    EntityType = Model.Enums.FACCTSEntity.PERSON,
                     FirstName = "Marry",
                     LastName = "Yang",
                     RelationshipToProtected = Model.Enums.Relationship.C,
@@ -805,7 +805,7 @@ namespace FACCTS.Server.Data
                 {
                     Contact = "Contact",
                     Designation = testDesignation,
-                    EntityType = Model.Enums.FACCTSEntity.Entity,
+                    EntityType = Model.Enums.FACCTSEntity.ENTITY,
                     FirstName = "Witney",
                     LastName = "Huiston",
                     WitnessFor = testCaseRecord.Party2

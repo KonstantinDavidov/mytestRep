@@ -17,7 +17,7 @@ namespace Faccts.Model.Entities
                     this.OnPropertyChanged("EntityTypeName");
                 }
                 );
-            this.EntityType = (int)FACCTS.Server.Model.Enums.FACCTSEntity.Person;
+            this.EntityType = (int)FACCTS.Server.Model.Enums.FACCTSEntity.PERSON;
         }
 
         public string EntityTypeName

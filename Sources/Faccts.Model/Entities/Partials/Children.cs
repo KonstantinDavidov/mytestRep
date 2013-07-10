@@ -25,7 +25,7 @@ namespace Faccts.Model.Entities
                     this.OnPropertyChanged("RelationshipToProtectedEnum");
                 });
 
-            this.EntityType = (int)FACCTS.Server.Model.Enums.FACCTSEntity.Person;
+            this.EntityType = (int)FACCTS.Server.Model.Enums.FACCTSEntity.PERSON;
             this.RelationshipToProtected = (int)FACCTS.Server.Model.Enums.Relationship.C;
             //this.Sex = new Sex();
         }

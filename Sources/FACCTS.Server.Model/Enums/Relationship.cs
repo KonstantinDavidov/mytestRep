@@ -1,23 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.Enums
 {
     public enum Relationship
     {
         [Description("Friend")]
-        F,
+        F = 0,
         [Description("Child")]
-        C,
+        C = 1,
         [Description("Parent")]
-        P,
+        P = 2,
         [Description("Sibling")]
-        S,
+        S = 3,
         [Description("Other Relative")]
-        O
+        O = 4
     }
 }
