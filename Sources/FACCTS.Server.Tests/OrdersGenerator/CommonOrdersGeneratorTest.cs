@@ -30,7 +30,19 @@ namespace FACCTS.Server.Tests.OrdersGenerator
             testModel.ConductSection.IsOtherAttached = true;
             testModel.ConductSection.Other = true;
             testModel.ConductSection.OtherDescription = "Some Description";
-            
+
+            testModel.StayAwayOrdersSection = new CH130StayAwayOrders();
+            testModel.StayAwayOrdersSection.IsEnabled = true;
+            testModel.StayAwayOrdersSection.ChildCare = true;
+            testModel.StayAwayOrdersSection.ChildSchool = true;
+            testModel.StayAwayOrdersSection.Home = true;
+            testModel.StayAwayOrdersSection.Work = true;
+            testModel.StayAwayOrdersSection.Person = true;
+            testModel.StayAwayOrdersSection.Vehicle = true;
+            testModel.StayAwayOrdersSection.IsAttach = true;
+            testModel.StayAwayOrdersSection.Other = true;
+            testModel.StayAwayOrdersSection.OtherDescription = "Some description";
+            testModel.StayAwayOrdersSection.OtherProtected = true;
             //string curDir = AppDomain.CurrentDomain.BaseDirectory;
             IDataManager dm = new DataManager( new RepositoryProvider(new RepositoryFactories()));
 

@@ -9,6 +9,8 @@ using System.Collections.Generic;
 
 namespace FACCTS.Server.Model.OrderModels
 {
+    
+			
 	public partial class CH130ConductChoice
 	{
 		private bool _isEnabled;
@@ -104,17 +106,6 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 		}
 		
-		private OrderItemState _stayAwayState;
-		public OrderItemState StayAwayState
-		{
-			get{return _stayAwayState;}
-			set
-			{
-				_stayAwayState = value;
-
-			}
-		}
-		
 		private bool _person;
 		public bool Person
 		{
@@ -155,6 +146,17 @@ namespace FACCTS.Server.Model.OrderModels
 			set
 			{
 				_childCare = value;
+
+			}
+		}
+		
+		private bool _childSchool;
+		public bool ChildSchool
+		{
+			get{return _childSchool;}
+			set
+			{
+				_childSchool = value;
 
 			}
 		}
@@ -213,14 +215,19 @@ namespace FACCTS.Server.Model.OrderModels
 
 			}
 		}
-		
-		private List<OtherProtected> _otherProtectedPersons;
-		public List<OtherProtected> OtherProtectedPersons
+				
+	}
+	
+			
+	public partial class CH130LawyerFeesAndCostsSection
+	{
+		private bool _isEnabled;
+		public bool IsEnabled
 		{
-			get{return _otherProtectedPersons;}
+			get{return _isEnabled;}
 			set
 			{
-				_otherProtectedPersons = value;
+				_isEnabled = value;
 
 			}
 		}
@@ -252,8 +259,8 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 		}
 		
-		private CH130ConductChoice _stayAwayOrdersSection;
-		public CH130ConductChoice StayAwayOrdersSection
+		private CH130StayAwayOrders _stayAwayOrdersSection;
+		public CH130StayAwayOrders StayAwayOrdersSection
 		{
 			get{return _stayAwayOrdersSection;}
 			set
@@ -423,6 +430,143 @@ namespace FACCTS.Server.Model.OrderModels
 			set
 			{
 				_isAttonrneyFees = value;
+
+			}
+		}
+		
+		private string _otherDescription;
+		public string OtherDescription
+		{
+			get{return _otherDescription;}
+			set
+			{
+				_otherDescription = value;
+
+			}
+		}
+		
+		private List<OtherProtected> _otherProtectedPersons;
+		public List<OtherProtected> OtherProtectedPersons
+		{
+			get{return _otherProtectedPersons;}
+			set
+			{
+				_otherProtectedPersons = value;
+
+			}
+		}
+				
+	}
+	
+			
+	public partial class CH110StayAwayOrders
+	{
+		private bool _isEnabled;
+		public bool IsEnabled
+		{
+			get{return _isEnabled;}
+			set
+			{
+				_isEnabled = value;
+
+			}
+		}
+		
+		private OrderItemState _stayAwayState;
+		public OrderItemState StayAwayState
+		{
+			get{return _stayAwayState;}
+			set
+			{
+				_stayAwayState = value;
+
+			}
+		}
+		
+		private bool _person;
+		public bool Person
+		{
+			get{return _person;}
+			set
+			{
+				_person = value;
+
+			}
+		}
+		
+		private bool _home;
+		public bool Home
+		{
+			get{return _home;}
+			set
+			{
+				_home = value;
+
+			}
+		}
+		
+		private bool _vehicle;
+		public bool Vehicle
+		{
+			get{return _vehicle;}
+			set
+			{
+				_vehicle = value;
+
+			}
+		}
+		
+		private bool _childCare;
+		public bool ChildCare
+		{
+			get{return _childCare;}
+			set
+			{
+				_childCare = value;
+
+			}
+		}
+		
+		private bool _work;
+		public bool Work
+		{
+			get{return _work;}
+			set
+			{
+				_work = value;
+
+			}
+		}
+		
+		private bool _otherProtected;
+		public bool OtherProtected
+		{
+			get{return _otherProtected;}
+			set
+			{
+				_otherProtected = value;
+
+			}
+		}
+		
+		private bool _other;
+		public bool Other
+		{
+			get{return _other;}
+			set
+			{
+				_other = value;
+
+			}
+		}
+		
+		private bool _isAttach;
+		public bool IsAttach
+		{
+			get{return _isAttach;}
+			set
+			{
+				_isAttach = value;
 
 			}
 		}

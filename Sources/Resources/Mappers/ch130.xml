@@ -92,6 +92,7 @@
   <pdfField originalValue="stayawayOtherProtected" mapValue="stayawayOtherProtected" />
   <pdfField originalValue="stayawayOther" mapValue="stayawayOther" />
   <pdfField originalValue="stayawayOtherDetail" mapValue="stayawayOtherDetail" />
+  <pdfField originalValue="stayawayHome" mapValue="stayawayHome" />
   <pdfField originalValue="firearmYes" mapValue="firearmYes" />
   <pdfField originalValue="orderPayAttorneyCosts" mapValue="orderPayAttorneyCosts" />
   <pdfField originalValue="feePaidBy" mapValue="feePaidBy" />

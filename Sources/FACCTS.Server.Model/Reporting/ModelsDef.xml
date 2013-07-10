@@ -17,6 +17,7 @@
     <Property name="Home" type="bool"/>
     <Property name="Vehicle" type="bool"/>
     <Property name="ChildCare" type="bool"/>
+    <Property name="ChildSchool" type="bool"/>
     <Property name="Work" type="bool"/>
     <Property name="OtherProtected" type="bool"/>
     <Property name="Other" type="bool"/>
@@ -26,13 +27,12 @@
 
   <Model name="CH130LawyerFeesAndCostsSection">
     <Property name="IsEnabled" type="bool"/>
-    <
   </Model>
 
   <Model name="CH130">
     <Property name="CaseHistoryId" type="long"/>
     <Property name="ConductSection" type="CH130ConductChoice"/>
-    <Property name="StayAwayOrdersSection" type="CH130ConductChoice"/>
+    <Property name="StayAwayOrdersSection" type="CH130StayAwayOrders"/>
     <Property name="IsNoGuns" type="bool"/>
     <Property name="CAPROSEntry" type="CAPROSEntry"/>
     <Property name="OrdersEndDate" type="DateTime?"/>
