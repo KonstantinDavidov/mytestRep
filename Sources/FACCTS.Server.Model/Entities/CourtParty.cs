@@ -64,6 +64,9 @@ namespace FACCTS.Server.Model.DataModel
 
         public FACCTSEntity EntityType { get; set; }
 
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+
         [Required]
         public virtual Gender Sex { get; set; }
         [Required]
@@ -93,7 +96,7 @@ namespace FACCTS.Server.Model.DataModel
         {
             get
             {
-                return this.FirstName + " " + this.LastName;
+                return string.Format("{0} {1} {2}",FirstName,MiddleName,this.LastName).Replace("  ", " ");
             }
         }
 
