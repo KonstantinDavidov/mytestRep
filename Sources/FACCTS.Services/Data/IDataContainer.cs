@@ -22,6 +22,7 @@ namespace FACCTS.Services.Data
         List<EyesColor> EyesColors { get; }
         List<Race> Races { get; }
         List<Designation> Designations { get; }
+        List<EnumDescript<USAState>> StateList { get; }
         //List<ParticipantRole> ParticipantRoles { get; }
 
         void SearchCourtCases(bool reset = false);

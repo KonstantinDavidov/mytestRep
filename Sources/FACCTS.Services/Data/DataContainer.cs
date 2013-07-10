@@ -198,6 +198,19 @@ namespace FACCTS.Services.Data
             }
         }
 
+        private List<EnumDescript<USAState>> _stateList;
+        public List<EnumDescript<USAState>> StateList
+        {
+            get
+            {
+                if (_stateList == null)
+                {
+                    _stateList = EnumDescript<USAState>.GetList<USAState>();
+                }
+                return _stateList;
+            }
+        }
+
         private List<HairColor> _hairColors;
         public List<HairColor> HairColors
         {
