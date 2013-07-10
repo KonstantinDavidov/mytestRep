@@ -95,7 +95,7 @@ namespace Faccts.Model.Entities
     	    #region Simple Properties
     
         [DataMember]
-        public int Id
+        public long Id
         {
             get { return _id; }
             set
@@ -106,13 +106,20 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
                     }
+                    if (!IsDeserializing)
+                    {
+                        if (CourtCase1 != null && CourtCase1.Id != value)
+                        {
+                            CourtCase1 = null;
+                        }
+                    }
     				OnPropertyChanging("Id");
                     _id = value;
                     OnPropertyChanged("Id");
                 }
             }
         }
-        private int _id;
+        private long _id;
     
         [DataMember]
         public Nullable<int> Party1_Id
@@ -211,7 +218,7 @@ namespace Faccts.Model.Entities
         private Nullable<int> _courtCounty_Id;
     
         [DataMember]
-        public Nullable<int> CaseRecord_Id
+        public Nullable<long> CaseRecord_Id
         {
             get { return _caseRecord_Id; }
             set
@@ -221,9 +228,9 @@ namespace Faccts.Model.Entities
                     ChangeTracker.RecordOriginalValue("CaseRecord_Id", _caseRecord_Id);
                     if (!IsDeserializing)
                     {
-                        if (CaseRecord2 != null && CaseRecord2.Id != value)
+                        if (ParentCaseRecord != null && ParentCaseRecord.Id != value)
                         {
-                            CaseRecord2 = null;
+                            ParentCaseRecord = null;
                         }
                     }
     				OnPropertyChanging("CaseRecord_Id");
@@ -232,7 +239,55 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _caseRecord_Id;
+        private Nullable<long> _caseRecord_Id;
+    
+        [DataMember]
+        public int RP_IDType
+        {
+            get { return _rP_IDType; }
+            set
+            {
+                if (_rP_IDType != value)
+                {
+    				OnPropertyChanging("RP_IDType");
+                    _rP_IDType = value;
+                    OnPropertyChanged("RP_IDType");
+                }
+            }
+        }
+        private int _rP_IDType;
+    
+        [DataMember]
+        public string RP_IDNumber
+        {
+            get { return _rP_IDNumber; }
+            set
+            {
+                if (_rP_IDNumber != value)
+                {
+    				OnPropertyChanging("RP_IDNumber");
+                    _rP_IDNumber = value;
+                    OnPropertyChanged("RP_IDNumber");
+                }
+            }
+        }
+        private string _rP_IDNumber;
+    
+        [DataMember]
+        public Nullable<System.DateTime> RP_IssuedDate
+        {
+            get { return _rP_IssuedDate; }
+            set
+            {
+                if (_rP_IssuedDate != value)
+                {
+    				OnPropertyChanging("RP_IssuedDate");
+                    _rP_IssuedDate = value;
+                    OnPropertyChanged("RP_IssuedDate");
+                }
+            }
+        }
+        private Nullable<System.DateTime> _rP_IssuedDate;
 
         #endregion
 
@@ -371,58 +426,58 @@ namespace Faccts.Model.Entities
         private TrackableCollection<CaseNotes> _caseNotes;
     
         [DataMember]
-        public TrackableCollection<CaseRecord> CaseRecord1
+        public TrackableCollection<CaseRecord> RelatedCaseRecords
         {
             get
             {
-                if (_caseRecord1 == null)
+                if (_relatedCaseRecords == null)
                 {
-                    _caseRecord1 = new TrackableCollection<CaseRecord>();
-                    _caseRecord1.CollectionChanged += FixupCaseRecord1;
+                    _relatedCaseRecords = new TrackableCollection<CaseRecord>();
+                    _relatedCaseRecords.CollectionChanged += FixupRelatedCaseRecords;
                 }
-                return _caseRecord1;
+                return _relatedCaseRecords;
             }
             set
             {
-                if (!ReferenceEquals(_caseRecord1, value))
+                if (!ReferenceEquals(_relatedCaseRecords, value))
                 {
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
-    				OnNavigationPropertyChanging("CaseRecord1");
-                    if (_caseRecord1 != null)
+    				OnNavigationPropertyChanging("RelatedCaseRecords");
+                    if (_relatedCaseRecords != null)
                     {
-                        _caseRecord1.CollectionChanged -= FixupCaseRecord1;
+                        _relatedCaseRecords.CollectionChanged -= FixupRelatedCaseRecords;
                     }
-                    _caseRecord1 = value;
-                    if (_caseRecord1 != null)
+                    _relatedCaseRecords = value;
+                    if (_relatedCaseRecords != null)
                     {
-                        _caseRecord1.CollectionChanged += FixupCaseRecord1;
+                        _relatedCaseRecords.CollectionChanged += FixupRelatedCaseRecords;
                     }
-                    OnNavigationPropertyChanged("CaseRecord1");
+                    OnNavigationPropertyChanged("RelatedCaseRecords");
                 }
             }
         }
-        private TrackableCollection<CaseRecord> _caseRecord1;
+        private TrackableCollection<CaseRecord> _relatedCaseRecords;
     
         [DataMember]
-        public CaseRecord CaseRecord2
+        public CaseRecord ParentCaseRecord
         {
-            get { return _caseRecord2; }
+            get { return _parentCaseRecord; }
             set
             {
-                if (!ReferenceEquals(_caseRecord2, value))
+                if (!ReferenceEquals(_parentCaseRecord, value))
                 {
-                    var previousValue = _caseRecord2;
-    				OnNavigationPropertyChanging("CaseRecord2");
-                    _caseRecord2 = value;
-                    FixupCaseRecord2(previousValue);
-                    OnNavigationPropertyChanged("CaseRecord2");
+                    var previousValue = _parentCaseRecord;
+    				OnNavigationPropertyChanging("ParentCaseRecord");
+                    _parentCaseRecord = value;
+                    FixupParentCaseRecord(previousValue);
+                    OnNavigationPropertyChanged("ParentCaseRecord");
                 }
             }
         }
-        private CaseRecord _caseRecord2;
+        private CaseRecord _parentCaseRecord;
     
         [DataMember]
         public CourtCounty CourtCounty
@@ -741,6 +796,33 @@ namespace Faccts.Model.Entities
             }
         }
         private TrackableCollection<Witnesses> _witnesses;
+    
+        [DataMember]
+        public CourtCase CourtCase1
+        {
+            get { return _courtCase1; }
+            set
+            {
+                if (!ReferenceEquals(_courtCase1, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added && value != null)
+                    {
+                        // This the dependent end of an identifying relationship, so the principal end cannot be changed if it is already set,
+                        // otherwise it can only be set to an entity with a primary key that is the same value as the dependent's foreign key.
+                        if (Id != value.Id)
+                        {
+                            throw new InvalidOperationException("The principal end of an identifying relationship can only be changed when the dependent end is in the Added state.");
+                        }
+                    }
+                    var previousValue = _courtCase1;
+    				OnNavigationPropertyChanging("CourtCase1");
+                    _courtCase1 = value;
+                    FixupCourtCase1(previousValue);
+                    OnNavigationPropertyChanged("CourtCase1");
+                }
+            }
+        }
+        private CourtCase _courtCase1;
 
         #endregion
 
@@ -836,6 +918,16 @@ namespace Faccts.Model.Entities
             IsDeserializing = false;
             ChangeTracker.ChangeTrackingEnabled = true;
         }
+    
+        // This entity type is the dependent end in at least one association that performs cascade deletes.
+        // This event handler will process notifications that occur when the principal end is deleted.
+        internal void HandleCascadeDelete(object sender, ObjectStateChangingEventArgs e)
+        {
+            if (e.NewState == ObjectState.Deleted)
+            {
+                this.MarkAsDeleted();
+            }
+        }
         // Records the original values for the complex property RestrainingpartyIdentificationInformation
         private void HandleRestrainingpartyIdentificationInformationChanging(object sender, EventArgs args)
         {
@@ -851,8 +943,8 @@ namespace Faccts.Model.Entities
             Attorneys = null;
             CaseHistory.Clear();
             CaseNotes.Clear();
-            CaseRecord1.Clear();
-            CaseRecord2 = null;
+            RelatedCaseRecords.Clear();
+            ParentCaseRecord = null;
             CourtCounty = null;
             CourtParty = null;
             CourtParty1 = null;
@@ -863,6 +955,7 @@ namespace Faccts.Model.Entities
             Interpreters.Clear();
             OtherProtected.Clear();
             Witnesses.Clear();
+            CourtCase1 = null;
         }
 
         #endregion
@@ -910,23 +1003,23 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupCaseRecord2(CaseRecord previousValue, bool skipKeys = false)
+        private void FixupParentCaseRecord(CaseRecord previousValue, bool skipKeys = false)
         {
             if (IsDeserializing)
             {
                 return;
             }
     
-            if (previousValue != null && previousValue.CaseRecord1.Contains(this))
+            if (previousValue != null && previousValue.RelatedCaseRecords.Contains(this))
             {
-                previousValue.CaseRecord1.Remove(this);
+                previousValue.RelatedCaseRecords.Remove(this);
             }
     
-            if (CaseRecord2 != null)
+            if (ParentCaseRecord != null)
             {
-                CaseRecord2.CaseRecord1.Add(this);
+                ParentCaseRecord.RelatedCaseRecords.Add(this);
     
-                CaseRecord_Id = CaseRecord2.Id;
+                CaseRecord_Id = ParentCaseRecord.Id;
             }
             else if (!skipKeys)
             {
@@ -935,18 +1028,18 @@ namespace Faccts.Model.Entities
     
             if (ChangeTracker.ChangeTrackingEnabled)
             {
-                if (ChangeTracker.OriginalValues.ContainsKey("CaseRecord2")
-                    && (ChangeTracker.OriginalValues["CaseRecord2"] == CaseRecord2))
+                if (ChangeTracker.OriginalValues.ContainsKey("ParentCaseRecord")
+                    && (ChangeTracker.OriginalValues["ParentCaseRecord"] == ParentCaseRecord))
                 {
-                    ChangeTracker.OriginalValues.Remove("CaseRecord2");
+                    ChangeTracker.OriginalValues.Remove("ParentCaseRecord");
                 }
                 else
                 {
-                    ChangeTracker.RecordOriginalValue("CaseRecord2", previousValue);
+                    ChangeTracker.RecordOriginalValue("ParentCaseRecord", previousValue);
                 }
-                if (CaseRecord2 != null && !CaseRecord2.ChangeTracker.ChangeTrackingEnabled)
+                if (ParentCaseRecord != null && !ParentCaseRecord.ChangeTracker.ChangeTrackingEnabled)
                 {
-                    CaseRecord2.StartTracking();
+                    ParentCaseRecord.StartTracking();
                 }
             }
         }
@@ -1074,6 +1167,42 @@ namespace Faccts.Model.Entities
             }
         }
     
+        private void FixupCourtCase1(CourtCase previousValue)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && ReferenceEquals(previousValue.CaseRecord1, this))
+            {
+                previousValue.CaseRecord1 = null;
+            }
+    
+            if (CourtCase1 != null)
+            {
+                CourtCase1.CaseRecord1 = this;
+                Id = CourtCase1.Id;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("CourtCase1")
+                    && (ChangeTracker.OriginalValues["CourtCase1"] == CourtCase1))
+                {
+                    ChangeTracker.OriginalValues.Remove("CourtCase1");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("CourtCase1", previousValue);
+                }
+                if (CourtCase1 != null && !CourtCase1.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    CourtCase1.StartTracking();
+                }
+            }
+        }
+    
         private void FixupCaseHistory(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
@@ -1152,7 +1281,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupCaseRecord1(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupRelatedCaseRecords(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
             {
@@ -1163,14 +1292,14 @@ namespace Faccts.Model.Entities
             {
                 foreach (CaseRecord item in e.NewItems)
                 {
-                    item.CaseRecord2 = this;
+                    item.ParentCaseRecord = this;
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         if (!item.ChangeTracker.ChangeTrackingEnabled)
                         {
                             item.StartTracking();
                         }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CaseRecord1", item);
+                        ChangeTracker.RecordAdditionToCollectionProperties("RelatedCaseRecords", item);
                     }
                 }
             }
@@ -1179,13 +1308,13 @@ namespace Faccts.Model.Entities
             {
                 foreach (CaseRecord item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.CaseRecord2, this))
+                    if (ReferenceEquals(item.ParentCaseRecord, this))
                     {
-                        item.CaseRecord2 = null;
+                        item.ParentCaseRecord = null;
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CaseRecord1", item);
+                        ChangeTracker.RecordRemovalFromCollectionProperties("RelatedCaseRecords", item);
                     }
                 }
             }

@@ -205,7 +205,7 @@ namespace Faccts.Model.Entities
         private Nullable<int> _courtClerk_UserId;
     
         [DataMember]
-        public Nullable<int> CaseRecord_Id
+        public Nullable<long> CaseRecord_Id
         {
             get { return _caseRecord_Id; }
             set
@@ -226,7 +226,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _caseRecord_Id;
+        private Nullable<long> _caseRecord_Id;
     
         [DataMember]
         public Nullable<int> Hearing_Id
@@ -299,6 +299,134 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<long> _courtOrder_Id;
+    
+        [DataMember]
+        public Nullable<bool> Appearances_Party1Appear
+        {
+            get { return _appearances_Party1Appear; }
+            set
+            {
+                if (_appearances_Party1Appear != value)
+                {
+    				OnPropertyChanging("Appearances_Party1Appear");
+                    _appearances_Party1Appear = value;
+                    OnPropertyChanged("Appearances_Party1Appear");
+                }
+            }
+        }
+        private Nullable<bool> _appearances_Party1Appear;
+    
+        [DataMember]
+        public Nullable<bool> Appearances_Party1Sworn
+        {
+            get { return _appearances_Party1Sworn; }
+            set
+            {
+                if (_appearances_Party1Sworn != value)
+                {
+    				OnPropertyChanging("Appearances_Party1Sworn");
+                    _appearances_Party1Sworn = value;
+                    OnPropertyChanged("Appearances_Party1Sworn");
+                }
+            }
+        }
+        private Nullable<bool> _appearances_Party1Sworn;
+    
+        [DataMember]
+        public Nullable<bool> Appearances_Party1AttorneyPresent
+        {
+            get { return _appearances_Party1AttorneyPresent; }
+            set
+            {
+                if (_appearances_Party1AttorneyPresent != value)
+                {
+    				OnPropertyChanging("Appearances_Party1AttorneyPresent");
+                    _appearances_Party1AttorneyPresent = value;
+                    OnPropertyChanged("Appearances_Party1AttorneyPresent");
+                }
+            }
+        }
+        private Nullable<bool> _appearances_Party1AttorneyPresent;
+    
+        [DataMember]
+        public Nullable<bool> Appearances_Party1Atty
+        {
+            get { return _appearances_Party1Atty; }
+            set
+            {
+                if (_appearances_Party1Atty != value)
+                {
+    				OnPropertyChanging("Appearances_Party1Atty");
+                    _appearances_Party1Atty = value;
+                    OnPropertyChanged("Appearances_Party1Atty");
+                }
+            }
+        }
+        private Nullable<bool> _appearances_Party1Atty;
+    
+        [DataMember]
+        public Nullable<bool> Appearances_Party2Appear
+        {
+            get { return _appearances_Party2Appear; }
+            set
+            {
+                if (_appearances_Party2Appear != value)
+                {
+    				OnPropertyChanging("Appearances_Party2Appear");
+                    _appearances_Party2Appear = value;
+                    OnPropertyChanged("Appearances_Party2Appear");
+                }
+            }
+        }
+        private Nullable<bool> _appearances_Party2Appear;
+    
+        [DataMember]
+        public Nullable<bool> Appearances_Party2Sworn
+        {
+            get { return _appearances_Party2Sworn; }
+            set
+            {
+                if (_appearances_Party2Sworn != value)
+                {
+    				OnPropertyChanging("Appearances_Party2Sworn");
+                    _appearances_Party2Sworn = value;
+                    OnPropertyChanged("Appearances_Party2Sworn");
+                }
+            }
+        }
+        private Nullable<bool> _appearances_Party2Sworn;
+    
+        [DataMember]
+        public Nullable<bool> Appearances_Party2AttorneyPresent
+        {
+            get { return _appearances_Party2AttorneyPresent; }
+            set
+            {
+                if (_appearances_Party2AttorneyPresent != value)
+                {
+    				OnPropertyChanging("Appearances_Party2AttorneyPresent");
+                    _appearances_Party2AttorneyPresent = value;
+                    OnPropertyChanged("Appearances_Party2AttorneyPresent");
+                }
+            }
+        }
+        private Nullable<bool> _appearances_Party2AttorneyPresent;
+    
+        [DataMember]
+        public Nullable<bool> Appearances_Party2Atty
+        {
+            get { return _appearances_Party2Atty; }
+            set
+            {
+                if (_appearances_Party2Atty != value)
+                {
+    				OnPropertyChanging("Appearances_Party2Atty");
+                    _appearances_Party2Atty = value;
+                    OnPropertyChanged("Appearances_Party2Atty");
+                }
+            }
+        }
+        private Nullable<bool> _appearances_Party2Atty;
 
         #endregion
 
