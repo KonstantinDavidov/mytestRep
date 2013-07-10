@@ -300,6 +300,17 @@ namespace FACCTS.Controls.ViewModels
 			}
 		}
 		
+		private bool _isRefreshing;
+		public bool IsRefreshing
+		{
+			get{return _isRefreshing;}
+			set{
+				if(_isRefreshing!=value){
+					this.RaiseAndSetIfChanged(ref _isRefreshing, value);
+				}
+			}
+		}
+		
 		private bool _canReissue;
 		public bool CanReissue
 		{
