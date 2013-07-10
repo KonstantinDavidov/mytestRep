@@ -49,6 +49,8 @@ namespace FACCTS.Server.Data
                        m.ToTable("RolePermission");
                    });
 
+            modelBuilder.Entity<CourtCase>().HasRequired(cc => cc.CaseRecord).WithRequiredPrincipal(cr => cr.CourtCase);
+
             modelBuilder.Configurations.Add(new ManualIntegrationTaskConfiguration());
             modelBuilder.Configurations.Add(new ScheduledIntegrationTaskConfiguration());
 

@@ -74,7 +74,7 @@
   <pdfField originalValue="hearingContinueYes" mapValue="hearingContinueYes" />
   <pdfField originalValue="continuedTime" mapValue="continuedTime" />
   <pdfField originalValue="continuedDate" mapValue="continuedDate" />
-  <pdfField originalValue="conductOrdersYes" mapValue="conductOrdersYes" />
+  <pdfField originalValue="conductOrdersYes" mapValue="conductOrders" />
   <pdfField originalValue="addProtectedConductYes" mapValue="addProtectedConductYes" />
   <pdfField originalValue="conductHarrassYes" mapValue="conductHarrassYes" />
   <pdfField originalValue="conductContactYes" mapValue="conductContactYes" />

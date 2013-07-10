@@ -818,6 +818,34 @@ namespace FACCTS.Server.Data
                     IssuedDate = DateTime.Now
                 };
 
+            testCaseRecord.CaseHistory = new List<CaseHistory>();
+            testCaseRecord.CaseHistory.Add(new CaseHistory()
+            {
+                Date = DateTime.Now,
+                CaseHistoryEvent = Model.Enums.CaseHistoryEvent.New,
+                Appearances = new Appearance()
+                {
+                    Party1Appear = true,
+                    Party1AttorneyPresent = true,
+                    Party1Sworn = true
+                },
+                Hearing = new Hearing()
+                {
+                    HearingDate = DateTime.Now,
+                    Judge = "Dredd",
+                    HearingIssues = new HearingIssue()
+                    {
+                        ChildCustodyOrChildVisitation = true,
+                        ChildSupport = false,
+                        IsOtherIssue = true,
+                        OtheIssueText = "Issue1",
+                        PermanentRO = true,
+                        SpousalSupport = true
+                    }
+                }
+            }
+            );
+
             testCourtCase.CaseNumber = "22-3456";
             testCourtCase.CaseRecord = testCaseRecord;
             testCourtCase.CCPORId = "ccporId";

@@ -11,7 +11,6 @@ namespace FACCTS.Server.Model.DataModel
     public partial class CaseRecord
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
 
         public virtual CourtParty Party1 { get; set; }
@@ -43,6 +42,8 @@ namespace FACCTS.Server.Model.DataModel
         public virtual CourtCounty CourtCounty { get; set; }
 
         public virtual ICollection<CaseRecord> RelatedCaseRecords { get; set; }
+
+        public virtual CourtCase CourtCase { get; set; }
 
 
         public RestrainingPartyIdentificationInformation RestrainingPartyIdentificationInformation { get; set; }
