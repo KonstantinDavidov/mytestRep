@@ -186,6 +186,22 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<int> _department_Id;
+    
+        [DataMember]
+        public FACCTS.Server.Model.Enums.DocketSession Session
+        {
+            get { return _session; }
+            set
+            {
+                if (_session != value)
+                {
+    				OnPropertyChanging("Session");
+                    _session = value;
+                    OnPropertyChanged("Session");
+                }
+            }
+        }
+        private FACCTS.Server.Model.Enums.DocketSession _session;
 
         #endregion
 

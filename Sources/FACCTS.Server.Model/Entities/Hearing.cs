@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FACCTS.Server.Model.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -24,5 +25,7 @@ namespace FACCTS.Server.Model.DataModel
         public string Judge { get; set; }
 
         public HearingIssue HearingIssues { get; set; }
+
+        public DocketSession Session { get; set; }
     }
 }

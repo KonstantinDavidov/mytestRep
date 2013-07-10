@@ -9,6 +9,7 @@ using ReactiveUI;
 using System.Reactive.Linq;
 using System.Collections.ObjectModel;
 using Caliburn.Micro;
+using FACCTS.Services;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -23,20 +24,20 @@ namespace FACCTS.Controls.ViewModels
                 x => x.Courtroom,
                 x => x.Department,
                 x => x.CourtDocketViewModel.CalendarDate,
-                x => x.Time,
+                x => x.Session,
                 x => x.IsPermanentRO,
                 x => x.IsCCorCV,
                 x => x.IsCS,
                 x => x.IsSS,
                 x => x.IsOtherHearingIssue,
                 x => x.OtherHearingIssueText,
-                (courtroom, department, calendarDate, time, isPermanentRO, isCCorCV, isCS, isSS, isOtherHearingIssue, otherHearingIssueText) =>
+                (courtroom, department, calendarDate, session, isPermanentRO, isCCorCV, isCS, isSS, isOtherHearingIssue, otherHearingIssueText) =>
                 new
                     {
                         Courtroom = courtroom.Value,
                         Department = department.Value,
                         CalendarDate = calendarDate.Value,
-                        Time = time.Value,
+                        Session = session.Value,
                         IsPermanentRO = isPermanentRO.Value,
                         IsCCorCV = isCCorCV.Value,
                         IsCS = isCS.Value,
@@ -75,6 +76,19 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
+        private List<EnumDescript<FACCTS.Server.Model.Enums.DocketSession>> _sessionList;
+        public List<EnumDescript<FACCTS.Server.Model.Enums.DocketSession>> SessionList
+        {
+            get
+            {
+                if (_sessionList == null)
+                {
+                    _sessionList = EnumDescript<FACCTS.Server.Model.Enums.DocketSession>.GetList<FACCTS.Server.Model.Enums.DocketSession>();
+                }
+                return _sessionList;
+            }
+        }
+
         
         private CourtDocketViewModel _courtDocketViewModel;
         public CourtDocketViewModel CourtDocketViewModel
@@ -102,12 +116,13 @@ namespace FACCTS.Controls.ViewModels
 
         private void ProceedAddition()
         {
-            var totalTime = CourtDocketViewModel.CalendarDate.GetValueOrDefault().Add(new TimeSpan(this.Time.Hour, this.Time.Minute, this.Time.Second));
+            var totalTime = CourtDocketViewModel.CalendarDate.GetValueOrDefault();
             CourtDocketRecord cr = new CourtDocketRecord()
             {
                 Hearing = new Hearings()
                         {
                             HearingDate = totalTime,
+                            Session = this.Session,
                             Courtrooms = this.Courtroom,
                             CourtDepartment = this.Department,
                             HearingIssue = new HearingIssue()
@@ -138,7 +153,6 @@ namespace FACCTS.Controls.ViewModels
                     if (_currentCourtCase != null)
                     {
                         this.CaseNumber = _currentCourtCase.CaseNumber;
-                        this.Time = DateTime.Now.ToLocalTime();
                     }
                 }
             }

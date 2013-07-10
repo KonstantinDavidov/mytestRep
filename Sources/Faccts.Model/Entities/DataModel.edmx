@@ -804,6 +804,7 @@
     <Property Name="HearingIssue_IsOtherIssue" Type="bit" Nullable="false" />
     <Property Name="HearingIssue_OtheIssueText" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Department_Id" Type="int" Nullable="true" />
+    <Property Name="Session" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="CourtDocketRecordSet">
     <Key>
@@ -2798,6 +2799,7 @@
           <Property Type="Int32" Name="Department_Id" />
           <NavigationProperty Name="CourtDepartment" Relationship="FACCTS_DBModel.FK_dbo_Hearings_dbo_CourtDepartmenets_Department_Id" FromRole="Hearings" ToRole="CourtDepartmenets" />
           <NavigationProperty Name="CourtDocketRecords" Relationship="FACCTS_DBModel.CourtDocketRecordHearings" FromRole="Hearings" ToRole="CourtDocketRecord" />
+          <Property Type="FACCTS_DBModel.DocketSession" Name="Session" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id">
           <End Type="FACCTS_DBModel.Hearings" Role="Hearings" Multiplicity="0..1" />
@@ -2913,6 +2915,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EnumType Name="DocketSession" a:ExternalTypeName="FACCTS.Server.Model.Enums.DocketSession" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3521,6 +3524,7 @@
             <ScalarProperty Name="OtheIssueText" ColumnName="HearingIssue_OtheIssueText" />
           </ComplexProperty>
           <ScalarProperty Name="Department_Id" ColumnName="Department_Id" />
+          <ScalarProperty Name="Session" ColumnName="Session" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
