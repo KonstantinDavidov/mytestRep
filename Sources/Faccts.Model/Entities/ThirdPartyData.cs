@@ -106,20 +106,20 @@ namespace Faccts.Model.Entities
         private long _id;
     
         [DataMember]
-        public bool IsThirdpartyProPer
+        public bool IsThirdPartyProPer
         {
-            get { return _isThirdpartyProPer; }
+            get { return _isThirdPartyProPer; }
             set
             {
-                if (_isThirdpartyProPer != value)
+                if (_isThirdPartyProPer != value)
                 {
-    				OnPropertyChanging("IsThirdpartyProPer");
-                    _isThirdpartyProPer = value;
-                    OnPropertyChanged("IsThirdpartyProPer");
+    				OnPropertyChanging("IsThirdPartyProPer");
+                    _isThirdPartyProPer = value;
+                    OnPropertyChanged("IsThirdPartyProPer");
                 }
             }
         }
-        private bool _isThirdpartyProPer;
+        private bool _isThirdPartyProPer;
     
         [DataMember]
         public bool IsThirdPartyRequestorInEACase

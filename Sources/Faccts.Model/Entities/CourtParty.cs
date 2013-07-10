@@ -504,23 +504,7 @@ namespace Faccts.Model.Entities
         private Nullable<int> _attorney_Id;
     
         [DataMember]
-        public int ParticipantRole1
-        {
-            get { return _participantRole1; }
-            set
-            {
-                if (_participantRole1 != value)
-                {
-    				OnPropertyChanging("ParticipantRole1");
-                    _participantRole1 = value;
-                    OnPropertyChanged("ParticipantRole1");
-                }
-            }
-        }
-        private int _participantRole1;
-    
-        [DataMember]
-        public int ParticipantRole
+        public FACCTS.Server.Model.Enums.ParticipantRole ParticipantRole
         {
             get { return _participantRole; }
             set
@@ -533,7 +517,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _participantRole;
+        private FACCTS.Server.Model.Enums.ParticipantRole _participantRole;
     
         [DataMember]
         public int Sex

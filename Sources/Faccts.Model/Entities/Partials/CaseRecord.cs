@@ -21,6 +21,7 @@ namespace Faccts.Model.Entities
             this.Attorneys = new Attorneys();
             this.Children = new TrackableCollection<Children>();
             this.RestrainingpartyIdentificationInformation = new RestrainingPartyIDInfo();
+            this.ThirdPartyData = new ThirdPartyData();
         }
 
         

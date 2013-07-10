@@ -1867,8 +1867,7 @@
           <NavigationProperty Name="Race" Relationship="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Race_Race_Id" FromRole="CourtParty" ToRole="Race" />
           <NavigationProperty Name="Interpreters" Relationship="FACCTS_DBModel.FK_dbo_Interpreters_dbo_CourtParty_InterpreterFor_Id" FromRole="CourtParty" ToRole="Interpreters" />
           <NavigationProperty Name="Witnesses" Relationship="FACCTS_DBModel.FK_dbo_Witnesses_dbo_CourtParty_WitnessFor_Id" FromRole="CourtParty" ToRole="Witnesses" />
-          <Property Name="ParticipantRole1" Nullable="false" Type="Int32" />
-          <Property Type="Int32" Name="ParticipantRole" Nullable="false" />
+          <Property Type="FACCTS_DBModel.ParticipantRole" Name="ParticipantRole" Nullable="false" />
           <Property Type="Int32" Name="Sex" Nullable="false" />
         </EntityType>
         <EntityType Name="Courtrooms">
@@ -2771,7 +2770,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Boolean" Name="IsThirdpartyProPer" Nullable="false" />
+          <Property Type="Boolean" Name="IsThirdPartyProPer" Nullable="false" />
           <Property Type="Boolean" Name="IsThirdPartyRequestorInEACase" Nullable="false" />
           <Property Type="Int32" Name="Attorney_Id" />
           <NavigationProperty Name="Attorney" Relationship="FACCTS_DBModel.FK_dbo_ThirdPartyData_dbo_Attorneys_Attorney_Id" FromRole="ThirdPartyData" ToRole="Attorneys" />
@@ -2803,6 +2802,7 @@
         </Association>
         <EnumType Name="Gender" a:ExternalTypeName="FACCTS.Server.Model.Enums.Gender" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         <EnumType Name="USAState" a:ExternalTypeName="FACCTS.Server.Model.Enums.USAState" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EnumType Name="ParticipantRole" a:ExternalTypeName="FACCTS.Server.Model.Enums.ParticipantRole" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3414,7 +3414,7 @@
               <MappingFragment StoreEntitySet="ThirdPartyData">
                 <ScalarProperty Name="Attorney_Id" ColumnName="Attorney_Id" />
                 <ScalarProperty Name="IsThirdPartyRequestorInEACase" ColumnName="IsThirdPartyRequestorInEACase" />
-                <ScalarProperty Name="IsThirdpartyProPer" ColumnName="IsThirdpartyProPer" />
+                <ScalarProperty Name="IsThirdPartyProPer" ColumnName="IsThirdpartyProPer" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

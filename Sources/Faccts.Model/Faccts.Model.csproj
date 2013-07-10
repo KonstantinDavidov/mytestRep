@@ -228,6 +228,7 @@
     <Compile Include="Entities\Partials\OtherProtected.cs" />
     <Compile Include="Entities\Partials\Race.cs" />
     <Compile Include="Entities\Partials\RestrainingPartyIDInfo.cs" />
+    <Compile Include="Entities\Partials\ThirdPartyData.cs" />
     <Compile Include="Entities\Partials\User.cs" />
     <Compile Include="Entities\Partials\Witnesses.cs" />
     <Compile Include="Entities\Permission.cs">
