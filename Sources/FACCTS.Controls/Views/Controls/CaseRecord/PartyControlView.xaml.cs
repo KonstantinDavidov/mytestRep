@@ -23,7 +23,28 @@ namespace FACCTS.Controls.Views.Controls
 			this.InitializeComponent();
 		}
 
-       
+        #region IsParty1
+
+        /// <summary>
+        /// IsParty1 Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty IsParty1Property =
+            DependencyProperty.Register("IsParty1", typeof(bool), typeof(PartyControlView),
+                new FrameworkPropertyMetadata((bool)true));
+
+        /// <summary>
+        /// Gets or sets the IsParty1 property. This dependency property 
+        /// indicates ....
+        /// </summary>
+        public bool IsParty1
+        {
+            get { return (bool)GetValue(IsParty1Property); }
+            set { SetValue(IsParty1Property, value); }
+        }
+
+        #endregion
+
+        
         
 	}
 }

@@ -17,8 +17,10 @@
 			<RowDefinition MaxHeight="220"/>
 			<RowDefinition MaxHeight="110"/>
 		</Grid.RowDefinitions>
-		<localcontrols:PartyControlView Grid.Row="0" DataContext="{Binding CaseRecord.CourtParty, Mode=OneWay}"/>
-		<localcontrols:PartyControlView Grid.Row="1" DataContext="{Binding CaseRecord.CourtParty1, Mode=OneWay}"/>
+		<localcontrols:PartyControlView Grid.Row="0" DataContext="{Binding CaseRecord.CourtParty, Mode=OneWay}" IsParty1="True"/>
+        <localcontrols:PartyControlView Grid.Row="1"
+                                        DataContext="{Binding CaseRecord.CourtParty1, Mode=OneWay}"
+                                        IsParty1="False" />
         <controls:RestrainingPartyIDInfoControlView Grid.Row="2" DataContext="{Binding CaseRecord.RestrainingpartyIdentificationInformation, Mode=OneWay}" IDTypeItemsSource="{Binding DataContext.IdentificationIDTypes, Mode=OneWay, ElementName=LayoutRoot}"/>
 	</Grid>
 </UserControl>

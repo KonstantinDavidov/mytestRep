@@ -140,6 +140,7 @@
     <Compile Include="Enums\MasterOrders.cs" />
     <Compile Include="Enums\OrderItemState.cs" />
     <Compile Include="Enums\OverrunOrders.cs" />
+    <Compile Include="Enums\ParentRole.cs" />
     <Compile Include="Enums\ParticipantRole.cs" />
     <Compile Include="Enums\Relationship.cs" />
     <Compile Include="Enums\ServiceReqState.cs" />

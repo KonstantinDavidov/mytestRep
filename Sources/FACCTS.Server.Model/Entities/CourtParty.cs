@@ -11,6 +11,11 @@ namespace FACCTS.Server.Model.DataModel
 {
     public partial class CourtParty
     {
+        public CourtParty()
+        {
+            EntityType = FACCTSEntity.PERSON;
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public long Id { get; set; }
@@ -54,6 +59,10 @@ namespace FACCTS.Server.Model.DataModel
         [DataType(DataType.PhoneNumber)]
         [StringLength(20)]
         public string Fax { get; set; }
+
+        public ParentRole ParentRole { get; set; }
+
+        public FACCTSEntity EntityType { get; set; }
 
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
