@@ -145,6 +145,7 @@
     <Compile Include="Enums\ServiceReqState.cs" />
     <Compile Include="Enums\Gender.cs" />
     <Compile Include="Enums\StayAway.cs" />
+    <Compile Include="Enums\USAState.cs" />
     <Compile Include="Enums\Visitation.cs" />
     <Compile Include="NullStringConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

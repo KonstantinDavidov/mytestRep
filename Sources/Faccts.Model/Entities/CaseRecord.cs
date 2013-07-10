@@ -643,78 +643,6 @@ namespace Faccts.Model.Entities
         private TrackableCollection<CourtCase> _courtCase;
     
         [DataMember]
-        public TrackableCollection<CourtParty> CourtParty2
-        {
-            get
-            {
-                if (_courtParty2 == null)
-                {
-                    _courtParty2 = new TrackableCollection<CourtParty>();
-                    _courtParty2.CollectionChanged += FixupCourtParty2;
-                }
-                return _courtParty2;
-            }
-            set
-            {
-                if (!ReferenceEquals(_courtParty2, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("CourtParty2");
-                    if (_courtParty2 != null)
-                    {
-                        _courtParty2.CollectionChanged -= FixupCourtParty2;
-                    }
-                    _courtParty2 = value;
-                    if (_courtParty2 != null)
-                    {
-                        _courtParty2.CollectionChanged += FixupCourtParty2;
-                    }
-                    OnNavigationPropertyChanged("CourtParty2");
-                }
-            }
-        }
-        private TrackableCollection<CourtParty> _courtParty2;
-    
-        [DataMember]
-        public TrackableCollection<CourtParty> CourtParty3
-        {
-            get
-            {
-                if (_courtParty3 == null)
-                {
-                    _courtParty3 = new TrackableCollection<CourtParty>();
-                    _courtParty3.CollectionChanged += FixupCourtParty3;
-                }
-                return _courtParty3;
-            }
-            set
-            {
-                if (!ReferenceEquals(_courtParty3, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("CourtParty3");
-                    if (_courtParty3 != null)
-                    {
-                        _courtParty3.CollectionChanged -= FixupCourtParty3;
-                    }
-                    _courtParty3 = value;
-                    if (_courtParty3 != null)
-                    {
-                        _courtParty3.CollectionChanged += FixupCourtParty3;
-                    }
-                    OnNavigationPropertyChanged("CourtParty3");
-                }
-            }
-        }
-        private TrackableCollection<CourtParty> _courtParty3;
-    
-        [DataMember]
         public TrackableCollection<Interpreters> Interpreters
         {
             get
@@ -993,8 +921,6 @@ namespace Faccts.Model.Entities
             CourtParty1 = null;
             Children.Clear();
             CourtCase.Clear();
-            CourtParty2.Clear();
-            CourtParty3.Clear();
             Interpreters.Clear();
             OtherProtected.Clear();
             Witnesses.Clear();
@@ -1485,84 +1411,6 @@ namespace Faccts.Model.Entities
                     // This is the principal end in an association that performs cascade deletes.
                     // Remove the previous dependent from the event listener.
                     ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
-                }
-            }
-        }
-    
-        private void FixupCourtParty2(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (CourtParty item in e.NewItems)
-                {
-                    item.CaseRecord2 = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CourtParty2", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (CourtParty item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.CaseRecord2, this))
-                    {
-                        item.CaseRecord2 = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtParty2", item);
-                    }
-                }
-            }
-        }
-    
-        private void FixupCourtParty3(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (CourtParty item in e.NewItems)
-                {
-                    item.CaseRecord3 = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CourtParty3", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (CourtParty item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.CaseRecord3, this))
-                    {
-                        item.CaseRecord3 = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtParty3", item);
-                    }
                 }
             }
         }

@@ -208,7 +208,7 @@ namespace Faccts.Model.Entities
         private string _city;
     
         [DataMember]
-        public string State
+        public FACCTS.Server.Model.Enums.USAState State
         {
             get { return _state; }
             set
@@ -221,7 +221,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private string _state;
+        private FACCTS.Server.Model.Enums.USAState _state;
     
         [DataMember]
         public string ZipCode
@@ -520,54 +520,6 @@ namespace Faccts.Model.Entities
         private int _participantRole1;
     
         [DataMember]
-        public Nullable<long> CaseRecordByCourtParty1_Id
-        {
-            internal get { return _caseRecordByCourtParty1_Id; }
-            set
-            {
-                if (_caseRecordByCourtParty1_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("CaseRecordByCourtParty1_Id", _caseRecordByCourtParty1_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (CaseRecord2 != null && CaseRecord2.Id != value)
-                        {
-                            CaseRecord2 = null;
-                        }
-                    }
-    				OnPropertyChanging("CaseRecordByCourtParty1_Id");
-                    _caseRecordByCourtParty1_Id = value;
-                    OnPropertyChanged("CaseRecordByCourtParty1_Id");
-                }
-            }
-        }
-        private Nullable<long> _caseRecordByCourtParty1_Id;
-    
-        [DataMember]
-        public Nullable<long> CaseRecordByCourtParty2_Id
-        {
-            get { return _caseRecordByCourtParty2_Id; }
-            set
-            {
-                if (_caseRecordByCourtParty2_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("CaseRecordByCourtParty2_Id", _caseRecordByCourtParty2_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (CaseRecord3 != null && CaseRecord3.Id != value)
-                        {
-                            CaseRecord3 = null;
-                        }
-                    }
-    				OnPropertyChanging("CaseRecordByCourtParty2_Id");
-                    _caseRecordByCourtParty2_Id = value;
-                    OnPropertyChanged("CaseRecordByCourtParty2_Id");
-                }
-            }
-        }
-        private Nullable<long> _caseRecordByCourtParty2_Id;
-    
-        [DataMember]
         public int ParticipantRole
         {
             get { return _participantRole; }
@@ -692,42 +644,6 @@ namespace Faccts.Model.Entities
             }
         }
         private TrackableCollection<CaseRecord> _caseRecord1;
-    
-        [DataMember]
-        public CaseRecord CaseRecord2
-        {
-            get { return _caseRecord2; }
-            set
-            {
-                if (!ReferenceEquals(_caseRecord2, value))
-                {
-                    var previousValue = _caseRecord2;
-    				OnNavigationPropertyChanging("CaseRecord2");
-                    _caseRecord2 = value;
-                    FixupCaseRecord2(previousValue);
-                    OnNavigationPropertyChanged("CaseRecord2");
-                }
-            }
-        }
-        private CaseRecord _caseRecord2;
-    
-        [DataMember]
-        public CaseRecord CaseRecord3
-        {
-            get { return _caseRecord3; }
-            set
-            {
-                if (!ReferenceEquals(_caseRecord3, value))
-                {
-                    var previousValue = _caseRecord3;
-    				OnNavigationPropertyChanging("CaseRecord3");
-                    _caseRecord3 = value;
-                    FixupCaseRecord3(previousValue);
-                    OnNavigationPropertyChanged("CaseRecord3");
-                }
-            }
-        }
-        private CaseRecord _caseRecord3;
     
         [DataMember]
         public Designation Designation
@@ -1007,8 +923,6 @@ namespace Faccts.Model.Entities
             Attorneys = null;
             CaseRecord.Clear();
             CaseRecord1.Clear();
-            CaseRecord2 = null;
-            CaseRecord3 = null;
             Designation = null;
             EyesColor = null;
             HairColor = null;
@@ -1058,88 +972,6 @@ namespace Faccts.Model.Entities
                 if (Attorneys != null && !Attorneys.ChangeTracker.ChangeTrackingEnabled)
                 {
                     Attorneys.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupCaseRecord2(CaseRecord previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.CourtParty2.Contains(this))
-            {
-                previousValue.CourtParty2.Remove(this);
-            }
-    
-            if (CaseRecord2 != null)
-            {
-                CaseRecord2.CourtParty2.Add(this);
-    
-                CaseRecordByCourtParty1_Id = CaseRecord2.Id;
-            }
-            else if (!skipKeys)
-            {
-                CaseRecordByCourtParty1_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("CaseRecord2")
-                    && (ChangeTracker.OriginalValues["CaseRecord2"] == CaseRecord2))
-                {
-                    ChangeTracker.OriginalValues.Remove("CaseRecord2");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("CaseRecord2", previousValue);
-                }
-                if (CaseRecord2 != null && !CaseRecord2.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    CaseRecord2.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupCaseRecord3(CaseRecord previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.CourtParty3.Contains(this))
-            {
-                previousValue.CourtParty3.Remove(this);
-            }
-    
-            if (CaseRecord3 != null)
-            {
-                CaseRecord3.CourtParty3.Add(this);
-    
-                CaseRecordByCourtParty2_Id = CaseRecord3.Id;
-            }
-            else if (!skipKeys)
-            {
-                CaseRecordByCourtParty2_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("CaseRecord3")
-                    && (ChangeTracker.OriginalValues["CaseRecord3"] == CaseRecord3))
-                {
-                    ChangeTracker.OriginalValues.Remove("CaseRecord3");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("CaseRecord3", previousValue);
-                }
-                if (CaseRecord3 != null && !CaseRecord3.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    CaseRecord3.StartTracking();
                 }
             }
         }

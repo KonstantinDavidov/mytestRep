@@ -41,8 +41,7 @@ namespace FACCTS.Server.Model.DataModel
         [StringLength(100)]
         public string City { get; set; }
 
-        [StringLength(100)]
-        public string State { get; set; }
+        public USAState State { get; set; }
 
         [DataType(DataType.PostalCode)]
         [StringLength(20)]
@@ -79,10 +78,6 @@ namespace FACCTS.Server.Model.DataModel
         public bool? HasAttorney { get; set; }
 
         public virtual Attorney Attorney { get; set; }
-
-        public virtual CaseRecord CaseRecordByCourtParty1 { get; set; }
-
-        public virtual CaseRecord CaseRecordByCourtParty2 {get; set;}
 
         [NotMapped]
         public string FullName

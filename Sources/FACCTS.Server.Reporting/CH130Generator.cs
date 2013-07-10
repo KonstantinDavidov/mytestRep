@@ -78,7 +78,7 @@ namespace FACCTS.Server.Reporting
 
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressStreet", protectedParty.Attorney.StreetAddress);
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressCity", protectedParty.Attorney.City);
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressState", protectedParty.Attorney.State);
+                Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressState", protectedParty.Attorney.State.ToString());
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressPostal", protectedParty.Attorney.ZipCode);
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedPhone", protectedParty.Attorney.Phone);
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedFax", protectedParty.Attorney.Fax);
@@ -88,7 +88,7 @@ namespace FACCTS.Server.Reporting
             {
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressStreet", protectedParty.Address);
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressCity", protectedParty.City);
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressState", protectedParty.State);
+                Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressState", protectedParty.State.ToString());
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressPostal", protectedParty.ZipCode);
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedPhone", protectedParty.Phone);
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedFax", protectedParty.Fax);
@@ -100,7 +100,7 @@ namespace FACCTS.Server.Reporting
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedName", restrainedParty.FullName);
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedAddressStreet", restrainedParty.Address);
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedAddressCity", restrainedParty.City);
-            Utils.SetPdfFormFieldValue(form, mapper, "restrainedAddressState", restrainedParty.State);
+            Utils.SetPdfFormFieldValue(form, mapper, "restrainedAddressState", restrainedParty.State.ToString());
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedAddressPostal", restrainedParty.ZipCode);
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedEye", restrainedParty.EyesColor.Color);
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedHair", restrainedParty.HairColor.Color);

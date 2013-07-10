@@ -187,7 +187,7 @@ namespace Faccts.Model.Entities
         private string _city;
     
         [DataMember]
-        public string State
+        public FACCTS.Server.Model.Enums.USAState State
         {
             get { return _state; }
             set
@@ -200,7 +200,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private string _state;
+        private FACCTS.Server.Model.Enums.USAState _state;
     
         [DataMember]
         public string ZipCode
