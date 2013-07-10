@@ -105,7 +105,7 @@
 							<RowDefinition/>
 						</Grid.RowDefinitions>
 						<TextBlock Margin="0,0,0,-0.001" TextWrapping="Wrap" Text="Sex" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        <ComboBox Margin="0,0,0,-0.001" Grid.Column="1" VerticalAlignment="Center" ItemsSource="{Binding IsAsync=True, Mode=OneWay, Source={StaticResource cvsSex}}" SelectedItem="{Binding Sex, Mode=TwoWay}" DisplayMemberPath="SexName"/>
+                        <ComboBox Margin="0,0,0,-0.001" Grid.Column="1" VerticalAlignment="Center" ItemsSource="{Binding IsAsync=True, Mode=OneWay, Source={StaticResource cvsSex}}" SelectedValue="{Binding Gender, Mode=TwoWay}" SelectedValuePath="Value"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Hair" VerticalAlignment="Center" Grid.Column="2"/>
 						<ComboBox Margin="0,0,0,-0.001" VerticalAlignment="Center" Grid.Column="3" ItemsSource="{Binding IsAsync=True, Mode=OneWay, Source={StaticResource cvsHair}}" SelectedItem="{Binding HairColor, Mode=TwoWay}" DisplayMemberPath="Color"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Eyes" VerticalAlignment="Center" Grid.Column="4"/>

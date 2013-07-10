@@ -57,7 +57,7 @@ namespace FACCTS.Server.Model.DataModel
         public string Fax { get; set; }
 
         [Required]
-        public virtual Sex Sex { get; set; }
+        public virtual Gender Sex { get; set; }
         [Required]
         public virtual HairColor HairColor { get; set; }
         [Required]

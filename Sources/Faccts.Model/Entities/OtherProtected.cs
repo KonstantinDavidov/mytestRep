@@ -21,7 +21,6 @@ namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
     [KnownType(typeof(CaseRecord))]
-    [KnownType(typeof(Sex))]
     public partial class OtherProtected: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -210,28 +209,20 @@ namespace Faccts.Model.Entities
         private System.DateTime _dateOfBirth;
     
         [DataMember]
-        public Nullable<int> Sex_Id
+        public Nullable<FACCTS.Server.Model.Enums.Gender> Gender
         {
-            get { return _sex_Id; }
+            get { return _gender; }
             set
             {
-                if (_sex_Id != value)
+                if (_gender != value)
                 {
-                    ChangeTracker.RecordOriginalValue("Sex_Id", _sex_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (Sex != null && Sex.Id != value)
-                        {
-                            Sex = null;
-                        }
-                    }
-    				OnPropertyChanging("Sex_Id");
-                    _sex_Id = value;
-                    OnPropertyChanged("Sex_Id");
+    				OnPropertyChanging("Gender");
+                    _gender = value;
+                    OnPropertyChanged("Gender");
                 }
             }
         }
-        private Nullable<int> _sex_Id;
+        private Nullable<FACCTS.Server.Model.Enums.Gender> _gender;
     
         [DataMember]
         public int Age
@@ -264,6 +255,22 @@ namespace Faccts.Model.Entities
             }
         }
         private bool _isHouseHold;
+    
+        [DataMember]
+        public int Sex
+        {
+            get { return _sex; }
+            set
+            {
+                if (_sex != value)
+                {
+    				OnPropertyChanging("Sex");
+                    _sex = value;
+                    OnPropertyChanged("Sex");
+                }
+            }
+        }
+        private int _sex;
 
         #endregion
 
@@ -286,24 +293,6 @@ namespace Faccts.Model.Entities
             }
         }
         private CaseRecord _caseRecord;
-    
-        [DataMember]
-        public Sex Sex
-        {
-            get { return _sex; }
-            set
-            {
-                if (!ReferenceEquals(_sex, value))
-                {
-                    var previousValue = _sex;
-    				OnNavigationPropertyChanging("Sex");
-                    _sex = value;
-                    FixupSex(previousValue);
-                    OnNavigationPropertyChanged("Sex");
-                }
-            }
-        }
-        private Sex _sex;
 
         #endregion
 
@@ -403,7 +392,6 @@ namespace Faccts.Model.Entities
         protected virtual void ClearNavigationProperties()
         {
             CaseRecord = null;
-            Sex = null;
         }
 
         #endregion
@@ -447,47 +435,6 @@ namespace Faccts.Model.Entities
                 if (CaseRecord != null && !CaseRecord.ChangeTracker.ChangeTrackingEnabled)
                 {
                     CaseRecord.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupSex(Sex previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.OtherProtected.Contains(this))
-            {
-                previousValue.OtherProtected.Remove(this);
-            }
-    
-            if (Sex != null)
-            {
-                Sex.OtherProtected.Add(this);
-    
-                Sex_Id = Sex.Id;
-            }
-            else if (!skipKeys)
-            {
-                Sex_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("Sex")
-                    && (ChangeTracker.OriginalValues["Sex"] == Sex))
-                {
-                    ChangeTracker.OriginalValues.Remove("Sex");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("Sex", previousValue);
-                }
-                if (Sex != null && !Sex.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    Sex.StartTracking();
                 }
             }
         }

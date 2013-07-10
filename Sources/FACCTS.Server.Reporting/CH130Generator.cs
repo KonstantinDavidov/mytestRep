@@ -12,6 +12,7 @@ using org.pdfclown.documents.interaction.forms;
 using FACCTS.Server.Model.DataModel;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using FACCTS.Server.Model.Enums;
 
 namespace FACCTS.Server.Reporting
 {
@@ -109,8 +110,8 @@ namespace FACCTS.Server.Reporting
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedDOB", restrainedParty.DateOfBirth.ToOrderDate());
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedAge", restrainedParty.Age.ToString());
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedRelationship", "TODO");
-            form.Fields[mapper["restrainedSexM"]].Value = restrainedParty.Sex.Id == 1 ? "1" : null ; //CheckBox
-            form.Fields[mapper["restrainedSexF"]].Value = restrainedParty.Sex.Id == 10 ? "2" : null; //CheckBox
+            form.Fields[mapper["restrainedSexM"]].Value = restrainedParty.Sex == Gender.M ? "1" : null ; //CheckBox
+            form.Fields[mapper["restrainedSexF"]].Value = restrainedParty.Sex == Gender.F ? "2" : null; //CheckBox
            
             //other protected
             if(courtCaseRecord.OtherProtected.Count > 0)
@@ -119,7 +120,7 @@ namespace FACCTS.Server.Reporting
                 var firstProtected = courtCaseRecord.OtherProtected.First();
                 form.Fields[mapper["protectedAddYes"]].Value = BooleanString; //CheckBox
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Name", firstProtected.FullName);
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Sex", firstProtected.Sex.SexName.First().ToString());
+                Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Sex", firstProtected.Sex.ToString());
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Age", firstProtected.Age.ToString());
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Relation", firstProtected.RelationshipToPlaintiff.ToString());
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]HouseholdYes", firstProtected.IsHouseHold ? BooleanString : null); //CheckBox
@@ -129,7 +130,7 @@ namespace FACCTS.Server.Reporting
                 {
                     var secondProtected = courtCaseRecord.OtherProtected.ElementAt(1);
                     Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]Name", secondProtected.FullName);
-                    Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]Sex", secondProtected.Sex.SexName.First().ToString());
+                    Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]Sex", secondProtected.Sex.ToString());
                     Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]Age", secondProtected.Age.ToString());
                     Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]Relation", secondProtected.RelationshipToPlaintiff.ToString());
                     Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]HouseholdYes", secondProtected.IsHouseHold ? BooleanString : null); //CheckBox

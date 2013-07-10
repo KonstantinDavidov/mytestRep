@@ -1,4 +1,5 @@
 ﻿using Faccts.Model.Entities;
+using FACCTS.Server.Model.Enums;
 using ReactiveUI;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace FACCTS.Services.Data
         FACCTSConfiguration FacctsConfiguration { get; }
         List<CourtDepartmenets> AvailableDepartments { get; }
         List<Courtrooms> AvailableCourtrooms { get; }
-        List<Sex> Sexes { get; }
+        List<EnumDescript<Gender>> Sexes { get; }
         List<HairColor> HairColors { get; }
         List<EyesColor> EyesColors { get; }
         List<Race> Races { get; }

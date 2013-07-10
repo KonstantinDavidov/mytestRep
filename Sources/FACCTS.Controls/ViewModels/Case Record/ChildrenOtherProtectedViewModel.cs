@@ -49,7 +49,7 @@ namespace FACCTS.Controls.ViewModels
             var newChild = new Children()
             {
                 FirstName = "First Name",
-                Sex = DataContainer.Sexes.FirstOrDefault(),
+                Gender = FACCTS.Server.Model.Enums.Gender.F,
             };
             CaseRecord.Children.Add(newChild);
         }
@@ -67,7 +67,7 @@ namespace FACCTS.Controls.ViewModels
             var newOP = new OtherProtected()
             {
                 FirstName = "First name",
-                Sex = DataContainer.Sexes.FirstOrDefault(),
+                Gender = FACCTS.Server.Model.Enums.Gender.F,
             };
             CaseRecord.OtherProtected.Add(newOP);
         }

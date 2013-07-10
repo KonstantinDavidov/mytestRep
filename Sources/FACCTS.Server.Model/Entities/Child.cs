@@ -36,7 +36,7 @@ namespace FACCTS.Server.Model.DataModel
         public Relationship RelationshipToProtected { get; set; }
 
         [Required]
-        public virtual Sex Sex { get; set; }
+        public Gender Sex { get; set; }
         [Required]
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }

@@ -26,7 +26,6 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(EyesColor))]
     [KnownType(typeof(HairColor))]
     [KnownType(typeof(Race))]
-    [KnownType(typeof(Sex))]
     [KnownType(typeof(Interpreters))]
     [KnownType(typeof(Witnesses))]
     public partial class CourtParty: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
@@ -393,28 +392,20 @@ namespace Faccts.Model.Entities
         private int _designation_Id;
     
         [DataMember]
-        public int Sex_Id
+        public FACCTS.Server.Model.Enums.Gender Gender
         {
-            get { return _sex_Id; }
+            get { return _gender; }
             set
             {
-                if (_sex_Id != value)
+                if (_gender != value)
                 {
-                    ChangeTracker.RecordOriginalValue("Sex_Id", _sex_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (Sex != null && Sex.Id != value)
-                        {
-                            Sex = null;
-                        }
-                    }
-    				OnPropertyChanging("Sex_Id");
-                    _sex_Id = value;
-                    OnPropertyChanged("Sex_Id");
+    				OnPropertyChanging("Gender");
+                    _gender = value;
+                    OnPropertyChanged("Gender");
                 }
             }
         }
-        private int _sex_Id;
+        private FACCTS.Server.Model.Enums.Gender _gender;
     
         [DataMember]
         public int HairColor_Id
@@ -591,6 +582,22 @@ namespace Faccts.Model.Entities
             }
         }
         private int _participantRole;
+    
+        [DataMember]
+        public int Sex
+        {
+            get { return _sex; }
+            set
+            {
+                if (_sex != value)
+                {
+    				OnPropertyChanging("Sex");
+                    _sex = value;
+                    OnPropertyChanged("Sex");
+                }
+            }
+        }
+        private int _sex;
 
         #endregion
 
@@ -793,24 +800,6 @@ namespace Faccts.Model.Entities
             }
         }
         private Race _race;
-    
-        [DataMember]
-        public Sex Sex
-        {
-            get { return _sex; }
-            set
-            {
-                if (!ReferenceEquals(_sex, value))
-                {
-                    var previousValue = _sex;
-    				OnNavigationPropertyChanging("Sex");
-                    _sex = value;
-                    FixupSex(previousValue);
-                    OnNavigationPropertyChanged("Sex");
-                }
-            }
-        }
-        private Sex _sex;
     
         [DataMember]
         public TrackableCollection<Interpreters> Interpreters
@@ -1024,7 +1013,6 @@ namespace Faccts.Model.Entities
             EyesColor = null;
             HairColor = null;
             Race = null;
-            Sex = null;
             Interpreters.Clear();
             Witnesses.Clear();
         }
@@ -1296,42 +1284,6 @@ namespace Faccts.Model.Entities
                 if (Race != null && !Race.ChangeTracker.ChangeTrackingEnabled)
                 {
                     Race.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupSex(Sex previousValue)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.CourtParty.Contains(this))
-            {
-                previousValue.CourtParty.Remove(this);
-            }
-    
-            if (Sex != null)
-            {
-                Sex.CourtParty.Add(this);
-    
-                Sex_Id = Sex.Id;
-            }
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("Sex")
-                    && (ChangeTracker.OriginalValues["Sex"] == Sex))
-                {
-                    ChangeTracker.OriginalValues.Remove("Sex");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("Sex", previousValue);
-                }
-                if (Sex != null && !Sex.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    Sex.StartTracking();
                 }
             }
         }

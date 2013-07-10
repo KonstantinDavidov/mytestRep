@@ -1,4 +1,5 @@
 ﻿using Faccts.Model.Entities;
+using FACCTS.Server.Model.Enums;
 using FACCTS.Services.Logger;
 using ReactiveUI;
 using System;
@@ -184,8 +185,8 @@ namespace FACCTS.Services.Data
             }
         }
 
-        private List<Sex> _sexes;
-        public List<Sex> Sexes
+        private List<EnumDescript<Gender>> _sexes;
+        public List<EnumDescript<Gender>> Sexes
         {
             get
             {

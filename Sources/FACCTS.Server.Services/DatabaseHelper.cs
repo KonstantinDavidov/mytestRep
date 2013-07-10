@@ -509,7 +509,6 @@ namespace FACCTS.Server.Data
             SeedEyeColors(context);
             SeedHairColor(context);
             SeedRace(context);
-            SeedSex(context);
             SeedPdfForm(context);
             SeedCourtCounties(context);
             SeedMembershipProviderData(context);
@@ -563,16 +562,7 @@ namespace FACCTS.Server.Data
                 });
         }
 
-        private static void SeedSex(DatabaseContext context)
-        {
-            GetRecords<FACCTS.Server.Model.DataModel.Sex>("Sex.csv")
-                .Aggregate(context.Sex, (dbset, record) =>
-                {
-                    dbset.Add(record);
-                    return dbset;
-                }
-                );
-        }
+        
 
 
 
@@ -684,7 +674,7 @@ namespace FACCTS.Server.Data
             CourtCase testCourtCase = new CourtCase();
 
             CaseRecord testCaseRecord = new CaseRecord();
-            FACCTS.Server.Model.DataModel.Sex testSex = context.Sex.FirstOrDefault();
+            Gender testSex = Gender.F;
             Designation testDesignation = context.Designations.FirstOrDefault();
             EyesColor testEyesColor = context.EyesColor.FirstOrDefault();
             HairColor testHairColor = context.HairColor.FirstOrDefault();

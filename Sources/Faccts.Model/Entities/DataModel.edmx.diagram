@@ -40,15 +40,14 @@
         <EntityTypeShape EntityType="FACCTS_DBModel.OtherProtected" Width="1.5" PointX="8.125" PointY="14.125" />
         <EntityTypeShape EntityType="FACCTS_DBModel.Permission" Width="1.5" PointX="10.465666282207549" PointY="1.9895462254013616" />
         <EntityTypeShape EntityType="FACCTS_DBModel.Race" Width="1.5" PointX="13.25" PointY="18.375" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.RelyingParties" Width="1.5" PointX="8.4194736035631372" PointY="26.540395540436915" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.RelyingParties" Width="1.5" PointX="11" PointY="25.875" />
         <EntityTypeShape EntityType="FACCTS_DBModel.Role" Width="1.5" PointX="3.455793758600854" PointY="19.925718629698139" />
         <EntityTypeShape EntityType="FACCTS_DBModel.ScheduledIntegrationTasks" Width="1.5" PointX="7.9141361768888938" PointY="11.025194799073598" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Sex" Width="1.5" PointX="0.20596626596803139" PointY="2.4678239237832948" />
         <EntityTypeShape EntityType="FACCTS_DBModel.SimpleHttpConfiguration" Width="1.5" PointX="5.125" PointY="3.25" />
         <EntityTypeShape EntityType="FACCTS_DBModel.User" Width="1.5" PointX="7.9439600277431115" PointY="31.65684542043919" />
         <EntityTypeShape EntityType="FACCTS_DBModel.Witnesses" Width="1.5" PointX="0.90032250476084763" PointY="9.3487916483305362" />
         <EntityTypeShape EntityType="FACCTS_DBModel.WSFederationConfiguration" Width="1.5" PointX="4.5693100544481116" PointY="13.324449962621765" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.WSTrustConfiguration" Width="1.5" PointX="6.5694058810218268" PointY="27.04483176537083" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.WSTrustConfiguration" Width="1.5" PointX="6.625" PointY="26" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CaseRecord_CaseRecord_Id" />
@@ -67,7 +66,6 @@
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Interpreters_dbo_CaseRecord_CaseRecord_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_OtherProtected_dbo_CaseRecord_CaseRecord_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Witnesses_dbo_CaseRecord_CaseRecord_Id" />
-        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Children_dbo_Sex_Sex_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_User_CourtClerk_UserId" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtDepartmenets_dbo_CourtCounty_CourtCountyId" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtLocations_dbo_CourtCounty_CourtCounty_Id" />
@@ -79,13 +77,11 @@
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtParty_dbo_EyesColor_EyesColor_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtParty_dbo_HairColor_HairColor_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Race_Race_Id" />
-        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Sex_Sex_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Interpreters_dbo_CourtParty_InterpreterFor_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Witnesses_dbo_CourtParty_WitnessFor_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Witnesses_dbo_Designation_Designation_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_ManualIntegrationTasks_dbo_User_UserId" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_ScheduledIntegrationTasks_dbo_User_UserId" />
-        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_OtherProtected_dbo_Sex_Sex_Id" />
         <EntityTypeShape EntityType="FACCTS_DBModel.Hearings" Width="1.5" PointX="12" PointY="21" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Hearings_dbo_Courtrooms_Courtroom_Id" />
