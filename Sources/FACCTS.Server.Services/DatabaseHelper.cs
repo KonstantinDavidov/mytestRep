@@ -712,7 +712,7 @@ namespace FACCTS.Server.Data
                     EntityType = Model.Enums.FACCTSEntity.Person,
                     FirstName = "Marry",
                     LastName = "Yang",
-                    RelationshipToProtected = Model.Enums.Relationship.Child,
+                    RelationshipToProtected = Model.Enums.Relationship.C,
                     Sex = testSex
                 }
             };
@@ -724,7 +724,7 @@ namespace FACCTS.Server.Data
                     FirstName = "Allan",
                     LastName="Dallas",
                     Sex = testSex,
-                    RelationshipToPlaintiff = Model.Enums.Relationship.Friend,
+                    RelationshipToPlaintiff = Model.Enums.Relationship.F,
                     Age = 10,
                     IsHouseHold = true
                 },
@@ -733,7 +733,7 @@ namespace FACCTS.Server.Data
                     FirstName = "Marta",
                     LastName="Dallas",
                     Sex = testSex,
-                    RelationshipToPlaintiff = Model.Enums.Relationship.Child,
+                    RelationshipToPlaintiff = Model.Enums.Relationship.C,
                     Age = 1,
                     IsHouseHold = false
                 },
@@ -742,7 +742,7 @@ namespace FACCTS.Server.Data
                     FirstName = "Den",
                     LastName="Dallas",
                     Sex = testSex,
-                    RelationshipToPlaintiff = Model.Enums.Relationship.Child,
+                    RelationshipToPlaintiff = Model.Enums.Relationship.C,
                     Age = 7,
                     IsHouseHold = true
                 }
@@ -766,7 +766,7 @@ namespace FACCTS.Server.Data
                 HeightIns = 3,
                 LastName = "Connor",
                 MiddleName = "J",
-                ParticipantRole = ParticipantRole.Protected,
+                ParticipantRole = ParticipantRole.PPSC,
                 Phone = "12345",
                 Race = testRace,
                 Sex = testSex,
@@ -792,7 +792,7 @@ namespace FACCTS.Server.Data
                 HeightIns = 3,
                 LastName = "Connor",
                 MiddleName = "J",
-                ParticipantRole = ParticipantRole.Restrained,
+                ParticipantRole = ParticipantRole.RESPER,
                 Phone = "12345",
                 Race = testRace,
                 Sex = testSex,
@@ -814,7 +814,7 @@ namespace FACCTS.Server.Data
             testCaseRecord.RestrainingPartyIdentificationInformation = new RestrainingPartyIdentificationInformation()
                 {
                     IDNumber = "123",
-                    IDType = Model.Enums.IdentificationIDType.AirForceSerial,
+                    IDType = Model.Enums.IdentificationIDType.AF,
                     IssuedDate = DateTime.Now
                 };
 

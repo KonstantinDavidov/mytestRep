@@ -14,7 +14,7 @@ namespace FACCTS.Server.Model.DataModel
         public OtherProtected()
         {
             this.EntityType = FACCTSEntity.Person;
-            this.RelationshipToPlaintiff = Relationship.OtherRelative;
+            this.RelationshipToPlaintiff = Relationship.O;
         }
 
         [Key]

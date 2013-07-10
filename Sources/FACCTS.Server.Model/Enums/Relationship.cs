@@ -10,14 +10,14 @@ namespace FACCTS.Server.Model.Enums
     public enum Relationship
     {
         [Description("Friend")]
-        Friend,
+        F,
         [Description("Child")]
-        Child,
+        C,
         [Description("Parent")]
-        Parent,
+        P,
         [Description("Sibling")]
-        Sibling,
+        S,
         [Description("Other Relative")]
-        OtherRelative,
+        O
     }
 }

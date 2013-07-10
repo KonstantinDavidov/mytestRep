@@ -53,7 +53,7 @@ namespace FACCTS.Server.Reporting
             CourtParty restrainedParty;
 
 
-            if (courtCaseRecord.Party1.ParticipantRole == Model.Enums.ParticipantRole.Protected)
+            if (courtCaseRecord.Party1.ParticipantRole == Model.Enums.ParticipantRole.PPSC)
             {
                 protectedParty = courtCaseRecord.Party1;
                 restrainedParty = courtCaseRecord.Party2;

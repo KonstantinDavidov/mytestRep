@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
@@ -15,8 +16,8 @@ namespace FACCTS.Server.Common
         public static string GetDisplayName<TEnum>(this TEnum value)
             where TEnum : struct, IConvertible
         {
-            var attr = value.GetAttributeOfType<TEnum, DisplayAttribute>();
-            return attr == null ? value.ToString() : attr.Name;
+            var attr = value.GetAttributeOfType<TEnum, DescriptionAttribute>();
+            return attr == null ? value.ToString() : attr.Description;
         }
 
         // Get the ShortName value of the Display attribute if the   
@@ -24,8 +25,8 @@ namespace FACCTS.Server.Common
         public static string GetDisplayShortName<TEnum>(this TEnum value)
             where TEnum : struct, IConvertible
         {
-            var attr = value.GetAttributeOfType<TEnum, DisplayAttribute>();
-            return attr == null ? value.ToString() : attr.ShortName;
+            var attr = value.GetAttributeOfType<TEnum, DescriptionAttribute>();
+            return attr == null ? value.ToString() : attr.Description;
         }
 
         /// <summary>

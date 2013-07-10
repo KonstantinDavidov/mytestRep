@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
@@ -9,11 +10,11 @@ namespace FACCTS.Server.Model
 {
     public enum OrderItemState
     {
-        [Display(Name = "NotRequested")]
+        [Description("NotRequested")]
         NotRequested = 0,
-        [Display(Name = "Denied")]
+        [Description("Denied")]
         Denied = 1,
-        [Display(Name = "Granted")]
+        [Description("Granted")]
         Granted = 2
     }
 }

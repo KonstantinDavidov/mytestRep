@@ -26,7 +26,7 @@ namespace Faccts.Model.Entities
                 });
 
             this.EntityType = (int)FACCTS.Server.Model.Enums.FACCTSEntity.Person;
-            this.RelationshipToProtected = (int)FACCTS.Server.Model.Enums.Relationship.Child;
+            this.RelationshipToProtected = (int)FACCTS.Server.Model.Enums.Relationship.C;
             //this.Sex = new Sex();
         }
 
