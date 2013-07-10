@@ -443,6 +443,9 @@
           <Property Name="ZipCode" Type="nvarchar" MaxLength="20" />
           <Property Name="Phone" Type="nvarchar" MaxLength="20" />
           <Property Name="Fax" Type="nvarchar" MaxLength="20" />
+          <Property Name="ParentRole" Type="int" Nullable="false" />
+          <Property Name="EntityType" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar(max)" />
           <Property Name="Sex" Type="int" Nullable="false" />
           <Property Name="Weight" Type="decimal" Nullable="false" Scale="2" />
           <Property Name="HeightFt" Type="decimal" Nullable="false" Scale="2" />
@@ -1869,6 +1872,9 @@
           <NavigationProperty Name="Witnesses" Relationship="FACCTS_DBModel.FK_dbo_Witnesses_dbo_CourtParty_WitnessFor_Id" FromRole="CourtParty" ToRole="Witnesses" />
           <Property Type="FACCTS_DBModel.ParticipantRole" Name="ParticipantRole" Nullable="false" />
           <Property Type="Int32" Name="Sex" Nullable="false" />
+          <Property Type="FACCTS_DBModel.ParentRole" Name="ParentRole" Nullable="false" />
+          <Property Type="FACCTS_DBModel.FACCTSEntity" Name="EntityType" Nullable="false" />
+          <Property Type="String" Name="Email" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Courtrooms">
           <Key>
@@ -2803,6 +2809,8 @@
         <EnumType Name="Gender" a:ExternalTypeName="FACCTS.Server.Model.Enums.Gender" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         <EnumType Name="USAState" a:ExternalTypeName="FACCTS.Server.Model.Enums.USAState" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         <EnumType Name="ParticipantRole" a:ExternalTypeName="FACCTS.Server.Model.Enums.ParticipantRole" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EnumType Name="FACCTSEntity" a:ExternalTypeName="FACCTS.Server.Model.Enums.FACCTSEntity" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EnumType Name="ParentRole" a:ExternalTypeName="FACCTS.Server.Model.Enums.ParentRole" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3028,7 +3036,10 @@
     <EntitySetMapping Name="CourtParty">
       <EntityTypeMapping TypeName="IsTypeOf(FACCTS_DBModel.CourtParty)">
         <MappingFragment StoreEntitySet="CourtParty">
-          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EntityType" ColumnName="EntityType" />
+                <ScalarProperty Name="ParentRole" ColumnName="ParentRole" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
                 <ScalarProperty Name="ParticipantRole" ColumnName="ParticipantRole" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -3378,18 +3389,20 @@
     <EntitySetMapping Name="Hearings">
       <EntityTypeMapping TypeName="IsTypeOf(FACCTS_DBModel.Hearings)">
         <MappingFragment StoreEntitySet="Hearings">
-          <ScalarProperty Name="HearingIssues_OtheIssueText" ColumnName="HearingIssues_OtheIssueText" />
-                <ScalarProperty Name="HearingIssues_IsOtherIssue" ColumnName="HearingIssues_IsOtherIssue" />
-                <ScalarProperty Name="HearingIssues_SpousalSupport" ColumnName="HearingIssues_SpousalSupport" />
-                <ScalarProperty Name="HearingIssues_ChildSupport" ColumnName="HearingIssues_ChildSupport" />
-                <ScalarProperty Name="HearingIssues_ChildCustodyOrChildVisitation" ColumnName="HearingIssues_ChildCustodyOrChildVisitation" />
-                <ScalarProperty Name="HearingIssues_PermanentRO" ColumnName="HearingIssues_PermanentRO" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="HearingDate" ColumnName="HearingDate" />
           <ScalarProperty Name="Judge" ColumnName="Judge" />
           <ScalarProperty Name="Courtroom_Id" ColumnName="Courtroom_Id" />
           <ScalarProperty Name="Department_Id" ColumnName="Department_Id" />
           <ScalarProperty Name="Session" ColumnName="Session" />
+                <ComplexProperty Name="HearingIssue">
+                  <ScalarProperty Name="OtheIssueText" ColumnName="HearingIssues_OtheIssueText" />
+                  <ScalarProperty Name="IsOtherIssue" ColumnName="HearingIssues_IsOtherIssue" />
+                  <ScalarProperty Name="SpousalSupport" ColumnName="HearingIssues_SpousalSupport" />
+                  <ScalarProperty Name="ChildSupport" ColumnName="HearingIssues_ChildSupport" />
+                  <ScalarProperty Name="ChildCustodyOrChildVisitation" ColumnName="HearingIssues_ChildCustodyOrChildVisitation" />
+                  <ScalarProperty Name="PermanentRO" ColumnName="HearingIssues_PermanentRO" />
+                </ComplexProperty>
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
