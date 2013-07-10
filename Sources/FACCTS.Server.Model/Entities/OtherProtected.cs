@@ -13,7 +13,7 @@ namespace FACCTS.Server.Model.DataModel
     {
         public OtherProtected()
         {
-            this.EntityType = FACCTSEntity.Person;
+            this.EntityType = FACCTSEntity.PERSON;
             this.RelationshipToPlaintiff = Relationship.O;
         }
 

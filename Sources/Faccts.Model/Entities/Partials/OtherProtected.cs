@@ -24,7 +24,7 @@ namespace Faccts.Model.Entities
                     this.OnPropertyChanged("RelationshipToPlaintiffEnum");
                 });
 
-            this.EntityType = (int)FACCTS.Server.Model.Enums.FACCTSEntity.Person;
+            this.EntityType = (int)FACCTS.Server.Model.Enums.FACCTSEntity.PERSON;
             this.RelationshipToPlaintiff = (int)FACCTS.Server.Model.Enums.Relationship.C;
         }
 

@@ -14,7 +14,7 @@ namespace FACCTS.Server.Model.DataModel
     {
         public Child()
         {
-            this.EntityType = FACCTSEntity.Person;
+            this.EntityType = FACCTSEntity.PERSON;
             this.RelationshipToProtected = Relationship.C;
         }
 
