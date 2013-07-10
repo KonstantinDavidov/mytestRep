@@ -118,6 +118,7 @@
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\ScheduledIntegrationTask.cs" />
     <Compile Include="Entities\Sex.cs" />
+    <Compile Include="Entities\ThirdPartyData.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Witness.cs" />
     <Compile Include="Enums\AttachmentOrders.cs" />

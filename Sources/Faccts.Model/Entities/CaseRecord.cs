@@ -31,6 +31,7 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(Interpreters))]
     [KnownType(typeof(OtherProtected))]
     [KnownType(typeof(Witnesses))]
+    [KnownType(typeof(ThirdPartyData))]
     public partial class CaseRecord: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -288,6 +289,30 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<System.DateTime> _rP_IssuedDate;
+    
+        [DataMember]
+        public Nullable<long> ThirdPartyData_Id
+        {
+            get { return _thirdPartyData_Id; }
+            set
+            {
+                if (_thirdPartyData_Id != value)
+                {
+                    ChangeTracker.RecordOriginalValue("ThirdPartyData_Id", _thirdPartyData_Id);
+                    if (!IsDeserializing)
+                    {
+                        if (ThirdPartyData != null && ThirdPartyData.Id != value)
+                        {
+                            ThirdPartyData = null;
+                        }
+                    }
+    				OnPropertyChanging("ThirdPartyData_Id");
+                    _thirdPartyData_Id = value;
+                    OnPropertyChanged("ThirdPartyData_Id");
+                }
+            }
+        }
+        private Nullable<long> _thirdPartyData_Id;
 
         #endregion
 
@@ -823,6 +848,24 @@ namespace Faccts.Model.Entities
             }
         }
         private CourtCase _courtCase1;
+    
+        [DataMember]
+        public ThirdPartyData ThirdPartyData
+        {
+            get { return _thirdPartyData; }
+            set
+            {
+                if (!ReferenceEquals(_thirdPartyData, value))
+                {
+                    var previousValue = _thirdPartyData;
+    				OnNavigationPropertyChanging("ThirdPartyData");
+                    _thirdPartyData = value;
+                    FixupThirdPartyData(previousValue);
+                    OnNavigationPropertyChanged("ThirdPartyData");
+                }
+            }
+        }
+        private ThirdPartyData _thirdPartyData;
 
         #endregion
 
@@ -956,6 +999,7 @@ namespace Faccts.Model.Entities
             OtherProtected.Clear();
             Witnesses.Clear();
             CourtCase1 = null;
+            ThirdPartyData = null;
         }
 
         #endregion
@@ -1199,6 +1243,47 @@ namespace Faccts.Model.Entities
                 if (CourtCase1 != null && !CourtCase1.ChangeTracker.ChangeTrackingEnabled)
                 {
                     CourtCase1.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupThirdPartyData(ThirdPartyData previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.CaseRecord.Contains(this))
+            {
+                previousValue.CaseRecord.Remove(this);
+            }
+    
+            if (ThirdPartyData != null)
+            {
+                ThirdPartyData.CaseRecord.Add(this);
+    
+                ThirdPartyData_Id = ThirdPartyData.Id;
+            }
+            else if (!skipKeys)
+            {
+                ThirdPartyData_Id = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("ThirdPartyData")
+                    && (ChangeTracker.OriginalValues["ThirdPartyData"] == ThirdPartyData))
+                {
+                    ChangeTracker.OriginalValues.Remove("ThirdPartyData");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("ThirdPartyData", previousValue);
+                }
+                if (ThirdPartyData != null && !ThirdPartyData.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    ThirdPartyData.StartTracking();
                 }
             }
         }

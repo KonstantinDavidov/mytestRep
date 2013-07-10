@@ -99,6 +99,9 @@
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_CourtCase_Id" />
         <AssociationConnector Association="FACCTS_DBModel.RolePermission1" />
         <AssociationConnector Association="FACCTS_DBModel.RoleUser1" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.ThirdPartyData" Width="1.5" PointX="11" PointY="55.75" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_ThirdPartyData_dbo_Attorneys_Attorney_Id" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_ThirdPartyData_ThirdPartyData_Id" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

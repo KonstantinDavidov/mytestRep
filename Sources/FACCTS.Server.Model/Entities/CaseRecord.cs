@@ -17,6 +17,8 @@ namespace FACCTS.Server.Model.DataModel
 
         public virtual CourtParty Party2 { get; set; }
 
+        public virtual ThirdPartyData ThirdPartyData { get; set; }
+
         [InverseProperty("CaseRecord")]
         public virtual ICollection<Child> Children { get; set; }
 
