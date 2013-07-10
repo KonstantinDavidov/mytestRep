@@ -1039,7 +1039,7 @@ namespace Faccts.Model.Entities
             {
                 foreach (Role item in e.NewItems)
                 {
-                    item.User.Add(this);
+                    item.User1.Add(this);
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         if (!item.ChangeTracker.ChangeTrackingEnabled)
@@ -1055,9 +1055,9 @@ namespace Faccts.Model.Entities
             {
                 foreach (Role item in e.OldItems)
                 {
-                    if (item.User.Contains(this))
+                    if (item.User1.Contains(this))
                     {
-                        item.User.Remove(this);
+                        item.User1.Remove(this);
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {

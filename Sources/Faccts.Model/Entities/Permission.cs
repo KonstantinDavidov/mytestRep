@@ -275,7 +275,7 @@ namespace Faccts.Model.Entities
             {
                 foreach (Role item in e.NewItems)
                 {
-                    item.Permission.Add(this);
+                    item.Permission1.Add(this);
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         if (!item.ChangeTracker.ChangeTrackingEnabled)
@@ -291,9 +291,9 @@ namespace Faccts.Model.Entities
             {
                 foreach (Role item in e.OldItems)
                 {
-                    if (item.Permission.Contains(this))
+                    if (item.Permission1.Contains(this))
                     {
-                        item.Permission.Remove(this);
+                        item.Permission1.Remove(this);
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {

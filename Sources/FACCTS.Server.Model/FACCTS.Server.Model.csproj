@@ -131,6 +131,7 @@
     <Compile Include="Enums\Custody.cs" />
     <Compile Include="Enums\Designation.cs" />
     <Compile Include="Enums\Firearm.cs" />
+    <Compile Include="Enums\DocketSession.cs" />
     <Compile Include="Enums\IntegrationTaskRepeatPeriod.cs" />
     <Compile Include="Enums\IntegrationTaskState.cs" />
     <Compile Include="Enums\FACCTSEntity.cs" />

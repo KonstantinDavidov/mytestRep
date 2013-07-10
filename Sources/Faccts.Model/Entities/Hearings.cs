@@ -186,6 +186,118 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<int> _department_Id;
+    
+        [DataMember]
+        public FACCTS.Server.Model.Enums.DocketSession Session
+        {
+            get { return _session; }
+            set
+            {
+                if (_session != value)
+                {
+    				OnPropertyChanging("Session");
+                    _session = value;
+                    OnPropertyChanged("Session");
+                }
+            }
+        }
+        private FACCTS.Server.Model.Enums.DocketSession _session;
+    
+        [DataMember]
+        public bool HearingIssues_PermanentRO
+        {
+            get { return _hearingIssues_PermanentRO; }
+            set
+            {
+                if (_hearingIssues_PermanentRO != value)
+                {
+    				OnPropertyChanging("HearingIssues_PermanentRO");
+                    _hearingIssues_PermanentRO = value;
+                    OnPropertyChanged("HearingIssues_PermanentRO");
+                }
+            }
+        }
+        private bool _hearingIssues_PermanentRO;
+    
+        [DataMember]
+        public bool HearingIssues_ChildCustodyOrChildVisitation
+        {
+            get { return _hearingIssues_ChildCustodyOrChildVisitation; }
+            set
+            {
+                if (_hearingIssues_ChildCustodyOrChildVisitation != value)
+                {
+    				OnPropertyChanging("HearingIssues_ChildCustodyOrChildVisitation");
+                    _hearingIssues_ChildCustodyOrChildVisitation = value;
+                    OnPropertyChanged("HearingIssues_ChildCustodyOrChildVisitation");
+                }
+            }
+        }
+        private bool _hearingIssues_ChildCustodyOrChildVisitation;
+    
+        [DataMember]
+        public bool HearingIssues_ChildSupport
+        {
+            get { return _hearingIssues_ChildSupport; }
+            set
+            {
+                if (_hearingIssues_ChildSupport != value)
+                {
+    				OnPropertyChanging("HearingIssues_ChildSupport");
+                    _hearingIssues_ChildSupport = value;
+                    OnPropertyChanged("HearingIssues_ChildSupport");
+                }
+            }
+        }
+        private bool _hearingIssues_ChildSupport;
+    
+        [DataMember]
+        public bool HearingIssues_SpousalSupport
+        {
+            get { return _hearingIssues_SpousalSupport; }
+            set
+            {
+                if (_hearingIssues_SpousalSupport != value)
+                {
+    				OnPropertyChanging("HearingIssues_SpousalSupport");
+                    _hearingIssues_SpousalSupport = value;
+                    OnPropertyChanged("HearingIssues_SpousalSupport");
+                }
+            }
+        }
+        private bool _hearingIssues_SpousalSupport;
+    
+        [DataMember]
+        public bool HearingIssues_IsOtherIssue
+        {
+            get { return _hearingIssues_IsOtherIssue; }
+            set
+            {
+                if (_hearingIssues_IsOtherIssue != value)
+                {
+    				OnPropertyChanging("HearingIssues_IsOtherIssue");
+                    _hearingIssues_IsOtherIssue = value;
+                    OnPropertyChanged("HearingIssues_IsOtherIssue");
+                }
+            }
+        }
+        private bool _hearingIssues_IsOtherIssue;
+    
+        [DataMember]
+        public string HearingIssues_OtheIssueText
+        {
+            get { return _hearingIssues_OtheIssueText; }
+            set
+            {
+                if (_hearingIssues_OtheIssueText != value)
+                {
+    				OnPropertyChanging("HearingIssues_OtheIssueText");
+                    _hearingIssues_OtheIssueText = value;
+                    OnPropertyChanged("HearingIssues_OtheIssueText");
+                }
+            }
+        }
+        private string _hearingIssues_OtheIssueText;
 
         #endregion
 

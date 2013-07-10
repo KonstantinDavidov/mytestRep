@@ -7,7 +7,6 @@
   </Model>
   <Model name="AddToCourtDocketDialogViewModel">
     <Property name="CaseNumber" type="string"/>
-    <Property name="Time" type="DateTime"/>
     <Property name="Courtroom" type="Faccts.Model.Entities.Courtrooms"/>
     <Property name="Department" type="Faccts.Model.Entities.CourtDepartmenets"/>
     <Property name="IsPermanentRO" type="bool"/>
@@ -18,6 +17,7 @@
     <Property name="OtherHearingIssueText" type="string"/>
     <Property name="Courtrooms" type="Collection" collectionType="Faccts.Model.Entities.Courtrooms"/>
     <Property name="Departments" type="Collection" collectionType="Faccts.Model.Entities.CourtDepartmenets"/>
+    <Property name="Session" type="FACCTS.Server.Model.Enums.DocketSession"/>
   </Model>
 
   <Model name="RelatedCasesViewModel">
@@ -137,6 +137,7 @@
         <xs:enumeration value="Faccts.Model.Entities.User"></xs:enumeration>
         <xs:enumeration value="Faccts.Model.Entities.HearingIssue"></xs:enumeration>
         <xs:enumeration value="FACCTS.Server.Model.Enums.MasterOrders"/>
+        <xs:enumeration value="FACCTS.Server.Model.Enums.DocketSession"/>
       </xs:restriction>
     </xs:simpleType>
   </xs:schema>

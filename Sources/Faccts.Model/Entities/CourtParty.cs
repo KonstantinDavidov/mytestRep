@@ -529,7 +529,7 @@ namespace Faccts.Model.Entities
         private int _participantRole1;
     
         [DataMember]
-        public Nullable<int> CaseRecordByCourtParty1_Id
+        public Nullable<long> CaseRecordByCourtParty1_Id
         {
             internal get { return _caseRecordByCourtParty1_Id; }
             set
@@ -550,10 +550,10 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _caseRecordByCourtParty1_Id;
+        private Nullable<long> _caseRecordByCourtParty1_Id;
     
         [DataMember]
-        public Nullable<int> CaseRecordByCourtParty2_Id
+        public Nullable<long> CaseRecordByCourtParty2_Id
         {
             get { return _caseRecordByCourtParty2_Id; }
             set
@@ -574,7 +574,23 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _caseRecordByCourtParty2_Id;
+        private Nullable<long> _caseRecordByCourtParty2_Id;
+    
+        [DataMember]
+        public int ParticipantRole
+        {
+            get { return _participantRole; }
+            set
+            {
+                if (_participantRole != value)
+                {
+    				OnPropertyChanging("ParticipantRole");
+                    _participantRole = value;
+                    OnPropertyChanged("ParticipantRole");
+                }
+            }
+        }
+        private int _participantRole;
 
         #endregion
 

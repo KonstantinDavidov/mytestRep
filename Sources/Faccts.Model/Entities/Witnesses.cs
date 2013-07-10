@@ -203,7 +203,7 @@ namespace Faccts.Model.Entities
         private Nullable<int> _designation_Id;
     
         [DataMember]
-        public Nullable<int> CaseRecord_Id
+        public Nullable<long> CaseRecord_Id
         {
             get { return _caseRecord_Id; }
             set
@@ -224,7 +224,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _caseRecord_Id;
+        private Nullable<long> _caseRecord_Id;
     
         [DataMember]
         public int EntityType

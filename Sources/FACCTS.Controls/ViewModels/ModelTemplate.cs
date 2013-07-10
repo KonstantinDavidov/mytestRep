@@ -49,17 +49,6 @@ namespace FACCTS.Controls.ViewModels
 			}
 		}
 		
-		private DateTime _time;
-		public DateTime Time
-		{
-			get{return _time;}
-			set{
-				if(_time!=value){
-					this.RaiseAndSetIfChanged(ref _time, value);
-				}
-			}
-		}
-		
 		private Faccts.Model.Entities.Courtrooms _courtroom;
 		public Faccts.Model.Entities.Courtrooms Courtroom
 		{
@@ -166,6 +155,17 @@ namespace FACCTS.Controls.ViewModels
 			set{
 				if(_departments!=value){
 					this.RaiseAndSetIfChanged(ref _departments, value);
+				}
+			}
+		}
+		
+		private FACCTS.Server.Model.Enums.DocketSession _session;
+		public FACCTS.Server.Model.Enums.DocketSession Session
+		{
+			get{return _session;}
+			set{
+				if(_session!=value){
+					this.RaiseAndSetIfChanged(ref _session, value);
 				}
 			}
 		}

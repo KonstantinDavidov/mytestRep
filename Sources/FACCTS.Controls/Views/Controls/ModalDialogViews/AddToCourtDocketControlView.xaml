@@ -33,11 +33,11 @@
 						<RowDefinition Height="Auto"/>
 					</Grid.RowDefinitions>
 					<TextBlock TextWrapping="Wrap" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,12" Text="Case Number:" FontWeight="Bold"/>
-					<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="1" Margin="0,12" Text="Time:" FontWeight="Bold"/>
+					<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="1" Margin="0,12" Text="Session:" FontWeight="Bold"/>
 					<TextBlock TextWrapping="Wrap" Text="Courtroom:" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,12" FontWeight="Bold"/>
 					<TextBlock TextWrapping="Wrap" Grid.Row="3" VerticalAlignment="Center" Margin="0,12" Text="Department:" FontWeight="Bold"/>
 					<TextBlock Grid.Column="1" TextWrapping="Wrap" Text="{Binding CaseNumber, Mode=OneWay}" VerticalAlignment="Center" Padding="0" Margin="15,0"/>
-					<xctk:DateTimeUpDown Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="15,0" Format="ShortTime" Value="{Binding Time, Mode=TwoWay, StringFormat=\{0:g\}}" TextAlignment="Left" FormatString="0:hh:mm tt"/>
+					<ComboBox Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" Margin="15,0" ItemsSource="{Binding SessionList, Mode=OneWay}" SelectedValuePath="Value" SelectedValue="{Binding Session, Mode=TwoWay}" SelectedIndex="0"/>
 					<ComboBox Grid.Column="1" Margin="15,0,15,0" Grid.Row="2" VerticalAlignment="Center" ItemsSource="{Binding Courtrooms, Mode=OneWay}" SelectedItem="{Binding Courtroom, Mode=TwoWay}" DisplayMemberPath="RoomName"/>
                     <ComboBox Grid.Column="1" Margin="15,0, 15, 0" Grid.Row="3" VerticalAlignment="Center" ItemsSource="{Binding Departments, Mode=OneWay}" SelectedItem="{Binding Department, Mode=TwoWay}" DisplayMemberPath="Room"/>
 				</Grid>

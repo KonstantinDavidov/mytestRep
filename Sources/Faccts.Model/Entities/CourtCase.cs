@@ -180,7 +180,7 @@ namespace Faccts.Model.Entities
         private Nullable<int> _courtClerk_UserId;
     
         [DataMember]
-        public int CaseRecord_Id
+        public long CaseRecord_Id
         {
             get { return _caseRecord_Id; }
             set
@@ -201,7 +201,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _caseRecord_Id;
+        private long _caseRecord_Id;
     
         [DataMember]
         public Nullable<long> ParentCase_Id
@@ -356,6 +356,24 @@ namespace Faccts.Model.Entities
             }
         }
         private TrackableCollection<CourtDocketRecord> _courtDocketRecord;
+    
+        [DataMember]
+        public CaseRecord CaseRecord1
+        {
+            get { return _caseRecord1; }
+            set
+            {
+                if (!ReferenceEquals(_caseRecord1, value))
+                {
+                    var previousValue = _caseRecord1;
+    				OnNavigationPropertyChanging("CaseRecord1");
+                    _caseRecord1 = value;
+                    FixupCaseRecord1(previousValue);
+                    OnNavigationPropertyChanged("CaseRecord1");
+                }
+            }
+        }
+        private CaseRecord _caseRecord1;
 
         #endregion
 
@@ -469,6 +487,7 @@ namespace Faccts.Model.Entities
             ChildCases.Clear();
             ParentCase = null;
             CourtDocketRecord.Clear();
+            CaseRecord1 = null;
         }
 
         #endregion
@@ -589,6 +608,59 @@ namespace Faccts.Model.Entities
                 if (ParentCase != null && !ParentCase.ChangeTracker.ChangeTrackingEnabled)
                 {
                     ParentCase.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupCaseRecord1(CaseRecord previousValue)
+        {
+            // This is the principal end in an association that performs cascade deletes.
+            // Update the event listener to refer to the new dependent.
+            if (previousValue != null)
+            {
+                ChangeTracker.ObjectStateChanging -= previousValue.HandleCascadeDelete;
+            }
+    
+            if (CaseRecord1 != null)
+            {
+                ChangeTracker.ObjectStateChanging += CaseRecord1.HandleCascadeDelete;
+            }
+    
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && ReferenceEquals(previousValue.CourtCase1, this))
+            {
+                previousValue.CourtCase1 = null;
+            }
+    
+            if (CaseRecord1 != null)
+            {
+                CaseRecord1.CourtCase1 = this;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("CaseRecord1")
+                    && (ChangeTracker.OriginalValues["CaseRecord1"] == CaseRecord1))
+                {
+                    ChangeTracker.OriginalValues.Remove("CaseRecord1");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("CaseRecord1", previousValue);
+                    // This is the principal end of an identifying association, so the dependent must be deleted when the relationship is removed.
+                    // If the current state of the dependent is Added, the relationship can be changed without causing the dependent to be deleted.
+                    if (previousValue != null && previousValue.ChangeTracker.State != ObjectState.Added)
+                    {
+                        previousValue.MarkAsDeleted();
+                    }
+                }
+                if (CaseRecord1 != null && !CaseRecord1.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    CaseRecord1.StartTracking();
                 }
             }
         }

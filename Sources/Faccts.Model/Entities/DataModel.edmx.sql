@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 07/09/2013 15:44:21
+-- Date Created: 07/10/2013 13:07:36
 -- Generated from EDMX file: D:\FACCTS\FACCTSNEW\faccts.net\Sources\Faccts.Model\Entities\DataModel.edmx
 -- --------------------------------------------------
 
@@ -868,7 +868,8 @@ CREATE TABLE [dbo].[Hearings] (
     [HearingIssue_SpousalSupport] bit  NOT NULL,
     [HearingIssue_IsOtherIssue] bit  NOT NULL,
     [HearingIssue_OtheIssueText] nvarchar(max)  NOT NULL,
-    [Department_Id] int  NULL
+    [Department_Id] int  NULL,
+    [Session] int  NOT NULL
 );
 GO
 

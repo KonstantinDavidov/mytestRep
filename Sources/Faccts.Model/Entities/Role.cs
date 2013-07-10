@@ -158,76 +158,76 @@ namespace Faccts.Model.Entities
         #region Navigation Properties
     
         [DataMember]
-        public TrackableCollection<Permission> Permission
+        public TrackableCollection<Permission> Permission1
         {
             get
             {
-                if (_permission == null)
+                if (_permission1 == null)
                 {
-                    _permission = new TrackableCollection<Permission>();
-                    _permission.CollectionChanged += FixupPermission;
+                    _permission1 = new TrackableCollection<Permission>();
+                    _permission1.CollectionChanged += FixupPermission1;
                 }
-                return _permission;
+                return _permission1;
             }
             set
             {
-                if (!ReferenceEquals(_permission, value))
+                if (!ReferenceEquals(_permission1, value))
                 {
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
-    				OnNavigationPropertyChanging("Permission");
-                    if (_permission != null)
+    				OnNavigationPropertyChanging("Permission1");
+                    if (_permission1 != null)
                     {
-                        _permission.CollectionChanged -= FixupPermission;
+                        _permission1.CollectionChanged -= FixupPermission1;
                     }
-                    _permission = value;
-                    if (_permission != null)
+                    _permission1 = value;
+                    if (_permission1 != null)
                     {
-                        _permission.CollectionChanged += FixupPermission;
+                        _permission1.CollectionChanged += FixupPermission1;
                     }
-                    OnNavigationPropertyChanged("Permission");
+                    OnNavigationPropertyChanged("Permission1");
                 }
             }
         }
-        private TrackableCollection<Permission> _permission;
+        private TrackableCollection<Permission> _permission1;
     
         [DataMember]
-        public TrackableCollection<User> User
+        public TrackableCollection<User> User1
         {
             get
             {
-                if (_user == null)
+                if (_user1 == null)
                 {
-                    _user = new TrackableCollection<User>();
-                    _user.CollectionChanged += FixupUser;
+                    _user1 = new TrackableCollection<User>();
+                    _user1.CollectionChanged += FixupUser1;
                 }
-                return _user;
+                return _user1;
             }
             set
             {
-                if (!ReferenceEquals(_user, value))
+                if (!ReferenceEquals(_user1, value))
                 {
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
-    				OnNavigationPropertyChanging("User");
-                    if (_user != null)
+    				OnNavigationPropertyChanging("User1");
+                    if (_user1 != null)
                     {
-                        _user.CollectionChanged -= FixupUser;
+                        _user1.CollectionChanged -= FixupUser1;
                     }
-                    _user = value;
-                    if (_user != null)
+                    _user1 = value;
+                    if (_user1 != null)
                     {
-                        _user.CollectionChanged += FixupUser;
+                        _user1.CollectionChanged += FixupUser1;
                     }
-                    OnNavigationPropertyChanged("User");
+                    OnNavigationPropertyChanged("User1");
                 }
             }
         }
-        private TrackableCollection<User> _user;
+        private TrackableCollection<User> _user1;
 
         #endregion
 
@@ -326,15 +326,15 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
-            Permission.Clear();
-            User.Clear();
+            Permission1.Clear();
+            User1.Clear();
         }
 
         #endregion
 
         #region Association Fixup
     
-        private void FixupPermission(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupPermission1(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
             {
@@ -352,7 +352,7 @@ namespace Faccts.Model.Entities
                         {
                             item.StartTracking();
                         }
-                        ChangeTracker.RecordAdditionToCollectionProperties("Permission", item);
+                        ChangeTracker.RecordAdditionToCollectionProperties("Permission1", item);
                     }
                 }
             }
@@ -367,13 +367,13 @@ namespace Faccts.Model.Entities
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("Permission", item);
+                        ChangeTracker.RecordRemovalFromCollectionProperties("Permission1", item);
                     }
                 }
             }
         }
     
-        private void FixupUser(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupUser1(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
             {
@@ -391,7 +391,7 @@ namespace Faccts.Model.Entities
                         {
                             item.StartTracking();
                         }
-                        ChangeTracker.RecordAdditionToCollectionProperties("User", item);
+                        ChangeTracker.RecordAdditionToCollectionProperties("User1", item);
                     }
                 }
             }
@@ -406,7 +406,7 @@ namespace Faccts.Model.Entities
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("User", item);
+                        ChangeTracker.RecordRemovalFromCollectionProperties("User1", item);
                     }
                 }
             }
