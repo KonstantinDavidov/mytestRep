@@ -32,7 +32,7 @@ namespace FACCTS.Server.Controllers
             //    HttpStatusCode.NotFound));
             //}
             //return entity;
-            return ParticipantRole.Protected;
+            return ParticipantRole.PPSC;
         }
     }
 }

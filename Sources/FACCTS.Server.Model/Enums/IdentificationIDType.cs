@@ -1,49 +1,52 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.Enums
 {
     public enum IdentificationIDType
     {
         [Description("Drivers License Number")]
-        DriversLicenseNumber = 0,
+        DLN = 0,
         [Description("Air Force Serial")]
-        AirForceSerial,
+        AF = 1,
         [Description("Alien Registration")]
-        AlienRegistration,
-        [Description("Army Registration")]
-        ArmyRegistration,
-        [Description("National Guard Serial")]
-        NationalGuardSerial,
+        AR = 2,
+        [Description("Army serial")]
+        AS,
+        [Description("National Guard Serial")] 
+        NGS, //Clarify
         [Description("Air National Guard Serial")]
-        AirNationalGuardSerial,
+        ANGS, //Clarify
         [Description("US Coast Guard Serial")]
-        USCoastGuardSerial,
+        CG,
         [Description("Marine Corps Serial")]
-        MarineCorpsSerial,
+        MC,
         [Description("Mariners Document ID")]
-        MarinersDocumentID,
+        MD,
         [Description("Navy Serial")]
-        NavySerial,
+        NS,
         [Description("Originating Police Agency ID")]
-        OriginatingPoliceAgencyID,
+        OA,
         [Description("Passport")]
-        Passport,
+        PP,
         [Description("Personal ID")]
-        PersonalID,
+        PI,
         [Description("Port Security Card")]
-        PortSecurityCard,
-        [Description("Veterans Administration Card")]
-        VeteransAdministrationCard,
+        PS,
+        [Description("Veterans Administration Claim")]
+        VA,
         [Description("FBI Number")]
-        FBINumber,
+        FBN,
         [Description("Social Security Number")]
-        SocialSecurityNumber,
-        [Description("State ID Fingerprint")]
-        StateIDFingerprint,
+        SSN,
+        [Description("State Identification (fingerprint)")]
+        SID,
+        [Description("Criminal Identification (fingerprint)")]
+        CII,
+        [Description("Royal Canadian Mounted Police ID")]
+        MP,
+        [Description("Canadian Social Insurance")]
+        CI
+        
     }
 }

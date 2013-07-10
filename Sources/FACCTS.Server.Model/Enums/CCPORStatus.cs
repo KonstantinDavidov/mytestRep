@@ -1,25 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace FACCTS.Server.Model.Enums
 {
     public enum CCPORStatus
     {
-        [Display(Name = "None")]
+        [Description("None")]
         None = 0,
-        [Display(Name = "Add")]
+        [Description("Add")]
         Add,
-        [Display(Name = "Pending")]
+        [Description("Pending")]
         Pending,
-        [Display(Name = "Update")]
+        [Description("Update")]
         Update,
-        [Display(Name = "Modify")]
+        [Description("Modify")]
         Modify,
-        [Display(Name = "Reject")]
+        [Description("Reject")]
         Reject,
     }
 }
