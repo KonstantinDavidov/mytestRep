@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FACCTS.Server.Model.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -33,8 +34,7 @@ namespace FACCTS.Server.Model.DataModel
         [StringLength(100)]
         public string City { get; set; }
 
-        [StringLength(100)]
-        public string State { get; set; }
+        public USAState State { get; set; }
 
         [DataType(DataType.PostalCode)]
         [StringLength(20)]

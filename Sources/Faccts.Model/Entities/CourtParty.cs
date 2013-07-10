@@ -26,7 +26,6 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(EyesColor))]
     [KnownType(typeof(HairColor))]
     [KnownType(typeof(Race))]
-    [KnownType(typeof(Sex))]
     [KnownType(typeof(Interpreters))]
     [KnownType(typeof(Witnesses))]
     public partial class CourtParty: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
@@ -209,7 +208,7 @@ namespace Faccts.Model.Entities
         private string _city;
     
         [DataMember]
-        public string State
+        public FACCTS.Server.Model.Enums.USAState State
         {
             get { return _state; }
             set
@@ -222,7 +221,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private string _state;
+        private FACCTS.Server.Model.Enums.USAState _state;
     
         [DataMember]
         public string ZipCode
@@ -393,28 +392,20 @@ namespace Faccts.Model.Entities
         private int _designation_Id;
     
         [DataMember]
-        public int Sex_Id
+        public FACCTS.Server.Model.Enums.Gender Gender
         {
-            get { return _sex_Id; }
+            get { return _gender; }
             set
             {
-                if (_sex_Id != value)
+                if (_gender != value)
                 {
-                    ChangeTracker.RecordOriginalValue("Sex_Id", _sex_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (Sex != null && Sex.Id != value)
-                        {
-                            Sex = null;
-                        }
-                    }
-    				OnPropertyChanging("Sex_Id");
-                    _sex_Id = value;
-                    OnPropertyChanged("Sex_Id");
+    				OnPropertyChanging("Gender");
+                    _gender = value;
+                    OnPropertyChanged("Gender");
                 }
             }
         }
-        private int _sex_Id;
+        private FACCTS.Server.Model.Enums.Gender _gender;
     
         [DataMember]
         public int HairColor_Id
@@ -513,71 +504,7 @@ namespace Faccts.Model.Entities
         private Nullable<int> _attorney_Id;
     
         [DataMember]
-        public int ParticipantRole1
-        {
-            get { return _participantRole1; }
-            set
-            {
-                if (_participantRole1 != value)
-                {
-    				OnPropertyChanging("ParticipantRole1");
-                    _participantRole1 = value;
-                    OnPropertyChanged("ParticipantRole1");
-                }
-            }
-        }
-        private int _participantRole1;
-    
-        [DataMember]
-        public Nullable<long> CaseRecordByCourtParty1_Id
-        {
-            internal get { return _caseRecordByCourtParty1_Id; }
-            set
-            {
-                if (_caseRecordByCourtParty1_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("CaseRecordByCourtParty1_Id", _caseRecordByCourtParty1_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (CaseRecord2 != null && CaseRecord2.Id != value)
-                        {
-                            CaseRecord2 = null;
-                        }
-                    }
-    				OnPropertyChanging("CaseRecordByCourtParty1_Id");
-                    _caseRecordByCourtParty1_Id = value;
-                    OnPropertyChanged("CaseRecordByCourtParty1_Id");
-                }
-            }
-        }
-        private Nullable<long> _caseRecordByCourtParty1_Id;
-    
-        [DataMember]
-        public Nullable<long> CaseRecordByCourtParty2_Id
-        {
-            get { return _caseRecordByCourtParty2_Id; }
-            set
-            {
-                if (_caseRecordByCourtParty2_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("CaseRecordByCourtParty2_Id", _caseRecordByCourtParty2_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (CaseRecord3 != null && CaseRecord3.Id != value)
-                        {
-                            CaseRecord3 = null;
-                        }
-                    }
-    				OnPropertyChanging("CaseRecordByCourtParty2_Id");
-                    _caseRecordByCourtParty2_Id = value;
-                    OnPropertyChanged("CaseRecordByCourtParty2_Id");
-                }
-            }
-        }
-        private Nullable<long> _caseRecordByCourtParty2_Id;
-    
-        [DataMember]
-        public int ParticipantRole
+        public FACCTS.Server.Model.Enums.ParticipantRole ParticipantRole
         {
             get { return _participantRole; }
             set
@@ -590,7 +517,23 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _participantRole;
+        private FACCTS.Server.Model.Enums.ParticipantRole _participantRole;
+    
+        [DataMember]
+        public int Sex
+        {
+            get { return _sex; }
+            set
+            {
+                if (_sex != value)
+                {
+    				OnPropertyChanging("Sex");
+                    _sex = value;
+                    OnPropertyChanged("Sex");
+                }
+            }
+        }
+        private int _sex;
 
         #endregion
 
@@ -687,42 +630,6 @@ namespace Faccts.Model.Entities
         private TrackableCollection<CaseRecord> _caseRecord1;
     
         [DataMember]
-        public CaseRecord CaseRecord2
-        {
-            get { return _caseRecord2; }
-            set
-            {
-                if (!ReferenceEquals(_caseRecord2, value))
-                {
-                    var previousValue = _caseRecord2;
-    				OnNavigationPropertyChanging("CaseRecord2");
-                    _caseRecord2 = value;
-                    FixupCaseRecord2(previousValue);
-                    OnNavigationPropertyChanged("CaseRecord2");
-                }
-            }
-        }
-        private CaseRecord _caseRecord2;
-    
-        [DataMember]
-        public CaseRecord CaseRecord3
-        {
-            get { return _caseRecord3; }
-            set
-            {
-                if (!ReferenceEquals(_caseRecord3, value))
-                {
-                    var previousValue = _caseRecord3;
-    				OnNavigationPropertyChanging("CaseRecord3");
-                    _caseRecord3 = value;
-                    FixupCaseRecord3(previousValue);
-                    OnNavigationPropertyChanged("CaseRecord3");
-                }
-            }
-        }
-        private CaseRecord _caseRecord3;
-    
-        [DataMember]
         public Designation Designation
         {
             get { return _designation; }
@@ -793,24 +700,6 @@ namespace Faccts.Model.Entities
             }
         }
         private Race _race;
-    
-        [DataMember]
-        public Sex Sex
-        {
-            get { return _sex; }
-            set
-            {
-                if (!ReferenceEquals(_sex, value))
-                {
-                    var previousValue = _sex;
-    				OnNavigationPropertyChanging("Sex");
-                    _sex = value;
-                    FixupSex(previousValue);
-                    OnNavigationPropertyChanged("Sex");
-                }
-            }
-        }
-        private Sex _sex;
     
         [DataMember]
         public TrackableCollection<Interpreters> Interpreters
@@ -1018,13 +907,10 @@ namespace Faccts.Model.Entities
             Attorneys = null;
             CaseRecord.Clear();
             CaseRecord1.Clear();
-            CaseRecord2 = null;
-            CaseRecord3 = null;
             Designation = null;
             EyesColor = null;
             HairColor = null;
             Race = null;
-            Sex = null;
             Interpreters.Clear();
             Witnesses.Clear();
         }
@@ -1070,88 +956,6 @@ namespace Faccts.Model.Entities
                 if (Attorneys != null && !Attorneys.ChangeTracker.ChangeTrackingEnabled)
                 {
                     Attorneys.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupCaseRecord2(CaseRecord previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.CourtParty2.Contains(this))
-            {
-                previousValue.CourtParty2.Remove(this);
-            }
-    
-            if (CaseRecord2 != null)
-            {
-                CaseRecord2.CourtParty2.Add(this);
-    
-                CaseRecordByCourtParty1_Id = CaseRecord2.Id;
-            }
-            else if (!skipKeys)
-            {
-                CaseRecordByCourtParty1_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("CaseRecord2")
-                    && (ChangeTracker.OriginalValues["CaseRecord2"] == CaseRecord2))
-                {
-                    ChangeTracker.OriginalValues.Remove("CaseRecord2");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("CaseRecord2", previousValue);
-                }
-                if (CaseRecord2 != null && !CaseRecord2.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    CaseRecord2.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupCaseRecord3(CaseRecord previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.CourtParty3.Contains(this))
-            {
-                previousValue.CourtParty3.Remove(this);
-            }
-    
-            if (CaseRecord3 != null)
-            {
-                CaseRecord3.CourtParty3.Add(this);
-    
-                CaseRecordByCourtParty2_Id = CaseRecord3.Id;
-            }
-            else if (!skipKeys)
-            {
-                CaseRecordByCourtParty2_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("CaseRecord3")
-                    && (ChangeTracker.OriginalValues["CaseRecord3"] == CaseRecord3))
-                {
-                    ChangeTracker.OriginalValues.Remove("CaseRecord3");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("CaseRecord3", previousValue);
-                }
-                if (CaseRecord3 != null && !CaseRecord3.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    CaseRecord3.StartTracking();
                 }
             }
         }
@@ -1296,42 +1100,6 @@ namespace Faccts.Model.Entities
                 if (Race != null && !Race.ChangeTracker.ChangeTrackingEnabled)
                 {
                     Race.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupSex(Sex previousValue)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.CourtParty.Contains(this))
-            {
-                previousValue.CourtParty.Remove(this);
-            }
-    
-            if (Sex != null)
-            {
-                Sex.CourtParty.Add(this);
-    
-                Sex_Id = Sex.Id;
-            }
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("Sex")
-                    && (ChangeTracker.OriginalValues["Sex"] == Sex))
-                {
-                    ChangeTracker.OriginalValues.Remove("Sex");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("Sex", previousValue);
-                }
-                if (Sex != null && !Sex.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    Sex.StartTracking();
                 }
             }
         }

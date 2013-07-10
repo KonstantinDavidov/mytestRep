@@ -21,7 +21,6 @@ namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
     [KnownType(typeof(CaseRecord))]
-    [KnownType(typeof(Sex))]
     public partial class Children: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -186,28 +185,20 @@ namespace Faccts.Model.Entities
         private System.DateTime _dateOfBirth;
     
         [DataMember]
-        public int Sex_Id
+        public FACCTS.Server.Model.Enums.Gender Gender
         {
-            get { return _sex_Id; }
+            get { return _gender; }
             set
             {
-                if (_sex_Id != value)
+                if (_gender != value)
                 {
-                    ChangeTracker.RecordOriginalValue("Sex_Id", _sex_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (Sex != null && Sex.Id != value)
-                        {
-                            Sex = null;
-                        }
-                    }
-    				OnPropertyChanging("Sex_Id");
-                    _sex_Id = value;
-                    OnPropertyChanged("Sex_Id");
+    				OnPropertyChanging("Gender");
+                    _gender = value;
+                    OnPropertyChanged("Gender");
                 }
             }
         }
-        private int _sex_Id;
+        private FACCTS.Server.Model.Enums.Gender _gender;
     
         [DataMember]
         public Nullable<long> CaseRecord_Id
@@ -254,24 +245,6 @@ namespace Faccts.Model.Entities
             }
         }
         private CaseRecord _caseRecord;
-    
-        [DataMember]
-        public Sex Sex
-        {
-            get { return _sex; }
-            set
-            {
-                if (!ReferenceEquals(_sex, value))
-                {
-                    var previousValue = _sex;
-    				OnNavigationPropertyChanging("Sex");
-                    _sex = value;
-                    FixupSex(previousValue);
-                    OnNavigationPropertyChanged("Sex");
-                }
-            }
-        }
-        private Sex _sex;
 
         #endregion
 
@@ -368,20 +341,9 @@ namespace Faccts.Model.Entities
             ChangeTracker.ChangeTrackingEnabled = true;
         }
     
-        // This entity type is the dependent end in at least one association that performs cascade deletes.
-        // This event handler will process notifications that occur when the principal end is deleted.
-        internal void HandleCascadeDelete(object sender, ObjectStateChangingEventArgs e)
-        {
-            if (e.NewState == ObjectState.Deleted)
-            {
-                this.MarkAsDeleted();
-            }
-        }
-    
         protected virtual void ClearNavigationProperties()
         {
             CaseRecord = null;
-            Sex = null;
         }
 
         #endregion
@@ -425,42 +387,6 @@ namespace Faccts.Model.Entities
                 if (CaseRecord != null && !CaseRecord.ChangeTracker.ChangeTrackingEnabled)
                 {
                     CaseRecord.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupSex(Sex previousValue)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.Children.Contains(this))
-            {
-                previousValue.Children.Remove(this);
-            }
-    
-            if (Sex != null)
-            {
-                Sex.Children.Add(this);
-    
-                Sex_Id = Sex.Id;
-            }
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("Sex")
-                    && (ChangeTracker.OriginalValues["Sex"] == Sex))
-                {
-                    ChangeTracker.OriginalValues.Remove("Sex");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("Sex", previousValue);
-                }
-                if (Sex != null && !Sex.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    Sex.StartTracking();
                 }
             }
         }

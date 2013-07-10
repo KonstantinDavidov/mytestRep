@@ -45,10 +45,6 @@ namespace FACCTS.Server.Data
             get { return GetStandardDictionaryRepo<EyesColor>(); }
         }
 
-        public IFacctsDictionaryDataRepository<Sex> SexRepository
-        {
-            get { return GetStandardDictionaryRepo<Sex>(); }
-        }
 
         public IFacctsDataRepository<CourtParty> CourtPartyRepository
         {

@@ -77,7 +77,7 @@
                                     HeaderStyle="{StaticResource WrappedColumnHeaderStyle}" Binding="{Binding Hearing.HearingDate, Mode=OneWay}" />
 				<DataGridTextColumn Binding="{Binding Hearing.Courtrooms.RoomName, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Courtroom" CanUserResize="False" Width="0.1*" IsReadOnly="True"/>
 				<DataGridTextColumn Binding="{Binding Hearing.CourtDepartment.Room}" ClipboardContentBinding="{x:Null}" Header="Department" Width="0.1*"/>
-				<DataGridTextColumn Binding="{Binding Hearing.HearingDate, Mode=OneWay, StringFormat=\{0:t tt\}}" ClipboardContentBinding="{x:Null}" Header="Session" IsReadOnly="True" Width="0.1*"/>
+				<DataGridTextColumn Binding="{Binding Hearing.Session, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Session" IsReadOnly="True" Width="0.1*"/>
 				<DataGridTextColumn Binding="{Binding CourtCase.CaseRecord.CourtParty.FullName}" ClipboardContentBinding="{x:Null}" Header="Party 1" CanUserResize="False" Width="0.2*" IsReadOnly="True"/>
 				<DataGridTextColumn Binding="{Binding CourtCase.CaseRecord.CourtParty1.FullName}" ClipboardContentBinding="{x:Null}" Header="Party 2" CanUserResize="False" Width="0.2*" IsReadOnly="True"/>
 				<DataGridCheckBoxColumn Binding="{Binding CourtCase.CaseRecord.Children.Count, ConverterParameter=0, Converter={StaticResource InvertedInt32ToBooleanConverter}, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Children" CanUserResize="False" Width="0.08*" IsReadOnly="True"/>

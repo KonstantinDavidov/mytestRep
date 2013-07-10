@@ -509,7 +509,6 @@ namespace FACCTS.Server.Data
             SeedEyeColors(context);
             SeedHairColor(context);
             SeedRace(context);
-            SeedSex(context);
             SeedPdfForm(context);
             SeedCourtCounties(context);
             SeedMembershipProviderData(context);
@@ -563,16 +562,7 @@ namespace FACCTS.Server.Data
                 });
         }
 
-        private static void SeedSex(DatabaseContext context)
-        {
-            GetRecords<FACCTS.Server.Model.DataModel.Sex>("Sex.csv")
-                .Aggregate(context.Sex, (dbset, record) =>
-                {
-                    dbset.Add(record);
-                    return dbset;
-                }
-                );
-        }
+        
 
 
 
@@ -684,7 +674,7 @@ namespace FACCTS.Server.Data
             CourtCase testCourtCase = new CourtCase();
 
             CaseRecord testCaseRecord = new CaseRecord();
-            FACCTS.Server.Model.DataModel.Sex testSex = context.Sex.FirstOrDefault();
+            Gender testSex = Gender.F;
             Designation testDesignation = context.Designations.FirstOrDefault();
             EyesColor testEyesColor = context.EyesColor.FirstOrDefault();
             HairColor testHairColor = context.HairColor.FirstOrDefault();
@@ -699,7 +689,7 @@ namespace FACCTS.Server.Data
                 FirstName = "Grigory",
                 LastName = "Rusputin",
                 Phone = "89043434123",
-                State = "CA",
+                State = USAState.CA,
                 StateBarId = "Bar",
                 StreetAddress = "MainStreet",
                 ZipCode = "12345"
@@ -770,7 +760,7 @@ namespace FACCTS.Server.Data
                 Phone = "12345",
                 Race = testRace,
                 Sex = testSex,
-                State = "NJ",
+                State = USAState.NJ,
                 Weight = 56,
                 ZipCode = "410001"
             };
@@ -796,7 +786,7 @@ namespace FACCTS.Server.Data
                 Phone = "12345",
                 Race = testRace,
                 Sex = testSex,
-                State = "NJ",
+                State = USAState.NJ,
                 Weight = 56,
                 ZipCode = "410001"
             };

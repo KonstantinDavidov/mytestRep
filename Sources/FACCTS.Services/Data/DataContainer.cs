@@ -1,4 +1,5 @@
 ﻿using Faccts.Model.Entities;
+using FACCTS.Server.Model.Enums;
 using FACCTS.Services.Logger;
 using ReactiveUI;
 using System;
@@ -184,8 +185,8 @@ namespace FACCTS.Services.Data
             }
         }
 
-        private List<Sex> _sexes;
-        public List<Sex> Sexes
+        private List<EnumDescript<Gender>> _sexes;
+        public List<EnumDescript<Gender>> Sexes
         {
             get
             {
@@ -194,6 +195,19 @@ namespace FACCTS.Services.Data
                     _sexes = FACCTS.Services.Data.Sexes.GetAll();
                 }
                 return _sexes;
+            }
+        }
+
+        private List<EnumDescript<USAState>> _stateList;
+        public List<EnumDescript<USAState>> StateList
+        {
+            get
+            {
+                if (_stateList == null)
+                {
+                    _stateList = EnumDescript<USAState>.GetList<USAState>();
+                }
+                return _stateList;
             }
         }
 

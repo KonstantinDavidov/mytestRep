@@ -20,13 +20,14 @@ using ReactiveUI;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
+    [KnownType(typeof(Attorneys))]
     [KnownType(typeof(CaseRecord))]
-    public partial class OtherProtected: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    public partial class ThirdPartyData: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
     		private MakeObjectReactiveHelper _reactiveHelper;
     
-    		public OtherProtected()
+    		public ThirdPartyData()
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
@@ -85,7 +86,7 @@ namespace Faccts.Model.Entities
     	    #region Simple Properties
     
         [DataMember]
-        public int Id
+        public long Id
         {
             get { return _id; }
             set
@@ -102,197 +103,121 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _id;
+        private long _id;
     
         [DataMember]
-        public int EntityType
+        public bool IsThirdPartyProPer
         {
-            get { return _entityType; }
+            get { return _isThirdPartyProPer; }
             set
             {
-                if (_entityType != value)
+                if (_isThirdPartyProPer != value)
                 {
-    				OnPropertyChanging("EntityType");
-                    _entityType = value;
-                    OnPropertyChanged("EntityType");
+    				OnPropertyChanging("IsThirdPartyProPer");
+                    _isThirdPartyProPer = value;
+                    OnPropertyChanged("IsThirdPartyProPer");
                 }
             }
         }
-        private int _entityType;
+        private bool _isThirdPartyProPer;
     
         [DataMember]
-        public int RelationshipToPlaintiff
+        public bool IsThirdPartyRequestorInEACase
         {
-            get { return _relationshipToPlaintiff; }
+            get { return _isThirdPartyRequestorInEACase; }
             set
             {
-                if (_relationshipToPlaintiff != value)
+                if (_isThirdPartyRequestorInEACase != value)
                 {
-    				OnPropertyChanging("RelationshipToPlaintiff");
-                    _relationshipToPlaintiff = value;
-                    OnPropertyChanged("RelationshipToPlaintiff");
+    				OnPropertyChanging("IsThirdPartyRequestorInEACase");
+                    _isThirdPartyRequestorInEACase = value;
+                    OnPropertyChanged("IsThirdPartyRequestorInEACase");
                 }
             }
         }
-        private int _relationshipToPlaintiff;
+        private bool _isThirdPartyRequestorInEACase;
     
         [DataMember]
-        public string FirstName
+        public Nullable<int> Attorney_Id
         {
-            get { return _firstName; }
+            get { return _attorney_Id; }
             set
             {
-                if (_firstName != value)
+                if (_attorney_Id != value)
                 {
-    				OnPropertyChanging("FirstName");
-                    _firstName = value;
-                    OnPropertyChanged("FirstName");
-                }
-            }
-        }
-        private string _firstName;
-    
-        [DataMember]
-        public string LastName
-        {
-            get { return _lastName; }
-            set
-            {
-                if (_lastName != value)
-                {
-    				OnPropertyChanging("LastName");
-                    _lastName = value;
-                    OnPropertyChanged("LastName");
-                }
-            }
-        }
-        private string _lastName;
-    
-        [DataMember]
-        public Nullable<long> CaseRecord_Id
-        {
-            get { return _caseRecord_Id; }
-            set
-            {
-                if (_caseRecord_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("CaseRecord_Id", _caseRecord_Id);
+                    ChangeTracker.RecordOriginalValue("Attorney_Id", _attorney_Id);
                     if (!IsDeserializing)
                     {
-                        if (CaseRecord != null && CaseRecord.Id != value)
+                        if (Attorney != null && Attorney.Id != value)
                         {
-                            CaseRecord = null;
+                            Attorney = null;
                         }
                     }
-    				OnPropertyChanging("CaseRecord_Id");
-                    _caseRecord_Id = value;
-                    OnPropertyChanged("CaseRecord_Id");
+    				OnPropertyChanging("Attorney_Id");
+                    _attorney_Id = value;
+                    OnPropertyChanged("Attorney_Id");
                 }
             }
         }
-        private Nullable<long> _caseRecord_Id;
-    
-        [DataMember]
-        public System.DateTime DateOfBirth
-        {
-            get { return _dateOfBirth; }
-            set
-            {
-                if (_dateOfBirth != value)
-                {
-    				OnPropertyChanging("DateOfBirth");
-                    _dateOfBirth = value;
-                    OnPropertyChanged("DateOfBirth");
-                }
-            }
-        }
-        private System.DateTime _dateOfBirth;
-    
-        [DataMember]
-        public Nullable<FACCTS.Server.Model.Enums.Gender> Gender
-        {
-            get { return _gender; }
-            set
-            {
-                if (_gender != value)
-                {
-    				OnPropertyChanging("Gender");
-                    _gender = value;
-                    OnPropertyChanged("Gender");
-                }
-            }
-        }
-        private Nullable<FACCTS.Server.Model.Enums.Gender> _gender;
-    
-        [DataMember]
-        public int Age
-        {
-            get { return _age; }
-            set
-            {
-                if (_age != value)
-                {
-    				OnPropertyChanging("Age");
-                    _age = value;
-                    OnPropertyChanged("Age");
-                }
-            }
-        }
-        private int _age;
-    
-        [DataMember]
-        public bool IsHouseHold
-        {
-            get { return _isHouseHold; }
-            set
-            {
-                if (_isHouseHold != value)
-                {
-    				OnPropertyChanging("IsHouseHold");
-                    _isHouseHold = value;
-                    OnPropertyChanged("IsHouseHold");
-                }
-            }
-        }
-        private bool _isHouseHold;
-    
-        [DataMember]
-        public int Sex
-        {
-            get { return _sex; }
-            set
-            {
-                if (_sex != value)
-                {
-    				OnPropertyChanging("Sex");
-                    _sex = value;
-                    OnPropertyChanged("Sex");
-                }
-            }
-        }
-        private int _sex;
+        private Nullable<int> _attorney_Id;
 
         #endregion
 
         #region Navigation Properties
     
         [DataMember]
-        public CaseRecord CaseRecord
+        public Attorneys Attorney
         {
-            get { return _caseRecord; }
+            get { return _attorney; }
+            set
+            {
+                if (!ReferenceEquals(_attorney, value))
+                {
+                    var previousValue = _attorney;
+    				OnNavigationPropertyChanging("Attorney");
+                    _attorney = value;
+                    FixupAttorney(previousValue);
+                    OnNavigationPropertyChanged("Attorney");
+                }
+            }
+        }
+        private Attorneys _attorney;
+    
+        [DataMember]
+        public TrackableCollection<CaseRecord> CaseRecord
+        {
+            get
+            {
+                if (_caseRecord == null)
+                {
+                    _caseRecord = new TrackableCollection<CaseRecord>();
+                    _caseRecord.CollectionChanged += FixupCaseRecord;
+                }
+                return _caseRecord;
+            }
             set
             {
                 if (!ReferenceEquals(_caseRecord, value))
                 {
-                    var previousValue = _caseRecord;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
     				OnNavigationPropertyChanging("CaseRecord");
+                    if (_caseRecord != null)
+                    {
+                        _caseRecord.CollectionChanged -= FixupCaseRecord;
+                    }
                     _caseRecord = value;
-                    FixupCaseRecord(previousValue);
+                    if (_caseRecord != null)
+                    {
+                        _caseRecord.CollectionChanged += FixupCaseRecord;
+                    }
                     OnNavigationPropertyChanged("CaseRecord");
                 }
             }
         }
-        private CaseRecord _caseRecord;
+        private TrackableCollection<CaseRecord> _caseRecord;
 
         #endregion
 
@@ -391,50 +316,90 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
-            CaseRecord = null;
+            Attorney = null;
+            CaseRecord.Clear();
         }
 
         #endregion
 
         #region Association Fixup
     
-        private void FixupCaseRecord(CaseRecord previousValue, bool skipKeys = false)
+        private void FixupAttorney(Attorneys previousValue, bool skipKeys = false)
         {
             if (IsDeserializing)
             {
                 return;
             }
     
-            if (previousValue != null && previousValue.OtherProtected.Contains(this))
+            if (previousValue != null && previousValue.ThirdPartyData.Contains(this))
             {
-                previousValue.OtherProtected.Remove(this);
+                previousValue.ThirdPartyData.Remove(this);
             }
     
-            if (CaseRecord != null)
+            if (Attorney != null)
             {
-                CaseRecord.OtherProtected.Add(this);
+                Attorney.ThirdPartyData.Add(this);
     
-                CaseRecord_Id = CaseRecord.Id;
+                Attorney_Id = Attorney.Id;
             }
             else if (!skipKeys)
             {
-                CaseRecord_Id = null;
+                Attorney_Id = null;
             }
     
             if (ChangeTracker.ChangeTrackingEnabled)
             {
-                if (ChangeTracker.OriginalValues.ContainsKey("CaseRecord")
-                    && (ChangeTracker.OriginalValues["CaseRecord"] == CaseRecord))
+                if (ChangeTracker.OriginalValues.ContainsKey("Attorney")
+                    && (ChangeTracker.OriginalValues["Attorney"] == Attorney))
                 {
-                    ChangeTracker.OriginalValues.Remove("CaseRecord");
+                    ChangeTracker.OriginalValues.Remove("Attorney");
                 }
                 else
                 {
-                    ChangeTracker.RecordOriginalValue("CaseRecord", previousValue);
+                    ChangeTracker.RecordOriginalValue("Attorney", previousValue);
                 }
-                if (CaseRecord != null && !CaseRecord.ChangeTracker.ChangeTrackingEnabled)
+                if (Attorney != null && !Attorney.ChangeTracker.ChangeTrackingEnabled)
                 {
-                    CaseRecord.StartTracking();
+                    Attorney.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupCaseRecord(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (CaseRecord item in e.NewItems)
+                {
+                    item.ThirdPartyData = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("CaseRecord", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (CaseRecord item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.ThirdPartyData, this))
+                    {
+                        item.ThirdPartyData = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CaseRecord", item);
+                    }
                 }
             }
         }

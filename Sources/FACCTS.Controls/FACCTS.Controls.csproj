@@ -194,6 +194,9 @@
     <Compile Include="ViewModels\OutputForms\FL344DebtAndPropertyControlViewModel.cs" />
     <Compile Include="ViewModels\ReissueCaseDialogViewModel.cs" />
     <Compile Include="ViewModels\UserLoginDialogViewModel.cs" />
+    <Compile Include="Views\Controls\CaseRecord\AttorneyThirdPartyView.xaml.cs">
+      <DependentUpon>AttorneyThirdPartyView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Controls\ModalDialogViews\GenerateCourtOrdersControlView.xaml.cs">
       <DependentUpon>GenerateCourtOrdersControlView.xaml</DependentUpon>
     </Compile>
@@ -382,6 +385,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Grids.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\CaseRecord\AttorneyThirdPartyView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

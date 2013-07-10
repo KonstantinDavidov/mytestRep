@@ -14,6 +14,8 @@
     <UserControl.Resources>
         <ext:MefPartExtension InstanceType="{x:Type fs:IDataContainer}" x:Key="DataContainer"/>
         <CollectionViewSource x:Key="cvsSex" Source="{Binding Source={StaticResource DataContainer}, Path=Sexes, Mode=OneWay}"/>
+        <CollectionViewSource x:Key="cvsStateList"
+                              Source="{Binding Source={StaticResource DataContainer}, Path=StateList, Mode=OneWay}" />
         <CollectionViewSource x:Key="cvsHair" Source="{Binding Source={StaticResource DataContainer}, Path=HairColors, Mode=OneWay}"/>
         <CollectionViewSource x:Key="cvsEyes" Source="{Binding Source={StaticResource DataContainer}, Path=EyesColors, Mode=OneWay}"/>
         <CollectionViewSource x:Key="cvsraces" Source="{Binding Source={StaticResource DataContainer}, Path=Races, Mode=OneWay}"/>
@@ -76,14 +78,13 @@
 						<TextBox TextWrapping="Wrap" Text="{Binding Phone, FallbackValue=9112345678, Mode=TwoWay}" Grid.Column="5" VerticalAlignment="Center" Tag="Phone Number" Style="{DynamicResource TextBoxWithAdorner}"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="City, State, Zip" VerticalAlignment="Center" Grid.Row="1"/>
 						<TextBox TextWrapping="Wrap" Text="{Binding City, FallbackValue=New York, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Tag="City" Style="{DynamicResource TextBoxWithAdorner}"/>
-                        <TextBox TextWrapping="Wrap"
-                                 Text="{Binding State, FallbackValue=California}"
-                                 Grid.Row="1"
-                                 Grid.Column="2"
-                                 VerticalAlignment="Center"
-                                 Tag="State"
-                                 Style="{DynamicResource TextBoxWithAdorner}" />
-						<TextBox TextWrapping="Wrap" Text="{Binding ZipCode, FallbackValue=10011, Mode=TwoWay}" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Tag="Zip code" Style="{DynamicResource TextBoxWithAdorner}"/>
+                        <ComboBox SelectedValue="{Binding State, Mode=TwoWay}"
+                                  SelectedValuePath="Value"
+                                  ItemsSource="{Binding Source={StaticResource cvsStateList}, Mode=OneWay}"
+                                  Grid.Row="1"
+                                  Grid.Column="2"
+                                  VerticalAlignment="Center" />
+                        <TextBox TextWrapping="Wrap" Text="{Binding ZipCode, FallbackValue=10011, Mode=TwoWay}" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Tag="Zip code" Style="{DynamicResource TextBoxWithAdorner}"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Fax" VerticalAlignment="Center" Grid.Row="1" Grid.Column="4"/>
 						<TextBox TextWrapping="Wrap" Text="{Binding Fax, FallbackValue=9012345678, Mode=TwoWay}" Grid.Row="1" Grid.Column="5" VerticalAlignment="Center" Tag="Fax" Style="{DynamicResource TextBoxWithAdorner}"/>
 					</Grid>
@@ -105,7 +106,7 @@
 							<RowDefinition/>
 						</Grid.RowDefinitions>
 						<TextBlock Margin="0,0,0,-0.001" TextWrapping="Wrap" Text="Sex" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-                        <ComboBox Margin="0,0,0,-0.001" Grid.Column="1" VerticalAlignment="Center" ItemsSource="{Binding IsAsync=True, Mode=OneWay, Source={StaticResource cvsSex}}" SelectedItem="{Binding Sex, Mode=TwoWay}" DisplayMemberPath="SexName"/>
+                        <ComboBox Margin="0,0,0,-0.001" Grid.Column="1" VerticalAlignment="Center" ItemsSource="{Binding IsAsync=True, Mode=OneWay, Source={StaticResource cvsSex}}" SelectedValue="{Binding Gender, Mode=TwoWay}" SelectedValuePath="Value"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Hair" VerticalAlignment="Center" Grid.Column="2"/>
 						<ComboBox Margin="0,0,0,-0.001" VerticalAlignment="Center" Grid.Column="3" ItemsSource="{Binding IsAsync=True, Mode=OneWay, Source={StaticResource cvsHair}}" SelectedItem="{Binding HairColor, Mode=TwoWay}" DisplayMemberPath="Color"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Eyes" VerticalAlignment="Center" Grid.Column="4"/>

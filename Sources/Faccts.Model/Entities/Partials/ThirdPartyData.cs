@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Faccts.Model.Entities
 {
-    public partial class Sex
+    public partial class ThirdPartyData
     {
-        public Sex(FACCTS.Server.Model.DataModel.Sex dto) : this()
+        partial void Initialize()
         {
-            this.Id = dto.Id;
-            this.SexName = dto.SexName;
+            this.Attorney = new Attorneys();
         }
     }
 }

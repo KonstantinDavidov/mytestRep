@@ -50,7 +50,7 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellEditingTemplate>
                         </DataGridTemplateColumn>
-                         <DataGridComboBoxColumn ItemsSource="{Binding Source={StaticResource cvsSex}, Mode=OneWay}" DisplayMemberPath="SexName" SelectedItemBinding="{Binding Sex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Sex" Width="0.1*"/>
+                         <DataGridComboBoxColumn ItemsSource="{Binding Source={StaticResource cvsSex}, Mode=OneWay}" SelectedValuePath="Value"  SelectedValueBinding="{Binding Gender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Sex" Width="0.1*"/>
                             <DataGridTemplateColumn Header="Date of Birth" Width="0.2*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
@@ -113,7 +113,7 @@
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellEditingTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridComboBoxColumn ItemsSource="{Binding Source={StaticResource cvsSex}, Mode=OneWay}" DisplayMemberPath="SexName" SelectedItemBinding="{Binding Sex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Sex" Width="0.1*"/>
+                            <DataGridComboBoxColumn ItemsSource="{Binding Source={StaticResource cvsSex}, Mode=OneWay}" SelectedValuePath="Value" SelectedValueBinding="{Binding Gender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Sex" Width="0.1*"/>
                             <DataGridTemplateColumn Header="Date of Birth" Width="0.2*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>

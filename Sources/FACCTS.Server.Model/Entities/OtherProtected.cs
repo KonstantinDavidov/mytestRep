@@ -36,7 +36,7 @@ namespace FACCTS.Server.Model.DataModel
 
         public DateTime DateOfBirth { get; set; }
 
-        public virtual Sex Sex { get; set; }
+        public Gender Sex { get; set; }
 
         public int Age { get; set; }
 

@@ -72,7 +72,6 @@ namespace FACCTS.Server.Data
         public DbSet<EyesColor> EyesColor { get; set; }
         public DbSet<HairColor> HairColor { get; set; }
         public DbSet<Race> Races { get; set; }
-        public DbSet<Sex> Sex { get; set; }
         public DbSet<CourtLocation> CourtLocations { get; set; }
         public DbSet<FormField> FormFields { get; set; }
         public DbSet<CourtCounty> CourtCounties { get; set; }

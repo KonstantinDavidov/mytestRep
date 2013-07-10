@@ -12,9 +12,11 @@
     		<RowDefinition/>
     		<RowDefinition/>
     		<RowDefinition/>
-    	</Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
         <localcontrols:AttorneysPartyView Grid.Row="0"    DisplayName="Attorney for Party 1" DataContext="{Binding CaseRecord.CourtParty, Mode=OneWay}"/>
         <localcontrols:AttorneysPartyView Grid.Row="1"    DisplayName="Attorney for Party 2" DataContext="{Binding CaseRecord.CourtParty1, Mode=OneWay}"/>
         <this:AttorneyChildrenView Grid.Row="2"/>
+        <this:AttorneyThirdPartyView Grid.Row="3" />
     </Grid>
 </UserControl>

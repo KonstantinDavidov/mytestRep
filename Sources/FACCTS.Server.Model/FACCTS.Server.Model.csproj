@@ -117,7 +117,7 @@
     <Compile Include="Entities\RestrainingPartyIdentificationInformation.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\ScheduledIntegrationTask.cs" />
-    <Compile Include="Entities\Sex.cs" />
+    <Compile Include="Entities\ThirdPartyData.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Witness.cs" />
     <Compile Include="Enums\AddressType.cs" />
@@ -145,6 +145,7 @@
     <Compile Include="Enums\ServiceReqState.cs" />
     <Compile Include="Enums\Gender.cs" />
     <Compile Include="Enums\StayAway.cs" />
+    <Compile Include="Enums\USAState.cs" />
     <Compile Include="Enums\Visitation.cs" />
     <Compile Include="NullStringConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
