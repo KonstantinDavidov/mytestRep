@@ -53,10 +53,41 @@ foreach (EntityType entity in code.GetItemsToGenerate<EntityType>(ItemCollection
 		{
 			_reactiveHelper = new MakeObjectReactiveHelper(this);
 			Initialize();
+			Observable.FromEvent<EventHandler<ObjectStateChangingEventArgs>, ObjectStateChangingEventArgs>(
+			handler =>
+				{
+					EventHandler<ObjectStateChangingEventArgs> eh = (sender, e) => handler(e);
+					return eh;
+				},
+				handler =>  ChangeTracker.ObjectStateChanging += handler,
+				handler =>  ChangeTracker.ObjectStateChanging -= handler
+			)
+			.Subscribe(e =>
+				{
+					IsDirty = e.NewState != ObjectState.Unchanged;
+				}
+			);
 		}
 
 		partial void Initialize();
 		
+		private bool _isDirty;
+		public bool IsDirty
+		{
+			get
+			{
+				return _isDirty;
+			}
+			set
+			{
+				if (_isDirty == value)
+					return;
+				OnPropertyChanging("IsDirty");
+				_isDirty = value;
+				OnPropertyChanged("IsDirty");
+			}
+		}
+				
 
 		public IObservable<IObservedChange<object, object>> Changed 
 		{
@@ -1426,6 +1457,7 @@ using System.Globalization;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using ReactiveUI;
+using System.Reactive.Linq;
 <#=String.Join(String.Empty, extraUsings.Select(u => "using " + u + ";" + Environment.NewLine).ToArray())#>
 <#+
     fileManager.EndBlock();
@@ -1978,6 +2010,7 @@ public static class ObjectWithChangeTrackerExtensions
         trackingItem.ChangeTracker.AcceptChanges();
     }
 }
+
 <#+
 }
 

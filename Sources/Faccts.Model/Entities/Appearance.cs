@@ -16,6 +16,7 @@ using System.Globalization;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using ReactiveUI;
+using System.Reactive.Linq;
 
 namespace Faccts.Model.Entities
 {

@@ -18,11 +18,6 @@ namespace Faccts.Model.Entities
                 }
                 );
             this.Attorneys = new Attorneys();
-            this.Changed.Subscribe(_ =>
-                {
-                    this.IsDirty = true;
-                }
-                );
         }
 
         private DateTime? _dateOfBirthNullable;
@@ -62,24 +57,6 @@ namespace Faccts.Model.Entities
             }
         }
 
-        private bool _isDirty;
-        public bool IsDirty
-        {
-            get
-            {
-                return _isDirty;
-            }
-            set
-            {
-                if (_isDirty == value)
-                {
-                    return;
-                }
-                _isDirty = value;
-                this.OnPropertyChanged("IsDirty");
-            }
-
-        }
 
         
     }
