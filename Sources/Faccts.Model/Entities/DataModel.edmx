@@ -1940,10 +1940,11 @@
           <NavigationProperty Name="Interpreters" Relationship="FACCTS_DBModel.FK_dbo_Interpreters_dbo_CourtParty_InterpreterFor_Id" FromRole="CourtParty" ToRole="Interpreters" />
           <NavigationProperty Name="Witnesses" Relationship="FACCTS_DBModel.FK_dbo_Witnesses_dbo_CourtParty_WitnessFor_Id" FromRole="CourtParty" ToRole="Witnesses" />
           <Property Type="FACCTS_DBModel.ParticipantRole" Name="ParticipantRole" Nullable="false" />
-          <Property Type="Int32" Name="Sex" Nullable="false" />
+          <Property Type="FACCTS_DBModel.Gender" Name="Sex" Nullable="false" />
           <Property Type="String" Name="ParentRole" Nullable="false" />
           <Property Type="FACCTS_DBModel.FACCTSEntity" Name="EntityType" Nullable="false" />
           <Property Type="String" Name="Email" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="RelationToOtherParty" Nullable="false" />
         </EntityType>
         <EntityType Name="Courtrooms">
           <Key>
@@ -2669,7 +2670,7 @@
           </ReferentialConstraint>
         </Association>
         <ComplexType Name="RestrainingPartyIDInfo" >
-          <Property Type="Int32" Name="IDType" Nullable="false" />
+          <Property Type="FACCTS_DBModel.IdentificationIDType" Name="IDType" Nullable="false" />
           <Property Type="String" Name="IDNumber" Nullable="false" />
           <Property Type="DateTime" Name="IDIssuedDate" Nullable="false" />
         </ComplexType>
@@ -2873,6 +2874,7 @@
         <EnumType Name="USAState" a:ExternalTypeName="FACCTS.Server.Model.Enums.USAState" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         <EnumType Name="ParticipantRole" a:ExternalTypeName="FACCTS.Server.Model.Enums.ParticipantRole" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         <EnumType Name="FACCTSEntity" a:ExternalTypeName="FACCTS.Server.Model.Enums.FACCTSEntity" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EnumType Name="IdentificationIDType" a:ExternalTypeName="FACCTS.Server.Model.Enums.IdentificationIDType" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

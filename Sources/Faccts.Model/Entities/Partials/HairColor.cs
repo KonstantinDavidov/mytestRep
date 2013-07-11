@@ -13,5 +13,14 @@ namespace Faccts.Model.Entities
             this.Id = dto.Id;
             this.Color = dto.Color;
         }
+
+        public FACCTS.Server.Model.DataModel.HairColor ToDTO()
+        {
+            return new FACCTS.Server.Model.DataModel.HairColor()
+            {
+                Id = this.Id,
+                Color = this.Color,
+            };
+        }
     }
 }

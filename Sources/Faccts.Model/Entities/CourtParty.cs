@@ -84,6 +84,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.ParentRole)
     				,this.ObservableForProperty(x => x.EntityType)
     				,this.ObservableForProperty(x => x.Email)
+    				,this.ObservableForProperty(x => x.RelationToOtherParty)
     				,this.ObservableForProperty(x => x.Attorneys.IsDirty)
     				,this.ObservableForProperty(x => x.Designation.IsDirty)
     				,this.ObservableForProperty(x => x.EyesColor.IsDirty)
@@ -598,7 +599,7 @@ namespace Faccts.Model.Entities
         private FACCTS.Server.Model.Enums.ParticipantRole _participantRole;
     
         [DataMember]
-        public int Sex
+        public FACCTS.Server.Model.Enums.Gender Sex
         {
             get { return _sex; }
             set
@@ -611,7 +612,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _sex;
+        private FACCTS.Server.Model.Enums.Gender _sex;
     
         [DataMember]
         public string ParentRole
@@ -660,6 +661,22 @@ namespace Faccts.Model.Entities
             }
         }
         private string _email;
+    
+        [DataMember]
+        public string RelationToOtherParty
+        {
+            get { return _relationToOtherParty; }
+            set
+            {
+                if (_relationToOtherParty != value)
+                {
+    				OnPropertyChanging("RelationToOtherParty");
+                    _relationToOtherParty = value;
+                    OnPropertyChanged("RelationToOtherParty");
+                }
+            }
+        }
+        private string _relationToOtherParty;
 
         #endregion
 

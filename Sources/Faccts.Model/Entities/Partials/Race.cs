@@ -13,5 +13,14 @@ namespace Faccts.Model.Entities
             this.Id = dto.Id;
             this.RaceName = dto.RaceName;
         }
+
+        public FACCTS.Server.Model.DataModel.Race ToDTO()
+        {
+            return new FACCTS.Server.Model.DataModel.Race()
+            {
+                Id = this.Id,
+                RaceName = this.RaceName,
+            };
+        }
     }
 }

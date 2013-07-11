@@ -14,6 +14,13 @@ namespace Faccts.Model.Entities
             this.Color = dto.Color;
         }
 
-        
+        public FACCTS.Server.Model.DataModel.EyesColor ToDTO()
+        {
+            return new FACCTS.Server.Model.DataModel.EyesColor()
+            {
+                Id = this.Id,
+                Color = this.Color,
+            };
+        }
     }
 }

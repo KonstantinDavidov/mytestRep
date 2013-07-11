@@ -23,11 +23,11 @@ namespace Faccts.Model.Entities
         {
             get
             {
-                return (FACCTS.Server.Model.Enums.IdentificationIDType)this.IDType;
+                return this.IDType;
             }
             set
             {
-                this.IDType = (int)value;
+                this.IDType = value;
             }
         }
 
@@ -59,6 +59,16 @@ namespace Faccts.Model.Entities
                 }
                 this.OnPropertyChanged("IDIssuedDate");
             }
+        }
+
+        public FACCTS.Server.Model.DataModel.RestrainingPartyIdentificationInformation ToDTO()
+        {
+            return new FACCTS.Server.Model.DataModel.RestrainingPartyIdentificationInformation()
+            {
+                IDNumber = this.IDNumber,
+                IDType = this.IDType,
+                IssuedDate = this.IDIssuedDate,
+            };
         }
     }
 }

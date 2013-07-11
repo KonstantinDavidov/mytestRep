@@ -57,7 +57,43 @@ namespace Faccts.Model.Entities
             }
         }
 
+        public FACCTS.Server.Model.DataModel.CourtParty ToDTO()
+        {
+            FACCTS.Server.Model.DataModel.CourtParty dto = new FACCTS.Server.Model.DataModel.CourtParty()
+                {
+                    Id = this.Id,
+                    FirstName = this.FirstName,
+                    MiddleName = this.MiddleName,
+                    LastName = this.LastName,
+                    Designation = this.Designation.ToDTO(),
+                    Description = this.Description,
+                    ParticipantRole = this.ParticipantRole,
+                    Address = this.Address,
+                    City = this.City,
+                    State = this.State,
+                    ZipCode = this.ZipCode,
+                    Phone = this.Phone,
+                    Fax = this.Fax,
+                    ParentRole = this.ParentRole,
+                    EntityType = this.EntityType,
+                    Email = this.Email,
+                    Sex = this.Sex,
+                    HairColor = this.HairColor.ToDTO(),
+                    EyesColor = this.EyesColor.ToDTO(),
+                    Race = this.Race.ToDTO(),
+                    RelationToOtherParty = this.RelationToOtherParty,
+                    Weight = this.Weight,
+                    HeightFt = this.HeightFt,
+                    HeightIns = this.HeightIns,
+                    DateOfBirth = this.DateOfBirth,
+                    Age = this.Age,
+                    HasAttorney = this.HasAttorney,
+                    Attorney = this.Attorneys.ToDTO(),
 
+
+                };
+            return dto;
+        }
         
     }
 }

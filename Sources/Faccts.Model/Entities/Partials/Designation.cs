@@ -13,5 +13,14 @@ namespace Faccts.Model.Entities
             this.Id = dto.Id;
             this.DesignationName = dto.DesignationName;
         }
+
+        public FACCTS.Server.Model.DataModel.Designation ToDTO()
+        {
+            return new FACCTS.Server.Model.DataModel.Designation()
+            {
+                Id = this.Id,
+                DesignationName = this.DesignationName,
+            };
+        }
     }
 }

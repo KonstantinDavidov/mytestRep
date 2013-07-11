@@ -81,7 +81,7 @@ namespace Faccts.Model.Entities
         #region Simple Properties
     
         [DataMember]
-        public int IDType
+        public FACCTS.Server.Model.Enums.IdentificationIDType IDType
         {
             get { return _iDType; }
             set
@@ -95,7 +95,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _iDType;
+        private FACCTS.Server.Model.Enums.IdentificationIDType _iDType;
     
         [DataMember]
         public string IDNumber

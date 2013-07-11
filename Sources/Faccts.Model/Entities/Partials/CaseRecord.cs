@@ -58,5 +58,17 @@ namespace Faccts.Model.Entities
                 return this.CourtParty.IsDirty || this.CourtParty1.IsDirty || this.RestrainingpartyIdentificationInformation.IsDirty;
             }
         }
+
+        public FACCTS.Server.Model.DataModel.CaseRecord ToDTO()
+        {
+            return new FACCTS.Server.Model.DataModel.CaseRecord()
+            {
+                Id = this.Id,
+                Party1 = this.CourtParty.ToDTO(),
+                Party2 = this.CourtParty.ToDTO(),
+                RestrainingPartyIdentificationInformation = this.RestrainingpartyIdentificationInformation.ToDTO(),
+                //TODO: implement another properties
+            };
+        }
     }
 }
