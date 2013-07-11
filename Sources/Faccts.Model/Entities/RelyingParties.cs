@@ -16,6 +16,7 @@ using System.Globalization;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using ReactiveUI;
+using System.Reactive.Linq;
 
 namespace Faccts.Model.Entities
 {
@@ -29,10 +30,65 @@ namespace Faccts.Model.Entities
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
+    			Observable.FromEvent<EventHandler<ObjectStateChangingEventArgs>, ObjectStateChangingEventArgs>(
+    			handler =>
+    				{
+    					EventHandler<ObjectStateChangingEventArgs> eh = (sender, e) => handler(e);
+    					return eh;
+    				},
+    				handler =>  ChangeTracker.ObjectStateChanging += handler,
+    				handler =>  ChangeTracker.ObjectStateChanging -= handler
+    			)
+    			.Subscribe(e =>
+    				{
+    					if(e.NewState == ObjectState.Unchanged)
+    					{
+    						IsDirty = false;
+    					}
+    				}
+    			);
+    			Observable.Merge<Object>(
+    				this.ObservableForProperty(x => x.Id)
+    				,this.ObservableForProperty(x => x.Name)
+    				,this.ObservableForProperty(x => x.Enabled)
+    				,this.ObservableForProperty(x => x.Realm)
+    				,this.ObservableForProperty(x => x.TokenLifeTime)
+    				,this.ObservableForProperty(x => x.ReplyTo)
+    				,this.ObservableForProperty(x => x.EncryptingCertificate)
+    				,this.ObservableForProperty(x => x.SymmetricSigningKey)
+    				,this.ObservableForProperty(x => x.ExtraData1)
+    				,this.ObservableForProperty(x => x.ExtraData2)
+    				,this.ObservableForProperty(x => x.ExtraData3)
+    			).
+    			Subscribe(_ =>
+    			{
+    				if (ChangeTracker.State != ObjectState.Unchanged)
+    				{
+    					IsDirty = true;
+    				}
+    			}
+    			);
     		}
     
     		partial void Initialize();
     		
+    		private bool _isDirty;
+    		public bool IsDirty
+    		{
+    			get
+    			{
+    				return _isDirty;
+    			}
+    			set
+    			{
+    				if (_isDirty == value)
+    					return;
+    				OnPropertyChanging("IsDirty");
+    				_isDirty = value;
+    				OnPropertyChanged("IsDirty");
+    			}
+    		}
+    				
     
     		public IObservable<IObservedChange<object, object>> Changed 
     		{

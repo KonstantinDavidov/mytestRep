@@ -16,6 +16,7 @@ using System.Globalization;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using ReactiveUI;
+using System.Reactive.Linq;
 
 namespace Faccts.Model.Entities
 {
@@ -353,6 +354,7 @@ namespace Faccts.Model.Entities
             trackingItem.ChangeTracker.AcceptChanges();
         }
     }
+    
     
     // An System.Collections.ObjectModel.ObservableCollection that raises
     // individual item removal notifications on clear and prevents adding duplicates.

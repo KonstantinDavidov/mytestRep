@@ -56,7 +56,7 @@ namespace FACCTS.Controls.ViewModels
         }
 
         private Faccts.Model.Entities.CourtCase _currentCourtCase;
-        public Faccts.Model.Entities.CourtCase CurrentCourtCase
+        public virtual Faccts.Model.Entities.CourtCase CurrentCourtCase
         {
             get { return _currentCourtCase; }
             set

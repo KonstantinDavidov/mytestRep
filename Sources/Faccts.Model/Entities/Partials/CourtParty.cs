@@ -56,5 +56,8 @@ namespace Faccts.Model.Entities
                 return string.Format("{0} {1} {2}", this.LastName, this.FirstName, this.MiddleName);
             }
         }
+
+
+        
     }
 }

@@ -16,6 +16,7 @@ using System.Globalization;
 using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using ReactiveUI;
+using System.Reactive.Linq;
 
 namespace Faccts.Model.Entities
 {
@@ -36,10 +37,74 @@ namespace Faccts.Model.Entities
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
+    			Observable.FromEvent<EventHandler<ObjectStateChangingEventArgs>, ObjectStateChangingEventArgs>(
+    			handler =>
+    				{
+    					EventHandler<ObjectStateChangingEventArgs> eh = (sender, e) => handler(e);
+    					return eh;
+    				},
+    				handler =>  ChangeTracker.ObjectStateChanging += handler,
+    				handler =>  ChangeTracker.ObjectStateChanging -= handler
+    			)
+    			.Subscribe(e =>
+    				{
+    					if(e.NewState == ObjectState.Unchanged)
+    					{
+    						IsDirty = false;
+    					}
+    				}
+    			);
+    			Observable.Merge<Object>(
+    				this.ObservableForProperty(x => x.Id)
+    				,this.ObservableForProperty(x => x.Username)
+    				,this.ObservableForProperty(x => x.Email)
+    				,this.ObservableForProperty(x => x.Password)
+    				,this.ObservableForProperty(x => x.FirstName)
+    				,this.ObservableForProperty(x => x.LastName)
+    				,this.ObservableForProperty(x => x.MiddleName)
+    				,this.ObservableForProperty(x => x.Comment)
+    				,this.ObservableForProperty(x => x.IsApproved)
+    				,this.ObservableForProperty(x => x.PasswordFailuresSinceLastSuccess)
+    				,this.ObservableForProperty(x => x.LastPasswordFailureDate)
+    				,this.ObservableForProperty(x => x.LastActivityDate)
+    				,this.ObservableForProperty(x => x.LastLockoutDate)
+    				,this.ObservableForProperty(x => x.LastLoginDate)
+    				,this.ObservableForProperty(x => x.ConfirmationToken)
+    				,this.ObservableForProperty(x => x.CreateDate)
+    				,this.ObservableForProperty(x => x.IsLockedOut)
+    				,this.ObservableForProperty(x => x.LastPasswordChangedDate)
+    				,this.ObservableForProperty(x => x.PasswordVerificationToken)
+    				,this.ObservableForProperty(x => x.PasswordVerificationTokenExpirationDate)
+    			).
+    			Subscribe(_ =>
+    			{
+    				if (ChangeTracker.State != ObjectState.Unchanged)
+    				{
+    					IsDirty = true;
+    				}
+    			}
+    			);
     		}
     
     		partial void Initialize();
     		
+    		private bool _isDirty;
+    		public bool IsDirty
+    		{
+    			get
+    			{
+    				return _isDirty;
+    			}
+    			set
+    			{
+    				if (_isDirty == value)
+    					return;
+    				OnPropertyChanging("IsDirty");
+    				_isDirty = value;
+    				OnPropertyChanged("IsDirty");
+    			}
+    		}
+    				
     
     		public IObservable<IObservedChange<object, object>> Changed 
     		{

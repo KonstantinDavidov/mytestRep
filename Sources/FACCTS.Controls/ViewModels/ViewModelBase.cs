@@ -34,10 +34,35 @@ namespace FACCTS.Controls.ViewModels
                         Authorized();
                     }
                 });
+            this.WhenAny(x => x.IsDirty, x => x.Value)
+                .Subscribe(x =>
+                {
+                    this.NotifyOfPropertyChange(() => DisplayName);
+                });
+            
             IsAuthenticated = _authenticationService.IsAuthenticated;
             if (IsAuthenticated)
             {
                 Authorized();
+            }
+        }
+
+        public override string DisplayName
+        {
+            get
+            {
+                if (this.IsDirty)
+                {
+                    return string.Format("{0} *", base.DisplayName);
+                }
+                else
+                {
+                    return base.DisplayName;
+                }
+            }
+            set
+            {
+                base.DisplayName = value;
             }
         }
 
@@ -87,6 +112,19 @@ namespace FACCTS.Controls.ViewModels
             set
             {
                 this.RaiseAndSetIfChanged(ref _isValid, value);
+            }
+        }
+
+        private bool _isDirty;
+        public virtual bool IsDirty
+        {
+            get
+            {
+                return _isDirty;
+            }
+            protected set
+            {
+                this.RaiseAndSetIfChanged(ref _isDirty, value);
             }
         }
 
