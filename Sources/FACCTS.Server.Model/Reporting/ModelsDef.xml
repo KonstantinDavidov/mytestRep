@@ -3,26 +3,28 @@
   <!--CH130-->
  <Model name="CH130ConductChoice">
    <Property name="IsEnabled" type="bool"/>
-   <Property name="NoAbuse" type="bool"/>
-   <Property name="NoContact" type="bool"/>
-   <Property name="DontTryToLocate" type="bool"/>
-   <Property name="Other" type="bool"/>
+   <Property name="IsNoAbuse" type="bool"/>
+   <Property name="IsNoContact" type="bool"/>
+   <Property name="IsDontTryToLocate" type="bool"/>
+   <Property name="IsInvolveOtherProtected" type="bool"/>
+   <Property name="IsInvolveOther" type="bool"/>
    <Property name="OtherDescription" type="string"/>
    <Property name ="IsOtherAttached" type="bool"/>
  </Model>
   
   <Model name="CH130StayAwayOrders">
     <Property name="IsEnabled" type="bool"/>
-    <Property name="Person" type="bool"/>
-    <Property name="Home" type="bool"/>
-    <Property name="Vehicle" type="bool"/>
-    <Property name="ChildCare" type="bool"/>
-    <Property name="ChildSchool" type="bool"/>
-    <Property name="Work" type="bool"/>
-    <Property name="OtherProtected" type="bool"/>
-    <Property name="Other" type="bool"/>
-    <Property name="IsAttach" type="bool"/>
+    <Property name="IsStayAwayFromPerson" type="bool"/>
+    <Property name="IsStayAwayFromHome" type="bool"/>
+    <Property name="IsStayAwayFromVehicle" type="bool"/>
+    <Property name="IsStayAwayFromChildCare" type="bool"/>
+    <Property name="IsStayAwayFromChildSchool" type="bool"/>
+    <Property name="IsStayAwayFromWork" type="bool"/>
+    <Property name="IsStayAwayFromOtherProtected" type="bool"/>
+    <Property name="IsStayAwayFromOther" type="bool"/>
+    <Property name="IsAttachOther" type="bool"/>
     <Property name="OtherDescription" type="string"/>
+    <Property name="StayAwayDistance" type="int"/>
   </Model>
 
   <Model name="CH130LawyerFeesAndCostsSection">

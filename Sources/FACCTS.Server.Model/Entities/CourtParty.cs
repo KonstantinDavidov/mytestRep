@@ -76,6 +76,8 @@ namespace FACCTS.Server.Model.DataModel
         [Required]
         public virtual Race Race { get; set; }
 
+        public string RelationToOtherParty { get; set; }
+
         public decimal Weight { get; set; }
 
         public decimal HeightFt { get; set; }

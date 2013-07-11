@@ -13,5 +13,7 @@ namespace FACCTS.Server.Model.Enums
         Mom,
         [Description("Dad")]
         Dad,
+        [Description("Other parent")]
+        Other
     }
 }

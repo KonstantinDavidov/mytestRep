@@ -107,7 +107,7 @@ namespace FACCTS.Server.Reporting
 
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedDOB", restrainedParty.DateOfBirth.ToOrderDate());
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedAge", restrainedParty.Age.ToString());
-            Utils.SetPdfFormFieldValue(form, mapper, "restrainedRelationship", "TODO");
+            Utils.SetPdfFormFieldValue(form, mapper, "restrainedRelationship", restrainedParty.RelationToOtherParty);
             form.Fields[mapper["restrainedSexM"]].Value = restrainedParty.Sex == Gender.M ? "1" : null ; //CheckBox
             form.Fields[mapper["restrainedSexF"]].Value = restrainedParty.Sex == Gender.F ? "2" : null; //CheckBox
            
@@ -153,10 +153,11 @@ namespace FACCTS.Server.Reporting
             if (reportData.ConductSection != null && reportData.ConductSection.IsEnabled)
             {
                 Utils.SetPdfFormFieldValue(form, mapper, "conductOrdersYes", BooleanString);
-                Utils.SetPdfFormFieldValue(form, mapper, "conductHarrassYes", reportData.ConductSection.NoAbuse ? BooleanString : null);
-                Utils.SetPdfFormFieldValue(form, mapper, "conductContactYes", reportData.ConductSection.NoContact ? BooleanString : null);
-                Utils.SetPdfFormFieldValue(form, mapper, "conductLocationYes", reportData.ConductSection.DontTryToLocate ? BooleanString : null);
-                if (reportData.ConductSection.Other)
+                Utils.SetPdfFormFieldValue(form, mapper, "addProtectedConductYes", reportData.ConductSection.IsInvolveOtherProtected ? BooleanString : null);
+                Utils.SetPdfFormFieldValue(form, mapper, "conductHarrassYes", reportData.ConductSection.IsNoAbuse ? BooleanString : null);
+                Utils.SetPdfFormFieldValue(form, mapper, "conductContactYes", reportData.ConductSection.IsNoContact ? BooleanString : null);
+                Utils.SetPdfFormFieldValue(form, mapper, "conductLocationYes", reportData.ConductSection.IsDontTryToLocate ? BooleanString : null);
+                if (reportData.ConductSection.IsInvolveOther)
                 {
                     Utils.SetPdfFormFieldValue(form, mapper, "conductOtherYes", BooleanString);
                     Utils.SetPdfFormFieldValue(form, mapper, "conductOtherAttach", reportData.ConductSection.IsOtherAttached ? BooleanString : null);
@@ -166,20 +167,24 @@ namespace FACCTS.Server.Reporting
             //Stay Away
             if (reportData.StayAwayOrdersSection != null && reportData.StayAwayOrdersSection.IsEnabled)
             {
-                //Utils.SetPdfFormFieldValue(form, mapper, "", );
                 Utils.SetPdfFormFieldValue(form, mapper, "stayawayOrdersYes", BooleanString);
-                Utils.SetPdfFormFieldValue(form, mapper, "stayawayPerson", reportData.StayAwayOrdersSection.Person ? BooleanString : null);
-                Utils.SetPdfFormFieldValue(form, mapper, "stayawayHome", reportData.StayAwayOrdersSection.Home ? BooleanString : null);
-                Utils.SetPdfFormFieldValue(form, mapper, "stayawayWork", reportData.StayAwayOrdersSection.Work ? BooleanString : null);
-                Utils.SetPdfFormFieldValue(form, mapper, "stayawayVehicle", reportData.StayAwayOrdersSection.Vehicle ? BooleanString : null);
-                Utils.SetPdfFormFieldValue(form, mapper, "stayawayChildcare", reportData.StayAwayOrdersSection.ChildCare ? BooleanString : null);
-                Utils.SetPdfFormFieldValue(form, mapper, "stayawayOtherProtected", reportData.StayAwayOrdersSection.OtherProtected ? BooleanString : null);
-                if (reportData.StayAwayOrdersSection.Other)
+                Utils.SetPdfFormFieldValue(form, mapper, "stayawayDistance", reportData.StayAwayOrdersSection.StayAwayDistance.ToString());
+                Utils.SetPdfFormFieldValue(form, mapper, "stayawayPerson", reportData.StayAwayOrdersSection.IsStayAwayFromPerson ? BooleanString : null);
+                Utils.SetPdfFormFieldValue(form, mapper, "stayawayHome", reportData.StayAwayOrdersSection.IsStayAwayFromHome ? BooleanString : null);
+                Utils.SetPdfFormFieldValue(form, mapper, "stayawayWork", reportData.StayAwayOrdersSection.IsStayAwayFromWork ? BooleanString : null);
+                Utils.SetPdfFormFieldValue(form, mapper, "stayawayVehicle", reportData.StayAwayOrdersSection.IsStayAwayFromVehicle ? BooleanString : null);
+                Utils.SetPdfFormFieldValue(form, mapper, "stayawayChildcare", reportData.StayAwayOrdersSection.IsStayAwayFromChildCare ? BooleanString : null);
+                Utils.SetPdfFormFieldValue(form, mapper, "stayawayOtherProtected", reportData.StayAwayOrdersSection.IsStayAwayFromOtherProtected ? BooleanString : null);
+                Utils.SetPdfFormFieldValue(form, mapper, "stayawaySchool", reportData.StayAwayOrdersSection.IsStayAwayFromChildSchool ? BooleanString : null);
+
+                if (reportData.StayAwayOrdersSection.IsStayAwayFromOther)
                 {
                     Utils.SetPdfFormFieldValue(form, mapper, "stayawayOther", BooleanString);
                     Utils.SetPdfFormFieldValue(form, mapper, "stayawayOtherDetail", reportData.StayAwayOrdersSection.OtherDescription);
                 }
             }
+            //Firearm
+            Utils.SetPdfFormFieldValue(form, mapper, "firearmYes", reportData.IsNoGuns ? BooleanString : null);
         }
 
     }
