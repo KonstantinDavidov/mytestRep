@@ -24,26 +24,30 @@ namespace FACCTS.Server.Tests.OrdersGenerator
             CH130 testModel = new CH130();
             testModel.ConductSection = new CH130ConductChoice();
             testModel.ConductSection.IsEnabled = true;
-            testModel.ConductSection.NoAbuse = true;
-            testModel.ConductSection.NoContact = true;
-            testModel.ConductSection.DontTryToLocate = true;
+            testModel.ConductSection.IsNoAbuse = true;
+            testModel.ConductSection.IsNoContact = true;
+            testModel.ConductSection.IsDontTryToLocate = true;
             testModel.ConductSection.IsOtherAttached = true;
-            testModel.ConductSection.Other = true;
+            testModel.ConductSection.IsInvolveOther = true;
+            testModel.ConductSection.IsInvolveOtherProtected = true;
             testModel.ConductSection.OtherDescription = "Some Description";
 
             testModel.StayAwayOrdersSection = new CH130StayAwayOrders();
             testModel.StayAwayOrdersSection.IsEnabled = true;
-            testModel.StayAwayOrdersSection.ChildCare = true;
-            testModel.StayAwayOrdersSection.ChildSchool = true;
-            testModel.StayAwayOrdersSection.Home = true;
-            testModel.StayAwayOrdersSection.Work = true;
-            testModel.StayAwayOrdersSection.Person = true;
-            testModel.StayAwayOrdersSection.Vehicle = true;
-            testModel.StayAwayOrdersSection.IsAttach = true;
-            testModel.StayAwayOrdersSection.Other = true;
+            testModel.StayAwayOrdersSection.IsStayAwayFromChildCare = true;
+            testModel.StayAwayOrdersSection.IsStayAwayFromChildSchool = true;
+            testModel.StayAwayOrdersSection.IsStayAwayFromHome = true;
+            testModel.StayAwayOrdersSection.IsStayAwayFromWork = true;
+            testModel.StayAwayOrdersSection.IsStayAwayFromPerson = true;
+            testModel.StayAwayOrdersSection.IsStayAwayFromVehicle = true;
+            testModel.StayAwayOrdersSection.IsAttachOther = true;
+            testModel.StayAwayOrdersSection.IsStayAwayFromOther = true;
             testModel.StayAwayOrdersSection.OtherDescription = "Some description";
-            testModel.StayAwayOrdersSection.OtherProtected = true;
-            //string curDir = AppDomain.CurrentDomain.BaseDirectory;
+            testModel.StayAwayOrdersSection.IsStayAwayFromOtherProtected = true;
+            testModel.StayAwayOrdersSection.StayAwayDistance = 20;
+
+            testModel.IsNoGuns = true;
+
             IDataManager dm = new DataManager( new RepositoryProvider(new RepositoryFactories()));
 
             CaseHistory cc = dm.CaseHistoryRepository.GetAll().FirstOrDefault();

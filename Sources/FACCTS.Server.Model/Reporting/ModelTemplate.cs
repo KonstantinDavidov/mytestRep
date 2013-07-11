@@ -24,46 +24,57 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 		}
 		
-		private bool _noAbuse;
-		public bool NoAbuse
+		private bool _isNoAbuse;
+		public bool IsNoAbuse
 		{
-			get{return _noAbuse;}
+			get{return _isNoAbuse;}
 			set
 			{
-				_noAbuse = value;
+				_isNoAbuse = value;
 
 			}
 		}
 		
-		private bool _noContact;
-		public bool NoContact
+		private bool _isNoContact;
+		public bool IsNoContact
 		{
-			get{return _noContact;}
+			get{return _isNoContact;}
 			set
 			{
-				_noContact = value;
+				_isNoContact = value;
 
 			}
 		}
 		
-		private bool _dontTryToLocate;
-		public bool DontTryToLocate
+		private bool _isDontTryToLocate;
+		public bool IsDontTryToLocate
 		{
-			get{return _dontTryToLocate;}
+			get{return _isDontTryToLocate;}
 			set
 			{
-				_dontTryToLocate = value;
+				_isDontTryToLocate = value;
 
 			}
 		}
 		
-		private bool _other;
-		public bool Other
+		private bool _isInvolveOtherProtected;
+		public bool IsInvolveOtherProtected
 		{
-			get{return _other;}
+			get{return _isInvolveOtherProtected;}
 			set
 			{
-				_other = value;
+				_isInvolveOtherProtected = value;
+
+			}
+		}
+		
+		private bool _isInvolveOther;
+		public bool IsInvolveOther
+		{
+			get{return _isInvolveOther;}
+			set
+			{
+				_isInvolveOther = value;
 
 			}
 		}
@@ -106,101 +117,101 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 		}
 		
-		private bool _person;
-		public bool Person
+		private bool _isStayAwayFromPerson;
+		public bool IsStayAwayFromPerson
 		{
-			get{return _person;}
+			get{return _isStayAwayFromPerson;}
 			set
 			{
-				_person = value;
+				_isStayAwayFromPerson = value;
 
 			}
 		}
 		
-		private bool _home;
-		public bool Home
+		private bool _isStayAwayFromHome;
+		public bool IsStayAwayFromHome
 		{
-			get{return _home;}
+			get{return _isStayAwayFromHome;}
 			set
 			{
-				_home = value;
+				_isStayAwayFromHome = value;
 
 			}
 		}
 		
-		private bool _vehicle;
-		public bool Vehicle
+		private bool _isStayAwayFromVehicle;
+		public bool IsStayAwayFromVehicle
 		{
-			get{return _vehicle;}
+			get{return _isStayAwayFromVehicle;}
 			set
 			{
-				_vehicle = value;
+				_isStayAwayFromVehicle = value;
 
 			}
 		}
 		
-		private bool _childCare;
-		public bool ChildCare
+		private bool _isStayAwayFromChildCare;
+		public bool IsStayAwayFromChildCare
 		{
-			get{return _childCare;}
+			get{return _isStayAwayFromChildCare;}
 			set
 			{
-				_childCare = value;
+				_isStayAwayFromChildCare = value;
 
 			}
 		}
 		
-		private bool _childSchool;
-		public bool ChildSchool
+		private bool _isStayAwayFromChildSchool;
+		public bool IsStayAwayFromChildSchool
 		{
-			get{return _childSchool;}
+			get{return _isStayAwayFromChildSchool;}
 			set
 			{
-				_childSchool = value;
+				_isStayAwayFromChildSchool = value;
 
 			}
 		}
 		
-		private bool _work;
-		public bool Work
+		private bool _isStayAwayFromWork;
+		public bool IsStayAwayFromWork
 		{
-			get{return _work;}
+			get{return _isStayAwayFromWork;}
 			set
 			{
-				_work = value;
+				_isStayAwayFromWork = value;
 
 			}
 		}
 		
-		private bool _otherProtected;
-		public bool OtherProtected
+		private bool _isStayAwayFromOtherProtected;
+		public bool IsStayAwayFromOtherProtected
 		{
-			get{return _otherProtected;}
+			get{return _isStayAwayFromOtherProtected;}
 			set
 			{
-				_otherProtected = value;
+				_isStayAwayFromOtherProtected = value;
 
 			}
 		}
 		
-		private bool _other;
-		public bool Other
+		private bool _isStayAwayFromOther;
+		public bool IsStayAwayFromOther
 		{
-			get{return _other;}
+			get{return _isStayAwayFromOther;}
 			set
 			{
-				_other = value;
+				_isStayAwayFromOther = value;
 
 			}
 		}
 		
-		private bool _isAttach;
-		public bool IsAttach
+		private bool _isAttachOther;
+		public bool IsAttachOther
 		{
-			get{return _isAttach;}
+			get{return _isAttachOther;}
 			set
 			{
-				_isAttach = value;
+				_isAttachOther = value;
 
 			}
 		}
@@ -212,6 +223,17 @@ namespace FACCTS.Server.Model.OrderModels
 			set
 			{
 				_otherDescription = value;
+
+			}
+		}
+		
+		private int _stayAwayDistance;
+		public int StayAwayDistance
+		{
+			get{return _stayAwayDistance;}
+			set
+			{
+				_stayAwayDistance = value;
 
 			}
 		}

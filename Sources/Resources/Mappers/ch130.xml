@@ -55,9 +55,6 @@
   <pdfField originalValue="expireTimeAM" mapValue="expireTimeAM" />
   <pdfField originalValue="expireTimePM" mapValue="expireTimePM" />
   <pdfField originalValue="expireTimeMidnight" mapValue="expireTimeMidnight" />
-  <pdfField originalValue="NULL" mapValue="NULL" />
-  <pdfField originalValue="NULL" mapValue="NULL" />
-  <pdfField originalValue="NULL" mapValue="NULL" />
   <pdfField originalValue="expireDate" mapValue="expireDate" />
   <pdfField originalValue="hearingDate" mapValue="hearingDate" />
   <pdfField originalValue="hearingDate" mapValue="hearingDate" />
@@ -83,7 +80,7 @@
   <pdfField originalValue="conductOtherAttach" mapValue="conductOtherAttach" />
   <pdfField originalValue="conductOtherDetail" mapValue="conductOtherDetail" />
   <pdfField originalValue="stayawayOrdersYes" mapValue="stayawayOrdersYes" />
-  <pdfField originalValue="stayawayDistance" mapValue="stayawayDistance" />
+  <pdfField originalValue="stayawayDistance" mapValue="stayawayOrdersYards" />
   <pdfField originalValue="stayawayPerson" mapValue="stayawayPerson" />
   <pdfField originalValue="stayawayWork" mapValue="stayawayWork" />
   <pdfField originalValue="stayawaySchool" mapValue="stayawaySchool" />
