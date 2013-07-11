@@ -66,9 +66,6 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.AttorneyForChild_Id)
     				,this.ObservableForProperty(x => x.CourtCounty_Id)
     				,this.ObservableForProperty(x => x.CaseRecord_Id)
-    				,this.ObservableForProperty(x => x.RP_IDType)
-    				,this.ObservableForProperty(x => x.RP_IDNumber)
-    				,this.ObservableForProperty(x => x.RP_IssuedDate)
     				,this.ObservableForProperty(x => x.ThirdPartyData_Id)
     			).
     			Subscribe(_ =>
@@ -296,54 +293,6 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<long> _caseRecord_Id;
-    
-        [DataMember]
-        public int RP_IDType
-        {
-            get { return _rP_IDType; }
-            set
-            {
-                if (_rP_IDType != value)
-                {
-    				OnPropertyChanging("RP_IDType");
-                    _rP_IDType = value;
-                    OnPropertyChanged("RP_IDType");
-                }
-            }
-        }
-        private int _rP_IDType;
-    
-        [DataMember]
-        public string RP_IDNumber
-        {
-            get { return _rP_IDNumber; }
-            set
-            {
-                if (_rP_IDNumber != value)
-                {
-    				OnPropertyChanging("RP_IDNumber");
-                    _rP_IDNumber = value;
-                    OnPropertyChanged("RP_IDNumber");
-                }
-            }
-        }
-        private string _rP_IDNumber;
-    
-        [DataMember]
-        public Nullable<System.DateTime> RP_IssuedDate
-        {
-            get { return _rP_IssuedDate; }
-            set
-            {
-                if (_rP_IssuedDate != value)
-                {
-    				OnPropertyChanging("RP_IssuedDate");
-                    _rP_IssuedDate = value;
-                    OnPropertyChanged("RP_IssuedDate");
-                }
-            }
-        }
-        private Nullable<System.DateTime> _rP_IssuedDate;
     
         [DataMember]
         public Nullable<long> ThirdPartyData_Id

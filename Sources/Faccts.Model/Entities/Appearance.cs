@@ -28,10 +28,41 @@ namespace Faccts.Model.Entities
     	{
     		_reactiveHelper = new MakeObjectReactiveHelper(this);
     		Initialize();
+    		Observable.Merge<Object>(
+    				this.ObservableForProperty(x => x.Party1Appear)
+    				,this.ObservableForProperty(x => x.Party1Sworn)
+    				,this.ObservableForProperty(x => x.Party1AttorneyPresent)
+    				,this.ObservableForProperty(x => x.Party1Atty)
+    				,this.ObservableForProperty(x => x.Party2Appear)
+    				,this.ObservableForProperty(x => x.Party2AttorneyPresent)
+    				,this.ObservableForProperty(x => x.Party2Atty)
+    				,this.ObservableForProperty(x => x.Party2Sworn)
+    			).
+    			Subscribe(_ =>
+    			{
+    				IsDirty = true;
+    			}
+    			);
     	}
     
     	partial void Initialize();
     	
+    	private bool _isDirty;
+    	public bool IsDirty
+    	{
+    		get
+    		{
+    			return _isDirty;
+    		}
+    		set
+    		{
+    			if (_isDirty == value)
+    				return;
+    			OnPropertyChanging("IsDirty");
+    			_isDirty = value;
+    			OnPropertyChanged("IsDirty");
+    		}
+    	}
     
     	public IObservable<IObservedChange<object, object>> Changed 
     	{

@@ -44,7 +44,7 @@ namespace FACCTS.Controls.ViewModels
                 base.CurrentCourtCase = value;
                 if (base.CurrentCourtCase != null)
                 {
-                    _subscriber = base.CurrentCourtCase.CaseRecord.WhenAny(x => x.CourtParty.IsDirty, y => y.CourtParty1.IsDirty, (x, y) => x.Value || y.Value)
+                    _subscriber = base.CurrentCourtCase.CaseRecord.WhenAny(x => x.CourtParty.IsDirty, y => y.CourtParty1.IsDirty, z => z.RestrainingpartyIdentificationInformation.IsDirty, (x, y, z) => x.Value || y.Value || z.Value)
                         .Subscribe(x =>
                         {
                             this.IsDirty = x;

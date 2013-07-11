@@ -1237,10 +1237,46 @@ foreach (ComplexType complex in code.GetItemsToGenerate<ComplexType>(ItemCollect
 	{
 		_reactiveHelper = new MakeObjectReactiveHelper(this);
 		Initialize();
+		Observable.Merge<Object>(
+<#
+			var simplePropertyCollection = complex.Properties.Where(p => p.TypeUsage.EdmType is SimpleType && p.DeclaringType == complex);
+			int index = 0;
+			foreach (EdmProperty edmProperty in simplePropertyCollection)
+    {
+		if (index > 0)
+{#>				,<#}
+			else
+{#>				<#}#>this.ObservableForProperty(x => x.<#=code.Escape(edmProperty)#>)
+<#
+		++ index;
+	}
+#>
+			).
+			Subscribe(_ =>
+			{
+				IsDirty = true;
+			}
+			);
 	}
 
 	partial void Initialize();
 	
+	private bool _isDirty;
+	public bool IsDirty
+	{
+		get
+		{
+			return _isDirty;
+		}
+		set
+		{
+			if (_isDirty == value)
+				return;
+			OnPropertyChanging("IsDirty");
+			_isDirty = value;
+			OnPropertyChanged("IsDirty");
+		}
+	}
 
 	public IObservable<IObservedChange<object, object>> Changed 
 	{

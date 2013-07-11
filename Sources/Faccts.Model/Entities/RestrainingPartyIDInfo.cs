@@ -28,10 +28,36 @@ namespace Faccts.Model.Entities
     	{
     		_reactiveHelper = new MakeObjectReactiveHelper(this);
     		Initialize();
+    		Observable.Merge<Object>(
+    				this.ObservableForProperty(x => x.IDType)
+    				,this.ObservableForProperty(x => x.IDNumber)
+    				,this.ObservableForProperty(x => x.IDIssuedDate)
+    			).
+    			Subscribe(_ =>
+    			{
+    				IsDirty = true;
+    			}
+    			);
     	}
     
     	partial void Initialize();
     	
+    	private bool _isDirty;
+    	public bool IsDirty
+    	{
+    		get
+    		{
+    			return _isDirty;
+    		}
+    		set
+    		{
+    			if (_isDirty == value)
+    				return;
+    			OnPropertyChanging("IsDirty");
+    			_isDirty = value;
+    			OnPropertyChanged("IsDirty");
+    		}
+    	}
     
     	public IObservable<IObservedChange<object, object>> Changed 
     	{

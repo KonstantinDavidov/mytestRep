@@ -1725,15 +1725,7 @@
           <NavigationProperty Name="MergeCase" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCase_MergeCase_Id" FromRole="CaseHistory" ToRole="CourtCase" />
           <Property Type="Int64" Name="CourtOrder_Id" />
           <NavigationProperty Name="CourtCaseOrders1" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtOrder_Id" FromRole="CaseHistory" ToRole="CourtCaseOrders" />
-          <Property Type="Boolean" Name="Appearances_Party1Appear" />
-          <Property Type="Boolean" Name="Appearances_Party1Sworn" />
-          <Property Type="Boolean" Name="Appearances_Party1AttorneyPresent" />
-          <Property Type="Boolean" Name="Appearances_Party1Atty" />
-          <Property Type="Boolean" Name="Appearances_Party2Appear" />
-          <Property Type="Boolean" Name="Appearances_Party2Sworn" />
-          <Property Type="Boolean" Name="Appearances_Party2AttorneyPresent" />
-          <Property Type="Boolean" Name="Appearances_Party2Atty" />
-        </EntityType>
+          </EntityType>
         <EntityType Name="CaseNotes">
           <Key>
             <PropertyRef Name="Id" />
@@ -1770,9 +1762,6 @@
           <NavigationProperty Name="OtherProtected" Relationship="FACCTS_DBModel.FK_dbo_OtherProtected_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseRecord" ToRole="OtherProtected" />
           <NavigationProperty Name="Witnesses" Relationship="FACCTS_DBModel.FK_dbo_Witnesses_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseRecord" ToRole="Witnesses" />
           <Property Name="RestrainingpartyIdentificationInformation" Type="FACCTS_DBModel.RestrainingPartyIDInfo" Nullable="false" />
-          <Property Type="Int32" Name="RP_IDType" Nullable="false" />
-          <Property Type="String" Name="RP_IDNumber" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="RP_IssuedDate" Precision="3" />
           <NavigationProperty Name="CourtCase1" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_CourtCase_Id" FromRole="CaseRecord" ToRole="CourtCase" />
           <Property Type="Int64" Name="ThirdPartyData_Id" />
           <NavigationProperty Name="ThirdPartyData" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_ThirdPartyData_ThirdPartyData_Id" FromRole="CaseRecord" ToRole="ThirdPartyData" />
@@ -2709,13 +2698,7 @@
           <NavigationProperty Name="CourtDepartment" Relationship="FACCTS_DBModel.FK_dbo_Hearings_dbo_CourtDepartmenets_Department_Id" FromRole="Hearings" ToRole="CourtDepartmenets" />
           <NavigationProperty Name="CourtDocketRecords" Relationship="FACCTS_DBModel.CourtDocketRecordHearings" FromRole="Hearings" ToRole="CourtDocketRecord" />
           <Property Type="FACCTS_DBModel.DocketSession" Name="Session" Nullable="false" />
-          <Property Type="Boolean" Name="HearingIssues_PermanentRO" Nullable="false" />
-          <Property Type="Boolean" Name="HearingIssues_ChildCustodyOrChildVisitation" Nullable="false" />
-          <Property Type="Boolean" Name="HearingIssues_ChildSupport" Nullable="false" />
-          <Property Type="Boolean" Name="HearingIssues_SpousalSupport" Nullable="false" />
-          <Property Type="Boolean" Name="HearingIssues_IsOtherIssue" Nullable="false" />
-          <Property Type="String" Name="HearingIssues_OtheIssueText" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
+          </EntityType>
         <Association Name="FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id">
           <End Type="FACCTS_DBModel.Hearings" Role="Hearings" Multiplicity="0..1" />
           <End Type="FACCTS_DBModel.CaseHistory" Role="CaseHistory" Multiplicity="*" />
@@ -2964,15 +2947,7 @@
           <ScalarProperty Name="Hearing_Id" ColumnName="Hearing_Id" />
           <ScalarProperty Name="MergeCase_Id" ColumnName="MergeCase_Id" />
           <ScalarProperty Name="CourtOrder_Id" ColumnName="CourtOrder_Id" />
-          <ScalarProperty Name="Appearances_Party1Appear" ColumnName="Appearances_Party1Appear" />
-          <ScalarProperty Name="Appearances_Party1Sworn" ColumnName="Appearances_Party1Sworn" />
-          <ScalarProperty Name="Appearances_Party1AttorneyPresent" ColumnName="Appearances_Party1AttorneyPresent" />
-          <ScalarProperty Name="Appearances_Party1Atty" ColumnName="Appearances_Party1Atty" />
-          <ScalarProperty Name="Appearances_Party2Appear" ColumnName="Appearances_Party2Appear" />
-          <ScalarProperty Name="Appearances_Party2Sworn" ColumnName="Appearances_Party2Sworn" />
-          <ScalarProperty Name="Appearances_Party2AttorneyPresent" ColumnName="Appearances_Party2AttorneyPresent" />
-          <ScalarProperty Name="Appearances_Party2Atty" ColumnName="Appearances_Party2Atty" />
-        </MappingFragment>
+          </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CaseNotes">
@@ -3000,9 +2975,6 @@
             <ScalarProperty Name="IDNumber" ColumnName="RestrainingpartyIdentificationInformation_IDNumber" />
             <ScalarProperty Name="IDIssuedDate" ColumnName="RestrainingpartyIdentificationInformation_IDIssuedDate" />
           </ComplexProperty>
-          <ScalarProperty Name="RP_IDType" ColumnName="RP_IDType" />
-          <ScalarProperty Name="RP_IDNumber" ColumnName="RP_IDNumber" />
-          <ScalarProperty Name="RP_IssuedDate" ColumnName="RP_IssuedDate" />
           <ScalarProperty Name="ThirdPartyData_Id" ColumnName="ThirdPartyData_Id" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -3506,13 +3478,7 @@
           </ComplexProperty>
           <ScalarProperty Name="Department_Id" ColumnName="Department_Id" />
           <ScalarProperty Name="Session" ColumnName="Session" />
-          <ScalarProperty Name="HearingIssues_PermanentRO" ColumnName="HearingIssues_PermanentRO" />
-          <ScalarProperty Name="HearingIssues_ChildCustodyOrChildVisitation" ColumnName="HearingIssues_ChildCustodyOrChildVisitation" />
-          <ScalarProperty Name="HearingIssues_ChildSupport" ColumnName="HearingIssues_ChildSupport" />
-          <ScalarProperty Name="HearingIssues_SpousalSupport" ColumnName="HearingIssues_SpousalSupport" />
-          <ScalarProperty Name="HearingIssues_IsOtherIssue" ColumnName="HearingIssues_IsOtherIssue" />
-          <ScalarProperty Name="HearingIssues_OtheIssueText" ColumnName="HearingIssues_OtheIssueText" />
-        </MappingFragment>
+          </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CourtDocketRecordSet">
