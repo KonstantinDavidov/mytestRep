@@ -42,6 +42,18 @@ namespace FACCTS.Controls.ViewModels
                 return _identificationIDTypes;
             }
         }
+
+        public bool IsDirty
+        {
+            get
+            {
+                if (this.CaseRecord == null)
+                {
+                    return false;
+                }
+                return this.CaseRecord.CourtParty.IsDirty || this.CaseRecord.CourtParty1.IsDirty;
+            }
+        }
         
     }
 }
