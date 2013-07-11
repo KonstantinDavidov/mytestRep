@@ -303,13 +303,35 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 		}
 		
-		private CAPROSEntry _cAPROSEntry;
-		public CAPROSEntry CAPROSEntry
+		private CAPROSEntry _cAPROSEntrySection;
+		public CAPROSEntry CAPROSEntrySection
 		{
-			get{return _cAPROSEntry;}
+			get{return _cAPROSEntrySection;}
 			set
 			{
-				_cAPROSEntry = value;
+				_cAPROSEntrySection = value;
+
+			}
+		}
+		
+		private NoServiceFee _noServiceFeeSection;
+		public NoServiceFee NoServiceFeeSection
+		{
+			get{return _noServiceFeeSection;}
+			set
+			{
+				_noServiceFeeSection = value;
+
+			}
+		}
+		
+		private bool _isExpire;
+		public bool IsExpire
+		{
+			get{return _isExpire;}
+			set
+			{
+				_isExpire = value;
 
 			}
 		}
@@ -321,6 +343,17 @@ namespace FACCTS.Server.Model.OrderModels
 			set
 			{
 				_ordersEndDate = value;
+
+			}
+		}
+		
+		private DateTime? _ordersEndTime;
+		public DateTime? OrdersEndTime
+		{
+			get{return _ordersEndTime;}
+			set
+			{
+				_ordersEndTime = value;
 
 			}
 		}

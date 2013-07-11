@@ -11,6 +11,5 @@ namespace FACCTS.Server.Model.Reporting.Entities
     {
         public CARPOSEntryType CARPOSEntryType { get; set; }
         public Dictionary<string, string> LawEnforcementAgencies { get; set; }
-        public NoServiceFee NoServiceFee { get; set; }
     }
 }
