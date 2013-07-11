@@ -111,7 +111,7 @@
   <pdfField originalValue="carposByLawEnforcement" mapValue="carposByLawEnforcement" />
   <pdfField originalValue="carposByProtected" mapValue="carposByProtected" />
   <pdfField originalValue="carposLawEnforcement[0]Agency" mapValue="carposLawEnforcement[0]Agency" />
-  <pdfField originalValue="carposLawEnforcement[0]Agency" mapValue="carposLawEnforcement[0]Agency" />
+  <pdfField originalValue="carposLawEnforcement[1]Agency" mapValue="carposLawEnforcement[1]Agency" />
   <pdfField originalValue="carposLawEnforcement[0]Address" mapValue="carposLawEnforcement[0]Address" />
   <pdfField originalValue="carposLawEnforcement[1]Address" mapValue="carposLawEnforcement[1]Address" />
   <pdfField originalValue="carposAdditionalYes" mapValue="carposAdditionalYes" />
@@ -119,9 +119,9 @@
   <pdfField originalValue="p1Attendp2No" mapValue="p1Attendp2No" />
   <pdfField originalValue="posGeneral" mapValue="posGeneral" />
   <pdfField originalValue="posNonProtectDelivered" mapValue="posNonProtectDelivered" />
-  <pdfField originalValue="feeOrdered" mapValue="feeOrdered" />
-  <pdfField originalValue="waivedViolence" mapValue="waivedViolence" />
-  <pdfField originalValue="waviedFee" mapValue="waviedFee" />
+  <pdfField originalValue="serviceNoFee" mapValue="serviceNoFee" />
+  <pdfField originalValue="feeWaiverViolence" mapValue="feeWaiverViolence" />
+  <pdfField originalValue="feeWaiverEntitled" mapValue="feeWaiverEntitled" />
   <pdfField originalValue="pagesAttached" mapValue="pagesAttached" />
   <pdfField originalValue="formDate" mapValue="formDate" />
   <pdfField originalValue="clerkSignDate" mapValue="clerkSignDate" />

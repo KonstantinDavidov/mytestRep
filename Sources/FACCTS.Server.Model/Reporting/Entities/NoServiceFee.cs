@@ -8,7 +8,6 @@ namespace FACCTS.Server.Model.Reporting.Entities
 {
     public class NoServiceFee
     {
-        public bool IsEnabled { get; set; }
         public bool IsOrdered { get; set; }
         public bool IsFeeWaiver { get; set; }
         public bool IsBasedOnViolence { get; set; }

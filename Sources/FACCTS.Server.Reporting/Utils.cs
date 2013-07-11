@@ -58,5 +58,23 @@ namespace FACCTS.Server.Reporting
         {
             return date.ToShortDateString();
         }
+
+        public static bool IsAM(this DateTime date)
+        {
+            return date.TimeOfDay.Hours < 12;
+        }
+        public static bool IsPM(this DateTime date)
+        {
+            return date.TimeOfDay.Hours >= 12;
+        }
+        public static bool IsMidnight(this DateTime date)
+        {
+            return date.TimeOfDay.Ticks == 0;
+        }
+        public static string ToOrderTime(this DateTime date)
+        {
+            return date.ToShortTimeString();
+        }
+
     }
 }

@@ -762,7 +762,8 @@ namespace FACCTS.Server.Data
                 Sex = testSex,
                 State = USAState.NJ,
                 Weight = 56,
-                ZipCode = "410001"
+                ZipCode = "410001",
+                RelationToOtherParty = "Wife"
             };
             testCaseRecord.Party2 = new CourtParty()
             {
@@ -788,7 +789,8 @@ namespace FACCTS.Server.Data
                 Sex = testSex,
                 State = USAState.NJ,
                 Weight = 56,
-                ZipCode = "410001"
+                ZipCode = "410001",
+                RelationToOtherParty = "Allien"
             };
             testCaseRecord.Witnesses = new List<Witness>(){
                 new Witness()

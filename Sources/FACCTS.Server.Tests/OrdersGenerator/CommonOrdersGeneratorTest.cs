@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using FACCTS.Server.Models;
 using FACCTS.Server.Reporting;
@@ -48,6 +49,19 @@ namespace FACCTS.Server.Tests.OrdersGenerator
 
             testModel.IsNoGuns = true;
 
+            testModel.IsExpire = true;
+            testModel.OrdersEndDate = new Nullable<DateTime>(DateTime.Now.Date.Add(new TimeSpan(2, 5, 15)));
+            testModel.OrdersEndTime = new Nullable<DateTime>(DateTime.Now.Date.Add(new TimeSpan(20, 5, 15)));
+
+            testModel.CAPROSEntrySection = new CAPROSEntry();
+            testModel.CAPROSEntrySection.CARPOSEntryType = CARPOSEntryType.ByProtected;
+            testModel.CAPROSEntrySection.LawEnforcementAgencies = new Dictionary<string, string>() { { "Agency1", "Address1" }, { "Agency2", "Address2" }, { "Agency3", "Address3" } };
+            
+            testModel.NoServiceFeeSection = new NoServiceFee();
+            testModel.NoServiceFeeSection.IsOrdered = true;
+            testModel.NoServiceFeeSection.IsBasedOnViolence = true;
+            testModel.NoServiceFeeSection.IsFeeWaiver = true;
+            
             IDataManager dm = new DataManager( new RepositoryProvider(new RepositoryFactories()));
 
             CaseHistory cc = dm.CaseHistoryRepository.GetAll().FirstOrDefault();

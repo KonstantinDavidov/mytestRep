@@ -13,6 +13,7 @@ using FACCTS.Server.Model.DataModel;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using FACCTS.Server.Model.Enums;
+using FACCTS.Server.Common;
 
 namespace FACCTS.Server.Reporting
 {
@@ -103,8 +104,8 @@ namespace FACCTS.Server.Reporting
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedEye", restrainedParty.EyesColor.Color);
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedHair", restrainedParty.HairColor.Color);
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedRace", restrainedParty.Race.RaceName);
-
-
+            Utils.SetPdfFormFieldValue(form, mapper, "restrainedHeight", (restrainedParty.HeightFt*12 + restrainedParty.HeightIns).ToString());
+            Utils.SetPdfFormFieldValue(form, mapper, "restrainedWeight", restrainedParty.Weight.ToString());
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedDOB", restrainedParty.DateOfBirth.ToOrderDate());
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedAge", restrainedParty.Age.ToString());
             Utils.SetPdfFormFieldValue(form, mapper, "restrainedRelationship", restrainedParty.RelationToOtherParty);
@@ -120,7 +121,7 @@ namespace FACCTS.Server.Reporting
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Name", firstProtected.FullName);
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Sex", firstProtected.Sex.ToString());
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Age", firstProtected.Age.ToString());
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Relation", firstProtected.RelationshipToPlaintiff.ToString());
+                Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Relation", firstProtected.RelationshipToPlaintiff.GetDisplayName());
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]HouseholdYes", firstProtected.IsHouseHold ? BooleanString : null); //CheckBox
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]HouseholdNo", firstProtected.IsHouseHold ? null : BooleanString); //CheckBox
 
@@ -130,7 +131,7 @@ namespace FACCTS.Server.Reporting
                     Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]Name", secondProtected.FullName);
                     Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]Sex", secondProtected.Sex.ToString());
                     Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]Age", secondProtected.Age.ToString());
-                    Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]Relation", secondProtected.RelationshipToPlaintiff.ToString());
+                    Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]Relation", secondProtected.RelationshipToPlaintiff.GetDisplayName());
                     Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]HouseholdYes", secondProtected.IsHouseHold ? BooleanString : null); //CheckBox
                     Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]HouseholdNo", secondProtected.IsHouseHold ? null : BooleanString); //CheckBox
 
@@ -140,6 +141,23 @@ namespace FACCTS.Server.Reporting
                     }
                 }
 
+            }
+
+            //Expiration Date
+            if (reportData.IsExpire && reportData.OrdersEndDate.HasValue)
+            {
+                Utils.SetPdfFormFieldValue(form, mapper, "expireDate", reportData.OrdersEndDate.Value.ToOrderDate());
+
+                if (reportData.OrdersEndTime.HasValue && !reportData.OrdersEndTime.Value.IsMidnight())
+                {
+                    Utils.SetPdfFormFieldValue(form, mapper, "expireTime", reportData.OrdersEndTime.Value.ToOrderTime());
+                    Utils.SetPdfFormFieldValue(form, mapper, "expireTimePM", reportData.OrdersEndTime.Value.IsPM() ? BooleanString : null);
+                    Utils.SetPdfFormFieldValue(form, mapper, "expireTimeAM", reportData.OrdersEndTime.Value.IsAM() ? BooleanString : null);
+                }
+                else
+                {
+                    Utils.SetPdfFormFieldValue(form, mapper, "expireTimeMidnight", BooleanString);
+                }
             }
 
             //Docket
@@ -164,6 +182,7 @@ namespace FACCTS.Server.Reporting
                     Utils.SetPdfFormFieldValue(form, mapper, "conductOtherDetail", reportData.ConductSection.OtherDescription);
                 }
             }
+
             //Stay Away
             if (reportData.StayAwayOrdersSection != null && reportData.StayAwayOrdersSection.IsEnabled)
             {
@@ -185,6 +204,42 @@ namespace FACCTS.Server.Reporting
             }
             //Firearm
             Utils.SetPdfFormFieldValue(form, mapper, "firearmYes", reportData.IsNoGuns ? BooleanString : null);
+
+            //CARPOS
+            if (reportData.CAPROSEntrySection != null)
+            {
+                if (reportData.CAPROSEntrySection.CARPOSEntryType == CARPOSEntryType.ByProtected)
+                {
+                    Utils.SetPdfFormFieldValue(form, mapper, "carposByProtected", BooleanString);
+                    if (reportData.CAPROSEntrySection.LawEnforcementAgencies.Count > 0)
+                    {
+                        Utils.SetPdfFormFieldValue(form, mapper, "carposLawEnforcement[0]Agency", reportData.CAPROSEntrySection.LawEnforcementAgencies.ElementAt(0).Key);
+                        Utils.SetPdfFormFieldValue(form, mapper, "carposLawEnforcement[0]Address", reportData.CAPROSEntrySection.LawEnforcementAgencies.ElementAt(0).Value);
+                    }
+                    if (reportData.CAPROSEntrySection.LawEnforcementAgencies.Count > 1)
+                    {
+                        Utils.SetPdfFormFieldValue(form, mapper, "carposLawEnforcement[1]Agency", reportData.CAPROSEntrySection.LawEnforcementAgencies.ElementAt(1).Key);
+                        Utils.SetPdfFormFieldValue(form, mapper, "carposLawEnforcement[1]Address", reportData.CAPROSEntrySection.LawEnforcementAgencies.ElementAt(1).Value);
+                    }
+                    if (reportData.CAPROSEntrySection.LawEnforcementAgencies.Count > 2)
+                    {
+                        Utils.SetPdfFormFieldValue(form, mapper, "carposAdditionalYes", BooleanString);
+                    }
+                }
+                else
+                {
+                    Utils.SetPdfFormFieldValue(form, mapper, "carposByClerk", reportData.CAPROSEntrySection.CARPOSEntryType == CARPOSEntryType.ByClerk ? BooleanString : null);
+                    Utils.SetPdfFormFieldValue(form, mapper, "carposByLawEnforcement", reportData.CAPROSEntrySection.CARPOSEntryType == CARPOSEntryType.ByClerkToLawEnforcement ? BooleanString : null);
+                }
+            }
+
+            //No Fee to Serve
+            if (reportData.NoServiceFeeSection != null && reportData.NoServiceFeeSection.IsOrdered)
+            {
+                Utils.SetPdfFormFieldValue(form, mapper, "serviceNoFee", BooleanString);
+                Utils.SetPdfFormFieldValue(form, mapper, "feeWaiverViolence", reportData.NoServiceFeeSection.IsBasedOnViolence ? BooleanString : null);
+                Utils.SetPdfFormFieldValue(form, mapper, "feeWaiverEntitled", reportData.NoServiceFeeSection.IsFeeWaiver ? BooleanString : null);
+            }
         }
 
     }

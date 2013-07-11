@@ -36,8 +36,11 @@
     <Property name="ConductSection" type="CH130ConductChoice"/>
     <Property name="StayAwayOrdersSection" type="CH130StayAwayOrders"/>
     <Property name="IsNoGuns" type="bool"/>
-    <Property name="CAPROSEntry" type="CAPROSEntry"/>
+    <Property name="CAPROSEntrySection" type="CAPROSEntry"/>
+    <Property name="NoServiceFeeSection" type="NoServiceFee"/>
+    <Property name="IsExpire" type="bool"/>
     <Property name="OrdersEndDate" type="DateTime?"/>
+    <Property name="OrdersEndTime" type="DateTime?"/>
   </Model>
   
 <!--CH110-->
