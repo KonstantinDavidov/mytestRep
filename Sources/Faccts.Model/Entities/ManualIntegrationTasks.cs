@@ -42,8 +42,28 @@ namespace Faccts.Model.Entities
     			)
     			.Subscribe(e =>
     				{
-    					IsDirty = e.NewState != ObjectState.Unchanged;
+    					if(e.NewState == ObjectState.Unchanged)
+    					{
+    						IsDirty = false;
+    					}
     				}
+    			);
+    			Observable.Merge<Object>(
+    				this.ObservableForProperty(x => x.Id)
+    				,this.ObservableForProperty(x => x.ReceiveTime)
+    				,this.ObservableForProperty(x => x.StartTime)
+    				,this.ObservableForProperty(x => x.EndTime)
+    				,this.ObservableForProperty(x => x.Info)
+    				,this.ObservableForProperty(x => x.UserId)
+    				,this.ObservableForProperty(x => x.State)
+    			).
+    			Subscribe(_ =>
+    			{
+    				if (ChangeTracker.State != ObjectState.Unchanged)
+    				{
+    					IsDirty = true;
+    				}
+    			}
     			);
     		}
     

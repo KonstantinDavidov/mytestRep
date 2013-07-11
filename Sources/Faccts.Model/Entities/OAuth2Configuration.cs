@@ -41,8 +41,27 @@ namespace Faccts.Model.Entities
     			)
     			.Subscribe(e =>
     				{
-    					IsDirty = e.NewState != ObjectState.Unchanged;
+    					if(e.NewState == ObjectState.Unchanged)
+    					{
+    						IsDirty = false;
+    					}
     				}
+    			);
+    			Observable.Merge<Object>(
+    				this.ObservableForProperty(x => x.Id)
+    				,this.ObservableForProperty(x => x.Enabled)
+    				,this.ObservableForProperty(x => x.EnableConsent)
+    				,this.ObservableForProperty(x => x.EnableResourceOwnerFlow)
+    				,this.ObservableForProperty(x => x.EnableImplicitFlow)
+    				,this.ObservableForProperty(x => x.EnableCodeFlow)
+    			).
+    			Subscribe(_ =>
+    			{
+    				if (ChangeTracker.State != ObjectState.Unchanged)
+    				{
+    					IsDirty = true;
+    				}
+    			}
     			);
     		}
     

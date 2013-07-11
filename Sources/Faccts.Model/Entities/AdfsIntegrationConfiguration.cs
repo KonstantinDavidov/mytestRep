@@ -41,8 +41,33 @@ namespace Faccts.Model.Entities
     			)
     			.Subscribe(e =>
     				{
-    					IsDirty = e.NewState != ObjectState.Unchanged;
+    					if(e.NewState == ObjectState.Unchanged)
+    					{
+    						IsDirty = false;
+    					}
     				}
+    			);
+    			Observable.Merge<Object>(
+    				this.ObservableForProperty(x => x.Id)
+    				,this.ObservableForProperty(x => x.Enabled)
+    				,this.ObservableForProperty(x => x.UsernameAuthenticationEnabled)
+    				,this.ObservableForProperty(x => x.SamlAuthenticationEnabled)
+    				,this.ObservableForProperty(x => x.JwtAuthenticationEnabled)
+    				,this.ObservableForProperty(x => x.PassThruAuthenticationToken)
+    				,this.ObservableForProperty(x => x.AuthenticationTokenLifetime)
+    				,this.ObservableForProperty(x => x.UserNameAuthenticationEndpoint)
+    				,this.ObservableForProperty(x => x.FederationEndpoint)
+    				,this.ObservableForProperty(x => x.IssuerUri)
+    				,this.ObservableForProperty(x => x.IssuerThumbprint)
+    				,this.ObservableForProperty(x => x.EncryptionCertificate)
+    			).
+    			Subscribe(_ =>
+    			{
+    				if (ChangeTracker.State != ObjectState.Unchanged)
+    				{
+    					IsDirty = true;
+    				}
+    			}
     			);
     		}
     

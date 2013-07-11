@@ -64,8 +64,34 @@ foreach (EntityType entity in code.GetItemsToGenerate<EntityType>(ItemCollection
 			)
 			.Subscribe(e =>
 				{
-					IsDirty = e.NewState != ObjectState.Unchanged;
+					if(e.NewState == ObjectState.Unchanged)
+					{
+						IsDirty = false;
+					}
 				}
+			);
+			Observable.Merge<Object>(
+<#
+			var simplePropertyCollection = entity.Properties.Where(p => p.TypeUsage.EdmType is SimpleType && p.DeclaringType == entity);
+			int index = 0;
+			foreach (EdmProperty edmProperty in simplePropertyCollection)
+    {
+		if (index > 0)
+{#>				,<#}
+			else
+{#>				<#}#>this.ObservableForProperty(x => x.<#=code.Escape(edmProperty)#>)
+<#
+		++ index;
+	}
+#>
+			).
+			Subscribe(_ =>
+			{
+				if (ChangeTracker.State != ObjectState.Unchanged)
+				{
+					IsDirty = true;
+				}
+			}
 			);
 		}
 

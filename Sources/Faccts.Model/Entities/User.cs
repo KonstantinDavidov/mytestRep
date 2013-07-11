@@ -48,8 +48,41 @@ namespace Faccts.Model.Entities
     			)
     			.Subscribe(e =>
     				{
-    					IsDirty = e.NewState != ObjectState.Unchanged;
+    					if(e.NewState == ObjectState.Unchanged)
+    					{
+    						IsDirty = false;
+    					}
     				}
+    			);
+    			Observable.Merge<Object>(
+    				this.ObservableForProperty(x => x.Id)
+    				,this.ObservableForProperty(x => x.Username)
+    				,this.ObservableForProperty(x => x.Email)
+    				,this.ObservableForProperty(x => x.Password)
+    				,this.ObservableForProperty(x => x.FirstName)
+    				,this.ObservableForProperty(x => x.LastName)
+    				,this.ObservableForProperty(x => x.MiddleName)
+    				,this.ObservableForProperty(x => x.Comment)
+    				,this.ObservableForProperty(x => x.IsApproved)
+    				,this.ObservableForProperty(x => x.PasswordFailuresSinceLastSuccess)
+    				,this.ObservableForProperty(x => x.LastPasswordFailureDate)
+    				,this.ObservableForProperty(x => x.LastActivityDate)
+    				,this.ObservableForProperty(x => x.LastLockoutDate)
+    				,this.ObservableForProperty(x => x.LastLoginDate)
+    				,this.ObservableForProperty(x => x.ConfirmationToken)
+    				,this.ObservableForProperty(x => x.CreateDate)
+    				,this.ObservableForProperty(x => x.IsLockedOut)
+    				,this.ObservableForProperty(x => x.LastPasswordChangedDate)
+    				,this.ObservableForProperty(x => x.PasswordVerificationToken)
+    				,this.ObservableForProperty(x => x.PasswordVerificationTokenExpirationDate)
+    			).
+    			Subscribe(_ =>
+    			{
+    				if (ChangeTracker.State != ObjectState.Unchanged)
+    				{
+    					IsDirty = true;
+    				}
+    			}
     			);
     		}
     

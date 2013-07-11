@@ -46,8 +46,39 @@ namespace Faccts.Model.Entities
     			)
     			.Subscribe(e =>
     				{
-    					IsDirty = e.NewState != ObjectState.Unchanged;
+    					if(e.NewState == ObjectState.Unchanged)
+    					{
+    						IsDirty = false;
+    					}
     				}
+    			);
+    			Observable.Merge<Object>(
+    				this.ObservableForProperty(x => x.Id)
+    				,this.ObservableForProperty(x => x.Date)
+    				,this.ObservableForProperty(x => x.CaseHistoryEvent)
+    				,this.ObservableForProperty(x => x.CCPOR_ID)
+    				,this.ObservableForProperty(x => x.CourtCaseOrderId)
+    				,this.ObservableForProperty(x => x.CourtClerk_UserId)
+    				,this.ObservableForProperty(x => x.CaseRecord_Id)
+    				,this.ObservableForProperty(x => x.Hearing_Id)
+    				,this.ObservableForProperty(x => x.MergeCase_Id)
+    				,this.ObservableForProperty(x => x.CourtOrder_Id)
+    				,this.ObservableForProperty(x => x.Appearances_Party1Appear)
+    				,this.ObservableForProperty(x => x.Appearances_Party1Sworn)
+    				,this.ObservableForProperty(x => x.Appearances_Party1AttorneyPresent)
+    				,this.ObservableForProperty(x => x.Appearances_Party1Atty)
+    				,this.ObservableForProperty(x => x.Appearances_Party2Appear)
+    				,this.ObservableForProperty(x => x.Appearances_Party2Sworn)
+    				,this.ObservableForProperty(x => x.Appearances_Party2AttorneyPresent)
+    				,this.ObservableForProperty(x => x.Appearances_Party2Atty)
+    			).
+    			Subscribe(_ =>
+    			{
+    				if (ChangeTracker.State != ObjectState.Unchanged)
+    				{
+    					IsDirty = true;
+    				}
+    			}
     			);
     		}
     

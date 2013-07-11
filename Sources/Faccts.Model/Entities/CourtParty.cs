@@ -49,8 +49,49 @@ namespace Faccts.Model.Entities
     			)
     			.Subscribe(e =>
     				{
-    					IsDirty = e.NewState != ObjectState.Unchanged;
+    					if(e.NewState == ObjectState.Unchanged)
+    					{
+    						IsDirty = false;
+    					}
     				}
+    			);
+    			Observable.Merge<Object>(
+    				this.ObservableForProperty(x => x.Id)
+    				,this.ObservableForProperty(x => x.FirstName)
+    				,this.ObservableForProperty(x => x.MiddleName)
+    				,this.ObservableForProperty(x => x.LastName)
+    				,this.ObservableForProperty(x => x.Description)
+    				,this.ObservableForProperty(x => x.Address)
+    				,this.ObservableForProperty(x => x.City)
+    				,this.ObservableForProperty(x => x.State)
+    				,this.ObservableForProperty(x => x.ZipCode)
+    				,this.ObservableForProperty(x => x.Phone)
+    				,this.ObservableForProperty(x => x.Fax)
+    				,this.ObservableForProperty(x => x.Weight)
+    				,this.ObservableForProperty(x => x.HeightFt)
+    				,this.ObservableForProperty(x => x.HeightIns)
+    				,this.ObservableForProperty(x => x.DateOfBirth)
+    				,this.ObservableForProperty(x => x.Age)
+    				,this.ObservableForProperty(x => x.HasAttorney)
+    				,this.ObservableForProperty(x => x.Designation_Id)
+    				,this.ObservableForProperty(x => x.Gender)
+    				,this.ObservableForProperty(x => x.HairColor_Id)
+    				,this.ObservableForProperty(x => x.EyesColor_Id)
+    				,this.ObservableForProperty(x => x.Race_Id)
+    				,this.ObservableForProperty(x => x.Attorney_Id)
+    				,this.ObservableForProperty(x => x.ParticipantRole)
+    				,this.ObservableForProperty(x => x.Sex)
+    				,this.ObservableForProperty(x => x.ParentRole)
+    				,this.ObservableForProperty(x => x.EntityType)
+    				,this.ObservableForProperty(x => x.Email)
+    			).
+    			Subscribe(_ =>
+    			{
+    				if (ChangeTracker.State != ObjectState.Unchanged)
+    				{
+    					IsDirty = true;
+    				}
+    			}
     			);
     		}
     

@@ -11,6 +11,7 @@ using ReactiveUI;
 using FACCTS.Services;
 using FACCTS.Services.Authentication;
 using FACCTS.Services.Data;
+using System.Reactive.Linq;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -22,10 +23,36 @@ namespace FACCTS.Controls.ViewModels
         public PersonalInformationViewModel() : base()
         {
             this.DisplayName = "Personal Information";
-            
         }
 
-       
+        private IDisposable _subscriber;
+        public override CourtCase CurrentCourtCase
+        {
+            get
+            {
+                return base.CurrentCourtCase;
+            }
+            set
+            {
+                if (base.CurrentCourtCase == value)
+                    return;
+                if (_subscriber != null)
+                {
+                    _subscriber.Dispose();
+                    _subscriber = null;
+                }
+                base.CurrentCourtCase = value;
+                if (base.CurrentCourtCase != null)
+                {
+                    _subscriber = base.CurrentCourtCase.CaseRecord.WhenAny(x => x.CourtParty.IsDirty, y => y.CourtParty1.IsDirty, (x, y) => x.Value || y.Value)
+                        .Subscribe(x =>
+                        {
+                            this.IsDirty = x;
+                        }
+                        );
+                }
+            }
+        }
 
         private List<EnumDescript<FACCTS.Server.Model.Enums.IdentificationIDType>> _identificationIDTypes;
         public List<EnumDescript<FACCTS.Server.Model.Enums.IdentificationIDType>> IdentificationIDTypes
@@ -43,17 +70,5 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-        public bool IsDirty
-        {
-            get
-            {
-                if (this.CaseRecord == null)
-                {
-                    return false;
-                }
-                return this.CaseRecord.CourtParty.IsDirty || this.CaseRecord.CourtParty1.IsDirty;
-            }
-        }
-        
     }
 }

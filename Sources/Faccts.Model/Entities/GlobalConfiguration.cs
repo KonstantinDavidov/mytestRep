@@ -41,8 +41,36 @@ namespace Faccts.Model.Entities
     			)
     			.Subscribe(e =>
     				{
-    					IsDirty = e.NewState != ObjectState.Unchanged;
+    					if(e.NewState == ObjectState.Unchanged)
+    					{
+    						IsDirty = false;
+    					}
     				}
+    			);
+    			Observable.Merge<Object>(
+    				this.ObservableForProperty(x => x.Id)
+    				,this.ObservableForProperty(x => x.SiteName)
+    				,this.ObservableForProperty(x => x.IssuerUri)
+    				,this.ObservableForProperty(x => x.IssuerContactEmail)
+    				,this.ObservableForProperty(x => x.DefaultWSTokenType)
+    				,this.ObservableForProperty(x => x.DefaultHttpTokenType)
+    				,this.ObservableForProperty(x => x.DefaultTokenLifetime)
+    				,this.ObservableForProperty(x => x.MaximumTokenLifetime)
+    				,this.ObservableForProperty(x => x.SsoCookieLifetime)
+    				,this.ObservableForProperty(x => x.RequireEncryption)
+    				,this.ObservableForProperty(x => x.RequireRelyingPartyRegistration)
+    				,this.ObservableForProperty(x => x.EnableClientCertificateAuthentication)
+    				,this.ObservableForProperty(x => x.EnforceUsersGroupMembership)
+    				,this.ObservableForProperty(x => x.HttpPort)
+    				,this.ObservableForProperty(x => x.HttpsPort)
+    			).
+    			Subscribe(_ =>
+    			{
+    				if (ChangeTracker.State != ObjectState.Unchanged)
+    				{
+    					IsDirty = true;
+    				}
+    			}
     			);
     		}
     

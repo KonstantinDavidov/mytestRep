@@ -41,8 +41,33 @@ namespace Faccts.Model.Entities
     			)
     			.Subscribe(e =>
     				{
-    					IsDirty = e.NewState != ObjectState.Unchanged;
+    					if(e.NewState == ObjectState.Unchanged)
+    					{
+    						IsDirty = false;
+    					}
     				}
+    			);
+    			Observable.Merge<Object>(
+    				this.ObservableForProperty(x => x.Id)
+    				,this.ObservableForProperty(x => x.form_field_name)
+    				,this.ObservableForProperty(x => x.form_name)
+    				,this.ObservableForProperty(x => x.field_type)
+    				,this.ObservableForProperty(x => x.screen_name)
+    				,this.ObservableForProperty(x => x.form_field_id)
+    				,this.ObservableForProperty(x => x.dupe)
+    				,this.ObservableForProperty(x => x.dropdown_options)
+    				,this.ObservableForProperty(x => x.bool_options)
+    				,this.ObservableForProperty(x => x.screen_panel)
+    				,this.ObservableForProperty(x => x.panel_section)
+    				,this.ObservableForProperty(x => x.xml_export)
+    			).
+    			Subscribe(_ =>
+    			{
+    				if (ChangeTracker.State != ObjectState.Unchanged)
+    				{
+    					IsDirty = true;
+    				}
+    			}
     			);
     		}
     

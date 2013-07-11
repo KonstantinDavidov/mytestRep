@@ -41,8 +41,32 @@ namespace Faccts.Model.Entities
     			)
     			.Subscribe(e =>
     				{
-    					IsDirty = e.NewState != ObjectState.Unchanged;
+    					if(e.NewState == ObjectState.Unchanged)
+    					{
+    						IsDirty = false;
+    					}
     				}
+    			);
+    			Observable.Merge<Object>(
+    				this.ObservableForProperty(x => x.Id)
+    				,this.ObservableForProperty(x => x.Name)
+    				,this.ObservableForProperty(x => x.Enabled)
+    				,this.ObservableForProperty(x => x.Realm)
+    				,this.ObservableForProperty(x => x.TokenLifeTime)
+    				,this.ObservableForProperty(x => x.ReplyTo)
+    				,this.ObservableForProperty(x => x.EncryptingCertificate)
+    				,this.ObservableForProperty(x => x.SymmetricSigningKey)
+    				,this.ObservableForProperty(x => x.ExtraData1)
+    				,this.ObservableForProperty(x => x.ExtraData2)
+    				,this.ObservableForProperty(x => x.ExtraData3)
+    			).
+    			Subscribe(_ =>
+    			{
+    				if (ChangeTracker.State != ObjectState.Unchanged)
+    				{
+    					IsDirty = true;
+    				}
+    			}
     			);
     		}
     
