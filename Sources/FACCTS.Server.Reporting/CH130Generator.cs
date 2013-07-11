@@ -38,14 +38,12 @@ namespace FACCTS.Server.Reporting
                cc => cc.Party1.EyesColor,
                cc => cc.Party1.HairColor,
                cc => cc.Party1.Race,
-               cc => cc.Party1.Sex,
                cc => cc.Party2,
                cc => cc.Party2.Attorney,
                cc => cc.Party2.Designation,
                cc => cc.Party2.EyesColor,
                cc => cc.Party2.HairColor,
-               cc => cc.Party2.Race,
-               cc => cc.Party2.Sex)
+               cc => cc.Party2.Race)
                .FirstOrDefault(cc => cc.Id == caseHistory.CaseRecord.Id);
 
             Hearing caseHearing = caseHistory.Hearing;
@@ -92,7 +90,7 @@ namespace FACCTS.Server.Reporting
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressPostal", protectedParty.ZipCode);
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedPhone", protectedParty.Phone);
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedFax", protectedParty.Fax);
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedEmail", "TODO");
+                Utils.SetPdfFormFieldValue(form, mapper, "protectedEmail", protectedParty.Email);
             }
             
 
@@ -168,7 +166,19 @@ namespace FACCTS.Server.Reporting
             //Stay Away
             if (reportData.StayAwayOrdersSection != null && reportData.StayAwayOrdersSection.IsEnabled)
             {
-
+                //Utils.SetPdfFormFieldValue(form, mapper, "", );
+                Utils.SetPdfFormFieldValue(form, mapper, "stayawayOrdersYes", BooleanString);
+                Utils.SetPdfFormFieldValue(form, mapper, "stayawayPerson", reportData.StayAwayOrdersSection.Person ? BooleanString : null);
+                Utils.SetPdfFormFieldValue(form, mapper, "stayawayHome", reportData.StayAwayOrdersSection.Home ? BooleanString : null);
+                Utils.SetPdfFormFieldValue(form, mapper, "stayawayWork", reportData.StayAwayOrdersSection.Work ? BooleanString : null);
+                Utils.SetPdfFormFieldValue(form, mapper, "stayawayVehicle", reportData.StayAwayOrdersSection.Vehicle ? BooleanString : null);
+                Utils.SetPdfFormFieldValue(form, mapper, "stayawayChildcare", reportData.StayAwayOrdersSection.ChildCare ? BooleanString : null);
+                Utils.SetPdfFormFieldValue(form, mapper, "stayawayOtherProtected", reportData.StayAwayOrdersSection.OtherProtected ? BooleanString : null);
+                if (reportData.StayAwayOrdersSection.Other)
+                {
+                    Utils.SetPdfFormFieldValue(form, mapper, "stayawayOther", BooleanString);
+                    Utils.SetPdfFormFieldValue(form, mapper, "stayawayOtherDetail", reportData.StayAwayOrdersSection.OtherDescription);
+                }
             }
         }
 
