@@ -536,7 +536,7 @@ namespace Faccts.Model.Entities
         private int _sex;
     
         [DataMember]
-        public FACCTS.Server.Model.Enums.ParentRole ParentRole
+        public string ParentRole
         {
             get { return _parentRole; }
             set
@@ -549,7 +549,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private FACCTS.Server.Model.Enums.ParentRole _parentRole;
+        private string _parentRole;
     
         [DataMember]
         public FACCTS.Server.Model.Enums.FACCTSEntity EntityType

@@ -13,8 +13,8 @@
 	</UserControl.Resources>
 	<Grid IsEnabled="{Binding CaseRecord, Converter={StaticResource ObjectToBooleanConverter}, FallbackValue=False, Mode=OneWay}" x:Name="LayoutRoot">
 		<Grid.RowDefinitions>
-			<RowDefinition MaxHeight="220"/>
-			<RowDefinition MaxHeight="220"/>
+			<RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
 			<RowDefinition MaxHeight="110"/>
 		</Grid.RowDefinitions>
 		<localcontrols:PartyControlView Grid.Row="0" DataContext="{Binding CaseRecord.CourtParty, Mode=OneWay}" IsParty1="True"/>

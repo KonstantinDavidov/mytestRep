@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 07/10/2013 13:07:36
+-- Date Created: 07/10/2013 19:54:58
 -- Generated from EDMX file: D:\FACCTS\FACCTSNEW\faccts.net\Sources\Faccts.Model\Entities\DataModel.edmx
 -- --------------------------------------------------
 
@@ -17,17 +17,20 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CaseRecord] DROP CONSTRAINT [FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CourtParty] DROP CONSTRAINT [FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id];
-GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_CaseHistory_dbo_CaseRecord_CaseRecord_Id]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CaseHistory] DROP CONSTRAINT [FK_dbo_CaseHistory_dbo_CaseRecord_CaseRecord_Id];
 GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_CaseHistory_dbo_CourtCase_MergeCase_Id]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CaseHistory] DROP CONSTRAINT [FK_dbo_CaseHistory_dbo_CourtCase_MergeCase_Id];
+GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CaseHistory] DROP CONSTRAINT [FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtOrder_Id]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CaseHistory] DROP CONSTRAINT [FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtOrder_Id];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CaseHistory] DROP CONSTRAINT [FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id];
 GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_CaseHistory_dbo_User_CourtClerk_UserId]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CaseHistory] DROP CONSTRAINT [FK_dbo_CaseHistory_dbo_User_CourtClerk_UserId];
@@ -38,8 +41,14 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_CaseNotes_dbo_User_Author_UserId]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CaseNotes] DROP CONSTRAINT [FK_dbo_CaseNotes_dbo_User_Author_UserId];
 GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CaseRecord] DROP CONSTRAINT [FK_dbo_CaseRecord_dbo_Attorneys_AttorneyForChild_Id];
+GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_CaseRecord_dbo_CaseRecord_CaseRecord_Id]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CaseRecord] DROP CONSTRAINT [FK_dbo_CaseRecord_dbo_CaseRecord_CaseRecord_Id];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_CaseRecord_dbo_CourtCase_Id]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CaseRecord] DROP CONSTRAINT [FK_dbo_CaseRecord_dbo_CourtCase_Id];
 GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_CaseRecord_dbo_CourtCounty_CourtCounty_Id]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CaseRecord] DROP CONSTRAINT [FK_dbo_CaseRecord_dbo_CourtCounty_CourtCounty_Id];
@@ -50,29 +59,14 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_CaseRecord_dbo_CourtParty_Party2_Id]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CaseRecord] DROP CONSTRAINT [FK_dbo_CaseRecord_dbo_CourtParty_Party2_Id];
 GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_CaseRecord_dbo_ThirdPartyData_ThirdPartyData_Id]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CaseRecord] DROP CONSTRAINT [FK_dbo_CaseRecord_dbo_ThirdPartyData_ThirdPartyData_Id];
+GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_Children_dbo_CaseRecord_CaseRecord_Id]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Children] DROP CONSTRAINT [FK_dbo_Children_dbo_CaseRecord_CaseRecord_Id];
 GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_CourtCase_dbo_CaseRecord_CaseRecord_Id]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CourtCase] DROP CONSTRAINT [FK_dbo_CourtCase_dbo_CaseRecord_CaseRecord_Id];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_CourtParty_dbo_CaseRecord_CaseRecordByCourtParty1_Id]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CourtParty] DROP CONSTRAINT [FK_dbo_CourtParty_dbo_CaseRecord_CaseRecordByCourtParty1_Id];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_CourtParty_dbo_CaseRecord_CaseRecordByCourtParty2_Id]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CourtParty] DROP CONSTRAINT [FK_dbo_CourtParty_dbo_CaseRecord_CaseRecordByCourtParty2_Id];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_Interpreters_dbo_CaseRecord_CaseRecord_Id]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Interpreters] DROP CONSTRAINT [FK_dbo_Interpreters_dbo_CaseRecord_CaseRecord_Id];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_OtherProtected_dbo_CaseRecord_CaseRecord_Id]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[OtherProtected] DROP CONSTRAINT [FK_dbo_OtherProtected_dbo_CaseRecord_CaseRecord_Id];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_Witnesses_dbo_CaseRecord_CaseRecord_Id]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Witnesses] DROP CONSTRAINT [FK_dbo_Witnesses_dbo_CaseRecord_CaseRecord_Id];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_Children_dbo_Sex_Sex_Id]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Children] DROP CONSTRAINT [FK_dbo_Children_dbo_Sex_Sex_Id];
+IF OBJECT_ID(N'[dbo].[FK_dbo_CourtCase_dbo_CourtCase_ParentCase_Id]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CourtCase] DROP CONSTRAINT [FK_dbo_CourtCase_dbo_CourtCase_ParentCase_Id];
 GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_CourtCase_dbo_User_CourtClerk_UserId]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CourtCase] DROP CONSTRAINT [FK_dbo_CourtCase_dbo_User_CourtClerk_UserId];
@@ -83,17 +77,14 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_CourtLocations_dbo_CourtCounty_CourtCounty_Id]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CourtLocations] DROP CONSTRAINT [FK_dbo_CourtLocations_dbo_CourtCounty_CourtCounty_Id];
 GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_FACCTSConfiguration_dbo_CourtCounty_CurrentCourtCountyId]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[FACCTSConfiguration] DROP CONSTRAINT [FK_dbo_FACCTSConfiguration_dbo_CourtCounty_CurrentCourtCountyId];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_Courtrooms_dbo_CourtLocations_CourtLocation_Id]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Courtrooms] DROP CONSTRAINT [FK_dbo_Courtrooms_dbo_CourtLocations_CourtLocation_Id];
-GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_CourtMember_dbo_CourtMember_SubstituteId]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CourtMember] DROP CONSTRAINT [FK_dbo_CourtMember_dbo_CourtMember_SubstituteId];
 GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_CourtMember_dbo_User_Id]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CourtMember] DROP CONSTRAINT [FK_dbo_CourtMember_dbo_User_Id];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CourtParty] DROP CONSTRAINT [FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id];
 GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_CourtParty_dbo_Designation_Designation_Id]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CourtParty] DROP CONSTRAINT [FK_dbo_CourtParty_dbo_Designation_Designation_Id];
@@ -107,11 +98,50 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_CourtParty_dbo_Race_Race_Id]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CourtParty] DROP CONSTRAINT [FK_dbo_CourtParty_dbo_Race_Race_Id];
 GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_CourtParty_dbo_Sex_Sex_Id]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CourtParty] DROP CONSTRAINT [FK_dbo_CourtParty_dbo_Sex_Sex_Id];
+IF OBJECT_ID(N'[dbo].[FK_dbo_Courtrooms_dbo_CourtLocations_CourtLocation_Id]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Courtrooms] DROP CONSTRAINT [FK_dbo_Courtrooms_dbo_CourtLocations_CourtLocation_Id];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_FACCTSConfiguration_dbo_CourtCounty_CurrentCourtCountyId]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[FACCTSConfiguration] DROP CONSTRAINT [FK_dbo_FACCTSConfiguration_dbo_CourtCounty_CurrentCourtCountyId];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_Hearings_dbo_CourtDepartmenets_Department_Id]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Hearings] DROP CONSTRAINT [FK_dbo_Hearings_dbo_CourtDepartmenets_Department_Id];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_Hearings_dbo_Courtrooms_Courtroom_Id]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Hearings] DROP CONSTRAINT [FK_dbo_Hearings_dbo_Courtrooms_Courtroom_Id];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_Interpreters_dbo_CaseRecord_CaseRecord_Id]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Interpreters] DROP CONSTRAINT [FK_dbo_Interpreters_dbo_CaseRecord_CaseRecord_Id];
 GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_Interpreters_dbo_CourtParty_InterpreterFor_Id]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Interpreters] DROP CONSTRAINT [FK_dbo_Interpreters_dbo_CourtParty_InterpreterFor_Id];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_ManualIntegrationTasks_dbo_User_UserId]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ManualIntegrationTasks] DROP CONSTRAINT [FK_dbo_ManualIntegrationTasks_dbo_User_UserId];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_OtherProtected_dbo_CaseRecord_CaseRecord_Id]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[OtherProtected] DROP CONSTRAINT [FK_dbo_OtherProtected_dbo_CaseRecord_CaseRecord_Id];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_RolePermission_dbo_Permission_Id]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[RolePermission] DROP CONSTRAINT [FK_dbo_RolePermission_dbo_Permission_Id];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_RolePermission_dbo_Role_RoleId]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[RolePermission] DROP CONSTRAINT [FK_dbo_RolePermission_dbo_Role_RoleId];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_RoleUser_dbo_Role_Role_RoleId]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[RoleUser] DROP CONSTRAINT [FK_dbo_RoleUser_dbo_Role_Role_RoleId];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_RoleUser_dbo_User_User_UserId]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[RoleUser] DROP CONSTRAINT [FK_dbo_RoleUser_dbo_User_User_UserId];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_ScheduledIntegrationTasks_dbo_User_UserId]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ScheduledIntegrationTasks] DROP CONSTRAINT [FK_dbo_ScheduledIntegrationTasks_dbo_User_UserId];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_ThirdPartyData_dbo_Attorneys_Attorney_Id]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ThirdPartyData] DROP CONSTRAINT [FK_dbo_ThirdPartyData_dbo_Attorneys_Attorney_Id];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_Witnesses_dbo_CaseRecord_CaseRecord_Id]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Witnesses] DROP CONSTRAINT [FK_dbo_Witnesses_dbo_CaseRecord_CaseRecord_Id];
 GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_Witnesses_dbo_CourtParty_WitnessFor_Id]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Witnesses] DROP CONSTRAINT [FK_dbo_Witnesses_dbo_CourtParty_WitnessFor_Id];
@@ -119,59 +149,11 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_Witnesses_dbo_Designation_Designation_Id]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Witnesses] DROP CONSTRAINT [FK_dbo_Witnesses_dbo_Designation_Designation_Id];
 GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_ManualIntegrationTasks_dbo_User_UserId]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ManualIntegrationTasks] DROP CONSTRAINT [FK_dbo_ManualIntegrationTasks_dbo_User_UserId];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_ScheduledIntegrationTasks_dbo_User_UserId]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[ScheduledIntegrationTasks] DROP CONSTRAINT [FK_dbo_ScheduledIntegrationTasks_dbo_User_UserId];
-GO
-IF OBJECT_ID(N'[dbo].[FK_RolePermission_Permission]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[RolePermission] DROP CONSTRAINT [FK_RolePermission_Permission];
-GO
-IF OBJECT_ID(N'[dbo].[FK_RolePermission_Role]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[RolePermission] DROP CONSTRAINT [FK_RolePermission_Role];
-GO
-IF OBJECT_ID(N'[dbo].[FK_RoleUser_Role]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[RoleUser] DROP CONSTRAINT [FK_RoleUser_Role];
-GO
-IF OBJECT_ID(N'[dbo].[FK_RoleUser_User]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[RoleUser] DROP CONSTRAINT [FK_RoleUser_User];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_OtherProtected_dbo_Sex_Sex_Id]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[OtherProtected] DROP CONSTRAINT [FK_dbo_OtherProtected_dbo_Sex_Sex_Id];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CaseHistory] DROP CONSTRAINT [FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_Hearings_dbo_Courtrooms_Courtroom_Id]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Hearings] DROP CONSTRAINT [FK_dbo_Hearings_dbo_Courtrooms_Courtroom_Id];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_CaseHistory_dbo_CourtCase_MergeCase_Id]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CaseHistory] DROP CONSTRAINT [FK_dbo_CaseHistory_dbo_CourtCase_MergeCase_Id];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_Hearings_dbo_CourtDepartmenets_Department_Id]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Hearings] DROP CONSTRAINT [FK_dbo_Hearings_dbo_CourtDepartmenets_Department_Id];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_CourtCase_dbo_CourtCase_ParentCase_Id]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CourtCase] DROP CONSTRAINT [FK_dbo_CourtCase_dbo_CourtCase_ParentCase_Id];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtOrder_Id]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CaseHistory] DROP CONSTRAINT [FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtOrder_Id];
-GO
-IF OBJECT_ID(N'[dbo].[FK_CourtDocketRecordCourtCase]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CourtDocketRecordSet] DROP CONSTRAINT [FK_CourtDocketRecordCourtCase];
-GO
-IF OBJECT_ID(N'[dbo].[FK_CourtDocketRecordHearings]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CourtDocketRecordSet] DROP CONSTRAINT [FK_CourtDocketRecordHearings];
-GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[C__MigrationHistory]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[C__MigrationHistory];
-GO
 IF OBJECT_ID(N'[dbo].[AdfsIntegrationConfiguration]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AdfsIntegrationConfiguration];
 GO
@@ -250,6 +232,9 @@ GO
 IF OBJECT_ID(N'[dbo].[HairColor]', 'U') IS NOT NULL
     DROP TABLE [dbo].[HairColor];
 GO
+IF OBJECT_ID(N'[dbo].[Hearings]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Hearings];
+GO
 IF OBJECT_ID(N'[dbo].[IdentityProvider]', 'U') IS NOT NULL
     DROP TABLE [dbo].[IdentityProvider];
 GO
@@ -280,14 +265,20 @@ GO
 IF OBJECT_ID(N'[dbo].[Role]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Role];
 GO
+IF OBJECT_ID(N'[dbo].[RolePermission]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[RolePermission];
+GO
+IF OBJECT_ID(N'[dbo].[RoleUser]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[RoleUser];
+GO
 IF OBJECT_ID(N'[dbo].[ScheduledIntegrationTasks]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ScheduledIntegrationTasks];
 GO
-IF OBJECT_ID(N'[dbo].[Sex]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Sex];
-GO
 IF OBJECT_ID(N'[dbo].[SimpleHttpConfiguration]', 'U') IS NOT NULL
     DROP TABLE [dbo].[SimpleHttpConfiguration];
+GO
+IF OBJECT_ID(N'[dbo].[ThirdPartyData]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ThirdPartyData];
 GO
 IF OBJECT_ID(N'[dbo].[User]', 'U') IS NOT NULL
     DROP TABLE [dbo].[User];
@@ -300,18 +291,6 @@ IF OBJECT_ID(N'[dbo].[WSFederationConfiguration]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[WSTrustConfiguration]', 'U') IS NOT NULL
     DROP TABLE [dbo].[WSTrustConfiguration];
-GO
-IF OBJECT_ID(N'[dbo].[Hearings]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Hearings];
-GO
-IF OBJECT_ID(N'[dbo].[CourtDocketRecordSet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[CourtDocketRecordSet];
-GO
-IF OBJECT_ID(N'[dbo].[RolePermission]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[RolePermission];
-GO
-IF OBJECT_ID(N'[dbo].[RoleUser]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[RoleUser];
 GO
 
 -- --------------------------------------------------
@@ -351,7 +330,7 @@ CREATE TABLE [dbo].[Attorneys] (
     [FirmName] nvarchar(100)  NOT NULL,
     [StreetAddress] nvarchar(200)  NULL,
     [City] nvarchar(100)  NULL,
-    [State] nvarchar(100)  NULL,
+    [State] int  NOT NULL,
     [ZipCode] nvarchar(20)  NULL,
     [Phone] nvarchar(20)  NULL,
     [Fax] nvarchar(20)  NULL,
@@ -368,7 +347,7 @@ CREATE TABLE [dbo].[CaseHistory] (
     [CCPOR_ID] nvarchar(30)  NULL,
     [CourtCaseOrderId] bigint  NULL,
     [CourtClerk_UserId] int  NULL,
-    [CaseRecord_Id] int  NULL,
+    [CaseRecord_Id] bigint  NULL,
     [Appearance_Party1Appear] bit  NULL,
     [Appearance_Party1Sworn] bit  NULL,
     [Appearance_Party1AttorneyPresent] bit  NULL,
@@ -379,7 +358,15 @@ CREATE TABLE [dbo].[CaseHistory] (
     [Appearance_Party2Sworn] bit  NULL,
     [Hearing_Id] int  NULL,
     [MergeCase_Id] bigint  NULL,
-    [CourtOrder_Id] bigint  NULL
+    [CourtOrder_Id] bigint  NULL,
+    [Appearances_Party1Appear] bit  NULL,
+    [Appearances_Party1Sworn] bit  NULL,
+    [Appearances_Party1AttorneyPresent] bit  NULL,
+    [Appearances_Party1Atty] bit  NULL,
+    [Appearances_Party2Appear] bit  NULL,
+    [Appearances_Party2Sworn] bit  NULL,
+    [Appearances_Party2AttorneyPresent] bit  NULL,
+    [Appearances_Party2Atty] bit  NULL
 );
 GO
 
@@ -388,22 +375,26 @@ CREATE TABLE [dbo].[CaseNotes] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Status] int  NOT NULL,
     [Author_UserId] int  NOT NULL,
-    [CaseRecord_Id] int  NULL,
+    [CaseRecord_Id] bigint  NULL,
     [Text] nvarchar(max)  NULL
 );
 GO
 
 -- Creating table 'CaseRecord'
 CREATE TABLE [dbo].[CaseRecord] (
-    [Id] int IDENTITY(1,1) NOT NULL,
+    [Id] bigint IDENTITY(1,1) NOT NULL,
     [Party1_Id] int  NULL,
     [Party2_Id] int  NULL,
     [AttorneyForChild_Id] int  NULL,
     [CourtCounty_Id] int  NULL,
-    [CaseRecord_Id] int  NULL,
+    [CaseRecord_Id] bigint  NULL,
     [RestrainingpartyIdentificationInformation_IDType] int  NOT NULL,
     [RestrainingpartyIdentificationInformation_IDNumber] nvarchar(max)  NOT NULL,
-    [RestrainingpartyIdentificationInformation_IDIssuedDate] datetime  NOT NULL
+    [RestrainingpartyIdentificationInformation_IDIssuedDate] datetime  NOT NULL,
+    [RP_IDType] int  NOT NULL,
+    [RP_IDNumber] nvarchar(max)  NULL,
+    [RP_IssuedDate] datetime  NULL,
+    [ThirdPartyData_Id] bigint  NULL
 );
 GO
 
@@ -415,8 +406,8 @@ CREATE TABLE [dbo].[Children] (
     [LastName] nvarchar(100)  NOT NULL,
     [RelationshipToProtected] int  NOT NULL,
     [DateOfBirth] datetime  NOT NULL,
-    [Sex_Id] int  NOT NULL,
-    [CaseRecord_Id] int  NULL
+    [Gender] int  NOT NULL,
+    [CaseRecord_Id] bigint  NULL
 );
 GO
 
@@ -463,7 +454,7 @@ CREATE TABLE [dbo].[CourtCase] (
     [CCPORStatus] int  NULL,
     [CCPORId] nvarchar(20)  NULL,
     [CourtClerk_UserId] int  NULL,
-    [CaseRecord_Id] int  NOT NULL,
+    [CaseRecord_Id] bigint  NOT NULL,
     [ParentCase_Id] bigint  NULL
 );
 GO
@@ -506,7 +497,7 @@ CREATE TABLE [dbo].[CourtLocations] (
     [Name] nvarchar(150)  NOT NULL,
     [Description] nvarchar(max)  NULL,
     [StreetAddress] nvarchar(200)  NULL,
-    [State] nvarchar(100)  NULL,
+    [State] int  NOT NULL,
     [PostalCode] nvarchar(20)  NULL,
     [City] nvarchar(100)  NULL,
     [CourtCounty_Id] int  NULL
@@ -533,7 +524,7 @@ CREATE TABLE [dbo].[CourtParty] (
     [Description] nvarchar(max)  NULL,
     [Address] nvarchar(max)  NULL,
     [City] nvarchar(100)  NULL,
-    [State] nvarchar(100)  NULL,
+    [State] int  NOT NULL,
     [ZipCode] nvarchar(20)  NULL,
     [Phone] nvarchar(20)  NULL,
     [Fax] nvarchar(20)  NULL,
@@ -544,14 +535,16 @@ CREATE TABLE [dbo].[CourtParty] (
     [Age] int  NOT NULL,
     [HasAttorney] bit  NULL,
     [Designation_Id] int  NOT NULL,
-    [Sex_Id] int  NOT NULL,
+    [Gender] int  NOT NULL,
     [HairColor_Id] int  NOT NULL,
     [EyesColor_Id] int  NOT NULL,
     [Race_Id] int  NOT NULL,
     [Attorney_Id] int  NULL,
-    [ParticipantRole1] int  NOT NULL,
-    [CaseRecordByCourtParty1_Id] int  NULL,
-    [CaseRecordByCourtParty2_Id] int  NULL
+    [ParticipantRole] int  NOT NULL,
+    [Sex] int  NOT NULL,
+    [ParentRole] nvarchar(max)  NOT NULL,
+    [EntityType] int  NOT NULL,
+    [Email] nvarchar(max)  NULL
 );
 GO
 
@@ -675,7 +668,7 @@ CREATE TABLE [dbo].[Interpreters] (
     [LastName] nvarchar(255)  NOT NULL,
     [Language] nvarchar(150)  NULL,
     [InterpreterFor_Id] int  NOT NULL,
-    [CaseRecord_Id] int  NULL,
+    [CaseRecord_Id] bigint  NULL,
     [EntityType] int  NOT NULL
 );
 GO
@@ -720,11 +713,12 @@ CREATE TABLE [dbo].[OtherProtected] (
     [RelationshipToPlaintiff] int  NOT NULL,
     [FirstName] nvarchar(100)  NOT NULL,
     [LastName] nvarchar(100)  NOT NULL,
-    [CaseRecord_Id] int  NULL,
+    [CaseRecord_Id] bigint  NULL,
     [DateOfBirth] datetime  NOT NULL,
-    [Sex_Id] int  NULL,
+    [Gender] int  NULL,
     [Age] int  NOT NULL,
-    [IsHouseHold] bit  NOT NULL
+    [IsHouseHold] bit  NOT NULL,
+    [Sex] int  NOT NULL
 );
 GO
 
@@ -779,13 +773,6 @@ CREATE TABLE [dbo].[ScheduledIntegrationTasks] (
 );
 GO
 
--- Creating table 'Sex'
-CREATE TABLE [dbo].[Sex] (
-    [Id] int  NOT NULL,
-    [SexName] nvarchar(150)  NOT NULL
-);
-GO
-
 -- Creating table 'SimpleHttpConfiguration'
 CREATE TABLE [dbo].[SimpleHttpConfiguration] (
     [Id] int IDENTITY(1,1) NOT NULL,
@@ -826,7 +813,7 @@ CREATE TABLE [dbo].[Witnesses] (
     [Contact] nvarchar(max)  NULL,
     [WitnessFor_Id] int  NOT NULL,
     [Designation_Id] int  NULL,
-    [CaseRecord_Id] int  NULL,
+    [CaseRecord_Id] bigint  NULL,
     [EntityType] int  NOT NULL
 );
 GO
@@ -869,7 +856,13 @@ CREATE TABLE [dbo].[Hearings] (
     [HearingIssue_IsOtherIssue] bit  NOT NULL,
     [HearingIssue_OtheIssueText] nvarchar(max)  NOT NULL,
     [Department_Id] int  NULL,
-    [Session] int  NOT NULL
+    [Session] int  NOT NULL,
+    [HearingIssues_PermanentRO] bit  NOT NULL,
+    [HearingIssues_ChildCustodyOrChildVisitation] bit  NOT NULL,
+    [HearingIssues_ChildSupport] bit  NOT NULL,
+    [HearingIssues_SpousalSupport] bit  NOT NULL,
+    [HearingIssues_IsOtherIssue] bit  NOT NULL,
+    [HearingIssues_OtheIssueText] nvarchar(max)  NULL
 );
 GO
 
@@ -881,17 +874,26 @@ CREATE TABLE [dbo].[CourtDocketRecordSet] (
 );
 GO
 
--- Creating table 'RolePermission'
-CREATE TABLE [dbo].[RolePermission] (
-    [Permission_Id] bigint  NOT NULL,
+-- Creating table 'ThirdPartyData'
+CREATE TABLE [dbo].[ThirdPartyData] (
+    [Id] bigint IDENTITY(1,1) NOT NULL,
+    [IsThirdPartyProPer] bit  NOT NULL,
+    [IsThirdPartyRequestorInEACase] bit  NOT NULL,
+    [Attorney_Id] int  NULL
+);
+GO
+
+-- Creating table 'RolePermission1'
+CREATE TABLE [dbo].[RolePermission1] (
+    [Permission1_Id] bigint  NOT NULL,
     [Role_Id] int  NOT NULL
 );
 GO
 
--- Creating table 'RoleUser'
-CREATE TABLE [dbo].[RoleUser] (
+-- Creating table 'RoleUser1'
+CREATE TABLE [dbo].[RoleUser1] (
     [Role_Id] int  NOT NULL,
-    [User_Id] int  NOT NULL
+    [User1_Id] int  NOT NULL
 );
 GO
 
@@ -1127,12 +1129,6 @@ ADD CONSTRAINT [PK_ScheduledIntegrationTasks]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'Sex'
-ALTER TABLE [dbo].[Sex]
-ADD CONSTRAINT [PK_Sex]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
 -- Creating primary key on [Id] in table 'SimpleHttpConfiguration'
 ALTER TABLE [dbo].[SimpleHttpConfiguration]
 ADD CONSTRAINT [PK_SimpleHttpConfiguration]
@@ -1175,16 +1171,22 @@ ADD CONSTRAINT [PK_CourtDocketRecordSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Permission_Id], [Role_Id] in table 'RolePermission'
-ALTER TABLE [dbo].[RolePermission]
-ADD CONSTRAINT [PK_RolePermission]
-    PRIMARY KEY NONCLUSTERED ([Permission_Id], [Role_Id] ASC);
+-- Creating primary key on [Id] in table 'ThirdPartyData'
+ALTER TABLE [dbo].[ThirdPartyData]
+ADD CONSTRAINT [PK_ThirdPartyData]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Role_Id], [User_Id] in table 'RoleUser'
-ALTER TABLE [dbo].[RoleUser]
-ADD CONSTRAINT [PK_RoleUser]
-    PRIMARY KEY NONCLUSTERED ([Role_Id], [User_Id] ASC);
+-- Creating primary key on [Permission1_Id], [Role_Id] in table 'RolePermission1'
+ALTER TABLE [dbo].[RolePermission1]
+ADD CONSTRAINT [PK_RolePermission1]
+    PRIMARY KEY NONCLUSTERED ([Permission1_Id], [Role_Id] ASC);
+GO
+
+-- Creating primary key on [Role_Id], [User1_Id] in table 'RoleUser1'
+ALTER TABLE [dbo].[RoleUser1]
+ADD CONSTRAINT [PK_RoleUser1]
+    PRIMARY KEY NONCLUSTERED ([Role_Id], [User1_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -1373,34 +1375,6 @@ ON [dbo].[CourtCase]
     ([CaseRecord_Id]);
 GO
 
--- Creating foreign key on [CaseRecordByCourtParty1_Id] in table 'CourtParty'
-ALTER TABLE [dbo].[CourtParty]
-ADD CONSTRAINT [FK_dbo_CourtParty_dbo_CaseRecord_CaseRecordByCourtParty1_Id]
-    FOREIGN KEY ([CaseRecordByCourtParty1_Id])
-    REFERENCES [dbo].[CaseRecord]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_dbo_CourtParty_dbo_CaseRecord_CaseRecordByCourtParty1_Id'
-CREATE INDEX [IX_FK_dbo_CourtParty_dbo_CaseRecord_CaseRecordByCourtParty1_Id]
-ON [dbo].[CourtParty]
-    ([CaseRecordByCourtParty1_Id]);
-GO
-
--- Creating foreign key on [CaseRecordByCourtParty2_Id] in table 'CourtParty'
-ALTER TABLE [dbo].[CourtParty]
-ADD CONSTRAINT [FK_dbo_CourtParty_dbo_CaseRecord_CaseRecordByCourtParty2_Id]
-    FOREIGN KEY ([CaseRecordByCourtParty2_Id])
-    REFERENCES [dbo].[CaseRecord]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_dbo_CourtParty_dbo_CaseRecord_CaseRecordByCourtParty2_Id'
-CREATE INDEX [IX_FK_dbo_CourtParty_dbo_CaseRecord_CaseRecordByCourtParty2_Id]
-ON [dbo].[CourtParty]
-    ([CaseRecordByCourtParty2_Id]);
-GO
-
 -- Creating foreign key on [CaseRecord_Id] in table 'Interpreters'
 ALTER TABLE [dbo].[Interpreters]
 ADD CONSTRAINT [FK_dbo_Interpreters_dbo_CaseRecord_CaseRecord_Id]
@@ -1441,20 +1415,6 @@ ADD CONSTRAINT [FK_dbo_Witnesses_dbo_CaseRecord_CaseRecord_Id]
 CREATE INDEX [IX_FK_dbo_Witnesses_dbo_CaseRecord_CaseRecord_Id]
 ON [dbo].[Witnesses]
     ([CaseRecord_Id]);
-GO
-
--- Creating foreign key on [Sex_Id] in table 'Children'
-ALTER TABLE [dbo].[Children]
-ADD CONSTRAINT [FK_dbo_Children_dbo_Sex_Sex_Id]
-    FOREIGN KEY ([Sex_Id])
-    REFERENCES [dbo].[Sex]
-        ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_dbo_Children_dbo_Sex_Sex_Id'
-CREATE INDEX [IX_FK_dbo_Children_dbo_Sex_Sex_Id]
-ON [dbo].[Children]
-    ([Sex_Id]);
 GO
 
 -- Creating foreign key on [CourtClerk_UserId] in table 'CourtCase'
@@ -1606,20 +1566,6 @@ ON [dbo].[CourtParty]
     ([Race_Id]);
 GO
 
--- Creating foreign key on [Sex_Id] in table 'CourtParty'
-ALTER TABLE [dbo].[CourtParty]
-ADD CONSTRAINT [FK_dbo_CourtParty_dbo_Sex_Sex_Id]
-    FOREIGN KEY ([Sex_Id])
-    REFERENCES [dbo].[Sex]
-        ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_dbo_CourtParty_dbo_Sex_Sex_Id'
-CREATE INDEX [IX_FK_dbo_CourtParty_dbo_Sex_Sex_Id]
-ON [dbo].[CourtParty]
-    ([Sex_Id]);
-GO
-
 -- Creating foreign key on [InterpreterFor_Id] in table 'Interpreters'
 ALTER TABLE [dbo].[Interpreters]
 ADD CONSTRAINT [FK_dbo_Interpreters_dbo_CourtParty_InterpreterFor_Id]
@@ -1688,66 +1634,6 @@ ADD CONSTRAINT [FK_dbo_ScheduledIntegrationTasks_dbo_User_UserId]
 CREATE INDEX [IX_FK_dbo_ScheduledIntegrationTasks_dbo_User_UserId]
 ON [dbo].[ScheduledIntegrationTasks]
     ([UserId]);
-GO
-
--- Creating foreign key on [Permission_Id] in table 'RolePermission'
-ALTER TABLE [dbo].[RolePermission]
-ADD CONSTRAINT [FK_RolePermission_Permission]
-    FOREIGN KEY ([Permission_Id])
-    REFERENCES [dbo].[Permission]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Role_Id] in table 'RolePermission'
-ALTER TABLE [dbo].[RolePermission]
-ADD CONSTRAINT [FK_RolePermission_Role]
-    FOREIGN KEY ([Role_Id])
-    REFERENCES [dbo].[Role]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_RolePermission_Role'
-CREATE INDEX [IX_FK_RolePermission_Role]
-ON [dbo].[RolePermission]
-    ([Role_Id]);
-GO
-
--- Creating foreign key on [Role_Id] in table 'RoleUser'
-ALTER TABLE [dbo].[RoleUser]
-ADD CONSTRAINT [FK_RoleUser_Role]
-    FOREIGN KEY ([Role_Id])
-    REFERENCES [dbo].[Role]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [User_Id] in table 'RoleUser'
-ALTER TABLE [dbo].[RoleUser]
-ADD CONSTRAINT [FK_RoleUser_User]
-    FOREIGN KEY ([User_Id])
-    REFERENCES [dbo].[User]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_RoleUser_User'
-CREATE INDEX [IX_FK_RoleUser_User]
-ON [dbo].[RoleUser]
-    ([User_Id]);
-GO
-
--- Creating foreign key on [Sex_Id] in table 'OtherProtected'
-ALTER TABLE [dbo].[OtherProtected]
-ADD CONSTRAINT [FK_dbo_OtherProtected_dbo_Sex_Sex_Id]
-    FOREIGN KEY ([Sex_Id])
-    REFERENCES [dbo].[Sex]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_dbo_OtherProtected_dbo_Sex_Sex_Id'
-CREATE INDEX [IX_FK_dbo_OtherProtected_dbo_Sex_Sex_Id]
-ON [dbo].[OtherProtected]
-    ([Sex_Id]);
 GO
 
 -- Creating foreign key on [Hearing_Id] in table 'CaseHistory'
@@ -1860,6 +1746,89 @@ ADD CONSTRAINT [FK_CourtDocketRecordHearings]
 CREATE INDEX [IX_FK_CourtDocketRecordHearings]
 ON [dbo].[CourtDocketRecordSet]
     ([HearingId]);
+GO
+
+-- Creating foreign key on [Id] in table 'CaseRecord'
+ALTER TABLE [dbo].[CaseRecord]
+ADD CONSTRAINT [FK_dbo_CaseRecord_dbo_CourtCase_Id]
+    FOREIGN KEY ([Id])
+    REFERENCES [dbo].[CourtCase]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Permission1_Id] in table 'RolePermission1'
+ALTER TABLE [dbo].[RolePermission1]
+ADD CONSTRAINT [FK_RolePermission1_Permission]
+    FOREIGN KEY ([Permission1_Id])
+    REFERENCES [dbo].[Permission]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Role_Id] in table 'RolePermission1'
+ALTER TABLE [dbo].[RolePermission1]
+ADD CONSTRAINT [FK_RolePermission1_Role]
+    FOREIGN KEY ([Role_Id])
+    REFERENCES [dbo].[Role]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_RolePermission1_Role'
+CREATE INDEX [IX_FK_RolePermission1_Role]
+ON [dbo].[RolePermission1]
+    ([Role_Id]);
+GO
+
+-- Creating foreign key on [Role_Id] in table 'RoleUser1'
+ALTER TABLE [dbo].[RoleUser1]
+ADD CONSTRAINT [FK_RoleUser1_Role]
+    FOREIGN KEY ([Role_Id])
+    REFERENCES [dbo].[Role]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [User1_Id] in table 'RoleUser1'
+ALTER TABLE [dbo].[RoleUser1]
+ADD CONSTRAINT [FK_RoleUser1_User]
+    FOREIGN KEY ([User1_Id])
+    REFERENCES [dbo].[User]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_RoleUser1_User'
+CREATE INDEX [IX_FK_RoleUser1_User]
+ON [dbo].[RoleUser1]
+    ([User1_Id]);
+GO
+
+-- Creating foreign key on [Attorney_Id] in table 'ThirdPartyData'
+ALTER TABLE [dbo].[ThirdPartyData]
+ADD CONSTRAINT [FK_dbo_ThirdPartyData_dbo_Attorneys_Attorney_Id]
+    FOREIGN KEY ([Attorney_Id])
+    REFERENCES [dbo].[Attorneys]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_dbo_ThirdPartyData_dbo_Attorneys_Attorney_Id'
+CREATE INDEX [IX_FK_dbo_ThirdPartyData_dbo_Attorneys_Attorney_Id]
+ON [dbo].[ThirdPartyData]
+    ([Attorney_Id]);
+GO
+
+-- Creating foreign key on [ThirdPartyData_Id] in table 'CaseRecord'
+ALTER TABLE [dbo].[CaseRecord]
+ADD CONSTRAINT [FK_dbo_CaseRecord_dbo_ThirdPartyData_ThirdPartyData_Id]
+    FOREIGN KEY ([ThirdPartyData_Id])
+    REFERENCES [dbo].[ThirdPartyData]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_dbo_CaseRecord_dbo_ThirdPartyData_ThirdPartyData_Id'
+CREATE INDEX [IX_FK_dbo_CaseRecord_dbo_ThirdPartyData_ThirdPartyData_Id]
+ON [dbo].[CaseRecord]
+    ([ThirdPartyData_Id]);
 GO
 
 -- --------------------------------------------------

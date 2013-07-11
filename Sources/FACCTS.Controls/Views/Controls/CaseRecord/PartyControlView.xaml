@@ -6,7 +6,6 @@
              xmlns:ext="clr-namespace:FACCTS.Controls.MarkupExtension"
              xmlns:fs="clr-namespace:FACCTS.Services.Data;assembly=FACCTS.Services"
              xmlns:Converters="clr-namespace:FACCTS.Controls.Converters"
-             xmlns:windows="clr-namespace:System.Windows;assembly=System.Windows"
              mc:Ignorable="d"
              x:Class="FACCTS.Controls.Views.Controls.PartyControlView"
              x:Name="UserControl"
@@ -23,6 +22,8 @@
         <CollectionViewSource x:Key="cvsraces" Source="{Binding Races, Mode=OneWay, Source={StaticResource DataContainer}}"/>
         <CollectionViewSource x:Key="cvsDesignations" Source="{Binding Designations, Mode=OneWay, Source={StaticResource DataContainer}}"/>
         <CollectionViewSource x:Key="cvsParticipantRoles" Source="{Binding ParticipantRoles, Mode=OneWay, Source={StaticResource DataContainer}}"/>
+        <CollectionViewSource x:Key="cvsEntityTypes"
+                              Source="{Binding Source={StaticResource DataContainer}, Path=EntityTypeList, Mode=OneWay}" />
     </UserControl.Resources>
 	<Grid x:Name="LayoutRoot">
 		<GroupBox Header="{Binding Title, ElementName=UserControl, Mode=OneWay}" Grid.IsSharedSizeScope="True">
@@ -159,8 +160,11 @@
 						</StackPanel>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Entity" VerticalAlignment="Center" Grid.Row="1" Grid.Column="6" Margin="8,0"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Parent Role" VerticalAlignment="Center" Grid.Row="2" Grid.Column="6" Margin="8,0"/>
-						<ComboBox VerticalAlignment="Center" Grid.Row="2" Grid.Column="7"/>
-						<ComboBox VerticalAlignment="Center" Grid.Row="1" Grid.Column="7"/>
+						<ComboBox VerticalAlignment="Center" Grid.Row="2" Grid.Column="7" Text="{Binding ParentRole, Mode=TwoWay}" IsEditable="True">
+							<ComboBoxItem Content="Mom"/>
+							<ComboBoxItem Content="Dad"/>
+						</ComboBox>
+						<ComboBox VerticalAlignment="Center" Grid.Row="1" Grid.Column="7" ItemsSource="{Binding Source={StaticResource cvsEntityTypes}, Mode=OneWay}" SelectedValuePath="Value" SelectedValue="{Binding EntityType, Mode=TwoWay}"/>
 					</Grid>
 				</Border>
 			</Grid>

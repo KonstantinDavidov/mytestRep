@@ -23,6 +23,7 @@ namespace FACCTS.Services.Data
         List<Race> Races { get; }
         List<Designation> Designations { get; }
         List<EnumDescript<USAState>> StateList { get; }
+        List<EnumDescript<FACCTSEntity>> EntityTypeList { get; }
         //List<ParticipantRole> ParticipantRoles { get; }
 
         void SearchCourtCases(bool reset = false);
