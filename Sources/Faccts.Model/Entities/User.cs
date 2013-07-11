@@ -75,6 +75,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.LastPasswordChangedDate)
     				,this.ObservableForProperty(x => x.PasswordVerificationToken)
     				,this.ObservableForProperty(x => x.PasswordVerificationTokenExpirationDate)
+    				,this.ObservableForProperty(x => x.CourtMember.IsDirty)
     			).
     			Subscribe(_ =>
     			{

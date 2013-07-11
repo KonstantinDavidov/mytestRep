@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Caliburn.Micro.ReactiveUI;
+using FACCTS.Controls.Events;
 using FACCTS.Services;
 using FACCTS.Services.Authentication;
 using FACCTS.Services.Data;
@@ -18,12 +19,15 @@ namespace FACCTS.Controls.ViewModels
     public class ViewModelBase : ReactiveScreen
     {
         private IAuthenticationService _authenticationService;
+        private IEventAggregator _eventAggregator;
 
         private ILogger _logger = ServiceLocatorContainer.Locator.GetInstance<ILogger>();
 
         public ViewModelBase()
             : this(ServiceLocatorContainer.Locator.GetInstance<IAuthenticationService>(),
-                ServiceLocatorContainer.Locator.GetInstance<IDataContainer>())
+                ServiceLocatorContainer.Locator.GetInstance<IDataContainer>(),
+                ServiceLocatorContainer.Locator.GetInstance<IEventAggregator>()
+            )
         {
             this.WhenAny(x => x.IsAuthenticated, x => x.IsActive, (x, y) => x.Value && y.Value)
                 .Subscribe(x =>
@@ -73,12 +77,18 @@ namespace FACCTS.Controls.ViewModels
         }
 
         [ImportingConstructor]
-        public ViewModelBase(IAuthenticationService authenticationService, IDataContainer dataContainer) : base()
+        public ViewModelBase(IAuthenticationService authenticationService, 
+            IDataContainer dataContainer,
+            IEventAggregator eventAggregator
+            ) : base()
         {
             _logger.InfoFormat("{0}.{}1", this.GetType().Name, "ctor");
             _authenticationService = authenticationService;
             _authenticationService.AuthenticationStatusChanged += _authenticationService_AuthenticationStatusChanged;
+            _eventAggregator = eventAggregator;
             DataContainer = dataContainer;
+
+            _eventAggregator.Subscribe(this);
         }
 
         private void _authenticationService_AuthenticationStatusChanged(object sender, AuthenticationStatusChangedEventArgs e)
@@ -146,6 +156,11 @@ namespace FACCTS.Controls.ViewModels
             _logger.InfoFormat("Closing {0}", this.GetType().Name);
             TryClose(false);
         }
-        
+
+
+        protected virtual void SaveData()
+        {
+
+        }
     }
 }

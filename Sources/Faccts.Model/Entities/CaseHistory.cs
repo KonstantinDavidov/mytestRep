@@ -63,6 +63,12 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.Hearing_Id)
     				,this.ObservableForProperty(x => x.MergeCase_Id)
     				,this.ObservableForProperty(x => x.CourtOrder_Id)
+    				,this.ObservableForProperty(x => x.CaseRecord.IsDirty)
+    				,this.ObservableForProperty(x => x.CourtCaseOrders.IsDirty)
+    				,this.ObservableForProperty(x => x.User.IsDirty)
+    				,this.ObservableForProperty(x => x.Hearing.IsDirty)
+    				,this.ObservableForProperty(x => x.MergeCase.IsDirty)
+    				,this.ObservableForProperty(x => x.CourtCaseOrders1.IsDirty)
     			).
     			Subscribe(_ =>
     			{

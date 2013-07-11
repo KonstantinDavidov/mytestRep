@@ -57,6 +57,8 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.InterpreterFor_Id)
     				,this.ObservableForProperty(x => x.CaseRecord_Id)
     				,this.ObservableForProperty(x => x.EntityType)
+    				,this.ObservableForProperty(x => x.CaseRecord.IsDirty)
+    				,this.ObservableForProperty(x => x.CourtParty.IsDirty)
     			).
     			Subscribe(_ =>
     			{

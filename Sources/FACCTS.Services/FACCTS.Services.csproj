@@ -109,14 +109,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Thinktecture.IdentityModel, Version=2.6.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Thinktecture.IdentityModel.2.6.2\lib\net45\Thinktecture.IdentityModel.dll</HintPath>
-    </Reference>
-    <Reference Include="Thinktecture.IdentityServer.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Thinktecture.IdentityServer.Core.2.1.0\lib\net45\Thinktecture.IdentityServer.Core.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +162,14 @@
     <ProjectReference Include="..\FACCTS.Server.Model\FACCTS.Server.Model.csproj">
       <Project>{5a675cbb-2774-4fde-a8c6-40aa46f4fa3f}</Project>
       <Name>FACCTS.Server.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IdentityModel\Thinktecture.IdentityModel\Thinktecture.IdentityModel.45.csproj">
+      <Project>{ac9a74df-4aab-43c8-b0ed-b7602721e545}</Project>
+      <Name>Thinktecture.IdentityModel.45</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Thinktecture.IdentityServer.Core\Thinktecture.IdentityServer.Core.csproj">
+      <Project>{38ce5c59-909e-4da6-8e1d-7eee7312ca9a}</Project>
+      <Name>Thinktecture.IdentityServer.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

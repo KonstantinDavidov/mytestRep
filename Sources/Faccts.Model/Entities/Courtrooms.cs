@@ -53,6 +53,7 @@ namespace Faccts.Model.Entities
     				this.ObservableForProperty(x => x.Id)
     				,this.ObservableForProperty(x => x.RoomName)
     				,this.ObservableForProperty(x => x.CourtLocation_Id)
+    				,this.ObservableForProperty(x => x.CourtLocations.IsDirty)
     			).
     			Subscribe(_ =>
     			{

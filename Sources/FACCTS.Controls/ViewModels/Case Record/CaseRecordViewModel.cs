@@ -212,6 +212,12 @@ namespace FACCTS.Controls.ViewModels
                 .ToList();
             
         }
+
+        public void CaseRecordSave()
+        {
+            
+            _eventAggregator.Publish(new SaveDataEvent());
+        }
        
     }
 }

@@ -16,7 +16,7 @@ using System.Reactive.Linq;
 namespace FACCTS.Controls.ViewModels
 {
     [Export(typeof(PersonalInformationViewModel))]
-    public partial class PersonalInformationViewModel : CaseRecordItemViewModel
+    public sealed partial class PersonalInformationViewModel : CaseRecordItemViewModel, IHandle<SaveDataEvent>
     {
         
         [ImportingConstructor]
@@ -70,5 +70,10 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
+
+        public void Handle(SaveDataEvent message)
+        {
+            SaveData();
+        }
     }
 }

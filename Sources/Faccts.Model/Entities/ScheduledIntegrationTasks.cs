@@ -56,6 +56,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.UserId)
     				,this.ObservableForProperty(x => x.Enabled)
     				,this.ObservableForProperty(x => x.State)
+    				,this.ObservableForProperty(x => x.User.IsDirty)
     			).
     			Subscribe(_ =>
     			{

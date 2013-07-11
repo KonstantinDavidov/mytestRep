@@ -58,6 +58,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.PostalCode)
     				,this.ObservableForProperty(x => x.City)
     				,this.ObservableForProperty(x => x.CourtCounty_Id)
+    				,this.ObservableForProperty(x => x.CourtCounty.IsDirty)
     			).
     			Subscribe(_ =>
     			{

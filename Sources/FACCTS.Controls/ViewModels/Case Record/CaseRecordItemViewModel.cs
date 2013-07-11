@@ -79,5 +79,28 @@ namespace FACCTS.Controls.ViewModels
                 return null;
             }
         }
+
+        protected override void SaveData()
+        {
+            base.SaveData();
+            if (CaseRecord == null)
+                return;
+            if (CaseRecord.ChangeTracker.State == ObjectState.Unchanged)
+                return;
+            if (!CaseRecord.IsDirty)
+                return;
+            switch(CaseRecord.ChangeTracker.State)
+            {
+                case ObjectState.Added:
+
+                    break;
+                case ObjectState.Deleted:
+
+                    break;
+                case ObjectState.Modified:
+
+                    break;
+            }
+        }
     }
 }

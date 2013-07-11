@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
@@ -22,6 +23,15 @@ namespace Faccts.Model.Entities
             this.Children = new TrackableCollection<Children>();
             this.RestrainingpartyIdentificationInformation = new RestrainingPartyIDInfo();
             this.ThirdPartyData = new ThirdPartyData();
+            this.WhenAny(x => x.CourtParty.IsDirty, x => x.CourtParty1.IsDirty, x => x.RestrainingpartyIdentificationInformation.IsDirty,
+                (x1, x2, x3) => x1.Value || x2.Value || x3.Value
+                )
+                .Subscribe(x =>
+                    {
+                        this.OnPropertyChanging("IsPersonalInformationDirty");
+                        this.OnPropertyChanged("IsPersonalInformationDirty");
+                    }
+                );
         }
 
         
@@ -38,6 +48,14 @@ namespace Faccts.Model.Entities
                 if (fileEvent == null)
                     return null;
                 return fileEvent.Date;
+            }
+        }
+
+        public bool IsPersonalInformationDirty
+        {
+            get
+            {
+                return this.CourtParty.IsDirty || this.CourtParty1.IsDirty || this.RestrainingpartyIdentificationInformation.IsDirty;
             }
         }
     }

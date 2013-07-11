@@ -60,6 +60,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.Age)
     				,this.ObservableForProperty(x => x.IsHouseHold)
     				,this.ObservableForProperty(x => x.Sex)
+    				,this.ObservableForProperty(x => x.CaseRecord.IsDirty)
     			).
     			Subscribe(_ =>
     			{

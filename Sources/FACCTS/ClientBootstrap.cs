@@ -25,7 +25,7 @@ namespace FACCTS
     public class ClientBootstrap : Bootstrapper<IShell>
     {
         public ClientBootstrap()
-            : base(true)
+            : base()
         {
 
         }
@@ -44,7 +44,7 @@ namespace FACCTS
 
             batch.AddExportedValue<IWindowManager>(new WindowManager());
             batch.AddExportedValue<IEventAggregator>(new EventAggregator());
-           // batch.AddExportedValue<ILogger>(new Logger());
+            //batch.AddExportedValue<ILogger>(new Logger());
             batch.AddExportedValue(container);
             ServiceLocatorContainer.Locator = new MefServiceLocator(container);
             container.Compose(batch);
@@ -105,6 +105,7 @@ namespace FACCTS
             logger.Fatal("An unhandled Exception occured: ", e.Exception);
             e.Handled = true;
         }
+
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {

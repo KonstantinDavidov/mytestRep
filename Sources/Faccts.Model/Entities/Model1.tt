@@ -83,7 +83,15 @@ foreach (EntityType entity in code.GetItemsToGenerate<EntityType>(ItemCollection
 <#
 		++ index;
 	}
-#>
+			var navigationPropertiesCollection = entity.NavigationProperties.Where(np => np.DeclaringType == entity && np.ToEndMember.RelationshipMultiplicity != RelationshipMultiplicity.Many);
+			foreach (NavigationProperty edmProperty in navigationPropertiesCollection)
+			{
+				if (index > 0)
+{#>				,<#}
+			else
+{#>				<#}#>this.ObservableForProperty(x => x.<#=code.Escape(edmProperty)#>.IsDirty)
+<#				++ index;
+			}#>
 			).
 			Subscribe(_ =>
 			{

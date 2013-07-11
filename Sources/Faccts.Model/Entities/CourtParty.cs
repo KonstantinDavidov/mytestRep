@@ -84,6 +84,11 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.ParentRole)
     				,this.ObservableForProperty(x => x.EntityType)
     				,this.ObservableForProperty(x => x.Email)
+    				,this.ObservableForProperty(x => x.Attorneys.IsDirty)
+    				,this.ObservableForProperty(x => x.Designation.IsDirty)
+    				,this.ObservableForProperty(x => x.EyesColor.IsDirty)
+    				,this.ObservableForProperty(x => x.HairColor.IsDirty)
+    				,this.ObservableForProperty(x => x.Race.IsDirty)
     			).
     			Subscribe(_ =>
     			{

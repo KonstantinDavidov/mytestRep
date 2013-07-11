@@ -52,6 +52,7 @@ namespace Faccts.Model.Entities
     				this.ObservableForProperty(x => x.Id)
     				,this.ObservableForProperty(x => x.CaseNumberAutoGeneration)
     				,this.ObservableForProperty(x => x.CurrentCourtCountyId)
+    				,this.ObservableForProperty(x => x.CourtCounty.IsDirty)
     			).
     			Subscribe(_ =>
     			{
