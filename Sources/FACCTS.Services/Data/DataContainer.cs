@@ -211,6 +211,19 @@ namespace FACCTS.Services.Data
             }
         }
 
+        private List<EnumDescript<FACCTSEntity>> _entityTypeList;
+        public List<EnumDescript<FACCTSEntity>> EntityTypeList
+        {
+            get
+            {
+                if (_entityTypeList == null)
+                {
+                    _entityTypeList = EnumDescript<FACCTSEntity>.GetList<FACCTSEntity>();
+                }
+                return _entityTypeList;
+            }
+        }
+
         private List<HairColor> _hairColors;
         public List<HairColor> HairColors
         {

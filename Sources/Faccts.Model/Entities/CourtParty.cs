@@ -534,6 +534,54 @@ namespace Faccts.Model.Entities
             }
         }
         private int _sex;
+    
+        [DataMember]
+        public string ParentRole
+        {
+            get { return _parentRole; }
+            set
+            {
+                if (_parentRole != value)
+                {
+    				OnPropertyChanging("ParentRole");
+                    _parentRole = value;
+                    OnPropertyChanged("ParentRole");
+                }
+            }
+        }
+        private string _parentRole;
+    
+        [DataMember]
+        public FACCTS.Server.Model.Enums.FACCTSEntity EntityType
+        {
+            get { return _entityType; }
+            set
+            {
+                if (_entityType != value)
+                {
+    				OnPropertyChanging("EntityType");
+                    _entityType = value;
+                    OnPropertyChanged("EntityType");
+                }
+            }
+        }
+        private FACCTS.Server.Model.Enums.FACCTSEntity _entityType;
+    
+        [DataMember]
+        public string Email
+        {
+            get { return _email; }
+            set
+            {
+                if (_email != value)
+                {
+    				OnPropertyChanging("Email");
+                    _email = value;
+                    OnPropertyChanged("Email");
+                }
+            }
+        }
+        private string _email;
 
         #endregion
 

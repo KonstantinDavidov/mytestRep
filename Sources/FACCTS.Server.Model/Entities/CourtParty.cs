@@ -60,7 +60,8 @@ namespace FACCTS.Server.Model.DataModel
         [StringLength(20)]
         public string Fax { get; set; }
 
-        public ParentRole ParentRole { get; set; }
+        [StringLength(50)]
+        public string ParentRole { get; set; }
 
         public FACCTSEntity EntityType { get; set; }
 
