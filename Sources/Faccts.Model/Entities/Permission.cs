@@ -206,6 +206,42 @@ namespace Faccts.Model.Entities
             }
         }
         private TrackableCollection<Role> _role;
+    
+        [DataMember]
+        public TrackableCollection<Role> Role1
+        {
+            get
+            {
+                if (_role1 == null)
+                {
+                    _role1 = new TrackableCollection<Role>();
+                    _role1.CollectionChanged += FixupRole1;
+                }
+                return _role1;
+            }
+            set
+            {
+                if (!ReferenceEquals(_role1, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("Role1");
+                    if (_role1 != null)
+                    {
+                        _role1.CollectionChanged -= FixupRole1;
+                    }
+                    _role1 = value;
+                    if (_role1 != null)
+                    {
+                        _role1.CollectionChanged += FixupRole1;
+                    }
+                    OnNavigationPropertyChanged("Role1");
+                }
+            }
+        }
+        private TrackableCollection<Role> _role1;
 
         #endregion
 
@@ -305,6 +341,7 @@ namespace Faccts.Model.Entities
         protected virtual void ClearNavigationProperties()
         {
             Role.Clear();
+            Role1.Clear();
         }
 
         #endregion
@@ -345,6 +382,45 @@ namespace Faccts.Model.Entities
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         ChangeTracker.RecordRemovalFromCollectionProperties("Role", item);
+                    }
+                }
+            }
+        }
+    
+        private void FixupRole1(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (Role item in e.NewItems)
+                {
+                    item.Permission.Add(this);
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("Role1", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (Role item in e.OldItems)
+                {
+                    if (item.Permission.Contains(this))
+                    {
+                        item.Permission.Remove(this);
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("Role1", item);
                     }
                 }
             }

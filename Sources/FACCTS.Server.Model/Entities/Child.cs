@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace FACCTS.Server.Model.DataModel
 {
     [Table("Children")]
-    public partial class Child
+    public partial class Child : BaseEntity
     {
         public Child()
         {
@@ -18,9 +18,6 @@ namespace FACCTS.Server.Model.DataModel
             this.RelationshipToProtected = Relationship.C;
         }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
 
         [Required]
         public FACCTSEntity EntityType { get; set; } 
@@ -42,5 +39,18 @@ namespace FACCTS.Server.Model.DataModel
         public DateTime DateOfBirth { get; set; }
         [InverseProperty("Children")]
         public virtual CaseRecord CaseRecord { get; set; }
+
+        [NotMapped]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
+            }
+        }
     }
 }

@@ -70,7 +70,7 @@ namespace Faccts.Model.Entities
                     ParticipantRole = this.ParticipantRole,
                     Address = this.Address,
                     City = this.City,
-                    State = this.State,
+                    USAState = this.State,
                     ZipCode = this.ZipCode,
                     Phone = this.Phone,
                     Fax = this.Fax,
@@ -89,7 +89,7 @@ namespace Faccts.Model.Entities
                     Age = this.Age,
                     HasAttorney = this.HasAttorney,
                     Attorney = this.Attorneys.ToDTO(),
-
+                    State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
 
                 };
             return dto;

@@ -63,6 +63,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.Fax)
     				,this.ObservableForProperty(x => x.Email)
     				,this.ObservableForProperty(x => x.StateBarId)
+    				,this.ObservableForProperty(x => x.USAState)
     			).
     			Subscribe(_ =>
     			{
@@ -144,7 +145,7 @@ namespace Faccts.Model.Entities
     	    #region Simple Properties
     
         [DataMember]
-        public int Id
+        public long Id
         {
             get { return _id; }
             set
@@ -161,7 +162,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _id;
+        private long _id;
     
         [DataMember]
         public string FirstName
@@ -338,6 +339,22 @@ namespace Faccts.Model.Entities
             }
         }
         private string _stateBarId;
+    
+        [DataMember]
+        public int USAState
+        {
+            get { return _uSAState; }
+            set
+            {
+                if (_uSAState != value)
+                {
+    				OnPropertyChanging("USAState");
+                    _uSAState = value;
+                    OnPropertyChanged("USAState");
+                }
+            }
+        }
+        private int _uSAState;
 
         #endregion
 

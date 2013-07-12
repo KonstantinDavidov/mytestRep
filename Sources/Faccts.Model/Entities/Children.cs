@@ -57,6 +57,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.DateOfBirth)
     				,this.ObservableForProperty(x => x.Gender)
     				,this.ObservableForProperty(x => x.CaseRecord_Id)
+    				,this.ObservableForProperty(x => x.Sex)
     				,this.ObservableForProperty(x => x.CaseRecord.IsDirty)
     			).
     			Subscribe(_ =>
@@ -139,7 +140,7 @@ namespace Faccts.Model.Entities
     	    #region Simple Properties
     
         [DataMember]
-        public int Id
+        public long Id
         {
             get { return _id; }
             set
@@ -156,7 +157,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _id;
+        private long _id;
     
         [DataMember]
         public int EntityType
@@ -277,6 +278,22 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<long> _caseRecord_Id;
+    
+        [DataMember]
+        public int Sex
+        {
+            get { return _sex; }
+            set
+            {
+                if (_sex != value)
+                {
+    				OnPropertyChanging("Sex");
+                    _sex = value;
+                    OnPropertyChanged("Sex");
+                }
+            }
+        }
+        private int _sex;
 
         #endregion
 

@@ -1,11 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public partial class IdentityProvider
+    public partial class IdentityProvider : BaseEntity
     {
-        [Key]
-        public int ID { get; set; }
 
         [Required]
         public string Name { get; set; }
@@ -26,5 +25,18 @@ namespace FACCTS.Server.Model.DataModel
         public int? OAuth2ProviderType { get; set; }
 
         public bool Enabled { get; set; }
+
+        [NotMapped]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
+            }
+        }
     }
 }

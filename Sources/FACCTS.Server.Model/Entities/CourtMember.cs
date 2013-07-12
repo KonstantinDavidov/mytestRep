@@ -12,7 +12,7 @@ namespace FACCTS.Server.Model.DataModel
     [Table("CourtMember")]
     public class CourtMember : User
     {
-        public int? SubstituteId { get; set; }
+        public long? SubstituteId { get; set; }
 
         [ForeignKey("SubstituteId")]
         public virtual CourtMember Substitute { get; set; }
@@ -23,5 +23,18 @@ namespace FACCTS.Server.Model.DataModel
         [Column(TypeName = "image")]
         public byte[] Image { get; set; }
         public string Phone { get; set; }
+
+        [NotMapped]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
+            }
+        }
     }
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public partial class CourtCase
+    public partial class CourtCase : BaseEntity
     {
 
         public CourtCase()
@@ -18,9 +18,6 @@ namespace FACCTS.Server.Model.DataModel
             ParentCase = null;
         }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
 
         [Required]
         [StringLength(20)]
@@ -39,6 +36,18 @@ namespace FACCTS.Server.Model.DataModel
 
         public virtual CourtCase ParentCase { get; set; }
 
+        [NotMapped]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
+            }
+        }
 
     }
 }

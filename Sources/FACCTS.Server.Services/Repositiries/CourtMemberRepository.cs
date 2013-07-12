@@ -13,9 +13,9 @@ namespace FACCTS.Server.Data.Repositiries
     {
         public CourtMemberRepository(DbContext context) : base(context) { }
 
-        public IQueryable<CourtMember> GetCourtMembersByRole(int roleId)
+        public IQueryable<CourtMember> GetCourtMembersByRole(long roleId)
         {
-            return Entities.Where(cm => cm.Roles.Any(r => r.RoleId >= roleId));
+            return Entities.Where(cm => cm.Roles.Any(r => r.Id >= roleId));
         }
         public IQueryable<CourtMemberBrief> GetBriefs()
         {
@@ -24,7 +24,7 @@ namespace FACCTS.Server.Data.Repositiries
                 FullName = cm.FirstName + " " + cm.LastName,
                 RoleName = cm.Roles.FirstOrDefault() == null ? string.Empty : cm.Roles.FirstOrDefault().RoleName,
                 Email = cm.Email,
-                UserId = cm.UserId
+                UserId = cm.Id
             });
         }
     }

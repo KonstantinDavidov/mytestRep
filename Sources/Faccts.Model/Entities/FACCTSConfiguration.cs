@@ -134,7 +134,7 @@ namespace Faccts.Model.Entities
     	    #region Simple Properties
     
         [DataMember]
-        public int Id
+        public long Id
         {
             get { return _id; }
             set
@@ -151,7 +151,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _id;
+        private long _id;
     
         [DataMember]
         public bool CaseNumberAutoGeneration
@@ -170,7 +170,7 @@ namespace Faccts.Model.Entities
         private bool _caseNumberAutoGeneration;
     
         [DataMember]
-        public Nullable<int> CurrentCourtCountyId
+        public Nullable<long> CurrentCourtCountyId
         {
             get { return _currentCourtCountyId; }
             set
@@ -191,7 +191,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _currentCourtCountyId;
+        private Nullable<long> _currentCourtCountyId;
 
         #endregion
 

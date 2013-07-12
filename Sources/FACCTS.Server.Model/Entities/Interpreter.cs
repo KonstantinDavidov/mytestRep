@@ -10,10 +10,8 @@ using System.Threading.Tasks;
 namespace FACCTS.Server.Model.DataModel
 {
     [Table("Interpreters")]
-    public partial class Interpreter
+    public partial class Interpreter : BaseEntity
     {
-        [Key]
-        public int Id { get; set; }
 
         [Required]
         public FACCTSEntity EntityType { get; set; } 
@@ -34,5 +32,18 @@ namespace FACCTS.Server.Model.DataModel
 
         [InverseProperty("Interpreters")]
         public virtual CaseRecord CaseRecord { get; set; }
+
+        [NotMapped]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
+            }
+        }
     }
 }

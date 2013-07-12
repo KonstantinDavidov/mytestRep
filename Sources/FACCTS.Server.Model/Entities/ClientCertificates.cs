@@ -4,13 +4,12 @@
  */
 
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
     
 namespace FACCTS.Server.Model.DataModel
 {
-    public partial class ClientCertificates
+    public partial class ClientCertificates : BaseEntity
     {
-        [Key]
-        public long Id { get; set; }
 
         [Required]
         public string UserName { get; set; }
@@ -20,5 +19,18 @@ namespace FACCTS.Server.Model.DataModel
         
         [Required]
         public string Description { get; set; }
+
+        [NotMapped]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
+            }
+        }
     }
 }

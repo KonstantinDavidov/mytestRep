@@ -59,10 +59,12 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.CourtClerk_UserId)
     				,this.ObservableForProperty(x => x.CaseRecord_Id)
     				,this.ObservableForProperty(x => x.ParentCase_Id)
+    				,this.ObservableForProperty(x => x.CourtClerk_Id)
     				,this.ObservableForProperty(x => x.CaseRecord.IsDirty)
     				,this.ObservableForProperty(x => x.User.IsDirty)
     				,this.ObservableForProperty(x => x.ParentCase.IsDirty)
     				,this.ObservableForProperty(x => x.CaseRecord1.IsDirty)
+    				,this.ObservableForProperty(x => x.User1.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -212,7 +214,7 @@ namespace Faccts.Model.Entities
         private string _cCPORId;
     
         [DataMember]
-        public Nullable<int> CourtClerk_UserId
+        public Nullable<long> CourtClerk_UserId
         {
             get { return _courtClerk_UserId; }
             set
@@ -233,7 +235,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _courtClerk_UserId;
+        private Nullable<long> _courtClerk_UserId;
     
         [DataMember]
         public long CaseRecord_Id
@@ -282,6 +284,30 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<long> _parentCase_Id;
+    
+        [DataMember]
+        public Nullable<long> CourtClerk_Id
+        {
+            get { return _courtClerk_Id; }
+            set
+            {
+                if (_courtClerk_Id != value)
+                {
+                    ChangeTracker.RecordOriginalValue("CourtClerk_Id", _courtClerk_Id);
+                    if (!IsDeserializing)
+                    {
+                        if (User1 != null && User1.Id != value)
+                        {
+                            User1 = null;
+                        }
+                    }
+    				OnPropertyChanging("CourtClerk_Id");
+                    _courtClerk_Id = value;
+                    OnPropertyChanged("CourtClerk_Id");
+                }
+            }
+        }
+        private Nullable<long> _courtClerk_Id;
 
         #endregion
 
@@ -430,6 +456,24 @@ namespace Faccts.Model.Entities
             }
         }
         private CaseRecord _caseRecord1;
+    
+        [DataMember]
+        public User User1
+        {
+            get { return _user1; }
+            set
+            {
+                if (!ReferenceEquals(_user1, value))
+                {
+                    var previousValue = _user1;
+    				OnNavigationPropertyChanging("User1");
+                    _user1 = value;
+                    FixupUser1(previousValue);
+                    OnNavigationPropertyChanged("User1");
+                }
+            }
+        }
+        private User _user1;
 
         #endregion
 
@@ -544,6 +588,7 @@ namespace Faccts.Model.Entities
             ParentCase = null;
             CourtDocketRecord.Clear();
             CaseRecord1 = null;
+            User1 = null;
         }
 
         #endregion
@@ -717,6 +762,47 @@ namespace Faccts.Model.Entities
                 if (CaseRecord1 != null && !CaseRecord1.ChangeTracker.ChangeTrackingEnabled)
                 {
                     CaseRecord1.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupUser1(User previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.CourtCase1.Contains(this))
+            {
+                previousValue.CourtCase1.Remove(this);
+            }
+    
+            if (User1 != null)
+            {
+                User1.CourtCase1.Add(this);
+    
+                CourtClerk_Id = User1.Id;
+            }
+            else if (!skipKeys)
+            {
+                CourtClerk_Id = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("User1")
+                    && (ChangeTracker.OriginalValues["User1"] == User1))
+                {
+                    ChangeTracker.OriginalValues.Remove("User1");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("User1", previousValue);
+                }
+                if (User1 != null && !User1.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    User1.StartTracking();
                 }
             }
         }

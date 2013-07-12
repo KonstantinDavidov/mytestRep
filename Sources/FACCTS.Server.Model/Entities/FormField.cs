@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public class FormField
+    public class FormField : BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [CsvField(Index = 0)]
-        public int Id { get; set; }
+        public override long Id { get; set; }
 
         [Column("form_field_name")]
         [CsvField(Index = 1, Default = null)]
@@ -79,5 +79,19 @@ namespace FACCTS.Server.Model.DataModel
         [CsvField(Index = 11, Ignore = true)]
         [StringLength(200)]
         public string XmlExport { get; set; }
+
+        [NotMapped]
+        [CsvField(Ignore=true)]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
+            }
+        }
     }
 }

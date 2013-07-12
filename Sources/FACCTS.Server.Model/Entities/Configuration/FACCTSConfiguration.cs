@@ -8,16 +8,27 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel.Configuration
 {
-    public partial class FACCTSConfiguration
+    public partial class FACCTSConfiguration : BaseEntity
     {
-        [Key]
-        public int Id { get; set; }
 
         public bool CaseNumberAutoGeneration { get; set; }
 
         [ForeignKey("CurrentCourtCountyId")]
         public virtual CourtCounty CurrentCourtCounty { get; set; }
 
-        public int? CurrentCourtCountyId { get; set; }
+        public long? CurrentCourtCountyId { get; set; }
+
+        [NotMapped]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
+            }
+        }
     }
 }

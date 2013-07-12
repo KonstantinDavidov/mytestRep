@@ -11,15 +11,29 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public class Permission
+    public class Permission : BaseEntity
     {
         [Key]
         [CsvField(Index = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public long Id { get; set; }
+        public override long Id { get; set; }
         [CsvField(Index = 1)]
         public string Name { get; set; }
         [CsvField(Ignore = true)]
         public virtual ICollection<Role> Roles { get; set; }
+
+        [NotMapped]
+        [CsvField(Ignore = true)]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
+            }
+        }
     }
 }

@@ -11,15 +11,12 @@ using System.Xml.Linq;
 namespace FACCTS.Server.Model.DataModel
 {
     [Table("CourtCaseOrders")]
-    public partial class CourtCaseOrder
+    public partial class CourtCaseOrder : BaseEntity
     {
         public CourtCaseOrder()
         {
             IsSigned = false;
         }
-
-        [Key]
-        public long Id { get; set; }
         
         public int AvailableCourtOrderId { get; set; }
 
@@ -50,6 +47,19 @@ namespace FACCTS.Server.Model.DataModel
 
         [StringLength(255)]
         public string ServerFileName { get; set; }
+
+        [NotMapped]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
+            }
+        }
     }
 
     

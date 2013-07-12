@@ -9,7 +9,7 @@ namespace FACCTS.Server.DataContracts
 {
     public interface ICourtMemberRepository : IFacctsDataRepository<CourtMember>
     {
-        IQueryable<CourtMember> GetCourtMembersByRole(int roleId);
+        IQueryable<CourtMember> GetCourtMembersByRole(long roleId);
         IQueryable<CourtMemberBrief> GetBriefs();
     }
 }

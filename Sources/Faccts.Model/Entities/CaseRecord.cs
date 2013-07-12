@@ -182,7 +182,7 @@ namespace Faccts.Model.Entities
         private long _id;
     
         [DataMember]
-        public Nullable<int> Party1_Id
+        public Nullable<long> Party1_Id
         {
             get { return _party1_Id; }
             set
@@ -203,10 +203,10 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _party1_Id;
+        private Nullable<long> _party1_Id;
     
         [DataMember]
-        public Nullable<int> Party2_Id
+        public Nullable<long> Party2_Id
         {
             get { return _party2_Id; }
             set
@@ -227,10 +227,10 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _party2_Id;
+        private Nullable<long> _party2_Id;
     
         [DataMember]
-        public Nullable<int> AttorneyForChild_Id
+        public Nullable<long> AttorneyForChild_Id
         {
             get { return _attorneyForChild_Id; }
             set
@@ -251,10 +251,10 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _attorneyForChild_Id;
+        private Nullable<long> _attorneyForChild_Id;
     
         [DataMember]
-        public Nullable<int> CourtCounty_Id
+        public Nullable<long> CourtCounty_Id
         {
             get { return _courtCounty_Id; }
             set
@@ -275,7 +275,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _courtCounty_Id;
+        private Nullable<long> _courtCounty_Id;
     
         [DataMember]
         public Nullable<long> CaseRecord_Id

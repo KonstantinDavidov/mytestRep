@@ -1,15 +1,15 @@
 ﻿using FACCTS.Server.Model.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public class ScheduledIntegrationTask
+    public class ScheduledIntegrationTask : BaseEntity
     {
-        public int Id { get; set; }
 
         public DateTime StartTime { get; set; }
 
@@ -17,7 +17,7 @@ namespace FACCTS.Server.Model.DataModel
 
         public string Info { get; set; }
 
-        public int? UserId { get; set; }
+        public long? UserId { get; set; }
 
         /// <summary>
         /// User, who placed the order
@@ -26,6 +26,19 @@ namespace FACCTS.Server.Model.DataModel
 
         public bool Enabled { get; set; }
 
-        public IntegrationTaskState State { get; set; }
+        public IntegrationTaskState TaskState { get; set; }
+
+        [NotMapped]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
+            }
+        }
     }
 }

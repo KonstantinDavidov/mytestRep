@@ -54,6 +54,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.IsThirdPartyProPer)
     				,this.ObservableForProperty(x => x.IsThirdPartyRequestorInEACase)
     				,this.ObservableForProperty(x => x.Attorney_Id)
+    				,this.ObservableForProperty(x => x.IsThirdpartyProPer)
     				,this.ObservableForProperty(x => x.Attorney.IsDirty)
     			).
     			Subscribe(_ =>
@@ -188,7 +189,7 @@ namespace Faccts.Model.Entities
         private bool _isThirdPartyRequestorInEACase;
     
         [DataMember]
-        public Nullable<int> Attorney_Id
+        public Nullable<long> Attorney_Id
         {
             get { return _attorney_Id; }
             set
@@ -209,7 +210,23 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _attorney_Id;
+        private Nullable<long> _attorney_Id;
+    
+        [DataMember]
+        public bool IsThirdpartyProPer
+        {
+            get { return _isThirdpartyProPer; }
+            set
+            {
+                if (_isThirdpartyProPer != value)
+                {
+    				OnPropertyChanging("IsThirdpartyProPer");
+                    _isThirdpartyProPer = value;
+                    OnPropertyChanged("IsThirdpartyProPer");
+                }
+            }
+        }
+        private bool _isThirdpartyProPer;
 
         #endregion
 

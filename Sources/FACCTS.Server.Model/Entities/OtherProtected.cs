@@ -9,17 +9,13 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public partial class OtherProtected
+    public partial class OtherProtected : BaseEntity
     {
         public OtherProtected()
         {
             this.EntityType = FACCTSEntity.PERSON;
             this.RelationshipToPlaintiff = Relationship.O;
         }
-
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
 
         [Required]
         public FACCTSEntity EntityType { get; set; } 
@@ -53,5 +49,18 @@ namespace FACCTS.Server.Model.DataModel
 
         [InverseProperty("OtherProtected")]
         public virtual CaseRecord CaseRecord { get; set; }
+
+        [NotMapped]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
+            }
+        }
     }
 }

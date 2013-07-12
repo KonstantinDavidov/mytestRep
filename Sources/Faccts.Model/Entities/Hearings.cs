@@ -141,7 +141,7 @@ namespace Faccts.Model.Entities
     	    #region Simple Properties
     
         [DataMember]
-        public int Id
+        public long Id
         {
             get { return _id; }
             set
@@ -158,7 +158,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _id;
+        private long _id;
     
         [DataMember]
         public System.DateTime HearingDate
@@ -193,7 +193,7 @@ namespace Faccts.Model.Entities
         private string _judge;
     
         [DataMember]
-        public Nullable<int> Courtroom_Id
+        public Nullable<long> Courtroom_Id
         {
             get { return _courtroom_Id; }
             set
@@ -214,10 +214,10 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _courtroom_Id;
+        private Nullable<long> _courtroom_Id;
     
         [DataMember]
-        public Nullable<int> Department_Id
+        public Nullable<long> Department_Id
         {
             get { return _department_Id; }
             set
@@ -238,7 +238,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _department_Id;
+        private Nullable<long> _department_Id;
     
         [DataMember]
         public FACCTS.Server.Model.Enums.DocketSession Session

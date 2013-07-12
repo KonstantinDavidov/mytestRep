@@ -9,16 +9,13 @@ using FACCTS.Server.Model.Enums;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public partial class CourtParty
+    public partial class CourtParty : BaseEntity
     {
         public CourtParty()
         {
             EntityType = FACCTSEntity.PERSON;
         }
 
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public long Id { get; set; }
 
         [Required]
         [StringLength(255)]
@@ -46,7 +43,7 @@ namespace FACCTS.Server.Model.DataModel
         [StringLength(100)]
         public string City { get; set; }
 
-        public USAState State { get; set; }
+        public USAState USAState { get; set; }
 
         [DataType(DataType.PostalCode)]
         [StringLength(20)]
@@ -100,6 +97,18 @@ namespace FACCTS.Server.Model.DataModel
             get
             {
                 return string.Format("{0} {1} {2}",FirstName,MiddleName,this.LastName).Replace("  ", " ");
+            }
+        }
+        [NotMapped]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
             }
         }
 

@@ -13,12 +13,12 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public partial class CourtCounty
+    public partial class CourtCounty : BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [CsvField(Index = 0)]
-        public int Id { get; set; }
+        public override long Id { get; set; }
 
         [Column("court_code")]
         [CsvField(Index = 1)]
@@ -56,6 +56,20 @@ namespace FACCTS.Server.Model.DataModel
         {
             get;
             set;
+        }
+
+        [NotMapped]
+        [CsvField(Ignore=true)]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
+            }
         }
     }
 }

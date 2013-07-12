@@ -85,6 +85,8 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.EntityType)
     				,this.ObservableForProperty(x => x.Email)
     				,this.ObservableForProperty(x => x.RelationToOtherParty)
+    				,this.ObservableForProperty(x => x.USAState)
+    				,this.ObservableForProperty(x => x.RelationToOtherParty1)
     				,this.ObservableForProperty(x => x.Attorneys.IsDirty)
     				,this.ObservableForProperty(x => x.Designation.IsDirty)
     				,this.ObservableForProperty(x => x.EyesColor.IsDirty)
@@ -171,7 +173,7 @@ namespace Faccts.Model.Entities
     	    #region Simple Properties
     
         [DataMember]
-        public int Id
+        public long Id
         {
             get { return _id; }
             set
@@ -188,7 +190,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _id;
+        private long _id;
     
         [DataMember]
         public string FirstName
@@ -447,7 +449,7 @@ namespace Faccts.Model.Entities
         private Nullable<bool> _hasAttorney;
     
         [DataMember]
-        public int Designation_Id
+        public long Designation_Id
         {
             get { return _designation_Id; }
             set
@@ -468,7 +470,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _designation_Id;
+        private long _designation_Id;
     
         [DataMember]
         public FACCTS.Server.Model.Enums.Gender Gender
@@ -487,7 +489,7 @@ namespace Faccts.Model.Entities
         private FACCTS.Server.Model.Enums.Gender _gender;
     
         [DataMember]
-        public int HairColor_Id
+        public long HairColor_Id
         {
             get { return _hairColor_Id; }
             set
@@ -508,10 +510,10 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _hairColor_Id;
+        private long _hairColor_Id;
     
         [DataMember]
-        public int EyesColor_Id
+        public long EyesColor_Id
         {
             get { return _eyesColor_Id; }
             set
@@ -532,10 +534,10 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _eyesColor_Id;
+        private long _eyesColor_Id;
     
         [DataMember]
-        public int Race_Id
+        public long Race_Id
         {
             get { return _race_Id; }
             set
@@ -556,10 +558,10 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _race_Id;
+        private long _race_Id;
     
         [DataMember]
-        public Nullable<int> Attorney_Id
+        public Nullable<long> Attorney_Id
         {
             get { return _attorney_Id; }
             set
@@ -580,7 +582,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _attorney_Id;
+        private Nullable<long> _attorney_Id;
     
         [DataMember]
         public FACCTS.Server.Model.Enums.ParticipantRole ParticipantRole
@@ -677,6 +679,38 @@ namespace Faccts.Model.Entities
             }
         }
         private string _relationToOtherParty;
+    
+        [DataMember]
+        public int USAState
+        {
+            get { return _uSAState; }
+            set
+            {
+                if (_uSAState != value)
+                {
+    				OnPropertyChanging("USAState");
+                    _uSAState = value;
+                    OnPropertyChanged("USAState");
+                }
+            }
+        }
+        private int _uSAState;
+    
+        [DataMember]
+        public string RelationToOtherParty1
+        {
+            get { return _relationToOtherParty1; }
+            set
+            {
+                if (_relationToOtherParty1 != value)
+                {
+    				OnPropertyChanging("RelationToOtherParty1");
+                    _relationToOtherParty1 = value;
+                    OnPropertyChanged("RelationToOtherParty1");
+                }
+            }
+        }
+        private string _relationToOtherParty1;
 
         #endregion
 

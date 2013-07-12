@@ -48,8 +48,7 @@ namespace Faccts.Model.Entities
     				}
     			);
     			Observable.Merge<Object>(
-    				this.ObservableForProperty(x => x.ID)
-    				,this.ObservableForProperty(x => x.Name)
+    				this.ObservableForProperty(x => x.Name)
     				,this.ObservableForProperty(x => x.DisplayName)
     				,this.ObservableForProperty(x => x.Type)
     				,this.ObservableForProperty(x => x.ShowInHrdSelection)
@@ -59,6 +58,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.ClientSecret)
     				,this.ObservableForProperty(x => x.OAuth2ProviderType)
     				,this.ObservableForProperty(x => x.Enabled)
+    				,this.ObservableForProperty(x => x.Id)
     			).
     			Subscribe(_ =>
     			{
@@ -138,26 +138,6 @@ namespace Faccts.Model.Entities
                 RaiseNavigationPropertyLoading(body.Member.Name);
             }
     	    #region Simple Properties
-    
-        [DataMember]
-        public int ID
-        {
-            get { return _iD; }
-            set
-            {
-                if (_iD != value)
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added)
-                    {
-                        throw new InvalidOperationException("The property 'ID' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
-                    }
-    				OnPropertyChanging("ID");
-                    _iD = value;
-                    OnPropertyChanged("ID");
-                }
-            }
-        }
-        private int _iD;
     
         [DataMember]
         public string Name
@@ -318,6 +298,26 @@ namespace Faccts.Model.Entities
             }
         }
         private bool _enabled;
+    
+        [DataMember]
+        public long Id
+        {
+            get { return _id; }
+            set
+            {
+                if (_id != value)
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added)
+                    {
+                        throw new InvalidOperationException("The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
+                    }
+    				OnPropertyChanging("Id");
+                    _id = value;
+                    OnPropertyChanged("Id");
+                }
+            }
+        }
+        private long _id;
 
         #endregion
 

@@ -10,11 +10,8 @@ using System.Threading.Tasks;
 namespace FACCTS.Server.Model.DataModel
 {
     [Table("Attorneys")]
-    public partial class Attorney
+    public partial class Attorney : BaseEntity
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
 
         [Required]
         [StringLength(150)]
@@ -34,7 +31,7 @@ namespace FACCTS.Server.Model.DataModel
         [StringLength(100)]
         public string City { get; set; }
 
-        public USAState State { get; set; }
+        public USAState USAState { get; set; }
 
         [DataType(DataType.PostalCode)]
         [StringLength(20)]
@@ -61,6 +58,19 @@ namespace FACCTS.Server.Model.DataModel
             get
             {
                 return this.FirstName + " " + this.LastName;
+            }
+        }
+
+        [NotMapped]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
             }
         }
 
