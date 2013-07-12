@@ -135,7 +135,7 @@ namespace Faccts.Model.Entities
     	    #region Simple Properties
     
         [DataMember]
-        public int Id
+        public long Id
         {
             get { return _id; }
             set
@@ -152,7 +152,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _id;
+        private long _id;
     
         [DataMember]
         public string RoleName
@@ -277,6 +277,78 @@ namespace Faccts.Model.Entities
             }
         }
         private TrackableCollection<User> _user1;
+    
+        [DataMember]
+        public TrackableCollection<Permission> Permission
+        {
+            get
+            {
+                if (_permission == null)
+                {
+                    _permission = new TrackableCollection<Permission>();
+                    _permission.CollectionChanged += FixupPermission;
+                }
+                return _permission;
+            }
+            set
+            {
+                if (!ReferenceEquals(_permission, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("Permission");
+                    if (_permission != null)
+                    {
+                        _permission.CollectionChanged -= FixupPermission;
+                    }
+                    _permission = value;
+                    if (_permission != null)
+                    {
+                        _permission.CollectionChanged += FixupPermission;
+                    }
+                    OnNavigationPropertyChanged("Permission");
+                }
+            }
+        }
+        private TrackableCollection<Permission> _permission;
+    
+        [DataMember]
+        public TrackableCollection<User> User
+        {
+            get
+            {
+                if (_user == null)
+                {
+                    _user = new TrackableCollection<User>();
+                    _user.CollectionChanged += FixupUser;
+                }
+                return _user;
+            }
+            set
+            {
+                if (!ReferenceEquals(_user, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("User");
+                    if (_user != null)
+                    {
+                        _user.CollectionChanged -= FixupUser;
+                    }
+                    _user = value;
+                    if (_user != null)
+                    {
+                        _user.CollectionChanged += FixupUser;
+                    }
+                    OnNavigationPropertyChanged("User");
+                }
+            }
+        }
+        private TrackableCollection<User> _user;
 
         #endregion
 
@@ -377,6 +449,8 @@ namespace Faccts.Model.Entities
         {
             Permission1.Clear();
             User1.Clear();
+            Permission.Clear();
+            User.Clear();
         }
 
         #endregion
@@ -456,6 +530,84 @@ namespace Faccts.Model.Entities
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         ChangeTracker.RecordRemovalFromCollectionProperties("User1", item);
+                    }
+                }
+            }
+        }
+    
+        private void FixupPermission(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (Permission item in e.NewItems)
+                {
+                    item.Role1.Add(this);
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("Permission", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (Permission item in e.OldItems)
+                {
+                    if (item.Role1.Contains(this))
+                    {
+                        item.Role1.Remove(this);
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("Permission", item);
+                    }
+                }
+            }
+        }
+    
+        private void FixupUser(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (User item in e.NewItems)
+                {
+                    item.Role1.Add(this);
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("User", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (User item in e.OldItems)
+                {
+                    if (item.Role1.Contains(this))
+                    {
+                        item.Role1.Remove(this);
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("User", item);
                     }
                 }
             }

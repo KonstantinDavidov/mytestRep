@@ -20,7 +20,7 @@ namespace Faccts.Model.Entities
                 Fax = this.Fax,
                 FirmName = this.FirmName,
                 Phone = this.Phone,
-                State = this.State,
+                USAState = this.State,
                 StateBarId = this.StateBarId,
                 StreetAddress = this.StreetAddress,
                 ZipCode = this.ZipCode,

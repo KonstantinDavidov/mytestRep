@@ -180,7 +180,7 @@ namespace Faccts.Model.Entities
         private long _courtCaseId;
     
         [DataMember]
-        public int HearingId
+        public long HearingId
         {
             get { return _hearingId; }
             set
@@ -201,7 +201,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _hearingId;
+        private long _hearingId;
 
         #endregion
 

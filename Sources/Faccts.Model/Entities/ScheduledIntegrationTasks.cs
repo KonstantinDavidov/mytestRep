@@ -56,6 +56,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.UserId)
     				,this.ObservableForProperty(x => x.Enabled)
     				,this.ObservableForProperty(x => x.State)
+    				,this.ObservableForProperty(x => x.TaskState)
     				,this.ObservableForProperty(x => x.User.IsDirty)
     			).
     			Subscribe(_ =>
@@ -138,7 +139,7 @@ namespace Faccts.Model.Entities
     	    #region Simple Properties
     
         [DataMember]
-        public int Id
+        public long Id
         {
             get { return _id; }
             set
@@ -155,7 +156,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _id;
+        private long _id;
     
         [DataMember]
         public System.DateTime StartTime
@@ -206,7 +207,7 @@ namespace Faccts.Model.Entities
         private string _info;
     
         [DataMember]
-        public Nullable<int> UserId
+        public Nullable<long> UserId
         {
             get { return _userId; }
             set
@@ -227,7 +228,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _userId;
+        private Nullable<long> _userId;
     
         [DataMember]
         public bool Enabled
@@ -260,6 +261,22 @@ namespace Faccts.Model.Entities
             }
         }
         private byte _state;
+    
+        [DataMember]
+        public byte TaskState
+        {
+            get { return _taskState; }
+            set
+            {
+                if (_taskState != value)
+                {
+    				OnPropertyChanging("TaskState");
+                    _taskState = value;
+                    OnPropertyChanged("TaskState");
+                }
+            }
+        }
+        private byte _taskState;
 
         #endregion
 

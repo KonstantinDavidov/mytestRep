@@ -140,7 +140,7 @@ namespace Faccts.Model.Entities
     	    #region Simple Properties
     
         [DataMember]
-        public int Id
+        public long Id
         {
             get { return _id; }
             set
@@ -157,7 +157,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _id;
+        private long _id;
     
         [DataMember]
         public string FirstName
@@ -208,7 +208,7 @@ namespace Faccts.Model.Entities
         private string _language;
     
         [DataMember]
-        public int InterpreterFor_Id
+        public long InterpreterFor_Id
         {
             get { return _interpreterFor_Id; }
             set
@@ -229,7 +229,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _interpreterFor_Id;
+        private long _interpreterFor_Id;
     
         [DataMember]
         public Nullable<long> CaseRecord_Id

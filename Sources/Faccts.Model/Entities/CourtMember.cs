@@ -139,7 +139,7 @@ namespace Faccts.Model.Entities
     	    #region Simple Properties
     
         [DataMember]
-        public int Id
+        public long Id
         {
             get { return _id; }
             set
@@ -163,10 +163,10 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _id;
+        private long _id;
     
         [DataMember]
-        public Nullable<int> SubstituteId
+        public Nullable<long> SubstituteId
         {
             get { return _substituteId; }
             set
@@ -187,7 +187,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _substituteId;
+        private Nullable<long> _substituteId;
     
         [DataMember]
         public bool IsCertified

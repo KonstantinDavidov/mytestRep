@@ -157,7 +157,7 @@ namespace Faccts.Model.Entities
     	    #region Simple Properties
     
         [DataMember]
-        public int Id
+        public long Id
         {
             get { return _id; }
             set
@@ -174,7 +174,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _id;
+        private long _id;
     
         [DataMember]
         public string Username
@@ -729,6 +729,162 @@ namespace Faccts.Model.Entities
             }
         }
         private TrackableCollection<Role> _role;
+    
+        [DataMember]
+        public TrackableCollection<CaseHistory> CaseHistory1
+        {
+            get
+            {
+                if (_caseHistory1 == null)
+                {
+                    _caseHistory1 = new TrackableCollection<CaseHistory>();
+                    _caseHistory1.CollectionChanged += FixupCaseHistory1;
+                }
+                return _caseHistory1;
+            }
+            set
+            {
+                if (!ReferenceEquals(_caseHistory1, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("CaseHistory1");
+                    if (_caseHistory1 != null)
+                    {
+                        _caseHistory1.CollectionChanged -= FixupCaseHistory1;
+                    }
+                    _caseHistory1 = value;
+                    if (_caseHistory1 != null)
+                    {
+                        _caseHistory1.CollectionChanged += FixupCaseHistory1;
+                    }
+                    OnNavigationPropertyChanged("CaseHistory1");
+                }
+            }
+        }
+        private TrackableCollection<CaseHistory> _caseHistory1;
+    
+        [DataMember]
+        public TrackableCollection<CaseNotes> CaseNotes1
+        {
+            get
+            {
+                if (_caseNotes1 == null)
+                {
+                    _caseNotes1 = new TrackableCollection<CaseNotes>();
+                    _caseNotes1.CollectionChanged += FixupCaseNotes1;
+                }
+                return _caseNotes1;
+            }
+            set
+            {
+                if (!ReferenceEquals(_caseNotes1, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("CaseNotes1");
+                    if (_caseNotes1 != null)
+                    {
+                        _caseNotes1.CollectionChanged -= FixupCaseNotes1;
+                        // This is the principal end in an association that performs cascade deletes.
+                        // Remove the cascade delete event handler for any entities in the current collection.
+                        foreach (CaseNotes item in _caseNotes1)
+                        {
+                            ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
+                        }
+                    }
+                    _caseNotes1 = value;
+                    if (_caseNotes1 != null)
+                    {
+                        _caseNotes1.CollectionChanged += FixupCaseNotes1;
+                        // This is the principal end in an association that performs cascade deletes.
+                        // Add the cascade delete event handler for any entities that are already in the new collection.
+                        foreach (CaseNotes item in _caseNotes1)
+                        {
+                            ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
+                        }
+                    }
+                    OnNavigationPropertyChanged("CaseNotes1");
+                }
+            }
+        }
+        private TrackableCollection<CaseNotes> _caseNotes1;
+    
+        [DataMember]
+        public TrackableCollection<CourtCase> CourtCase1
+        {
+            get
+            {
+                if (_courtCase1 == null)
+                {
+                    _courtCase1 = new TrackableCollection<CourtCase>();
+                    _courtCase1.CollectionChanged += FixupCourtCase1;
+                }
+                return _courtCase1;
+            }
+            set
+            {
+                if (!ReferenceEquals(_courtCase1, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("CourtCase1");
+                    if (_courtCase1 != null)
+                    {
+                        _courtCase1.CollectionChanged -= FixupCourtCase1;
+                    }
+                    _courtCase1 = value;
+                    if (_courtCase1 != null)
+                    {
+                        _courtCase1.CollectionChanged += FixupCourtCase1;
+                    }
+                    OnNavigationPropertyChanged("CourtCase1");
+                }
+            }
+        }
+        private TrackableCollection<CourtCase> _courtCase1;
+    
+        [DataMember]
+        public TrackableCollection<Role> Role1
+        {
+            get
+            {
+                if (_role1 == null)
+                {
+                    _role1 = new TrackableCollection<Role>();
+                    _role1.CollectionChanged += FixupRole1;
+                }
+                return _role1;
+            }
+            set
+            {
+                if (!ReferenceEquals(_role1, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("Role1");
+                    if (_role1 != null)
+                    {
+                        _role1.CollectionChanged -= FixupRole1;
+                    }
+                    _role1 = value;
+                    if (_role1 != null)
+                    {
+                        _role1.CollectionChanged += FixupRole1;
+                    }
+                    OnNavigationPropertyChanged("Role1");
+                }
+            }
+        }
+        private TrackableCollection<Role> _role1;
 
         #endregion
 
@@ -834,6 +990,10 @@ namespace Faccts.Model.Entities
             ManualIntegrationTasks.Clear();
             ScheduledIntegrationTasks.Clear();
             Role.Clear();
+            CaseHistory1.Clear();
+            CaseNotes1.Clear();
+            CourtCase1.Clear();
+            Role1.Clear();
         }
 
         #endregion
@@ -1128,6 +1288,168 @@ namespace Faccts.Model.Entities
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         ChangeTracker.RecordRemovalFromCollectionProperties("Role", item);
+                    }
+                }
+            }
+        }
+    
+        private void FixupCaseHistory1(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (CaseHistory item in e.NewItems)
+                {
+                    item.User1 = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("CaseHistory1", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (CaseHistory item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.User1, this))
+                    {
+                        item.User1 = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CaseHistory1", item);
+                    }
+                }
+            }
+        }
+    
+        private void FixupCaseNotes1(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (CaseNotes item in e.NewItems)
+                {
+                    item.User1 = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("CaseNotes1", item);
+                    }
+                    // This is the principal end in an association that performs cascade deletes.
+                    // Update the event listener to refer to the new dependent.
+                    ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (CaseNotes item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.User1, this))
+                    {
+                        item.User1 = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CaseNotes1", item);
+                    }
+                    // This is the principal end in an association that performs cascade deletes.
+                    // Remove the previous dependent from the event listener.
+                    ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
+                }
+            }
+        }
+    
+        private void FixupCourtCase1(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (CourtCase item in e.NewItems)
+                {
+                    item.User1 = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("CourtCase1", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (CourtCase item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.User1, this))
+                    {
+                        item.User1 = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtCase1", item);
+                    }
+                }
+            }
+        }
+    
+        private void FixupRole1(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (Role item in e.NewItems)
+                {
+                    item.User.Add(this);
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("Role1", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (Role item in e.OldItems)
+                {
+                    if (item.User.Contains(this))
+                    {
+                        item.User.Remove(this);
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("Role1", item);
                     }
                 }
             }

@@ -63,12 +63,14 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.Hearing_Id)
     				,this.ObservableForProperty(x => x.MergeCase_Id)
     				,this.ObservableForProperty(x => x.CourtOrder_Id)
+    				,this.ObservableForProperty(x => x.CourtClerk_Id)
     				,this.ObservableForProperty(x => x.CaseRecord.IsDirty)
     				,this.ObservableForProperty(x => x.CourtCaseOrders.IsDirty)
     				,this.ObservableForProperty(x => x.User.IsDirty)
     				,this.ObservableForProperty(x => x.Hearing.IsDirty)
     				,this.ObservableForProperty(x => x.MergeCase.IsDirty)
     				,this.ObservableForProperty(x => x.CourtCaseOrders1.IsDirty)
+    				,this.ObservableForProperty(x => x.User1.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -150,7 +152,7 @@ namespace Faccts.Model.Entities
     	    #region Simple Properties
     
         [DataMember]
-        public int Id
+        public long Id
         {
             get { return _id; }
             set
@@ -167,7 +169,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _id;
+        private long _id;
     
         [DataMember]
         public System.DateTime Date
@@ -242,7 +244,7 @@ namespace Faccts.Model.Entities
         private Nullable<long> _courtCaseOrderId;
     
         [DataMember]
-        public Nullable<int> CourtClerk_UserId
+        public Nullable<long> CourtClerk_UserId
         {
             get { return _courtClerk_UserId; }
             set
@@ -263,7 +265,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _courtClerk_UserId;
+        private Nullable<long> _courtClerk_UserId;
     
         [DataMember]
         public Nullable<long> CaseRecord_Id
@@ -290,7 +292,7 @@ namespace Faccts.Model.Entities
         private Nullable<long> _caseRecord_Id;
     
         [DataMember]
-        public Nullable<int> Hearing_Id
+        public Nullable<long> Hearing_Id
         {
             get { return _hearing_Id; }
             set
@@ -311,7 +313,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _hearing_Id;
+        private Nullable<long> _hearing_Id;
     
         [DataMember]
         public Nullable<long> MergeCase_Id
@@ -360,6 +362,30 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<long> _courtOrder_Id;
+    
+        [DataMember]
+        public Nullable<long> CourtClerk_Id
+        {
+            get { return _courtClerk_Id; }
+            set
+            {
+                if (_courtClerk_Id != value)
+                {
+                    ChangeTracker.RecordOriginalValue("CourtClerk_Id", _courtClerk_Id);
+                    if (!IsDeserializing)
+                    {
+                        if (User1 != null && User1.Id != value)
+                        {
+                            User1 = null;
+                        }
+                    }
+    				OnPropertyChanging("CourtClerk_Id");
+                    _courtClerk_Id = value;
+                    OnPropertyChanged("CourtClerk_Id");
+                }
+            }
+        }
+        private Nullable<long> _courtClerk_Id;
 
         #endregion
 
@@ -514,6 +540,24 @@ namespace Faccts.Model.Entities
             }
         }
         private CourtCaseOrders _courtCaseOrders1;
+    
+        [DataMember]
+        public User User1
+        {
+            get { return _user1; }
+            set
+            {
+                if (!ReferenceEquals(_user1, value))
+                {
+                    var previousValue = _user1;
+    				OnNavigationPropertyChanging("User1");
+                    _user1 = value;
+                    FixupUser1(previousValue);
+                    OnNavigationPropertyChanged("User1");
+                }
+            }
+        }
+        private User _user1;
 
         #endregion
 
@@ -627,6 +671,7 @@ namespace Faccts.Model.Entities
             Hearing = null;
             MergeCase = null;
             CourtCaseOrders1 = null;
+            User1 = null;
         }
 
         #endregion
@@ -869,6 +914,47 @@ namespace Faccts.Model.Entities
                 if (CourtCaseOrders1 != null && !CourtCaseOrders1.ChangeTracker.ChangeTrackingEnabled)
                 {
                     CourtCaseOrders1.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupUser1(User previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.CaseHistory1.Contains(this))
+            {
+                previousValue.CaseHistory1.Remove(this);
+            }
+    
+            if (User1 != null)
+            {
+                User1.CaseHistory1.Add(this);
+    
+                CourtClerk_Id = User1.Id;
+            }
+            else if (!skipKeys)
+            {
+                CourtClerk_Id = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("User1")
+                    && (ChangeTracker.OriginalValues["User1"] == User1))
+                {
+                    ChangeTracker.OriginalValues.Remove("User1");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("User1", previousValue);
+                }
+                if (User1 != null && !User1.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    User1.StartTracking();
                 }
             }
         }

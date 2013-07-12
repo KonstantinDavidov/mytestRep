@@ -11,7 +11,7 @@ namespace Faccts.Model.Entities
     {
         public User(FACCTS.Server.Model.DataModel.User dtoUser) : this()
         {
-            this.Id = dtoUser.UserId;
+            this.Id = dtoUser.Id;
             this.Username = dtoUser.Username;
             this.Email = dtoUser.Email;
             this.Password = dtoUser.Password;

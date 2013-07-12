@@ -55,8 +55,10 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.Author_UserId)
     				,this.ObservableForProperty(x => x.CaseRecord_Id)
     				,this.ObservableForProperty(x => x.Text)
+    				,this.ObservableForProperty(x => x.Author_Id)
     				,this.ObservableForProperty(x => x.CaseRecord.IsDirty)
     				,this.ObservableForProperty(x => x.User.IsDirty)
+    				,this.ObservableForProperty(x => x.User1.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -138,7 +140,7 @@ namespace Faccts.Model.Entities
     	    #region Simple Properties
     
         [DataMember]
-        public int Id
+        public long Id
         {
             get { return _id; }
             set
@@ -155,7 +157,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _id;
+        private long _id;
     
         [DataMember]
         public int Status
@@ -174,7 +176,7 @@ namespace Faccts.Model.Entities
         private int _status;
     
         [DataMember]
-        public int Author_UserId
+        public long Author_UserId
         {
             get { return _author_UserId; }
             set
@@ -195,7 +197,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _author_UserId;
+        private long _author_UserId;
     
         [DataMember]
         public Nullable<long> CaseRecord_Id
@@ -236,6 +238,30 @@ namespace Faccts.Model.Entities
             }
         }
         private string _text;
+    
+        [DataMember]
+        public long Author_Id
+        {
+            get { return _author_Id; }
+            set
+            {
+                if (_author_Id != value)
+                {
+                    ChangeTracker.RecordOriginalValue("Author_Id", _author_Id);
+                    if (!IsDeserializing)
+                    {
+                        if (User1 != null && User1.Id != value)
+                        {
+                            User1 = null;
+                        }
+                    }
+    				OnPropertyChanging("Author_Id");
+                    _author_Id = value;
+                    OnPropertyChanged("Author_Id");
+                }
+            }
+        }
+        private long _author_Id;
 
         #endregion
 
@@ -276,6 +302,24 @@ namespace Faccts.Model.Entities
             }
         }
         private User _user;
+    
+        [DataMember]
+        public User User1
+        {
+            get { return _user1; }
+            set
+            {
+                if (!ReferenceEquals(_user1, value))
+                {
+                    var previousValue = _user1;
+    				OnNavigationPropertyChanging("User1");
+                    _user1 = value;
+                    FixupUser1(previousValue);
+                    OnNavigationPropertyChanged("User1");
+                }
+            }
+        }
+        private User _user1;
 
         #endregion
 
@@ -386,6 +430,7 @@ namespace Faccts.Model.Entities
         {
             CaseRecord = null;
             User = null;
+            User1 = null;
         }
 
         #endregion
@@ -465,6 +510,42 @@ namespace Faccts.Model.Entities
                 if (User != null && !User.ChangeTracker.ChangeTrackingEnabled)
                 {
                     User.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupUser1(User previousValue)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.CaseNotes1.Contains(this))
+            {
+                previousValue.CaseNotes1.Remove(this);
+            }
+    
+            if (User1 != null)
+            {
+                User1.CaseNotes1.Add(this);
+    
+                Author_Id = User1.Id;
+            }
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("User1")
+                    && (ChangeTracker.OriginalValues["User1"] == User1))
+                {
+                    ChangeTracker.OriginalValues.Remove("User1");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("User1", previousValue);
+                }
+                if (User1 != null && !User1.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    User1.StartTracking();
                 }
             }
         }

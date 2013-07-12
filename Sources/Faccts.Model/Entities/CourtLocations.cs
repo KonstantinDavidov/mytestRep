@@ -58,6 +58,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.PostalCode)
     				,this.ObservableForProperty(x => x.City)
     				,this.ObservableForProperty(x => x.CourtCounty_Id)
+    				,this.ObservableForProperty(x => x.USAState)
     				,this.ObservableForProperty(x => x.CourtCounty.IsDirty)
     			).
     			Subscribe(_ =>
@@ -140,7 +141,7 @@ namespace Faccts.Model.Entities
     	    #region Simple Properties
     
         [DataMember]
-        public int Id
+        public long Id
         {
             get { return _id; }
             set
@@ -157,7 +158,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _id;
+        private long _id;
     
         [DataMember]
         public string Name
@@ -256,7 +257,7 @@ namespace Faccts.Model.Entities
         private string _city;
     
         [DataMember]
-        public Nullable<int> CourtCounty_Id
+        public Nullable<long> CourtCounty_Id
         {
             get { return _courtCounty_Id; }
             set
@@ -277,7 +278,23 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private Nullable<int> _courtCounty_Id;
+        private Nullable<long> _courtCounty_Id;
+    
+        [DataMember]
+        public int USAState
+        {
+            get { return _uSAState; }
+            set
+            {
+                if (_uSAState != value)
+                {
+    				OnPropertyChanging("USAState");
+                    _uSAState = value;
+                    OnPropertyChanged("USAState");
+                }
+            }
+        }
+        private int _uSAState;
 
         #endregion
 
