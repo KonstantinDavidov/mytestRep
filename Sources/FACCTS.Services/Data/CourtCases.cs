@@ -42,5 +42,17 @@ namespace FACCTS.Services.Data
         {
             return new CourtCases().CreateNewCase(cc);
         }
+
+        private CourtCase Save(CourtCase dto)
+        {
+            return this.CallServicePut<CourtCase, CourtCase>("CourtCase", dto);
+        }
+
+        public static Faccts.Model.Entities.CourtCase SaveData(Faccts.Model.Entities.CourtCase courtCaseToSave)
+        {
+            CourtCase dto = courtCaseToSave.ToDTO();
+            var updated = new CourtCases().Save(dto);
+            return new Faccts.Model.Entities.CourtCase(dto);
+        }
     }
 }

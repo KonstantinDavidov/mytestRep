@@ -88,6 +88,30 @@ namespace FACCTS.Services
             }
         }
 
+        protected virtual T CallServicePut<T, TContent>(string route, TContent content)
+        {
+            using (var client = new HttpClient
+            {
+                BaseAddress = new Uri(_webApiBaseAddress)
+            })
+            {
+                T result = default(T);
+                try
+                {
+                    client.SetBearerToken(AuthenticationService.GetToken());
+                    var response = client.PutAsJsonAsync<TContent>(route, content).Result;
+                    response.EnsureSuccessStatusCode();
+                    result = response.Content.ReadAsAsync<T>().Result;
+
+                }
+                catch (Exception ex)
+                {
+                    Logger.Fatal("An exception was thrown during the call of the Web Service (POST).", ex);
+                }
+                return result;
+            }
+        }
+
 
     }
 }

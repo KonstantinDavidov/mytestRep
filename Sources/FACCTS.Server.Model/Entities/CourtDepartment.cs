@@ -13,19 +13,15 @@ namespace FACCTS.Server.Model.DataModel
     public partial class CourtDepartment : BaseEntity
     {
 
-        [Required]
         [StringLength(150)]
         public string Name { get; set; }
 
-        [Required]
         [StringLength(20)]
         public string Room { get; set; }
 
-        [Required]
         [StringLength(100)]
         public string BranchOfficer {get; set;}
 
-        [Required]
         [StringLength(100)]
         public string Reporter { get; set; }
 

@@ -13,11 +13,9 @@ namespace FACCTS.Server.Model.DataModel
     public partial class CaseNote : BaseEntity
     {
 
-        [Required]
         public virtual User Author { get; set; }
 
         [EnumDataType(typeof(CaseNoteStatus))]
-        [Required]
         public CaseNoteStatus Status { get; set; }
 
         public string Text { get; set; }

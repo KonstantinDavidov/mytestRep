@@ -17,24 +17,20 @@ namespace FACCTS.Server.Model.DataModel
         }
 
 
-        [Required]
         [StringLength(255)]
         public string FirstName { get; set; }
 
         [StringLength(255)]
         public string MiddleName { get; set; }
 
-        [Required]
         [StringLength(255)]
         public string LastName { get; set; }
 
-        [Required]
         public virtual Designation Designation { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
-        [Required]
         public virtual ParticipantRole ParticipantRole { get; set; }
 
         [DataType(DataType.MultilineText)]
@@ -65,13 +61,9 @@ namespace FACCTS.Server.Model.DataModel
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [Required]
         public virtual Gender Sex { get; set; }
-        [Required]
         public virtual HairColor HairColor { get; set; }
-        [Required]
         public virtual EyesColor EyesColor { get; set; }
-        [Required]
         public virtual Race Race { get; set; }
 
         public string RelationToOtherParty { get; set; }

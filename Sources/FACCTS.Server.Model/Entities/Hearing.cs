@@ -13,7 +13,6 @@ namespace FACCTS.Server.Model.DataModel
     public partial class Hearing : BaseEntity
     {
 
-        [Required]
         public DateTime HearingDate { get; set; }
 
         public virtual Courtroom Courtroom { get; set; }

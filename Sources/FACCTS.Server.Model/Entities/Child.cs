@@ -19,22 +19,17 @@ namespace FACCTS.Server.Model.DataModel
         }
 
 
-        [Required]
         public FACCTSEntity EntityType { get; set; } 
 
         [StringLength(100)]
-        [Required]
         public string FirstName { get; set; }
 
         [StringLength(100)]
-        [Required]
         public string LastName { get; set; }
 
         public Relationship RelationshipToProtected { get; set; }
 
-        [Required]
         public Gender Sex { get; set; }
-        [Required]
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
         [InverseProperty("Children")]

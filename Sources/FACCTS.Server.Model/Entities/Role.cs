@@ -18,7 +18,6 @@ namespace FACCTS.Server.Model.DataModel
         [CsvField(Index = 0)]
         public override long Id { get; set; }
 
-        [Required]
         [CsvField(Index = 1)]
         [StringLength(50)]
         public string RoleName { get; set; }
@@ -27,7 +26,6 @@ namespace FACCTS.Server.Model.DataModel
         public string Description { get; set; }
 
         [CsvField(Index = 2)]
-        [Required]
         public bool IsIdentityServerUser { get; set; }
 
         [CsvField(Ignore = true)]

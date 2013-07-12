@@ -13,17 +13,13 @@ namespace FACCTS.Server.Model.DataModel
     public partial class Interpreter : BaseEntity
     {
 
-        [Required]
         public FACCTSEntity EntityType { get; set; } 
 
-        [Required]
         public virtual CourtParty InterpreterFor { get; set; }
 
-        [Required]
         [StringLength(255)]
         public string FirstName { get; set; }
 
-        [Required]
         [StringLength(255)]
         public string LastName { get; set; }
 

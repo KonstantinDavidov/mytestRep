@@ -11,13 +11,10 @@ namespace FACCTS.Server.Model.DataModel
     public partial class ClientCertificates : BaseEntity
     {
 
-        [Required]
         public string UserName { get; set; }
         
-        [Required]
         public string Thumbprint { get; set; }
         
-        [Required]
         public string Description { get; set; }
 
         [NotMapped]

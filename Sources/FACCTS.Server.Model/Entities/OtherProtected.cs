@@ -17,17 +17,14 @@ namespace FACCTS.Server.Model.DataModel
             this.RelationshipToPlaintiff = Relationship.O;
         }
 
-        [Required]
         public FACCTSEntity EntityType { get; set; } 
 
         public Relationship RelationshipToPlaintiff { get; set; }
 
         [StringLength(100)]
-        [Required]
         public string FirstName { get; set; }
 
         [StringLength(100)]
-        [Required]
         public string LastName { get; set; }
 
         public DateTime DateOfBirth { get; set; }

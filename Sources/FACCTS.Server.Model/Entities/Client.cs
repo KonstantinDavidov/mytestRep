@@ -5,13 +5,10 @@ namespace FACCTS.Server.Model.DataModel
 {
     public partial class Client : BaseEntity
     {
-        [Required]
         public string Name { get; set; }
         
-        [Required]
         public string Description { get; set; }
 
-        [Required]
         public string ClientId { get; set; }
 
         public string ClientSecret { get; set; }

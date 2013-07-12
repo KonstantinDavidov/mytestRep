@@ -12,12 +12,12 @@ namespace FACCTS.Server.Model.DataModel
     public partial class User : BaseEntity
     {
 
-        [Required]
+
         public String Username { get; set; }
 
         public String Email { get; set; }
 
-        [Required, DataType(DataType.Password)]
+        [DataType(DataType.Password)]
         public String Password { get; set; }
 
         public String FirstName { get; set; }

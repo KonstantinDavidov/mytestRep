@@ -309,6 +309,11 @@ namespace FACCTS.Services.Data
             }
         }
 
+        public CourtCase SaveData(CourtCase courtCaseToSave)
+        {
+            return FACCTS.Services.Data.CourtCases.SaveData(courtCaseToSave);
+        }
+
         private void FixupCourtDocketRecords(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsSearching)

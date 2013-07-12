@@ -43,6 +43,14 @@ namespace FACCTS.Server.Controllers
             //return courtCase;
         }
 
+        public HttpResponseMessage Put([FromBody] CourtCase courtCase)
+        {
+            HttpResponseMessage msg = null;
+            msg = Request.CreateErrorResponse(HttpStatusCode.NotFound, "Court Case not Found");
+
+            return msg;
+        }
+
         private CourtCase CreateNewCourtCase(CourtCaseCreationRequest request)
         {
             CourtCase courtCase;

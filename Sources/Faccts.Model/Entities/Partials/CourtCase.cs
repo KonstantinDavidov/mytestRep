@@ -113,5 +113,17 @@ namespace Faccts.Model.Entities
                 return this.ChildCases != null && this.ChildCases.Any();
             }
         }
+
+        public FACCTS.Server.Model.DataModel.CourtCase ToDTO()
+        {
+            return new FACCTS.Server.Model.DataModel.CourtCase()
+            {
+                Id = this.Id,
+                CaseNumber = this.CaseNumber,
+                State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
+                CaseRecord = this.CaseRecord.ToDTO(),
+                //CourtClerk = this.User1.ToDTO(),
+            };
+        }
     }
 }

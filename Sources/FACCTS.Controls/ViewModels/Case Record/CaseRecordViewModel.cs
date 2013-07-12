@@ -215,8 +215,11 @@ namespace FACCTS.Controls.ViewModels
 
         public void CaseRecordSave()
         {
+            if (CurrentCourtCase != null && this.CurrentCourtCase.IsDirty)
+            {
+                DataContainer.SaveData(this.CurrentCourtCase);
+            }
             
-            _eventAggregator.Publish(new SaveDataEvent());
         }
        
     }

@@ -14,7 +14,6 @@ namespace FACCTS.Server.Model.DataModel
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [CsvField(Index = 0)]
         public override long Id { get; set; }
-        [Required]
         [CsvField(Index = 1)]
         [StringLength(150)]
         public string DesignationName { get; set; }

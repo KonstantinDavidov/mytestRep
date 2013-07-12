@@ -19,7 +19,6 @@ namespace FACCTS.Server.Model.DataModel
         }
 
 
-        [Required]
         [StringLength(20)]
         public string CaseNumber { get; set; }
 
@@ -31,7 +30,6 @@ namespace FACCTS.Server.Model.DataModel
         [StringLength(20)]
         public string CCPORId { get; set; }
 
-        [Required]
         public virtual CaseRecord CaseRecord { get; set; }
 
         public virtual CourtCase ParentCase { get; set; }

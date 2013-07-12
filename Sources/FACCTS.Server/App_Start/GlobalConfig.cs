@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Validation.Providers;
 
 namespace FACCTS.Server.App_Start
 {
@@ -29,6 +30,10 @@ namespace FACCTS.Server.App_Start
 
             // Add model validation, globally
             config.Filters.Add(new ValidationActionFilter());
+
+            config.Services.RemoveAll(
+                typeof(System.Web.Http.Validation.ModelValidatorProvider),
+                v => v is InvalidModelValidatorProvider);//avoid an Exception for Required attribute
         }
     }
 }

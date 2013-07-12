@@ -11,12 +11,9 @@ namespace FACCTS.Server.Model.DataModel
 {
     public partial class CaseHistory : BaseEntity
     {
-
-        [Required]
         [DataType(DataType.Date)]
         public DateTime Date { get; set; }
 
-        [Required]
         [EnumDataType(typeof(CaseHistoryEvent))]
         public CaseHistoryEvent CaseHistoryEvent { get; set; }
 

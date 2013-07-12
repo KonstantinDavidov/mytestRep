@@ -13,17 +13,13 @@ namespace FACCTS.Server.Model.DataModel
     public partial class Witness : BaseEntity
     {
 
-        [Required]
         public FACCTSEntity EntityType { get; set; } 
 
-        [Required]
         public virtual CourtParty WitnessFor { get; set; }
 
-        [Required]
         [StringLength(255)]
         public string FirstName { get; set; }
 
-        [Required]
         [StringLength(255)]
         public string LastName { get; set; }
 
