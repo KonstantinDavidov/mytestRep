@@ -357,6 +357,28 @@ namespace FACCTS.Server.Model.OrderModels
 
 			}
 		}
+		
+		private bool? _isPOSGeneral;
+		public bool? IsPOSGeneral
+		{
+			get{return _isPOSGeneral;}
+			set
+			{
+				_isPOSGeneral = value;
+
+			}
+		}
+		
+		private LawersFeeAndCourtCosts _lawersFeeAndCourtCostsSection;
+		public LawersFeeAndCourtCosts LawersFeeAndCourtCostsSection
+		{
+			get{return _lawersFeeAndCourtCostsSection;}
+			set
+			{
+				_lawersFeeAndCourtCostsSection = value;
+
+			}
+		}
 				
 	}
 	
