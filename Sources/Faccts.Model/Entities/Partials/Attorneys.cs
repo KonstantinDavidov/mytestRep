@@ -24,6 +24,7 @@ namespace Faccts.Model.Entities
                 StateBarId = this.StateBarId,
                 StreetAddress = this.StreetAddress,
                 ZipCode = this.ZipCode,
+                State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
             };
         }
     }

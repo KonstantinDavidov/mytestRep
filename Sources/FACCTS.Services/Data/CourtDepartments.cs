@@ -20,12 +20,12 @@ namespace FACCTS.Services.Data
             return this.CallServiceGet<List<CourtDepartment>>("CourtDepartments");
         }
 
-        protected List<CourtDepartment> GetDepartmentsByCourtCounty(int courtCounty)
+        protected List<CourtDepartment> GetDepartmentsByCourtCounty(long courtCounty)
         {
             return this.CallServiceGet<List<CourtDepartment>>(string.Format("{0}?courtCountyId={1}", "CourtDepartments", courtCounty));
         }
 
-        public static List<Faccts.Model.Entities.CourtDepartmenets> GetByCourtCountyId(int?  courtCountyId)
+        public static List<Faccts.Model.Entities.CourtDepartmenets> GetByCourtCountyId(long?  courtCountyId)
         {
             if (courtCountyId == null)
             {
@@ -37,7 +37,7 @@ namespace FACCTS.Services.Data
                 ;
         }
 
-        private static ConcurrentDictionary<int, List<Faccts.Model.Entities.CourtDepartmenets>> Cache = new ConcurrentDictionary<int, List<Faccts.Model.Entities.CourtDepartmenets>>();
+        private static ConcurrentDictionary<long, List<Faccts.Model.Entities.CourtDepartmenets>> Cache = new ConcurrentDictionary<long, List<Faccts.Model.Entities.CourtDepartmenets>>();
         
     }
 }

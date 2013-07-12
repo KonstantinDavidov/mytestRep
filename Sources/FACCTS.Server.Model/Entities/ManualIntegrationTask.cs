@@ -1,5 +1,4 @@
-﻿using FACCTS.Server.Model.Entities;
-using FACCTS.Server.Model.Enums;
+﻿using FACCTS.Server.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;

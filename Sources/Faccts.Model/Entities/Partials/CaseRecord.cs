@@ -68,6 +68,7 @@ namespace Faccts.Model.Entities
                 Party2 = this.CourtParty.ToDTO(),
                 RestrainingPartyIdentificationInformation = this.RestrainingpartyIdentificationInformation.ToDTO(),
                 //TODO: implement another properties
+                State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
             };
         }
     }

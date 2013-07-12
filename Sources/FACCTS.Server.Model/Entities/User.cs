@@ -5,7 +5,7 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using CsvHelper.TypeConversion;
 using System.ComponentModel.DataAnnotations.Schema;
-using FACCTS.Server.Model.Entities;
+
 namespace FACCTS.Server.Model.DataModel
 {
     [Table("User")]

@@ -1,5 +1,4 @@
 ﻿using FACCTS.Server.Model.DataModel;
-using FACCTS.Server.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;

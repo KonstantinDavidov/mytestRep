@@ -89,7 +89,7 @@ namespace Faccts.Model.Entities
                     Age = this.Age,
                     HasAttorney = this.HasAttorney,
                     Attorney = this.Attorneys.ToDTO(),
-
+                    State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
 
                 };
             return dto;

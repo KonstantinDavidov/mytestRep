@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FACCTS.Server.Model.Enums;
-using FACCTS.Server.Model.Entities;
 
 namespace FACCTS.Server.Model.DataModel
 {

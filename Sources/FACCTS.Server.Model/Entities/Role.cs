@@ -7,7 +7,6 @@ using System.ComponentModel.DataAnnotations.Schema;
 using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
 using System.Collections.ObjectModel;
-using FACCTS.Server.Model.Entities;
 
 namespace FACCTS.Server.Model.DataModel
 {

@@ -1,6 +1,5 @@
 ﻿using CsvHelper.Configuration;
 using CsvHelper.TypeConversion;
-using FACCTS.Server.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

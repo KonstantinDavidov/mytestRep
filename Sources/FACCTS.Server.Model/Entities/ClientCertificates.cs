@@ -3,7 +3,6 @@
  * see license.txt
  */
 
-using FACCTS.Server.Model.Entities;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
     

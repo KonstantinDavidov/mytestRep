@@ -1,5 +1,4 @@
-﻿using FACCTS.Server.Model.Entities;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
