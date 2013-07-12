@@ -151,8 +151,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reporting\Entities\CAPROSEntry.cs" />
     <Compile Include="Reporting\Entities\CaseInfo.cs" />
+    <Compile Include="Reporting\Entities\CH130.cs" />
+    <Compile Include="Reporting\Entities\LawersFeeAndCourtCosts.cs" />
     <Compile Include="Reporting\Entities\NoServiceFee.cs" />
-    <Compile Include="Reporting\Entities\Party.cs" />
+    <Compile Include="Reporting\Entities\PartyEnum.cs" />
     <Compile Include="Reporting\ModelTemplate.cs">
       <DependentUpon>ModelTemplate.tt</DependentUpon>
       <AutoGen>True</AutoGen>
