@@ -42,7 +42,7 @@ namespace FACCTS.Server.Data.Repositiries
                 var entity = item.ToEntity();
                 entities.IdentityProviders.Add(entity);
                 entities.SaveChanges();
-                item.ID = entity.ID;
+                item.ID = (int)entity.Id;
             }
         }
 
@@ -50,7 +50,7 @@ namespace FACCTS.Server.Data.Repositiries
         {
             var othersWithSameName =
                 from e in entities.IdentityProviders
-                where e.Name == item.Name && e.ID != item.ID
+                where e.Name == item.Name && e.Id != item.ID
                 select e;
             if (othersWithSameName.Any()) throw new ValidationException(string.Format(Resources.IdentityProviderRepository.NameAlreadyInUseError, item.Name));
         }
@@ -59,7 +59,7 @@ namespace FACCTS.Server.Data.Repositiries
         {
             using (var entities = DatabaseContext.Get())
             {
-                var item = entities.IdentityProviders.Where(idp => idp.ID == id).FirstOrDefault();
+                var item = entities.IdentityProviders.Where(idp => idp.Id == id).FirstOrDefault();
                 if (item != null)
                 {
                     entities.IdentityProviders.Remove(item);
@@ -74,7 +74,7 @@ namespace FACCTS.Server.Data.Repositiries
             {
                 ValidateUniqueName(item, entities);
 
-                var dbitem = entities.IdentityProviders.Where(idp => idp.ID == item.ID).FirstOrDefault();
+                var dbitem = entities.IdentityProviders.Where(idp => idp.Id == item.ID).FirstOrDefault();
                 if (dbitem != null)
                 {
                     item.UpdateEntity(dbitem);
@@ -88,7 +88,7 @@ namespace FACCTS.Server.Data.Repositiries
         {
             using (var entities = DatabaseContext.Get())
             {
-                var item = entities.IdentityProviders.SingleOrDefault(x=>x.ID == id);
+                var item = entities.IdentityProviders.SingleOrDefault(x=>x.Id == id);
                 if (item != null)
                 {
                     return item.ToDomainModel();

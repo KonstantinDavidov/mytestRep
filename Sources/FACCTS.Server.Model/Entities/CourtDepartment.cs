@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using FACCTS.Server.Model.Entities;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,10 +11,8 @@ using System.Threading.Tasks;
 namespace FACCTS.Server.Model.DataModel
 {
     [Table("CourtDepartmenets")]
-    public partial class CourtDepartment
+    public partial class CourtDepartment : BaseEntity
     {
-        [Key]
-        public int Id { get; set; }
 
         [Required]
         [StringLength(150)]
@@ -36,6 +35,19 @@ namespace FACCTS.Server.Model.DataModel
         [ForeignKey("CourtCountyId")]
         public virtual CourtCounty CourtCounty { get; set; }
 
-        public int CourtCountyId { get; set; }
+        public long CourtCountyId { get; set; }
+
+        [NotMapped]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
+            }
+        }
     }
 }

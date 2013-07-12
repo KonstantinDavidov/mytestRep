@@ -1,4 +1,5 @@
-﻿using FACCTS.Server.Model.Enums;
+﻿using FACCTS.Server.Model.Entities;
+using FACCTS.Server.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,9 +11,8 @@ using System.Threading.Tasks;
 namespace FACCTS.Server.Model.DataModel
 {
     [Table("Hearings")]
-    public partial class Hearing
+    public partial class Hearing : BaseEntity
     {
-        public int Id { get; set; }
 
         [Required]
         public DateTime HearingDate { get; set; }
@@ -27,5 +27,18 @@ namespace FACCTS.Server.Model.DataModel
         public HearingIssue HearingIssues { get; set; }
 
         public DocketSession Session { get; set; }
+
+        [NotMapped]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
+            }
+        }
     }
 }

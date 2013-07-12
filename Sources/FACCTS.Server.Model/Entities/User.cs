@@ -5,15 +5,12 @@ using System.Web;
 using System.ComponentModel.DataAnnotations;
 using CsvHelper.TypeConversion;
 using System.ComponentModel.DataAnnotations.Schema;
+using FACCTS.Server.Model.Entities;
 namespace FACCTS.Server.Model.DataModel
 {
     [Table("User")]
-    public partial class User
+    public partial class User : BaseEntity
     {
-        [Key]
-        [Column("Id")]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int UserId { get; set; }
 
         [Required]
         public String Username { get; set; }
@@ -45,6 +42,19 @@ namespace FACCTS.Server.Model.DataModel
 
         public virtual ICollection<Role> Roles { get; set; }
 
+        [NotMapped]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
+            }
+        }
+
         public override bool Equals(object obj)
         {
             // Check for null values and compare run-time types.
@@ -52,7 +62,7 @@ namespace FACCTS.Server.Model.DataModel
                 return false;
 
             User u = (User)obj;
-            if (u.UserId != this.UserId)
+            if (u.Id != this.Id)
                 return false;
             //if (u.Username != this.Username)
             //    return false;
@@ -67,7 +77,7 @@ namespace FACCTS.Server.Model.DataModel
 
         public override int GetHashCode()
         {
-            return base.GetHashCode() ^ this.UserId;
+            return base.GetHashCode() ^ this.Id.GetHashCode();
         }
     }
 }

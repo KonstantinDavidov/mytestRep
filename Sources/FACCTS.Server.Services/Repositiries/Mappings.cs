@@ -440,7 +440,7 @@ namespace FACCTS.Server.Data.Repositiries
                 from idp in idps
                 select new Models.IdentityProvider
                 {
-                    ID = idp.ID,
+                    ID = (int)idp.Id,
                     Name = idp.Name,
                     Enabled = idp.Enabled,
                     DisplayName = idp.DisplayName,
@@ -463,7 +463,7 @@ namespace FACCTS.Server.Data.Repositiries
 
             return new Models.IdentityProvider
             {
-                ID = idp.ID,
+                ID = (int)idp.Id,
                 Name = idp.Name,
                 Enabled = idp.Enabled,
                 DisplayName = idp.DisplayName,
@@ -496,7 +496,7 @@ namespace FACCTS.Server.Data.Repositiries
                 return;
             }
 
-            entity.ID = idp.ID;
+            entity.Id = idp.ID;
             entity.Name = idp.Name;
             entity.Enabled = idp.Enabled;
             entity.ShowInHrdSelection = idp.ShowInHrdSelection;

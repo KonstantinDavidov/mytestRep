@@ -72,6 +72,7 @@
     <Compile Include="CurrentUserResponse.cs" />
     <Compile Include="Entities\Appearance.cs" />
     <Compile Include="Entities\Attorney.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\CaseHistory.cs" />
     <Compile Include="Entities\CaseNote.cs" />
     <Compile Include="Entities\CaseRecord.cs" />

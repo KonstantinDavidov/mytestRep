@@ -689,7 +689,7 @@ namespace FACCTS.Server.Data
                 FirstName = "Grigory",
                 LastName = "Rusputin",
                 Phone = "89043434123",
-                State = USAState.CA,
+                USAState = USAState.CA,
                 StateBarId = "Bar",
                 StreetAddress = "MainStreet",
                 ZipCode = "12345"
@@ -760,7 +760,7 @@ namespace FACCTS.Server.Data
                 Phone = "12345",
                 Race = testRace,
                 Sex = testSex,
-                State = USAState.NJ,
+                USAState = USAState.NJ,
                 Weight = 56,
                 ZipCode = "410001",
                 RelationToOtherParty = "Wife"
@@ -787,7 +787,7 @@ namespace FACCTS.Server.Data
                 Phone = "12345",
                 Race = testRace,
                 Sex = testSex,
-                State = USAState.NJ,
+                USAState = USAState.NJ,
                 Weight = 56,
                 ZipCode = "410001",
                 RelationToOtherParty = "Allien"

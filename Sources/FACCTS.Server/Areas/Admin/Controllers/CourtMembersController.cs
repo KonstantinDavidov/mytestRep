@@ -45,10 +45,10 @@ namespace FACCTS.Server.Areas.Admin.Controllers
             throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
         }
         [ActionName("substitutes")]
-        public IDictionary<int, string> GetAvailableSubstitutes([FromBody]CourtMember member)
+        public IDictionary<long, string> GetAvailableSubstitutes([FromBody]CourtMember member)
         {
-            var roleId = member.Roles.FirstOrDefault() == null ? 0 : member.Roles.FirstOrDefault().RoleId;
-            return this.DataManager.CourtMemberRepository.GetCourtMembersByRole(roleId).ToDictionary(cm => cm.UserId, cm => (cm.FirstName + " " + cm.LastName)); 
+            var roleId = member.Roles.FirstOrDefault() == null ? 0 : member.Roles.FirstOrDefault().Id;
+            return this.DataManager.CourtMemberRepository.GetCourtMembersByRole(roleId).ToDictionary(cm => cm.Id, cm => (cm.FirstName + " " + cm.LastName)); 
         }
 
         // POST api/courtmembers
@@ -60,7 +60,7 @@ namespace FACCTS.Server.Areas.Admin.Controllers
             var response = Request.CreateResponse(HttpStatusCode.Created, member);
 
             response.Headers.Location =
-                new Uri(Url.Link(AdminAreaRegistration.ControllerAndId, new { id = member.UserId }));
+                new Uri(Url.Link(AdminAreaRegistration.ControllerAndId, new { id = member.Id }));
 
             return response;
         }

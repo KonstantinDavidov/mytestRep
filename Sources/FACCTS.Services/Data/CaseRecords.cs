@@ -12,7 +12,7 @@ namespace FACCTS.Services.Data
         //public static Faccts.Model.Entities.CaseRecord AddCaseRecord(long courtCaseId, Faccts.Model.Entities.CaseRecord caseRecord)
         //{
         //    CaseRecord dto = caseRecord.ToDTO();
-            
+        //    var updatedRecord = new CaseRecords().CallServicePost<CaseRecord, CaseRecord>("CaseRecords", dto);
         //}
     }
 }

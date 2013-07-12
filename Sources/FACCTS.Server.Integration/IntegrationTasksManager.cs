@@ -151,10 +151,10 @@ namespace FACCTS.Server.Integration
                 {
                     mTasks =
                         dataManager.ManualIntegrationTaskRepository.GetAll()
-                        .Where(t => t.State == IntegrationTaskState.Placed).ToList();
+                        .Where(t => t.TaskState == IntegrationTaskState.Placed).ToList();
                     foreach (var task in mTasks)
                     {
-                        task.State = IntegrationTaskState.Ready;
+                        task.TaskState = IntegrationTaskState.Ready;
                     }
                     dataManager.Commit();
                 }
@@ -175,13 +175,13 @@ namespace FACCTS.Server.Integration
                 {
                     sTasks = dataManager.ScheduledIntegrationTaskRepository.GetAll()
                         .Where(t =>
-                            t.State != IntegrationTaskState.Running &&
-                            t.State != IntegrationTaskState.Ready &&
+                            t.TaskState != IntegrationTaskState.Running &&
+                            t.TaskState != IntegrationTaskState.Ready &&
                             t.StartTime < DateTime.Now &&
                             t.Enabled).ToList();
                     foreach (var task in sTasks)
                     {
-                        task.State = IntegrationTaskState.Ready;
+                        task.TaskState = IntegrationTaskState.Ready;
                     }
                     dataManager.Commit();
                 }
@@ -196,7 +196,7 @@ namespace FACCTS.Server.Integration
 
         private void ExecuteManualTask(ManualIntegrationTask task)
         {
-            task.State = IntegrationTaskState.Running;
+            task.TaskState = IntegrationTaskState.Running;
             task.StartTime = DateTime.Now;
 
             using (var dataManager = GetDataManager())
@@ -209,13 +209,13 @@ namespace FACCTS.Server.Integration
             {
                 _logger.Info(string.Format("Executing manual task {0}", task.Id));
                 _mTasksOperations.FirstOrDefault().ProcessTask(task);
-                task.State = IntegrationTaskState.Finished;
+                task.TaskState = IntegrationTaskState.Finished;
             }
             catch (Exception exc)
             {
                 string errorText = string.Format("Exception occured during manual task {0} execution", task.Id);
                 _logger.Error(errorText, exc);
-                task.State = IntegrationTaskState.Error;
+                task.TaskState = IntegrationTaskState.Error;
                 task.Info = errorText + "\n" + exc.ToString();
             }
             finally
@@ -238,7 +238,7 @@ namespace FACCTS.Server.Integration
 
         private void ExecuteScheduledTask(ScheduledIntegrationTask task)
         {
-            task.State = IntegrationTaskState.Running;
+            task.TaskState = IntegrationTaskState.Running;
 
             using (var dataManager = GetDataManager())
             {
@@ -250,13 +250,13 @@ namespace FACCTS.Server.Integration
             {
                 _logger.Info(string.Format("Executing scheduled task {0}", task.Id));
                 _sTasksOperations.FirstOrDefault().ProcessTask(task);
-                task.State = IntegrationTaskState.Finished;
+                task.TaskState = IntegrationTaskState.Finished;
             }
             catch (Exception exc)
             {
                 string errorText = string.Format("Exception occured during scheduled task {0} execution", task.Id);
                 _logger.Error(errorText, exc);
-                task.State = IntegrationTaskState.Error;
+                task.TaskState = IntegrationTaskState.Error;
                 task.Info = errorText + "\n" + exc.ToString();
             }
             finally

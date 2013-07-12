@@ -1,12 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using FACCTS.Server.Model.Entities;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public partial class Client
+    public partial class Client : BaseEntity
     {
-        [Key]
-        public long Id { get; set; }
-
         [Required]
         public string Name { get; set; }
         
@@ -27,5 +26,18 @@ namespace FACCTS.Server.Model.DataModel
         public bool AllowResourceOwnerFlow { get; set; }
 
         public bool AllowCodeFlow { get; set; }
+
+        [NotMapped]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
+            }
+        }
     }
 }

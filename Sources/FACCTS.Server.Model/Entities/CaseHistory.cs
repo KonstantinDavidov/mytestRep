@@ -1,4 +1,5 @@
-﻿using FACCTS.Server.Model.Enums;
+﻿using FACCTS.Server.Model.Entities;
+using FACCTS.Server.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -9,10 +10,8 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public partial class CaseHistory
+    public partial class CaseHistory : BaseEntity
     {
-        [Key]
-        public long Id { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
@@ -42,6 +41,19 @@ namespace FACCTS.Server.Model.DataModel
         public virtual Hearing Hearing { get; set; }
 
         public virtual CourtCaseOrder CourtOrder { get; set; }
+
+        [NotMapped]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
+            }
+        }
         
     }
 }

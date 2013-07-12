@@ -1,15 +1,16 @@
-﻿using FACCTS.Server.Model.Enums;
+﻿using FACCTS.Server.Model.Entities;
+using FACCTS.Server.Model.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public class ManualIntegrationTask
+    public class ManualIntegrationTask : BaseEntity
     {
-        public int Id { get; set; }
 
         public DateTime? ReceiveTime { get; set; }
 
@@ -19,13 +20,26 @@ namespace FACCTS.Server.Model.DataModel
 
         public string Info { get; set; }
 
-        public int? UserId { get; set; }
+        public long? UserId { get; set; }
 
         /// <summary>
         /// User, who placed the order
         /// </summary>
         public User User { get; set; }
 
-        public IntegrationTaskState State { get; set; }
+        public IntegrationTaskState TaskState { get; set; }
+
+        [NotMapped]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
+            }
+        }
     }
 }

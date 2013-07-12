@@ -1,4 +1,5 @@
-﻿using FACCTS.Server.Model.Enums;
+﻿using FACCTS.Server.Model.Entities;
+using FACCTS.Server.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,10 +11,8 @@ using System.Threading.Tasks;
 namespace FACCTS.Server.Model.DataModel
 {
     [Table("Witnesses")]
-    public partial class Witness
+    public partial class Witness : BaseEntity
     {
-        [Key]
-        public int Id { get; set; }
 
         [Required]
         public FACCTSEntity EntityType { get; set; } 
@@ -36,5 +35,18 @@ namespace FACCTS.Server.Model.DataModel
 
         [InverseProperty("Witnesses")]
         public virtual CaseRecord CaseRecord { get; set; }
+
+        [NotMapped]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
+            }
+        }
     }
 }

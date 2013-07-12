@@ -22,5 +22,6 @@ namespace FACCTS.Server.Model.DataModel.Configuration
         public string IssuerUri { get; set; }
         public string IssuerThumbprint { get; set; }
         public string EncryptionCertificate { get; set; }
+
     }
 }

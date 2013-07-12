@@ -1,4 +1,5 @@
 using CsvHelper.Configuration;
+using FACCTS.Server.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,15 +9,29 @@ namespace FACCTS.Server.Model.DataModel
 {
 
 
-    public partial class Designation
+    public partial class Designation : BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [CsvField(Index = 0)]
-        public int Id { get; set; }
+        public override long Id { get; set; }
         [Required]
         [CsvField(Index = 1)]
         [StringLength(150)]
         public string DesignationName { get; set; }
+
+        [NotMapped]
+        [CsvField(Ignore=true)]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
+            }
+        }
     }
 }

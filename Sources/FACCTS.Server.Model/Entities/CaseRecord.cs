@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FACCTS.Server.Model.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -8,10 +9,8 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public partial class CaseRecord
+    public partial class CaseRecord : BaseEntity
     {
-        [Key]
-        public long Id { get; set; }
 
         public virtual CourtParty Party1 { get; set; }
 
@@ -49,5 +48,17 @@ namespace FACCTS.Server.Model.DataModel
 
 
         public RestrainingPartyIdentificationInformation RestrainingPartyIdentificationInformation { get; set; }
+        [NotMapped]
+        public override ObjectState State
+        {
+            get
+            {
+                return base.State;
+            }
+            set
+            {
+                base.State = value;
+            }
+        }
     }
 }
