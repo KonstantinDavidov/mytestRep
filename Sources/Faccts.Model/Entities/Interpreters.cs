@@ -23,6 +23,7 @@ namespace Faccts.Model.Entities
     [DataContract(IsReference = true)]
     [KnownType(typeof(CaseRecord))]
     [KnownType(typeof(CourtParty))]
+    [KnownType(typeof(CaseHistory))]
     public partial class Interpreters: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -57,8 +58,10 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.InterpreterFor_Id)
     				,this.ObservableForProperty(x => x.CaseRecord_Id)
     				,this.ObservableForProperty(x => x.EntityType)
+    				,this.ObservableForProperty(x => x.CaseHistoryRecord_Id)
     				,this.ObservableForProperty(x => x.CaseRecord.IsDirty)
     				,this.ObservableForProperty(x => x.CourtParty.IsDirty)
+    				,this.ObservableForProperty(x => x.CaseHistory.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -208,7 +211,7 @@ namespace Faccts.Model.Entities
         private string _language;
     
         [DataMember]
-        public long InterpreterFor_Id
+        public Nullable<long> InterpreterFor_Id
         {
             get { return _interpreterFor_Id; }
             set
@@ -229,7 +232,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private long _interpreterFor_Id;
+        private Nullable<long> _interpreterFor_Id;
     
         [DataMember]
         public Nullable<long> CaseRecord_Id
@@ -270,6 +273,30 @@ namespace Faccts.Model.Entities
             }
         }
         private int _entityType;
+    
+        [DataMember]
+        public Nullable<long> CaseHistoryRecord_Id
+        {
+            get { return _caseHistoryRecord_Id; }
+            set
+            {
+                if (_caseHistoryRecord_Id != value)
+                {
+                    ChangeTracker.RecordOriginalValue("CaseHistoryRecord_Id", _caseHistoryRecord_Id);
+                    if (!IsDeserializing)
+                    {
+                        if (CaseHistory != null && CaseHistory.Id != value)
+                        {
+                            CaseHistory = null;
+                        }
+                    }
+    				OnPropertyChanging("CaseHistoryRecord_Id");
+                    _caseHistoryRecord_Id = value;
+                    OnPropertyChanged("CaseHistoryRecord_Id");
+                }
+            }
+        }
+        private Nullable<long> _caseHistoryRecord_Id;
 
         #endregion
 
@@ -310,6 +337,24 @@ namespace Faccts.Model.Entities
             }
         }
         private CourtParty _courtParty;
+    
+        [DataMember]
+        public CaseHistory CaseHistory
+        {
+            get { return _caseHistory; }
+            set
+            {
+                if (!ReferenceEquals(_caseHistory, value))
+                {
+                    var previousValue = _caseHistory;
+    				OnNavigationPropertyChanging("CaseHistory");
+                    _caseHistory = value;
+                    FixupCaseHistory(previousValue);
+                    OnNavigationPropertyChanged("CaseHistory");
+                }
+            }
+        }
+        private CaseHistory _caseHistory;
 
         #endregion
 
@@ -420,6 +465,7 @@ namespace Faccts.Model.Entities
         {
             CaseRecord = null;
             CourtParty = null;
+            CaseHistory = null;
         }
 
         #endregion
@@ -467,7 +513,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupCourtParty(CourtParty previousValue)
+        private void FixupCourtParty(CourtParty previousValue, bool skipKeys = false)
         {
             if (IsDeserializing)
             {
@@ -485,6 +531,11 @@ namespace Faccts.Model.Entities
     
                 InterpreterFor_Id = CourtParty.Id;
             }
+            else if (!skipKeys)
+            {
+                InterpreterFor_Id = null;
+            }
+    
             if (ChangeTracker.ChangeTrackingEnabled)
             {
                 if (ChangeTracker.OriginalValues.ContainsKey("CourtParty")
@@ -499,6 +550,47 @@ namespace Faccts.Model.Entities
                 if (CourtParty != null && !CourtParty.ChangeTracker.ChangeTrackingEnabled)
                 {
                     CourtParty.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupCaseHistory(CaseHistory previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.Interpreters.Contains(this))
+            {
+                previousValue.Interpreters.Remove(this);
+            }
+    
+            if (CaseHistory != null)
+            {
+                CaseHistory.Interpreters.Add(this);
+    
+                CaseHistoryRecord_Id = CaseHistory.Id;
+            }
+            else if (!skipKeys)
+            {
+                CaseHistoryRecord_Id = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("CaseHistory")
+                    && (ChangeTracker.OriginalValues["CaseHistory"] == CaseHistory))
+                {
+                    ChangeTracker.OriginalValues.Remove("CaseHistory");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("CaseHistory", previousValue);
+                }
+                if (CaseHistory != null && !CaseHistory.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    CaseHistory.StartTracking();
                 }
             }
         }

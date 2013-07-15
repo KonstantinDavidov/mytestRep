@@ -53,7 +53,7 @@ namespace FACCTS.Controls.ViewModels
                     CaseHistory ch = new CaseHistory()
                     {
                         Date = DateTime.Now,
-                        CaseHistoryEvent = (int)FACCTS.Server.Model.Enums.CaseHistoryEvent.Merged,
+                        CaseHistoryEvent = FACCTS.Server.Model.Enums.CaseHistoryEvent.Merged,
                         MergeCase = SelectedCourtCase,
 
                     };

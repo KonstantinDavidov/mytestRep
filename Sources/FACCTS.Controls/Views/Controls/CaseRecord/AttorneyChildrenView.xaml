@@ -114,7 +114,7 @@
                 <RadioButton Content="Copy Party 2" Margin="8,0" Style="{DynamicResource ToggleRadioButton}" IsChecked="{Binding AttorneyForChildrenIsTheSameThenParty2, Mode=TwoWay}"/>
 			</StackPanel>
 			<ContentControl Grid.Row="1" Grid.ColumnSpan="2" >
-                <this:AttorneyView DataContext="{Binding CaseRecord.Attorneys, Mode=OneWay}"/>
+                <this:AttorneyView DataContext="{Binding CurrentHistoryRecord.AttorneyForChild, Mode=OneWay}"/>
 			</ContentControl>
 		</Grid>
 	</GroupBox>

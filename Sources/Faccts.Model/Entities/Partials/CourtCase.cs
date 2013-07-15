@@ -25,6 +25,7 @@ namespace Faccts.Model.Entities
         private void CaseHistoryChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             this.OnPropertyChanged("CaseStatus");
+            this.OnPropertyChanged("Hearings");
         }
 
         private static FACCTS.Server.Model.Enums.CaseStatus CaseHistoryEventToStatus(FACCTS.Server.Model.Enums.CaseHistoryEvent chEvent)
@@ -124,6 +125,19 @@ namespace Faccts.Model.Entities
                 CaseRecord = this.CaseRecord.ToDTO(),
                 //CourtClerk = this.User1.ToDTO(),
             };
+        }
+
+        public List<Hearings> Hearings
+        {
+            get
+            {
+                return this.CaseRecord
+                    .CaseHistory
+                    .Where(x => x.CaseHistoryEvent == FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing)
+                    .Select(x => x.Hearing)
+                    .OrderBy(x => x.HearingDate)
+                    .ToList();
+            }
         }
     }
 }

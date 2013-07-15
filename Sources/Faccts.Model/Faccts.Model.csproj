@@ -143,6 +143,9 @@
     <Compile Include="Entities\CourtParty.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\CourtPartyAttorneyData.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Courtrooms.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -219,6 +222,7 @@
     <Compile Include="Entities\Partials\CourtCounty.cs" />
     <Compile Include="Entities\Partials\CourtDepartmenets.cs" />
     <Compile Include="Entities\Partials\CourtParty.cs" />
+    <Compile Include="Entities\Partials\CourtPartyAttorneyData.cs" />
     <Compile Include="Entities\Partials\Courtrooms.cs" />
     <Compile Include="Entities\Partials\Designation.cs" />
     <Compile Include="Entities\Partials\EyesColor.cs" />

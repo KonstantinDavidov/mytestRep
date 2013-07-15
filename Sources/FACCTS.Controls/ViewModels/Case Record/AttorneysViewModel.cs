@@ -12,7 +12,7 @@ using ReactiveUI;
 namespace FACCTS.Controls.ViewModels
 {
     [Export(typeof(AttorneysViewModel))]
-    public partial class AttorneysViewModel : CaseRecordItemViewModel
+    public partial class AttorneysViewModel : CaseRecordItemViewModel, IHandle<CurrentHearingChanged>
     {
 
         [ImportingConstructor]
@@ -32,11 +32,11 @@ namespace FACCTS.Controls.ViewModels
                         } else
                         if (x.IsParty1)
                         {
-                            CaseRecord.Attorneys = CaseRecord.CourtParty.Attorneys;
+                            CurrentHistoryRecord.AttorneyForChild = CurrentHistoryRecord.Party1AttorneyData.Attorney;
                         }
                         else
                         {
-                            CaseRecord.Attorneys = CaseRecord.CourtParty1.Attorneys;
+                            CurrentHistoryRecord.AttorneyForChild = CurrentHistoryRecord.Party2AttorneyData.Attorney;
                         }
                     }
                 );
@@ -44,7 +44,17 @@ namespace FACCTS.Controls.ViewModels
             this.DisplayName = "Attorneys";
         }
 
-        
-        
+
+
+
+        public void Handle(CurrentHearingChanged message)
+        {
+            if (message == null || message.Hearing == null)
+            {
+                this.CurrentHistoryRecord = null;
+                return;
+            }
+            this.CurrentHistoryRecord = message.Hearing.CaseHistory;
+        }
     }
 }

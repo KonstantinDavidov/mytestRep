@@ -58,6 +58,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.Courtroom_Id)
     				,this.ObservableForProperty(x => x.Department_Id)
     				,this.ObservableForProperty(x => x.Session)
+    				,this.ObservableForProperty(x => x.CaseHistory.IsDirty)
     				,this.ObservableForProperty(x => x.Courtrooms.IsDirty)
     				,this.ObservableForProperty(x => x.CourtDepartment.IsDirty)
     			).
@@ -303,40 +304,22 @@ namespace Faccts.Model.Entities
         #region Navigation Properties
     
         [DataMember]
-        public TrackableCollection<CaseHistory> CaseHistory
+        public CaseHistory CaseHistory
         {
-            get
-            {
-                if (_caseHistory == null)
-                {
-                    _caseHistory = new TrackableCollection<CaseHistory>();
-                    _caseHistory.CollectionChanged += FixupCaseHistory;
-                }
-                return _caseHistory;
-            }
+            get { return _caseHistory; }
             set
             {
                 if (!ReferenceEquals(_caseHistory, value))
                 {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
+                    var previousValue = _caseHistory;
     				OnNavigationPropertyChanging("CaseHistory");
-                    if (_caseHistory != null)
-                    {
-                        _caseHistory.CollectionChanged -= FixupCaseHistory;
-                    }
                     _caseHistory = value;
-                    if (_caseHistory != null)
-                    {
-                        _caseHistory.CollectionChanged += FixupCaseHistory;
-                    }
+                    FixupCaseHistory(previousValue);
                     OnNavigationPropertyChanged("CaseHistory");
                 }
             }
         }
-        private TrackableCollection<CaseHistory> _caseHistory;
+        private CaseHistory _caseHistory;
     
         [DataMember]
         public Courtrooms Courtrooms
@@ -516,7 +499,7 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
-            CaseHistory.Clear();
+            CaseHistory = null;
             Courtrooms = null;
             CourtDepartment = null;
             CourtDocketRecords.Clear();
@@ -525,6 +508,59 @@ namespace Faccts.Model.Entities
         #endregion
 
         #region Association Fixup
+    
+        private void FixupCaseHistory(CaseHistory previousValue)
+        {
+            // This is the principal end in an association that performs cascade deletes.
+            // Update the event listener to refer to the new dependent.
+            if (previousValue != null)
+            {
+                ChangeTracker.ObjectStateChanging -= previousValue.HandleCascadeDelete;
+            }
+    
+            if (CaseHistory != null)
+            {
+                ChangeTracker.ObjectStateChanging += CaseHistory.HandleCascadeDelete;
+            }
+    
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && ReferenceEquals(previousValue.Hearing, this))
+            {
+                previousValue.Hearing = null;
+            }
+    
+            if (CaseHistory != null)
+            {
+                CaseHistory.Hearing = this;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("CaseHistory")
+                    && (ChangeTracker.OriginalValues["CaseHistory"] == CaseHistory))
+                {
+                    ChangeTracker.OriginalValues.Remove("CaseHistory");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("CaseHistory", previousValue);
+                    // This is the principal end of an identifying association, so the dependent must be deleted when the relationship is removed.
+                    // If the current state of the dependent is Added, the relationship can be changed without causing the dependent to be deleted.
+                    if (previousValue != null && previousValue.ChangeTracker.State != ObjectState.Added)
+                    {
+                        previousValue.MarkAsDeleted();
+                    }
+                }
+                if (CaseHistory != null && !CaseHistory.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    CaseHistory.StartTracking();
+                }
+            }
+        }
     
         private void FixupCourtrooms(Courtrooms previousValue, bool skipKeys = false)
         {
@@ -604,45 +640,6 @@ namespace Faccts.Model.Entities
                 if (CourtDepartment != null && !CourtDepartment.ChangeTracker.ChangeTrackingEnabled)
                 {
                     CourtDepartment.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupCaseHistory(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (CaseHistory item in e.NewItems)
-                {
-                    item.Hearing = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CaseHistory", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (CaseHistory item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.Hearing, this))
-                    {
-                        item.Hearing = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CaseHistory", item);
-                    }
                 }
             }
         }

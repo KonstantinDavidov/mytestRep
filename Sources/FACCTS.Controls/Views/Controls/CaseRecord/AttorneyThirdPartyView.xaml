@@ -34,7 +34,7 @@
                 
 			</StackPanel>
 			<ContentControl Grid.Row="1" Grid.ColumnSpan="2" >
-                <this:AttorneyView DataContext="{Binding CaseRecord.ThirdPartyData.Attorney, Mode=OneWay}"/>
+                <this:AttorneyView DataContext="{Binding CurrentHistoryRecord.ThirdPartyData.Attorney, Mode=OneWay}"/>
 			</ContentControl>
 		</Grid>
 	</GroupBox>
