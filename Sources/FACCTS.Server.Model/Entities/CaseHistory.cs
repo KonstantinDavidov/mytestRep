@@ -30,8 +30,6 @@ namespace FACCTS.Server.Model.DataModel
         [InverseProperty("CaseHistory")]
         public virtual CaseRecord CaseRecord { get; set; }
 
-        public virtual Appearance Appearances { get; set; }
-
         public CourtCase MergeCase { get; set; }
 
         public virtual Hearing Hearing { get; set; }

@@ -61,6 +61,19 @@ namespace FACCTS.Server.Tests.OrdersGenerator
             testModel.NoServiceFeeSection.IsOrdered = true;
             testModel.NoServiceFeeSection.IsBasedOnViolence = true;
             testModel.NoServiceFeeSection.IsFeeWaiver = true;
+
+            testModel.LawersFeeAndCourtCostsSection.IsEnabled = true;
+            testModel.LawersFeeAndCourtCostsSection.IsCourtCosts = true;
+            testModel.LawersFeeAndCourtCostsSection.IsLawyerFee = true;
+            testModel.LawersFeeAndCourtCostsSection.IsParty1Payer = false;
+            testModel.LawersFeeAndCourtCostsSection.LawyersFees.Add("Agency1", "Cost1");
+            testModel.LawersFeeAndCourtCostsSection.LawyersFees.Add("Agency2", "Cost2");
+            testModel.LawersFeeAndCourtCostsSection.LawyersFees.Add("Agency3", "Cost3");
+            testModel.LawersFeeAndCourtCostsSection.LawyersFees.Add("Agency4", "Cost4");
+            testModel.LawersFeeAndCourtCostsSection.LawyersFees.Add("Agency5", "Cost5");
+
+            testModel.IsOtherOrdersAttached = true;
+            testModel.OtherOrderDetail = "Some Details ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt";
             
             IDataManager dm = new DataManager( new RepositoryProvider(new RepositoryFactories()));
 

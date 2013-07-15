@@ -815,14 +815,15 @@ namespace FACCTS.Server.Data
             {
                 Date = DateTime.Now,
                 CaseHistoryEvent = Model.Enums.CaseHistoryEvent.New,
-                Appearances = new Appearance()
-                {
-                    Party1Appear = true,
-                    Party1AttorneyPresent = true,
-                    Party1Sworn = true
-                },
+                
                 Hearing = new Hearing()
                 {
+                    Appearance = new Appearance()
+                    {
+                        Party1Appear = true,
+                        Party1AttorneyPresent = true,
+                        Party1Sworn = true
+                    },
                     HearingDate = DateTime.Now,
                     Judge = "Dredd",
                     HearingIssues = new HearingIssue()
