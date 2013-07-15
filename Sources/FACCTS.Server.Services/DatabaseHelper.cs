@@ -694,7 +694,7 @@ namespace FACCTS.Server.Data
                 StreetAddress = "MainStreet",
                 ZipCode = "12345"
             };
-            testCaseRecord.AttorneyForChild = testAttorney;
+            //testCaseRecord.AttorneyForChild = testAttorney;
             testCaseRecord.Children = new List<Child>()
             { new Child()
                 { 
@@ -742,7 +742,7 @@ namespace FACCTS.Server.Data
             {
                 Address = "Some address1",
                 Age = 45,
-                Attorney = testAttorney,
+                //Attorney = testAttorney,
                 City = "NY",
                 DateOfBirth = DateTime.Now,
                 Description = "Some description",
@@ -751,7 +751,7 @@ namespace FACCTS.Server.Data
                 Fax = "12345",
                 FirstName = "Sarah",
                 HairColor = testHairColor,
-                HasAttorney = true,
+                //HasAttorney = true,
                 HeightFt = 5,
                 HeightIns = 3,
                 LastName = "Connor",
@@ -769,7 +769,7 @@ namespace FACCTS.Server.Data
             {
                 Address = "Some address2",
                 Age = 15,
-                Attorney = testAttorney,
+                //Attorney = testAttorney,
                 City = "NY",
                 DateOfBirth = DateTime.Now,
                 Description = "Some description",
@@ -778,7 +778,7 @@ namespace FACCTS.Server.Data
                 Fax = "12345",
                 FirstName = "John",
                 HairColor = testHairColor,
-                HasAttorney = true,
+                //HasAttorney = true,
                 HeightFt = 5,
                 HeightIns = 3,
                 LastName = "Connor",
@@ -792,17 +792,17 @@ namespace FACCTS.Server.Data
                 ZipCode = "410001",
                 RelationToOtherParty = "Allien"
             };
-            testCaseRecord.Witnesses = new List<Witness>(){
-                new Witness()
-                {
-                    Contact = "Contact",
-                    Designation = testDesignation,
-                    EntityType = Model.Enums.FACCTSEntity.ENTITY,
-                    FirstName = "Witney",
-                    LastName = "Huiston",
-                    WitnessFor = testCaseRecord.Party2
-                }
-            };
+            //testCaseRecord.Witnesses = new List<Witness>(){
+            //    new Witness()
+            //    {
+            //        Contact = "Contact",
+            //        Designation = testDesignation,
+            //        EntityType = Model.Enums.FACCTSEntity.ENTITY,
+            //        FirstName = "Witney",
+            //        LastName = "Huiston",
+            //        WitnessFor = testCaseRecord.Party2
+            //    }
+            //};
             testCaseRecord.RestrainingPartyIdentificationInformation = new RestrainingPartyIdentificationInformation()
                 {
                     IDNumber = "123",
