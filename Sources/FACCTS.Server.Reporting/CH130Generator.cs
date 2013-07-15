@@ -240,6 +240,33 @@ namespace FACCTS.Server.Reporting
                 Utils.SetPdfFormFieldValue(form, mapper, "feeWaiverViolence", reportData.NoServiceFeeSection.IsBasedOnViolence ? BooleanString : null);
                 Utils.SetPdfFormFieldValue(form, mapper, "feeWaiverEntitled", reportData.NoServiceFeeSection.IsFeeWaiver ? BooleanString : null);
             }
+            //lawyersFees
+            if (reportData.LawersFeeAndCourtCostsSection != null && reportData.LawersFeeAndCourtCostsSection.IsEnabled)
+            {
+                Utils.SetPdfFormFieldValue(form, mapper, "courtCosts", reportData.LawersFeeAndCourtCostsSection.IsCourtCosts ? BooleanString : null);
+                bool IsProtectedPayer =  (reportData.LawersFeeAndCourtCostsSection.IsParty1Payer && courtCaseRecord.Party1.ParticipantRole == ParticipantRole.PPSC) ||
+                    (!reportData.LawersFeeAndCourtCostsSection.IsParty1Payer && courtCaseRecord.Party2.ParticipantRole == ParticipantRole.PPSC);
+                Utils.SetPdfFormFieldValue(form, mapper, "feePaidBy", IsProtectedPayer ? "1" : "2");
+                Utils.SetPdfFormFieldValue(form, mapper, "feePaidTo", IsProtectedPayer ? "2" : "1");
+                if (reportData.LawersFeeAndCourtCostsSection.IsLawyerFee)
+                {
+                    string[][] feeItems = new string[][]{
+                        new string[]{"lawyersFee[0]Item", "lawyersFee[0]Amount"},
+                        new string[]{"lawyersFee[1]Item", "lawyersFee[1]Amount"},
+                        new string[]{"lawyersFee[2]Item", "lawyersFee[2]Amount"},
+                        new string[]{"lawyersFee[3]Item", "lawyersFee[3]Amount"}
+                    };
+                    Utils.SetPdfFormFieldValue(form, mapper, "lawyersFees", BooleanString);
+                    var feeItemsCount  = reportData.LawersFeeAndCourtCostsSection.LawyersFees.Count;
+                    for (int i = 0; i < 4; i++)
+                    {
+                        if (i < feeItemsCount)
+                        {
+
+                        }
+                    }
+                }
+            }
         }
 
     }
