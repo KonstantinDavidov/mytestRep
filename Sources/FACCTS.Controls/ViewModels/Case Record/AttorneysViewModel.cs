@@ -32,11 +32,11 @@ namespace FACCTS.Controls.ViewModels
                         } else
                         if (x.IsParty1)
                         {
-                            CaseRecord.Attorneys = CaseRecord.CourtParty.Attorneys;
+                            //CaseRecord.Attorneys = CaseRecord.CourtParty.Attorneys;
                         }
                         else
                         {
-                            CaseRecord.Attorneys = CaseRecord.CourtParty1.Attorneys;
+                            //CaseRecord.Attorneys = CaseRecord.CourtParty1.Attorneys;
                         }
                     }
                 );

@@ -17,7 +17,6 @@ namespace Faccts.Model.Entities
                     this.OnPropertyChanged("FullName");
                 }
                 );
-            this.Attorneys = new Attorneys();
         }
 
         private DateTime? _dateOfBirthNullable;
@@ -87,8 +86,6 @@ namespace Faccts.Model.Entities
                     HeightIns = this.HeightIns,
                     DateOfBirth = this.DateOfBirth,
                     Age = this.Age,
-                    HasAttorney = this.HasAttorney,
-                    Attorney = this.Attorneys != null ? this.Attorneys.ToDTO() : null,
                     State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
 
                 };

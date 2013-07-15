@@ -23,6 +23,7 @@ namespace Faccts.Model.Entities
     [DataContract(IsReference = true)]
     [KnownType(typeof(Attorneys))]
     [KnownType(typeof(CaseRecord))]
+    [KnownType(typeof(CaseHistory))]
     public partial class ThirdPartyData: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -285,6 +286,42 @@ namespace Faccts.Model.Entities
             }
         }
         private TrackableCollection<CaseRecord> _caseRecord;
+    
+        [DataMember]
+        public TrackableCollection<CaseHistory> CaseHistory
+        {
+            get
+            {
+                if (_caseHistory == null)
+                {
+                    _caseHistory = new TrackableCollection<CaseHistory>();
+                    _caseHistory.CollectionChanged += FixupCaseHistory;
+                }
+                return _caseHistory;
+            }
+            set
+            {
+                if (!ReferenceEquals(_caseHistory, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("CaseHistory");
+                    if (_caseHistory != null)
+                    {
+                        _caseHistory.CollectionChanged -= FixupCaseHistory;
+                    }
+                    _caseHistory = value;
+                    if (_caseHistory != null)
+                    {
+                        _caseHistory.CollectionChanged += FixupCaseHistory;
+                    }
+                    OnNavigationPropertyChanged("CaseHistory");
+                }
+            }
+        }
+        private TrackableCollection<CaseHistory> _caseHistory;
 
         #endregion
 
@@ -385,6 +422,7 @@ namespace Faccts.Model.Entities
         {
             Attorney = null;
             CaseRecord.Clear();
+            CaseHistory.Clear();
         }
 
         #endregion
@@ -466,6 +504,45 @@ namespace Faccts.Model.Entities
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         ChangeTracker.RecordRemovalFromCollectionProperties("CaseRecord", item);
+                    }
+                }
+            }
+        }
+    
+        private void FixupCaseHistory(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (CaseHistory item in e.NewItems)
+                {
+                    item.ThirdPartyData = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("CaseHistory", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (CaseHistory item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.ThirdPartyData, this))
+                    {
+                        item.ThirdPartyData = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CaseHistory", item);
                     }
                 }
             }

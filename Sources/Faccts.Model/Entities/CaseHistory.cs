@@ -26,6 +26,11 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(User))]
     [KnownType(typeof(Hearings))]
     [KnownType(typeof(CourtCase))]
+    [KnownType(typeof(Attorneys))]
+    [KnownType(typeof(CourtPartyAttorneyData))]
+    [KnownType(typeof(ThirdPartyData))]
+    [KnownType(typeof(Interpreters))]
+    [KnownType(typeof(Witnesses))]
     public partial class CaseHistory: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -64,6 +69,10 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.MergeCase_Id)
     				,this.ObservableForProperty(x => x.CourtOrder_Id)
     				,this.ObservableForProperty(x => x.CourtClerk_Id)
+    				,this.ObservableForProperty(x => x.AttorneyForChild_Id)
+    				,this.ObservableForProperty(x => x.Party1Attorney_Id)
+    				,this.ObservableForProperty(x => x.Party2Attorney_Id)
+    				,this.ObservableForProperty(x => x.ThirdPartyData_Id)
     				,this.ObservableForProperty(x => x.CaseRecord.IsDirty)
     				,this.ObservableForProperty(x => x.CourtCaseOrders.IsDirty)
     				,this.ObservableForProperty(x => x.User.IsDirty)
@@ -71,6 +80,10 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.MergeCase.IsDirty)
     				,this.ObservableForProperty(x => x.CourtCaseOrders1.IsDirty)
     				,this.ObservableForProperty(x => x.User1.IsDirty)
+    				,this.ObservableForProperty(x => x.Attorneys.IsDirty)
+    				,this.ObservableForProperty(x => x.CourtPartyAttorneyData.IsDirty)
+    				,this.ObservableForProperty(x => x.CourtPartyAttorneyData1.IsDirty)
+    				,this.ObservableForProperty(x => x.ThirdPartyData.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -386,6 +399,102 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<long> _courtClerk_Id;
+    
+        [DataMember]
+        public Nullable<long> AttorneyForChild_Id
+        {
+            get { return _attorneyForChild_Id; }
+            set
+            {
+                if (_attorneyForChild_Id != value)
+                {
+                    ChangeTracker.RecordOriginalValue("AttorneyForChild_Id", _attorneyForChild_Id);
+                    if (!IsDeserializing)
+                    {
+                        if (Attorneys != null && Attorneys.Id != value)
+                        {
+                            Attorneys = null;
+                        }
+                    }
+    				OnPropertyChanging("AttorneyForChild_Id");
+                    _attorneyForChild_Id = value;
+                    OnPropertyChanged("AttorneyForChild_Id");
+                }
+            }
+        }
+        private Nullable<long> _attorneyForChild_Id;
+    
+        [DataMember]
+        public Nullable<long> Party1Attorney_Id
+        {
+            get { return _party1Attorney_Id; }
+            set
+            {
+                if (_party1Attorney_Id != value)
+                {
+                    ChangeTracker.RecordOriginalValue("Party1Attorney_Id", _party1Attorney_Id);
+                    if (!IsDeserializing)
+                    {
+                        if (CourtPartyAttorneyData != null && CourtPartyAttorneyData.Id != value)
+                        {
+                            CourtPartyAttorneyData = null;
+                        }
+                    }
+    				OnPropertyChanging("Party1Attorney_Id");
+                    _party1Attorney_Id = value;
+                    OnPropertyChanged("Party1Attorney_Id");
+                }
+            }
+        }
+        private Nullable<long> _party1Attorney_Id;
+    
+        [DataMember]
+        public Nullable<long> Party2Attorney_Id
+        {
+            get { return _party2Attorney_Id; }
+            set
+            {
+                if (_party2Attorney_Id != value)
+                {
+                    ChangeTracker.RecordOriginalValue("Party2Attorney_Id", _party2Attorney_Id);
+                    if (!IsDeserializing)
+                    {
+                        if (CourtPartyAttorneyData1 != null && CourtPartyAttorneyData1.Id != value)
+                        {
+                            CourtPartyAttorneyData1 = null;
+                        }
+                    }
+    				OnPropertyChanging("Party2Attorney_Id");
+                    _party2Attorney_Id = value;
+                    OnPropertyChanged("Party2Attorney_Id");
+                }
+            }
+        }
+        private Nullable<long> _party2Attorney_Id;
+    
+        [DataMember]
+        public Nullable<long> ThirdPartyData_Id
+        {
+            get { return _thirdPartyData_Id; }
+            set
+            {
+                if (_thirdPartyData_Id != value)
+                {
+                    ChangeTracker.RecordOriginalValue("ThirdPartyData_Id", _thirdPartyData_Id);
+                    if (!IsDeserializing)
+                    {
+                        if (ThirdPartyData != null && ThirdPartyData.Id != value)
+                        {
+                            ThirdPartyData = null;
+                        }
+                    }
+    				OnPropertyChanging("ThirdPartyData_Id");
+                    _thirdPartyData_Id = value;
+                    OnPropertyChanged("ThirdPartyData_Id");
+                }
+            }
+        }
+        private Nullable<long> _thirdPartyData_Id;
 
         #endregion
 
@@ -558,6 +667,150 @@ namespace Faccts.Model.Entities
             }
         }
         private User _user1;
+    
+        [DataMember]
+        public Attorneys Attorneys
+        {
+            get { return _attorneys; }
+            set
+            {
+                if (!ReferenceEquals(_attorneys, value))
+                {
+                    var previousValue = _attorneys;
+    				OnNavigationPropertyChanging("Attorneys");
+                    _attorneys = value;
+                    FixupAttorneys(previousValue);
+                    OnNavigationPropertyChanged("Attorneys");
+                }
+            }
+        }
+        private Attorneys _attorneys;
+    
+        [DataMember]
+        public CourtPartyAttorneyData CourtPartyAttorneyData
+        {
+            get { return _courtPartyAttorneyData; }
+            set
+            {
+                if (!ReferenceEquals(_courtPartyAttorneyData, value))
+                {
+                    var previousValue = _courtPartyAttorneyData;
+    				OnNavigationPropertyChanging("CourtPartyAttorneyData");
+                    _courtPartyAttorneyData = value;
+                    FixupCourtPartyAttorneyData(previousValue);
+                    OnNavigationPropertyChanged("CourtPartyAttorneyData");
+                }
+            }
+        }
+        private CourtPartyAttorneyData _courtPartyAttorneyData;
+    
+        [DataMember]
+        public CourtPartyAttorneyData CourtPartyAttorneyData1
+        {
+            get { return _courtPartyAttorneyData1; }
+            set
+            {
+                if (!ReferenceEquals(_courtPartyAttorneyData1, value))
+                {
+                    var previousValue = _courtPartyAttorneyData1;
+    				OnNavigationPropertyChanging("CourtPartyAttorneyData1");
+                    _courtPartyAttorneyData1 = value;
+                    FixupCourtPartyAttorneyData1(previousValue);
+                    OnNavigationPropertyChanged("CourtPartyAttorneyData1");
+                }
+            }
+        }
+        private CourtPartyAttorneyData _courtPartyAttorneyData1;
+    
+        [DataMember]
+        public ThirdPartyData ThirdPartyData
+        {
+            get { return _thirdPartyData; }
+            set
+            {
+                if (!ReferenceEquals(_thirdPartyData, value))
+                {
+                    var previousValue = _thirdPartyData;
+    				OnNavigationPropertyChanging("ThirdPartyData");
+                    _thirdPartyData = value;
+                    FixupThirdPartyData(previousValue);
+                    OnNavigationPropertyChanged("ThirdPartyData");
+                }
+            }
+        }
+        private ThirdPartyData _thirdPartyData;
+    
+        [DataMember]
+        public TrackableCollection<Interpreters> Interpreters
+        {
+            get
+            {
+                if (_interpreters == null)
+                {
+                    _interpreters = new TrackableCollection<Interpreters>();
+                    _interpreters.CollectionChanged += FixupInterpreters;
+                }
+                return _interpreters;
+            }
+            set
+            {
+                if (!ReferenceEquals(_interpreters, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("Interpreters");
+                    if (_interpreters != null)
+                    {
+                        _interpreters.CollectionChanged -= FixupInterpreters;
+                    }
+                    _interpreters = value;
+                    if (_interpreters != null)
+                    {
+                        _interpreters.CollectionChanged += FixupInterpreters;
+                    }
+                    OnNavigationPropertyChanged("Interpreters");
+                }
+            }
+        }
+        private TrackableCollection<Interpreters> _interpreters;
+    
+        [DataMember]
+        public TrackableCollection<Witnesses> Witnesses
+        {
+            get
+            {
+                if (_witnesses == null)
+                {
+                    _witnesses = new TrackableCollection<Witnesses>();
+                    _witnesses.CollectionChanged += FixupWitnesses;
+                }
+                return _witnesses;
+            }
+            set
+            {
+                if (!ReferenceEquals(_witnesses, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("Witnesses");
+                    if (_witnesses != null)
+                    {
+                        _witnesses.CollectionChanged -= FixupWitnesses;
+                    }
+                    _witnesses = value;
+                    if (_witnesses != null)
+                    {
+                        _witnesses.CollectionChanged += FixupWitnesses;
+                    }
+                    OnNavigationPropertyChanged("Witnesses");
+                }
+            }
+        }
+        private TrackableCollection<Witnesses> _witnesses;
 
         #endregion
 
@@ -672,6 +925,12 @@ namespace Faccts.Model.Entities
             MergeCase = null;
             CourtCaseOrders1 = null;
             User1 = null;
+            Attorneys = null;
+            CourtPartyAttorneyData = null;
+            CourtPartyAttorneyData1 = null;
+            ThirdPartyData = null;
+            Interpreters.Clear();
+            Witnesses.Clear();
         }
 
         #endregion
@@ -955,6 +1214,248 @@ namespace Faccts.Model.Entities
                 if (User1 != null && !User1.ChangeTracker.ChangeTrackingEnabled)
                 {
                     User1.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupAttorneys(Attorneys previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.CaseHistory.Contains(this))
+            {
+                previousValue.CaseHistory.Remove(this);
+            }
+    
+            if (Attorneys != null)
+            {
+                Attorneys.CaseHistory.Add(this);
+    
+                AttorneyForChild_Id = Attorneys.Id;
+            }
+            else if (!skipKeys)
+            {
+                AttorneyForChild_Id = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("Attorneys")
+                    && (ChangeTracker.OriginalValues["Attorneys"] == Attorneys))
+                {
+                    ChangeTracker.OriginalValues.Remove("Attorneys");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("Attorneys", previousValue);
+                }
+                if (Attorneys != null && !Attorneys.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    Attorneys.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupCourtPartyAttorneyData(CourtPartyAttorneyData previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.CaseHistory.Contains(this))
+            {
+                previousValue.CaseHistory.Remove(this);
+            }
+    
+            if (CourtPartyAttorneyData != null)
+            {
+                CourtPartyAttorneyData.CaseHistory.Add(this);
+    
+                Party1Attorney_Id = CourtPartyAttorneyData.Id;
+            }
+            else if (!skipKeys)
+            {
+                Party1Attorney_Id = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("CourtPartyAttorneyData")
+                    && (ChangeTracker.OriginalValues["CourtPartyAttorneyData"] == CourtPartyAttorneyData))
+                {
+                    ChangeTracker.OriginalValues.Remove("CourtPartyAttorneyData");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("CourtPartyAttorneyData", previousValue);
+                }
+                if (CourtPartyAttorneyData != null && !CourtPartyAttorneyData.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    CourtPartyAttorneyData.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupCourtPartyAttorneyData1(CourtPartyAttorneyData previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.CaseHistory1.Contains(this))
+            {
+                previousValue.CaseHistory1.Remove(this);
+            }
+    
+            if (CourtPartyAttorneyData1 != null)
+            {
+                CourtPartyAttorneyData1.CaseHistory1.Add(this);
+    
+                Party2Attorney_Id = CourtPartyAttorneyData1.Id;
+            }
+            else if (!skipKeys)
+            {
+                Party2Attorney_Id = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("CourtPartyAttorneyData1")
+                    && (ChangeTracker.OriginalValues["CourtPartyAttorneyData1"] == CourtPartyAttorneyData1))
+                {
+                    ChangeTracker.OriginalValues.Remove("CourtPartyAttorneyData1");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("CourtPartyAttorneyData1", previousValue);
+                }
+                if (CourtPartyAttorneyData1 != null && !CourtPartyAttorneyData1.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    CourtPartyAttorneyData1.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupThirdPartyData(ThirdPartyData previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.CaseHistory.Contains(this))
+            {
+                previousValue.CaseHistory.Remove(this);
+            }
+    
+            if (ThirdPartyData != null)
+            {
+                ThirdPartyData.CaseHistory.Add(this);
+    
+                ThirdPartyData_Id = ThirdPartyData.Id;
+            }
+            else if (!skipKeys)
+            {
+                ThirdPartyData_Id = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("ThirdPartyData")
+                    && (ChangeTracker.OriginalValues["ThirdPartyData"] == ThirdPartyData))
+                {
+                    ChangeTracker.OriginalValues.Remove("ThirdPartyData");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("ThirdPartyData", previousValue);
+                }
+                if (ThirdPartyData != null && !ThirdPartyData.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    ThirdPartyData.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupInterpreters(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (Interpreters item in e.NewItems)
+                {
+                    item.CaseHistory = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("Interpreters", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (Interpreters item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.CaseHistory, this))
+                    {
+                        item.CaseHistory = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("Interpreters", item);
+                    }
+                }
+            }
+        }
+    
+        private void FixupWitnesses(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (Witnesses item in e.NewItems)
+                {
+                    item.CaseHistory = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("Witnesses", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (Witnesses item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.CaseHistory, this))
+                    {
+                        item.CaseHistory = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("Witnesses", item);
+                    }
                 }
             }
         }
