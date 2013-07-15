@@ -24,6 +24,8 @@ namespace FACCTS.Server.Model.DataModel
 
         public HearingIssue HearingIssues { get; set; }
 
+        public virtual Appearance Appearance { get; set; }
+
         public DocketSession Session { get; set; }
 
         [NotMapped]

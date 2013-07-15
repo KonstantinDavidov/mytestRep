@@ -379,6 +379,28 @@ namespace FACCTS.Server.Model.OrderModels
 
 			}
 		}
+		
+		private bool _isOtherOrdersAttached;
+		public bool IsOtherOrdersAttached
+		{
+			get{return _isOtherOrdersAttached;}
+			set
+			{
+				_isOtherOrdersAttached = value;
+
+			}
+		}
+		
+		private string _otherOrderDetail;
+		public string OtherOrderDetail
+		{
+			get{return _otherOrderDetail;}
+			set
+			{
+				_otherOrderDetail = value;
+
+			}
+		}
 				
 	}
 	

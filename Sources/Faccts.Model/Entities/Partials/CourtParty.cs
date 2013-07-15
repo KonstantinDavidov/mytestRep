@@ -87,8 +87,8 @@ namespace Faccts.Model.Entities
                     HeightIns = this.HeightIns,
                     DateOfBirth = this.DateOfBirth,
                     Age = this.Age,
-                    HasAttorney = this.HasAttorney,
-                    Attorney = this.Attorneys != null ? this.Attorneys.ToDTO() : null,
+                    //HasAttorney = this.HasAttorney,
+                    //Attorney = this.Attorneys != null ? this.Attorneys.ToDTO() : null,
                     State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
 
                 };

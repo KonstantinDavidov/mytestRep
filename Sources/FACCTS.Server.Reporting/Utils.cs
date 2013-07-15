@@ -49,7 +49,7 @@ namespace FACCTS.Server.Reporting
         public static void SetPdfFormFieldValue(Form pdfForm, Dictionary<string, string> mapper, string key, string value)
         {
             var field = pdfForm.Fields[mapper[key]];
-            if (field != null && value != null)
+            if (value != null)
             {
                 field.Value = value;
             }

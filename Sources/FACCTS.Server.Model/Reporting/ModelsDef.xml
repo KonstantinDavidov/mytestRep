@@ -43,6 +43,8 @@
     <Property name="OrdersEndTime" type="DateTime?"/>
     <Property name="IsPOSGeneral" type="bool?"/>
     <Property name="LawersFeeAndCourtCostsSection" type="LawersFeeAndCourtCosts"/>
+    <Property name="IsOtherOrdersAttached" type="bool"/>
+    <Property name="OtherOrderDetail" type="string"/>
   </Model>
   
 <!--CH110-->

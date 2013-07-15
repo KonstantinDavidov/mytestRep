@@ -49,8 +49,6 @@
   <pdfField originalValue="protectedAdd[1]HouseholdNo" mapValue="protectedAdd[1]HouseholdNo" />
   <pdfField originalValue="protectedAdd[1]Relation" mapValue="protectedAdd[1]Relation" />
   <pdfField originalValue="protectedAddAttachYes" mapValue="protectedAddAttachYes" />
-  <pdfField originalValue="NULL" mapValue="NULL" />
-  <pdfField originalValue="NULL" mapValue="NULL" />
   <pdfField originalValue="expireTime" mapValue="expireTime" />
   <pdfField originalValue="expireTimeAM" mapValue="expireTimeAM" />
   <pdfField originalValue="expireTimePM" mapValue="expireTimePM" />
@@ -104,7 +102,8 @@
   <pdfField originalValue="lawyersFee[2]Amount" mapValue="lawyersFee[2]Amount" />
   <pdfField originalValue="lawyersFee[3]Item" mapValue="lawyersFee[3]Item" />
   <pdfField originalValue="lawyersFee[3]Amount" mapValue="lawyersFee[3]Amount" />
-  <pdfField originalValue="otherOrdersNotRequested" mapValue="otherOrdersNotRequested" />
+  <pdfField originalValue="lawyersFeesAdditionalYes" mapValue="lawyersFeesAdditionalYes" />
+  <pdfField originalValue="otherOrdersYes" mapValue="otherOrdersYes" />
   <pdfField originalValue="otherOrdersDetail" mapValue="otherOrdersDetail" />
   <pdfField originalValue="otherOrdersAttach" mapValue="otherOrdersAttach" />
   <pdfField originalValue="carposByClerk" mapValue="carposByClerk" />
