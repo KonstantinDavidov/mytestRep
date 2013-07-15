@@ -98,6 +98,7 @@
     <Compile Include="Entities\CourtMember.cs" />
     <Compile Include="Entities\CourtMemberBrief.cs" />
     <Compile Include="Entities\CourtParty.cs" />
+    <Compile Include="Entities\CourtPartyAttorneyData.cs" />
     <Compile Include="Entities\Courtroom.cs" />
     <Compile Include="Entities\Delegation.cs" />
     <Compile Include="Entities\Designation.cs" />

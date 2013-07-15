@@ -31,16 +31,16 @@ namespace FACCTS.Server.Reporting
                         ch => ch.CaseRecord).FirstOrDefault(ch => ch.Id == reportData.CaseHistoryId);
 
             CaseRecord courtCaseRecord = DataManager.CaseRecordRepository.GetAll(
-               cc => cc.CourtCase,
+              // cc => cc.CourtCase,
                cc => cc.OtherProtected,
                cc => cc.Party1,
-               cc => cc.Party1.Attorney,
+               //cc => cc.Party1.Attorney,
                cc => cc.Party1.Designation,
                cc => cc.Party1.EyesColor,
                cc => cc.Party1.HairColor,
                cc => cc.Party1.Race,
                cc => cc.Party2,
-               cc => cc.Party2.Attorney,
+               //cc => cc.Party2.Attorney,
                cc => cc.Party2.Designation,
                cc => cc.Party2.EyesColor,
                cc => cc.Party2.HairColor,
@@ -69,30 +69,30 @@ namespace FACCTS.Server.Reporting
 
             //protected
             Utils.SetPdfFormFieldValue(form, mapper, "protectedName", protectedParty.FullName);
-            if (protectedParty.HasAttorney.HasValue && protectedParty.HasAttorney.Value && (protectedParty.Attorney != null))
-            {
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedAttorneyName", protectedParty.Attorney.FullName);
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedAttorneyFirm", protectedParty.Attorney.FirmName);
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedAttorneyBarID", protectedParty.Attorney.StateBarId);
+            //if (protectedParty.HasAttorney.HasValue && protectedParty.HasAttorney.Value && (protectedParty.Attorney != null))
+            //{
+            //    Utils.SetPdfFormFieldValue(form, mapper, "protectedAttorneyName", protectedParty.Attorney.FullName);
+            //    Utils.SetPdfFormFieldValue(form, mapper, "protectedAttorneyFirm", protectedParty.Attorney.FirmName);
+            //    Utils.SetPdfFormFieldValue(form, mapper, "protectedAttorneyBarID", protectedParty.Attorney.StateBarId);
 
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressStreet", protectedParty.Attorney.StreetAddress);
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressCity", protectedParty.Attorney.City);
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressState", protectedParty.Attorney.State.ToString());
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressPostal", protectedParty.Attorney.ZipCode);
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedPhone", protectedParty.Attorney.Phone);
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedFax", protectedParty.Attorney.Fax);
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedEmail", protectedParty.Attorney.Email);
-            }
-            else
-            {
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressStreet", protectedParty.Address);
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressCity", protectedParty.City);
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressState", protectedParty.State.ToString());
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressPostal", protectedParty.ZipCode);
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedPhone", protectedParty.Phone);
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedFax", protectedParty.Fax);
-                Utils.SetPdfFormFieldValue(form, mapper, "protectedEmail", protectedParty.Email);
-            }
+            //    Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressStreet", protectedParty.Attorney.StreetAddress);
+            //    Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressCity", protectedParty.Attorney.City);
+            //    Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressState", protectedParty.Attorney.State.ToString());
+            //    Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressPostal", protectedParty.Attorney.ZipCode);
+            //    Utils.SetPdfFormFieldValue(form, mapper, "protectedPhone", protectedParty.Attorney.Phone);
+            //    Utils.SetPdfFormFieldValue(form, mapper, "protectedFax", protectedParty.Attorney.Fax);
+            //    Utils.SetPdfFormFieldValue(form, mapper, "protectedEmail", protectedParty.Attorney.Email);
+            //}
+            //else
+            //{
+            //    Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressStreet", protectedParty.Address);
+            //    Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressCity", protectedParty.City);
+            //    Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressState", protectedParty.State.ToString());
+            //    Utils.SetPdfFormFieldValue(form, mapper, "protectedAddressPostal", protectedParty.ZipCode);
+            //    Utils.SetPdfFormFieldValue(form, mapper, "protectedPhone", protectedParty.Phone);
+            //    Utils.SetPdfFormFieldValue(form, mapper, "protectedFax", protectedParty.Fax);
+            //    Utils.SetPdfFormFieldValue(form, mapper, "protectedEmail", protectedParty.Email);
+            //}
             
 
             //restrained person

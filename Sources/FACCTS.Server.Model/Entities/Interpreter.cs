@@ -27,7 +27,7 @@ namespace FACCTS.Server.Model.DataModel
         public string Language { get; set; }
 
         [InverseProperty("Interpreters")]
-        public virtual CaseRecord CaseRecord { get; set; }
+        public virtual CaseHistory CaseHistoryRecord { get; set; }
 
         [NotMapped]
         public override ObjectState State
