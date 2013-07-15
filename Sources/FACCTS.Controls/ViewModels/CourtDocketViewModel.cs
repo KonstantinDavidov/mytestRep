@@ -128,7 +128,7 @@ namespace FACCTS.Controls.ViewModels
                                         new CaseHistory()
                                         {
                                             Hearing = item.Hearing,
-                                            CaseHistoryEvent = (int)FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing,
+                                            CaseHistoryEvent = FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing,
                                             Date = DateTime.Now,
 
                                         }
@@ -172,7 +172,7 @@ namespace FACCTS.Controls.ViewModels
 
         private bool FilterHistoryRecord(CaseHistory ch)
         {
-            bool result =  ch.CaseHistoryEvent == (int)FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing;
+            bool result =  ch.CaseHistoryEvent == FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing;
             result &= (ch.Hearing != null && this.CalendarDate.HasValue && ch.Hearing.HearingDate.Date == this.CalendarDate.GetValueOrDefault()) || !this.CalendarDate.HasValue;
             result &= (this.Courtroom != null && ch.Hearing != null && ch.Hearing.Courtrooms == this.Courtroom) || this.Courtroom == null;
             int hours = ch.Hearing.HearingDate.TimeOfDay.Hours;

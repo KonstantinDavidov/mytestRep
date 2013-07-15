@@ -201,7 +201,7 @@ namespace Faccts.Model.Entities
         private System.DateTime _date;
     
         [DataMember]
-        public int CaseHistoryEvent
+        public FACCTS.Server.Model.Enums.CaseHistoryEvent CaseHistoryEvent
         {
             get { return _caseHistoryEvent; }
             set
@@ -214,7 +214,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _caseHistoryEvent;
+        private FACCTS.Server.Model.Enums.CaseHistoryEvent _caseHistoryEvent;
     
         [DataMember]
         public string CCPOR_ID

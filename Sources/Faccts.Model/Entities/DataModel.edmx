@@ -1705,7 +1705,7 @@
           </Key>
           <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
-          <Property Type="Int32" Name="CaseHistoryEvent" Nullable="false" />
+          <Property Type="FACCTS_DBModel.CaseHistoryEvent" Name="CaseHistoryEvent" Nullable="false" />
           <Property Type="String" Name="CCPOR_ID" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Type="Int64" Name="CourtCaseOrderId" />
           <Property Type="Int64" Name="CourtClerk_UserId" />
@@ -3030,6 +3030,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EnumType Name="CaseHistoryEvent" a:ExternalTypeName="FACCTS.Server.Model.Enums.CaseHistoryEvent" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
