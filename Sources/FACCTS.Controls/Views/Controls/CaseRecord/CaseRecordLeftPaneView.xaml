@@ -19,12 +19,24 @@
             <RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<GroupBox Header="Court Cases">
-            <ListBox VerticalAlignment="Stretch"
-                     ItemsSource="{Binding CourtCases, Mode=OneWay}"
-                     DisplayMemberPath="CaseNumber"
-                     SelectedItem="{Binding CurrentCourtCase, Mode=TwoWay}"
-                     SelectionMode="Extended"
-                     cal:Message.Attach="[Event SelectionChanged] = [Action SelectionCourtCasesChanged($eventArgs)]"/>
+            <TabControl SelectedIndex="0">
+				<TabItem Header="Calendar" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<ListBox VerticalAlignment="Stretch"
+							DisplayMemberPath="CaseNumber"
+							SelectedItem="{Binding CurrentCourtCase, Mode=TwoWay}"
+							SelectionMode="Extended"
+							cal:Message.Attach="[Event SelectionChanged] = [Action SelectionCourtCasesChanged($eventArgs)]"
+                                 ItemsSource="{Binding CourtCases, Mode=OneWay}"/>
+					</Grid>
+				</TabItem>
+				<TabItem Header="History">
+					<Grid Background="#FFE5E5E5"/>
+				</TabItem>
+			</TabControl>
 		</GroupBox>
 		<GroupBox Header="Court Case Edit" Grid.Row="1">
 			<ListBox x:Name="listBox">
