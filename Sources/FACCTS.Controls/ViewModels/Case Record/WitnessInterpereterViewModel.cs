@@ -13,7 +13,7 @@ using FACCTS.Services.Dialog;
 namespace FACCTS.Controls.ViewModels
 {
     [Export(typeof(WitnessInterpereterViewModel))]
-    public partial class WitnessInterpereterViewModel : CaseRecordItemViewModel
+    public partial class WitnessInterpereterViewModel : CaseRecordItemViewModel, IHandle<CurrentHearingChanged>
     {
         private IDialogService _dialogService;
 
@@ -43,14 +43,14 @@ namespace FACCTS.Controls.ViewModels
                     Designation = DataContainer.Designations.FirstOrDefault(),
                 };
 
-            CaseRecord.Witnesses.Add(newWitness);
+            this.CurrentHistoryRecord.Witnesses.Add(newWitness);
         }
 
         public void RemoveWitness(Witnesses witness)
         {
             if (_dialogService.MessageBox("Do you really want to remove the witness?", "Witness removal", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
             {
-                CaseRecord.Witnesses.Remove(witness);
+                this.CurrentHistoryRecord.Witnesses.Remove(witness);
             }
         }
 
@@ -61,14 +61,14 @@ namespace FACCTS.Controls.ViewModels
                 CourtParty = CaseRecord.CourtParty,
                 Language = "English",
             };
-            CaseRecord.Interpreters.Add(newInterpreter);
+            this.CurrentHistoryRecord.Interpreters.Add(newInterpreter);
         }
 
         public void RemoveInterpreter(Interpreters interpreter)
         {
             if (_dialogService.MessageBox("Do you really want to remove the interpreter?", "Interpreter removal", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
             {
-                CaseRecord.Interpreters.Remove(interpreter);
+                this.CurrentHistoryRecord.Interpreters.Remove(interpreter);
             }
         }
 
@@ -102,6 +102,16 @@ namespace FACCTS.Controls.ViewModels
 
                 return result;
             }
+        }
+
+        public void Handle(CurrentHearingChanged message)
+        {
+            if (message == null || message.Hearing == null)
+            {
+                this.CurrentHistoryRecord = null;
+                return;
+            }
+            this.CurrentHistoryRecord = message.Hearing.CaseHistory;
         }
     }
 }

@@ -21,7 +21,6 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(CaseRecord))]
     [KnownType(typeof(CourtParty))]
     [KnownType(typeof(Designation))]
     [KnownType(typeof(CaseHistory))]
@@ -58,10 +57,8 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.Contact)
     				,this.ObservableForProperty(x => x.WitnessFor_Id)
     				,this.ObservableForProperty(x => x.Designation_Id)
-    				,this.ObservableForProperty(x => x.CaseRecord_Id)
     				,this.ObservableForProperty(x => x.EntityType)
     				,this.ObservableForProperty(x => x.CaseHistoryRecord_Id)
-    				,this.ObservableForProperty(x => x.CaseRecord.IsDirty)
     				,this.ObservableForProperty(x => x.CourtParty.IsDirty)
     				,this.ObservableForProperty(x => x.Designation.IsDirty)
     				,this.ObservableForProperty(x => x.CaseHistory.IsDirty)
@@ -262,30 +259,6 @@ namespace Faccts.Model.Entities
         private Nullable<long> _designation_Id;
     
         [DataMember]
-        public Nullable<long> CaseRecord_Id
-        {
-            get { return _caseRecord_Id; }
-            set
-            {
-                if (_caseRecord_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("CaseRecord_Id", _caseRecord_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (CaseRecord != null && CaseRecord.Id != value)
-                        {
-                            CaseRecord = null;
-                        }
-                    }
-    				OnPropertyChanging("CaseRecord_Id");
-                    _caseRecord_Id = value;
-                    OnPropertyChanged("CaseRecord_Id");
-                }
-            }
-        }
-        private Nullable<long> _caseRecord_Id;
-    
-        [DataMember]
         public int EntityType
         {
             get { return _entityType; }
@@ -328,24 +301,6 @@ namespace Faccts.Model.Entities
         #endregion
 
         #region Navigation Properties
-    
-        [DataMember]
-        public CaseRecord CaseRecord
-        {
-            get { return _caseRecord; }
-            set
-            {
-                if (!ReferenceEquals(_caseRecord, value))
-                {
-                    var previousValue = _caseRecord;
-    				OnNavigationPropertyChanging("CaseRecord");
-                    _caseRecord = value;
-                    FixupCaseRecord(previousValue);
-                    OnNavigationPropertyChanged("CaseRecord");
-                }
-            }
-        }
-        private CaseRecord _caseRecord;
     
         [DataMember]
         public CourtParty CourtParty
@@ -508,7 +463,6 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
-            CaseRecord = null;
             CourtParty = null;
             Designation = null;
             CaseHistory = null;
@@ -517,47 +471,6 @@ namespace Faccts.Model.Entities
         #endregion
 
         #region Association Fixup
-    
-        private void FixupCaseRecord(CaseRecord previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.Witnesses.Contains(this))
-            {
-                previousValue.Witnesses.Remove(this);
-            }
-    
-            if (CaseRecord != null)
-            {
-                CaseRecord.Witnesses.Add(this);
-    
-                CaseRecord_Id = CaseRecord.Id;
-            }
-            else if (!skipKeys)
-            {
-                CaseRecord_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("CaseRecord")
-                    && (ChangeTracker.OriginalValues["CaseRecord"] == CaseRecord))
-                {
-                    ChangeTracker.OriginalValues.Remove("CaseRecord");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("CaseRecord", previousValue);
-                }
-                if (CaseRecord != null && !CaseRecord.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    CaseRecord.StartTracking();
-                }
-            }
-        }
     
         private void FixupCourtParty(CourtParty previousValue, bool skipKeys = false)
         {

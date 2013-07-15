@@ -98,6 +98,10 @@
     <Property name="SelectedIndex" type="int"/>
   </Model>
   
+  <Model name="WitnessInterpereterViewModel">
+    <Property name="CurrentHistoryRecord" type="Faccts.Model.Entities.CaseHistory"/>
+  </Model>
+  
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="ModelsDef">

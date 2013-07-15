@@ -22,6 +22,8 @@ namespace Faccts.Model.Entities
             this.Party2AttorneyData = new CourtPartyAttorneyData();
             this.ThirdPartyData = new ThirdPartyData();
             this.AttorneyForChild = new Attorneys();
+            this.Witnesses = new TrackableCollection<Witnesses>();
+            this.Interpreters = new TrackableCollection<Interpreters>();
         }
 
         public string CaseEventName

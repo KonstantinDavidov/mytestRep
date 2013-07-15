@@ -773,5 +773,21 @@ namespace FACCTS.Controls.ViewModels
 				
 	}
 	
+			
+	public partial class WitnessInterpereterViewModel
+	{
+		private Faccts.Model.Entities.CaseHistory _currentHistoryRecord;
+		public Faccts.Model.Entities.CaseHistory CurrentHistoryRecord
+		{
+			get{return _currentHistoryRecord;}
+			set{
+				if(_currentHistoryRecord!=value){
+					this.RaiseAndSetIfChanged(ref _currentHistoryRecord, value);
+				}
+			}
+		}
+				
+	}
+	
 }
 

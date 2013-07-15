@@ -1471,17 +1471,9 @@
             <End Role="CaseRecord" EntitySet="CaseRecord" />
             <End Role="CourtCase" EntitySet="CourtCase" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_Interpreters_dbo_CaseRecord_CaseRecord_Id" Association="FACCTS_DBModel.FK_dbo_Interpreters_dbo_CaseRecord_CaseRecord_Id">
-            <End Role="CaseRecord" EntitySet="CaseRecord" />
-            <End Role="Interpreters" EntitySet="Interpreters" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_OtherProtected_dbo_CaseRecord_CaseRecord_Id" Association="FACCTS_DBModel.FK_dbo_OtherProtected_dbo_CaseRecord_CaseRecord_Id">
             <End Role="CaseRecord" EntitySet="CaseRecord" />
             <End Role="OtherProtected" EntitySet="OtherProtected" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Witnesses_dbo_CaseRecord_CaseRecord_Id" Association="FACCTS_DBModel.FK_dbo_Witnesses_dbo_CaseRecord_CaseRecord_Id">
-            <End Role="CaseRecord" EntitySet="CaseRecord" />
-            <End Role="Witnesses" EntitySet="Witnesses" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_CourtCase_dbo_User_CourtClerk_UserId" Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_User_CourtClerk_UserId">
             <End Role="User" EntitySet="User" />
@@ -1766,9 +1758,7 @@
           <NavigationProperty Name="CourtParty1" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_CourtParty_Party2_Id" FromRole="CaseRecord" ToRole="CourtParty" />
           <NavigationProperty Name="Children" Relationship="FACCTS_DBModel.FK_dbo_Children_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseRecord" ToRole="Children" />
           <NavigationProperty Name="CourtCase" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseRecord" ToRole="CourtCase" />
-          <NavigationProperty Name="Interpreters" Relationship="FACCTS_DBModel.FK_dbo_Interpreters_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseRecord" ToRole="Interpreters" />
           <NavigationProperty Name="OtherProtected" Relationship="FACCTS_DBModel.FK_dbo_OtherProtected_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseRecord" ToRole="OtherProtected" />
-          <NavigationProperty Name="Witnesses" Relationship="FACCTS_DBModel.FK_dbo_Witnesses_dbo_CaseRecord_CaseRecord_Id" FromRole="CaseRecord" ToRole="Witnesses" />
           <Property Name="RestrainingpartyIdentificationInformation" Type="FACCTS_DBModel.RestrainingPartyIDInfo" Nullable="false" />
           <NavigationProperty Name="CourtCase1" Relationship="FACCTS_DBModel.FK_dbo_CaseRecord_dbo_CourtCase_Id" FromRole="CaseRecord" ToRole="CourtCase" />
           <Property Type="Int64" Name="ThirdPartyData_Id" />
@@ -2085,8 +2075,6 @@
           <Property Type="String" Name="LastName" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Language" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Type="Int64" Name="InterpreterFor_Id" />
-          <Property Type="Int64" Name="CaseRecord_Id" />
-          <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_Interpreters_dbo_CaseRecord_CaseRecord_Id" FromRole="Interpreters" ToRole="CaseRecord" />
           <NavigationProperty Name="CourtParty" Relationship="FACCTS_DBModel.FK_dbo_Interpreters_dbo_CourtParty_InterpreterFor_Id" FromRole="Interpreters" ToRole="CourtParty" />
           <Property Type="Int32" Name="EntityType" Nullable="false" />
           <Property Type="Int64" Name="CaseHistoryRecord_Id" />
@@ -2257,8 +2245,6 @@
           <Property Type="String" Name="Contact" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="Int64" Name="WitnessFor_Id" />
           <Property Type="Int64" Name="Designation_Id" />
-          <Property Type="Int64" Name="CaseRecord_Id" />
-          <NavigationProperty Name="CaseRecord" Relationship="FACCTS_DBModel.FK_dbo_Witnesses_dbo_CaseRecord_CaseRecord_Id" FromRole="Witnesses" ToRole="CaseRecord" />
           <NavigationProperty Name="CourtParty" Relationship="FACCTS_DBModel.FK_dbo_Witnesses_dbo_CourtParty_WitnessFor_Id" FromRole="Witnesses" ToRole="CourtParty" />
           <NavigationProperty Name="Designation" Relationship="FACCTS_DBModel.FK_dbo_Witnesses_dbo_Designation_Designation_Id" FromRole="Witnesses" ToRole="Designation" />
           <Property Type="Int32" Name="EntityType" Nullable="false" />
@@ -2438,18 +2424,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_Interpreters_dbo_CaseRecord_CaseRecord_Id">
-          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="0..1" />
-          <End Type="FACCTS_DBModel.Interpreters" Role="Interpreters" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CaseRecord">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Interpreters">
-              <PropertyRef Name="CaseRecord_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_OtherProtected_dbo_CaseRecord_CaseRecord_Id">
           <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="0..1" />
           <End Type="FACCTS_DBModel.OtherProtected" Role="OtherProtected" Multiplicity="*" />
@@ -2458,18 +2432,6 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="OtherProtected">
-              <PropertyRef Name="CaseRecord_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_Witnesses_dbo_CaseRecord_CaseRecord_Id">
-          <End Type="FACCTS_DBModel.CaseRecord" Role="CaseRecord" Multiplicity="0..1" />
-          <End Type="FACCTS_DBModel.Witnesses" Role="Witnesses" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CaseRecord">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Witnesses">
               <PropertyRef Name="CaseRecord_Id" />
             </Dependent>
           </ReferentialConstraint>

@@ -22,7 +22,8 @@
         <CollectionViewSource Source="{Binding InterpretersFor, Mode=OneWay}"
                               x:Key="cvsInterpretersFor" />
     </UserControl.Resources>
-	<Grid x:Name="LayoutRoot" IsEnabled="{Binding CaseRecord, Converter={StaticResource ObjectToBooleanConverter}, FallbackValue=False, Mode=OneWay}">
+    <Grid x:Name="LayoutRoot"
+          IsEnabled="{Binding CurrentHistoryRecord, Converter={StaticResource ObjectToBooleanConverter}, FallbackValue=False, Mode=OneWay}">
 		<Grid.RowDefinitions>
 			<RowDefinition/>
 			<RowDefinition/>
@@ -37,7 +38,8 @@
 					<RowDefinition/>
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
-				<Border Grid.ColumnSpan="2" DataContext="{Binding CaseRecord, Mode=OneWay}">
+                <Border Grid.ColumnSpan="2"
+                        DataContext="{Binding CurrentHistoryRecord, Mode=OneWay}">
                     <DataGrid ItemsSource="{Binding Witnesses, Mode=OneWay}"
                               x:Name="dgWitness"
                               AutoGenerateColumns="False"
@@ -96,7 +98,8 @@
 					<RowDefinition/>
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
-                <Border Grid.ColumnSpan="2" DataContext="{Binding CaseRecord, Mode=OneWay}">
+                <Border Grid.ColumnSpan="2"
+                        DataContext="{Binding CurrentHistoryRecord, Mode=OneWay}">
                     <DataGrid x:Name="dataGrid"
                               ItemsSource="{Binding Interpreters,Mode=OneWay}"
                               AutoGenerateColumns="False"

@@ -29,9 +29,7 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(CourtParty))]
     [KnownType(typeof(Children))]
     [KnownType(typeof(CourtCase))]
-    [KnownType(typeof(Interpreters))]
     [KnownType(typeof(OtherProtected))]
-    [KnownType(typeof(Witnesses))]
     [KnownType(typeof(ThirdPartyData))]
     public partial class CaseRecord: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
@@ -654,42 +652,6 @@ namespace Faccts.Model.Entities
         private TrackableCollection<CourtCase> _courtCase;
     
         [DataMember]
-        public TrackableCollection<Interpreters> Interpreters
-        {
-            get
-            {
-                if (_interpreters == null)
-                {
-                    _interpreters = new TrackableCollection<Interpreters>();
-                    _interpreters.CollectionChanged += FixupInterpreters;
-                }
-                return _interpreters;
-            }
-            set
-            {
-                if (!ReferenceEquals(_interpreters, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("Interpreters");
-                    if (_interpreters != null)
-                    {
-                        _interpreters.CollectionChanged -= FixupInterpreters;
-                    }
-                    _interpreters = value;
-                    if (_interpreters != null)
-                    {
-                        _interpreters.CollectionChanged += FixupInterpreters;
-                    }
-                    OnNavigationPropertyChanged("Interpreters");
-                }
-            }
-        }
-        private TrackableCollection<Interpreters> _interpreters;
-    
-        [DataMember]
         public TrackableCollection<OtherProtected> OtherProtected
         {
             get
@@ -724,42 +686,6 @@ namespace Faccts.Model.Entities
             }
         }
         private TrackableCollection<OtherProtected> _otherProtected;
-    
-        [DataMember]
-        public TrackableCollection<Witnesses> Witnesses
-        {
-            get
-            {
-                if (_witnesses == null)
-                {
-                    _witnesses = new TrackableCollection<Witnesses>();
-                    _witnesses.CollectionChanged += FixupWitnesses;
-                }
-                return _witnesses;
-            }
-            set
-            {
-                if (!ReferenceEquals(_witnesses, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("Witnesses");
-                    if (_witnesses != null)
-                    {
-                        _witnesses.CollectionChanged -= FixupWitnesses;
-                    }
-                    _witnesses = value;
-                    if (_witnesses != null)
-                    {
-                        _witnesses.CollectionChanged += FixupWitnesses;
-                    }
-                    OnNavigationPropertyChanged("Witnesses");
-                }
-            }
-        }
-        private TrackableCollection<Witnesses> _witnesses;
     
         [DataMember]
         public CourtCase CourtCase1
@@ -932,9 +858,7 @@ namespace Faccts.Model.Entities
             CourtParty1 = null;
             Children.Clear();
             CourtCase.Clear();
-            Interpreters.Clear();
             OtherProtected.Clear();
-            Witnesses.Clear();
             CourtCase1 = null;
             ThirdPartyData = null;
         }
@@ -1426,45 +1350,6 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupInterpreters(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (Interpreters item in e.NewItems)
-                {
-                    item.CaseRecord = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("Interpreters", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (Interpreters item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.CaseRecord, this))
-                    {
-                        item.CaseRecord = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("Interpreters", item);
-                    }
-                }
-            }
-        }
-    
         private void FixupOtherProtected(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
@@ -1499,45 +1384,6 @@ namespace Faccts.Model.Entities
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         ChangeTracker.RecordRemovalFromCollectionProperties("OtherProtected", item);
-                    }
-                }
-            }
-        }
-    
-        private void FixupWitnesses(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (Witnesses item in e.NewItems)
-                {
-                    item.CaseRecord = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("Witnesses", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (Witnesses item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.CaseRecord, this))
-                    {
-                        item.CaseRecord = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("Witnesses", item);
                     }
                 }
             }
