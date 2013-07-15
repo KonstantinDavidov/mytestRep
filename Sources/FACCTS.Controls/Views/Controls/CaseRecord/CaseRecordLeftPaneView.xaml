@@ -35,10 +35,11 @@
 				</TabItem>
 				<TabItem Header="History" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
                     <Grid>
-                        <TreeView>
+                        <TreeView cal:Message.Attach="[Event SelectedItemChanged] = [Action SelectedHistoryChanged($eventArgs)]">
                             <TreeViewItem Header="{Binding CurrentCourtCase.CaseNumber, Mode=OneWay}"
                                           ItemsSource="{Binding CurrentCourtCase.Hearings, Mode=OneWay}"
-                                          IsExpanded="True">
+                                          IsExpanded="True"
+                                          >
                                 <TreeViewItem.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock>

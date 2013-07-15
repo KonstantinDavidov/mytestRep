@@ -17,6 +17,7 @@ using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace FACCTS.Controls.ViewModels
@@ -60,6 +61,19 @@ namespace FACCTS.Controls.ViewModels
                         this.Authorized();
                     }
                 });
+            this.WhenAny(x => x.CurrentCourtCase, x => x.Value)
+                .Subscribe(x =>
+                {
+                    if (x == null)
+                    {
+                        CurrentHearing = null;
+                    }
+                    else
+                    {
+                        CurrentHearing = x.Hearings.FirstOrDefault();
+                    }
+                }
+                );
             
             ActivateControl(0);
         }
@@ -112,6 +126,32 @@ namespace FACCTS.Controls.ViewModels
                     }
                 }
                 return _courtCases;
+            }
+        }
+
+
+        public void SelectedHistoryChanged(RoutedPropertyChangedEventArgs<Object> e)
+        {
+            if (!(e.NewValue is Hearings))
+                return;
+            this.CurrentHearing = (Hearings)e.NewValue;
+        }
+
+        private Hearings _currentHearing;
+        public Hearings CurrentHearing
+        {
+            get
+            {
+                return _currentHearing;
+            }
+            set
+            {
+                if (_currentHearing == value)
+                    return;
+
+                this.NotifyOfPropertyChanging();
+                _currentHearing = value;
+                this.NotifyOfPropertyChange();
             }
         }
 
