@@ -151,6 +151,7 @@ namespace FACCTS.Controls.ViewModels
 
                 this.NotifyOfPropertyChanging();
                 _currentHearing = value;
+                _eventAggregator.Publish(new CurrentHearingChanged(_currentHearing));
                 this.NotifyOfPropertyChange();
             }
         }

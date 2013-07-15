@@ -701,7 +701,7 @@ namespace Faccts.Model.Entities
             {
                 foreach (CaseHistory item in e.NewItems)
                 {
-                    item.Attorneys = this;
+                    item.AttorneyForChild = this;
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         if (!item.ChangeTracker.ChangeTrackingEnabled)
@@ -717,9 +717,9 @@ namespace Faccts.Model.Entities
             {
                 foreach (CaseHistory item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.Attorneys, this))
+                    if (ReferenceEquals(item.AttorneyForChild, this))
                     {
-                        item.Attorneys = null;
+                        item.AttorneyForChild = null;
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
@@ -740,7 +740,7 @@ namespace Faccts.Model.Entities
             {
                 foreach (CourtPartyAttorneyData item in e.NewItems)
                 {
-                    item.Attorneys = this;
+                    item.Attorney = this;
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         if (!item.ChangeTracker.ChangeTrackingEnabled)
@@ -756,9 +756,9 @@ namespace Faccts.Model.Entities
             {
                 foreach (CourtPartyAttorneyData item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.Attorneys, this))
+                    if (ReferenceEquals(item.Attorney, this))
                     {
-                        item.Attorneys = null;
+                        item.Attorney = null;
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {

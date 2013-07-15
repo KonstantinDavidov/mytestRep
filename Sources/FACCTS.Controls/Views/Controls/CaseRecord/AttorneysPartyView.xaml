@@ -28,7 +28,7 @@
 				<CheckBox x:Name="checkBox" Content="Pro Per" Margin="0,5" VerticalAlignment="Center" IsChecked="{Binding HasAttorney, Converter={StaticResource InvertedBooleanConverter}, Mode=TwoWay}"/>
 			</StackPanel>
 			<ContentControl Grid.Row="1" Grid.ColumnSpan="2" IsEnabled="{Binding IsChecked, Converter={StaticResource InvertedBooleanConverter}, ElementName=checkBox, Mode=OneWay}">
-				<this:AttorneyView DataContext="{Binding Attorneys, Mode=OneWay}"/>
+				<this:AttorneyView DataContext="{Binding Attorney, Mode=OneWay}"/>
 			</ContentControl>
 		</Grid>
 	</GroupBox>

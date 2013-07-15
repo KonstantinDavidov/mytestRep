@@ -53,7 +53,7 @@ namespace Faccts.Model.Entities
     				this.ObservableForProperty(x => x.Id)
     				,this.ObservableForProperty(x => x.HasAttorney)
     				,this.ObservableForProperty(x => x.Attorney_Id)
-    				,this.ObservableForProperty(x => x.Attorneys.IsDirty)
+    				,this.ObservableForProperty(x => x.Attorney.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -181,9 +181,9 @@ namespace Faccts.Model.Entities
                     ChangeTracker.RecordOriginalValue("Attorney_Id", _attorney_Id);
                     if (!IsDeserializing)
                     {
-                        if (Attorneys != null && Attorneys.Id != value)
+                        if (Attorney != null && Attorney.Id != value)
                         {
-                            Attorneys = null;
+                            Attorney = null;
                         }
                     }
     				OnPropertyChanging("Attorney_Id");
@@ -199,22 +199,22 @@ namespace Faccts.Model.Entities
         #region Navigation Properties
     
         [DataMember]
-        public Attorneys Attorneys
+        public Attorneys Attorney
         {
-            get { return _attorneys; }
+            get { return _attorney; }
             set
             {
-                if (!ReferenceEquals(_attorneys, value))
+                if (!ReferenceEquals(_attorney, value))
                 {
-                    var previousValue = _attorneys;
-    				OnNavigationPropertyChanging("Attorneys");
-                    _attorneys = value;
-                    FixupAttorneys(previousValue);
-                    OnNavigationPropertyChanged("Attorneys");
+                    var previousValue = _attorney;
+    				OnNavigationPropertyChanging("Attorney");
+                    _attorney = value;
+                    FixupAttorney(previousValue);
+                    OnNavigationPropertyChanged("Attorney");
                 }
             }
         }
-        private Attorneys _attorneys;
+        private Attorneys _attorney;
     
         [DataMember]
         public TrackableCollection<CaseHistory> CaseHistory
@@ -385,7 +385,7 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
-            Attorneys = null;
+            Attorney = null;
             CaseHistory.Clear();
             CaseHistory1.Clear();
         }
@@ -394,7 +394,7 @@ namespace Faccts.Model.Entities
 
         #region Association Fixup
     
-        private void FixupAttorneys(Attorneys previousValue, bool skipKeys = false)
+        private void FixupAttorney(Attorneys previousValue, bool skipKeys = false)
         {
             if (IsDeserializing)
             {
@@ -406,11 +406,11 @@ namespace Faccts.Model.Entities
                 previousValue.CourtPartyAttorneyData.Remove(this);
             }
     
-            if (Attorneys != null)
+            if (Attorney != null)
             {
-                Attorneys.CourtPartyAttorneyData.Add(this);
+                Attorney.CourtPartyAttorneyData.Add(this);
     
-                Attorney_Id = Attorneys.Id;
+                Attorney_Id = Attorney.Id;
             }
             else if (!skipKeys)
             {
@@ -419,18 +419,18 @@ namespace Faccts.Model.Entities
     
             if (ChangeTracker.ChangeTrackingEnabled)
             {
-                if (ChangeTracker.OriginalValues.ContainsKey("Attorneys")
-                    && (ChangeTracker.OriginalValues["Attorneys"] == Attorneys))
+                if (ChangeTracker.OriginalValues.ContainsKey("Attorney")
+                    && (ChangeTracker.OriginalValues["Attorney"] == Attorney))
                 {
-                    ChangeTracker.OriginalValues.Remove("Attorneys");
+                    ChangeTracker.OriginalValues.Remove("Attorney");
                 }
                 else
                 {
-                    ChangeTracker.RecordOriginalValue("Attorneys", previousValue);
+                    ChangeTracker.RecordOriginalValue("Attorney", previousValue);
                 }
-                if (Attorneys != null && !Attorneys.ChangeTracker.ChangeTrackingEnabled)
+                if (Attorney != null && !Attorney.ChangeTracker.ChangeTrackingEnabled)
                 {
-                    Attorneys.StartTracking();
+                    Attorney.StartTracking();
                 }
             }
         }
@@ -446,7 +446,7 @@ namespace Faccts.Model.Entities
             {
                 foreach (CaseHistory item in e.NewItems)
                 {
-                    item.CourtPartyAttorneyData = this;
+                    item.Party1AttorneyData = this;
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         if (!item.ChangeTracker.ChangeTrackingEnabled)
@@ -462,9 +462,9 @@ namespace Faccts.Model.Entities
             {
                 foreach (CaseHistory item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.CourtPartyAttorneyData, this))
+                    if (ReferenceEquals(item.Party1AttorneyData, this))
                     {
-                        item.CourtPartyAttorneyData = null;
+                        item.Party1AttorneyData = null;
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
@@ -485,7 +485,7 @@ namespace Faccts.Model.Entities
             {
                 foreach (CaseHistory item in e.NewItems)
                 {
-                    item.CourtPartyAttorneyData1 = this;
+                    item.Party2AttorneyData = this;
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         if (!item.ChangeTracker.ChangeTrackingEnabled)
@@ -501,9 +501,9 @@ namespace Faccts.Model.Entities
             {
                 foreach (CaseHistory item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.CourtPartyAttorneyData1, this))
+                    if (ReferenceEquals(item.Party2AttorneyData, this))
                     {
-                        item.CourtPartyAttorneyData1 = null;
+                        item.Party2AttorneyData = null;
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {

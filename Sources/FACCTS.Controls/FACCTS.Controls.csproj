@@ -152,6 +152,7 @@
     <Compile Include="Converters\NullableBoolleanToBooleanConverter.cs" />
     <Compile Include="Converters\ObjectToBooleanConverter.cs" />
     <Compile Include="Events\CurrentCourtCaseChangedEvent.cs" />
+    <Compile Include="Events\CurrentHearingChanged.cs" />
     <Compile Include="Events\SaveDataEvent.cs" />
     <Compile Include="Events\SelectedCourtCasesChangedEvent.cs" />
     <Compile Include="ExtendedDatePicker.cs" />

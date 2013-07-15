@@ -72,6 +72,7 @@
   <Model name="AttorneysViewModel">
     <Property name="AttorneyForChildrenIsTheSameThenParty1" type="bool"/>
     <Property name="AttorneyForChildrenIsTheSameThenParty2" type="bool"/>
+    <Property name="CurrentHistoryRecord" type="Faccts.Model.Entities.CaseHistory"/>
   </Model>
 
   <Model name="CaseNotesViewModel">
@@ -134,6 +135,7 @@
         <xs:enumeration value="Faccts.Model.Entities.CourtDepartmenets"></xs:enumeration>
         <xs:enumeration value="Faccts.Model.Entities.CourtCase"></xs:enumeration>
         <xs:enumeration value="Faccts.Model.Entities.CaseNotes"></xs:enumeration>
+        <xs:enumeration value="Faccts.Model.Entities.CaseHistory"></xs:enumeration>
         <xs:enumeration value="Faccts.Model.Entities.User"></xs:enumeration>
         <xs:enumeration value="Faccts.Model.Entities.Hearings"></xs:enumeration>
         <xs:enumeration value="Faccts.Model.Entities.HearingIssue"></xs:enumeration>

@@ -1714,7 +1714,6 @@
           <NavigationProperty Name="CourtCaseOrders" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId" FromRole="CaseHistory" ToRole="CourtCaseOrders" />
           <NavigationProperty Name="User" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_User_CourtClerk_UserId" FromRole="CaseHistory" ToRole="User" />
           <Property Name="Appearance" Type="FACCTS_DBModel.Appearance" Nullable="false" />
-          <Property Type="Int64" Name="Hearing_Id" />
           <NavigationProperty Name="Hearing" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id" FromRole="CaseHistory" ToRole="Hearings" />
           <Property Type="Int64" Name="MergeCase_Id" />
           <NavigationProperty Name="MergeCase" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCase_MergeCase_Id" FromRole="CaseHistory" ToRole="CourtCase" />
@@ -1726,9 +1725,9 @@
           <Property Type="Int64" Name="Party1Attorney_Id" />
           <Property Type="Int64" Name="Party2Attorney_Id" />
           <Property Type="Int64" Name="ThirdPartyData_Id" />
-          <NavigationProperty Name="Attorneys" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_Attorneys_AttorneyForChild_Id" FromRole="CaseHistory" ToRole="Attorneys" />
-          <NavigationProperty Name="CourtPartyAttorneyData" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtPartyAttorneyData_Party1Attorney_Id" FromRole="CaseHistory" ToRole="CourtPartyAttorneyData" />
-          <NavigationProperty Name="CourtPartyAttorneyData1" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtPartyAttorneyData_Party2Attorney_Id" FromRole="CaseHistory" ToRole="CourtPartyAttorneyData" />
+          <NavigationProperty Name="AttorneyForChild" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_Attorneys_AttorneyForChild_Id" FromRole="CaseHistory" ToRole="Attorneys" />
+          <NavigationProperty Name="Party1AttorneyData" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtPartyAttorneyData_Party1Attorney_Id" FromRole="CaseHistory" ToRole="CourtPartyAttorneyData" />
+          <NavigationProperty Name="Party2AttorneyData" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtPartyAttorneyData_Party2Attorney_Id" FromRole="CaseHistory" ToRole="CourtPartyAttorneyData" />
           <NavigationProperty Name="ThirdPartyData" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_ThirdPartyData_ThirdPartyData_Id" FromRole="CaseHistory" ToRole="ThirdPartyData" />
           <NavigationProperty Name="Interpreters" Relationship="FACCTS_DBModel.FK_dbo_Interpreters_dbo_CaseHistory_CaseHistoryRecord_Id" FromRole="CaseHistory" ToRole="Interpreters" />
           <NavigationProperty Name="Witnesses" Relationship="FACCTS_DBModel.FK_dbo_Witnesses_dbo_CaseHistory_CaseHistoryRecord_Id" FromRole="CaseHistory" ToRole="Witnesses" />
@@ -2713,14 +2712,14 @@
           <Property Type="FACCTS_DBModel.DocketSession" Name="Session" Nullable="false" />
           </EntityType>
         <Association Name="FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id">
-          <End Type="FACCTS_DBModel.Hearings" Role="Hearings" Multiplicity="0..1" />
-          <End Type="FACCTS_DBModel.CaseHistory" Role="CaseHistory" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.Hearings" Role="Hearings" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.CaseHistory" Role="CaseHistory" Multiplicity="1" />
           <ReferentialConstraint>
             <Principal Role="Hearings">
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="CaseHistory">
-              <PropertyRef Name="Hearing_Id" />
+              <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2942,7 +2941,7 @@
           <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Boolean" Name="HasAttorney" />
           <Property Type="Int64" Name="Attorney_Id" />
-          <NavigationProperty Name="Attorneys" Relationship="FACCTS_DBModel.FK_dbo_CourtPartyAttorneyData_dbo_Attorneys_Attorney_Id" FromRole="CourtPartyAttorneyData" ToRole="Attorneys" />
+          <NavigationProperty Name="Attorney" Relationship="FACCTS_DBModel.FK_dbo_CourtPartyAttorneyData_dbo_Attorneys_Attorney_Id" FromRole="CourtPartyAttorneyData" ToRole="Attorneys" />
           <NavigationProperty Name="CaseHistory" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtPartyAttorneyData_Party1Attorney_Id" FromRole="CourtPartyAttorneyData" ToRole="CaseHistory" />
           <NavigationProperty Name="CaseHistory1" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtPartyAttorneyData_Party2Attorney_Id" FromRole="CourtPartyAttorneyData" ToRole="CaseHistory" />
         </EntityType>
@@ -3087,7 +3086,6 @@
           <ScalarProperty Name="CCPOR_ID" ColumnName="CCPOR_ID" />
           <ScalarProperty Name="CourtCaseOrderId" ColumnName="CourtCaseOrderId" />
           <ScalarProperty Name="CaseRecord_Id" ColumnName="CaseRecord_Id" />
-          <ScalarProperty Name="Hearing_Id" ColumnName="Hearing_Id" />
           <ScalarProperty Name="MergeCase_Id" ColumnName="MergeCase_Id" />
           <ScalarProperty Name="CourtOrder_Id" ColumnName="CourtOrder_Id" />
           </MappingFragment>
