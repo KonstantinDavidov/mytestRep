@@ -13,14 +13,15 @@
     <UserControl.Resources>
 		<Converters:ObjectToBooleanConverter x:Key="ObjectToBooleanConverter"/>
         <CollectionViewSource x:Key="cvsCaseHistory"
-                              Source="{Binding CaseRecord.CaseHistory, Mode=OneWay}">
+                              Source="{Binding CurrentCourtCase.CaseHistory, Mode=OneWay}">
             <CollectionViewSource.SortDescriptions>
                 <scm:SortDescription PropertyName="Date"  Direction="Ascending"/>
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
     </UserControl.Resources>
 
-	<Grid x:Name="LayoutRoot" IsEnabled="{Binding CaseRecord, Converter={StaticResource ObjectToBooleanConverter}, Mode=OneWay}">
+    <Grid x:Name="LayoutRoot"
+          IsEnabled="{Binding CurrentCourtCase, Converter={StaticResource ObjectToBooleanConverter}, Mode=OneWay}">
 		<DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeRows="False" ItemsSource="{Binding Mode=OneWay, Source={StaticResource cvsCaseHistory}}" VerticalAlignment="Stretch">
 			<DataGrid.Columns>
 				<DataGridTextColumn Binding="{Binding Date, Mode=OneWay, StringFormat=\{0:d\}}"

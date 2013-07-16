@@ -11,16 +11,18 @@
 	<UserControl.Resources>
 		<Converters:ObjectToBooleanConverter x:Key="ObjectToBooleanConverter"/>
 	</UserControl.Resources>
-	<Grid IsEnabled="{Binding CaseRecord, Converter={StaticResource ObjectToBooleanConverter}, FallbackValue=False, Mode=OneWay}" x:Name="LayoutRoot">
+    <Grid IsEnabled="{Binding CurrentCourtCase, Converter={StaticResource ObjectToBooleanConverter}, FallbackValue=False, Mode=OneWay}" x:Name="LayoutRoot">
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*"/>
             <RowDefinition Height="*" />
 			<RowDefinition MaxHeight="110"/>
 		</Grid.RowDefinitions>
-		<localcontrols:PartyControlView Grid.Row="0" DataContext="{Binding CaseRecord.CourtParty, Mode=OneWay}" IsParty1="True"/>
+        <localcontrols:PartyControlView Grid.Row="0"
+                                        DataContext="{Binding CurrentCourtCase.Party1, Mode=OneWay}" IsParty1="True"/>
         <localcontrols:PartyControlView Grid.Row="1"
-                                        DataContext="{Binding CaseRecord.CourtParty1, Mode=OneWay}"
+                                        DataContext="{Binding CurrentCourtCase.Party2, Mode=OneWay}"
                                         IsParty1="False" />
-        <controls:RestrainingPartyIDInfoControlView Grid.Row="2" DataContext="{Binding CaseRecord.RestrainingpartyIdentificationInformation, Mode=OneWay}" IDTypeItemsSource="{Binding DataContext.IdentificationIDTypes, Mode=OneWay, ElementName=LayoutRoot}"/>
+        <controls:RestrainingPartyIDInfoControlView Grid.Row="2"
+                                                    DataContext="{Binding CurrentCourtCase.RestrainingPartyIdentificationInformation, Mode=OneWay}" IDTypeItemsSource="{Binding DataContext.IdentificationIDTypes, Mode=OneWay, ElementName=LayoutRoot}"/>
 	</Grid>
 </UserControl>

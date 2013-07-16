@@ -33,7 +33,8 @@
         </DataTemplate>
 	</UserControl.Resources>
 
-	<Grid x:Name="LayoutRoot" IsEnabled="{Binding CaseRecord, Converter={StaticResource ObjectToBooleanConverter}, Mode=OneWay}">
+    <Grid x:Name="LayoutRoot"
+          IsEnabled="{Binding CurrentCourtCase, Converter={StaticResource ObjectToBooleanConverter}, Mode=OneWay}">
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition MinWidth="150" Width="Auto"/>
 			<ColumnDefinition/>
