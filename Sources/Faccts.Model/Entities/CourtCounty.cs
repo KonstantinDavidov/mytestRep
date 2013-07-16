@@ -21,10 +21,10 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(CaseRecord))]
     [KnownType(typeof(CourtDepartmenets))]
     [KnownType(typeof(CourtLocations))]
     [KnownType(typeof(FACCTSConfiguration))]
+    [KnownType(typeof(CourtCase))]
     public partial class CourtCounty: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -70,6 +70,8 @@ namespace Faccts.Model.Entities
     
     		partial void Initialize();
     		
+    
+    
     		private bool _isDirty;
     		public bool IsDirty
     		{
@@ -226,42 +228,6 @@ namespace Faccts.Model.Entities
         #region Navigation Properties
     
         [DataMember]
-        public TrackableCollection<CaseRecord> CaseRecord
-        {
-            get
-            {
-                if (_caseRecord == null)
-                {
-                    _caseRecord = new TrackableCollection<CaseRecord>();
-                    _caseRecord.CollectionChanged += FixupCaseRecord;
-                }
-                return _caseRecord;
-            }
-            set
-            {
-                if (!ReferenceEquals(_caseRecord, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("CaseRecord");
-                    if (_caseRecord != null)
-                    {
-                        _caseRecord.CollectionChanged -= FixupCaseRecord;
-                    }
-                    _caseRecord = value;
-                    if (_caseRecord != null)
-                    {
-                        _caseRecord.CollectionChanged += FixupCaseRecord;
-                    }
-                    OnNavigationPropertyChanged("CaseRecord");
-                }
-            }
-        }
-        private TrackableCollection<CaseRecord> _caseRecord;
-    
-        [DataMember]
         public TrackableCollection<CourtDepartmenets> CourtDepartmenets
         {
             get
@@ -380,6 +346,42 @@ namespace Faccts.Model.Entities
             }
         }
         private TrackableCollection<FACCTSConfiguration> _fACCTSConfiguration;
+    
+        [DataMember]
+        public TrackableCollection<CourtCase> CourtCase
+        {
+            get
+            {
+                if (_courtCase == null)
+                {
+                    _courtCase = new TrackableCollection<CourtCase>();
+                    _courtCase.CollectionChanged += FixupCourtCase;
+                }
+                return _courtCase;
+            }
+            set
+            {
+                if (!ReferenceEquals(_courtCase, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("CourtCase");
+                    if (_courtCase != null)
+                    {
+                        _courtCase.CollectionChanged -= FixupCourtCase;
+                    }
+                    _courtCase = value;
+                    if (_courtCase != null)
+                    {
+                        _courtCase.CollectionChanged += FixupCourtCase;
+                    }
+                    OnNavigationPropertyChanged("CourtCase");
+                }
+            }
+        }
+        private TrackableCollection<CourtCase> _courtCase;
 
         #endregion
 
@@ -478,54 +480,15 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
-            CaseRecord.Clear();
             CourtDepartmenets.Clear();
             CourtLocations.Clear();
             FACCTSConfiguration.Clear();
+            CourtCase.Clear();
         }
 
         #endregion
 
         #region Association Fixup
-    
-        private void FixupCaseRecord(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (CaseRecord item in e.NewItems)
-                {
-                    item.CourtCounty = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CaseRecord", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (CaseRecord item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.CourtCounty, this))
-                    {
-                        item.CourtCounty = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CaseRecord", item);
-                    }
-                }
-            }
-        }
     
         private void FixupCourtDepartmenets(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -645,6 +608,45 @@ namespace Faccts.Model.Entities
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         ChangeTracker.RecordRemovalFromCollectionProperties("FACCTSConfiguration", item);
+                    }
+                }
+            }
+        }
+    
+        private void FixupCourtCase(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (CourtCase item in e.NewItems)
+                {
+                    item.CourtCounty = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("CourtCase", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (CourtCase item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.CourtCounty, this))
+                    {
+                        item.CourtCounty = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtCase", item);
                     }
                 }
             }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
+using FACCTS.Server.Model.Enums;
 
 namespace Faccts.Model.Entities
 {
@@ -70,7 +71,7 @@ namespace Faccts.Model.Entities
                     ParticipantRole = this.ParticipantRole,
                     Address = this.Address,
                     City = this.City,
-                    USAState = this.State,
+                    USAState = (USAState)this.USAState,
                     ZipCode = this.ZipCode,
                     Phone = this.Phone,
                     Fax = this.Fax,

@@ -21,7 +21,7 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(CaseRecord))]
+    [KnownType(typeof(CourtCase))]
     public partial class OtherProtected: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -54,13 +54,12 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.RelationshipToPlaintiff)
     				,this.ObservableForProperty(x => x.FirstName)
     				,this.ObservableForProperty(x => x.LastName)
-    				,this.ObservableForProperty(x => x.CaseRecord_Id)
     				,this.ObservableForProperty(x => x.DateOfBirth)
-    				,this.ObservableForProperty(x => x.Gender)
     				,this.ObservableForProperty(x => x.Age)
     				,this.ObservableForProperty(x => x.IsHouseHold)
     				,this.ObservableForProperty(x => x.Sex)
-    				,this.ObservableForProperty(x => x.CaseRecord.IsDirty)
+    				,this.ObservableForProperty(x => x.CourtCase_Id)
+    				,this.ObservableForProperty(x => x.CourtCase.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -74,6 +73,8 @@ namespace Faccts.Model.Entities
     
     		partial void Initialize();
     		
+    
+    
     		private bool _isDirty;
     		public bool IsDirty
     		{
@@ -226,30 +227,6 @@ namespace Faccts.Model.Entities
         private string _lastName;
     
         [DataMember]
-        public Nullable<long> CaseRecord_Id
-        {
-            get { return _caseRecord_Id; }
-            set
-            {
-                if (_caseRecord_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("CaseRecord_Id", _caseRecord_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (CaseRecord != null && CaseRecord.Id != value)
-                        {
-                            CaseRecord = null;
-                        }
-                    }
-    				OnPropertyChanging("CaseRecord_Id");
-                    _caseRecord_Id = value;
-                    OnPropertyChanged("CaseRecord_Id");
-                }
-            }
-        }
-        private Nullable<long> _caseRecord_Id;
-    
-        [DataMember]
         public System.DateTime DateOfBirth
         {
             get { return _dateOfBirth; }
@@ -264,22 +241,6 @@ namespace Faccts.Model.Entities
             }
         }
         private System.DateTime _dateOfBirth;
-    
-        [DataMember]
-        public Nullable<FACCTS.Server.Model.Enums.Gender> Gender
-        {
-            get { return _gender; }
-            set
-            {
-                if (_gender != value)
-                {
-    				OnPropertyChanging("Gender");
-                    _gender = value;
-                    OnPropertyChanged("Gender");
-                }
-            }
-        }
-        private Nullable<FACCTS.Server.Model.Enums.Gender> _gender;
     
         [DataMember]
         public int Age
@@ -314,7 +275,7 @@ namespace Faccts.Model.Entities
         private bool _isHouseHold;
     
         [DataMember]
-        public int Sex
+        public FACCTS.Server.Model.Enums.Gender Sex
         {
             get { return _sex; }
             set
@@ -327,29 +288,53 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _sex;
+        private FACCTS.Server.Model.Enums.Gender _sex;
+    
+        [DataMember]
+        public Nullable<long> CourtCase_Id
+        {
+            get { return _courtCase_Id; }
+            set
+            {
+                if (_courtCase_Id != value)
+                {
+                    ChangeTracker.RecordOriginalValue("CourtCase_Id", _courtCase_Id);
+                    if (!IsDeserializing)
+                    {
+                        if (CourtCase != null && CourtCase.Id != value)
+                        {
+                            CourtCase = null;
+                        }
+                    }
+    				OnPropertyChanging("CourtCase_Id");
+                    _courtCase_Id = value;
+                    OnPropertyChanged("CourtCase_Id");
+                }
+            }
+        }
+        private Nullable<long> _courtCase_Id;
 
         #endregion
 
         #region Navigation Properties
     
         [DataMember]
-        public CaseRecord CaseRecord
+        public CourtCase CourtCase
         {
-            get { return _caseRecord; }
+            get { return _courtCase; }
             set
             {
-                if (!ReferenceEquals(_caseRecord, value))
+                if (!ReferenceEquals(_courtCase, value))
                 {
-                    var previousValue = _caseRecord;
-    				OnNavigationPropertyChanging("CaseRecord");
-                    _caseRecord = value;
-                    FixupCaseRecord(previousValue);
-                    OnNavigationPropertyChanged("CaseRecord");
+                    var previousValue = _courtCase;
+    				OnNavigationPropertyChanging("CourtCase");
+                    _courtCase = value;
+                    FixupCourtCase(previousValue);
+                    OnNavigationPropertyChanged("CourtCase");
                 }
             }
         }
-        private CaseRecord _caseRecord;
+        private CourtCase _courtCase;
 
         #endregion
 
@@ -448,14 +433,14 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
-            CaseRecord = null;
+            CourtCase = null;
         }
 
         #endregion
 
         #region Association Fixup
     
-        private void FixupCaseRecord(CaseRecord previousValue, bool skipKeys = false)
+        private void FixupCourtCase(CourtCase previousValue, bool skipKeys = false)
         {
             if (IsDeserializing)
             {
@@ -467,31 +452,31 @@ namespace Faccts.Model.Entities
                 previousValue.OtherProtected.Remove(this);
             }
     
-            if (CaseRecord != null)
+            if (CourtCase != null)
             {
-                CaseRecord.OtherProtected.Add(this);
+                CourtCase.OtherProtected.Add(this);
     
-                CaseRecord_Id = CaseRecord.Id;
+                CourtCase_Id = CourtCase.Id;
             }
             else if (!skipKeys)
             {
-                CaseRecord_Id = null;
+                CourtCase_Id = null;
             }
     
             if (ChangeTracker.ChangeTrackingEnabled)
             {
-                if (ChangeTracker.OriginalValues.ContainsKey("CaseRecord")
-                    && (ChangeTracker.OriginalValues["CaseRecord"] == CaseRecord))
+                if (ChangeTracker.OriginalValues.ContainsKey("CourtCase")
+                    && (ChangeTracker.OriginalValues["CourtCase"] == CourtCase))
                 {
-                    ChangeTracker.OriginalValues.Remove("CaseRecord");
+                    ChangeTracker.OriginalValues.Remove("CourtCase");
                 }
                 else
                 {
-                    ChangeTracker.RecordOriginalValue("CaseRecord", previousValue);
+                    ChangeTracker.RecordOriginalValue("CourtCase", previousValue);
                 }
-                if (CaseRecord != null && !CaseRecord.ChangeTracker.ChangeTrackingEnabled)
+                if (CourtCase != null && !CourtCase.ChangeTracker.ChangeTrackingEnabled)
                 {
-                    CaseRecord.StartTracking();
+                    CourtCase.StartTracking();
                 }
             }
         }

@@ -39,18 +39,18 @@ namespace FACCTS.Controls.ViewModels
         {
             var newWitness = new Witnesses()
                 {
-                    CourtParty = CaseRecord.CourtParty,
+                    CourtParty = CurrentCourtCase.Party1,
                     Designation = DataContainer.Designations.FirstOrDefault(),
                 };
 
-            CaseRecord.Witnesses.Add(newWitness);
+            CurrentCourtCase.Witnesses.Add(newWitness);
         }
 
         public void RemoveWitness(Witnesses witness)
         {
             if (_dialogService.MessageBox("Do you really want to remove the witness?", "Witness removal", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
             {
-                CaseRecord.Witnesses.Remove(witness);
+                CurrentCourtCase.Witnesses.Remove(witness);
             }
         }
 
@@ -58,17 +58,17 @@ namespace FACCTS.Controls.ViewModels
         {
             var newInterpreter = new Interpreters()
             {
-                CourtParty = CaseRecord.CourtParty,
+                CourtParty = CurrentCourtCase.Party1,
                 Language = "English",
             };
-            CaseRecord.Interpreters.Add(newInterpreter);
+            CurrentCourtCase.Interpreters.Add(newInterpreter);
         }
 
         public void RemoveInterpreter(Interpreters interpreter)
         {
             if (_dialogService.MessageBox("Do you really want to remove the interpreter?", "Interpreter removal", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
             {
-                CaseRecord.Interpreters.Remove(interpreter);
+                CurrentCourtCase.Interpreters.Remove(interpreter);
             }
         }
 
@@ -76,12 +76,12 @@ namespace FACCTS.Controls.ViewModels
         {
             get
             {
-                if (CaseRecord == null)
+                if (CurrentCourtCase == null)
                     return null;
                 List<CourtPartyAdapter> result = new List<CourtPartyAdapter>()
                 {
-                    new CourtPartyAdapter(CaseRecord.CourtParty),
-                    new CourtPartyAdapter(CaseRecord.CourtParty1, false),
+                    new CourtPartyAdapter(CurrentCourtCase.Party1),
+                    new CourtPartyAdapter(CurrentCourtCase.Party2, false),
                 };
 
                 return result;
@@ -92,12 +92,12 @@ namespace FACCTS.Controls.ViewModels
         {
             get
             {
-                if (CaseRecord == null)
+                if (CurrentCourtCase == null)
                     return null;
                 List<CourtPartyAdapter> result = new List<CourtPartyAdapter>()
                 {
-                    new CourtPartyAdapter(CaseRecord.CourtParty, true, "Interpreter For:"),
-                    new CourtPartyAdapter(CaseRecord.CourtParty1, false, "Interpreter For:"),
+                    new CourtPartyAdapter(CurrentCourtCase.Party1, true, "Interpreter For:"),
+                    new CourtPartyAdapter(CurrentCourtCase.Party2, false, "Interpreter For:"),
                 };
 
                 return result;

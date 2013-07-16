@@ -32,7 +32,7 @@ namespace Faccts.Model.Entities
         {
             get
             {
-                return this.CaseRecord.CourtCase[0].CaseNumber;
+                return this.CourtCase.CaseNumber;
             }
 
         }

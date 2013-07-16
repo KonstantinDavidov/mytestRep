@@ -55,7 +55,6 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.Info)
     				,this.ObservableForProperty(x => x.UserId)
     				,this.ObservableForProperty(x => x.Enabled)
-    				,this.ObservableForProperty(x => x.State)
     				,this.ObservableForProperty(x => x.TaskState)
     				,this.ObservableForProperty(x => x.User.IsDirty)
     			).
@@ -71,6 +70,8 @@ namespace Faccts.Model.Entities
     
     		partial void Initialize();
     		
+    
+    
     		private bool _isDirty;
     		public bool IsDirty
     		{
@@ -245,22 +246,6 @@ namespace Faccts.Model.Entities
             }
         }
         private bool _enabled;
-    
-        [DataMember]
-        public byte State
-        {
-            get { return _state; }
-            set
-            {
-                if (_state != value)
-                {
-    				OnPropertyChanging("State");
-                    _state = value;
-                    OnPropertyChanged("State");
-                }
-            }
-        }
-        private byte _state;
     
         [DataMember]
         public byte TaskState

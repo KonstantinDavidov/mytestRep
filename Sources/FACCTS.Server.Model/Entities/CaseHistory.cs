@@ -28,7 +28,7 @@ namespace FACCTS.Server.Model.DataModel
         public virtual CourtCaseOrder Order { get; set; }
 
         [InverseProperty("CaseHistory")]
-        public virtual CaseRecord CaseRecord { get; set; }
+        public virtual CourtCase CourtCase { get; set; }
 
         public virtual Appearance Appearances { get; set; }
 

@@ -14,7 +14,7 @@ namespace WindowsServiceStarter
     {
         static void Main(string[] args)
         {
-            string serviceName = "FACCTS.IntegrationScheduler";
+            /*string serviceName = "FACCTS.IntegrationScheduler";
 
             var services = ServiceController.GetServices();
             ServiceController controller;
@@ -53,7 +53,7 @@ namespace WindowsServiceStarter
 
             controller = new ServiceController(serviceName);
             controller.Start();
-            controller.WaitForStatus(ServiceControllerStatus.Running);
+            controller.WaitForStatus(ServiceControllerStatus.Running);*/
         }
     }
 }

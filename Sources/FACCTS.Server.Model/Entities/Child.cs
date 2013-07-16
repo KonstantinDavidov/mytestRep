@@ -33,7 +33,7 @@ namespace FACCTS.Server.Model.DataModel
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
         [InverseProperty("Children")]
-        public virtual CaseRecord CaseRecord { get; set; }
+        public virtual CourtCase CourtCase { get; set; }
 
         [NotMapped]
         public override ObjectState State

@@ -124,7 +124,7 @@ namespace FACCTS.Controls.ViewModels
                                 x.NewItems.Cast<CourtDocketRecord>().Aggregate(0, (index, item) =>
                                     {
                                         item.CourtCase = CurrentCourtCase;
-                                        CurrentCourtCase.CaseRecord.CaseHistory.Add(
+                                        CurrentCourtCase.CaseHistory.Add(
                                         new CaseHistory()
                                         {
                                             Hearing = item.Hearing,

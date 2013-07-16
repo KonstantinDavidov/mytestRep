@@ -29,7 +29,7 @@ namespace FACCTS.Server.Model.DataModel
         public string Contact { get; set; }
 
         [InverseProperty("Witnesses")]
-        public virtual CaseRecord CaseRecord { get; set; }
+        public virtual CourtCase CourtCase { get; set; }
 
         [NotMapped]
         public override ObjectState State

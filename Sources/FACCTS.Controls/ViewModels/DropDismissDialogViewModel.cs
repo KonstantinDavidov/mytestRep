@@ -65,7 +65,7 @@ namespace FACCTS.Controls.ViewModels
                 Date = DateTime.Now,
                 CaseHistoryEvent = (int)FACCTS.Server.Model.Enums.CaseHistoryEvent.Dropped,
             };
-            Execute.OnUIThread(() => this.CurrentCourtCase.CaseRecord.CaseHistory.Add(ch));
+            Execute.OnUIThread(() => this.CurrentCourtCase.CaseHistory.Add(ch));
         }
 
         private void ProceedDismissal()
@@ -75,7 +75,7 @@ namespace FACCTS.Controls.ViewModels
                 Date = DateTime.Now,
                 CaseHistoryEvent = (int)FACCTS.Server.Model.Enums.CaseHistoryEvent.Dismissed,
             };
-            Execute.OnUIThread(() => this.CurrentCourtCase.CaseRecord.CaseHistory.Add(ch));
+            Execute.OnUIThread(() => this.CurrentCourtCase.CaseHistory.Add(ch));
         }
     }
 }

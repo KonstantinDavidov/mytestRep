@@ -104,9 +104,6 @@
     <Compile Include="Entities\CaseNotes.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\CaseRecord.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\Children.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -144,9 +141,6 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Courtrooms.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\C__MigrationHistory.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\DataModel.Designer.cs">
@@ -213,7 +207,6 @@
     <Compile Include="Entities\Partials\Attorneys.cs" />
     <Compile Include="Entities\Partials\CaseHistory.cs" />
     <Compile Include="Entities\Partials\CaseNotes.cs" />
-    <Compile Include="Entities\Partials\CaseRecord.cs" />
     <Compile Include="Entities\Partials\Children.cs" />
     <Compile Include="Entities\Partials\CourtCase.cs" />
     <Compile Include="Entities\Partials\CourtCounty.cs" />

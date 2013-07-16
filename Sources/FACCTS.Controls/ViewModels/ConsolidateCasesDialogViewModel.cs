@@ -57,7 +57,7 @@ namespace FACCTS.Controls.ViewModels
                         MergeCase = SelectedCourtCase,
 
                     };
-                    Execute.OnUIThread(() => cc.CaseRecord.CaseHistory.Add(ch));
+                    Execute.OnUIThread(() => cc.CaseHistory.Add(ch));
                     return ++index;
                 });
         }

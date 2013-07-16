@@ -673,7 +673,6 @@ namespace FACCTS.Server.Data
         {
             CourtCase testCourtCase = new CourtCase();
 
-            CaseRecord testCaseRecord = new CaseRecord();
             Gender testSex = Gender.F;
             Designation testDesignation = context.Designations.FirstOrDefault();
             EyesColor testEyesColor = context.EyesColor.FirstOrDefault();
@@ -694,8 +693,8 @@ namespace FACCTS.Server.Data
                 StreetAddress = "MainStreet",
                 ZipCode = "12345"
             };
-            testCaseRecord.AttorneyForChild = testAttorney;
-            testCaseRecord.Children = new List<Child>()
+            testCourtCase.AttorneyForChild = testAttorney;
+            testCourtCase.Children = new List<Child>()
             { new Child()
                 { 
                     DateOfBirth =DateTime.Now,
@@ -706,9 +705,9 @@ namespace FACCTS.Server.Data
                     Sex = testSex
                 }
             };
-            testCaseRecord.CourtCounty = context.CourtCounties.FirstOrDefault();
+            testCourtCase.CourtCounty = context.CourtCounties.FirstOrDefault();
 
-            testCaseRecord.OtherProtected = new List<OtherProtected>(){
+            testCourtCase.OtherProtected = new List<OtherProtected>(){
                 new OtherProtected(){
                     DateOfBirth = DateTime.Now,
                     FirstName = "Allan",
@@ -738,7 +737,7 @@ namespace FACCTS.Server.Data
                 }
             };
 
-            testCaseRecord.Party1 = new CourtParty()
+            testCourtCase.Party1 = new CourtParty()
             {
                 Address = "Some address1",
                 Age = 45,
@@ -765,7 +764,7 @@ namespace FACCTS.Server.Data
                 ZipCode = "410001",
                 RelationToOtherParty = "Wife"
             };
-            testCaseRecord.Party2 = new CourtParty()
+            testCourtCase.Party2 = new CourtParty()
             {
                 Address = "Some address2",
                 Age = 15,
@@ -792,7 +791,7 @@ namespace FACCTS.Server.Data
                 ZipCode = "410001",
                 RelationToOtherParty = "Allien"
             };
-            testCaseRecord.Witnesses = new List<Witness>(){
+            testCourtCase.Witnesses = new List<Witness>(){
                 new Witness()
                 {
                     Contact = "Contact",
@@ -800,18 +799,18 @@ namespace FACCTS.Server.Data
                     EntityType = Model.Enums.FACCTSEntity.ENTITY,
                     FirstName = "Witney",
                     LastName = "Huiston",
-                    WitnessFor = testCaseRecord.Party2
+                    WitnessFor = testCourtCase.Party2
                 }
             };
-            testCaseRecord.RestrainingPartyIdentificationInformation = new RestrainingPartyIdentificationInformation()
+            testCourtCase.RestrainingPartyIdentificationInformation = new RestrainingPartyIdentificationInformation()
                 {
                     IDNumber = "123",
                     IDType = Model.Enums.IdentificationIDType.AF,
                     IssuedDate = DateTime.Now
                 };
 
-            testCaseRecord.CaseHistory = new List<CaseHistory>();
-            testCaseRecord.CaseHistory.Add(new CaseHistory()
+            testCourtCase.CaseHistory = new List<CaseHistory>();
+            testCourtCase.CaseHistory.Add(new CaseHistory()
             {
                 Date = DateTime.Now,
                 CaseHistoryEvent = Model.Enums.CaseHistoryEvent.New,
@@ -839,7 +838,6 @@ namespace FACCTS.Server.Data
             );
 
             testCourtCase.CaseNumber = "22-3456";
-            testCourtCase.CaseRecord = testCaseRecord;
             testCourtCase.CCPORId = "ccporId";
             testCourtCase.CourtClerk = context.CourtMembers.FirstOrDefault();
 

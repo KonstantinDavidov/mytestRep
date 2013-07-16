@@ -24,19 +24,19 @@ namespace FACCTS.Controls.ViewModels
                 (x, y) => new { IsParty1 = x.Value, IsParty2 = y.Value})
                 .Subscribe(x =>
                     {
-                        if (CaseRecord == null)
+                        if (CurrentCourtCase == null)
                             return;
                         if (!x.IsParty1 && !x.IsParty2)
                         {
-                            CaseRecord.Attorneys = new Attorneys(); 
+                            CurrentCourtCase.Attorneys = new Attorneys(); 
                         } else
                         if (x.IsParty1)
                         {
-                            CaseRecord.Attorneys = CaseRecord.CourtParty.Attorneys;
+                            CurrentCourtCase.Attorneys = CurrentCourtCase.Party1.Attorneys;
                         }
                         else
                         {
-                            CaseRecord.Attorneys = CaseRecord.CourtParty1.Attorneys;
+                            CurrentCourtCase.Attorneys = CurrentCourtCase.Party2.Attorneys;
                         }
                     }
                 );

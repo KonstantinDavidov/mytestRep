@@ -21,7 +21,7 @@ namespace FACCTS.Server.Model.DataModel
         public string Text { get; set; }
 
         [InverseProperty("CaseNotes")]
-        public virtual CaseRecord CaseRecord { get; set; }
+        public virtual CourtCase CourtCase { get; set; }
 
         [NotMapped]
         public override ObjectState State
