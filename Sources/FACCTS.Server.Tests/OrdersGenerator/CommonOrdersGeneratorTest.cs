@@ -74,6 +74,8 @@ namespace FACCTS.Server.Tests.OrdersGenerator
 
             testModel.IsOtherOrdersAttached = true;
             testModel.OtherOrderDetail = "Some Details ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt";
+
+            testModel.IsPOSGeneral = true;
             
             IDataManager dm = new DataManager( new RepositoryProvider(new RepositoryFactories()));
 

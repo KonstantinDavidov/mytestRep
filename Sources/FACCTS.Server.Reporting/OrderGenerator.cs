@@ -42,7 +42,7 @@ namespace FACCTS.Server.Reporting
                 throw ex;
             }
 
-            Dictionary<string, string> mapping = Utils.SerializeXMLToDictionary(doc, "originalValue", "mapValue");
+            Dictionary<string, string> mapping = Utils.SerializeXMLToDictionary(doc, "mapValue", "originalValue");
             
             Type handlerType = Type.GetType(handlerTypeName);
             if (handlerType != null)
