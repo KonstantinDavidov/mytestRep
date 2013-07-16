@@ -1575,18 +1575,6 @@
             <End Role="CaseHistory" EntitySet="CaseHistory" />
             <End Role="Witnesses" EntitySet="Witnesses" />
           </AssociationSet>
-          <AssociationSet Name="FK_dbo_CaseNotes_dbo_CourtCase_CourtCase_Id1" Association="FACCTS_DBModel.FK_dbo_CaseNotes_dbo_CourtCase_CourtCase_Id1">
-            <End Role="CourtCase" EntitySet="CourtCase" />
-            <End Role="CaseNotes" EntitySet="CaseNotes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_Children_dbo_CourtCase_CourtCase_Id1" Association="FACCTS_DBModel.FK_dbo_Children_dbo_CourtCase_CourtCase_Id1">
-            <End Role="CourtCase" EntitySet="CourtCase" />
-            <End Role="Children" EntitySet="Children" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_CourtCase_dbo_CourtCounty_CourtCounty_Id1" Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtCounty_CourtCounty_Id1">
-            <End Role="CourtCounty" EntitySet="CourtCounty" />
-            <End Role="CourtCase" EntitySet="CourtCase" />
-          </AssociationSet>
           <AssociationSet Name="FK_dbo_CourtCase_dbo_CourtParty_Party1_Id" Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtParty_Party1_Id">
             <End Role="CourtParty" EntitySet="CourtParty" />
             <End Role="CourtCase" EntitySet="CourtCase" />
@@ -1681,7 +1669,6 @@
           <NavigationProperty Name="CourtCase" Relationship="FACCTS_DBModel.FK_dbo_CaseNotes_dbo_CourtCase_CourtCase_Id" FromRole="CaseNotes" ToRole="CourtCase" />
           <Property Type="Int64" Name="CaseRecord_Id" />
           <Property Type="Int64" Name="CourtCase_Id1" />
-          <NavigationProperty Name="CourtCase1" Relationship="FACCTS_DBModel.FK_dbo_CaseNotes_dbo_CourtCase_CourtCase_Id1" FromRole="CaseNotes" ToRole="CourtCase" />
         </EntityType>
         <EntityType Name="Children">
           <Key>
@@ -1698,7 +1685,6 @@
           <NavigationProperty Name="CourtCase" Relationship="FACCTS_DBModel.FK_dbo_Children_dbo_CourtCase_CourtCase_Id" FromRole="Children" ToRole="CourtCase" />
           <Property Type="Int64" Name="CaseRecord_Id" />
           <Property Type="Int64" Name="CourtCase_Id1" />
-          <NavigationProperty Name="CourtCase1" Relationship="FACCTS_DBModel.FK_dbo_Children_dbo_CourtCase_CourtCase_Id1" FromRole="Children" ToRole="CourtCase" />
         </EntityType>
         <EntityType Name="Client">
           <Key>
@@ -1750,7 +1736,6 @@
           <NavigationProperty Name="ParentCase" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtCase_ParentCase_Id" FromRole="CourtCase1" ToRole="CourtCase" />
           <NavigationProperty Name="CourtDocketRecord" Relationship="FACCTS_DBModel.CourtDocketRecordCourtCase" FromRole="CourtCase" ToRole="CourtDocketRecord" />
           <Property Type="Int64" Name="CourtClerk_Id" />
-          <NavigationProperty Name="User1" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_User_CourtClerk_Id" FromRole="CourtCase" ToRole="User" />
           <Property Type="Int64" Name="Party1_Id" Nullable="true" />
           <Property Type="Int64" Name="Party2_Id" Nullable="true" />
           <Property Type="Int64" Name="CourtCounty_Id" />
@@ -1762,18 +1747,6 @@
           <NavigationProperty Name="Party1" Relationship="FACCTS_DBModel.CourtPartyCourtCase" FromRole="CourtCase" ToRole="CourtParty" />
           <NavigationProperty Name="Party2" Relationship="FACCTS_DBModel.CourtPartyCourtCase1" FromRole="CourtCase" ToRole="CourtParty" />
           <Property Name="RestrainingPartyIdentificationInformation" Type="FACCTS_DBModel.RestrainingPartyIDInfo" Nullable="false" />
-          <Property Type="Int32" Name="RP_IDType" Nullable="false" />
-          <Property Type="String" Name="RP_IDNumber" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="DateTime" Name="RP_IssuedDate" Precision="3" />
-          <Property Type="Int64" Name="Party1_Id1" />
-          <Property Type="Int64" Name="Party2_Id1" />
-          <Property Type="Int64" Name="CourtCounty_Id1" />
-          <NavigationProperty Name="CaseNotes1" Relationship="FACCTS_DBModel.FK_dbo_CaseNotes_dbo_CourtCase_CourtCase_Id1" FromRole="CourtCase" ToRole="CaseNotes" />
-          <NavigationProperty Name="Children1" Relationship="FACCTS_DBModel.FK_dbo_Children_dbo_CourtCase_CourtCase_Id1" FromRole="CourtCase" ToRole="Children" />
-          <NavigationProperty Name="CourtCounty1" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtCounty_CourtCounty_Id1" FromRole="CourtCase" ToRole="CourtCounty" />
-          <NavigationProperty Name="CourtParty" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtParty_Party1_Id" FromRole="CourtCase" ToRole="CourtParty" />
-          <NavigationProperty Name="CourtParty1" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtParty_Party2_Id" FromRole="CourtCase" ToRole="CourtParty" />
-          <NavigationProperty Name="OtherProtected1" Relationship="FACCTS_DBModel.FK_dbo_OtherProtected_dbo_CourtCase_CourtCase_Id1" FromRole="CourtCase" ToRole="OtherProtected" />
         </EntityType>
         <EntityType Name="CourtCaseOrders">
           <Key>
@@ -1801,7 +1774,6 @@
           <NavigationProperty Name="CourtLocations" Relationship="FACCTS_DBModel.FK_dbo_CourtLocations_dbo_CourtCounty_CourtCounty_Id" FromRole="CourtCounty" ToRole="CourtLocations" />
           <NavigationProperty Name="FACCTSConfiguration" Relationship="FACCTS_DBModel.FK_dbo_FACCTSConfiguration_dbo_CourtCounty_CurrentCourtCountyId" FromRole="CourtCounty" ToRole="FACCTSConfiguration" />
           <NavigationProperty Name="CourtCase" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtCounty_CourtCounty_Id" FromRole="CourtCounty" ToRole="CourtCase" />
-          <NavigationProperty Name="CourtCase1" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtCounty_CourtCounty_Id1" FromRole="CourtCounty" ToRole="CourtCase" />
         </EntityType>
         <EntityType Name="CourtDepartmenets">
           <Key>
@@ -1885,7 +1857,6 @@
           <NavigationProperty Name="Race" Relationship="FACCTS_DBModel.CourtPartyRace" FromRole="CourtParty" ToRole="Race" />
           <NavigationProperty Name="EyesColor" Relationship="FACCTS_DBModel.CourtPartyEyesColor" FromRole="CourtParty" ToRole="EyesColor" />
           <NavigationProperty Name="CourtCase" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtParty_Party1_Id" FromRole="CourtParty" ToRole="CourtCase" />
-          <NavigationProperty Name="CourtCase1" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtParty_Party2_Id" FromRole="CourtParty" ToRole="CourtCase" />
         </EntityType>
         <EntityType Name="Courtrooms">
           <Key>
@@ -2860,42 +2831,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_CaseNotes_dbo_CourtCase_CourtCase_Id1">
-          <End Type="FACCTS_DBModel.CourtCase" Role="CourtCase" Multiplicity="0..1" />
-          <End Type="FACCTS_DBModel.CaseNotes" Role="CaseNotes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CourtCase">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CaseNotes">
-              <PropertyRef Name="CourtCase_Id1" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_Children_dbo_CourtCase_CourtCase_Id1">
-          <End Type="FACCTS_DBModel.CourtCase" Role="CourtCase" Multiplicity="0..1" />
-          <End Type="FACCTS_DBModel.Children" Role="Children" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CourtCase">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Children">
-              <PropertyRef Name="CourtCase_Id1" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_CourtCase_dbo_CourtCounty_CourtCounty_Id1">
-          <End Type="FACCTS_DBModel.CourtCounty" Role="CourtCounty" Multiplicity="0..1" />
-          <End Type="FACCTS_DBModel.CourtCase" Role="CourtCase" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CourtCounty">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CourtCase">
-              <PropertyRef Name="CourtCounty_Id1" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_CourtCase_dbo_CourtParty_Party1_Id">
           <End Type="FACCTS_DBModel.CourtParty" Role="CourtParty" Multiplicity="0..1" />
           <End Type="FACCTS_DBModel.CourtCase" Role="CourtCase" Multiplicity="*" />
@@ -2904,7 +2839,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="CourtCase">
-              <PropertyRef Name="Party1_Id1" />
+              <PropertyRef Name="Party1_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2916,7 +2851,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="CourtCase">
-              <PropertyRef Name="Party2_Id1" />
+              <PropertyRef Name="Party2_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -3060,9 +2995,6 @@
     <EntitySetMapping Name="CourtCase">
       <EntityTypeMapping TypeName="IsTypeOf(FACCTS_DBModel.CourtCase)">
         <MappingFragment StoreEntitySet="CourtCase">
-                <ScalarProperty Name="CourtCounty_Id1" ColumnName="CourtCounty_Id" />
-                <ScalarProperty Name="Party2_Id1" ColumnName="Party2_Id" />
-                <ScalarProperty Name="Party1_Id1" ColumnName="Party1_Id" />
                 <ScalarProperty Name="CourtClerk_Id" ColumnName="CourtClerk_Id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="CaseNumber" ColumnName="CaseNumber" />

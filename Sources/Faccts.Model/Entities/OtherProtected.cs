@@ -550,17 +550,11 @@ namespace Faccts.Model.Entities
                 return;
             }
     
-            if (previousValue != null && previousValue.OtherProtected1.Contains(this))
-            {
-                previousValue.OtherProtected1.Remove(this);
-            }
-    
             if (CourtCase1 != null)
             {
-                CourtCase1.OtherProtected1.Add(this);
-    
                 CourtCase_Id1 = CourtCase1.Id;
             }
+    
             else if (!skipKeys)
             {
                 CourtCase_Id1 = null;

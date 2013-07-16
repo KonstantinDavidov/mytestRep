@@ -1144,7 +1144,7 @@ namespace Faccts.Model.Entities
             {
                 foreach (CourtCase item in e.NewItems)
                 {
-                    item.User1 = this;
+                    item.CourtClerk_Id = Id;
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         if (!item.ChangeTracker.ChangeTrackingEnabled)
@@ -1160,10 +1160,7 @@ namespace Faccts.Model.Entities
             {
                 foreach (CourtCase item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.User1, this))
-                    {
-                        item.User1 = null;
-                    }
+                    item.CourtClerk_Id = null;
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         ChangeTracker.RecordRemovalFromCollectionProperties("CourtCase1", item);

@@ -888,42 +888,6 @@ namespace Faccts.Model.Entities
             }
         }
         private TrackableCollection<CourtCase> _courtCase;
-    
-        [DataMember]
-        public TrackableCollection<CourtCase> CourtCase1
-        {
-            get
-            {
-                if (_courtCase1 == null)
-                {
-                    _courtCase1 = new TrackableCollection<CourtCase>();
-                    _courtCase1.CollectionChanged += FixupCourtCase1;
-                }
-                return _courtCase1;
-            }
-            set
-            {
-                if (!ReferenceEquals(_courtCase1, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("CourtCase1");
-                    if (_courtCase1 != null)
-                    {
-                        _courtCase1.CollectionChanged -= FixupCourtCase1;
-                    }
-                    _courtCase1 = value;
-                    if (_courtCase1 != null)
-                    {
-                        _courtCase1.CollectionChanged += FixupCourtCase1;
-                    }
-                    OnNavigationPropertyChanged("CourtCase1");
-                }
-            }
-        }
-        private TrackableCollection<CourtCase> _courtCase1;
 
         #endregion
 
@@ -1040,7 +1004,6 @@ namespace Faccts.Model.Entities
             Race = null;
             EyesColor = null;
             CourtCase.Clear();
-            CourtCase1.Clear();
         }
 
         #endregion
@@ -1335,7 +1298,7 @@ namespace Faccts.Model.Entities
             {
                 foreach (CourtCase item in e.NewItems)
                 {
-                    item.CourtParty = this;
+                    item.Party1_Id = Id;
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         if (!item.ChangeTracker.ChangeTrackingEnabled)
@@ -1351,52 +1314,10 @@ namespace Faccts.Model.Entities
             {
                 foreach (CourtCase item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.CourtParty, this))
-                    {
-                        item.CourtParty = null;
-                    }
+                    item.Party1_Id = null;
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         ChangeTracker.RecordRemovalFromCollectionProperties("CourtCase", item);
-                    }
-                }
-            }
-        }
-    
-        private void FixupCourtCase1(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (CourtCase item in e.NewItems)
-                {
-                    item.CourtParty1 = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CourtCase1", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (CourtCase item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.CourtParty1, this))
-                    {
-                        item.CourtParty1 = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtCase1", item);
                     }
                 }
             }
