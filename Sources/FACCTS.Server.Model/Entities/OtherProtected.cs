@@ -45,7 +45,7 @@ namespace FACCTS.Server.Model.DataModel
         }
 
         [InverseProperty("OtherProtected")]
-        public virtual CaseRecord CaseRecord { get; set; }
+        public virtual CourtCase CourtCase { get; set; }
 
         [NotMapped]
         public override ObjectState State

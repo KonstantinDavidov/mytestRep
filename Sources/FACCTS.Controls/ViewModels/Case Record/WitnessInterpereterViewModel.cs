@@ -39,7 +39,7 @@ namespace FACCTS.Controls.ViewModels
         {
             var newWitness = new Witnesses()
                 {
-                    CourtParty = CaseRecord.CourtParty,
+                    CourtParty = CurrentCourtCase.Party1,
                     Designation = DataContainer.Designations.FirstOrDefault(),
                 };
 
@@ -58,7 +58,7 @@ namespace FACCTS.Controls.ViewModels
         {
             var newInterpreter = new Interpreters()
             {
-                CourtParty = CaseRecord.CourtParty,
+                CourtParty = CurrentCourtCase.Party1,
                 Language = "English",
             };
             this.CurrentHistoryRecord.Interpreters.Add(newInterpreter);
@@ -76,12 +76,12 @@ namespace FACCTS.Controls.ViewModels
         {
             get
             {
-                if (CaseRecord == null)
+                if (CurrentCourtCase == null)
                     return null;
                 List<CourtPartyAdapter> result = new List<CourtPartyAdapter>()
                 {
-                    new CourtPartyAdapter(CaseRecord.CourtParty),
-                    new CourtPartyAdapter(CaseRecord.CourtParty1, false),
+                    new CourtPartyAdapter(CurrentCourtCase.Party1),
+                    new CourtPartyAdapter(CurrentCourtCase.Party2, false),
                 };
 
                 return result;
@@ -92,12 +92,12 @@ namespace FACCTS.Controls.ViewModels
         {
             get
             {
-                if (CaseRecord == null)
+                if (CurrentCourtCase == null)
                     return null;
                 List<CourtPartyAdapter> result = new List<CourtPartyAdapter>()
                 {
-                    new CourtPartyAdapter(CaseRecord.CourtParty, true, "Interpreter For:"),
-                    new CourtPartyAdapter(CaseRecord.CourtParty1, false, "Interpreter For:"),
+                    new CourtPartyAdapter(CurrentCourtCase.Party1, true, "Interpreter For:"),
+                    new CourtPartyAdapter(CurrentCourtCase.Party2, false, "Interpreter For:"),
                 };
 
                 return result;

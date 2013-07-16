@@ -105,14 +105,6 @@ namespace FACCTS.Server.Data
             }
         }
 
-        public IFacctsDataRepository<CaseRecord> CaseRecordRepository
-        {
-            get
-            {
-                return GetStandardRepo<CaseRecord>();
-            }
-        }
-
         public IFacctsDataRepository<CaseHistory> CaseHistoryRepository
         {
             get

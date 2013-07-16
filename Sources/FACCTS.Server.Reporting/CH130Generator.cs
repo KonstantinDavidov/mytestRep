@@ -30,10 +30,9 @@ namespace FACCTS.Server.Reporting
                         ch => ch.Hearing,
                         ch => ch.Party1Attorney,
                         ch => ch.Party2Attorney,
-                        ch => ch.CaseRecord).FirstOrDefault(ch => ch.Id == reportData.CaseHistoryId);
+                        ch => ch.CourtCase).FirstOrDefault(ch => ch.Id == reportData.CaseHistoryId);
 
-            CaseRecord courtCaseRecord = DataManager.CaseRecordRepository.GetAll(
-               cc => cc.CourtCase,
+            CourtCase courtCase = DataManager.CourtCaseRepository.GetAll(
                cc => cc.OtherProtected,
                cc => cc.Party1,
                cc => cc.Party1.Designation,
@@ -45,7 +44,7 @@ namespace FACCTS.Server.Reporting
                cc => cc.Party2.EyesColor,
                cc => cc.Party2.HairColor,
                cc => cc.Party2.Race)
-               .FirstOrDefault(cc => cc.Id == caseHistory.CaseRecord.Id);
+               .FirstOrDefault(cc => cc.Id == caseHistory.CourtCase.Id);
 
             Hearing caseHearing = caseHistory.Hearing;
 
@@ -53,14 +52,14 @@ namespace FACCTS.Server.Reporting
             CourtParty restrainedParty;
             CourtPartyAttorneyData protectedPartyAttoney, restrainedPartyAttoney;
 
-            bool isParty1Protected = courtCaseRecord.Party1.ParticipantRole == Model.Enums.ParticipantRole.PPSC;
+            bool isParty1Protected = courtCase.Party1.ParticipantRole == Model.Enums.ParticipantRole.PPSC;
 
-            protectedParty = isParty1Protected ? courtCaseRecord.Party1 : courtCaseRecord.Party2;
+            protectedParty = isParty1Protected ? courtCase.Party1 : courtCase.Party2;
             protectedPartyAttoney = isParty1Protected ? caseHistory.Party1Attorney : caseHistory.Party2Attorney;
-            restrainedParty = isParty1Protected ? courtCaseRecord.Party2 : courtCaseRecord.Party1;
+            restrainedParty = isParty1Protected ? courtCase.Party2 : courtCase.Party1;
             restrainedPartyAttoney = isParty1Protected ? caseHistory.Party2Attorney : caseHistory.Party1Attorney;
 
-            Utils.SetPdfFormFieldValue(form, mapper, "caseNumber", courtCaseRecord.CourtCase.CaseNumber);
+            Utils.SetPdfFormFieldValue(form, mapper, "caseNumber", courtCase.CaseNumber);
             Utils.SetPdfFormFieldValue(form, mapper, "courtName", "TODO"); 
 
             //protected
@@ -109,10 +108,10 @@ namespace FACCTS.Server.Reporting
             form.Fields[mapper["restrainedSexF"]].Value = restrainedParty.Sex == Gender.F ? "2" : null; //CheckBox
            
             //other protected
-            if(courtCaseRecord.OtherProtected.Count > 0)
+            if (courtCase.OtherProtected.Count > 0)
             {
                 //First protected
-                var firstProtected = courtCaseRecord.OtherProtected.First();
+                var firstProtected = courtCase.OtherProtected.First();
                 form.Fields[mapper["protectedAddYes"]].Value = BooleanString; //CheckBox
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Name", firstProtected.FullName);
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]Sex", firstProtected.Sex.ToString());
@@ -121,9 +120,9 @@ namespace FACCTS.Server.Reporting
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]HouseholdYes", firstProtected.IsHouseHold ? BooleanString : null); //CheckBox
                 Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[0]HouseholdNo", firstProtected.IsHouseHold ? null : BooleanString); //CheckBox
 
-                if(courtCaseRecord.OtherProtected.Count > 1)
+                if (courtCase.OtherProtected.Count > 1)
                 {
-                    var secondProtected = courtCaseRecord.OtherProtected.ElementAt(1);
+                    var secondProtected = courtCase.OtherProtected.ElementAt(1);
                     Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]Name", secondProtected.FullName);
                     Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]Sex", secondProtected.Sex.ToString());
                     Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]Age", secondProtected.Age.ToString());
@@ -131,7 +130,7 @@ namespace FACCTS.Server.Reporting
                     Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]HouseholdYes", secondProtected.IsHouseHold ? BooleanString : null); //CheckBox
                     Utils.SetPdfFormFieldValue(form, mapper, "protectedAdd[1]HouseholdNo", secondProtected.IsHouseHold ? null : BooleanString); //CheckBox
 
-                    if (courtCaseRecord.OtherProtected.Count > 2)
+                    if (courtCase.OtherProtected.Count > 2)
                     {
                         Utils.SetPdfFormFieldValue(form, mapper, "protectedAddAttachYes", BooleanString); //CheckBox
                     }
@@ -244,8 +243,8 @@ namespace FACCTS.Server.Reporting
             {
                 Utils.SetPdfFormFieldValue(form, mapper, "orderPayAttorneyCosts", BooleanString);
                 Utils.SetPdfFormFieldValue(form, mapper, "courtCosts", reportData.LawersFeeAndCourtCostsSection.IsCourtCosts ? BooleanString : null);
-                bool IsProtectedPayer =  (reportData.LawersFeeAndCourtCostsSection.IsParty1Payer && courtCaseRecord.Party1.ParticipantRole == ParticipantRole.PPSC) ||
-                    (!reportData.LawersFeeAndCourtCostsSection.IsParty1Payer && courtCaseRecord.Party2.ParticipantRole == ParticipantRole.PPSC);
+                bool IsProtectedPayer =  (reportData.LawersFeeAndCourtCostsSection.IsParty1Payer && courtCase.Party1.ParticipantRole == ParticipantRole.PPSC) ||
+                    (!reportData.LawersFeeAndCourtCostsSection.IsParty1Payer && courtCase.Party2.ParticipantRole == ParticipantRole.PPSC);
                 Utils.SetPdfFormFieldValue(form, mapper, "feePaidBy", IsProtectedPayer ? "1" : "2");
                 Utils.SetPdfFormFieldValue(form, mapper, "feePaidTo", IsProtectedPayer ? "2" : "1");
                 if (reportData.LawersFeeAndCourtCostsSection.IsLawyerFee)

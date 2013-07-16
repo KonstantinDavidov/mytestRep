@@ -74,6 +74,8 @@ namespace Faccts.Model.Entities
     
     		partial void Initialize();
     		
+    
+    
     		private bool _isDirty;
     		public bool IsDirty
     		{
@@ -298,6 +300,44 @@ namespace Faccts.Model.Entities
         }
         private HearingIssue _hearingIssue;
         private bool _hearingIssueInitialized;
+    
+        [DataMember]
+        public Appearance Appearance
+        {
+            get
+            {
+                if (!_appearanceInitialized && _appearance == null)
+                {
+                    _appearance = new Appearance();
+                    ((INotifyComplexPropertyChanging)_appearance).ComplexPropertyChanging += HandleAppearanceChanging;
+                }
+                _appearanceInitialized = true;
+                return _appearance;
+            }
+            set
+            {
+                _appearanceInitialized = true;
+                if (!Equals(_appearance, value))
+                {
+                    if (_appearance != null)
+                    {
+                        ((INotifyComplexPropertyChanging)_appearance).ComplexPropertyChanging -= HandleAppearanceChanging;
+                    }
+    
+                    HandleAppearanceChanging(this, null);
+    				OnPropertyChanging("Appearance");
+                    _appearance = value;
+                    OnPropertyChanged("Appearance");
+    
+                    if (value != null)
+                    {
+                        ((INotifyComplexPropertyChanging)_appearance).ComplexPropertyChanging += HandleAppearanceChanging;
+                    }
+                }
+            }
+        }
+        private Appearance _appearance;
+        private bool _appearanceInitialized;
 
         #endregion
 
@@ -489,6 +529,15 @@ namespace Faccts.Model.Entities
         }
         // Records the original values for the complex property HearingIssue
         private void HandleHearingIssueChanging(object sender, EventArgs args)
+        {
+            if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
+            {
+                ChangeTracker.State = ObjectState.Modified;
+            }
+        }
+    
+        // Records the original values for the complex property Appearance
+        private void HandleAppearanceChanging(object sender, EventArgs args)
         {
             if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
             {

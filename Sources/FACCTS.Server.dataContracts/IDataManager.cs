@@ -24,7 +24,6 @@ namespace FACCTS.Server.DataContracts
 
         IFacctsDataRepository<CourtCounty> CourtCountyRepository { get; }
         IFacctsDataRepository<CourtDepartment> CourtDepartmentRepository { get; }
-        IFacctsDataRepository<CaseRecord> CaseRecordRepository { get; }
         IFacctsDataRepository<CaseHistory> CaseHistoryRepository { get; }
         IFacctsDictionaryDataRepository<FACCTSConfiguration> FACCTSConfigurationRepository { get; }
         IFacctsDataRepository<Courtroom> CourtroomRepository { get; }

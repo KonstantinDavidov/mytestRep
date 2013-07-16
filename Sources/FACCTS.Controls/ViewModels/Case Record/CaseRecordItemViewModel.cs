@@ -22,11 +22,6 @@ namespace FACCTS.Controls.ViewModels
                 throw new ArgumentNullException("eventAggregator");
             }
             _eventAggregator = eventAggregator;
-            this.WhenAny(x => x.CurrentCourtCase, x => x.Value)
-                .Subscribe(x =>
-                {
-                    this.NotifyOfPropertyChange(() => CaseRecord);
-                });
             Subscribe();
         }
 
@@ -68,28 +63,16 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-        public CaseRecord CaseRecord
-        {
-            get
-            {
-                if (this.CurrentCourtCase != null)
-                {
-                    return this.CurrentCourtCase.CaseRecord;
-                }
-                return null;
-            }
-        }
-
         protected override void SaveData()
         {
             base.SaveData();
-            if (CaseRecord == null)
+            if (CurrentCourtCase == null)
                 return;
-            if (CaseRecord.ChangeTracker.State == ObjectState.Unchanged)
+            if (CurrentCourtCase.ChangeTracker.State == ObjectState.Unchanged)
                 return;
-            if (!CaseRecord.IsDirty)
+            if (!CurrentCourtCase.IsDirty)
                 return;
-            switch(CaseRecord.ChangeTracker.State)
+            switch (CurrentCourtCase.ChangeTracker.State)
             {
                 case ObjectState.Added:
 

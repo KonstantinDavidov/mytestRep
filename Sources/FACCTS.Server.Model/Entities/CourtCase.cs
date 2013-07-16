@@ -30,9 +30,33 @@ namespace FACCTS.Server.Model.DataModel
         [StringLength(20)]
         public string CCPORId { get; set; }
 
-        public virtual CaseRecord CaseRecord { get; set; }
-
         public virtual CourtCase ParentCase { get; set; }
+
+        #region CaseRecord members
+
+        public virtual CourtParty Party1 { get; set; }
+
+        public virtual CourtParty Party2 { get; set; }
+
+        [InverseProperty("CourtCase")]
+        public virtual ICollection<Child> Children { get; set; }
+
+        [InverseProperty("CourtCase")]
+        public virtual ICollection<OtherProtected> OtherProtected { get; set; }
+
+        [InverseProperty("CourtCase")]
+        public virtual ICollection<CaseHistory> CaseHistory { get; set; }
+
+        [InverseProperty("CourtCase")]
+        public virtual ICollection<CaseNote> CaseNotes { get; set; }
+
+        public virtual CourtCounty CourtCounty { get; set; }
+
+        public virtual ICollection<CourtCase> RelatedCases { get; set; }
+
+        public RestrainingPartyIdentificationInformation RestrainingPartyIdentificationInformation { get; set; }
+
+        #endregion
 
         [NotMapped]
         public override ObjectState State

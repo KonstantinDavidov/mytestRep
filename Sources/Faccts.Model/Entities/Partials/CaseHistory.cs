@@ -16,7 +16,6 @@ namespace Faccts.Model.Entities
                 {
                     this.OnPropertyChanged("CaseEventName");
                 });
-            this.Appearance = new Appearance();
             this.Hearing = new Hearings();
             this.Party1AttorneyData = new CourtPartyAttorneyData();
             this.Party2AttorneyData = new CourtPartyAttorneyData();
@@ -38,7 +37,7 @@ namespace Faccts.Model.Entities
         {
             get
             {
-                return this.CaseRecord.CourtCase[0].CaseNumber;
+                return this.CourtCase.CaseNumber;
             }
 
         }

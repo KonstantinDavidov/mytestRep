@@ -49,8 +49,6 @@ namespace FACCTS.Server.Data
                        m.ToTable("RolePermission");
                    });
 
-            modelBuilder.Entity<CourtCase>().HasRequired(cc => cc.CaseRecord).WithRequiredPrincipal(cr => cr.CourtCase);
-
             modelBuilder.Configurations.Add(new ManualIntegrationTaskConfiguration());
             modelBuilder.Configurations.Add(new ScheduledIntegrationTaskConfiguration());
 
@@ -106,7 +104,6 @@ namespace FACCTS.Server.Data
 
 
         #region Data Tables
-        public DbSet<CaseRecord> CaseRecords { get; set; }
         public DbSet<Child> Children { get; set; }
         public DbSet<CourtCase> CourtCases { get; set; }
         public DbSet<CourtParty> CourtParties { get; set; }

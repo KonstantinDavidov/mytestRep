@@ -54,7 +54,6 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.Name)
     				,this.ObservableForProperty(x => x.Description)
     				,this.ObservableForProperty(x => x.StreetAddress)
-    				,this.ObservableForProperty(x => x.State)
     				,this.ObservableForProperty(x => x.PostalCode)
     				,this.ObservableForProperty(x => x.City)
     				,this.ObservableForProperty(x => x.CourtCounty_Id)
@@ -73,6 +72,8 @@ namespace Faccts.Model.Entities
     
     		partial void Initialize();
     		
+    
+    
     		private bool _isDirty;
     		public bool IsDirty
     		{
@@ -209,22 +210,6 @@ namespace Faccts.Model.Entities
         private string _streetAddress;
     
         [DataMember]
-        public FACCTS.Server.Model.Enums.USAState State
-        {
-            get { return _state; }
-            set
-            {
-                if (_state != value)
-                {
-    				OnPropertyChanging("State");
-                    _state = value;
-                    OnPropertyChanged("State");
-                }
-            }
-        }
-        private FACCTS.Server.Model.Enums.USAState _state;
-    
-        [DataMember]
         public string PostalCode
         {
             get { return _postalCode; }
@@ -281,7 +266,7 @@ namespace Faccts.Model.Entities
         private Nullable<long> _courtCounty_Id;
     
         [DataMember]
-        public int USAState
+        public FACCTS.Server.Model.Enums.USAState USAState
         {
             get { return _uSAState; }
             set
@@ -294,7 +279,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _uSAState;
+        private FACCTS.Server.Model.Enums.USAState _uSAState;
 
         #endregion
 
