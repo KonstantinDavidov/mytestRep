@@ -25,8 +25,8 @@
   <pdfField originalValue="restrainedPhone" mapValue="restrainedPhone" />
   <pdfField originalValue="restrainedFax" mapValue="restrainedFax" />
   <pdfField originalValue="restrainedEmail" mapValue="restrainedEmail" />
-  <pdfField originalValue="restrainedEye" mapValue="restrainedEyeColor" />
-  <pdfField originalValue="restrainedHair" mapValue="restrainedHairColor" />
+  <pdfField originalValue="restrainedEyeColor" mapValue="restrainedEyeColor" />
+  <pdfField originalValue="restrainedHairColor" mapValue="restrainedHairColor" />
   <pdfField originalValue="restrainedRace" mapValue="restrainedRace" />
   <pdfField originalValue="restrainedDOB" mapValue="restrainedDOB" />
   <pdfField originalValue="restrainedAge" mapValue="restrainedAge" />
@@ -69,7 +69,7 @@
   <pdfField originalValue="hearingContinueYes" mapValue="hearingContinueYes" />
   <pdfField originalValue="continuedTime" mapValue="continuedTime" />
   <pdfField originalValue="continuedDate" mapValue="continuedDate" />
-  <pdfField originalValue="conductOrdersYes" mapValue="conductOrders" />
+  <pdfField originalValue="conductOrders" mapValue="conductOrders" />
   <pdfField originalValue="addProtectedConductYes" mapValue="addProtectedConductYes" />
   <pdfField originalValue="conductHarrassYes" mapValue="conductHarrassYes" />
   <pdfField originalValue="conductContactYes" mapValue="conductContactYes" />
@@ -78,7 +78,7 @@
   <pdfField originalValue="conductOtherAttach" mapValue="conductOtherAttach" />
   <pdfField originalValue="conductOtherDetail" mapValue="conductOtherDetail" />
   <pdfField originalValue="stayawayOrdersYes" mapValue="stayawayOrdersYes" />
-  <pdfField originalValue="stayawayDistance" mapValue="stayawayOrdersYards" />
+  <pdfField originalValue="stayawayOrdersYards" mapValue="stayawayOrdersYards" />
   <pdfField originalValue="stayawayPerson" mapValue="stayawayPerson" />
   <pdfField originalValue="stayawayWork" mapValue="stayawayWork" />
   <pdfField originalValue="stayawaySchool" mapValue="stayawaySchool" />
@@ -117,7 +117,7 @@
   <pdfField originalValue="p1Attendp2Attend" mapValue="p1Attendp2Attend" />
   <pdfField originalValue="p1Attendp2No" mapValue="p1Attendp2No" />
   <pdfField originalValue="posGeneral" mapValue="posGeneral" />
-  <pdfField originalValue="posNonProtectDelivered" mapValue="posNonProtectDelivered" />
+  <pdfField originalValue="proofServiceRestrainPersonal" mapValue="proofServiceRestrainPersonal" />
   <pdfField originalValue="serviceNoFee" mapValue="serviceNoFee" />
   <pdfField originalValue="feeWaiverViolence" mapValue="feeWaiverViolence" />
   <pdfField originalValue="feeWaiverEntitled" mapValue="feeWaiverEntitled" />

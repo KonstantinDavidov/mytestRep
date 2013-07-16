@@ -10,6 +10,7 @@ namespace FACCTS.Server.Reporting
 {
     public static class Utils
     {
+        public const string BooleanTrueString = "1";
         public static Dictionary<string, string> SerializeXMLToDictionary(string pathToXml, string attr1Name, string attr2Name)
         {
             XDocument doc;
@@ -46,14 +47,26 @@ namespace FACCTS.Server.Reporting
             return dict;
         }
 
-        public static void SetPdfFormFieldValue(Form pdfForm, Dictionary<string, string> mapper, string key, string value)
+        public static void SetPdfField(Form pdfForm, Dictionary<string, string> mapper, string key, string value)
         {
-            var field = pdfForm.Fields[mapper[key]];
             if (value != null)
             {
-                field.Value = value;
+                pdfForm.Fields[mapper[key]].Value = value;
             }
         }
+        public static void SetPdfField(Form pdfForm, Dictionary<string, string> mapper, string key, bool value = true)
+        {
+            pdfForm.Fields[mapper[key]].Value = value ? BooleanTrueString : null;
+        }
+        public static void SetPdfField(Form pdfForm, Dictionary<string, string> mapper, string key, bool? value)
+        {
+            if(value.HasValue)
+            {
+                pdfForm.Fields[mapper[key]].Value = value.Value ? BooleanTrueString : null;
+            }
+        }
+
+
         public static string ToOrderDate(this DateTime date)
         {
             return date.ToShortDateString();
