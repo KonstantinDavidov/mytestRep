@@ -12,7 +12,7 @@ namespace WindowsServiceStopper
     {
         static void Main(string[] args)
         {
-            string serviceName = "FACCTS.IntegrationScheduler";
+            /*string serviceName = "FACCTS.IntegrationScheduler";
 
             var services = ServiceController.GetServices();
             if (services.FirstOrDefault(s => s.ServiceName == serviceName) != null)
@@ -25,12 +25,6 @@ namespace WindowsServiceStopper
                 Process p = new Process();
                 ProcessStartInfo startInfo = new ProcessStartInfo();
 
-                /*startInfo.Arguments = string.Format("stop {0}", serviceName);
-                startInfo.FileName = "sc.exe";
-                p.StartInfo = startInfo;
-                p.Start();
-                p.WaitForExit();*/
-
                 p = new Process();
                 startInfo = new ProcessStartInfo();
                 startInfo.Arguments = string.Format("delete {0}", serviceName);
@@ -38,7 +32,7 @@ namespace WindowsServiceStopper
                 p.StartInfo = startInfo;
                 p.Start();
                 p.WaitForExit();
-            }
+            }*/
         }
     }
 }

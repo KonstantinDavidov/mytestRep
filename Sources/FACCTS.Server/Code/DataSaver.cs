@@ -22,7 +22,6 @@ namespace FACCTS.Server.Code
             if (cc.State == ObjectState.Unchanged)
                 return cc;
             DataManager.CourtCaseRepository.SaveData(cc);
-            DataManager.CaseRecordRepository.SaveData(cc.CaseRecord);
             return null;
         }
     }

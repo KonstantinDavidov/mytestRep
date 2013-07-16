@@ -61,14 +61,12 @@ namespace FACCTS.Server.Controllers
                     CaseNumber = request.CaseNumber,
 
                 };
-                courtCase.CaseRecord = new CaseRecord();
-                courtCase.CaseRecord.CaseHistory = new List<CaseHistory>()
+                courtCase.CaseHistory = new List<CaseHistory>()
                 {
                     new CaseHistory()
                     {
                         Date = DateTime.Now,
-                        CaseHistoryEvent = Model.Enums.CaseHistoryEvent.New,
-                        CaseRecord = courtCase.CaseRecord,
+                        CaseHistoryEvent = Model.Enums.CaseHistoryEvent.New
                     }
                 };
                 DataManager.CourtCaseRepository.Insert(courtCase);

@@ -21,7 +21,6 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(CourtParty))]
     public partial class HairColor: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -64,6 +63,8 @@ namespace Faccts.Model.Entities
     
     		partial void Initialize();
     		
+    
+    
     		private bool _isDirty;
     		public bool IsDirty
     		{
@@ -169,58 +170,6 @@ namespace Faccts.Model.Entities
 
         #endregion
 
-        #region Navigation Properties
-    
-        [DataMember]
-        public TrackableCollection<CourtParty> CourtParty
-        {
-            get
-            {
-                if (_courtParty == null)
-                {
-                    _courtParty = new TrackableCollection<CourtParty>();
-                    _courtParty.CollectionChanged += FixupCourtParty;
-                }
-                return _courtParty;
-            }
-            set
-            {
-                if (!ReferenceEquals(_courtParty, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("CourtParty");
-                    if (_courtParty != null)
-                    {
-                        _courtParty.CollectionChanged -= FixupCourtParty;
-                        // This is the principal end in an association that performs cascade deletes.
-                        // Remove the cascade delete event handler for any entities in the current collection.
-                        foreach (CourtParty item in _courtParty)
-                        {
-                            ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
-                        }
-                    }
-                    _courtParty = value;
-                    if (_courtParty != null)
-                    {
-                        _courtParty.CollectionChanged += FixupCourtParty;
-                        // This is the principal end in an association that performs cascade deletes.
-                        // Add the cascade delete event handler for any entities that are already in the new collection.
-                        foreach (CourtParty item in _courtParty)
-                        {
-                            ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
-                        }
-                    }
-                    OnNavigationPropertyChanged("CourtParty");
-                }
-            }
-        }
-        private TrackableCollection<CourtParty> _courtParty;
-
-        #endregion
-
         #region ChangeTracking
     
         protected virtual void OnPropertyChanged(String propertyName)
@@ -316,56 +265,6 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
-            CourtParty.Clear();
-        }
-
-        #endregion
-
-        #region Association Fixup
-    
-        private void FixupCourtParty(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (CourtParty item in e.NewItems)
-                {
-                    item.HairColor = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CourtParty", item);
-                    }
-                    // This is the principal end in an association that performs cascade deletes.
-                    // Update the event listener to refer to the new dependent.
-                    ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (CourtParty item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.HairColor, this))
-                    {
-                        item.HairColor = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtParty", item);
-                    }
-                    // This is the principal end in an association that performs cascade deletes.
-                    // Remove the previous dependent from the event listener.
-                    ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
-                }
-            }
         }
 
         #endregion

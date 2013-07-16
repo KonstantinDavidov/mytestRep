@@ -22,7 +22,6 @@ namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
     [KnownType(typeof(Attorneys))]
-    [KnownType(typeof(CaseRecord))]
     [KnownType(typeof(CaseHistory))]
     public partial class ThirdPartyData: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
@@ -55,7 +54,6 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.IsThirdPartyProPer)
     				,this.ObservableForProperty(x => x.IsThirdPartyRequestorInEACase)
     				,this.ObservableForProperty(x => x.Attorney_Id)
-    				,this.ObservableForProperty(x => x.IsThirdpartyProPer)
     				,this.ObservableForProperty(x => x.Attorney.IsDirty)
     			).
     			Subscribe(_ =>
@@ -70,6 +68,8 @@ namespace Faccts.Model.Entities
     
     		partial void Initialize();
     		
+    
+    
     		private bool _isDirty;
     		public bool IsDirty
     		{
@@ -212,22 +212,6 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<long> _attorney_Id;
-    
-        [DataMember]
-        public bool IsThirdpartyProPer
-        {
-            get { return _isThirdpartyProPer; }
-            set
-            {
-                if (_isThirdpartyProPer != value)
-                {
-    				OnPropertyChanging("IsThirdpartyProPer");
-                    _isThirdpartyProPer = value;
-                    OnPropertyChanged("IsThirdpartyProPer");
-                }
-            }
-        }
-        private bool _isThirdpartyProPer;
 
         #endregion
 
@@ -250,42 +234,6 @@ namespace Faccts.Model.Entities
             }
         }
         private Attorneys _attorney;
-    
-        [DataMember]
-        public TrackableCollection<CaseRecord> CaseRecord
-        {
-            get
-            {
-                if (_caseRecord == null)
-                {
-                    _caseRecord = new TrackableCollection<CaseRecord>();
-                    _caseRecord.CollectionChanged += FixupCaseRecord;
-                }
-                return _caseRecord;
-            }
-            set
-            {
-                if (!ReferenceEquals(_caseRecord, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("CaseRecord");
-                    if (_caseRecord != null)
-                    {
-                        _caseRecord.CollectionChanged -= FixupCaseRecord;
-                    }
-                    _caseRecord = value;
-                    if (_caseRecord != null)
-                    {
-                        _caseRecord.CollectionChanged += FixupCaseRecord;
-                    }
-                    OnNavigationPropertyChanged("CaseRecord");
-                }
-            }
-        }
-        private TrackableCollection<CaseRecord> _caseRecord;
     
         [DataMember]
         public TrackableCollection<CaseHistory> CaseHistory
@@ -421,7 +369,6 @@ namespace Faccts.Model.Entities
         protected virtual void ClearNavigationProperties()
         {
             Attorney = null;
-            CaseRecord.Clear();
             CaseHistory.Clear();
         }
 
@@ -466,45 +413,6 @@ namespace Faccts.Model.Entities
                 if (Attorney != null && !Attorney.ChangeTracker.ChangeTrackingEnabled)
                 {
                     Attorney.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupCaseRecord(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (CaseRecord item in e.NewItems)
-                {
-                    item.ThirdPartyData = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CaseRecord", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (CaseRecord item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.ThirdPartyData, this))
-                    {
-                        item.ThirdPartyData = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CaseRecord", item);
-                    }
                 }
             }
         }

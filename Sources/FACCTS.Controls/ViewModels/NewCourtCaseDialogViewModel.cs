@@ -63,9 +63,7 @@ namespace FACCTS.Controls.ViewModels
             Faccts.Model.Entities.CourtCase newCase = new Faccts.Model.Entities.CourtCase()
             {
                 CaseNumber = this.CaseNumber,
-                CaseRecord = new Faccts.Model.Entities.CaseRecord()
-                {
-                    CaseHistory = new Faccts.Model.Entities.TrackableCollection<Faccts.Model.Entities.CaseHistory>()
+                CaseHistory = new Faccts.Model.Entities.TrackableCollection<Faccts.Model.Entities.CaseHistory>()
                     {
                         new Faccts.Model.Entities.CaseHistory()
                         {
@@ -73,7 +71,6 @@ namespace FACCTS.Controls.ViewModels
                             CaseHistoryEvent = (int)CaseHistoryEvent.New,
                         },
                     }
-                },
             };
             Execute.OnUIThread(() => DataContainer.CourtCases.Add(newCase));
         }
@@ -100,7 +97,6 @@ namespace FACCTS.Controls.ViewModels
                 {
                     case "CaseNumber":
                         return "Please specify the court case number";
-                        break;
                 }
                 return result;
             }

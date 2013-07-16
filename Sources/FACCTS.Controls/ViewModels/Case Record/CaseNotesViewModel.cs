@@ -27,17 +27,17 @@ namespace FACCTS.Controls.ViewModels
             this.WhenAny(x => x.CurrentCourtCase, x => x.Value)
                 .Subscribe(x =>
                 {
-                    if (x != null && x.CaseRecord != null)
+                    if (x != null)
                     {
                         SelectedUser = null;
-                        var caseNoteForCurrentUser = x.CaseRecord.CaseNotes.FirstOrDefault(y => y.User == authService.CurrentUser);
+                        var caseNoteForCurrentUser = x.CaseNotes.FirstOrDefault(y => y.User == authService.CurrentUser);
                         if (caseNoteForCurrentUser == null)
                         {
                             var newCN = new CaseNotes()
                                 {
                                     User = authService.CurrentUser,
                                 };
-                            this.CaseRecord.CaseNotes.Add(newCN);
+                            this.CurrentCourtCase.CaseNotes.Add(newCN);
                             SelectedUser = authService.CurrentUser;
                         }
                     }
@@ -51,11 +51,11 @@ namespace FACCTS.Controls.ViewModels
                         this.CaseNoteForSelectedUser= null;
                         return;
                     }
-                    if (this.CaseRecord == null || this.CaseRecord.CaseNotes == null)
+                    if (this.CurrentCourtCase == null || this.CurrentCourtCase.CaseNotes == null)
                     {
                         return;
                     }
-                    this.CaseNoteForSelectedUser = this.CaseRecord.CaseNotes.FirstOrDefault(y => y.User == x);
+                    this.CaseNoteForSelectedUser = this.CurrentCourtCase.CaseNotes.FirstOrDefault(y => y.User == x);
                 }
                 );
             this.WhenAny(x => x.CaseNoteForSelectedUser, x => x.Value)
@@ -81,9 +81,9 @@ namespace FACCTS.Controls.ViewModels
         {
             get
             {
-                if (CaseRecord == null || CaseRecord.CaseNotes == null)
+                if (CurrentCourtCase == null || CurrentCourtCase.CaseNotes == null)
                     return null;
-                var r = CaseRecord.CaseNotes.Select(x => x.User).ToList();
+                var r = CurrentCourtCase.CaseNotes.Select(x => x.User).ToList();
                 if (SelectedUser == null)
                 {
                     SelectedUser = r.FirstOrDefault();

@@ -75,7 +75,6 @@
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\CaseHistory.cs" />
     <Compile Include="Entities\CaseNote.cs" />
-    <Compile Include="Entities\CaseRecord.cs" />
     <Compile Include="Entities\Child.cs" />
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\ClientCertificates.cs" />

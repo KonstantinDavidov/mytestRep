@@ -49,16 +49,16 @@ namespace FACCTS.Controls.ViewModels
             var newChild = new Children()
             {
                 FirstName = "First Name",
-                Gender = FACCTS.Server.Model.Enums.Gender.F,
+                Sex = FACCTS.Server.Model.Enums.Gender.F,
             };
-            CaseRecord.Children.Add(newChild);
+            CurrentCourtCase.Children.Add(newChild);
         }
 
         public void RemoveChild(Children child)
         {
             if (_dialogService.MessageBox("Do you really want to delete the child from the Court Case record?", "Deletion of the Child", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
             {
-                CaseRecord.Children.Remove(child);
+                CurrentCourtCase.Children.Remove(child);
             }
         }
 
@@ -67,16 +67,16 @@ namespace FACCTS.Controls.ViewModels
             var newOP = new OtherProtected()
             {
                 FirstName = "First name",
-                Gender = FACCTS.Server.Model.Enums.Gender.F,
+                Sex = FACCTS.Server.Model.Enums.Gender.F,
             };
-            CaseRecord.OtherProtected.Add(newOP);
+            CurrentCourtCase.OtherProtected.Add(newOP);
         }
 
         public void RemoveOtherProtected(OtherProtected otherProtected)
         {
             if (_dialogService.MessageBox("Do you really want to delete the other protected person from the Court Case record?", "Deletion of the Other Protected", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
             {
-                CaseRecord.OtherProtected.Remove(otherProtected);
+                CurrentCourtCase.OtherProtected.Remove(otherProtected);
             }
             
         }

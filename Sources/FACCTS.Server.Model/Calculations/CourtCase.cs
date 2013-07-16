@@ -15,11 +15,11 @@ namespace FACCTS.Server.Model.DataModel
         {
             get
             {
-                if (this.CaseRecord == null || this.CaseRecord.CaseHistory == null)
+                if (CaseHistory == null)
                 {
                     return Enums.CaseStatus.New;
                 }
-                return CaseHistoryEventToStatus(this.CaseRecord.CaseHistory.Where(x => x.Date <= DateTime.Now).First().CaseHistoryEvent);
+                return CaseHistoryEventToStatus(CaseHistory.Where(x => x.Date <= DateTime.Now).First().CaseHistoryEvent);
             }
         }
 
@@ -28,11 +28,11 @@ namespace FACCTS.Server.Model.DataModel
         {
             get
             {
-                if (this.CaseRecord == null || this.CaseRecord.CaseHistory == null)
+                if (CaseHistory == null)
                 {
                     return null;
                 }
-                return this.CaseRecord.CaseHistory.Select(X => X.Date).Min();
+                return CaseHistory.Select(X => X.Date).Min();
             }
         }
 
@@ -40,11 +40,11 @@ namespace FACCTS.Server.Model.DataModel
         {
             get
             {
-                if (this.CaseRecord == null || this.CaseRecord.CaseHistory == null)
+                if (CaseHistory == null)
                 {
                     return null;
                 }
-                return this.CaseRecord.CaseHistory.Select(X => X.Date).Max();
+                return CaseHistory.Select(X => X.Date).Max();
             } 
         }
 

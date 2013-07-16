@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FACCTS.Server.Model.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace Faccts.Model.Entities
                 Fax = this.Fax,
                 FirmName = this.FirmName,
                 Phone = this.Phone,
-                USAState = this.State,
+                USAState = (USAState)this.USAState,
                 StateBarId = this.StateBarId,
                 StreetAddress = this.StreetAddress,
                 ZipCode = this.ZipCode,
