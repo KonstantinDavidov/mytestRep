@@ -190,7 +190,7 @@ namespace Faccts.Model.Entities
         private long _id;
     
         [DataMember]
-        public System.DateTime Date
+        public Nullable<System.DateTime> Date
         {
             get { return _date; }
             set
@@ -203,7 +203,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private System.DateTime _date;
+        private Nullable<System.DateTime> _date;
     
         [DataMember]
         public FACCTS.Server.Model.Enums.CaseHistoryEvent CaseHistoryEvent

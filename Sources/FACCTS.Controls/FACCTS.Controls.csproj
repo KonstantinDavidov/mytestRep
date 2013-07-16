@@ -145,6 +145,7 @@
     <Compile Include="Caliburn\Micro\Logging\DebugLogger.cs" />
     <Compile Include="Converters\AndConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\DataContextMultiValueConverter.cs" />
     <Compile Include="Converters\FirstMiddleLastNameToFullNameConverter.cs" />
     <Compile Include="Converters\Int32ToBooleanConverter.cs" />
     <Compile Include="Converters\InvertedBooleanConverter.cs" />

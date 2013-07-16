@@ -23,7 +23,7 @@
 			<RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<GroupBox Header="List Children">
-            <Grid IsEnabled="{Binding CaseRecord, Mode=OneWay, Converter={StaticResource ObjectToBooleanConverter}, FallbackValue=False}">
+            <Grid IsEnabled="{Binding CurrentCourtCase, Mode=OneWay, Converter={StaticResource ObjectToBooleanConverter}, FallbackValue=False}">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition/>
 					<ColumnDefinition Width="Auto"/>
@@ -32,7 +32,7 @@
 					<RowDefinition/>
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
-                <Border DataContext="{Binding CaseRecord, Mode=OneWay}" Grid.ColumnSpan="2">
+                <Border DataContext="{Binding CurrentCourtCase, Mode=OneWay}" Grid.ColumnSpan="2">
 				    <DataGrid x:Name="dataGrid"  ItemsSource="{Binding Children, Mode=TwoWay}" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 					<DataGrid.Columns>
 						<DataGridTextColumn Binding="{Binding EntityTypeName, Mode=OneWay}" Header="Entity Type" IsReadOnly="True" Width="0.1*"/>
@@ -81,7 +81,7 @@
 			</Grid>
 		</GroupBox>
 		<GroupBox Header="Others Protected" Grid.Row="1">
-            <Grid IsEnabled="{Binding CaseRecord, Mode=OneWay, Converter={StaticResource ObjectToBooleanConverter}, FallbackValue=False}">
+            <Grid IsEnabled="{Binding CurrentCourtCase, Mode=OneWay, Converter={StaticResource ObjectToBooleanConverter}, FallbackValue=False}">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition/>
 					<ColumnDefinition Width="Auto"/>
@@ -90,7 +90,8 @@
 					<RowDefinition/>
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
-                <Border Grid.ColumnSpan="2" DataContext="{Binding CaseRecord, Mode=OneWay}">
+                <Border Grid.ColumnSpan="2"
+                        DataContext="{Binding CurrentCourtCase, Mode=OneWay}">
                     <DataGrid ItemsSource="{Binding OtherProtected, Mode=TwoWay}"
                               CanUserAddRows="False"
                               x:Name="dgOtherProtected"

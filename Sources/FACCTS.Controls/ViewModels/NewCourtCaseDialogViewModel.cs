@@ -63,14 +63,7 @@ namespace FACCTS.Controls.ViewModels
             Faccts.Model.Entities.CourtCase newCase = new Faccts.Model.Entities.CourtCase()
             {
                 CaseNumber = this.CaseNumber,
-                CaseHistory = new Faccts.Model.Entities.TrackableCollection<Faccts.Model.Entities.CaseHistory>()
-                    {
-                        new Faccts.Model.Entities.CaseHistory()
-                        {
-                            Date = DateTime.Now,
-                            CaseHistoryEvent = (int)CaseHistoryEvent.New,
-                        },
-                    }
+                CaseHistory = Faccts.Model.Entities.CaseHistory.GetHistoryCollectionForNewCase(),
             };
             Execute.OnUIThread(() => DataContainer.CourtCases.Add(newCase));
         }

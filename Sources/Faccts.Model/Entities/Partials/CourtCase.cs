@@ -174,10 +174,58 @@ namespace Faccts.Model.Entities
             {
                 return this
                     .CaseHistory
-                    .Where(x => x.CaseHistoryEvent == FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing)
+                    .Where(x => x.CaseHistoryEvent == FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing && x.Date.HasValue)
                     .Select(x => x.Hearing)
                     .OrderBy(x => x.HearingDate)
                     .ToList();
+            }
+        }
+
+        public CourtPartyAttorneyData Party1AttorneyData
+        {
+            get
+            {
+                return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).Party1AttorneyData;
+            }
+        }
+
+        public CourtPartyAttorneyData Party2AttorneyData
+        {
+            get
+            {
+                return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).Party2AttorneyData;
+            }
+        }
+
+        public Attorneys AttorneyForChild
+        {
+            get
+            {
+                return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).AttorneyForChild;
+            }
+        }
+
+        public ThirdPartyData ThirdPartyAttorneyData
+        {
+            get
+            {
+                return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).ThirdPartyData;
+            }
+        }
+
+        public TrackableCollection<Witnesses> Witnesses
+        {
+            get
+            {
+                return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).Witnesses;
+            }
+        }
+
+        public TrackableCollection<Interpreters> Interpreters
+        {
+            get
+            {
+                return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).Interpreters;
             }
         }
     }

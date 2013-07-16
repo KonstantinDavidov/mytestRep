@@ -1631,7 +1631,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Date" Nullable="true" Precision="3" />
           <Property Type="FACCTS_DBModel.CaseHistoryEvent" Name="CaseHistoryEvent" Nullable="false" />
           <Property Type="String" Name="CCPOR_ID" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Type="Int64" Name="CourtCaseOrderId" />

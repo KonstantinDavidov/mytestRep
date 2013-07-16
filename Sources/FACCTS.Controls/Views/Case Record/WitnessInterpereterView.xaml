@@ -21,6 +21,7 @@
                               x:Key="cvsWitnessesFor" />
         <CollectionViewSource Source="{Binding InterpretersFor, Mode=OneWay}"
                               x:Key="cvsInterpretersFor" />
+        <Converters:DataContextMultiValueConverter x:Key="DataContextMultiValueConverter" />
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot"
           IsEnabled="{Binding CurrentHistoryRecord, Converter={StaticResource ObjectToBooleanConverter}, FallbackValue=False, Mode=OneWay}">
@@ -39,7 +40,17 @@
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
                 <Border Grid.ColumnSpan="2"
-                        DataContext="{Binding CurrentHistoryRecord, Mode=OneWay}">
+                        >
+                    <Border.DataContext>
+                        <MultiBinding Converter="{StaticResource DataContextMultiValueConverter}"
+                                      Mode="OneWay"
+                                      ConverterParameter="0">
+                            <Binding Path="CurrentHistoryRecord"
+                                     Mode="OneWay" />
+                            <Binding Path="CurrentCourtCase"
+                                     Mode="OneWay" />
+                        </MultiBinding>
+                    </Border.DataContext>
                     <DataGrid ItemsSource="{Binding Witnesses, Mode=OneWay}"
                               x:Name="dgWitness"
                               AutoGenerateColumns="False"

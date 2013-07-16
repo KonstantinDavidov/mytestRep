@@ -41,5 +41,22 @@ namespace Faccts.Model.Entities
             }
 
         }
+
+        public static TrackableCollection<CaseHistory> GetHistoryCollectionForNewCase()
+        {
+            return new TrackableCollection<CaseHistory>()
+            {
+                new CaseHistory()
+                {
+                    Date = DateTime.Now,
+                    CaseHistoryEvent = FACCTS.Server.Model.Enums.CaseHistoryEvent.New,
+                },
+                new CaseHistory()
+                {
+                    Date = null,
+                    CaseHistoryEvent = FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing,
+                },
+            };
+        }
     }
 }

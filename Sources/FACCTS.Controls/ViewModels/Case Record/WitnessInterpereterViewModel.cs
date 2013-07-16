@@ -42,15 +42,30 @@ namespace FACCTS.Controls.ViewModels
                     CourtParty = CurrentCourtCase.Party1,
                     Designation = DataContainer.Designations.FirstOrDefault(),
                 };
-
-            this.CurrentHistoryRecord.Witnesses.Add(newWitness);
+            if (this.CurrentHistoryRecord != null)
+            {
+                this.CurrentHistoryRecord.Witnesses.Add(newWitness);
+            }
+            else
+            {
+                CurrentCourtCase.Witnesses.Add(newWitness);
+            }
+            
         }
 
         public void RemoveWitness(Witnesses witness)
         {
             if (_dialogService.MessageBox("Do you really want to remove the witness?", "Witness removal", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
             {
-                this.CurrentHistoryRecord.Witnesses.Remove(witness);
+                if (this.CurrentHistoryRecord != null)
+                {
+                    this.CurrentHistoryRecord.Witnesses.Remove(witness);
+                }
+                else
+                {
+                    this.CurrentCourtCase.Witnesses.Remove(witness);
+                }
+                
             }
         }
 
@@ -61,14 +76,16 @@ namespace FACCTS.Controls.ViewModels
                 CourtParty = CurrentCourtCase.Party1,
                 Language = "English",
             };
-            this.CurrentHistoryRecord.Interpreters.Add(newInterpreter);
+            var collection = this.CurrentHistoryRecord != null ? this.CurrentHistoryRecord.Interpreters : this.CurrentCourtCase.Interpreters;
+            collection.Add(newInterpreter);
         }
 
         public void RemoveInterpreter(Interpreters interpreter)
         {
             if (_dialogService.MessageBox("Do you really want to remove the interpreter?", "Interpreter removal", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
             {
-                this.CurrentHistoryRecord.Interpreters.Remove(interpreter);
+                var collection = this.CurrentHistoryRecord != null ? this.CurrentHistoryRecord.Interpreters : this.CurrentCourtCase.Interpreters;
+                collection.Remove(interpreter);
             }
         }
 
