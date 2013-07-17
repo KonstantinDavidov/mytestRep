@@ -9,7 +9,7 @@ namespace FACCTS.Server.Model.DataModel
 {
     public class MasterOrder: BaseEntity
     {
-        //public virtual CaseHistory ParentHistoryNote { get; set; }
+        public virtual CaseHistory ParentHistoryNote { get; set; }
 
         public MasterOrders OrderType { get; set; }
 

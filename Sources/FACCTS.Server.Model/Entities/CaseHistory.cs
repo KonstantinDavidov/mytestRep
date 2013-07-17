@@ -22,9 +22,6 @@ namespace FACCTS.Server.Model.DataModel
         [StringLength(30)]
         public string CCPOR_ID { get; set; }
 
-        public long? MasterOrderId { get; set; }
-
-        [ForeignKey("MasterOrderId")]
         public virtual MasterOrder MasterOrder { get; set; }
 
         [InverseProperty("CaseHistory")]

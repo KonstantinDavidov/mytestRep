@@ -16,6 +16,7 @@ namespace FACCTS.Server.Data.EntityConfigurations
 
             HasKey(o => o.Id);
 
+            HasRequired(o => o.ParentHistoryNote).WithOptional(h => h.MasterOrder);
             HasMany(o => o.AttachmentOrders).WithRequired(a => a.MasterOrder).HasForeignKey(a => a.MasterOrderId).WillCascadeOnDelete(true);
 
             Property(o => o.Id).HasColumnName(DbConsts.ID_COLUMN_NAME);
