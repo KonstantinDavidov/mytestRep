@@ -140,7 +140,7 @@
     <Compile Include="Enums\IdentificationIDType.cs" />
     <Compile Include="Enums\IssuingTerritory.cs" />
     <Compile Include="Enums\MasterOrders.cs" />
-    <Compile Include="Enums\OrderItemState.cs" />
+    <Compile Include="Enums\OrderRestrictionState.cs" />
     <Compile Include="Enums\OverrunOrders.cs" />
     <Compile Include="Enums\ParticipantRole.cs" />
     <Compile Include="Enums\Relationship.cs" />

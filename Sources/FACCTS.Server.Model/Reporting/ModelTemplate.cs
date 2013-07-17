@@ -402,57 +402,57 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 		}
 		
-		private bool _noAbuse;
-		public bool NoAbuse
+		private bool _isNoAbuse;
+		public bool IsNoAbuse
 		{
-			get{return _noAbuse;}
+			get{return _isNoAbuse;}
 			set
 			{
-				_noAbuse = value;
+				_isNoAbuse = value;
 
 			}
 		}
 		
-		private bool _noContact;
-		public bool NoContact
+		private bool _isNoContact;
+		public bool IsNoContact
 		{
-			get{return _noContact;}
+			get{return _isNoContact;}
 			set
 			{
-				_noContact = value;
+				_isNoContact = value;
 
 			}
 		}
 		
-		private bool _dontTryToLocate;
-		public bool DontTryToLocate
+		private bool _isDontTryToLocate;
+		public bool IsDontTryToLocate
 		{
-			get{return _dontTryToLocate;}
+			get{return _isDontTryToLocate;}
 			set
 			{
-				_dontTryToLocate = value;
+				_isDontTryToLocate = value;
 
 			}
 		}
 		
-		private bool _coversOtherProtectedPerson;
-		public bool CoversOtherProtectedPerson
+		private bool _isInvolveOtherProtected;
+		public bool IsInvolveOtherProtected
 		{
-			get{return _coversOtherProtectedPerson;}
+			get{return _isInvolveOtherProtected;}
 			set
 			{
-				_coversOtherProtectedPerson = value;
+				_isInvolveOtherProtected = value;
 
 			}
 		}
 		
-		private bool _other;
-		public bool Other
+		private bool _isInvolveOther;
+		public bool IsInvolveOther
 		{
-			get{return _other;}
+			get{return _isInvolveOther;}
 			set
 			{
-				_other = value;
+				_isInvolveOther = value;
 
 			}
 		}
@@ -747,8 +747,8 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 		}
 		
-		private DateTime? _ordersEndDate;
-		public DateTime? OrdersEndDate
+		private DateTime _ordersEndDate;
+		public DateTime OrdersEndDate
 		{
 			get{return _ordersEndDate;}
 			set
@@ -787,6 +787,350 @@ namespace FACCTS.Server.Model.OrderModels
 			set
 			{
 				_otherOrderDetail = value;
+
+			}
+		}
+				
+	}
+	
+			
+	public partial class DV130ConductChoice
+	{
+		private bool _isEnabled;
+		public bool IsEnabled
+		{
+			get{return _isEnabled;}
+			set
+			{
+				_isEnabled = value;
+
+			}
+		}
+		
+		private bool _isNoAbuse;
+		public bool IsNoAbuse
+		{
+			get{return _isNoAbuse;}
+			set
+			{
+				_isNoAbuse = value;
+
+			}
+		}
+		
+		private bool _isNoContact;
+		public bool IsNoContact
+		{
+			get{return _isNoContact;}
+			set
+			{
+				_isNoContact = value;
+
+			}
+		}
+		
+		private bool _isDontTryToLocate;
+		public bool IsDontTryToLocate
+		{
+			get{return _isDontTryToLocate;}
+			set
+			{
+				_isDontTryToLocate = value;
+
+			}
+		}
+		
+		private bool _isExceptionsExist;
+		public bool IsExceptionsExist
+		{
+			get{return _isExceptionsExist;}
+			set
+			{
+				_isExceptionsExist = value;
+
+			}
+		}
+				
+	}
+	
+			
+	public partial class DV130StayAwayOrders
+	{
+		private bool _isEnabled;
+		public bool IsEnabled
+		{
+			get{return _isEnabled;}
+			set
+			{
+				_isEnabled = value;
+
+			}
+		}
+		
+		private bool _isStayAwayFromPerson;
+		public bool IsStayAwayFromPerson
+		{
+			get{return _isStayAwayFromPerson;}
+			set
+			{
+				_isStayAwayFromPerson = value;
+
+			}
+		}
+		
+		private bool _isStayAwayFromHome;
+		public bool IsStayAwayFromHome
+		{
+			get{return _isStayAwayFromHome;}
+			set
+			{
+				_isStayAwayFromHome = value;
+
+			}
+		}
+		
+		private bool _isStayAwayFromVehicle;
+		public bool IsStayAwayFromVehicle
+		{
+			get{return _isStayAwayFromVehicle;}
+			set
+			{
+				_isStayAwayFromVehicle = value;
+
+			}
+		}
+		
+		private bool _isStayAwayFromChildCareOrSchool;
+		public bool IsStayAwayFromChildCareOrSchool
+		{
+			get{return _isStayAwayFromChildCareOrSchool;}
+			set
+			{
+				_isStayAwayFromChildCareOrSchool = value;
+
+			}
+		}
+		
+		private bool _isStayAwayFromPersonSchool;
+		public bool IsStayAwayFromPersonSchool
+		{
+			get{return _isStayAwayFromPersonSchool;}
+			set
+			{
+				_isStayAwayFromPersonSchool = value;
+
+			}
+		}
+		
+		private bool _isStayAwayFromWork;
+		public bool IsStayAwayFromWork
+		{
+			get{return _isStayAwayFromWork;}
+			set
+			{
+				_isStayAwayFromWork = value;
+
+			}
+		}
+		
+		private bool _isStayAwayFromOtherProtected;
+		public bool IsStayAwayFromOtherProtected
+		{
+			get{return _isStayAwayFromOtherProtected;}
+			set
+			{
+				_isStayAwayFromOtherProtected = value;
+
+			}
+		}
+		
+		private bool _isStayAwayFromOther;
+		public bool IsStayAwayFromOther
+		{
+			get{return _isStayAwayFromOther;}
+			set
+			{
+				_isStayAwayFromOther = value;
+
+			}
+		}
+		
+		private bool _isAttachOther;
+		public bool IsAttachOther
+		{
+			get{return _isAttachOther;}
+			set
+			{
+				_isAttachOther = value;
+
+			}
+		}
+		
+		private string _otherDescription;
+		public string OtherDescription
+		{
+			get{return _otherDescription;}
+			set
+			{
+				_otherDescription = value;
+
+			}
+		}
+		
+		private int _stayAwayDistance;
+		public int StayAwayDistance
+		{
+			get{return _stayAwayDistance;}
+			set
+			{
+				_stayAwayDistance = value;
+
+			}
+		}
+				
+	}
+	
+			
+	public partial class DV130Moveout
+	{
+		private bool _isEnabled;
+		public bool IsEnabled
+		{
+			get{return _isEnabled;}
+			set
+			{
+				_isEnabled = value;
+
+			}
+		}
+		
+		private string _moveoutAddress;
+		public string MoveoutAddress
+		{
+			get{return _moveoutAddress;}
+			set
+			{
+				_moveoutAddress = value;
+
+			}
+		}
+				
+	}
+	
+			
+	public partial class DV130Animals
+	{
+		private bool _isEnabled;
+		public bool IsEnabled
+		{
+			get{return _isEnabled;}
+			set
+			{
+				_isEnabled = value;
+
+			}
+		}
+		
+		private int _stayAwayAnimalsDistance;
+		public int StayAwayAnimalsDistance
+		{
+			get{return _stayAwayAnimalsDistance;}
+			set
+			{
+				_stayAwayAnimalsDistance = value;
+
+			}
+		}
+		
+		private string _animalsDescription;
+		public string AnimalsDescription
+		{
+			get{return _animalsDescription;}
+			set
+			{
+				_animalsDescription = value;
+
+			}
+		}
+				
+	}
+	
+			
+	public partial class DV130
+	{
+		private DV130ConductChoice _dV130ConductChoiceSection;
+		public DV130ConductChoice DV130ConductChoiceSection
+		{
+			get{return _dV130ConductChoiceSection;}
+			set
+			{
+				_dV130ConductChoiceSection = value;
+
+			}
+		}
+		
+		private DV130StayAwayOrders _dV130StayAwayOrdersSection;
+		public DV130StayAwayOrders DV130StayAwayOrdersSection
+		{
+			get{return _dV130StayAwayOrdersSection;}
+			set
+			{
+				_dV130StayAwayOrdersSection = value;
+
+			}
+		}
+		
+		private DV130Moveout _dV130MoveoutSection;
+		public DV130Moveout DV130MoveoutSection
+		{
+			get{return _dV130MoveoutSection;}
+			set
+			{
+				_dV130MoveoutSection = value;
+
+			}
+		}
+		
+		private bool _isRecordUnlawfulCommunicationsAllowed;
+		public bool IsRecordUnlawfulCommunicationsAllowed
+		{
+			get{return _isRecordUnlawfulCommunicationsAllowed;}
+			set
+			{
+				_isRecordUnlawfulCommunicationsAllowed = value;
+
+			}
+		}
+		
+		private DV130Animals _dV130AnimalsSection;
+		public DV130Animals DV130AnimalsSection
+		{
+			get{return _dV130AnimalsSection;}
+			set
+			{
+				_dV130AnimalsSection = value;
+
+			}
+		}
+		
+		private bool _isBattererIntervention;
+		public bool IsBattererIntervention
+		{
+			get{return _isBattererIntervention;}
+			set
+			{
+				_isBattererIntervention = value;
+
+			}
+		}
+		
+		private bool _isNoGuns;
+		public bool IsNoGuns
+		{
+			get{return _isNoGuns;}
+			set
+			{
+				_isNoGuns = value;
 
 			}
 		}

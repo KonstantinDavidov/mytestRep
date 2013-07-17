@@ -99,7 +99,41 @@
     <Property name="IsDontTryToLocate" type="bool"/>
     <Property name="IsExceptionsExist" type="bool"/>
   </Model>
-
+  
+  <Model name="DV130StayAwayOrders">
+    <Property name="IsEnabled" type="bool"/>
+    <Property name="IsStayAwayFromPerson" type="bool"/>
+    <Property name="IsStayAwayFromHome" type="bool"/>
+    <Property name="IsStayAwayFromVehicle" type="bool"/>
+    <Property name="IsStayAwayFromChildCareOrSchool" type="bool"/>
+    <Property name="IsStayAwayFromPersonSchool" type="bool"/>
+    <Property name="IsStayAwayFromWork" type="bool"/>
+    <Property name="IsStayAwayFromOtherProtected" type="bool"/>
+    <Property name="IsStayAwayFromOther" type="bool"/>
+    <Property name="IsAttachOther" type="bool"/>
+    <Property name="OtherDescription" type="string"/>
+    <Property name="StayAwayDistance" type="int"/>
+  </Model>
+  
+  <Model name="DV130Moveout">
+    <Property name="IsEnabled" type="bool"/>
+    <Property name="MoveoutAddress" type="string"/>
+  </Model>
+  
+  <Model name="DV130Animals">
+    <Property name="IsEnabled" type="bool"/>
+    <Property name="StayAwayAnimalsDistance" type="int"/>
+    <Property name="AnimalsDescription" type="string"/>
+  </Model>
+  <Model name="DV130">
+    <Property name="DV130ConductChoiceSection" type="DV130ConductChoice"/>
+    <Property name="DV130StayAwayOrdersSection" type="DV130StayAwayOrders"/>
+    <Property name="DV130MoveoutSection" type="DV130Moveout"/>
+    <Property name="IsRecordUnlawfulCommunicationsAllowed" type="bool"/>
+    <Property name="DV130AnimalsSection" type="DV130Animals"/>
+    <Property name="IsBattererIntervention" type="bool"/>
+    <Property name="IsNoGuns" type="bool"/>
+  </Model>
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="ModelsDef">
