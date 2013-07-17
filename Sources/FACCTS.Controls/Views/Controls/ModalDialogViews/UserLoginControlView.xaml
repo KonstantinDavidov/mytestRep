@@ -32,7 +32,7 @@
 				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Grid.Row="1" Margin="8"><Run Text="Password:"/></TextBlock>
 				<TextBox TextWrapping="Wrap" Grid.Column="1" Width="150" x:Name="tbUserName" VerticalAlignment="Center"/>
 				<PasswordBox Margin="0,0,0,-0.001" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" x:Name="PasswordBox" />
-                <Button Grid.ColumnSpan="2" Content="LogIn" HorizontalAlignment="Left" VerticalAlignment="Center" Width="75" Grid.Column="2" Grid.Row="1" Height="{Binding ActualHeight, ElementName=PasswordBox}" Padding="3" Margin="8,0,0,0">
+                <Button IsDefault="True" Grid.ColumnSpan="2" Content="LogIn" HorizontalAlignment="Left" VerticalAlignment="Center" Width="75" Grid.Column="2" Grid.Row="1" Height="{Binding ActualHeight, ElementName=PasswordBox}" Padding="3" Margin="8,0,0,0">
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="Click">
                             <cal:ActionMessage MethodName="Login">
