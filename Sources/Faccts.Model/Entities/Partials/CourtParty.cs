@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
 using FACCTS.Server.Model.Enums;
+using System.Reactive.Linq;
 
 namespace Faccts.Model.Entities
 {
@@ -18,6 +19,23 @@ namespace Faccts.Model.Entities
                     this.OnPropertyChanged("FullName");
                 }
                 );
+        }
+
+        private IObservable<IObservedChange<CourtParty, string>> _fullNameChanged;
+        public IObservable<IObservedChange<CourtParty, string>> FullNameChanged
+        {
+            get
+            {
+                if (_fullNameChanged == null)
+                {
+                    _fullNameChanged = Observable.Merge(
+                        this.ObservableForProperty(x => x.FirstName),
+                        this.ObservableForProperty(x => x.MiddleName),
+                        this.ObservableForProperty(x => x.LastName)
+                        );
+                }
+                return _fullNameChanged;
+            }
         }
 
         private DateTime? _dateOfBirthNullable;

@@ -28,8 +28,6 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(Attorneys))]
     [KnownType(typeof(CourtPartyAttorneyData))]
     [KnownType(typeof(ThirdPartyData))]
-    [KnownType(typeof(Interpreters))]
-    [KnownType(typeof(Witnesses))]
     public partial class CaseHistory: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -645,78 +643,6 @@ namespace Faccts.Model.Entities
             }
         }
         private ThirdPartyData _thirdPartyData;
-    
-        [DataMember]
-        public TrackableCollection<Interpreters> Interpreters
-        {
-            get
-            {
-                if (_interpreters == null)
-                {
-                    _interpreters = new TrackableCollection<Interpreters>();
-                    _interpreters.CollectionChanged += FixupInterpreters;
-                }
-                return _interpreters;
-            }
-            set
-            {
-                if (!ReferenceEquals(_interpreters, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("Interpreters");
-                    if (_interpreters != null)
-                    {
-                        _interpreters.CollectionChanged -= FixupInterpreters;
-                    }
-                    _interpreters = value;
-                    if (_interpreters != null)
-                    {
-                        _interpreters.CollectionChanged += FixupInterpreters;
-                    }
-                    OnNavigationPropertyChanged("Interpreters");
-                }
-            }
-        }
-        private TrackableCollection<Interpreters> _interpreters;
-    
-        [DataMember]
-        public TrackableCollection<Witnesses> Witnesses
-        {
-            get
-            {
-                if (_witnesses == null)
-                {
-                    _witnesses = new TrackableCollection<Witnesses>();
-                    _witnesses.CollectionChanged += FixupWitnesses;
-                }
-                return _witnesses;
-            }
-            set
-            {
-                if (!ReferenceEquals(_witnesses, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("Witnesses");
-                    if (_witnesses != null)
-                    {
-                        _witnesses.CollectionChanged -= FixupWitnesses;
-                    }
-                    _witnesses = value;
-                    if (_witnesses != null)
-                    {
-                        _witnesses.CollectionChanged += FixupWitnesses;
-                    }
-                    OnNavigationPropertyChanged("Witnesses");
-                }
-            }
-        }
-        private TrackableCollection<Witnesses> _witnesses;
 
         #endregion
 
@@ -835,8 +761,6 @@ namespace Faccts.Model.Entities
             Party1AttorneyData = null;
             Party2AttorneyData = null;
             ThirdPartyData = null;
-            Interpreters.Clear();
-            Witnesses.Clear();
         }
 
         #endregion
@@ -1238,84 +1162,6 @@ namespace Faccts.Model.Entities
                 if (ThirdPartyData != null && !ThirdPartyData.ChangeTracker.ChangeTrackingEnabled)
                 {
                     ThirdPartyData.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupInterpreters(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (Interpreters item in e.NewItems)
-                {
-                    item.CaseHistory = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("Interpreters", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (Interpreters item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.CaseHistory, this))
-                    {
-                        item.CaseHistory = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("Interpreters", item);
-                    }
-                }
-            }
-        }
-    
-        private void FixupWitnesses(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (Witnesses item in e.NewItems)
-                {
-                    item.CaseHistory = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("Witnesses", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (Witnesses item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.CaseHistory, this))
-                    {
-                        item.CaseHistory = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("Witnesses", item);
-                    }
                 }
             }
         }

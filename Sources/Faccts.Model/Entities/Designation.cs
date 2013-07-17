@@ -22,7 +22,6 @@ namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
     [KnownType(typeof(CourtParty))]
-    [KnownType(typeof(Witnesses))]
     public partial class Designation: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -221,42 +220,6 @@ namespace Faccts.Model.Entities
             }
         }
         private TrackableCollection<CourtParty> _courtParty;
-    
-        [DataMember]
-        public TrackableCollection<Witnesses> Witnesses
-        {
-            get
-            {
-                if (_witnesses == null)
-                {
-                    _witnesses = new TrackableCollection<Witnesses>();
-                    _witnesses.CollectionChanged += FixupWitnesses;
-                }
-                return _witnesses;
-            }
-            set
-            {
-                if (!ReferenceEquals(_witnesses, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("Witnesses");
-                    if (_witnesses != null)
-                    {
-                        _witnesses.CollectionChanged -= FixupWitnesses;
-                    }
-                    _witnesses = value;
-                    if (_witnesses != null)
-                    {
-                        _witnesses.CollectionChanged += FixupWitnesses;
-                    }
-                    OnNavigationPropertyChanged("Witnesses");
-                }
-            }
-        }
-        private TrackableCollection<Witnesses> _witnesses;
 
         #endregion
 
@@ -356,7 +319,6 @@ namespace Faccts.Model.Entities
         protected virtual void ClearNavigationProperties()
         {
             CourtParty.Clear();
-            Witnesses.Clear();
         }
 
         #endregion
@@ -404,45 +366,6 @@ namespace Faccts.Model.Entities
                     // This is the principal end in an association that performs cascade deletes.
                     // Remove the previous dependent from the event listener.
                     ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
-                }
-            }
-        }
-    
-        private void FixupWitnesses(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (Witnesses item in e.NewItems)
-                {
-                    item.Designation = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("Witnesses", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (Witnesses item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.Designation, this))
-                    {
-                        item.Designation = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("Witnesses", item);
-                    }
                 }
             }
         }

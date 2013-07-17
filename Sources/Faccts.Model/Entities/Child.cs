@@ -21,25 +21,25 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    public partial class OtherProtected : AdditionalParty, IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    public partial class Child : AdditionalParty, IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
         #region Simple Properties
     
         [DataMember]
-        public FACCTS.Server.Model.Enums.Relationship RelationToProtected
+        public FACCTS.Server.Model.Enums.Gender Sex
         {
-            get { return _relationToProtected; }
+            get { return _sex; }
             set
             {
-                if (_relationToProtected != value)
+                if (_sex != value)
                 {
-    				OnPropertyChanging("RelationToProtected");
-                    _relationToProtected = value;
-                    OnPropertyChanged("RelationToProtected");
+    				OnPropertyChanging("Sex");
+                    _sex = value;
+                    OnPropertyChanged("Sex");
                 }
             }
         }
-        private FACCTS.Server.Model.Enums.Relationship _relationToProtected;
+        private FACCTS.Server.Model.Enums.Gender _sex;
     
         [DataMember]
         public Nullable<System.DateTime> DateOfBirth
@@ -58,20 +58,20 @@ namespace Faccts.Model.Entities
         private Nullable<System.DateTime> _dateOfBirth;
     
         [DataMember]
-        public FACCTS.Server.Model.Enums.Gender Sex
+        public FACCTS.Server.Model.Enums.Relationship RelationToProtected
         {
-            get { return _sex; }
+            get { return _relationToProtected; }
             set
             {
-                if (_sex != value)
+                if (_relationToProtected != value)
                 {
-    				OnPropertyChanging("Sex");
-                    _sex = value;
-                    OnPropertyChanged("Sex");
+    				OnPropertyChanging("RelationToProtected");
+                    _relationToProtected = value;
+                    OnPropertyChanged("RelationToProtected");
                 }
             }
         }
-        private FACCTS.Server.Model.Enums.Gender _sex;
+        private FACCTS.Server.Model.Enums.Relationship _relationToProtected;
 
         #endregion
 

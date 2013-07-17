@@ -10,64 +10,50 @@ namespace FACCTS.Controls.ViewModels
 {
     public class CourtPartyAdapter : ViewModelBase
     {
-        private bool _isParty1;
         private string _prefix;
-        public CourtPartyAdapter(CourtParty courtParty, bool isParty1 = true, string prefix = "Witness for:")
+        private Func<PartyFor, string> _partyNameFactory;
+        public CourtPartyAdapter(PartyFor partyFor, Func<PartyFor, string> partyNameFactory, string prefix = "Witness for:", params IObservable<IObservedChange<CourtParty, string>>[] observables)
             : base()
         {
-            if (courtParty == null)
+            if (partyNameFactory == null)
             {
-                throw new ArgumentNullException("courtParty");
+                throw new ArgumentNullException("partyNameFactory");
             }
-            UnderlyingObject = courtParty;
-            UnderlyingObject.WhenAny(
-                            y => y.FirstName,
-                            y => y.MiddleName,
-                            y => y.LastName,
-                            (x1, x2, x3) => new
-                            {
-                                FirstName = x1,
-                                MiddleName = x2,
-                                LastName = x3,
-                            }
-                            )
-                            .Subscribe(y =>
-                            {
-                                if (string.IsNullOrWhiteSpace(UnderlyingObject.FullName))
-                                {
-                                    DisplayName = string.Format("{0} {1}", _prefix, _isParty1 ? "Party 1" : "Party 2");
-                                }
-                                else
-                                {
-                                    DisplayName = string.Format("{0} {1}", _prefix, UnderlyingObject.FullName);
-                                }
-                            }
-                            );
-            _isParty1 = isParty1;
+            PartyFor = partyFor;
+            _partyNameFactory = partyNameFactory;
             _prefix = prefix;
+            observables.Aggregate(0, (index, ob) =>
+                {
+                    ob.Subscribe(_ =>
+                        {
+                            UpdateDisplayName();
+                        }
+                        );
+                    return 0;
+                }
+                );
+            UpdateDisplayName();
         }
 
-        public CourtParty UnderlyingObject
+        private void UpdateDisplayName()
+        {
+            string partyName = _partyNameFactory.Invoke(PartyFor);
+            if (string.IsNullOrWhiteSpace(partyName))
+            {
+                DisplayName = string.Format("{0} {1}", _prefix, PartyFor.ToString());
+            }
+            else
+            {
+                DisplayName = string.Format("{0} {1}", _prefix, partyName);
+            }
+        }
+
+        public PartyFor PartyFor
         {
             get;
             private set;
         }
 
-        public override string DisplayName
-        {
-            get
-            {
-                if (string.IsNullOrWhiteSpace(UnderlyingObject.FullName))
-                {
-                    base.DisplayName = string.Format("Witness for: {0}", _isParty1 ? "Party 1" : "Party 2");
-                }
-                return base.DisplayName;
-            }
-            set
-            {
-                base.DisplayName = value;
-            }
-        }
 
         public override string ToString()
         {

@@ -21,15 +21,16 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(CourtParty))]
+    [KnownType(typeof(Child))]
+    [KnownType(typeof(OtherProtected))]
+    [KnownType(typeof(Interpreter))]
     [KnownType(typeof(CourtCase))]
-    [KnownType(typeof(CaseHistory))]
-    public partial class Interpreters: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    public partial class AdditionalParty: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
     		private MakeObjectReactiveHelper _reactiveHelper;
     
-    		public Interpreters()
+    		public AdditionalParty()
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
@@ -52,16 +53,14 @@ namespace Faccts.Model.Entities
     			);
     			Observable.Merge<Object>(
     				this.ObservableForProperty(x => x.Id)
+    				,this.ObservableForProperty(x => x.EntityType)
     				,this.ObservableForProperty(x => x.FirstName)
     				,this.ObservableForProperty(x => x.LastName)
-    				,this.ObservableForProperty(x => x.Language)
-    				,this.ObservableForProperty(x => x.InterpreterFor_Id)
-    				,this.ObservableForProperty(x => x.EntityType)
-    				,this.ObservableForProperty(x => x.CourtCase_Id)
-    				,this.ObservableForProperty(x => x.CaseHistoryRecord_Id)
-    				,this.ObservableForProperty(x => x.CourtParty.IsDirty)
+    				,this.ObservableForProperty(x => x.Designation)
+    				,this.ObservableForProperty(x => x.PartyFor)
+    				,this.ObservableForProperty(x => x.Contact)
+    				,this.ObservableForProperty(x => x.CourtCaseId)
     				,this.ObservableForProperty(x => x.CourtCase.IsDirty)
-    				,this.ObservableForProperty(x => x.CaseHistory.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -165,6 +164,22 @@ namespace Faccts.Model.Entities
         private long _id;
     
         [DataMember]
+        public FACCTS.Server.Model.Enums.FACCTSEntity EntityType
+        {
+            get { return _entityType; }
+            set
+            {
+                if (_entityType != value)
+                {
+    				OnPropertyChanging("EntityType");
+                    _entityType = value;
+                    OnPropertyChanged("EntityType");
+                }
+            }
+        }
+        private FACCTS.Server.Model.Enums.FACCTSEntity _entityType;
+    
+        [DataMember]
         public string FirstName
         {
             get { return _firstName; }
@@ -197,70 +212,62 @@ namespace Faccts.Model.Entities
         private string _lastName;
     
         [DataMember]
-        public string Language
+        public ExtendedDesignation Designation
         {
-            get { return _language; }
+            get { return _designation; }
             set
             {
-                if (_language != value)
+                if (_designation != value)
                 {
-    				OnPropertyChanging("Language");
-                    _language = value;
-                    OnPropertyChanged("Language");
+    				OnPropertyChanging("Designation");
+                    _designation = value;
+                    OnPropertyChanged("Designation");
                 }
             }
         }
-        private string _language;
+        private ExtendedDesignation _designation;
     
         [DataMember]
-        public Nullable<long> InterpreterFor_Id
+        public PartyFor PartyFor
         {
-            get { return _interpreterFor_Id; }
+            get { return _partyFor; }
             set
             {
-                if (_interpreterFor_Id != value)
+                if (_partyFor != value)
                 {
-                    ChangeTracker.RecordOriginalValue("InterpreterFor_Id", _interpreterFor_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (CourtParty != null && CourtParty.Id != value)
-                        {
-                            CourtParty = null;
-                        }
-                    }
-    				OnPropertyChanging("InterpreterFor_Id");
-                    _interpreterFor_Id = value;
-                    OnPropertyChanged("InterpreterFor_Id");
+    				OnPropertyChanging("PartyFor");
+                    _partyFor = value;
+                    OnPropertyChanged("PartyFor");
                 }
             }
         }
-        private Nullable<long> _interpreterFor_Id;
+        private PartyFor _partyFor;
     
         [DataMember]
-        public int EntityType
+        public string Contact
         {
-            get { return _entityType; }
+            get { return _contact; }
             set
             {
-                if (_entityType != value)
+                if (_contact != value)
                 {
-    				OnPropertyChanging("EntityType");
-                    _entityType = value;
-                    OnPropertyChanged("EntityType");
+    				OnPropertyChanging("Contact");
+                    _contact = value;
+                    OnPropertyChanged("Contact");
                 }
             }
         }
-        private int _entityType;
+        private string _contact;
     
         [DataMember]
-        public Nullable<long> CourtCase_Id
+        public long CourtCaseId
         {
-            get { return _courtCase_Id; }
+            get { return _courtCaseId; }
             set
             {
-                if (_courtCase_Id != value)
+                if (_courtCaseId != value)
                 {
-                    ChangeTracker.RecordOriginalValue("CourtCase_Id", _courtCase_Id);
+                    ChangeTracker.RecordOriginalValue("CourtCaseId", _courtCaseId);
                     if (!IsDeserializing)
                     {
                         if (CourtCase != null && CourtCase.Id != value)
@@ -268,59 +275,17 @@ namespace Faccts.Model.Entities
                             CourtCase = null;
                         }
                     }
-    				OnPropertyChanging("CourtCase_Id");
-                    _courtCase_Id = value;
-                    OnPropertyChanged("CourtCase_Id");
+    				OnPropertyChanging("CourtCaseId");
+                    _courtCaseId = value;
+                    OnPropertyChanged("CourtCaseId");
                 }
             }
         }
-        private Nullable<long> _courtCase_Id;
-    
-        [DataMember]
-        public Nullable<long> CaseHistoryRecord_Id
-        {
-            get { return _caseHistoryRecord_Id; }
-            set
-            {
-                if (_caseHistoryRecord_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("CaseHistoryRecord_Id", _caseHistoryRecord_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (CaseHistory != null && CaseHistory.Id != value)
-                        {
-                            CaseHistory = null;
-                        }
-                    }
-    				OnPropertyChanging("CaseHistoryRecord_Id");
-                    _caseHistoryRecord_Id = value;
-                    OnPropertyChanged("CaseHistoryRecord_Id");
-                }
-            }
-        }
-        private Nullable<long> _caseHistoryRecord_Id;
+        private long _courtCaseId;
 
         #endregion
 
         #region Navigation Properties
-    
-        [DataMember]
-        public CourtParty CourtParty
-        {
-            get { return _courtParty; }
-            set
-            {
-                if (!ReferenceEquals(_courtParty, value))
-                {
-                    var previousValue = _courtParty;
-    				OnNavigationPropertyChanging("CourtParty");
-                    _courtParty = value;
-                    FixupCourtParty(previousValue);
-                    OnNavigationPropertyChanged("CourtParty");
-                }
-            }
-        }
-        private CourtParty _courtParty;
     
         [DataMember]
         public CourtCase CourtCase
@@ -339,24 +304,6 @@ namespace Faccts.Model.Entities
             }
         }
         private CourtCase _courtCase;
-    
-        [DataMember]
-        public CaseHistory CaseHistory
-        {
-            get { return _caseHistory; }
-            set
-            {
-                if (!ReferenceEquals(_caseHistory, value))
-                {
-                    var previousValue = _caseHistory;
-    				OnNavigationPropertyChanging("CaseHistory");
-                    _caseHistory = value;
-                    FixupCaseHistory(previousValue);
-                    OnNavigationPropertyChanged("CaseHistory");
-                }
-            }
-        }
-        private CaseHistory _caseHistory;
 
         #endregion
 
@@ -453,85 +400,33 @@ namespace Faccts.Model.Entities
             ChangeTracker.ChangeTrackingEnabled = true;
         }
     
-        // This entity type is the dependent end in at least one association that performs cascade deletes.
-        // This event handler will process notifications that occur when the principal end is deleted.
-        internal void HandleCascadeDelete(object sender, ObjectStateChangingEventArgs e)
-        {
-            if (e.NewState == ObjectState.Deleted)
-            {
-                this.MarkAsDeleted();
-            }
-        }
-    
         protected virtual void ClearNavigationProperties()
         {
-            CourtParty = null;
             CourtCase = null;
-            CaseHistory = null;
         }
 
         #endregion
 
         #region Association Fixup
     
-        private void FixupCourtParty(CourtParty previousValue, bool skipKeys = false)
+        private void FixupCourtCase(CourtCase previousValue)
         {
             if (IsDeserializing)
             {
                 return;
             }
     
-            if (previousValue != null && previousValue.Interpreter.Contains(this))
+            if (previousValue != null && previousValue.AdditionalParties.Contains(this))
             {
-                previousValue.Interpreter.Remove(this);
-            }
-    
-            if (CourtParty != null)
-            {
-                CourtParty.Interpreter.Add(this);
-    
-                InterpreterFor_Id = CourtParty.Id;
-            }
-            else if (!skipKeys)
-            {
-                InterpreterFor_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("CourtParty")
-                    && (ChangeTracker.OriginalValues["CourtParty"] == CourtParty))
-                {
-                    ChangeTracker.OriginalValues.Remove("CourtParty");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("CourtParty", previousValue);
-                }
-                if (CourtParty != null && !CourtParty.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    CourtParty.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupCourtCase(CourtCase previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
+                previousValue.AdditionalParties.Remove(this);
             }
     
             if (CourtCase != null)
             {
-                CourtCase_Id = CourtCase.Id;
-            }
+                CourtCase.AdditionalParties.Add(this);
     
-            else if (!skipKeys)
-            {
-                CourtCase_Id = null;
+                CourtCaseId = CourtCase.Id;
             }
-    
             if (ChangeTracker.ChangeTrackingEnabled)
             {
                 if (ChangeTracker.OriginalValues.ContainsKey("CourtCase")
@@ -546,47 +441,6 @@ namespace Faccts.Model.Entities
                 if (CourtCase != null && !CourtCase.ChangeTracker.ChangeTrackingEnabled)
                 {
                     CourtCase.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupCaseHistory(CaseHistory previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.Interpreters.Contains(this))
-            {
-                previousValue.Interpreters.Remove(this);
-            }
-    
-            if (CaseHistory != null)
-            {
-                CaseHistory.Interpreters.Add(this);
-    
-                CaseHistoryRecord_Id = CaseHistory.Id;
-            }
-            else if (!skipKeys)
-            {
-                CaseHistoryRecord_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("CaseHistory")
-                    && (ChangeTracker.OriginalValues["CaseHistory"] == CaseHistory))
-                {
-                    ChangeTracker.OriginalValues.Remove("CaseHistory");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("CaseHistory", previousValue);
-                }
-                if (CaseHistory != null && !CaseHistory.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    CaseHistory.StartTracking();
                 }
             }
         }

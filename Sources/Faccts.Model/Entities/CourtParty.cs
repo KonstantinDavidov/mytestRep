@@ -23,8 +23,6 @@ namespace Faccts.Model.Entities
     [DataContract(IsReference = true)]
     [KnownType(typeof(Attorneys))]
     [KnownType(typeof(Designation))]
-    [KnownType(typeof(Interpreters))]
-    [KnownType(typeof(Witnesses))]
     [KnownType(typeof(HairColor))]
     [KnownType(typeof(Race))]
     [KnownType(typeof(EyesColor))]
@@ -704,102 +702,6 @@ namespace Faccts.Model.Entities
         private Designation _designation;
     
         [DataMember]
-        public TrackableCollection<Interpreters> Interpreter
-        {
-            get
-            {
-                if (_interpreter == null)
-                {
-                    _interpreter = new TrackableCollection<Interpreters>();
-                    _interpreter.CollectionChanged += FixupInterpreter;
-                }
-                return _interpreter;
-            }
-            set
-            {
-                if (!ReferenceEquals(_interpreter, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("Interpreter");
-                    if (_interpreter != null)
-                    {
-                        _interpreter.CollectionChanged -= FixupInterpreter;
-                        // This is the principal end in an association that performs cascade deletes.
-                        // Remove the cascade delete event handler for any entities in the current collection.
-                        foreach (Interpreters item in _interpreter)
-                        {
-                            ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
-                        }
-                    }
-                    _interpreter = value;
-                    if (_interpreter != null)
-                    {
-                        _interpreter.CollectionChanged += FixupInterpreter;
-                        // This is the principal end in an association that performs cascade deletes.
-                        // Add the cascade delete event handler for any entities that are already in the new collection.
-                        foreach (Interpreters item in _interpreter)
-                        {
-                            ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
-                        }
-                    }
-                    OnNavigationPropertyChanged("Interpreter");
-                }
-            }
-        }
-        private TrackableCollection<Interpreters> _interpreter;
-    
-        [DataMember]
-        public TrackableCollection<Witnesses> Witnesses
-        {
-            get
-            {
-                if (_witnesses == null)
-                {
-                    _witnesses = new TrackableCollection<Witnesses>();
-                    _witnesses.CollectionChanged += FixupWitnesses;
-                }
-                return _witnesses;
-            }
-            set
-            {
-                if (!ReferenceEquals(_witnesses, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("Witnesses");
-                    if (_witnesses != null)
-                    {
-                        _witnesses.CollectionChanged -= FixupWitnesses;
-                        // This is the principal end in an association that performs cascade deletes.
-                        // Remove the cascade delete event handler for any entities in the current collection.
-                        foreach (Witnesses item in _witnesses)
-                        {
-                            ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
-                        }
-                    }
-                    _witnesses = value;
-                    if (_witnesses != null)
-                    {
-                        _witnesses.CollectionChanged += FixupWitnesses;
-                        // This is the principal end in an association that performs cascade deletes.
-                        // Add the cascade delete event handler for any entities that are already in the new collection.
-                        foreach (Witnesses item in _witnesses)
-                        {
-                            ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
-                        }
-                    }
-                    OnNavigationPropertyChanged("Witnesses");
-                }
-            }
-        }
-        private TrackableCollection<Witnesses> _witnesses;
-    
-        [DataMember]
         public HairColor HairColor
         {
             get { return _hairColor; }
@@ -998,8 +900,6 @@ namespace Faccts.Model.Entities
         {
             Attorneys = null;
             Designation = null;
-            Interpreter.Clear();
-            Witnesses.Clear();
             HairColor = null;
             Race = null;
             EyesColor = null;
@@ -1193,96 +1093,6 @@ namespace Faccts.Model.Entities
                 if (EyesColor != null && !EyesColor.ChangeTracker.ChangeTrackingEnabled)
                 {
                     EyesColor.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupInterpreter(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (Interpreters item in e.NewItems)
-                {
-                    item.CourtParty = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("Interpreter", item);
-                    }
-                    // This is the principal end in an association that performs cascade deletes.
-                    // Update the event listener to refer to the new dependent.
-                    ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (Interpreters item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.CourtParty, this))
-                    {
-                        item.CourtParty = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("Interpreter", item);
-                    }
-                    // This is the principal end in an association that performs cascade deletes.
-                    // Remove the previous dependent from the event listener.
-                    ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
-                }
-            }
-        }
-    
-        private void FixupWitnesses(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (Witnesses item in e.NewItems)
-                {
-                    item.CourtParty = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("Witnesses", item);
-                    }
-                    // This is the principal end in an association that performs cascade deletes.
-                    // Update the event listener to refer to the new dependent.
-                    ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (Witnesses item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.CourtParty, this))
-                    {
-                        item.CourtParty = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("Witnesses", item);
-                    }
-                    // This is the principal end in an association that performs cascade deletes.
-                    // Remove the previous dependent from the event listener.
-                    ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
                 }
             }
         }
