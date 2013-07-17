@@ -17,7 +17,12 @@ namespace FACCTS.Server.Model.DataModel
         Deleted = 0x8
     }
 
-    public class BaseEntity 
+    public interface IEntityWithstate
+    {
+        ObjectState State { get; set; }
+    }
+
+    public class BaseEntity : IEntityWithstate
     {
         public BaseEntity()
         {
@@ -28,7 +33,7 @@ namespace FACCTS.Server.Model.DataModel
         [Column("Id")]
         public virtual long Id { get; set; }
 
-        [CsvField(Ignore=true)]
+        [CsvField(Ignore = true)]
         public virtual ObjectState State { get; set; }
     }
 }

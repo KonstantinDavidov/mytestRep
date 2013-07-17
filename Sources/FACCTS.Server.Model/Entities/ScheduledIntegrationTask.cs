@@ -27,18 +27,5 @@ namespace FACCTS.Server.Model.DataModel
         public bool Enabled { get; set; }
 
         public IntegrationTaskState TaskState { get; set; }
-
-        [NotMapped]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
     }
 }

@@ -22,10 +22,10 @@ namespace FACCTS.Server.Model.DataModel
         [StringLength(30)]
         public string CCPOR_ID { get; set; }
 
-        public long? CourtCaseOrderId { get; set; }
+        public long? MasterOrderId { get; set; }
 
-        [ForeignKey("CourtCaseOrderId")]
-        public virtual CourtCaseOrder Order { get; set; }
+        [ForeignKey("MasterOrderId")]
+        public virtual MasterOrder MasterOrder { get; set; }
 
         [InverseProperty("CaseHistory")]
         public virtual CourtCase CourtCase { get; set; }
@@ -33,8 +33,6 @@ namespace FACCTS.Server.Model.DataModel
         public CourtCase MergeCase { get; set; }
 
         public virtual Hearing Hearing { get; set; }
-
-        public virtual CourtCaseOrder CourtOrder { get; set; }
 
         public virtual Attorney AttorneyForChild { get; set; }
 

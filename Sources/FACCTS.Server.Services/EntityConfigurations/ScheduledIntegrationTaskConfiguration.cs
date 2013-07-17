@@ -12,13 +12,20 @@ namespace FACCTS.Server.Data.EntityConfigurations
     {
         public ScheduledIntegrationTaskConfiguration()
         {
-            ToTable("ScheduledIntegrationTasks");
+            ToTable(DbConsts.SCHELULED_INTEGRATION_TASKS_TABLE_NAME, DbConsts.SCHEMA_NAME);
 
             HasKey(t => t.Id);
 
             HasOptional(t => t.User).WithMany().HasForeignKey(t => t.UserId);
 
-            Property(t => t.Info);
+            Property(t => t.StartTime).HasColumnName(DbConsts.SCHELULED_INTEGRATION_TASK_START_TIME_COLUMN_NAME);
+            Property(t => t.RepeatPeriod).HasColumnName(DbConsts.SCHELULED_INTEGRATION_TASK_REPEAT_PERIOD_COLUMN_NAME);
+            Property(t => t.Info).HasColumnName(DbConsts.SCHELULED_INTEGRATION_TASK_INFO_COLUMN_NAME);
+            Property(t => t.UserId).HasColumnName(DbConsts.SCHELULED_INTEGRATION_TASK_USER_ID_COLUMN_NAME);
+            Property(t => t.Enabled).HasColumnName(DbConsts.SCHELULED_INTEGRATION_TASK_ENABLED_COLUMN_NAME);
+            Property(t => t.TaskState).HasColumnName(DbConsts.SCHELULED_INTEGRATION_TASK_TASK_STATE_COLUMN_NAME);
+
+            Ignore(t => t.State);
         }
     }
 }

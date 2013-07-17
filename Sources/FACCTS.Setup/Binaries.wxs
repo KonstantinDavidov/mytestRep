@@ -423,6 +423,7 @@
                 
                 
                 
+                
             </Directory>
             <Directory Id="dirBFF73AD48ED739709AE2D42222CE3644" Name="pt-BR">
                 <Component Id="cmp7CD1DF860A815FAE546D559E09E93CCA" Guid="*">
@@ -668,6 +669,7 @@
             <ComponentRef Id="cmpBD53113A24D2BED76A38E7FAD0700596" />
             <ComponentRef Id="cmpF3781A582B133DB400203D245236F00C" />
             <ComponentRef Id="cmp7B17D4B431864738E37D1F0EE98AF8F7" />
+            
             
             
             

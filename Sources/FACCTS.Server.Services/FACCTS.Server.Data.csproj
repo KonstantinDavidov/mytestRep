@@ -76,7 +76,10 @@
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="DataManager.cs" />
     <Compile Include="DropCreateFacctsModelChanged.cs" />
+    <Compile Include="EntityConfigurations\AttachmentOrderConfiguration.cs" />
+    <Compile Include="EntityConfigurations\DbConsts.cs" />
     <Compile Include="EntityConfigurations\ManualIntegrationTaskConfiguration.cs" />
+    <Compile Include="EntityConfigurations\MasterOrderConfiguration.cs" />
     <Compile Include="EntityConfigurations\ScheduledIntegrationTaskConfiguration.cs" />
     <Compile Include="FacctsDatabaseInitializer.cs" />
     <Compile Include="FacctsDataRepositoryExtensions.cs" />
