@@ -241,22 +241,6 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class CH130LawyerFeesAndCostsSection
-	{
-		private bool _isEnabled;
-		public bool IsEnabled
-		{
-			get{return _isEnabled;}
-			set
-			{
-				_isEnabled = value;
-
-			}
-		}
-				
-	}
-	
-			
 	public partial class CH130
 	{
 		private long _caseHistoryId;
@@ -484,19 +468,8 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 		}
 		
-		private ServiceReqState _service;
-		public ServiceReqState Service
-		{
-			get{return _service;}
-			set
-			{
-				_service = value;
-
-			}
-		}
-		
-		private OrderItemState _conductState;
-		public OrderItemState ConductState
+		private OrderRestrictionState _conductState;
+		public OrderRestrictionState ConductState
 		{
 			get{return _conductState;}
 			set
@@ -571,101 +544,101 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 		}
 		
-		private OrderItemState _stayAwayState;
-		public OrderItemState StayAwayState
+		private bool _isStayAwayFromPerson;
+		public bool IsStayAwayFromPerson
 		{
-			get{return _stayAwayState;}
+			get{return _isStayAwayFromPerson;}
 			set
 			{
-				_stayAwayState = value;
+				_isStayAwayFromPerson = value;
 
 			}
 		}
 		
-		private bool _person;
-		public bool Person
+		private bool _isStayAwayFromHome;
+		public bool IsStayAwayFromHome
 		{
-			get{return _person;}
+			get{return _isStayAwayFromHome;}
 			set
 			{
-				_person = value;
+				_isStayAwayFromHome = value;
 
 			}
 		}
 		
-		private bool _home;
-		public bool Home
+		private bool _isStayAwayFromVehicle;
+		public bool IsStayAwayFromVehicle
 		{
-			get{return _home;}
+			get{return _isStayAwayFromVehicle;}
 			set
 			{
-				_home = value;
+				_isStayAwayFromVehicle = value;
 
 			}
 		}
 		
-		private bool _vehicle;
-		public bool Vehicle
+		private bool _isStayAwayFromChildCare;
+		public bool IsStayAwayFromChildCare
 		{
-			get{return _vehicle;}
+			get{return _isStayAwayFromChildCare;}
 			set
 			{
-				_vehicle = value;
+				_isStayAwayFromChildCare = value;
 
 			}
 		}
 		
-		private bool _childCare;
-		public bool ChildCare
+		private bool _isStayAwayFromChildSchool;
+		public bool IsStayAwayFromChildSchool
 		{
-			get{return _childCare;}
+			get{return _isStayAwayFromChildSchool;}
 			set
 			{
-				_childCare = value;
+				_isStayAwayFromChildSchool = value;
 
 			}
 		}
 		
-		private bool _work;
-		public bool Work
+		private bool _isStayAwayFromWork;
+		public bool IsStayAwayFromWork
 		{
-			get{return _work;}
+			get{return _isStayAwayFromWork;}
 			set
 			{
-				_work = value;
+				_isStayAwayFromWork = value;
 
 			}
 		}
 		
-		private bool _otherProtected;
-		public bool OtherProtected
+		private bool _isStayAwayFromOtherProtected;
+		public bool IsStayAwayFromOtherProtected
 		{
-			get{return _otherProtected;}
+			get{return _isStayAwayFromOtherProtected;}
 			set
 			{
-				_otherProtected = value;
+				_isStayAwayFromOtherProtected = value;
 
 			}
 		}
 		
-		private bool _other;
-		public bool Other
+		private bool _isStayAwayFromOther;
+		public bool IsStayAwayFromOther
 		{
-			get{return _other;}
+			get{return _isStayAwayFromOther;}
 			set
 			{
-				_other = value;
+				_isStayAwayFromOther = value;
 
 			}
 		}
 		
-		private bool _isAttach;
-		public bool IsAttach
+		private bool _isAttachOther;
+		public bool IsAttachOther
 		{
-			get{return _isAttach;}
+			get{return _isAttachOther;}
 			set
 			{
-				_isAttach = value;
+				_isAttachOther = value;
 
 			}
 		}
@@ -681,13 +654,139 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 		}
 		
-		private List<OtherProtected> _otherProtectedPersons;
-		public List<OtherProtected> OtherProtectedPersons
+		private int _stayAwayDistance;
+		public int StayAwayDistance
 		{
-			get{return _otherProtectedPersons;}
+			get{return _stayAwayDistance;}
 			set
 			{
-				_otherProtectedPersons = value;
+				_stayAwayDistance = value;
+
+			}
+		}
+		
+		private OrderRestrictionState _stayAwayState;
+		public OrderRestrictionState StayAwayState
+		{
+			get{return _stayAwayState;}
+			set
+			{
+				_stayAwayState = value;
+
+			}
+		}
+				
+	}
+	
+			
+	public partial class CH110
+	{
+		private long _caseHistoryId;
+		public long CaseHistoryId
+		{
+			get{return _caseHistoryId;}
+			set
+			{
+				_caseHistoryId = value;
+
+			}
+		}
+		
+		private CH110ConductChoice _conductSection;
+		public CH110ConductChoice ConductSection
+		{
+			get{return _conductSection;}
+			set
+			{
+				_conductSection = value;
+
+			}
+		}
+		
+		private CH110StayAwayOrders _stayAwayOrdersSection;
+		public CH110StayAwayOrders StayAwayOrdersSection
+		{
+			get{return _stayAwayOrdersSection;}
+			set
+			{
+				_stayAwayOrdersSection = value;
+
+			}
+		}
+		
+		private bool _isNoGuns;
+		public bool IsNoGuns
+		{
+			get{return _isNoGuns;}
+			set
+			{
+				_isNoGuns = value;
+
+			}
+		}
+		
+		private CAPROSEntry _cAPROSEntrySection;
+		public CAPROSEntry CAPROSEntrySection
+		{
+			get{return _cAPROSEntrySection;}
+			set
+			{
+				_cAPROSEntrySection = value;
+
+			}
+		}
+		
+		private NoServiceFee _noServiceFeeSection;
+		public NoServiceFee NoServiceFeeSection
+		{
+			get{return _noServiceFeeSection;}
+			set
+			{
+				_noServiceFeeSection = value;
+
+			}
+		}
+		
+		private DateTime? _ordersEndDate;
+		public DateTime? OrdersEndDate
+		{
+			get{return _ordersEndDate;}
+			set
+			{
+				_ordersEndDate = value;
+
+			}
+		}
+		
+		private DateTime? _ordersEndTime;
+		public DateTime? OrdersEndTime
+		{
+			get{return _ordersEndTime;}
+			set
+			{
+				_ordersEndTime = value;
+
+			}
+		}
+		
+		private bool _isOtherOrdersAttached;
+		public bool IsOtherOrdersAttached
+		{
+			get{return _isOtherOrdersAttached;}
+			set
+			{
+				_isOtherOrdersAttached = value;
+
+			}
+		}
+		
+		private string _otherOrderDetail;
+		public string OtherOrderDetail
+		{
+			get{return _otherOrderDetail;}
+			set
+			{
+				_otherOrderDetail = value;
 
 			}
 		}
