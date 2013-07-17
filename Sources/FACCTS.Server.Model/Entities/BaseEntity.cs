@@ -17,12 +17,12 @@ namespace FACCTS.Server.Model.DataModel
         Deleted = 0x8
     }
 
-    public interface IEntityWithstate
+    public interface IEntityWithState
     {
         ObjectState State { get; set; }
     }
 
-    public class BaseEntity : IEntityWithstate
+    public class BaseEntity : IEntityWithState
     {
         public BaseEntity()
         {
