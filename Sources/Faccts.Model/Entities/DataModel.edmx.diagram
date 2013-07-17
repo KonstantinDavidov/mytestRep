@@ -14,7 +14,6 @@
         <EntityTypeShape EntityType="FACCTS_DBModel.ClientCertificates" Width="1.5" PointX="13.75" PointY="5.75" />
         <EntityTypeShape EntityType="FACCTS_DBModel.CodeToken" Width="1.5" PointX="13.75" PointY="0.5" />
         <EntityTypeShape EntityType="FACCTS_DBModel.CourtCase" Width="1.5" PointX="8" PointY="12.125" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.CourtCaseOrders" Width="1.5" PointX="3.25" PointY="12.75" />
         <EntityTypeShape EntityType="FACCTS_DBModel.CourtCounty" Width="1.5" PointX="0.75" PointY="2.125" />
         <EntityTypeShape EntityType="FACCTS_DBModel.CourtDepartmenets" Width="1.5" PointX="5.375" PointY="6.75" />
         <EntityTypeShape EntityType="FACCTS_DBModel.CourtLocations" Width="1.5" PointX="3.25" PointY="2.125" />
@@ -47,8 +46,6 @@
         <EntityTypeShape EntityType="FACCTS_DBModel.WSFederationConfiguration" Width="1.5" PointX="13.75" PointY="3" />
         <EntityTypeShape EntityType="FACCTS_DBModel.WSTrustConfiguration" Width="1.5" PointX="12.125" PointY="4" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id" />
-        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId" ManuallyRouted="false" >
-        </AssociationConnector>
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_User_CourtClerk_UserId" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtDepartmenets_dbo_CourtCounty_CourtCountyId" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtLocations_dbo_CourtCounty_CourtCounty_Id" />
@@ -68,8 +65,6 @@
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCase_MergeCase_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Hearings_dbo_CourtDepartmenets_Department_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtCase_ParentCase_Id" />
-        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtOrder_Id" ManuallyRouted="false" >
-        </AssociationConnector>
         <EntityTypeShape EntityType="FACCTS_DBModel.CourtDocketRecord" Width="1.5" PointX="3.125" PointY="9.625" />
         <AssociationConnector Association="FACCTS_DBModel.CourtDocketRecordCourtCase" />
         <AssociationConnector Association="FACCTS_DBModel.CourtDocketRecordHearings" />
@@ -103,6 +98,10 @@
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtParty_Party1_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtParty_Party2_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_OtherProtected_dbo_CourtCase_CourtCase_Id1" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.AttachmentOrder" Width="1.5" PointX="5" PointY="13" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.MasterOrder" Width="1.5" PointX="3" PointY="13" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_AttachmentOrders_dbo_MasterOrders_MasterOrderId" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_MasterOrders_dbo_CaseHistory_Id" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

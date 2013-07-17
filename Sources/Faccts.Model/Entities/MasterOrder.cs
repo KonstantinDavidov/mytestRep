@@ -21,14 +21,14 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(User))]
-    [KnownType(typeof(CourtCase))]
-    public partial class CaseNotes: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    [KnownType(typeof(AttachmentOrder))]
+    [KnownType(typeof(CaseHistory))]
+    public partial class MasterOrder: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
     		private MakeObjectReactiveHelper _reactiveHelper;
     
-    		public CaseNotes()
+    		public MasterOrder()
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
@@ -51,13 +51,11 @@ namespace Faccts.Model.Entities
     			);
     			Observable.Merge<Object>(
     				this.ObservableForProperty(x => x.Id)
-    				,this.ObservableForProperty(x => x.Status)
-    				,this.ObservableForProperty(x => x.Text)
-    				,this.ObservableForProperty(x => x.Author_Id)
-    				,this.ObservableForProperty(x => x.CourtCase_Id)
-    				,this.ObservableForProperty(x => x.CaseRecord_Id)
-    				,this.ObservableForProperty(x => x.User.IsDirty)
-    				,this.ObservableForProperty(x => x.CourtCase.IsDirty)
+    				,this.ObservableForProperty(x => x.OrderType)
+    				,this.ObservableForProperty(x => x.XMLContent)
+    				,this.ObservableForProperty(x => x.IsSigned)
+    				,this.ObservableForProperty(x => x.ServerFileName)
+    				,this.ObservableForProperty(x => x.CaseHistory.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -152,6 +150,13 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
                     }
+                    if (!IsDeserializing)
+                    {
+                        if (CaseHistory != null && CaseHistory.Id != value)
+                        {
+                            CaseHistory = null;
+                        }
+                    }
     				OnPropertyChanging("Id");
                     _id = value;
                     OnPropertyChanged("Id");
@@ -161,140 +166,147 @@ namespace Faccts.Model.Entities
         private long _id;
     
         [DataMember]
-        public int Status
+        public FACCTS.Server.Model.Enums.MasterOrders OrderType
         {
-            get { return _status; }
+            get { return _orderType; }
             set
             {
-                if (_status != value)
+                if (_orderType != value)
                 {
-    				OnPropertyChanging("Status");
-                    _status = value;
-                    OnPropertyChanged("Status");
+    				OnPropertyChanging("OrderType");
+                    _orderType = value;
+                    OnPropertyChanged("OrderType");
                 }
             }
         }
-        private int _status;
+        private FACCTS.Server.Model.Enums.MasterOrders _orderType;
     
         [DataMember]
-        public string Text
+        public string XMLContent
         {
-            get { return _text; }
+            get { return _xMLContent; }
             set
             {
-                if (_text != value)
+                if (_xMLContent != value)
                 {
-    				OnPropertyChanging("Text");
-                    _text = value;
-                    OnPropertyChanged("Text");
+    				OnPropertyChanging("XMLContent");
+                    _xMLContent = value;
+                    OnPropertyChanged("XMLContent");
                 }
             }
         }
-        private string _text;
+        private string _xMLContent;
     
         [DataMember]
-        public Nullable<long> Author_Id
+        public bool IsSigned
         {
-            get { return _author_Id; }
+            get { return _isSigned; }
             set
             {
-                if (_author_Id != value)
+                if (_isSigned != value)
                 {
-                    ChangeTracker.RecordOriginalValue("Author_Id", _author_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (User != null && User.Id != value)
-                        {
-                            User = null;
-                        }
-                    }
-    				OnPropertyChanging("Author_Id");
-                    _author_Id = value;
-                    OnPropertyChanged("Author_Id");
+    				OnPropertyChanging("IsSigned");
+                    _isSigned = value;
+                    OnPropertyChanged("IsSigned");
                 }
             }
         }
-        private Nullable<long> _author_Id;
+        private bool _isSigned;
     
         [DataMember]
-        public Nullable<long> CourtCase_Id
+        public string ServerFileName
         {
-            get { return _courtCase_Id; }
+            get { return _serverFileName; }
             set
             {
-                if (_courtCase_Id != value)
+                if (_serverFileName != value)
                 {
-                    ChangeTracker.RecordOriginalValue("CourtCase_Id", _courtCase_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (CourtCase != null && CourtCase.Id != value)
-                        {
-                            CourtCase = null;
-                        }
-                    }
-    				OnPropertyChanging("CourtCase_Id");
-                    _courtCase_Id = value;
-                    OnPropertyChanged("CourtCase_Id");
+    				OnPropertyChanging("ServerFileName");
+                    _serverFileName = value;
+                    OnPropertyChanged("ServerFileName");
                 }
             }
         }
-        private Nullable<long> _courtCase_Id;
-    
-        [DataMember]
-        public Nullable<long> CaseRecord_Id
-        {
-            get { return _caseRecord_Id; }
-            set
-            {
-                if (_caseRecord_Id != value)
-                {
-    				OnPropertyChanging("CaseRecord_Id");
-                    _caseRecord_Id = value;
-                    OnPropertyChanged("CaseRecord_Id");
-                }
-            }
-        }
-        private Nullable<long> _caseRecord_Id;
+        private string _serverFileName;
 
         #endregion
 
         #region Navigation Properties
     
         [DataMember]
-        public User User
+        public TrackableCollection<AttachmentOrder> AttachmentOrder
         {
-            get { return _user; }
+            get
+            {
+                if (_attachmentOrder == null)
+                {
+                    _attachmentOrder = new TrackableCollection<AttachmentOrder>();
+                    _attachmentOrder.CollectionChanged += FixupAttachmentOrder;
+                }
+                return _attachmentOrder;
+            }
             set
             {
-                if (!ReferenceEquals(_user, value))
+                if (!ReferenceEquals(_attachmentOrder, value))
                 {
-                    var previousValue = _user;
-    				OnNavigationPropertyChanging("User");
-                    _user = value;
-                    FixupUser(previousValue);
-                    OnNavigationPropertyChanged("User");
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("AttachmentOrder");
+                    if (_attachmentOrder != null)
+                    {
+                        _attachmentOrder.CollectionChanged -= FixupAttachmentOrder;
+                        // This is the principal end in an association that performs cascade deletes.
+                        // Remove the cascade delete event handler for any entities in the current collection.
+                        foreach (AttachmentOrder item in _attachmentOrder)
+                        {
+                            ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
+                        }
+                    }
+                    _attachmentOrder = value;
+                    if (_attachmentOrder != null)
+                    {
+                        _attachmentOrder.CollectionChanged += FixupAttachmentOrder;
+                        // This is the principal end in an association that performs cascade deletes.
+                        // Add the cascade delete event handler for any entities that are already in the new collection.
+                        foreach (AttachmentOrder item in _attachmentOrder)
+                        {
+                            ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
+                        }
+                    }
+                    OnNavigationPropertyChanged("AttachmentOrder");
                 }
             }
         }
-        private User _user;
+        private TrackableCollection<AttachmentOrder> _attachmentOrder;
     
         [DataMember]
-        public CourtCase CourtCase
+        public CaseHistory CaseHistory
         {
-            get { return _courtCase; }
+            get { return _caseHistory; }
             set
             {
-                if (!ReferenceEquals(_courtCase, value))
+                if (!ReferenceEquals(_caseHistory, value))
                 {
-                    var previousValue = _courtCase;
-    				OnNavigationPropertyChanging("CourtCase");
-                    _courtCase = value;
-                    FixupCourtCase(previousValue);
-                    OnNavigationPropertyChanged("CourtCase");
+                    if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added && value != null)
+                    {
+                        // This the dependent end of an identifying relationship, so the principal end cannot be changed if it is already set,
+                        // otherwise it can only be set to an entity with a primary key that is the same value as the dependent's foreign key.
+                        if (Id != value.Id)
+                        {
+                            throw new InvalidOperationException("The principal end of an identifying relationship can only be changed when the dependent end is in the Added state.");
+                        }
+                    }
+                    var previousValue = _caseHistory;
+    				OnNavigationPropertyChanging("CaseHistory");
+                    _caseHistory = value;
+                    FixupCaseHistory(previousValue);
+                    OnNavigationPropertyChanged("CaseHistory");
                 }
             }
         }
-        private CourtCase _courtCase;
+        private CaseHistory _caseHistory;
 
         #endregion
 
@@ -403,92 +415,91 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
-            User = null;
-            CourtCase = null;
+            AttachmentOrder.Clear();
+            CaseHistory = null;
         }
 
         #endregion
 
         #region Association Fixup
     
-        private void FixupUser(User previousValue, bool skipKeys = false)
+        private void FixupCaseHistory(CaseHistory previousValue)
         {
             if (IsDeserializing)
             {
                 return;
             }
     
-            if (previousValue != null && previousValue.CaseNotes.Contains(this))
+            if (previousValue != null && ReferenceEquals(previousValue.MasterOrder, this))
             {
-                previousValue.CaseNotes.Remove(this);
+                previousValue.MasterOrder = null;
             }
     
-            if (User != null)
+            if (CaseHistory != null)
             {
-                User.CaseNotes.Add(this);
-    
-                Author_Id = User.Id;
-            }
-            else if (!skipKeys)
-            {
-                Author_Id = null;
+                CaseHistory.MasterOrder = this;
+                Id = CaseHistory.Id;
             }
     
             if (ChangeTracker.ChangeTrackingEnabled)
             {
-                if (ChangeTracker.OriginalValues.ContainsKey("User")
-                    && (ChangeTracker.OriginalValues["User"] == User))
+                if (ChangeTracker.OriginalValues.ContainsKey("CaseHistory")
+                    && (ChangeTracker.OriginalValues["CaseHistory"] == CaseHistory))
                 {
-                    ChangeTracker.OriginalValues.Remove("User");
+                    ChangeTracker.OriginalValues.Remove("CaseHistory");
                 }
                 else
                 {
-                    ChangeTracker.RecordOriginalValue("User", previousValue);
+                    ChangeTracker.RecordOriginalValue("CaseHistory", previousValue);
                 }
-                if (User != null && !User.ChangeTracker.ChangeTrackingEnabled)
+                if (CaseHistory != null && !CaseHistory.ChangeTracker.ChangeTrackingEnabled)
                 {
-                    User.StartTracking();
+                    CaseHistory.StartTracking();
                 }
             }
         }
     
-        private void FixupCourtCase(CourtCase previousValue, bool skipKeys = false)
+        private void FixupAttachmentOrder(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
             {
                 return;
             }
     
-            if (previousValue != null && previousValue.CaseNotes.Contains(this))
+            if (e.NewItems != null)
             {
-                previousValue.CaseNotes.Remove(this);
-            }
-    
-            if (CourtCase != null)
-            {
-                CourtCase.CaseNotes.Add(this);
-    
-                CourtCase_Id = CourtCase.Id;
-            }
-            else if (!skipKeys)
-            {
-                CourtCase_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("CourtCase")
-                    && (ChangeTracker.OriginalValues["CourtCase"] == CourtCase))
+                foreach (AttachmentOrder item in e.NewItems)
                 {
-                    ChangeTracker.OriginalValues.Remove("CourtCase");
+                    item.MasterOrder = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("AttachmentOrder", item);
+                    }
+                    // This is the principal end in an association that performs cascade deletes.
+                    // Update the event listener to refer to the new dependent.
+                    ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
                 }
-                else
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (AttachmentOrder item in e.OldItems)
                 {
-                    ChangeTracker.RecordOriginalValue("CourtCase", previousValue);
-                }
-                if (CourtCase != null && !CourtCase.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    CourtCase.StartTracking();
+                    if (ReferenceEquals(item.MasterOrder, this))
+                    {
+                        item.MasterOrder = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("AttachmentOrder", item);
+                    }
+                    // This is the principal end in an association that performs cascade deletes.
+                    // Remove the previous dependent from the event listener.
+                    ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
                 }
             }
         }

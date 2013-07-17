@@ -7,6 +7,7 @@
     <Schema Namespace="FACCTS_DBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="FACCTS_DBModelStoreContainer">
           <EntitySet Name="AdfsIntegrationConfiguration" EntityType="FACCTS_DBModel.Store.AdfsIntegrationConfiguration" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AttachmentOrders" EntityType="FACCTS_DBModel.Store.AttachmentOrders" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Attorneys" EntityType="FACCTS_DBModel.Store.Attorneys" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CaseHistory" EntityType="FACCTS_DBModel.Store.CaseHistory" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CaseNotes" EntityType="FACCTS_DBModel.Store.CaseNotes" store:Type="Tables" Schema="dbo" />
@@ -15,7 +16,6 @@
           <EntitySet Name="ClientCertificates" EntityType="FACCTS_DBModel.Store.ClientCertificates" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CodeToken" EntityType="FACCTS_DBModel.Store.CodeToken" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CourtCase" EntityType="FACCTS_DBModel.Store.CourtCase" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="CourtCaseOrders" EntityType="FACCTS_DBModel.Store.CourtCaseOrders" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CourtCounty" EntityType="FACCTS_DBModel.Store.CourtCounty" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CourtDepartmenets" EntityType="FACCTS_DBModel.Store.CourtDepartmenets" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="CourtLocations" EntityType="FACCTS_DBModel.Store.CourtLocations" store:Type="Tables" Schema="dbo" />
@@ -37,6 +37,7 @@
           <EntitySet Name="Interpreters" EntityType="FACCTS_DBModel.Store.Interpreters" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="KeyMaterialConfiguration" EntityType="FACCTS_DBModel.Store.KeyMaterialConfiguration" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="ManualIntegrationTasks" EntityType="FACCTS_DBModel.Store.ManualIntegrationTasks" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MasterOrders" EntityType="FACCTS_DBModel.Store.MasterOrders" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OAuth2Configuration" EntityType="FACCTS_DBModel.Store.OAuth2Configuration" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="OtherProtected" EntityType="FACCTS_DBModel.Store.OtherProtected" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Permission" EntityType="FACCTS_DBModel.Store.Permission" store:Type="Tables" Schema="dbo" />
@@ -52,6 +53,10 @@
           <EntitySet Name="Witnesses" EntityType="FACCTS_DBModel.Store.Witnesses" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="WSFederationConfiguration" EntityType="FACCTS_DBModel.Store.WSFederationConfiguration" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="WSTrustConfiguration" EntityType="FACCTS_DBModel.Store.WSTrustConfiguration" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_dbo_AttachmentOrders_dbo_MasterOrders_MasterOrderId" Association="FACCTS_DBModel.Store.FK_dbo_AttachmentOrders_dbo_MasterOrders_MasterOrderId">
+            <End Role="MasterOrders" EntitySet="MasterOrders" />
+            <End Role="AttachmentOrders" EntitySet="AttachmentOrders" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_CaseHistory_dbo_Attorneys_AttorneyForChild_Id" Association="FACCTS_DBModel.Store.FK_dbo_CaseHistory_dbo_Attorneys_AttorneyForChild_Id">
             <End Role="Attorneys" EntitySet="Attorneys" />
             <End Role="CaseHistory" EntitySet="CaseHistory" />
@@ -62,14 +67,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_dbo_CaseHistory_dbo_CourtCase_MergeCase_Id" Association="FACCTS_DBModel.Store.FK_dbo_CaseHistory_dbo_CourtCase_MergeCase_Id">
             <End Role="CourtCase" EntitySet="CourtCase" />
-            <End Role="CaseHistory" EntitySet="CaseHistory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId" Association="FACCTS_DBModel.Store.FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId">
-            <End Role="CourtCaseOrders" EntitySet="CourtCaseOrders" />
-            <End Role="CaseHistory" EntitySet="CaseHistory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtOrder_Id" Association="FACCTS_DBModel.Store.FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtOrder_Id">
-            <End Role="CourtCaseOrders" EntitySet="CourtCaseOrders" />
             <End Role="CaseHistory" EntitySet="CaseHistory" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_CaseHistory_dbo_CourtPartyAttorneyData_Party1Attorney_Id" Association="FACCTS_DBModel.Store.FK_dbo_CaseHistory_dbo_CourtPartyAttorneyData_Party1Attorney_Id">
@@ -188,6 +185,10 @@
             <End Role="User" EntitySet="User" />
             <End Role="ManualIntegrationTasks" EntitySet="ManualIntegrationTasks" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_MasterOrders_dbo_CaseHistory_Id" Association="FACCTS_DBModel.Store.FK_dbo_MasterOrders_dbo_CaseHistory_Id">
+            <End Role="CaseHistory" EntitySet="CaseHistory" />
+            <End Role="MasterOrders" EntitySet="MasterOrders" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_OtherProtected_dbo_CourtCase_CourtCase_Id" Association="FACCTS_DBModel.Store.FK_dbo_OtherProtected_dbo_CourtCase_CourtCase_Id">
             <End Role="CourtCase" EntitySet="CourtCase" />
             <End Role="OtherProtected" EntitySet="OtherProtected" />
@@ -246,6 +247,16 @@
           <Property Name="IssuerThumbprint" Type="nvarchar(max)" />
           <Property Name="EncryptionCertificate" Type="nvarchar(max)" />
         </EntityType>
+        <EntityType Name="AttachmentOrders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MasterOrderId" Type="bigint" Nullable="false" />
+          <Property Name="OrderType" Type="int" Nullable="false" />
+          <Property Name="XmlContent" Type="xml" />
+          <Property Name="ServerFileName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="Attorneys">
           <Key>
             <PropertyRef Name="Id" />
@@ -271,11 +282,9 @@
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="CaseHistoryEvent" Type="int" Nullable="false" />
           <Property Name="CCPOR_ID" Type="nvarchar" MaxLength="30" />
-          <Property Name="CourtCaseOrderId" Type="bigint" />
           <Property Name="CourtClerk_Id" Type="bigint" />
           <Property Name="MergeCase_Id" Type="bigint" />
           <Property Name="Hearing_Id" Type="bigint" />
-          <Property Name="CourtOrder_Id" Type="bigint" />
           <Property Name="AttorneyForChild_Id" Type="bigint" />
           <Property Name="Party1Attorney_Id" Type="bigint" />
           <Property Name="Party2Attorney_Id" Type="bigint" />
@@ -357,17 +366,6 @@
           <Property Name="Party1_Id" Type="bigint" />
           <Property Name="Party2_Id" Type="bigint" />
           <Property Name="CourtCounty_Id" Type="bigint" />
-        </EntityType>
-        <EntityType Name="CourtCaseOrders">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="AvailableCourtOrderId" Type="int" Nullable="false" />
-          <Property Name="OrderType" Type="int" Nullable="false" />
-          <Property Name="XMLContent" Type="xml" />
-          <Property Name="IsSigned" Type="bit" Nullable="false" />
-          <Property Name="ServerFileName" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="CourtCounty">
           <Key>
@@ -623,6 +621,16 @@
           <Property Name="UserId" Type="bigint" />
           <Property Name="TaskState" Type="tinyint" Nullable="false" />
         </EntityType>
+        <EntityType Name="MasterOrders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" />
+          <Property Name="OrderType" Type="int" Nullable="false" />
+          <Property Name="XMLContent" Type="xml" />
+          <Property Name="IsSigned" Type="bit" Nullable="false" />
+          <Property Name="ServerFileName" Type="nvarchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="OAuth2Configuration">
           <Key>
             <PropertyRef Name="Id" />
@@ -795,6 +803,20 @@
           <Property Name="EnableFederatedAuthentication" Type="bit" Nullable="false" />
           <Property Name="EnableDelegation" Type="bit" Nullable="false" />
         </EntityType>
+        <Association Name="FK_dbo_AttachmentOrders_dbo_MasterOrders_MasterOrderId">
+          <End Role="MasterOrders" Type="FACCTS_DBModel.Store.MasterOrders" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AttachmentOrders" Type="FACCTS_DBModel.Store.AttachmentOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterOrders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AttachmentOrders">
+              <PropertyRef Name="MasterOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_CaseHistory_dbo_Attorneys_AttorneyForChild_Id">
           <End Role="Attorneys" Type="FACCTS_DBModel.Store.Attorneys" Multiplicity="0..1" />
           <End Role="CaseHistory" Type="FACCTS_DBModel.Store.CaseHistory" Multiplicity="*" />
@@ -828,30 +850,6 @@
             </Principal>
             <Dependent Role="CaseHistory">
               <PropertyRef Name="MergeCase_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId">
-          <End Role="CourtCaseOrders" Type="FACCTS_DBModel.Store.CourtCaseOrders" Multiplicity="0..1" />
-          <End Role="CaseHistory" Type="FACCTS_DBModel.Store.CaseHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CourtCaseOrders">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CaseHistory">
-              <PropertyRef Name="CourtCaseOrderId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtOrder_Id">
-          <End Role="CourtCaseOrders" Type="FACCTS_DBModel.Store.CourtCaseOrders" Multiplicity="0..1" />
-          <End Role="CaseHistory" Type="FACCTS_DBModel.Store.CaseHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CourtCaseOrders">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CaseHistory">
-              <PropertyRef Name="CourtOrder_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1205,6 +1203,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_dbo_MasterOrders_dbo_CaseHistory_Id">
+          <End Role="CaseHistory" Type="FACCTS_DBModel.Store.CaseHistory" Multiplicity="1" />
+          <End Role="MasterOrders" Type="FACCTS_DBModel.Store.MasterOrders" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="CaseHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MasterOrders">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_OtherProtected_dbo_CourtCase_CourtCase_Id">
           <End Role="CourtCase" Type="FACCTS_DBModel.Store.CourtCase" Multiplicity="0..1" />
           <End Role="OtherProtected" Type="FACCTS_DBModel.Store.OtherProtected" Multiplicity="*" />
@@ -1347,7 +1357,6 @@
           <EntitySet Name="ClientCertificates" EntityType="FACCTS_DBModel.ClientCertificates" />
           <EntitySet Name="CodeToken" EntityType="FACCTS_DBModel.CodeToken" />
           <EntitySet Name="CourtCase" EntityType="FACCTS_DBModel.CourtCase" />
-          <EntitySet Name="CourtCaseOrders" EntityType="FACCTS_DBModel.CourtCaseOrders" />
           <EntitySet Name="CourtCounty" EntityType="FACCTS_DBModel.CourtCounty" />
           <EntitySet Name="CourtDepartmenets" EntityType="FACCTS_DBModel.CourtDepartmenets" />
           <EntitySet Name="CourtLocations" EntityType="FACCTS_DBModel.CourtLocations" />
@@ -1382,10 +1391,6 @@
           <AssociationSet Name="FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id" Association="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id">
             <End EntitySet="Attorneys" Role="Attorneys" />
             <End EntitySet="CourtParty" Role="CourtParty" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId" Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId">
-            <End Role="CourtCaseOrders" EntitySet="CourtCaseOrders" />
-            <End Role="CaseHistory" EntitySet="CaseHistory" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_CourtCase_dbo_User_CourtClerk_UserId" Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_User_CourtClerk_UserId">
             <End Role="User" EntitySet="User" />
@@ -1459,10 +1464,6 @@
           <AssociationSet Name="FK_dbo_CourtCase_dbo_CourtCase_ParentCase_Id" Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtCase_ParentCase_Id">
             <End Role="CourtCase" EntitySet="CourtCase" />
             <End Role="CourtCase1" EntitySet="CourtCase" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtOrder_Id" Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtOrder_Id">
-            <End Role="CourtCaseOrders" EntitySet="CourtCaseOrders" />
-            <End Role="CaseHistory" EntitySet="CaseHistory" />
           </AssociationSet>
           <EntitySet Name="CourtDocketRecordSet" EntityType="FACCTS_DBModel.CourtDocketRecord" />
           <AssociationSet Name="CourtDocketRecordCourtCase" Association="FACCTS_DBModel.CourtDocketRecordCourtCase">
@@ -1587,6 +1588,16 @@
             <End Role="CourtCase" EntitySet="CourtCase" />
             <End Role="OtherProtected" EntitySet="OtherProtected" />
           </AssociationSet>
+          <EntitySet Name="AttachmentOrder" EntityType="FACCTS_DBModel.AttachmentOrder" />
+          <EntitySet Name="MasterOrder" EntityType="FACCTS_DBModel.MasterOrder" />
+          <AssociationSet Name="FK_dbo_AttachmentOrders_dbo_MasterOrders_MasterOrderId" Association="FACCTS_DBModel.FK_dbo_AttachmentOrders_dbo_MasterOrders_MasterOrderId">
+            <End Role="MasterOrders" EntitySet="MasterOrder" />
+            <End Role="AttachmentOrders" EntitySet="AttachmentOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_MasterOrders_dbo_CaseHistory_Id" Association="FACCTS_DBModel.FK_dbo_MasterOrders_dbo_CaseHistory_Id">
+            <End Role="CaseHistory" EntitySet="CaseHistory" />
+            <End Role="MasterOrders" EntitySet="MasterOrder" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="AdfsIntegrationConfiguration">
           <Key>
@@ -1635,12 +1646,10 @@
           <Property Type="FACCTS_DBModel.CaseHistoryEvent" Name="CaseHistoryEvent" Nullable="false" />
           <Property Type="String" Name="CCPOR_ID" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Type="Int64" Name="CourtCaseOrderId" />
-          <NavigationProperty Name="CourtCaseOrders" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId" FromRole="CaseHistory" ToRole="CourtCaseOrders" />
           <NavigationProperty Name="Hearing" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id" FromRole="CaseHistory" ToRole="Hearings" />
           <Property Type="Int64" Name="MergeCase_Id" />
           <NavigationProperty Name="MergeCase" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCase_MergeCase_Id" FromRole="CaseHistory" ToRole="CourtCase" />
           <Property Type="Int64" Name="CourtOrder_Id" />
-          <NavigationProperty Name="CourtCaseOrders1" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtOrder_Id" FromRole="CaseHistory" ToRole="CourtCaseOrders" />
           <Property Type="Int64" Name="CourtClerk_Id" />
           <NavigationProperty Name="User" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_User_CourtClerk_Id" FromRole="CaseHistory" ToRole="User" />
           <Property Type="Int64" Name="CourtCase_Id" />
@@ -1655,6 +1664,7 @@
           <NavigationProperty Name="ThirdPartyData" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_ThirdPartyData_ThirdPartyData_Id" FromRole="CaseHistory" ToRole="ThirdPartyData" />
           <NavigationProperty Name="Interpreters" Relationship="FACCTS_DBModel.FK_dbo_Interpreters_dbo_CaseHistory_CaseHistoryRecord_Id" FromRole="CaseHistory" ToRole="Interpreters" />
           <NavigationProperty Name="Witnesses" Relationship="FACCTS_DBModel.FK_dbo_Witnesses_dbo_CaseHistory_CaseHistoryRecord_Id" FromRole="CaseHistory" ToRole="Witnesses" />
+          <NavigationProperty Name="MasterOrder" Relationship="FACCTS_DBModel.FK_dbo_MasterOrders_dbo_CaseHistory_Id" FromRole="CaseHistory" ToRole="MasterOrders" />
           </EntityType>
         <EntityType Name="CaseNotes">
           <Key>
@@ -1668,7 +1678,6 @@
           <Property Type="Int64" Name="CourtCase_Id" />
           <NavigationProperty Name="CourtCase" Relationship="FACCTS_DBModel.FK_dbo_CaseNotes_dbo_CourtCase_CourtCase_Id" FromRole="CaseNotes" ToRole="CourtCase" />
           <Property Type="Int64" Name="CaseRecord_Id" />
-          <Property Type="Int64" Name="CourtCase_Id1" />
         </EntityType>
         <EntityType Name="Children">
           <Key>
@@ -1684,7 +1693,6 @@
           <Property Type="Int64" Name="CourtCase_Id" />
           <NavigationProperty Name="CourtCase" Relationship="FACCTS_DBModel.FK_dbo_Children_dbo_CourtCase_CourtCase_Id" FromRole="Children" ToRole="CourtCase" />
           <Property Type="Int64" Name="CaseRecord_Id" />
-          <Property Type="Int64" Name="CourtCase_Id1" />
         </EntityType>
         <EntityType Name="Client">
           <Key>
@@ -1747,19 +1755,6 @@
           <NavigationProperty Name="Party1" Relationship="FACCTS_DBModel.CourtPartyCourtCase" FromRole="CourtCase" ToRole="CourtParty" />
           <NavigationProperty Name="Party2" Relationship="FACCTS_DBModel.CourtPartyCourtCase1" FromRole="CourtCase" ToRole="CourtParty" />
           <Property Name="RestrainingPartyIdentificationInformation" Type="FACCTS_DBModel.RestrainingPartyIDInfo" Nullable="false" />
-        </EntityType>
-        <EntityType Name="CourtCaseOrders">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="AvailableCourtOrderId" Nullable="false" />
-          <Property Type="String" Name="XMLContent" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Type="Boolean" Name="IsSigned" Nullable="false" />
-          <Property Type="String" Name="ServerFileName" MaxLength="255" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CaseHistory" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId" FromRole="CourtCaseOrders" ToRole="CaseHistory" />
-          <Property Type="Int32" Name="OrderType" Nullable="false" />
-          <NavigationProperty Name="CaseHistory1" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtOrder_Id" FromRole="CourtCaseOrders" ToRole="CaseHistory" />
         </EntityType>
         <EntityType Name="CourtCounty">
           <Key>
@@ -2195,18 +2190,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId">
-          <End Type="FACCTS_DBModel.CourtCaseOrders" Role="CourtCaseOrders" Multiplicity="0..1" />
-          <End Type="FACCTS_DBModel.CaseHistory" Role="CaseHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CourtCaseOrders">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CaseHistory">
-              <PropertyRef Name="CourtCaseOrderId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_dbo_CourtCase_dbo_User_CourtClerk_UserId">
           <End Type="FACCTS_DBModel.User" Role="User" Multiplicity="0..1" />
           <End Type="FACCTS_DBModel.CourtCase" Role="CourtCase" Multiplicity="*" />
@@ -2468,18 +2451,6 @@
             </Principal>
             <Dependent Role="CourtCase1">
               <PropertyRef Name="ParentCase_Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtOrder_Id">
-          <End Type="FACCTS_DBModel.CourtCaseOrders" Role="CourtCaseOrders" Multiplicity="0..1" />
-          <End Type="FACCTS_DBModel.CaseHistory" Role="CaseHistory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CourtCaseOrders">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CaseHistory">
-              <PropertyRef Name="CourtOrder_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2868,6 +2839,57 @@
           </ReferentialConstraint>
         </Association>
         <EnumType Name="CaseHistoryEvent" a:ExternalTypeName="FACCTS.Server.Model.Enums.CaseHistoryEvent" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EntityType Name="AttachmentOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="MasterOrderId" Nullable="false" />
+          <Property Type="FACCTS_DBModel.AttachmentOrders" Name="OrderType" Nullable="false" />
+          <Property Type="String" Name="XmlContent" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ServerFileName" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MasterOrder" Relationship="FACCTS_DBModel.FK_dbo_AttachmentOrders_dbo_MasterOrders_MasterOrderId" FromRole="AttachmentOrders" ToRole="MasterOrders" />
+        </EntityType>
+        <EntityType Name="MasterOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="FACCTS_DBModel.MasterOrders" Name="OrderType" Nullable="false" />
+          <Property Type="String" Name="XMLContent" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsSigned" Nullable="false" />
+          <Property Type="String" Name="ServerFileName" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AttachmentOrder" Relationship="FACCTS_DBModel.FK_dbo_AttachmentOrders_dbo_MasterOrders_MasterOrderId" FromRole="MasterOrders" ToRole="AttachmentOrders" />
+          <NavigationProperty Name="CaseHistory" Relationship="FACCTS_DBModel.FK_dbo_MasterOrders_dbo_CaseHistory_Id" FromRole="MasterOrders" ToRole="CaseHistory" />
+        </EntityType>
+        <Association Name="FK_dbo_AttachmentOrders_dbo_MasterOrders_MasterOrderId">
+          <End Type="FACCTS_DBModel.MasterOrder" Role="MasterOrders" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="FACCTS_DBModel.AttachmentOrder" Role="AttachmentOrders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterOrders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AttachmentOrders">
+              <PropertyRef Name="MasterOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_MasterOrders_dbo_CaseHistory_Id">
+          <End Type="FACCTS_DBModel.CaseHistory" Role="CaseHistory" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.MasterOrder" Role="MasterOrders" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="CaseHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MasterOrders">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EnumType Name="MasterOrders" a:ExternalTypeName="FACCTS.Server.Model.Enums.MasterOrders" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EnumType Name="AttachmentOrders" a:ExternalTypeName="FACCTS.Server.Model.Enums.AttachmentOrders" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2922,16 +2944,13 @@
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="CaseHistoryEvent" ColumnName="CaseHistoryEvent" />
           <ScalarProperty Name="CCPOR_ID" ColumnName="CCPOR_ID" />
-          <ScalarProperty Name="CourtCaseOrderId" ColumnName="CourtCaseOrderId" />
           <ScalarProperty Name="MergeCase_Id" ColumnName="MergeCase_Id" />
-          <ScalarProperty Name="CourtOrder_Id" ColumnName="CourtOrder_Id" />
           </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="CaseNotes">
       <EntityTypeMapping TypeName="IsTypeOf(FACCTS_DBModel.CaseNotes)">
         <MappingFragment StoreEntitySet="CaseNotes">
-                <ScalarProperty Name="CourtCase_Id1" ColumnName="CourtCase_Id" />
                 <ScalarProperty Name="Author_Id" ColumnName="Author_Id" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Status" ColumnName="Status" />
@@ -2942,7 +2961,6 @@
     <EntitySetMapping Name="Children">
       <EntityTypeMapping TypeName="IsTypeOf(FACCTS_DBModel.Children)">
         <MappingFragment StoreEntitySet="Children">
-                <ScalarProperty Name="CourtCase_Id1" ColumnName="CourtCase_Id" />
                 <ScalarProperty Name="Sex" ColumnName="Sex" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="EntityType" ColumnName="EntityType" />
@@ -3006,18 +3024,6 @@
                   <ScalarProperty Name="IDNumber" ColumnName="RP_IDNumber" />
                   <ScalarProperty Name="IDType" ColumnName="RP_IDType" />
                 </ComplexProperty>
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CourtCaseOrders">
-      <EntityTypeMapping TypeName="IsTypeOf(FACCTS_DBModel.CourtCaseOrders)">
-        <MappingFragment StoreEntitySet="CourtCaseOrders">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="AvailableCourtOrderId" ColumnName="AvailableCourtOrderId" />
-          <ScalarProperty Name="XMLContent" ColumnName="XMLContent" />
-          <ScalarProperty Name="IsSigned" ColumnName="IsSigned" />
-          <ScalarProperty Name="ServerFileName" ColumnName="ServerFileName" />
-          <ScalarProperty Name="OrderType" ColumnName="OrderType" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -3481,6 +3487,28 @@
               <MappingFragment StoreEntitySet="CourtPartyAttorneyData">
                 <ScalarProperty Name="Attorney_Id" ColumnName="Attorney_Id" />
                 <ScalarProperty Name="HasAttorney" ColumnName="HasAttorney" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AttachmentOrder">
+            <EntityTypeMapping TypeName="FACCTS_DBModel.AttachmentOrder">
+              <MappingFragment StoreEntitySet="AttachmentOrders">
+                <ScalarProperty Name="ServerFileName" ColumnName="ServerFileName" />
+                <ScalarProperty Name="XmlContent" ColumnName="XmlContent" />
+                <ScalarProperty Name="OrderType" ColumnName="OrderType" />
+                <ScalarProperty Name="MasterOrderId" ColumnName="MasterOrderId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MasterOrder">
+            <EntityTypeMapping TypeName="FACCTS_DBModel.MasterOrder">
+              <MappingFragment StoreEntitySet="MasterOrders">
+                <ScalarProperty Name="ServerFileName" ColumnName="ServerFileName" />
+                <ScalarProperty Name="IsSigned" ColumnName="IsSigned" />
+                <ScalarProperty Name="XMLContent" ColumnName="XMLContent" />
+                <ScalarProperty Name="OrderType" ColumnName="OrderType" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

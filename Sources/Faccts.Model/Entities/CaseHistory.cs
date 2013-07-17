@@ -21,7 +21,6 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(CourtCaseOrders))]
     [KnownType(typeof(Hearings))]
     [KnownType(typeof(CourtCase))]
     [KnownType(typeof(User))]
@@ -30,6 +29,7 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(ThirdPartyData))]
     [KnownType(typeof(Interpreters))]
     [KnownType(typeof(Witnesses))]
+    [KnownType(typeof(MasterOrder))]
     public partial class CaseHistory: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -70,16 +70,15 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.Party1Attorney_Id)
     				,this.ObservableForProperty(x => x.Party2Attorney_Id)
     				,this.ObservableForProperty(x => x.ThirdPartyData_Id)
-    				,this.ObservableForProperty(x => x.CourtCaseOrders.IsDirty)
     				,this.ObservableForProperty(x => x.Hearing.IsDirty)
     				,this.ObservableForProperty(x => x.MergeCase.IsDirty)
-    				,this.ObservableForProperty(x => x.CourtCaseOrders1.IsDirty)
     				,this.ObservableForProperty(x => x.User.IsDirty)
     				,this.ObservableForProperty(x => x.CourtCase.IsDirty)
     				,this.ObservableForProperty(x => x.AttorneyForChild.IsDirty)
     				,this.ObservableForProperty(x => x.Party1AttorneyData.IsDirty)
     				,this.ObservableForProperty(x => x.Party2AttorneyData.IsDirty)
     				,this.ObservableForProperty(x => x.ThirdPartyData.IsDirty)
+    				,this.ObservableForProperty(x => x.MasterOrder.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -245,14 +244,6 @@ namespace Faccts.Model.Entities
             {
                 if (_courtCaseOrderId != value)
                 {
-                    ChangeTracker.RecordOriginalValue("CourtCaseOrderId", _courtCaseOrderId);
-                    if (!IsDeserializing)
-                    {
-                        if (CourtCaseOrders != null && CourtCaseOrders.Id != value)
-                        {
-                            CourtCaseOrders = null;
-                        }
-                    }
     				OnPropertyChanging("CourtCaseOrderId");
                     _courtCaseOrderId = value;
                     OnPropertyChanged("CourtCaseOrderId");
@@ -293,14 +284,6 @@ namespace Faccts.Model.Entities
             {
                 if (_courtOrder_Id != value)
                 {
-                    ChangeTracker.RecordOriginalValue("CourtOrder_Id", _courtOrder_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (CourtCaseOrders1 != null && CourtCaseOrders1.Id != value)
-                        {
-                            CourtCaseOrders1 = null;
-                        }
-                    }
     				OnPropertyChanging("CourtOrder_Id");
                     _courtOrder_Id = value;
                     OnPropertyChanged("CourtOrder_Id");
@@ -458,24 +441,6 @@ namespace Faccts.Model.Entities
         #region Navigation Properties
     
         [DataMember]
-        public CourtCaseOrders CourtCaseOrders
-        {
-            get { return _courtCaseOrders; }
-            set
-            {
-                if (!ReferenceEquals(_courtCaseOrders, value))
-                {
-                    var previousValue = _courtCaseOrders;
-    				OnNavigationPropertyChanging("CourtCaseOrders");
-                    _courtCaseOrders = value;
-                    FixupCourtCaseOrders(previousValue);
-                    OnNavigationPropertyChanged("CourtCaseOrders");
-                }
-            }
-        }
-        private CourtCaseOrders _courtCaseOrders;
-    
-        [DataMember]
         public Hearings Hearing
         {
             get { return _hearing; }
@@ -519,24 +484,6 @@ namespace Faccts.Model.Entities
             }
         }
         private CourtCase _mergeCase;
-    
-        [DataMember]
-        public CourtCaseOrders CourtCaseOrders1
-        {
-            get { return _courtCaseOrders1; }
-            set
-            {
-                if (!ReferenceEquals(_courtCaseOrders1, value))
-                {
-                    var previousValue = _courtCaseOrders1;
-    				OnNavigationPropertyChanging("CourtCaseOrders1");
-                    _courtCaseOrders1 = value;
-                    FixupCourtCaseOrders1(previousValue);
-                    OnNavigationPropertyChanged("CourtCaseOrders1");
-                }
-            }
-        }
-        private CourtCaseOrders _courtCaseOrders1;
     
         [DataMember]
         public User User
@@ -717,6 +664,24 @@ namespace Faccts.Model.Entities
             }
         }
         private TrackableCollection<Witnesses> _witnesses;
+    
+        [DataMember]
+        public MasterOrder MasterOrder
+        {
+            get { return _masterOrder; }
+            set
+            {
+                if (!ReferenceEquals(_masterOrder, value))
+                {
+                    var previousValue = _masterOrder;
+    				OnNavigationPropertyChanging("MasterOrder");
+                    _masterOrder = value;
+                    FixupMasterOrder(previousValue);
+                    OnNavigationPropertyChanged("MasterOrder");
+                }
+            }
+        }
+        private MasterOrder _masterOrder;
 
         #endregion
 
@@ -825,10 +790,8 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
-            CourtCaseOrders = null;
             Hearing = null;
             MergeCase = null;
-            CourtCaseOrders1 = null;
             User = null;
             CourtCase = null;
             AttorneyForChild = null;
@@ -837,52 +800,12 @@ namespace Faccts.Model.Entities
             ThirdPartyData = null;
             Interpreters.Clear();
             Witnesses.Clear();
+            MasterOrder = null;
         }
 
         #endregion
 
         #region Association Fixup
-    
-        private void FixupCourtCaseOrders(CourtCaseOrders previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.CaseHistory.Contains(this))
-            {
-                previousValue.CaseHistory.Remove(this);
-            }
-    
-            if (CourtCaseOrders != null)
-            {
-                CourtCaseOrders.CaseHistory.Add(this);
-    
-                CourtCaseOrderId = CourtCaseOrders.Id;
-            }
-            else if (!skipKeys)
-            {
-                CourtCaseOrderId = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("CourtCaseOrders")
-                    && (ChangeTracker.OriginalValues["CourtCaseOrders"] == CourtCaseOrders))
-                {
-                    ChangeTracker.OriginalValues.Remove("CourtCaseOrders");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("CourtCaseOrders", previousValue);
-                }
-                if (CourtCaseOrders != null && !CourtCaseOrders.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    CourtCaseOrders.StartTracking();
-                }
-            }
-        }
     
         private void FixupHearing(Hearings previousValue)
         {
@@ -951,47 +874,6 @@ namespace Faccts.Model.Entities
                 if (MergeCase != null && !MergeCase.ChangeTracker.ChangeTrackingEnabled)
                 {
                     MergeCase.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupCourtCaseOrders1(CourtCaseOrders previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.CaseHistory1.Contains(this))
-            {
-                previousValue.CaseHistory1.Remove(this);
-            }
-    
-            if (CourtCaseOrders1 != null)
-            {
-                CourtCaseOrders1.CaseHistory1.Add(this);
-    
-                CourtOrder_Id = CourtCaseOrders1.Id;
-            }
-            else if (!skipKeys)
-            {
-                CourtOrder_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("CourtCaseOrders1")
-                    && (ChangeTracker.OriginalValues["CourtCaseOrders1"] == CourtCaseOrders1))
-                {
-                    ChangeTracker.OriginalValues.Remove("CourtCaseOrders1");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("CourtCaseOrders1", previousValue);
-                }
-                if (CourtCaseOrders1 != null && !CourtCaseOrders1.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    CourtCaseOrders1.StartTracking();
                 }
             }
         }
@@ -1238,6 +1120,59 @@ namespace Faccts.Model.Entities
                 if (ThirdPartyData != null && !ThirdPartyData.ChangeTracker.ChangeTrackingEnabled)
                 {
                     ThirdPartyData.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupMasterOrder(MasterOrder previousValue)
+        {
+            // This is the principal end in an association that performs cascade deletes.
+            // Update the event listener to refer to the new dependent.
+            if (previousValue != null)
+            {
+                ChangeTracker.ObjectStateChanging -= previousValue.HandleCascadeDelete;
+            }
+    
+            if (MasterOrder != null)
+            {
+                ChangeTracker.ObjectStateChanging += MasterOrder.HandleCascadeDelete;
+            }
+    
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && ReferenceEquals(previousValue.CaseHistory, this))
+            {
+                previousValue.CaseHistory = null;
+            }
+    
+            if (MasterOrder != null)
+            {
+                MasterOrder.CaseHistory = this;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("MasterOrder")
+                    && (ChangeTracker.OriginalValues["MasterOrder"] == MasterOrder))
+                {
+                    ChangeTracker.OriginalValues.Remove("MasterOrder");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("MasterOrder", previousValue);
+                    // This is the principal end of an identifying association, so the dependent must be deleted when the relationship is removed.
+                    // If the current state of the dependent is Added, the relationship can be changed without causing the dependent to be deleted.
+                    if (previousValue != null && previousValue.ChangeTracker.State != ObjectState.Added)
+                    {
+                        previousValue.MarkAsDeleted();
+                    }
+                }
+                if (MasterOrder != null && !MasterOrder.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    MasterOrder.StartTracking();
                 }
             }
         }
