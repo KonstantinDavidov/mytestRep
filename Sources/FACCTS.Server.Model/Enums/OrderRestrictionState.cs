@@ -3,7 +3,7 @@ using System.ComponentModel;
 
 namespace FACCTS.Server.Model
 {
-    public enum OrderItemState
+    public enum OrderRestrictionState
     {
         [Description("NotRequested")]
         NotRequested = 0,

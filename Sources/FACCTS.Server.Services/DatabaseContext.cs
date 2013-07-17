@@ -51,6 +51,8 @@ namespace FACCTS.Server.Data
 
             modelBuilder.Configurations.Add(new ManualIntegrationTaskConfiguration());
             modelBuilder.Configurations.Add(new ScheduledIntegrationTaskConfiguration());
+            modelBuilder.Configurations.Add(new MasterOrderConfiguration());
+            modelBuilder.Configurations.Add(new AttachmentOrderConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
@@ -114,12 +116,13 @@ namespace FACCTS.Server.Data
         public DbSet<CaseHistory> CaseHistory { get; set; }
         public DbSet<Hearing> Hearings { get; set; }
         public DbSet<CaseNote> CaseNotes { get; set; }
-        public DbSet<CourtCaseOrder> CourtCaseOrders { get; set; }
         public DbSet<CourtMember> CourtMembers { get; set; }
         public DbSet<CourtDepartment> CourtDepartments { get; set; }
         public DbSet<FACCTSConfiguration> FACCTSConfiguration { get; set; }
         public DbSet<ManualIntegrationTask> ManualIntegrationTasks { get; set; }
         public DbSet<ScheduledIntegrationTask> ScheduledIntegrationTasks { get; set; }
+        public DbSet<MasterOrder> MasterOrders { get; set; }
+        public DbSet<AttachmentOrder> AttachmentOrders { get; set; }
         #endregion
 
         public new IDbSet<TEntity> Set<TEntity>() where TEntity : class

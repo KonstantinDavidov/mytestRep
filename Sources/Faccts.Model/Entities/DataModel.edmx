@@ -1597,6 +1597,16 @@
             <End Role="AdditionalParty" EntitySet="AdditionalPartySet" />
           </AssociationSet>
           <EntitySet Name="AdditionalPartySet" EntityType="FACCTS_DBModel.AdditionalParty" />
+          <EntitySet Name="AttachmentOrder" EntityType="FACCTS_DBModel.AttachmentOrder" />
+          <EntitySet Name="MasterOrder" EntityType="FACCTS_DBModel.MasterOrder" />
+          <AssociationSet Name="MasterOrderAttachmentOrder" Association="FACCTS_DBModel.MasterOrderAttachmentOrder">
+            <End Role="MasterOrder" EntitySet="MasterOrder" />
+            <End Role="AttachmentOrder" EntitySet="AttachmentOrder" />
+          </AssociationSet>
+          <AssociationSet Name="CaseHistoryMasterOrder" Association="FACCTS_DBModel.CaseHistoryMasterOrder">
+            <End Role="CaseHistory" EntitySet="CaseHistory" />
+            <End Role="MasterOrder" EntitySet="MasterOrder" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AdfsIntegrationConfiguration">
           <Key>
@@ -1663,6 +1673,7 @@
           <NavigationProperty Name="Party1AttorneyData" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtPartyAttorneyData_Party1Attorney_Id" FromRole="CaseHistory" ToRole="CourtPartyAttorneyData" />
           <NavigationProperty Name="Party2AttorneyData" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtPartyAttorneyData_Party2Attorney_Id" FromRole="CaseHistory" ToRole="CourtPartyAttorneyData" />
           <NavigationProperty Name="ThirdPartyData" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_ThirdPartyData_ThirdPartyData_Id" FromRole="CaseHistory" ToRole="ThirdPartyData" />
+          <NavigationProperty Name="MasterOrder" Relationship="FACCTS_DBModel.CaseHistoryMasterOrder" FromRole="CaseHistory" ToRole="MasterOrder" />
           </EntityType>
         <EntityType Name="CaseNotes">
           <Key>
@@ -2730,6 +2741,55 @@
         <EntityType Name="Interpreter" BaseType="FACCTS_DBModel.AdditionalParty" >
           <Property Type="String" Name="Language" Nullable="false" />
         </EntityType>
+        <EntityType Name="AttachmentOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="MasterOrderId" Nullable="false" />
+          <Property Type="String" Name="XmlContent" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ServerFileName" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MasterOrder" Relationship="FACCTS_DBModel.MasterOrderAttachmentOrder" FromRole="AttachmentOrder" ToRole="MasterOrder" />
+          <Property Type="FACCTS_DBModel.AttachmentOrders" Name="OrderType" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MasterOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" />
+          <Property Type="String" Name="XMLContent" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsSigned" Nullable="false" />
+          <Property Type="String" Name="ServerFileName" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AttachmentOrder" Relationship="FACCTS_DBModel.MasterOrderAttachmentOrder" FromRole="MasterOrder" ToRole="AttachmentOrder" />
+          <NavigationProperty Name="CaseHistory" Relationship="FACCTS_DBModel.CaseHistoryMasterOrder" FromRole="MasterOrder" ToRole="CaseHistory" />
+          <Property Type="FACCTS_DBModel.MasterOrders" Name="OrderType" Nullable="false" />
+        </EntityType>
+        <Association Name="MasterOrderAttachmentOrder">
+          <End Type="FACCTS_DBModel.MasterOrder" Role="MasterOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.AttachmentOrder" Role="AttachmentOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MasterOrder">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AttachmentOrder">
+              <PropertyRef Name="MasterOrderId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CaseHistoryMasterOrder">
+          <End Type="FACCTS_DBModel.CaseHistory" Role="CaseHistory" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.MasterOrder" Role="MasterOrder" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="CaseHistory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MasterOrder">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EnumType Name="MasterOrders" a:ExternalTypeName="FACCTS.Server.Model.Enums.MasterOrders" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EnumType Name="AttachmentOrders" a:ExternalTypeName="FACCTS.Server.Model.Enums.AttachmentOrders" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

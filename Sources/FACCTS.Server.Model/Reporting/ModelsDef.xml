@@ -27,10 +27,6 @@
     <Property name="StayAwayDistance" type="int"/>
   </Model>
 
-  <Model name="CH130LawyerFeesAndCostsSection">
-    <Property name="IsEnabled" type="bool"/>
-  </Model>
-
   <Model name="CH130">
     <Property name="CaseHistoryId" type="long"/>
     <Property name="ConductSection" type="CH130ConductChoice"/>
@@ -50,14 +46,13 @@
 <!--CH110-->
   <Model name="CH110ConductChoice">
     <Property name="IsEnabled" type="bool"/>
-    <Property name="NoAbuse" type="bool"/>
-    <Property name="NoContact" type="bool"/>
-    <Property name="DontTryToLocate" type="bool"/>
-    <Property name="CoversOtherProtectedPerson" type="bool"/>
-    <Property name="Other" type="bool"/>
+    <Property name="IsNoAbuse" type="bool"/>
+    <Property name="IsNoContact" type="bool"/>
+    <Property name="IsDontTryToLocate" type="bool"/>
+    <Property name="IsInvolveOtherProtected" type="bool"/>
+    <Property name="IsInvolveOther" type="bool"/>
     <Property name="OtherDescription" type="string"/>
-    <Property name="Service" type="ServiceReqState"/>
-    <Property name="ConductState" type="OrderItemState"/>
+    <Property name="ConductState" type="OrderRestrictionState"/>
   </Model>
   
   <Model name="CH110RestrainedPersonPayment">
@@ -69,19 +64,76 @@
   
   <Model name="CH110StayAwayOrders">
     <Property name="IsEnabled" type="bool"/>
-    <Property name="StayAwayState" type="OrderItemState"/>
-    <Property name="Person" type="bool"/>
-    <Property name="Home" type="bool"/>
-    <Property name="Vehicle" type="bool"/>
-    <Property name="ChildCare" type="bool"/>
-    <Property name="Work" type="bool"/>
-    <Property name="OtherProtected" type="bool"/>
-    <Property name="Other" type="bool"/>
-    <Property name="IsAttach" type="bool"/>
+    <Property name="IsStayAwayFromPerson" type="bool"/>
+    <Property name="IsStayAwayFromHome" type="bool"/>
+    <Property name="IsStayAwayFromVehicle" type="bool"/>
+    <Property name="IsStayAwayFromChildCare" type="bool"/>
+    <Property name="IsStayAwayFromChildSchool" type="bool"/>
+    <Property name="IsStayAwayFromWork" type="bool"/>
+    <Property name="IsStayAwayFromOtherProtected" type="bool"/>
+    <Property name="IsStayAwayFromOther" type="bool"/>
+    <Property name="IsAttachOther" type="bool"/>
     <Property name="OtherDescription" type="string"/>
-    <Property name="OtherProtectedPersons" type="List" collectionType="OtherProtected"/>
+    <Property name="StayAwayDistance" type="int"/>
+    <Property name="StayAwayState" type="OrderRestrictionState"/>
   </Model>
- 
+  
+  <Model name="CH110">
+    <Property name="CaseHistoryId" type="long"/>
+    <Property name="ConductSection" type="CH110ConductChoice"/>
+    <Property name="StayAwayOrdersSection" type="CH110StayAwayOrders"/>
+    <Property name="IsNoGuns" type="bool"/>
+    <Property name="CAPROSEntrySection" type="CAPROSEntry"/>
+    <Property name="NoServiceFeeSection" type="NoServiceFee"/>
+    <Property name="OrdersEndDate" type="DateTime"/>
+    <Property name="OrdersEndTime" type="DateTime?"/>
+    <Property name="IsOtherOrdersAttached" type="bool"/>
+    <Property name="OtherOrderDetail" type="string"/>
+  </Model>
+  
+  <!--DV130-->
+  <Model name="DV130ConductChoice">
+    <Property name="IsEnabled" type="bool"/>
+    <Property name="IsNoAbuse" type="bool"/>
+    <Property name="IsNoContact" type="bool"/>
+    <Property name="IsDontTryToLocate" type="bool"/>
+    <Property name="IsExceptionsExist" type="bool"/>
+  </Model>
+  
+  <Model name="DV130StayAwayOrders">
+    <Property name="IsEnabled" type="bool"/>
+    <Property name="IsStayAwayFromPerson" type="bool"/>
+    <Property name="IsStayAwayFromHome" type="bool"/>
+    <Property name="IsStayAwayFromVehicle" type="bool"/>
+    <Property name="IsStayAwayFromChildCareOrSchool" type="bool"/>
+    <Property name="IsStayAwayFromPersonSchool" type="bool"/>
+    <Property name="IsStayAwayFromWork" type="bool"/>
+    <Property name="IsStayAwayFromOtherProtected" type="bool"/>
+    <Property name="IsStayAwayFromOther" type="bool"/>
+    <Property name="IsAttachOther" type="bool"/>
+    <Property name="OtherDescription" type="string"/>
+    <Property name="StayAwayDistance" type="int"/>
+  </Model>
+  
+  <Model name="DV130Moveout">
+    <Property name="IsEnabled" type="bool"/>
+    <Property name="MoveoutAddress" type="string"/>
+  </Model>
+  
+  <Model name="DV130Animals">
+    <Property name="IsEnabled" type="bool"/>
+    <Property name="StayAwayAnimalsDistance" type="int"/>
+    <Property name="AnimalsDescription" type="string"/>
+  </Model>
+  <Model name="DV130">
+    <Property name="DV130ConductChoiceSection" type="DV130ConductChoice"/>
+    <Property name="DV130StayAwayOrdersSection" type="DV130StayAwayOrders"/>
+    <Property name="DV130MoveoutSection" type="DV130Moveout"/>
+    <Property name="IsRecordUnlawfulCommunicationsAllowed" type="bool"/>
+    <Property name="DV130AnimalsSection" type="DV130Animals"/>
+    <Property name="IsBattererIntervention" type="bool"/>
+    <Property name="IsNoGuns" type="bool"/>
+  </Model>
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="ModelsDef">

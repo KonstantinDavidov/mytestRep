@@ -28,6 +28,7 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(Attorneys))]
     [KnownType(typeof(CourtPartyAttorneyData))]
     [KnownType(typeof(ThirdPartyData))]
+    [KnownType(typeof(MasterOrder))]
     public partial class CaseHistory: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -78,6 +79,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.Party1AttorneyData.IsDirty)
     				,this.ObservableForProperty(x => x.Party2AttorneyData.IsDirty)
     				,this.ObservableForProperty(x => x.ThirdPartyData.IsDirty)
+    				,this.ObservableForProperty(x => x.MasterOrder.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -643,6 +645,24 @@ namespace Faccts.Model.Entities
             }
         }
         private ThirdPartyData _thirdPartyData;
+    
+        [DataMember]
+        public MasterOrder MasterOrder
+        {
+            get { return _masterOrder; }
+            set
+            {
+                if (!ReferenceEquals(_masterOrder, value))
+                {
+                    var previousValue = _masterOrder;
+    				OnNavigationPropertyChanging("MasterOrder");
+                    _masterOrder = value;
+                    FixupMasterOrder(previousValue);
+                    OnNavigationPropertyChanged("MasterOrder");
+                }
+            }
+        }
+        private MasterOrder _masterOrder;
 
         #endregion
 
@@ -761,6 +781,7 @@ namespace Faccts.Model.Entities
             Party1AttorneyData = null;
             Party2AttorneyData = null;
             ThirdPartyData = null;
+            MasterOrder = null;
         }
 
         #endregion
@@ -1162,6 +1183,59 @@ namespace Faccts.Model.Entities
                 if (ThirdPartyData != null && !ThirdPartyData.ChangeTracker.ChangeTrackingEnabled)
                 {
                     ThirdPartyData.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupMasterOrder(MasterOrder previousValue)
+        {
+            // This is the principal end in an association that performs cascade deletes.
+            // Update the event listener to refer to the new dependent.
+            if (previousValue != null)
+            {
+                ChangeTracker.ObjectStateChanging -= previousValue.HandleCascadeDelete;
+            }
+    
+            if (MasterOrder != null)
+            {
+                ChangeTracker.ObjectStateChanging += MasterOrder.HandleCascadeDelete;
+            }
+    
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && ReferenceEquals(previousValue.CaseHistory, this))
+            {
+                previousValue.CaseHistory = null;
+            }
+    
+            if (MasterOrder != null)
+            {
+                MasterOrder.CaseHistory = this;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("MasterOrder")
+                    && (ChangeTracker.OriginalValues["MasterOrder"] == MasterOrder))
+                {
+                    ChangeTracker.OriginalValues.Remove("MasterOrder");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("MasterOrder", previousValue);
+                    // This is the principal end of an identifying association, so the dependent must be deleted when the relationship is removed.
+                    // If the current state of the dependent is Added, the relationship can be changed without causing the dependent to be deleted.
+                    if (previousValue != null && previousValue.ChangeTracker.State != ObjectState.Added)
+                    {
+                        previousValue.MarkAsDeleted();
+                    }
+                }
+                if (MasterOrder != null && !MasterOrder.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    MasterOrder.StartTracking();
                 }
             }
         }

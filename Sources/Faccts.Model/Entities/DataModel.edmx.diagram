@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="79dc3391d7254955a090adf5a102fd7f" Name="Diagram1" ZoomLevel="90">
+      <Diagram DiagramId="79dc3391d7254955a090adf5a102fd7f" Name="Diagram1" ZoomLevel="62">
         <EntityTypeShape EntityType="FACCTS_DBModel.AdfsIntegrationConfiguration" Width="1.5" PointX="12.125" PointY="0.5" />
         <EntityTypeShape EntityType="FACCTS_DBModel.Attorneys" Width="1.5" PointX="11.25" PointY="15.375" />
         <EntityTypeShape EntityType="FACCTS_DBModel.CaseHistory" Width="1.5" PointX="0.625" PointY="9" />
@@ -97,6 +97,10 @@
         <InheritanceConnector EntityType="FACCTS_DBModel.OtherProtected" />
         <EntityTypeShape EntityType="FACCTS_DBModel.Interpreter" Width="1.5" PointX="16.5" PointY="26.25" />
         <InheritanceConnector EntityType="FACCTS_DBModel.Interpreter" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.AttachmentOrder" Width="1.5" PointX="21.5" PointY="9.125" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.MasterOrder" Width="1.5" PointX="19" PointY="9.125" />
+        <AssociationConnector Association="FACCTS_DBModel.MasterOrderAttachmentOrder" />
+        <AssociationConnector Association="FACCTS_DBModel.CaseHistoryMasterOrder" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

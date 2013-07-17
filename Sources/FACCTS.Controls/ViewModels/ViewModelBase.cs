@@ -82,7 +82,7 @@ namespace FACCTS.Controls.ViewModels
             IEventAggregator eventAggregator
             ) : base()
         {
-            _logger.InfoFormat("{0}.{}1", this.GetType().Name, "ctor");
+            _logger.InfoFormat("{0}.{1}", this.GetType().Name, "ctor");
             _authenticationService = authenticationService;
             _authenticationService.AuthenticationStatusChanged += _authenticationService_AuthenticationStatusChanged;
             _eventAggregator = eventAggregator;
