@@ -13,7 +13,7 @@
     <UserControl.Resources>
 		<Converters:ObjectToBooleanConverter x:Key="ObjectToBooleanConverter"/>
         <CollectionViewSource x:Key="cvsCaseHistory"
-                              Source="{Binding CurrentCourtCase.CaseHistory, Mode=OneWay}">
+                              Source="{Binding CurrentCourtCase.DisplayableCaseHistory, Mode=OneWay}">
             <CollectionViewSource.SortDescriptions>
                 <scm:SortDescription PropertyName="Date"  Direction="Ascending"/>
             </CollectionViewSource.SortDescriptions>

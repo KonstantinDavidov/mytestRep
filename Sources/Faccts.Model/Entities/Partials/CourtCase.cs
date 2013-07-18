@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
 using FACCTS.Server.Model.Enums;
+using System.Reactive.Linq;
+using System.Collections.Specialized;
 
 namespace Faccts.Model.Entities
 {
@@ -358,6 +360,7 @@ namespace Faccts.Model.Entities
             {
                 emptyHearing.Hearing = hearing;
                 emptyHearing.Date = DateTime.Now;
+                //this.CaseHistory.
             }
             else
             {
@@ -369,6 +372,19 @@ namespace Faccts.Model.Entities
                        Date = DateTime.Now,
                    }
                    );
+            }
+        }
+
+        private ReactiveCollection<CaseHistory> _displayableCaseHistory;
+        public ReactiveCollection<CaseHistory> DisplayableCaseHistory
+        {
+            get
+            {
+                if (_displayableCaseHistory == null)
+                {
+                    _displayableCaseHistory = this.CaseHistory.CreateDerivedCollection(x => x, filter: x => x.Date != null, signalReset: Observable.Merge(this.CaseHistory.Select(x => x.WhenAny(y => y.Date, y => y.Value))));
+                }
+                return _displayableCaseHistory;
             }
         }
     }
