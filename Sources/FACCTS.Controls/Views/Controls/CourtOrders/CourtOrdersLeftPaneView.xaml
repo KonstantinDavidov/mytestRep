@@ -1,21 +1,41 @@
 ﻿<UserControl
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:ViewModels="clr-namespace:FACCTS.Controls.ViewModels" 
-             x:Class="FACCTS.Controls.Views.Controls.CourtOrdersLeftPaneView" 
-             xmlns:cal="http://www.caliburnproject.org"
-             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-             xmlns:ei="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
-             mc:Ignorable="d" 
-             d:DesignHeight="480" d:DesignWidth="300" Background="{DynamicResource ControlBackgroundBrush}">
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:ViewModels="clr-namespace:FACCTS.Controls.ViewModels" 
+    x:Class="FACCTS.Controls.Views.Controls.CourtOrdersLeftPaneView" 
+    xmlns:cal="http://www.caliburnproject.org"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+    xmlns:ei="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+    xmlns:local="clr-namespace:Faccts.Model.Entities;assembly=FACCTS.Model"
+    mc:Ignorable="d"
+    d:DesignHeight="480" d:DesignWidth="300" Background="{DynamicResource ControlBackgroundBrush}">
+    <UserControl.Resources>
+        <HierarchicalDataTemplate DataType="{x:Type local:CourtCase}"
+                                  ItemsSource="{Binding Path=CaseHistory}">
+            <TextBlock Text="{Binding Path=CaseNumber}"/>
+        </HierarchicalDataTemplate>
+        <HierarchicalDataTemplate DataType="{x:Type local:CaseHistory}">
+            <TextBlock>
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0} {1}">
+                        <Binding Path="CaseHistoryEvent"/>
+                        <Binding Path="Date"/>
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+        </HierarchicalDataTemplate>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <GroupBox Header="Case Docket - Completed"/>
+        <GroupBox Header="Case Docket - Completed">
+            <TreeView ItemsSource="{Binding Path=CourtCases}">
+            </TreeView>
+        </GroupBox>
         <GroupBox Header="Court Orders" Grid.Row="1">
             <TreeView ScrollViewer.HorizontalScrollBarVisibility="Auto" x:Name="TreeView">
                 <i:Interaction.Triggers>

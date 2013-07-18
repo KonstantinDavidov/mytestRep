@@ -1607,6 +1607,86 @@
             <End Role="CaseHistory" EntitySet="CaseHistory" />
             <End Role="MasterOrder" EntitySet="MasterOrder" />
           </AssociationSet>
+          <EntitySet Name="ConductROSectionSet" EntityType="FACCTS_DBModel.ConductROSection" />
+          <EntitySet Name="CH130ROOrderSet" EntityType="FACCTS_DBModel.CH130ROOrder" />
+          <AssociationSet Name="CH130OrderConductSection" Association="FACCTS_DBModel.CH130OrderConductSection">
+            <End Role="CH130Order" EntitySet="CH130ROOrderSet" />
+            <End Role="ConductSection" EntitySet="ConductROSectionSet" />
+          </AssociationSet>
+          <EntitySet Name="ServiceSectionSet" EntityType="FACCTS_DBModel.ServiceSection" />
+          <AssociationSet Name="CH130OrderServiceSection" Association="FACCTS_DBModel.CH130OrderServiceSection">
+            <End Role="CH130Order" EntitySet="CH130ROOrderSet" />
+            <End Role="ServiceSection" EntitySet="ServiceSectionSet" />
+          </AssociationSet>
+          <EntitySet Name="SAOROSectionSet" EntityType="FACCTS_DBModel.SAOROSection" />
+          <AssociationSet Name="CH130OrderSAOSection" Association="FACCTS_DBModel.CH130OrderSAOSection">
+            <End Role="CH130Order" EntitySet="CH130ROOrderSet" />
+            <End Role="SAOSection" EntitySet="SAOROSectionSet" />
+          </AssociationSet>
+          <EntitySet Name="NoGunsSectionSet" EntityType="FACCTS_DBModel.NoGunsSection" />
+          <AssociationSet Name="CH130OrderNoGunsSection" Association="FACCTS_DBModel.CH130OrderNoGunsSection">
+            <End Role="CH130Order" EntitySet="CH130ROOrderSet" />
+            <End Role="NoGunsSection" EntitySet="NoGunsSectionSet" />
+          </AssociationSet>
+          <EntitySet Name="OtherOrdersROSectionSet" EntityType="FACCTS_DBModel.OtherOrdersROSection" />
+          <AssociationSet Name="CH130OrderOtherOrdersSection" Association="FACCTS_DBModel.CH130OrderOtherOrdersSection">
+            <End Role="CH130Order" EntitySet="CH130ROOrderSet" />
+            <End Role="OtherOrdersSection" EntitySet="OtherOrdersROSectionSet" />
+          </AssociationSet>
+          <EntitySet Name="CarposEntrySectionSet" EntityType="FACCTS_DBModel.CarposEntrySection" />
+          <EntitySet Name="LawEnforcementSet" EntityType="FACCTS_DBModel.LawEnforcement" />
+          <AssociationSet Name="CarposEntrySectionLawEnforcement" Association="FACCTS_DBModel.CarposEntrySectionLawEnforcement">
+            <End Role="CarposEntrySection" EntitySet="CarposEntrySectionSet" />
+            <End Role="LawEnforcement" EntitySet="LawEnforcementSet" />
+          </AssociationSet>
+          <AssociationSet Name="CH130OrderCarposEntrySection" Association="FACCTS_DBModel.CH130OrderCarposEntrySection">
+            <End Role="CH130Order" EntitySet="CH130ROOrderSet" />
+            <End Role="CarposEntrySection" EntitySet="CarposEntrySectionSet" />
+          </AssociationSet>
+          <EntitySet Name="ExpirationSectionSet" EntityType="FACCTS_DBModel.ExpirationSection" />
+          <AssociationSet Name="CH130OrderExpirationSection" Association="FACCTS_DBModel.CH130OrderExpirationSection">
+            <End Role="CH130Order" EntitySet="CH130ROOrderSet" />
+            <End Role="ExpirationSection" EntitySet="ExpirationSectionSet" />
+          </AssociationSet>
+          <EntitySet Name="ServiceFeesSectionSet" EntityType="FACCTS_DBModel.ServiceFeesSection" />
+          <AssociationSet Name="CH130OrderServiceFeesSection" Association="FACCTS_DBModel.CH130OrderServiceFeesSection">
+            <End Role="CH130Order" EntitySet="CH130ROOrderSet" />
+            <End Role="ServiceFeesSection" EntitySet="ServiceFeesSectionSet" />
+          </AssociationSet>
+          <EntitySet Name="AttorneysFeesSectionSet" EntityType="FACCTS_DBModel.AttorneysFeesSection" />
+          <AssociationSet Name="CH130OrderAttorneysFeesSection" Association="FACCTS_DBModel.CH130OrderAttorneysFeesSection">
+            <End Role="CH130Order" EntitySet="CH130ROOrderSet" />
+            <End Role="AttorneysFeesSection" EntitySet="AttorneysFeesSectionSet" />
+          </AssociationSet>
+          <EntitySet Name="CH110TROOrderSet" EntityType="FACCTS_DBModel.CH110TROOrder" />
+          <AssociationSet Name="CH110OrderConductTROSection" Association="FACCTS_DBModel.CH110OrderConductTROSection">
+            <End Role="CH110Order" EntitySet="CH110TROOrderSet" />
+            <End Role="ConductTROSection" EntitySet="ConductROSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="CH110OrderSAOTROSection" Association="FACCTS_DBModel.CH110OrderSAOTROSection">
+            <End Role="CH110Order" EntitySet="CH110TROOrderSet" />
+            <End Role="SAOTROSection" EntitySet="SAOROSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="CH110TROOrderNoGunsSection" Association="FACCTS_DBModel.CH110TROOrderNoGunsSection">
+            <End Role="CH110TROOrder" EntitySet="CH110TROOrderSet" />
+            <End Role="NoGunsSection" EntitySet="NoGunsSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="CH110TROOrderOtherOrdersTROSection" Association="FACCTS_DBModel.CH110TROOrderOtherOrdersTROSection">
+            <End Role="CH110TROOrder" EntitySet="CH110TROOrderSet" />
+            <End Role="OtherOrdersTROSection" EntitySet="OtherOrdersROSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="CH110TROOrderCarposEntryROSection" Association="FACCTS_DBModel.CH110TROOrderCarposEntryROSection">
+            <End Role="CH110TROOrder" EntitySet="CH110TROOrderSet" />
+            <End Role="CarposEntryROSection" EntitySet="CarposEntrySectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="CH110TROOrderServiceFeesSection" Association="FACCTS_DBModel.CH110TROOrderServiceFeesSection">
+            <End Role="CH110TROOrder" EntitySet="CH110TROOrderSet" />
+            <End Role="ServiceFeesSection" EntitySet="ServiceFeesSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="CH110TROOrderExpirationSection" Association="FACCTS_DBModel.CH110TROOrderExpirationSection">
+            <End Role="CH110TROOrder" EntitySet="CH110TROOrderSet" />
+            <End Role="ExpirationSection" EntitySet="ExpirationSectionSet" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AdfsIntegrationConfiguration">
           <Key>
@@ -2790,6 +2870,235 @@
         </Association>
         <EnumType Name="MasterOrders" a:ExternalTypeName="FACCTS.Server.Model.Enums.MasterOrders" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         <EnumType Name="AttachmentOrders" a:ExternalTypeName="FACCTS.Server.Model.Enums.AttachmentOrders" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EntityType Name="ConductROSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="NoHarass" Nullable="false" />
+          <Property Type="Boolean" Name="Requested" Nullable="false" />
+          <Property Type="Boolean" Name="NoContact" Nullable="false" />
+          <Property Type="Boolean" Name="NoLocate" Nullable="false" />
+          <Property Type="Boolean" Name="AppliedToOtherProtected" Nullable="false" />
+          <Property Type="Boolean" Name="OtherRequested" Nullable="false" />
+          <Property Type="String" Name="OtherText" Nullable="false" />
+          <Property Type="Boolean" Name="OtherAttached" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CH130ROOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ConductSection" Relationship="FACCTS_DBModel.CH130OrderConductSection" FromRole="CH130Order" ToRole="ConductSection" />
+          <NavigationProperty Name="ServiceSection" Relationship="FACCTS_DBModel.CH130OrderServiceSection" FromRole="CH130Order" ToRole="ServiceSection" />
+          <NavigationProperty Name="SAOSection" Relationship="FACCTS_DBModel.CH130OrderSAOSection" FromRole="CH130Order" ToRole="SAOSection" />
+          <NavigationProperty Name="NoGunsSection" Relationship="FACCTS_DBModel.CH130OrderNoGunsSection" FromRole="CH130Order" ToRole="NoGunsSection" />
+          <NavigationProperty Name="OtherOrdersSection" Relationship="FACCTS_DBModel.CH130OrderOtherOrdersSection" FromRole="CH130Order" ToRole="OtherOrdersSection" />
+          <NavigationProperty Name="CarposEntrySection" Relationship="FACCTS_DBModel.CH130OrderCarposEntrySection" FromRole="CH130Order" ToRole="CarposEntrySection" />
+          <NavigationProperty Name="ExpirationSection" Relationship="FACCTS_DBModel.CH130OrderExpirationSection" FromRole="CH130Order" ToRole="ExpirationSection" />
+          <NavigationProperty Name="ServiceFeesSection" Relationship="FACCTS_DBModel.CH130OrderServiceFeesSection" FromRole="CH130Order" ToRole="ServiceFeesSection" />
+          <NavigationProperty Name="AttorneysFeesSection" Relationship="FACCTS_DBModel.CH130OrderAttorneysFeesSection" FromRole="CH130Order" ToRole="AttorneysFeesSection" />
+        </EntityType>
+        <Association Name="CH130OrderConductSection">
+          <End Type="FACCTS_DBModel.CH130ROOrder" Role="CH130Order" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.ConductROSection" Role="ConductSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="ServiceSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="FACCTS_DBModel.POS" Name="Service" Nullable="true" />
+        </EntityType>
+        <EnumType Name="POS">
+          <Member Name="ToCourt" Value="0" />
+          <Member Name="NotDelivered" Value="1" />
+        </EnumType>
+        <Association Name="CH130OrderServiceSection">
+          <End Type="FACCTS_DBModel.CH130ROOrder" Role="CH130Order" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.ServiceSection" Role="ServiceSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="SAOROSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="Requested" Nullable="false" />
+          <Property Type="Decimal" Name="Distance" Nullable="false" />
+          <Property Type="Boolean" Name="FromPerson" Nullable="false" />
+          <Property Type="Boolean" Name="FromWork" Nullable="false" />
+          <Property Type="Boolean" Name="FromChildSchool" Nullable="false" />
+          <Property Type="Boolean" Name="FromHome" Nullable="false" />
+          <Property Type="Boolean" Name="FromVehicle" Nullable="false" />
+          <Property Type="Boolean" Name="FromChildCare" Nullable="false" />
+          <Property Type="Boolean" Name="FromOtherProtected" Nullable="false" />
+          <Property Type="Boolean" Name="OtherRequested" Nullable="false" />
+          <Property Type="String" Name="OtherText" Nullable="false" />
+        </EntityType>
+        <Association Name="CH130OrderSAOSection">
+          <End Type="FACCTS_DBModel.CH130ROOrder" Role="CH130Order" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.SAOROSection" Role="SAOSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="NoGunsSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="Requested" Nullable="false" />
+        </EntityType>
+        <Association Name="CH130OrderNoGunsSection">
+          <End Type="FACCTS_DBModel.CH130ROOrder" Role="CH130Order" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.NoGunsSection" Role="NoGunsSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="OtherOrdersROSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="Attached" Nullable="false" />
+          <Property Type="String" Name="Text" Nullable="false" />
+        </EntityType>
+        <Association Name="CH130OrderOtherOrdersSection">
+          <End Type="FACCTS_DBModel.CH130ROOrder" Role="CH130Order" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.OtherOrdersROSection" Role="OtherOrdersSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="CarposEntrySection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="FACCTS_DBModel.CarposEntryType" Name="EntryType" Nullable="true" />
+          <NavigationProperty Name="LawEnforcements" Relationship="FACCTS_DBModel.CarposEntrySectionLawEnforcement" FromRole="CarposEntrySection" ToRole="LawEnforcement" />
+        </EntityType>
+        <EnumType Name="CarposEntryType">
+          <Member Name="ByClerk" Value="0" />
+          <Member Name="ByClerkToLawEnforcement" Value="1" />
+          <Member Name="ByProtectedTo" Value="2" />
+        </EnumType>
+        <EntityType Name="LawEnforcement">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Agency" Nullable="false" />
+          <Property Type="String" Name="Address" Nullable="false" />
+          <Property Type="Int64" Name="CarposEntrySectionId" Nullable="false" />
+        </EntityType>
+        <Association Name="CarposEntrySectionLawEnforcement">
+          <End Type="FACCTS_DBModel.CarposEntrySection" Role="CarposEntrySection" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.LawEnforcement" Role="LawEnforcement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CarposEntrySection">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LawEnforcement">
+              <PropertyRef Name="CarposEntrySectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CH130OrderCarposEntrySection">
+          <End Type="FACCTS_DBModel.CH130ROOrder" Role="CH130Order" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.CarposEntrySection" Role="CarposEntrySection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="ExpirationSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="Expires" Nullable="false" />
+          <Property Type="DateTime" Name="DateTime" Nullable="true" />
+        </EntityType>
+        <Association Name="CH130OrderExpirationSection">
+          <End Type="FACCTS_DBModel.CH130ROOrder" Role="CH130Order" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.ExpirationSection" Role="ExpirationSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="ServiceFeesSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="Ordered" Nullable="false" />
+          <Property Type="String" Name="Property1" Nullable="false" />
+          <Property Type="Boolean" Name="BasedOnViolence" Nullable="false" />
+          <Property Type="Boolean" Name="Waiver" Nullable="false" />
+        </EntityType>
+        <Association Name="CH130OrderServiceFeesSection">
+          <End Type="FACCTS_DBModel.CH130ROOrder" Role="CH130Order" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.ServiceFeesSection" Role="ServiceFeesSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="AttorneysFeesSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="FACCTS_DBModel.Parties" Name="PaidBy" Nullable="false" />
+          <Property Type="FACCTS_DBModel.Parties" Name="PaidTo" Nullable="false" />
+          <Property Type="Boolean" Name="LawyersFees" Nullable="false" />
+          <Property Type="Boolean" Name="CourtCosts" Nullable="false" />
+        </EntityType>
+        <EnumType Name="Parties">
+          <Member Name="Party1" Value="0" />
+          <Member Name="Party2" Value="1" />
+        </EnumType>
+        <Association Name="CH130OrderAttorneysFeesSection">
+          <End Type="FACCTS_DBModel.CH130ROOrder" Role="CH130Order" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.AttorneysFeesSection" Role="AttorneysFeesSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="CH110TROOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ConductTROSection" Relationship="FACCTS_DBModel.CH110OrderConductTROSection" FromRole="CH110Order" ToRole="ConductTROSection" />
+          <NavigationProperty Name="SAOTROSection" Relationship="FACCTS_DBModel.CH110OrderSAOTROSection" FromRole="CH110Order" ToRole="SAOTROSection" />
+          <NavigationProperty Name="NoGunsSection" Relationship="FACCTS_DBModel.CH110TROOrderNoGunsSection" FromRole="CH110TROOrder" ToRole="NoGunsSection" />
+          <NavigationProperty Name="OtherOrdersTROSection" Relationship="FACCTS_DBModel.CH110TROOrderOtherOrdersTROSection" FromRole="CH110TROOrder" ToRole="OtherOrdersTROSection" />
+          <NavigationProperty Name="CarposEntryROSection" Relationship="FACCTS_DBModel.CH110TROOrderCarposEntryROSection" FromRole="CH110TROOrder" ToRole="CarposEntryROSection" />
+          <NavigationProperty Name="ServiceFeesSection" Relationship="FACCTS_DBModel.CH110TROOrderServiceFeesSection" FromRole="CH110TROOrder" ToRole="ServiceFeesSection" />
+          <NavigationProperty Name="ExpirationSection" Relationship="FACCTS_DBModel.CH110TROOrderExpirationSection" FromRole="CH110TROOrder" ToRole="ExpirationSection" />
+        </EntityType>
+        <EnumType Name="OrderRestrictionState" a:ExternalTypeName="FACCTS.Server.Model.OrderRestrictionState" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" >
+          <Member Name="NotRequested" Value="0" />
+          <Member Name="Denied" Value="1" />
+          <Member Name="Granted" Value="2" />
+        </EnumType>
+        <EntityType Name="ConductTROSection" BaseType="FACCTS_DBModel.ConductROSection" >
+          <Property Type="FACCTS_DBModel.OrderRestrictionState" Name="OrderState" Nullable="false" />
+        </EntityType>
+        <Association Name="CH110OrderConductTROSection">
+          <End Type="FACCTS_DBModel.CH110TROOrder" Role="CH110Order" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.ConductTROSection" Role="ConductTROSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="SAOTROSection" BaseType="FACCTS_DBModel.SAOROSection" >
+          <Property Type="FACCTS_DBModel.OrderRestrictionState" Name="OrderState" Nullable="false" />
+        </EntityType>
+        <Association Name="CH110OrderSAOTROSection">
+          <End Type="FACCTS_DBModel.CH110TROOrder" Role="CH110Order" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.SAOTROSection" Role="SAOTROSection" Multiplicity="1" />
+        </Association>
+        <Association Name="CH110TROOrderNoGunsSection">
+          <End Type="FACCTS_DBModel.CH110TROOrder" Role="CH110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.NoGunsSection" Role="NoGunsSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="OtherOrdersTROSection" BaseType="FACCTS_DBModel.OtherOrdersROSection" >
+          <Property Type="FACCTS_DBModel.OrderRestrictionState" Name="OrderState" Nullable="false" />
+        </EntityType>
+        <Association Name="CH110TROOrderOtherOrdersTROSection">
+          <End Type="FACCTS_DBModel.CH110TROOrder" Role="CH110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.OtherOrdersTROSection" Role="OtherOrdersTROSection" Multiplicity="1" />
+        </Association>
+        <Association Name="CH110TROOrderCarposEntryROSection">
+          <End Type="FACCTS_DBModel.CH110TROOrder" Role="CH110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.CarposEntrySection" Role="CarposEntryROSection" Multiplicity="1" />
+        </Association>
+        <Association Name="CH110TROOrderServiceFeesSection">
+          <End Type="FACCTS_DBModel.CH110TROOrder" Role="CH110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.ServiceFeesSection" Role="ServiceFeesSection" Multiplicity="1" />
+        </Association>
+        <Association Name="CH110TROOrderExpirationSection">
+          <End Type="FACCTS_DBModel.CH110TROOrder" Role="CH110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.ExpirationSection" Role="ExpirationSection" Multiplicity="1" />
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
