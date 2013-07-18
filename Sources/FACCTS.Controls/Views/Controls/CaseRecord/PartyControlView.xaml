@@ -13,17 +13,22 @@
              d:DesignHeight="234.382">
     <UserControl.Resources>
     	<Converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
-        <ext:MefPart InstanceType="{x:Type fs:IDataContainer}" x:Key="DataContainer"/>
-        <CollectionViewSource x:Key="cvsSex" Source="{Binding Sexes, Mode=OneWay, Source={StaticResource DataContainer}}"/>
+
+        <CollectionViewSource x:Key="cvsSex" Source="{Binding DataContext.DataContainer.Sexes, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl, AncestorLevel=2}}"/>
         <CollectionViewSource x:Key="cvsStateList"
-                              Source="{Binding StateList, Mode=OneWay, Source={StaticResource DataContainer}}" />
-        <CollectionViewSource x:Key="cvsHair" Source="{Binding HairColors, Mode=OneWay, Source={StaticResource DataContainer}}"/>
-        <CollectionViewSource x:Key="cvsEyes" Source="{Binding EyesColors, Mode=OneWay, Source={StaticResource DataContainer}}"/>
-        <CollectionViewSource x:Key="cvsraces" Source="{Binding Races, Mode=OneWay, Source={StaticResource DataContainer}}"/>
-        <CollectionViewSource x:Key="cvsDesignations" Source="{Binding Designations, Mode=OneWay, Source={StaticResource DataContainer}}"/>
-        <CollectionViewSource x:Key="cvsParticipantRoles" Source="{Binding ParticipantRoles, Mode=OneWay, Source={StaticResource DataContainer}}"/>
+                              Source="{Binding DataContext.DataContainer.StateList, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl, AncestorLevel=2}}" />
+        <CollectionViewSource x:Key="cvsHair"
+                              Source="{Binding DataContext.DataContainer.HairColors, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl, AncestorLevel=2}}"/>
+        <CollectionViewSource x:Key="cvsEyes"
+                              Source="{Binding DataContext.DataContainer.EyesColors, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl, AncestorLevel=2}}"/>
+        <CollectionViewSource x:Key="cvsraces"
+                              Source="{Binding DataContext.DataContainer.Races, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl, AncestorLevel=2}}"/>
+        <CollectionViewSource x:Key="cvsDesignations"
+                              Source="{Binding DataContext.DataContainer.Designations, Mode=OneWay,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl, AncestorLevel=2}}"/>
+        <CollectionViewSource x:Key="cvsParticipantRoles"
+                              Source="{Binding DataContext.DataContainer.ParticipantRoles, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl, AncestorLevel=2}}"/>
         <CollectionViewSource x:Key="cvsEntityTypes"
-                              Source="{Binding Source={StaticResource DataContainer}, Path=EntityTypeList, Mode=OneWay}" />
+                              Source="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl, AncestorLevel=2}, Path=DataContext.DataContainer.EntityTypeList, Mode=OneWay}" />
     </UserControl.Resources>
 	<Grid x:Name="LayoutRoot">
 		<GroupBox Header="{Binding Title, ElementName=UserControl, Mode=OneWay}" Grid.IsSharedSizeScope="True">
@@ -107,13 +112,13 @@
 						<TextBox TextWrapping="Wrap" Text="{Binding Phone, FallbackValue=9112345678, Mode=TwoWay}" Grid.Column="5" VerticalAlignment="Center" Tag="Phone Number" Style="{DynamicResource TextBoxWithAdorner}"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="City, State, Postal" VerticalAlignment="Center" Grid.Row="1"/>
 						<TextBox TextWrapping="Wrap" Text="{Binding City, FallbackValue=New York, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Tag="City" Style="{DynamicResource TextBoxWithAdorner}"/>
-						<ComboBox SelectedValue="{Binding State, Mode=TwoWay}"
-							SelectedValuePath="Value"
-							ItemsSource="{Binding Mode=OneWay, Source={StaticResource cvsStateList}}"
-							Grid.Row="1"
-							Grid.Column="2"
-							VerticalAlignment="Center" />
-						<TextBox TextWrapping="Wrap" Text="{Binding ZipCode, FallbackValue=10011, Mode=TwoWay}" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Tag="Zip code" Style="{DynamicResource TextBoxWithAdorner}"/>
+                        <ComboBox SelectedValue="{Binding USAState, Mode=TwoWay}"
+                                  SelectedValuePath="Value"
+                                  ItemsSource="{Binding Mode=OneWay, Source={StaticResource cvsStateList}}"
+                                  Grid.Row="1"
+                                  Grid.Column="2"
+                                  VerticalAlignment="Center" />
+                        <TextBox TextWrapping="Wrap" Text="{Binding ZipCode, FallbackValue=10011, Mode=TwoWay}" Grid.Row="1" Grid.Column="3" VerticalAlignment="Center" Tag="Zip code" Style="{DynamicResource TextBoxWithAdorner}"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" Text="Fax" VerticalAlignment="Center" Grid.Row="1" Grid.Column="4"/>
 						<TextBox TextWrapping="Wrap" Text="{Binding Fax, FallbackValue=9012345678, Mode=TwoWay}" Grid.Row="1" Grid.Column="5" VerticalAlignment="Center" Tag="Fax" Style="{DynamicResource TextBoxWithAdorner}"/>
 						<TextBlock HorizontalAlignment="Right" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2" Text="Address Type"/>

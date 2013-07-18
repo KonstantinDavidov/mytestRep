@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 07/17/2013 18:18:37
+-- Date Created: 07/18/2013 18:49:35
 -- Generated from EDMX file: D:\FACCTS\FACCTSNEW\faccts.net\Sources\Faccts.Model\Entities\DataModel.edmx
 -- --------------------------------------------------
 
@@ -832,6 +832,172 @@ CREATE TABLE [dbo].[AdditionalPartySet] (
 );
 GO
 
+-- Creating table 'AttachmentOrder'
+CREATE TABLE [dbo].[AttachmentOrder] (
+    [Id] bigint IDENTITY(1,1) NOT NULL,
+    [MasterOrderId] bigint  NOT NULL,
+    [XmlContent] nvarchar(max)  NULL,
+    [ServerFileName] nvarchar(255)  NULL,
+    [OrderType] int  NOT NULL
+);
+GO
+
+-- Creating table 'MasterOrder'
+CREATE TABLE [dbo].[MasterOrder] (
+    [Id] bigint  NOT NULL,
+    [XMLContent] nvarchar(max)  NULL,
+    [IsSigned] bit  NOT NULL,
+    [ServerFileName] nvarchar(255)  NULL,
+    [OrderType] int  NOT NULL
+);
+GO
+
+-- Creating table 'ConductROSectionSet'
+CREATE TABLE [dbo].[ConductROSectionSet] (
+    [Id] bigint IDENTITY(1,1) NOT NULL,
+    [NoHarass] bit  NOT NULL,
+    [Requested] bit  NOT NULL,
+    [NoContact] bit  NOT NULL,
+    [NoLocate] bit  NOT NULL,
+    [AppliedToOtherProtected] bit  NOT NULL,
+    [OtherRequested] bit  NOT NULL,
+    [OtherText] nvarchar(max)  NOT NULL,
+    [OtherAttached] bit  NOT NULL
+);
+GO
+
+-- Creating table 'CH130ROOrderSet'
+CREATE TABLE [dbo].[CH130ROOrderSet] (
+    [Id] bigint IDENTITY(1,1) NOT NULL,
+    [ConductSection_Id] bigint  NOT NULL,
+    [ServiceSection_Id] bigint  NOT NULL,
+    [SAOSection_Id] bigint  NOT NULL,
+    [NoGunsSection_Id] bigint  NOT NULL,
+    [OtherOrdersSection_Id] bigint  NOT NULL,
+    [CarposEntrySection_Id] bigint  NOT NULL,
+    [ExpirationSection_Id] bigint  NOT NULL,
+    [ServiceFeesSection_Id] bigint  NOT NULL,
+    [AttorneysFeesSection_Id] bigint  NOT NULL
+);
+GO
+
+-- Creating table 'ServiceSectionSet'
+CREATE TABLE [dbo].[ServiceSectionSet] (
+    [Id] bigint IDENTITY(1,1) NOT NULL,
+    [Service] int  NULL
+);
+GO
+
+-- Creating table 'SAOROSectionSet'
+CREATE TABLE [dbo].[SAOROSectionSet] (
+    [Id] bigint IDENTITY(1,1) NOT NULL,
+    [Requested] bit  NOT NULL,
+    [Distance] decimal(18,0)  NOT NULL,
+    [FromPerson] bit  NOT NULL,
+    [FromWork] bit  NOT NULL,
+    [FromChildSchool] bit  NOT NULL,
+    [FromHome] bit  NOT NULL,
+    [FromVehicle] bit  NOT NULL,
+    [FromChildCare] bit  NOT NULL,
+    [FromOtherProtected] bit  NOT NULL,
+    [OtherRequested] bit  NOT NULL,
+    [OtherText] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'NoGunsSectionSet'
+CREATE TABLE [dbo].[NoGunsSectionSet] (
+    [Id] bigint IDENTITY(1,1) NOT NULL,
+    [Requested] bit  NOT NULL
+);
+GO
+
+-- Creating table 'OtherOrdersROSectionSet'
+CREATE TABLE [dbo].[OtherOrdersROSectionSet] (
+    [Id] bigint IDENTITY(1,1) NOT NULL,
+    [Attached] bit  NOT NULL,
+    [Text] nvarchar(max)  NOT NULL
+);
+GO
+
+-- Creating table 'CarposEntrySectionSet'
+CREATE TABLE [dbo].[CarposEntrySectionSet] (
+    [Id] bigint IDENTITY(1,1) NOT NULL,
+    [EntryType] int  NULL
+);
+GO
+
+-- Creating table 'LawEnforcementSet'
+CREATE TABLE [dbo].[LawEnforcementSet] (
+    [Id] bigint IDENTITY(1,1) NOT NULL,
+    [Agency] nvarchar(max)  NOT NULL,
+    [Address] nvarchar(max)  NOT NULL,
+    [CarposEntrySectionId] bigint  NOT NULL
+);
+GO
+
+-- Creating table 'ExpirationSectionSet'
+CREATE TABLE [dbo].[ExpirationSectionSet] (
+    [Id] bigint IDENTITY(1,1) NOT NULL,
+    [Expires] bit  NOT NULL,
+    [DateTime] datetime  NULL
+);
+GO
+
+-- Creating table 'ServiceFeesSectionSet'
+CREATE TABLE [dbo].[ServiceFeesSectionSet] (
+    [Id] bigint IDENTITY(1,1) NOT NULL,
+    [Ordered] bit  NOT NULL,
+    [Property1] nvarchar(max)  NOT NULL,
+    [BasedOnViolence] bit  NOT NULL,
+    [Waiver] bit  NOT NULL
+);
+GO
+
+-- Creating table 'AttorneysFeesSectionSet'
+CREATE TABLE [dbo].[AttorneysFeesSectionSet] (
+    [Id] bigint IDENTITY(1,1) NOT NULL,
+    [PaidBy] int  NOT NULL,
+    [PaidTo] int  NOT NULL,
+    [LawyersFees] bit  NOT NULL,
+    [CourtCosts] bit  NOT NULL
+);
+GO
+
+-- Creating table 'CH110TROOrderSet'
+CREATE TABLE [dbo].[CH110TROOrderSet] (
+    [Id] bigint IDENTITY(1,1) NOT NULL,
+    [ConductTROSection_Id] bigint  NOT NULL,
+    [SAOTROSection_Id] bigint  NOT NULL,
+    [NoGunsSection_Id] bigint  NOT NULL,
+    [OtherOrdersTROSection_Id] bigint  NOT NULL,
+    [CarposEntryROSection_Id] bigint  NOT NULL,
+    [ServiceFeesSection_Id] bigint  NOT NULL,
+    [ExpirationSection_Id] bigint  NOT NULL
+);
+GO
+
+-- Creating table 'ConductROSectionSet_ConductTROSection'
+CREATE TABLE [dbo].[ConductROSectionSet_ConductTROSection] (
+    [OrderState] int  NOT NULL,
+    [Id] bigint  NOT NULL
+);
+GO
+
+-- Creating table 'SAOROSectionSet_SAOTROSection'
+CREATE TABLE [dbo].[SAOROSectionSet_SAOTROSection] (
+    [OrderState] int  NOT NULL,
+    [Id] bigint  NOT NULL
+);
+GO
+
+-- Creating table 'OtherOrdersROSectionSet_OtherOrdersTROSection'
+CREATE TABLE [dbo].[OtherOrdersROSectionSet_OtherOrdersTROSection] (
+    [OrderState] int  NOT NULL,
+    [Id] bigint  NOT NULL
+);
+GO
+
 -- Creating table 'AdditionalPartySet_Child'
 CREATE TABLE [dbo].[AdditionalPartySet_Child] (
     [Sex] int  NOT NULL,
@@ -1124,6 +1290,108 @@ GO
 -- Creating primary key on [Id] in table 'AdditionalPartySet'
 ALTER TABLE [dbo].[AdditionalPartySet]
 ADD CONSTRAINT [PK_AdditionalPartySet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'AttachmentOrder'
+ALTER TABLE [dbo].[AttachmentOrder]
+ADD CONSTRAINT [PK_AttachmentOrder]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'MasterOrder'
+ALTER TABLE [dbo].[MasterOrder]
+ADD CONSTRAINT [PK_MasterOrder]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'ConductROSectionSet'
+ALTER TABLE [dbo].[ConductROSectionSet]
+ADD CONSTRAINT [PK_ConductROSectionSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'CH130ROOrderSet'
+ALTER TABLE [dbo].[CH130ROOrderSet]
+ADD CONSTRAINT [PK_CH130ROOrderSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'ServiceSectionSet'
+ALTER TABLE [dbo].[ServiceSectionSet]
+ADD CONSTRAINT [PK_ServiceSectionSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'SAOROSectionSet'
+ALTER TABLE [dbo].[SAOROSectionSet]
+ADD CONSTRAINT [PK_SAOROSectionSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'NoGunsSectionSet'
+ALTER TABLE [dbo].[NoGunsSectionSet]
+ADD CONSTRAINT [PK_NoGunsSectionSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'OtherOrdersROSectionSet'
+ALTER TABLE [dbo].[OtherOrdersROSectionSet]
+ADD CONSTRAINT [PK_OtherOrdersROSectionSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'CarposEntrySectionSet'
+ALTER TABLE [dbo].[CarposEntrySectionSet]
+ADD CONSTRAINT [PK_CarposEntrySectionSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'LawEnforcementSet'
+ALTER TABLE [dbo].[LawEnforcementSet]
+ADD CONSTRAINT [PK_LawEnforcementSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'ExpirationSectionSet'
+ALTER TABLE [dbo].[ExpirationSectionSet]
+ADD CONSTRAINT [PK_ExpirationSectionSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'ServiceFeesSectionSet'
+ALTER TABLE [dbo].[ServiceFeesSectionSet]
+ADD CONSTRAINT [PK_ServiceFeesSectionSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'AttorneysFeesSectionSet'
+ALTER TABLE [dbo].[AttorneysFeesSectionSet]
+ADD CONSTRAINT [PK_AttorneysFeesSectionSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'CH110TROOrderSet'
+ALTER TABLE [dbo].[CH110TROOrderSet]
+ADD CONSTRAINT [PK_CH110TROOrderSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'ConductROSectionSet_ConductTROSection'
+ALTER TABLE [dbo].[ConductROSectionSet_ConductTROSection]
+ADD CONSTRAINT [PK_ConductROSectionSet_ConductTROSection]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'SAOROSectionSet_SAOTROSection'
+ALTER TABLE [dbo].[SAOROSectionSet_SAOTROSection]
+ADD CONSTRAINT [PK_SAOROSectionSet_SAOTROSection]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'OtherOrdersROSectionSet_OtherOrdersTROSection'
+ALTER TABLE [dbo].[OtherOrdersROSectionSet_OtherOrdersTROSection]
+ADD CONSTRAINT [PK_OtherOrdersROSectionSet_OtherOrdersTROSection]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -1755,6 +2023,294 @@ ADD CONSTRAINT [FK_CourtCaseAdditionalParty]
 CREATE INDEX [IX_FK_CourtCaseAdditionalParty]
 ON [dbo].[AdditionalPartySet]
     ([CourtCaseId]);
+GO
+
+-- Creating foreign key on [MasterOrderId] in table 'AttachmentOrder'
+ALTER TABLE [dbo].[AttachmentOrder]
+ADD CONSTRAINT [FK_MasterOrderAttachmentOrder]
+    FOREIGN KEY ([MasterOrderId])
+    REFERENCES [dbo].[MasterOrder]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_MasterOrderAttachmentOrder'
+CREATE INDEX [IX_FK_MasterOrderAttachmentOrder]
+ON [dbo].[AttachmentOrder]
+    ([MasterOrderId]);
+GO
+
+-- Creating foreign key on [Id] in table 'MasterOrder'
+ALTER TABLE [dbo].[MasterOrder]
+ADD CONSTRAINT [FK_CaseHistoryMasterOrder]
+    FOREIGN KEY ([Id])
+    REFERENCES [dbo].[CaseHistory]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [ConductSection_Id] in table 'CH130ROOrderSet'
+ALTER TABLE [dbo].[CH130ROOrderSet]
+ADD CONSTRAINT [FK_CH130OrderConductSection]
+    FOREIGN KEY ([ConductSection_Id])
+    REFERENCES [dbo].[ConductROSectionSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CH130OrderConductSection'
+CREATE INDEX [IX_FK_CH130OrderConductSection]
+ON [dbo].[CH130ROOrderSet]
+    ([ConductSection_Id]);
+GO
+
+-- Creating foreign key on [ServiceSection_Id] in table 'CH130ROOrderSet'
+ALTER TABLE [dbo].[CH130ROOrderSet]
+ADD CONSTRAINT [FK_CH130OrderServiceSection]
+    FOREIGN KEY ([ServiceSection_Id])
+    REFERENCES [dbo].[ServiceSectionSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CH130OrderServiceSection'
+CREATE INDEX [IX_FK_CH130OrderServiceSection]
+ON [dbo].[CH130ROOrderSet]
+    ([ServiceSection_Id]);
+GO
+
+-- Creating foreign key on [SAOSection_Id] in table 'CH130ROOrderSet'
+ALTER TABLE [dbo].[CH130ROOrderSet]
+ADD CONSTRAINT [FK_CH130OrderSAOSection]
+    FOREIGN KEY ([SAOSection_Id])
+    REFERENCES [dbo].[SAOROSectionSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CH130OrderSAOSection'
+CREATE INDEX [IX_FK_CH130OrderSAOSection]
+ON [dbo].[CH130ROOrderSet]
+    ([SAOSection_Id]);
+GO
+
+-- Creating foreign key on [NoGunsSection_Id] in table 'CH130ROOrderSet'
+ALTER TABLE [dbo].[CH130ROOrderSet]
+ADD CONSTRAINT [FK_CH130OrderNoGunsSection]
+    FOREIGN KEY ([NoGunsSection_Id])
+    REFERENCES [dbo].[NoGunsSectionSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CH130OrderNoGunsSection'
+CREATE INDEX [IX_FK_CH130OrderNoGunsSection]
+ON [dbo].[CH130ROOrderSet]
+    ([NoGunsSection_Id]);
+GO
+
+-- Creating foreign key on [OtherOrdersSection_Id] in table 'CH130ROOrderSet'
+ALTER TABLE [dbo].[CH130ROOrderSet]
+ADD CONSTRAINT [FK_CH130OrderOtherOrdersSection]
+    FOREIGN KEY ([OtherOrdersSection_Id])
+    REFERENCES [dbo].[OtherOrdersROSectionSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CH130OrderOtherOrdersSection'
+CREATE INDEX [IX_FK_CH130OrderOtherOrdersSection]
+ON [dbo].[CH130ROOrderSet]
+    ([OtherOrdersSection_Id]);
+GO
+
+-- Creating foreign key on [CarposEntrySectionId] in table 'LawEnforcementSet'
+ALTER TABLE [dbo].[LawEnforcementSet]
+ADD CONSTRAINT [FK_CarposEntrySectionLawEnforcement]
+    FOREIGN KEY ([CarposEntrySectionId])
+    REFERENCES [dbo].[CarposEntrySectionSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CarposEntrySectionLawEnforcement'
+CREATE INDEX [IX_FK_CarposEntrySectionLawEnforcement]
+ON [dbo].[LawEnforcementSet]
+    ([CarposEntrySectionId]);
+GO
+
+-- Creating foreign key on [CarposEntrySection_Id] in table 'CH130ROOrderSet'
+ALTER TABLE [dbo].[CH130ROOrderSet]
+ADD CONSTRAINT [FK_CH130OrderCarposEntrySection]
+    FOREIGN KEY ([CarposEntrySection_Id])
+    REFERENCES [dbo].[CarposEntrySectionSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CH130OrderCarposEntrySection'
+CREATE INDEX [IX_FK_CH130OrderCarposEntrySection]
+ON [dbo].[CH130ROOrderSet]
+    ([CarposEntrySection_Id]);
+GO
+
+-- Creating foreign key on [ExpirationSection_Id] in table 'CH130ROOrderSet'
+ALTER TABLE [dbo].[CH130ROOrderSet]
+ADD CONSTRAINT [FK_CH130OrderExpirationSection]
+    FOREIGN KEY ([ExpirationSection_Id])
+    REFERENCES [dbo].[ExpirationSectionSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CH130OrderExpirationSection'
+CREATE INDEX [IX_FK_CH130OrderExpirationSection]
+ON [dbo].[CH130ROOrderSet]
+    ([ExpirationSection_Id]);
+GO
+
+-- Creating foreign key on [ServiceFeesSection_Id] in table 'CH130ROOrderSet'
+ALTER TABLE [dbo].[CH130ROOrderSet]
+ADD CONSTRAINT [FK_CH130OrderServiceFeesSection]
+    FOREIGN KEY ([ServiceFeesSection_Id])
+    REFERENCES [dbo].[ServiceFeesSectionSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CH130OrderServiceFeesSection'
+CREATE INDEX [IX_FK_CH130OrderServiceFeesSection]
+ON [dbo].[CH130ROOrderSet]
+    ([ServiceFeesSection_Id]);
+GO
+
+-- Creating foreign key on [AttorneysFeesSection_Id] in table 'CH130ROOrderSet'
+ALTER TABLE [dbo].[CH130ROOrderSet]
+ADD CONSTRAINT [FK_CH130OrderAttorneysFeesSection]
+    FOREIGN KEY ([AttorneysFeesSection_Id])
+    REFERENCES [dbo].[AttorneysFeesSectionSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CH130OrderAttorneysFeesSection'
+CREATE INDEX [IX_FK_CH130OrderAttorneysFeesSection]
+ON [dbo].[CH130ROOrderSet]
+    ([AttorneysFeesSection_Id]);
+GO
+
+-- Creating foreign key on [ConductTROSection_Id] in table 'CH110TROOrderSet'
+ALTER TABLE [dbo].[CH110TROOrderSet]
+ADD CONSTRAINT [FK_CH110OrderConductTROSection]
+    FOREIGN KEY ([ConductTROSection_Id])
+    REFERENCES [dbo].[ConductROSectionSet_ConductTROSection]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CH110OrderConductTROSection'
+CREATE INDEX [IX_FK_CH110OrderConductTROSection]
+ON [dbo].[CH110TROOrderSet]
+    ([ConductTROSection_Id]);
+GO
+
+-- Creating foreign key on [SAOTROSection_Id] in table 'CH110TROOrderSet'
+ALTER TABLE [dbo].[CH110TROOrderSet]
+ADD CONSTRAINT [FK_CH110OrderSAOTROSection]
+    FOREIGN KEY ([SAOTROSection_Id])
+    REFERENCES [dbo].[SAOROSectionSet_SAOTROSection]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CH110OrderSAOTROSection'
+CREATE INDEX [IX_FK_CH110OrderSAOTROSection]
+ON [dbo].[CH110TROOrderSet]
+    ([SAOTROSection_Id]);
+GO
+
+-- Creating foreign key on [NoGunsSection_Id] in table 'CH110TROOrderSet'
+ALTER TABLE [dbo].[CH110TROOrderSet]
+ADD CONSTRAINT [FK_CH110TROOrderNoGunsSection]
+    FOREIGN KEY ([NoGunsSection_Id])
+    REFERENCES [dbo].[NoGunsSectionSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CH110TROOrderNoGunsSection'
+CREATE INDEX [IX_FK_CH110TROOrderNoGunsSection]
+ON [dbo].[CH110TROOrderSet]
+    ([NoGunsSection_Id]);
+GO
+
+-- Creating foreign key on [OtherOrdersTROSection_Id] in table 'CH110TROOrderSet'
+ALTER TABLE [dbo].[CH110TROOrderSet]
+ADD CONSTRAINT [FK_CH110TROOrderOtherOrdersTROSection]
+    FOREIGN KEY ([OtherOrdersTROSection_Id])
+    REFERENCES [dbo].[OtherOrdersROSectionSet_OtherOrdersTROSection]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CH110TROOrderOtherOrdersTROSection'
+CREATE INDEX [IX_FK_CH110TROOrderOtherOrdersTROSection]
+ON [dbo].[CH110TROOrderSet]
+    ([OtherOrdersTROSection_Id]);
+GO
+
+-- Creating foreign key on [CarposEntryROSection_Id] in table 'CH110TROOrderSet'
+ALTER TABLE [dbo].[CH110TROOrderSet]
+ADD CONSTRAINT [FK_CH110TROOrderCarposEntryROSection]
+    FOREIGN KEY ([CarposEntryROSection_Id])
+    REFERENCES [dbo].[CarposEntrySectionSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CH110TROOrderCarposEntryROSection'
+CREATE INDEX [IX_FK_CH110TROOrderCarposEntryROSection]
+ON [dbo].[CH110TROOrderSet]
+    ([CarposEntryROSection_Id]);
+GO
+
+-- Creating foreign key on [ServiceFeesSection_Id] in table 'CH110TROOrderSet'
+ALTER TABLE [dbo].[CH110TROOrderSet]
+ADD CONSTRAINT [FK_CH110TROOrderServiceFeesSection]
+    FOREIGN KEY ([ServiceFeesSection_Id])
+    REFERENCES [dbo].[ServiceFeesSectionSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CH110TROOrderServiceFeesSection'
+CREATE INDEX [IX_FK_CH110TROOrderServiceFeesSection]
+ON [dbo].[CH110TROOrderSet]
+    ([ServiceFeesSection_Id]);
+GO
+
+-- Creating foreign key on [ExpirationSection_Id] in table 'CH110TROOrderSet'
+ALTER TABLE [dbo].[CH110TROOrderSet]
+ADD CONSTRAINT [FK_CH110TROOrderExpirationSection]
+    FOREIGN KEY ([ExpirationSection_Id])
+    REFERENCES [dbo].[ExpirationSectionSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CH110TROOrderExpirationSection'
+CREATE INDEX [IX_FK_CH110TROOrderExpirationSection]
+ON [dbo].[CH110TROOrderSet]
+    ([ExpirationSection_Id]);
+GO
+
+-- Creating foreign key on [Id] in table 'ConductROSectionSet_ConductTROSection'
+ALTER TABLE [dbo].[ConductROSectionSet_ConductTROSection]
+ADD CONSTRAINT [FK_ConductTROSection_inherits_ConductROSection]
+    FOREIGN KEY ([Id])
+    REFERENCES [dbo].[ConductROSectionSet]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Id] in table 'SAOROSectionSet_SAOTROSection'
+ALTER TABLE [dbo].[SAOROSectionSet_SAOTROSection]
+ADD CONSTRAINT [FK_SAOTROSection_inherits_SAOROSection]
+    FOREIGN KEY ([Id])
+    REFERENCES [dbo].[SAOROSectionSet]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [Id] in table 'OtherOrdersROSectionSet_OtherOrdersTROSection'
+ALTER TABLE [dbo].[OtherOrdersROSectionSet_OtherOrdersTROSection]
+ADD CONSTRAINT [FK_OtherOrdersTROSection_inherits_OtherOrdersROSection]
+    FOREIGN KEY ([Id])
+    REFERENCES [dbo].[OtherOrdersROSectionSet]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating foreign key on [Id] in table 'AdditionalPartySet_Child'
