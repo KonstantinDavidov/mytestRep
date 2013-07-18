@@ -1642,7 +1642,7 @@
           <Property Type="String" Name="StateBarId" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="CourtParty" Relationship="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id" FromRole="Attorneys" ToRole="CourtParty" />
           <NavigationProperty Name="ThirdPartyData" Relationship="FACCTS_DBModel.FK_dbo_ThirdPartyData_dbo_Attorneys_Attorney_Id" FromRole="Attorneys" ToRole="ThirdPartyData" />
-          <Property Type="Int32" Name="USAState" Nullable="false" />
+          <Property Type="FACCTS_DBModel.USAState" Name="USAState" Nullable="false" />
           <NavigationProperty Name="CaseHistory" Relationship="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_Attorneys_AttorneyForChild_Id" FromRole="Attorneys" ToRole="CaseHistory" />
           <NavigationProperty Name="CourtPartyAttorneyData" Relationship="FACCTS_DBModel.FK_dbo_CourtPartyAttorneyData_dbo_Attorneys_Attorney_Id" FromRole="Attorneys" ToRole="CourtPartyAttorneyData" />
         </EntityType>

@@ -327,7 +327,7 @@ namespace Faccts.Model.Entities
         private string _stateBarId;
     
         [DataMember]
-        public int USAState
+        public FACCTS.Server.Model.Enums.USAState USAState
         {
             get { return _uSAState; }
             set
@@ -340,7 +340,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _uSAState;
+        private FACCTS.Server.Model.Enums.USAState _uSAState;
 
         #endregion
 
