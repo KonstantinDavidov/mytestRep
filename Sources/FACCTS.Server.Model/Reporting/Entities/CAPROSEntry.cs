@@ -10,6 +10,6 @@ namespace FACCTS.Server.Model.Reporting.Entities
     public class CAPROSEntry
     {
         public CARPOSEntryType CARPOSEntryType { get; set; }
-        public Dictionary<string, string> LawEnforcementAgencies { get; set; }
+        public List<DataItem> LawEnforcementAgencies { get; set; }
     }
 }

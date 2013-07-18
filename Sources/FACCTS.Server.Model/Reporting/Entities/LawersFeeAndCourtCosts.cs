@@ -13,14 +13,14 @@ namespace FACCTS.Server.Model.Reporting.Entities
         public bool IsLawyerFee { get; set; }
         public bool IsCourtCosts { get; set; }
         public bool IsParty1Payer { get; set; }
-        public Dictionary<string, string> LawyersFees
+        public List<DataItem> LawyersFees
         {
             get;
             private set;
         }
         public LawersFeeAndCourtCosts()
         {
-            LawyersFees = new Dictionary<string, string>();
+            LawyersFees = new List<DataItem>();
         }
     }
 }

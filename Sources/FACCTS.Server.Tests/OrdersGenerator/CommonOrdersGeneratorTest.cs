@@ -55,8 +55,13 @@ namespace FACCTS.Server.Tests.OrdersGenerator
 
             testModel.CAPROSEntrySection = new CAPROSEntry();
             testModel.CAPROSEntrySection.CARPOSEntryType = CARPOSEntryType.ByProtected;
-            testModel.CAPROSEntrySection.LawEnforcementAgencies = new Dictionary<string, string>() { { "Agency1", "Address1" }, { "Agency2", "Address2" }, { "Agency3", "Address3" } };
-            
+            testModel.CAPROSEntrySection.LawEnforcementAgencies = new List<DataItem>();
+            testModel.CAPROSEntrySection.LawEnforcementAgencies.Add(new DataItem{ Name="Agency1", Description="Address1"});
+            testModel.CAPROSEntrySection.LawEnforcementAgencies.Add(new DataItem{Name = "Agency2", Description="Address2"});
+            testModel.CAPROSEntrySection.LawEnforcementAgencies.Add(new DataItem { Name = "Agency3", Description = "Address3" });
+            testModel.CAPROSEntrySection.LawEnforcementAgencies.Add(new DataItem { Name = "Agency4", Description = "Address4" });
+            testModel.CAPROSEntrySection.LawEnforcementAgencies.Add(new DataItem { Name = "Agency5", Description = "Address5" });
+
             testModel.NoServiceFeeSection = new NoServiceFee();
             testModel.NoServiceFeeSection.IsOrdered = true;
             testModel.NoServiceFeeSection.IsBasedOnViolence = true;
@@ -66,11 +71,11 @@ namespace FACCTS.Server.Tests.OrdersGenerator
             testModel.LawersFeeAndCourtCostsSection.IsCourtCosts = true;
             testModel.LawersFeeAndCourtCostsSection.IsLawyerFee = true;
             testModel.LawersFeeAndCourtCostsSection.IsParty1Payer = false;
-            testModel.LawersFeeAndCourtCostsSection.LawyersFees.Add("Agency1", "Cost1");
-            testModel.LawersFeeAndCourtCostsSection.LawyersFees.Add("Agency2", "Cost2");
-            testModel.LawersFeeAndCourtCostsSection.LawyersFees.Add("Agency3", "Cost3");
-            testModel.LawersFeeAndCourtCostsSection.LawyersFees.Add("Agency4", "Cost4");
-            testModel.LawersFeeAndCourtCostsSection.LawyersFees.Add("Agency5", "Cost5");
+            testModel.LawersFeeAndCourtCostsSection.LawyersFees.Add(new DataItem{ Name="Agency1", Description="Cost1"});
+            testModel.LawersFeeAndCourtCostsSection.LawyersFees.Add(new DataItem{Name = "Agency2", Description="Cost2"});
+            testModel.LawersFeeAndCourtCostsSection.LawyersFees.Add(new DataItem { Name = "Agency3", Description = "Cost3" });
+            testModel.LawersFeeAndCourtCostsSection.LawyersFees.Add(new DataItem { Name = "Agency4", Description = "Cost4" });
+            testModel.LawersFeeAndCourtCostsSection.LawyersFees.Add(new DataItem { Name = "Agency5", Description = "Cost5" });
 
             testModel.IsOtherOrdersAttached = true;
             testModel.OtherOrderDetail = "Some Details ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt";
