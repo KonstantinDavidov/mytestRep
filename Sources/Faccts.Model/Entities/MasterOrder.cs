@@ -51,10 +51,10 @@ namespace Faccts.Model.Entities
     			);
     			Observable.Merge<Object>(
     				this.ObservableForProperty(x => x.Id)
-    				,this.ObservableForProperty(x => x.OrderType)
     				,this.ObservableForProperty(x => x.XMLContent)
     				,this.ObservableForProperty(x => x.IsSigned)
     				,this.ObservableForProperty(x => x.ServerFileName)
+    				,this.ObservableForProperty(x => x.OrderType)
     				,this.ObservableForProperty(x => x.CaseHistory.IsDirty)
     			).
     			Subscribe(_ =>
@@ -166,22 +166,6 @@ namespace Faccts.Model.Entities
         private long _id;
     
         [DataMember]
-        public FACCTS.Server.Model.Enums.MasterOrders OrderType
-        {
-            get { return _orderType; }
-            set
-            {
-                if (_orderType != value)
-                {
-    				OnPropertyChanging("OrderType");
-                    _orderType = value;
-                    OnPropertyChanged("OrderType");
-                }
-            }
-        }
-        private FACCTS.Server.Model.Enums.MasterOrders _orderType;
-    
-        [DataMember]
         public string XMLContent
         {
             get { return _xMLContent; }
@@ -228,6 +212,22 @@ namespace Faccts.Model.Entities
             }
         }
         private string _serverFileName;
+    
+        [DataMember]
+        public FACCTS.Server.Model.Enums.MasterOrders OrderType
+        {
+            get { return _orderType; }
+            set
+            {
+                if (_orderType != value)
+                {
+    				OnPropertyChanging("OrderType");
+                    _orderType = value;
+                    OnPropertyChanged("OrderType");
+                }
+            }
+        }
+        private FACCTS.Server.Model.Enums.MasterOrders _orderType;
 
         #endregion
 
@@ -257,23 +257,11 @@ namespace Faccts.Model.Entities
                     if (_attachmentOrder != null)
                     {
                         _attachmentOrder.CollectionChanged -= FixupAttachmentOrder;
-                        // This is the principal end in an association that performs cascade deletes.
-                        // Remove the cascade delete event handler for any entities in the current collection.
-                        foreach (AttachmentOrder item in _attachmentOrder)
-                        {
-                            ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
-                        }
                     }
                     _attachmentOrder = value;
                     if (_attachmentOrder != null)
                     {
                         _attachmentOrder.CollectionChanged += FixupAttachmentOrder;
-                        // This is the principal end in an association that performs cascade deletes.
-                        // Add the cascade delete event handler for any entities that are already in the new collection.
-                        foreach (AttachmentOrder item in _attachmentOrder)
-                        {
-                            ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
-                        }
                     }
                     OnNavigationPropertyChanged("AttachmentOrder");
                 }
@@ -479,9 +467,6 @@ namespace Faccts.Model.Entities
                         }
                         ChangeTracker.RecordAdditionToCollectionProperties("AttachmentOrder", item);
                     }
-                    // This is the principal end in an association that performs cascade deletes.
-                    // Update the event listener to refer to the new dependent.
-                    ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
                 }
             }
     
@@ -497,9 +482,6 @@ namespace Faccts.Model.Entities
                     {
                         ChangeTracker.RecordRemovalFromCollectionProperties("AttachmentOrder", item);
                     }
-                    // This is the principal end in an association that performs cascade deletes.
-                    // Remove the previous dependent from the event listener.
-                    ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
                 }
             }
         }

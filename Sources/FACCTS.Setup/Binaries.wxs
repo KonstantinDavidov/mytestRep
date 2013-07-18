@@ -35,9 +35,6 @@
                 <File Id="fil9A17A8770C5943886826025D2F8063C0" KeyPath="yes" Source="$(var.FACCTS.TargetDir)\DatabaseDeploy.exe.config" />
             </Component>
             
-            
-            
-            
             <Component Id="cmp00B4F56F4D0F3CE87DB524482BC68C3A" Guid="*">
                 <File Id="fil34AEF08B68F1C84EBAA2759CE2691877" KeyPath="yes" Source="$(var.FACCTS.TargetDir)\EntityFramework.dll" />
             </Component>
@@ -506,9 +503,6 @@
             
             <ComponentRef Id="cmpA2132617A70B5240E4B933F8AAFD78D2" />
             <ComponentRef Id="cmp02AC29A29EE3B6782D6D2C850E8F5A2F" />
-            
-            
-            
             
             <ComponentRef Id="cmp00B4F56F4D0F3CE87DB524482BC68C3A" />
             

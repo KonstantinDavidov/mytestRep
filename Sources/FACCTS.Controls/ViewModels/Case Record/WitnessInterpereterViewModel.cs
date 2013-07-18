@@ -37,55 +37,28 @@ namespace FACCTS.Controls.ViewModels
 
         public void AddWitness()
         {
-            var newWitness = new Witnesses()
-                {
-                    CourtParty = CurrentCourtCase.Party1,
-                    Designation = DataContainer.Designations.FirstOrDefault(),
-                };
-            if (this.CurrentHistoryRecord != null)
-            {
-                this.CurrentHistoryRecord.Witnesses.Add(newWitness);
-            }
-            else
-            {
-                CurrentCourtCase.Witnesses.Add(newWitness);
-            }
+            this.CurrentCourtCase.NewWitness();
             
         }
 
-        public void RemoveWitness(Witnesses witness)
+        public void RemoveWitness(AdditionalParty witness)
         {
             if (_dialogService.MessageBox("Do you really want to remove the witness?", "Witness removal", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
             {
-                if (this.CurrentHistoryRecord != null)
-                {
-                    this.CurrentHistoryRecord.Witnesses.Remove(witness);
-                }
-                else
-                {
-                    this.CurrentCourtCase.Witnesses.Remove(witness);
-                }
-                
+                this.CurrentCourtCase.RemoveAdditionalParty(witness);
             }
         }
 
         public void AddInterpreter()
         {
-            var newInterpreter = new Interpreters()
-            {
-                CourtParty = CurrentCourtCase.Party1,
-                Language = "English",
-            };
-            var collection = this.CurrentHistoryRecord != null ? this.CurrentHistoryRecord.Interpreters : this.CurrentCourtCase.Interpreters;
-            collection.Add(newInterpreter);
+            this.CurrentCourtCase.NewInterpreter();
         }
 
-        public void RemoveInterpreter(Interpreters interpreter)
+        public void RemoveInterpreter(Interpreter interpreter)
         {
             if (_dialogService.MessageBox("Do you really want to remove the interpreter?", "Interpreter removal", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
             {
-                var collection = this.CurrentHistoryRecord != null ? this.CurrentHistoryRecord.Interpreters : this.CurrentCourtCase.Interpreters;
-                collection.Remove(interpreter);
+                CurrentCourtCase.RemoveInterpreter(interpreter);
             }
         }
 
@@ -97,12 +70,24 @@ namespace FACCTS.Controls.ViewModels
                     return null;
                 List<CourtPartyAdapter> result = new List<CourtPartyAdapter>()
                 {
-                    new CourtPartyAdapter(CurrentCourtCase.Party1),
-                    new CourtPartyAdapter(CurrentCourtCase.Party2, false),
+                    new CourtPartyAdapter(PartyFor.Party1, GetNameForParty, "Witness for: ", CurrentCourtCase.Party1.FullNameChanged, CurrentCourtCase.Party2.FullNameChanged),
+                    new CourtPartyAdapter(PartyFor.Party2, GetNameForParty, "Witness for: ", CurrentCourtCase.Party1.FullNameChanged, CurrentCourtCase.Party2.FullNameChanged),
                 };
 
                 return result;
             }
+        }
+
+        private string GetNameForParty(PartyFor pf)
+        {
+            switch (pf)
+            {
+                case PartyFor.Party1:
+                    return CurrentCourtCase.Party1.FullName;
+                case PartyFor.Party2:
+                    return CurrentCourtCase.Party2.FullName;
+            }
+            return null;
         }
 
         public List<CourtPartyAdapter> InterpretersFor
@@ -113,8 +98,8 @@ namespace FACCTS.Controls.ViewModels
                     return null;
                 List<CourtPartyAdapter> result = new List<CourtPartyAdapter>()
                 {
-                    new CourtPartyAdapter(CurrentCourtCase.Party1, true, "Interpreter For:"),
-                    new CourtPartyAdapter(CurrentCourtCase.Party2, false, "Interpreter For:"),
+                    new CourtPartyAdapter(PartyFor.Party1, GetNameForParty, "Interpreter For:", CurrentCourtCase.Party1.FullNameChanged, CurrentCourtCase.Party2.FullNameChanged),
+                    new CourtPartyAdapter(PartyFor.Party2, GetNameForParty, "Interpreter For:", CurrentCourtCase.Party1.FullNameChanged, CurrentCourtCase.Party2.FullNameChanged),
                 };
 
                 return result;

@@ -44,39 +44,30 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
+
         public void AddChild()
         {
-            var newChild = new Children()
-            {
-                FirstName = "First Name",
-                Sex = FACCTS.Server.Model.Enums.Gender.F,
-            };
-            CurrentCourtCase.Children.Add(newChild);
+            CurrentCourtCase.NewChild();
         }
 
-        public void RemoveChild(Children child)
+        public void RemoveChild(Child child)
         {
             if (_dialogService.MessageBox("Do you really want to delete the child from the Court Case record?", "Deletion of the Child", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
             {
-                CurrentCourtCase.Children.Remove(child);
+                CurrentCourtCase.RemoveChild(child);
             }
         }
 
         public void AddOtherProtected()
         {
-            var newOP = new OtherProtected()
-            {
-                FirstName = "First name",
-                Sex = FACCTS.Server.Model.Enums.Gender.F,
-            };
-            CurrentCourtCase.OtherProtected.Add(newOP);
+            CurrentCourtCase.NewOtherProtected();
         }
 
         public void RemoveOtherProtected(OtherProtected otherProtected)
         {
             if (_dialogService.MessageBox("Do you really want to delete the other protected person from the Court Case record?", "Deletion of the Other Protected", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
             {
-                CurrentCourtCase.OtherProtected.Remove(otherProtected);
+                CurrentCourtCase.RemoveOtherProtected(otherProtected);
             }
             
         }

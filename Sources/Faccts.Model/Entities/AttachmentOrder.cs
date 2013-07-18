@@ -51,9 +51,9 @@ namespace Faccts.Model.Entities
     			Observable.Merge<Object>(
     				this.ObservableForProperty(x => x.Id)
     				,this.ObservableForProperty(x => x.MasterOrderId)
-    				,this.ObservableForProperty(x => x.OrderType)
     				,this.ObservableForProperty(x => x.XmlContent)
     				,this.ObservableForProperty(x => x.ServerFileName)
+    				,this.ObservableForProperty(x => x.OrderType)
     				,this.ObservableForProperty(x => x.MasterOrder.IsDirty)
     			).
     			Subscribe(_ =>
@@ -182,22 +182,6 @@ namespace Faccts.Model.Entities
         private long _masterOrderId;
     
         [DataMember]
-        public FACCTS.Server.Model.Enums.AttachmentOrders OrderType
-        {
-            get { return _orderType; }
-            set
-            {
-                if (_orderType != value)
-                {
-    				OnPropertyChanging("OrderType");
-                    _orderType = value;
-                    OnPropertyChanged("OrderType");
-                }
-            }
-        }
-        private FACCTS.Server.Model.Enums.AttachmentOrders _orderType;
-    
-        [DataMember]
         public string XmlContent
         {
             get { return _xmlContent; }
@@ -228,6 +212,22 @@ namespace Faccts.Model.Entities
             }
         }
         private string _serverFileName;
+    
+        [DataMember]
+        public FACCTS.Server.Model.Enums.AttachmentOrders OrderType
+        {
+            get { return _orderType; }
+            set
+            {
+                if (_orderType != value)
+                {
+    				OnPropertyChanging("OrderType");
+                    _orderType = value;
+                    OnPropertyChanged("OrderType");
+                }
+            }
+        }
+        private FACCTS.Server.Model.Enums.AttachmentOrders _orderType;
 
         #endregion
 
@@ -344,16 +344,6 @@ namespace Faccts.Model.Entities
         {
             IsDeserializing = false;
             ChangeTracker.ChangeTrackingEnabled = true;
-        }
-    
-        // This entity type is the dependent end in at least one association that performs cascade deletes.
-        // This event handler will process notifications that occur when the principal end is deleted.
-        internal void HandleCascadeDelete(object sender, ObjectStateChangingEventArgs e)
-        {
-            if (e.NewState == ObjectState.Deleted)
-            {
-                this.MarkAsDeleted();
-            }
         }
     
         protected virtual void ClearNavigationProperties()

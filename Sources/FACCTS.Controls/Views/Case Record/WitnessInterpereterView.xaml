@@ -24,7 +24,7 @@
         <Converters:DataContextMultiValueConverter x:Key="DataContextMultiValueConverter" />
     </UserControl.Resources>
     <Grid x:Name="LayoutRoot"
-          IsEnabled="{Binding CurrentHistoryRecord, Converter={StaticResource ObjectToBooleanConverter}, FallbackValue=False, Mode=OneWay}">
+          IsEnabled="{Binding CurrentCourtCase, Converter={StaticResource ObjectToBooleanConverter}, FallbackValue=False, Mode=OneWay}">
 		<Grid.RowDefinitions>
 			<RowDefinition/>
 			<RowDefinition/>
@@ -40,17 +40,8 @@
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
                 <Border Grid.ColumnSpan="2"
-                        >
-                    <Border.DataContext>
-                        <MultiBinding Converter="{StaticResource DataContextMultiValueConverter}"
-                                      Mode="OneWay"
-                                      ConverterParameter="0">
-                            <Binding Path="CurrentHistoryRecord"
-                                     Mode="OneWay" />
-                            <Binding Path="CurrentCourtCase"
-                                     Mode="OneWay" />
-                        </MultiBinding>
-                    </Border.DataContext>
+                        DataContext="{Binding CurrentCourtCase, Mode=OneWay}">
+                   
                     <DataGrid ItemsSource="{Binding Witnesses, Mode=OneWay}"
                               x:Name="dgWitness"
                               AutoGenerateColumns="False"
@@ -58,12 +49,12 @@
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch">
 						<DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding EntityTypeName, Mode=OneWay}"
+                            <DataGridTextColumn Binding="{Binding EntityType, Mode=OneWay}"
                                                 Header="Entity Type"
                                                 IsReadOnly="True"
                                                 Width="0.1*" />
-                            <DataGridComboBoxColumn SelectedValueBinding="{Binding CourtParty, Mode=TwoWay}"
-                                                    SelectedValuePath="UnderlyingObject"
+                            <DataGridComboBoxColumn SelectedValueBinding="{Binding PartyFor, Mode=TwoWay}"
+                                                    SelectedValuePath="PartyFor"
                                                     ItemsSource="{Binding Source={StaticResource cvsWitnessesFor}, Mode=OneWay}"
                                                     Header="Witness For"
                                                     Width="0.2*" />
@@ -73,11 +64,6 @@
                             <DataGridTextColumn Binding="{Binding LastName, Mode=TwoWay}"
                                                 Header="Last Name"
                                                 Width="0.2*" />
-                            <DataGridComboBoxColumn Header="Designation"
-                                                    Width="0.1*"
-                                                    SelectedItemBinding="{Binding Designation, Mode=TwoWay}"
-                                                    ItemsSource="{Binding Source={StaticResource cvsDesignations}, Mode=OneWay, IsAsync=True}"
-                                                    DisplayMemberPath="DesignationName"/>
                             <DataGridTextColumn Binding="{Binding Contact, Mode=TwoWay}"
                                                 Header="Contact"
                                                 Width="0.2*" />
@@ -110,7 +96,7 @@
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
                 <Border Grid.ColumnSpan="2"
-                        DataContext="{Binding CurrentHistoryRecord, Mode=OneWay}">
+                        DataContext="{Binding CurrentCourtCase, Mode=OneWay}">
                     <DataGrid x:Name="dataGrid"
                               ItemsSource="{Binding Interpreters,Mode=OneWay}"
                               AutoGenerateColumns="False"
@@ -118,19 +104,20 @@
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch">
 					    <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding EntityTypeName, Mode=OneWay}"
+                            <DataGridTextColumn Binding="{Binding EntityType, Mode=OneWay}"
                                                 Header="Entity Type"
                                                 IsReadOnly="True"
                                                 Width="0.1*" />
+                            <DataGridComboBoxColumn ItemsSource="{Binding Source={StaticResource cvsInterpretersFor}, Mode=OneWay}"
+                                                    SelectedValuePath="PartyFor"
+                                                    SelectedValueBinding="{Binding PartyFor, Mode=TwoWay}"
+                                                    Header="Interpreter For"
+                                                    Width="0.3*" />
                             <DataGridTextColumn Binding="{Binding FirstName, Mode=TwoWay}" Header="First Name" Width="0.2*"/>
                             <DataGridTextColumn Binding="{Binding LastName, Mode=TwoWay}"
                                                 Header="Last Name"
                                                 Width="0.2*" />
-                            <DataGridComboBoxColumn ItemsSource="{Binding Source={StaticResource cvsInterpretersFor}, Mode=OneWay}"
-                                                    SelectedValuePath="UnderlyingObject"
-                                                    SelectedValueBinding="{Binding CourtParty, Mode=TwoWay}"
-                                                    Header="Interpreter For"
-                                                    Width="0.3*" />
+                           
                             <DataGridTextColumn Binding="{Binding Language, Mode=TwoWay}"
                                                 Header="Language"
                                                 Width="0.2*" />

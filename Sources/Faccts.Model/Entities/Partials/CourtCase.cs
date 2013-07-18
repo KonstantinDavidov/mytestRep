@@ -23,10 +23,8 @@ namespace Faccts.Model.Entities
             this.CaseHistory = new TrackableCollection<CaseHistory>();
             this.CaseHistory.CollectionChanged += CaseHistoryChanged;
             this.CaseNotes = new TrackableCollection<CaseNotes>();
-            this.OtherProtected = new TrackableCollection<OtherProtected>();
             this.Party1 = new CourtParty();
             this.Party2 = new CourtParty();
-            this.Children = new TrackableCollection<Children>();
             this.RestrainingPartyIdentificationInformation = new RestrainingPartyIDInfo();
             this.WhenAny(x => x.Party1.IsDirty, x => x.Party2.IsDirty, x => x.RestrainingPartyIdentificationInformation.IsDirty,
                 (x1, x2, x3) => x1.Value || x2.Value || x3.Value
@@ -213,20 +211,126 @@ namespace Faccts.Model.Entities
             }
         }
 
-        public TrackableCollection<Witnesses> Witnesses
+        private ReactiveCollection<AdditionalParty> _witnesses;
+        public ReactiveCollection<AdditionalParty> Witnesses
         {
             get
             {
-                return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).Witnesses;
+                if (_witnesses == null)
+                {
+                    _witnesses = this.AdditionalParties.CreateDerivedCollection(x => x, x => x.Designation == ExtendedDesignation.Witness);
+                }
+                return _witnesses;
             }
         }
 
-        public TrackableCollection<Interpreters> Interpreters
+        private ReactiveCollection<Interpreter> _interpreters;
+        public ReactiveCollection<Interpreter> Interpreters
         {
             get
             {
-                return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).Interpreters;
+                if (_interpreters == null)
+                {
+                    _interpreters = this.AdditionalParties.CreateDerivedCollection<AdditionalParty, Interpreter>(x => (Interpreter)x, x => x is Interpreter && x.Designation == ExtendedDesignation.Interpreter);
+                }
+                return _interpreters;
             }
         }
+
+        private ReactiveCollection<Child> _children;
+        public ReactiveCollection<Child> Children
+        {
+            get
+            {
+                if (_children == null)
+                {
+                    _children = this.AdditionalParties.CreateDerivedCollection<AdditionalParty, Child>(x => (Child)x, x => x is Child && x.Designation == ExtendedDesignation.Son || x.Designation == ExtendedDesignation.Daughter);
+                }
+                return _children;
+            }
+        }
+
+        private ReactiveCollection<OtherProtected> _otherProtected;
+        public ReactiveCollection<OtherProtected> OtherProtected
+        {
+            get
+            {
+                if (_otherProtected == null)
+                {
+                    _otherProtected = this.AdditionalParties.CreateDerivedCollection<AdditionalParty, OtherProtected>(x => (OtherProtected)x, x => x is OtherProtected && x.Designation == ExtendedDesignation.OtherProtected);
+                }
+                return _otherProtected;
+            }
+        }
+
+        public void NewChild()
+        {
+            this.AdditionalParties.Add(
+                new Child()
+                {
+                    PartyFor = PartyFor.Party1,
+                    Designation = ExtendedDesignation.Son,
+                    Sex = Gender.F,
+                    EntityType = FACCTSEntity.PERSON,
+                }
+                );
+        }
+
+        public void RemoveChild(Child child)
+        {
+            this.AdditionalParties.Remove(child);
+        }
+
+        public void NewWitness()
+        {
+            this.AdditionalParties.Add(
+                    new AdditionalParty()
+                    {
+                        Designation = ExtendedDesignation.Witness,
+                        EntityType = FACCTSEntity.PERSON,
+                        PartyFor = PartyFor.Party1,
+                    }
+                );
+        }
+
+        public void NewInterpreter()
+        {
+            this.AdditionalParties.Add(
+                new Interpreter()
+                {
+                    Designation = ExtendedDesignation.Interpreter,
+                    EntityType = FACCTSEntity.PERSON,
+                    PartyFor = PartyFor.Party1,
+                }
+                );
+        }
+
+        public void RemoveInterpreter(Interpreter interpreter)
+        {
+            this.AdditionalParties.Remove(interpreter);
+        }
+
+        public void NewOtherProtected()
+        {
+            this.AdditionalParties.Add(new OtherProtected()
+                {
+                    Designation = ExtendedDesignation.OtherProtected,
+                    EntityType = FACCTSEntity.PERSON,
+                    Sex = Gender.F,
+                    PartyFor = PartyFor.Party1,
+                }
+                );
+        }
+
+        public void RemoveOtherProtected(OtherProtected otherProtected)
+        {
+            this.AdditionalParties.Remove(otherProtected);
+        }
+
+        public void RemoveAdditionalParty(AdditionalParty additionalParty)
+        {
+            this.AdditionalParties.Remove(additionalParty);
+        }
+        
     }
 }

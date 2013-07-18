@@ -33,33 +33,25 @@
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
                 <Border DataContext="{Binding CurrentCourtCase, Mode=OneWay}" Grid.ColumnSpan="2">
-				    <DataGrid x:Name="dataGrid"  ItemsSource="{Binding Children, Mode=TwoWay}" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+				    <DataGrid x:Name="dataGrid"  ItemsSource="{Binding Children, Mode=OneWay}" CanUserAddRows="False" AutoGenerateColumns="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 					<DataGrid.Columns>
-						<DataGridTextColumn Binding="{Binding EntityTypeName, Mode=OneWay}" Header="Entity Type" IsReadOnly="True" Width="0.1*"/>
+                            <DataGridTextColumn Binding="{Binding EntityType, Mode=OneWay}" Header="Entity Type" IsReadOnly="True" Width="0.1*"/>
                         <DataGridTextColumn Binding="{Binding FirstName, Mode=TwoWay}" Header="First Name" Width="0.2*"/>
                         <DataGridTextColumn Binding="{Binding LastName, Mode=TwoWay}" Header="Last Name" Width="0.2*"/>
-                        <DataGridTemplateColumn Header="Relationship to Protected" Width="0.2*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding RelationshipName, Mode=OneWay}" />
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                            <DataGridTemplateColumn.CellEditingTemplate>
-                                <DataTemplate>
-                                    <ComboBox ItemsSource="{Binding Path=DataContext.Relationships, ElementName=LayoutRoot, Mode=OneWay}" SelectedValuePath="Value" SelectedValue="{Binding RelationshipToProtectedEnum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellEditingTemplate>
-                        </DataGridTemplateColumn>
-                         <DataGridComboBoxColumn ItemsSource="{Binding Source={StaticResource cvsSex}, Mode=OneWay}" SelectedValuePath="Value"  SelectedValueBinding="{Binding Gender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Sex" Width="0.1*"/>
+                            <DataGridTextColumn Header="Relationship to Protected"
+                                                Width="0.2*"
+                                                Binding="{Binding RelationToProtected, Mode=OneWay}"
+                                                IsReadOnly="True"/>
+                         <DataGridComboBoxColumn ItemsSource="{Binding Source={StaticResource cvsSex}, Mode=OneWay}" SelectedValuePath="Value"  SelectedValueBinding="{Binding Sex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Sex" Width="0.1*"/>
                             <DataGridTemplateColumn Header="Date of Birth" Width="0.2*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding DateOfBirthNullable, Mode=OneWay, StringFormat=\{0:d\}}"/>
+                                        <TextBlock Text="{Binding DateOfBirth, Mode=OneWay, StringFormat=\{0:d\}}"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                                 <DataGridTemplateColumn.CellEditingTemplate>
                                     <DataTemplate>
-                                        <DatePicker SelectedDate="{Binding DateOfBirthNullable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FirstDayOfWeek="Monday" DisplayDateStart="{x:Static utils:StringToDateTime.TwentyYearsAgo}" DisplayDate="{x:Static utils:StringToDateTime.Today}"/>
+                                        <DatePicker SelectedDate="{Binding DateOfBirth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FirstDayOfWeek="Monday" DisplayDateStart="{x:Static utils:StringToDateTime.TwentyYearsAgo}" DisplayDate="{x:Static utils:StringToDateTime.Today}"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellEditingTemplate>
                             </DataGridTemplateColumn>
@@ -92,38 +84,40 @@
 				</Grid.RowDefinitions>
                 <Border Grid.ColumnSpan="2"
                         DataContext="{Binding CurrentCourtCase, Mode=OneWay}">
-                    <DataGrid ItemsSource="{Binding OtherProtected, Mode=TwoWay}"
+                    <DataGrid ItemsSource="{Binding OtherProtected, Mode=OneWay}"
                               CanUserAddRows="False"
                               x:Name="dgOtherProtected"
                               AutoGenerateColumns="False"
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding EntityTypeName, Mode=OneWay}" Header="Entity Type" IsReadOnly="True" Width="0.1*"/>
+                            <DataGridTextColumn Binding="{Binding EntityType, Mode=OneWay}" Header="Entity Type" IsReadOnly="True" Width="0.1*"/>
                             <DataGridTextColumn Binding="{Binding FirstName, Mode=TwoWay}" Header="First Name" Width="0.2*"/>
                             <DataGridTextColumn Binding="{Binding LastName, Mode=TwoWay}" Header="Last Name" Width="0.2*"/>
                             <DataGridTemplateColumn Header="Relationship to Protected" Width="0.2*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding RelationshipName, Mode=OneWay}" />
+                                        <TextBlock Text="{Binding RelationToProtected, Mode=OneWay}" />
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                                 <DataGridTemplateColumn.CellEditingTemplate>
                                     <DataTemplate>
-                                        <ComboBox ItemsSource="{Binding Path=DataContext.Relationships, ElementName=LayoutRoot, Mode=OneWay}" SelectedValuePath="Value" SelectedValue="{Binding RelationshipToPlaintiffEnum, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        <ComboBox ItemsSource="{Binding Path=DataContext.Relationships, ElementName=LayoutRoot, Mode=OneWay}"
+                                                  SelectedValuePath="Value"
+                                                  SelectedValue="{Binding RelationToProtected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellEditingTemplate>
                             </DataGridTemplateColumn>
-                            <DataGridComboBoxColumn ItemsSource="{Binding Source={StaticResource cvsSex}, Mode=OneWay}" SelectedValuePath="Value" SelectedValueBinding="{Binding Gender, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Sex" Width="0.1*"/>
+                            <DataGridComboBoxColumn ItemsSource="{Binding Source={StaticResource cvsSex}, Mode=OneWay}" SelectedValuePath="Value" SelectedValueBinding="{Binding Sex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Header="Sex" Width="0.1*"/>
                             <DataGridTemplateColumn Header="Date of Birth" Width="0.2*">
                                 <DataGridTemplateColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding DateOfBirthNullable, Mode=OneWay, StringFormat=\{0:d\}}"/>
+                                        <TextBlock Text="{Binding DateOfBirth, Mode=OneWay, StringFormat=\{0:d\}}"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellTemplate>
                                 <DataGridTemplateColumn.CellEditingTemplate>
                                     <DataTemplate>
-                                        <DatePicker SelectedDate="{Binding DateOfBirthNullable, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FirstDayOfWeek="Monday" DisplayDateStart="{x:Static utils:StringToDateTime.TwentyYearsAgo}" DisplayDate="{x:Static utils:StringToDateTime.Today}"/>
+                                        <DatePicker SelectedDate="{Binding DateOfBirth, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" FirstDayOfWeek="Monday" DisplayDateStart="{x:Static utils:StringToDateTime.TwentyYearsAgo}" DisplayDate="{x:Static utils:StringToDateTime.Today}"/>
                                     </DataTemplate>
                                 </DataGridTemplateColumn.CellEditingTemplate>
                             </DataGridTemplateColumn>

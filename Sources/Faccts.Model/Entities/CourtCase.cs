@@ -26,10 +26,9 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(CourtDocketRecord))]
     [KnownType(typeof(CaseHistory))]
     [KnownType(typeof(CaseNotes))]
-    [KnownType(typeof(Children))]
     [KnownType(typeof(CourtCounty))]
-    [KnownType(typeof(OtherProtected))]
     [KnownType(typeof(CourtParty))]
+    [KnownType(typeof(AdditionalParty))]
     public partial class CourtCase: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -568,42 +567,6 @@ namespace Faccts.Model.Entities
         private TrackableCollection<CaseNotes> _caseNotes;
     
         [DataMember]
-        public TrackableCollection<Children> Children
-        {
-            get
-            {
-                if (_children == null)
-                {
-                    _children = new TrackableCollection<Children>();
-                    _children.CollectionChanged += FixupChildren;
-                }
-                return _children;
-            }
-            set
-            {
-                if (!ReferenceEquals(_children, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("Children");
-                    if (_children != null)
-                    {
-                        _children.CollectionChanged -= FixupChildren;
-                    }
-                    _children = value;
-                    if (_children != null)
-                    {
-                        _children.CollectionChanged += FixupChildren;
-                    }
-                    OnNavigationPropertyChanged("Children");
-                }
-            }
-        }
-        private TrackableCollection<Children> _children;
-    
-        [DataMember]
         public CourtCounty CourtCounty
         {
             get { return _courtCounty; }
@@ -620,42 +583,6 @@ namespace Faccts.Model.Entities
             }
         }
         private CourtCounty _courtCounty;
-    
-        [DataMember]
-        public TrackableCollection<OtherProtected> OtherProtected
-        {
-            get
-            {
-                if (_otherProtected == null)
-                {
-                    _otherProtected = new TrackableCollection<OtherProtected>();
-                    _otherProtected.CollectionChanged += FixupOtherProtected;
-                }
-                return _otherProtected;
-            }
-            set
-            {
-                if (!ReferenceEquals(_otherProtected, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("OtherProtected");
-                    if (_otherProtected != null)
-                    {
-                        _otherProtected.CollectionChanged -= FixupOtherProtected;
-                    }
-                    _otherProtected = value;
-                    if (_otherProtected != null)
-                    {
-                        _otherProtected.CollectionChanged += FixupOtherProtected;
-                    }
-                    OnNavigationPropertyChanged("OtherProtected");
-                }
-            }
-        }
-        private TrackableCollection<OtherProtected> _otherProtected;
     
         [DataMember]
         public CourtParty Party1
@@ -692,6 +619,42 @@ namespace Faccts.Model.Entities
             }
         }
         private CourtParty _party2;
+    
+        [DataMember]
+        public TrackableCollection<AdditionalParty> AdditionalParties
+        {
+            get
+            {
+                if (_additionalParties == null)
+                {
+                    _additionalParties = new TrackableCollection<AdditionalParty>();
+                    _additionalParties.CollectionChanged += FixupAdditionalParties;
+                }
+                return _additionalParties;
+            }
+            set
+            {
+                if (!ReferenceEquals(_additionalParties, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("AdditionalParties");
+                    if (_additionalParties != null)
+                    {
+                        _additionalParties.CollectionChanged -= FixupAdditionalParties;
+                    }
+                    _additionalParties = value;
+                    if (_additionalParties != null)
+                    {
+                        _additionalParties.CollectionChanged += FixupAdditionalParties;
+                    }
+                    OnNavigationPropertyChanged("AdditionalParties");
+                }
+            }
+        }
+        private TrackableCollection<AdditionalParty> _additionalParties;
 
         #endregion
 
@@ -805,11 +768,10 @@ namespace Faccts.Model.Entities
             CourtDocketRecord.Clear();
             CaseHistory.Clear();
             CaseNotes.Clear();
-            Children.Clear();
             CourtCounty = null;
-            OtherProtected.Clear();
             Party1 = null;
             Party2 = null;
+            AdditionalParties.Clear();
         }
 
         #endregion
@@ -1165,7 +1127,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupChildren(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupAdditionalParties(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
             {
@@ -1174,7 +1136,7 @@ namespace Faccts.Model.Entities
     
             if (e.NewItems != null)
             {
-                foreach (Children item in e.NewItems)
+                foreach (AdditionalParty item in e.NewItems)
                 {
                     item.CourtCase = this;
                     if (ChangeTracker.ChangeTrackingEnabled)
@@ -1183,14 +1145,14 @@ namespace Faccts.Model.Entities
                         {
                             item.StartTracking();
                         }
-                        ChangeTracker.RecordAdditionToCollectionProperties("Children", item);
+                        ChangeTracker.RecordAdditionToCollectionProperties("AdditionalParties", item);
                     }
                 }
             }
     
             if (e.OldItems != null)
             {
-                foreach (Children item in e.OldItems)
+                foreach (AdditionalParty item in e.OldItems)
                 {
                     if (ReferenceEquals(item.CourtCase, this))
                     {
@@ -1198,46 +1160,7 @@ namespace Faccts.Model.Entities
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("Children", item);
-                    }
-                }
-            }
-        }
-    
-        private void FixupOtherProtected(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (OtherProtected item in e.NewItems)
-                {
-                    item.CourtCase = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("OtherProtected", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (OtherProtected item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.CourtCase, this))
-                    {
-                        item.CourtCase = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("OtherProtected", item);
+                        ChangeTracker.RecordRemovalFromCollectionProperties("AdditionalParties", item);
                     }
                 }
             }
