@@ -350,5 +350,26 @@ namespace Faccts.Model.Entities
             this.AdditionalParties.Remove(additionalParty);
         }
         
+
+        public void AssignNewHearing(Hearings hearing)
+        {
+            var emptyHearing = this.CaseHistory.FirstOrDefault(y => !y.Date.HasValue && y.CaseHistoryEvent == FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing);
+            if (emptyHearing != null)
+            {
+                emptyHearing.Hearing = hearing;
+                emptyHearing.Date = DateTime.Now;
+            }
+            else
+            {
+                CaseHistory.Add(
+                   new CaseHistory()
+                   {
+                       Hearing = hearing,
+                       CaseHistoryEvent = FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing,
+                       Date = DateTime.Now,
+                   }
+                   );
+            }
+        }
     }
 }

@@ -124,24 +124,7 @@ namespace FACCTS.Controls.ViewModels
                                 x.NewItems.Cast<CourtDocketRecord>().Aggregate(0, (index, item) =>
                                     {
                                         item.CourtCase = CurrentCourtCase;
-                                        var emptyHearing = CurrentCourtCase.CaseHistory.FirstOrDefault(y => !y.Date.HasValue && y.CaseHistoryEvent == Server.Model.Enums.CaseHistoryEvent.Hearing);
-                                        if (emptyHearing != null)
-                                        {
-                                            emptyHearing.Hearing = item.Hearing;
-                                            emptyHearing.Date = DateTime.Now;
-                                        }
-                                        else
-                                        {
-                                            CurrentCourtCase.CaseHistory.Add(
-                                               new CaseHistory()
-                                               {
-                                                   Hearing = item.Hearing,
-                                                   CaseHistoryEvent = FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing,
-                                                   Date = DateTime.Now,
-                                               }
-                                               );
-                                        }
-                                       
+                                        CurrentCourtCase.AssignNewHearing(item.Hearing);
                                         return ++index;
                                     }
                                     );

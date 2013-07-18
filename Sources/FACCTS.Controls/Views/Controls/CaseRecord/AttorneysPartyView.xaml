@@ -25,7 +25,7 @@
 				<RowDefinition Height="*"/>
 			</Grid.RowDefinitions>
 			<StackPanel VerticalAlignment="Center" Grid.Column="1">
-				<CheckBox x:Name="checkBox" Content="Pro Per" Margin="0,5" VerticalAlignment="Center" IsChecked="{Binding HasAttorney, Converter={StaticResource InvertedBooleanConverter}, Mode=TwoWay}"/>
+				<CheckBox x:Name="checkBox" Content="Pro Per" Margin="0,5" VerticalAlignment="Center" IsChecked="{Binding HasAttorney, Converter={StaticResource InvertedBooleanConverter}, Mode=TwoWay}" HorizontalAlignment="Left"/>
 			</StackPanel>
 			<ContentControl Grid.Row="1" Grid.ColumnSpan="2" IsEnabled="{Binding IsChecked, Converter={StaticResource InvertedBooleanConverter}, ElementName=checkBox, Mode=OneWay}">
 				<this:AttorneyView DataContext="{Binding Attorney, Mode=OneWay}"/>

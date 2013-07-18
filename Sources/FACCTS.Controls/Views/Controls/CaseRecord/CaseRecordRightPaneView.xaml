@@ -38,7 +38,7 @@
 			</Grid>
 		</Border>
 		<Border BorderThickness="1" Grid.Column="1" Style="{DynamicResource OrdinalBorder}">
-			<Grid DataContext="{Binding CurrentCourtCase.CaseRecord.CourtParty, Mode=OneWay}">
+			<Grid DataContext="{Binding CurrentCourtCase.Party1AttorneyData}">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto"/>
 					<ColumnDefinition/>
@@ -55,7 +55,7 @@
 			</Grid>
 		</Border>
 		<Border BorderThickness="1" Grid.Column="2" VerticalAlignment="Top" Style="{DynamicResource OrdinalBorder}">
-			<Grid Height="{Binding ActualHeight, ElementName=grid, Mode=OneWay}" DataContext="{Binding CurrentCourtCase.CaseRecord.CourtParty1, Mode=OneWay}">
+			<Grid Height="{Binding ActualHeight, ElementName=grid, Mode=OneWay}" DataContext="{Binding CurrentCourtCase.Party2AttorneyData}">
 				<Grid.ColumnDefinitions>
 					<ColumnDefinition Width="Auto"/>
 					<ColumnDefinition/>

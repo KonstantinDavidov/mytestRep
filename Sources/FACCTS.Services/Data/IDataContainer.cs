@@ -24,7 +24,8 @@ namespace FACCTS.Services.Data
         List<Designation> Designations { get; }
         List<EnumDescript<USAState>> StateList { get; }
         List<EnumDescript<FACCTSEntity>> EntityTypeList { get; }
-        //List<ParticipantRole> ParticipantRoles { get; }
+        List<EnumDescript<ParticipantRole>> ParticipantRoles { get; }
+        List<EnumDescript<FACCTS.Server.Model.Enums.Relationship>> Relationships { get; }
 
         void SearchCourtCases(bool reset = false);
         void UpdateDictionaries();
