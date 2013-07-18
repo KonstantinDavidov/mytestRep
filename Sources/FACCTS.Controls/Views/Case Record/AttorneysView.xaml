@@ -4,9 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:localcontrols="clr-namespace:FACCTS.Controls.Views.Controls"
+             xmlns:Converters="clr-namespace:FACCTS.Controls.Converters"
              xmlns:this="clr-namespace:FACCTS.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="575" d:DesignWidth="757">
+    <UserControl.Resources>
+        <Converters:DataContextMultiValueConverter x:Key="DataContextMultiValueConverter" />
+    </UserControl.Resources>
     <Grid>
     	<Grid.RowDefinitions>
     		<RowDefinition/>
@@ -16,10 +20,28 @@
         </Grid.RowDefinitions>
         <localcontrols:AttorneysPartyView Grid.Row="0"
                                           DisplayName="Attorney for Party 1"
-                                          DataContext="{Binding CurrentHistoryRecord.Party1AttorneyData, Mode=OneWay}"/>
+                                          >
+            <localcontrols:AttorneysPartyView.DataContext>
+                <MultiBinding Converter="{StaticResource DataContextMultiValueConverter}">
+                    <Binding Path="CurrentCourtCase.Party1AttorneyData"
+                             Mode="OneWay"/>
+                    <Binding Path="CurrentHistoryRecord.Party1AttorneyData"
+                             Mode="OneWay" />
+                </MultiBinding>
+            </localcontrols:AttorneysPartyView.DataContext>
+        </localcontrols:AttorneysPartyView>
         <localcontrols:AttorneysPartyView Grid.Row="1"
                                           DisplayName="Attorney for Party 2"
-                                          DataContext="{Binding CurrentHistoryRecord.Party2AttorneyData, Mode=OneWay}"/>
+                                          >
+            <localcontrols:AttorneysPartyView.DataContext>
+                <MultiBinding Converter="{StaticResource DataContextMultiValueConverter}">
+                    <Binding Path="CurrentCourtCase.Party2AttorneyData"
+                             Mode="OneWay" />
+                    <Binding Path="CurrentHistoryRecord.Party2AttorneyData"
+                             Mode="OneWay" />
+                </MultiBinding>
+            </localcontrols:AttorneysPartyView.DataContext>
+        </localcontrols:AttorneysPartyView>
         <this:AttorneyChildrenView Grid.Row="2"/>
         <this:AttorneyThirdPartyView Grid.Row="3" />
     </Grid>

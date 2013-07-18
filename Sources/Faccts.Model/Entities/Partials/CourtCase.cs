@@ -179,10 +179,25 @@ namespace Faccts.Model.Entities
             }
         }
 
+        private void UpdateHistoryCollection()
+        {
+            if (this.CaseHistory.FirstOrDefault(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing) == null)
+            {
+                this.CaseHistory.Add(
+                    new CaseHistory()
+                        {
+                            Date = null,
+                            CaseHistoryEvent = FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing,
+                        }
+                    );
+            }
+        }
+
         public CourtPartyAttorneyData Party1AttorneyData
         {
             get
             {
+                UpdateHistoryCollection();
                 return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).Party1AttorneyData;
             }
         }
@@ -191,6 +206,7 @@ namespace Faccts.Model.Entities
         {
             get
             {
+                UpdateHistoryCollection();
                 return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).Party2AttorneyData;
             }
         }
@@ -199,6 +215,7 @@ namespace Faccts.Model.Entities
         {
             get
             {
+                UpdateHistoryCollection();
                 return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).AttorneyForChild;
             }
         }
@@ -207,6 +224,7 @@ namespace Faccts.Model.Entities
         {
             get
             {
+                UpdateHistoryCollection();
                 return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).ThirdPartyData;
             }
         }

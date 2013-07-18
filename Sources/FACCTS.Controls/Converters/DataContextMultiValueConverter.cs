@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace FACCTS.Controls.Converters
@@ -15,6 +16,13 @@ namespace FACCTS.Controls.Converters
             {
                 throw new Exception("DataContextMultiValueConverter works only with two values");
             }
+            values.Aggregate(0, (index, v) =>
+                {
+                    if (v == DependencyProperty.UnsetValue || v == Binding.DoNothing)
+                        values[index] = null;
+                    return ++index;
+                }
+                );
             
             int priorityValueToChoose = parameter != null ? System.Convert.ToInt32(parameter) : 0;//zero-based
             if ((priorityValueToChoose < 0) || (priorityValueToChoose > 1))
