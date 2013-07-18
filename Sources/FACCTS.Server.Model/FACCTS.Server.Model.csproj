@@ -154,6 +154,7 @@
     <Compile Include="Reporting\Entities\CAPROSEntry.cs" />
     <Compile Include="Reporting\Entities\CaseInfo.cs" />
     <Compile Include="Reporting\Entities\CH130.cs" />
+    <Compile Include="Reporting\Entities\DataItem.cs" />
     <Compile Include="Reporting\Entities\LawersFeeAndCourtCosts.cs" />
     <Compile Include="Reporting\Entities\NoServiceFee.cs" />
     <Compile Include="Reporting\Entities\PartyEnum.cs" />

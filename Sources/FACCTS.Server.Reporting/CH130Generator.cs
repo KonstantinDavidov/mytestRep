@@ -216,13 +216,13 @@ namespace FACCTS.Server.Reporting
                     Utils.SetPdfField(form, mapper, "carposByProtected");
                     if (reportData.CAPROSEntrySection.LawEnforcementAgencies.Count > 0)
                     {
-                        Utils.SetPdfField(form, mapper, "carposLawEnforcement[0]Agency", reportData.CAPROSEntrySection.LawEnforcementAgencies.ElementAt(0).Key);
-                        Utils.SetPdfField(form, mapper, "carposLawEnforcement[0]Address", reportData.CAPROSEntrySection.LawEnforcementAgencies.ElementAt(0).Value);
+                        Utils.SetPdfField(form, mapper, "carposLawEnforcement[0]Agency", reportData.CAPROSEntrySection.LawEnforcementAgencies.ElementAt(0).Name);
+                        Utils.SetPdfField(form, mapper, "carposLawEnforcement[0]Address", reportData.CAPROSEntrySection.LawEnforcementAgencies.ElementAt(0).Description);
                     }
                     if (reportData.CAPROSEntrySection.LawEnforcementAgencies.Count > 1)
                     {
-                        Utils.SetPdfField(form, mapper, "carposLawEnforcement[1]Agency", reportData.CAPROSEntrySection.LawEnforcementAgencies.ElementAt(1).Key);
-                        Utils.SetPdfField(form, mapper, "carposLawEnforcement[1]Address", reportData.CAPROSEntrySection.LawEnforcementAgencies.ElementAt(1).Value);
+                        Utils.SetPdfField(form, mapper, "carposLawEnforcement[1]Agency", reportData.CAPROSEntrySection.LawEnforcementAgencies.ElementAt(1).Name);
+                        Utils.SetPdfField(form, mapper, "carposLawEnforcement[1]Address", reportData.CAPROSEntrySection.LawEnforcementAgencies.ElementAt(1).Description);
                     }
                     if (reportData.CAPROSEntrySection.LawEnforcementAgencies.Count > 2)
                     {
@@ -266,8 +266,8 @@ namespace FACCTS.Server.Reporting
                     {
                         if (i < feeItemsCount)
                         {
-                            Utils.SetPdfField(form, mapper, feeItems[i][0], reportData.LawersFeeAndCourtCostsSection.LawyersFees.ElementAt(i).Key);
-                            Utils.SetPdfField(form, mapper, feeItems[i][1], reportData.LawersFeeAndCourtCostsSection.LawyersFees.ElementAt(i).Value);
+                            Utils.SetPdfField(form, mapper, feeItems[i][0], reportData.LawersFeeAndCourtCostsSection.LawyersFees.ElementAt(i).Name);
+                            Utils.SetPdfField(form, mapper, feeItems[i][1], reportData.LawersFeeAndCourtCostsSection.LawyersFees.ElementAt(i).Description);
                         }
                     }
                     Utils.SetPdfField(form, mapper, "lawyersFeesAdditionalYes", feeItemsCount > feeItems.Length ? "2" : "1");
