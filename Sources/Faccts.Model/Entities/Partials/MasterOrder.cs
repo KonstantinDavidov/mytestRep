@@ -21,7 +21,7 @@ namespace Faccts.Model.Entities
             {
                 Id = this.Id,
                 OrderType = this.OrderType,
-                AttachmentOrders = this.AttachmentOrder.Where(x => x.IsDirty).Select(x => x.ToDTO()).ToArray(),
+                AttachmentOrders = this.AttachmentOrder.Where(x => x.IsDirty).Select(x => x.ConvertToDTO()).ToArray(),
                 XMLContent = this.XMLContent,
                 IsSigned = this.IsSigned,
                 ServerFileName = this.ServerFileName,

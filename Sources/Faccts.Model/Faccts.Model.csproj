@@ -178,6 +178,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Entities\DataTransferConvertibleExtensions.cs" />
     <Compile Include="Entities\Delegation.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

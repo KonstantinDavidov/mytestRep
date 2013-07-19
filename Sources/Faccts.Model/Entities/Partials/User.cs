@@ -61,10 +61,11 @@ namespace Faccts.Model.Entities
                 LastPasswordChangedDate = this.LastPasswordChangedDate,
                 PasswordVerificationToken = this.PasswordVerificationToken,
                 PasswordVerificationTokenExpirationDate = this.PasswordVerificationTokenExpirationDate,
-                Roles = this.Role.Where(r => r.IsDirty).Select(x => x.ToDTO()).ToArray(),
+                Roles = this.Role.Where(r => r.IsDirty).Select(x => x.ConvertToDTO()).ToArray(),
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
             };
         }
+
     }
        
 }

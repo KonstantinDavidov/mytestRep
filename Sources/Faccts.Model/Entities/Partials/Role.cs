@@ -23,10 +23,11 @@ namespace Faccts.Model.Entities
                 RoleName = this.RoleName,
                 Description = this.Description,
                 IsIdentityServerUser = this.IsIdentityServerUser,
-                Users = this.User.Where(x => x.IsDirty).Select(x => x.ToDTO()).ToArray(),
-                Permissions = this.Permissions.Where(x => x.IsDirty).Select(x => x.ToDTO()).ToArray(),
+                Users = this.User.Where(x => x.IsDirty).Select(x => x.ConvertToDTO()).ToArray(),
+                Permissions = this.Permissions.Where(x => x.IsDirty).Select(x => x.ConvertToDTO()).ToArray(),
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
             };
         }
+
     }
 }

@@ -21,9 +21,10 @@ namespace Faccts.Model.Entities
             {
                 Id = this.Id,
                 Name = this.Name,
-                Roles = this.Role.Where(x => x.IsDirty).Select(r => r.ToDTO()).ToArray(),
+                Roles = this.Role.Where(x => x.IsDirty).Select(r => r.ConvertToDTO()).ToArray(),
                 State = (FACCTS.Server.Model.DataModel.ObjectState)this.ChangeTracker.State,
             };
         }
+
     }
 }

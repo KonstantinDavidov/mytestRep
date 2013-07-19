@@ -27,5 +27,6 @@ namespace Faccts.Model.Entities
                 OtheIssueText = this.OtheIssueText,
             };
         }
+
     }
 }

@@ -163,13 +163,14 @@ namespace Faccts.Model.Entities
                 Id = this.Id,
                 CaseNumber = this.CaseNumber,
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
-                Party1 = this.Party1.ToDTO(),
-                Party2 = this.Party2.ToDTO(),
-                RestrainingPartyIdentificationInformation = this.RestrainingPartyIdentificationInformation.IsDirty ? this.RestrainingPartyIdentificationInformation.ToDTO() : null,
-                CaseHistory = this.CaseHistory.Where(x => x.IsDirty).Select(x => x.ToDTO()).ToArray(),
+                Party1 = this.Party1.ConvertToDTO(),
+                Party2 = this.Party2.ConvertToDTO(),
+                RestrainingPartyIdentificationInformation = this.RestrainingPartyIdentificationInformation.ConvertToDTO(),
+                CaseHistory = this.CaseHistory.Where(x => x.IsDirty).Select(x =>x.ConvertToDTO()).ToArray(),
                 //CourtClerk = this.User1.ToDTO(),
             };
         }
+
 
         public List<Hearings> Hearings
         {

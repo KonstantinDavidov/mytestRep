@@ -7,7 +7,7 @@ using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
-    public partial class CaseNotes
+    public partial class CaseNotes : IDataTransferConvertible<FACCTS.Server.Model.DataModel.CaseNote>
     {
         partial void Initialize()
         {
@@ -30,5 +30,11 @@ namespace Faccts.Model.Entities
                 this.Status = (int)FACCTS.Server.Model.Enums.CaseNoteStatus.Public;
             }
         }
+
+        public FACCTS.Server.Model.DataModel.CaseNote ToDTO()
+        {
+            return null;
+        }
+
     }
 }

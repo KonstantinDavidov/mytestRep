@@ -35,9 +35,10 @@ namespace Faccts.Model.Entities
                 Room = this.Room,
                 BranchOfficer = this.BranchOfficer,
                 Reporter = this.Reporter,
-                CourtCounty = this.CourtCounty.ToDTO(),
+                CourtCounty = this.CourtCounty.ConvertToDTO(),
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
             };
         }
+
     }
 }

@@ -31,9 +31,10 @@ namespace Faccts.Model.Entities
             {
                 Id = this.Id,
                 RoomName = this.RoomName,
-                CourtLocation = this.CourtLocations.ToDTO(),
+                CourtLocation = this.CourtLocations.ConvertToDTO(),
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
             };
         }
+
     }
 }

@@ -34,10 +34,11 @@ namespace Faccts.Model.Entities
                 County = this.county,
                 CourtName = this.court_name,
                 Location = this.location,
-                CourtLocations = this.CourtLocations.Where(x => x.IsDirty).Select(x => x.ToDTO()).ToArray(),
-                Departments = this.CourtDepartmenets.Where(x => x.IsDirty).Select(x => x.ToDTO()).ToArray(),
+                CourtLocations = this.CourtLocations.Where(x => x.IsDirty).Select(x => x.ConvertToDTO()).ToArray(),
+                Departments = this.CourtDepartmenets.Where(x => x.IsDirty).Select(x => x.ConvertToDTO()).ToArray(),
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
             };
         }
+
     }
 }

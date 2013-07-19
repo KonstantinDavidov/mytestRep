@@ -22,9 +22,10 @@ namespace Faccts.Model.Entities
                 Id = this.Id,
                 IsProPer = this.IsThirdPartyProPer,
                 IsRequestorInEACase = this.IsThirdPartyRequestorInEACase,
-                Attorney = this.Attorney.ToDTO(),
+                Attorney = this.Attorney.ConvertToDTO(),
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
             };
         }
+
     }
 }

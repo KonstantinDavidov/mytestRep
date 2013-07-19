@@ -27,5 +27,6 @@ namespace Faccts.Model.Entities
                 Party2AttorneyPresent = this.Party2AttorneyPresent.GetValueOrDefault(false),
             };
         }
+
     }
 }

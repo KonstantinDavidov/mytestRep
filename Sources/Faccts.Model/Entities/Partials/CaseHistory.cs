@@ -66,19 +66,20 @@ namespace Faccts.Model.Entities
                 Id = this.Id,
                 Date = this.Date,
                 CaseHistoryEvent = this.CaseHistoryEvent,
-                CourtClerk = this.User.ToDTO(),
+                CourtClerk = this.User.ConvertToDTO(),
                 CCPOR_ID = this.CCPOR_ID,
-                MasterOrder = this.MasterOrder.ToDTO(),
+                MasterOrder = this.MasterOrder.ConvertToDTO(),
                 //CourtCase = this.CourtCase.ToDTO(),
-                MergeCase = this.MergeCase.ToDTO(),
-                Hearing = this.Hearing.ToDTO(),
-                AttorneyForChild = this.AttorneyForChild.ToDTO(),
-                Party1Attorney = this.Party1AttorneyData.ToDTO(),
-                Party2Attorney = this.Party2AttorneyData.ToDTO(),
-                ThirdPartyData = this.ThirdPartyData.ToDTO(),
+                MergeCase = this.MergeCase.ConvertToDTO(),
+                Hearing = this.Hearing.ConvertToDTO(),
+                AttorneyForChild = this.AttorneyForChild.ConvertToDTO(),
+                Party1Attorney = this.Party1AttorneyData.ConvertToDTO(),
+                Party2Attorney = this.Party2AttorneyData.ConvertToDTO(),
+                ThirdPartyData = this.ThirdPartyData.ConvertToDTO(),
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
 
             };
         }
+
     }
 }

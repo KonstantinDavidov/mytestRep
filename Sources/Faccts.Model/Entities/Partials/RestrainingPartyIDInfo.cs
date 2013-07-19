@@ -72,5 +72,6 @@ namespace Faccts.Model.Entities
                 IssuedDate = this.IDIssuedDate,
             };
         }
+
     }
 }

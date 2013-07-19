@@ -25,5 +25,6 @@ namespace Faccts.Model.Entities
                 State = (FACCTS.Server.Model.DataModel.ObjectState)this.ChangeTracker.State,
             };
         }
+
     }
 }

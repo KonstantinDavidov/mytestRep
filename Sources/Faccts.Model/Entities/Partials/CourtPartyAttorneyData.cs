@@ -21,9 +21,11 @@ namespace Faccts.Model.Entities
             return new FACCTS.Server.Model.DataModel.CourtPartyAttorneyData()
             {
                 Id = this.Id,
-                Attorney = this.Attorney.IsDirty ? this.Attorney.ToDTO() : null,
+                Attorney = this.Attorney.ConvertToDTO(),
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
             };
         }
+
+
     }
 }

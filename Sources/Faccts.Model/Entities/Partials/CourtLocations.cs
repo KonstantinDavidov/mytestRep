@@ -27,9 +27,10 @@ namespace Faccts.Model.Entities
                 PostalCode = this.PostalCode,
                 City = this.City,
                 //CourtCounty = this.
-                Courtrooms = this.Courtrooms.Where(x => x.IsDirty).Select(x => x.ToDTO()).ToArray(),
+                Courtrooms = this.Courtrooms.Where(x => x.IsDirty).Select(x => x.ConvertToDTO()).ToArray(),
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
             };
         }
+
     }
 }
