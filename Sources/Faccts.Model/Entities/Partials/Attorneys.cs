@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace Faccts.Model.Entities
 {
-    public partial class Attorneys
+    public partial class Attorneys : IDataTransferConvertible<FACCTS.Server.Model.DataModel.Attorney>
     {
         public FACCTS.Server.Model.DataModel.Attorney ToDTO()
         {
+            if (!this.IsDirty)
+                return null;
             return new FACCTS.Server.Model.DataModel.Attorney()
             {
                 Id = this.Id,

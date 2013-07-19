@@ -56,6 +56,12 @@ namespace FACCTS.Server.Model.DataModel
 
         public RestrainingPartyIdentificationInformation RestrainingPartyIdentificationInformation { get; set; }
 
+        [InverseProperty("CourtCase")]
+        public virtual ICollection<Witness> Witnesses { get; set; }
+
+        [InverseProperty("CourtCase")]
+        public virtual ICollection<Interpreter> Interpreters { get; set; }
+
         #endregion
 
         [NotMapped]

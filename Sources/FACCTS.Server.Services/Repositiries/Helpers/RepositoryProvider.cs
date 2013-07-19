@@ -39,6 +39,14 @@ namespace FACCTS.Server.Data.Repositiries.Helpers
             return GetRepository<IFacctsDataRepository<T>>(
                 _repositoryFactories.GetRepositoryFactoryForEntityType<T>());
         }
+
+
+        public Object GetRepositoryForEntityType(Type type)
+        {
+            Type d1 = typeof(IFacctsDataRepository<>);
+            Type constructed = d1.MakeGenericType(type);
+            return GetRepository(constructed, _repositoryFactories.GetRepositoryFactoryForEntityType(type));
+        }
         /// <summary>
         /// Get or create-and-cache the default <see cref="IRepository{T}"/> for an entity of type T.
         /// </summary>
@@ -72,16 +80,21 @@ namespace FACCTS.Server.Data.Repositiries.Helpers
         /// </remarks>
         public virtual T GetRepository<T>(Func<DbContext, object> factory = null) where T : class
         {
+            return (T)GetRepository(typeof(T), factory);
+        }
+
+        public virtual Object GetRepository(Type type, Func<DbContext, object> factory = null)
+        {
             // Look for T dictionary cache under typeof(T).
             object repoObj;
-            Repositories.TryGetValue(typeof(T), out repoObj);
+            Repositories.TryGetValue(type, out repoObj);
             if (repoObj != null)
             {
-                return (T)repoObj;
+                return repoObj;
             }
 
             // Not found or null; make one, add to dictionary cache, and return it.
-            return MakeRepository<T>(factory, DbContext);
+            return MakeRepository(type, factory, DbContext);
         }
 
         /// <summary>
@@ -106,13 +119,18 @@ namespace FACCTS.Server.Data.Repositiries.Helpers
         /// <returns></returns>
         protected virtual T MakeRepository<T>(Func<DbContext, object> factory, DbContext dbContext)
         {
-            var f = factory ?? _repositoryFactories.GetRepositoryFactory<T>();
+            return (T)MakeRepository(typeof(T), factory, dbContext);
+        }
+
+        protected virtual Object MakeRepository(Type type, Func<DbContext, object> factory, DbContext dbContext)
+        {
+            var f = factory ?? _repositoryFactories.GetRepositoryFactory(type);
             if (f == null)
             {
-                throw new NotImplementedException("No factory for repository type, " + typeof(T).FullName);
+                throw new NotImplementedException("No factory for repository type, " + type.FullName);
             }
-            var repo = (T)f(dbContext);
-            Repositories[typeof(T)] = repo;
+            var repo = f(dbContext);
+            Repositories[type] = repo;
             return repo;
         }
 

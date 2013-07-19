@@ -151,6 +151,53 @@ namespace FACCTS.Server.Data
             get { return GetStandardRepo<Hearing>(); }
         }
 
+        public IFacctsDataRepository<CourtPartyAttorneyData> CourtPartyAttorneyDataRepository
+        {
+            get
+            {
+                return GetStandardRepo<CourtPartyAttorneyData>();
+            }
+        }
+
+        public IFacctsDataRepository<Attorney> AttorneyRepository
+        {
+            get
+            {
+                return GetStandardRepo<Attorney>();
+            }
+        }
+
+        public IFacctsDataRepository<CaseNote> CaseNoteRepository
+        {
+            get
+            {
+                return GetStandardRepo<CaseNote>();
+            }
+        }
+
+        public IFacctsDataRepository<Witness> WitnessRepository
+        {
+            get
+            {
+                return GetStandardRepo<Witness>();
+            }
+        }
+
+        public IFacctsDataRepository<Interpreter> InterpreterRepository
+        {
+            get
+            {
+                return GetStandardRepo<Interpreter>();
+            }
+        }
+
+        public IFacctsDataRepository<Child> ChildrenRepository
+        {
+            get
+            {
+                return GetStandardRepo<Child>();
+            }
+        }
 
         #endregion
 

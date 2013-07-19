@@ -23,12 +23,12 @@ namespace Faccts.Model.Entities
     [DataContract(IsReference = true)]
     [KnownType(typeof(CourtCounty))]
     [KnownType(typeof(Hearings))]
-    public partial class CourtDepartmenets: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    public partial class CourtDepartment: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
     		private MakeObjectReactiveHelper _reactiveHelper;
     
-    		public CourtDepartmenets()
+    		public CourtDepartment()
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();

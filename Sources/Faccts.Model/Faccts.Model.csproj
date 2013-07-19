@@ -176,7 +176,7 @@
     <Compile Include="Entities\CourtCounty.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\CourtDepartmenets.cs">
+    <Compile Include="Entities\CourtDepartment.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\CourtDocketRecord.cs">
@@ -253,6 +253,7 @@
     <Compile Include="Entities\Hearings.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\IDataTransferConvertible.cs" />
     <Compile Include="Entities\IdentityProvider.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -298,22 +299,29 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Partials\AdditionalParty.cs" />
+    <Compile Include="Entities\Partials\Appearance.cs" />
+    <Compile Include="Entities\Partials\AttachmentOrder.cs" />
     <Compile Include="Entities\Partials\Attorneys.cs" />
     <Compile Include="Entities\Partials\CaseHistory.cs" />
     <Compile Include="Entities\Partials\CaseNotes.cs" />
     <Compile Include="Entities\Partials\Child.cs" />
     <Compile Include="Entities\Partials\CourtCase.cs" />
     <Compile Include="Entities\Partials\CourtCounty.cs" />
-    <Compile Include="Entities\Partials\CourtDepartmenets.cs" />
+    <Compile Include="Entities\Partials\CourtDepartment.cs" />
+    <Compile Include="Entities\Partials\CourtLocations.cs" />
     <Compile Include="Entities\Partials\CourtParty.cs" />
     <Compile Include="Entities\Partials\CourtPartyAttorneyData.cs" />
     <Compile Include="Entities\Partials\Courtrooms.cs" />
     <Compile Include="Entities\Partials\Designation.cs" />
     <Compile Include="Entities\Partials\EyesColor.cs" />
     <Compile Include="Entities\Partials\HairColor.cs" />
+    <Compile Include="Entities\Partials\HearingIssue.cs" />
     <Compile Include="Entities\Partials\Hearings.cs" />
+    <Compile Include="Entities\Partials\MasterOrder.cs" />
+    <Compile Include="Entities\Partials\Permission.cs" />
     <Compile Include="Entities\Partials\Race.cs" />
     <Compile Include="Entities\Partials\RestrainingPartyIDInfo.cs" />
+    <Compile Include="Entities\Partials\Role.cs" />
     <Compile Include="Entities\Partials\ThirdPartyData.cs" />
     <Compile Include="Entities\Partials\User.cs" />
     <Compile Include="Entities\Parties.cs">

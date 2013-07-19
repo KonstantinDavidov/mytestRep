@@ -6,22 +6,23 @@ using System.Threading.Tasks;
 
 namespace Faccts.Model.Entities
 {
-    public partial class CourtPartyAttorneyData : IDataTransferConvertible<FACCTS.Server.Model.DataModel.CourtPartyAttorneyData>
+    public partial class AttachmentOrder : IDataTransferConvertible<FACCTS.Server.Model.DataModel.AttachmentOrder>
     {
         partial void Initialize()
         {
-            this.HasAttorney = true;
-            this.Attorney = new Attorneys();
+            
         }
 
-        public FACCTS.Server.Model.DataModel.CourtPartyAttorneyData ToDTO()
+        public FACCTS.Server.Model.DataModel.AttachmentOrder ToDTO()
         {
             if (!this.IsDirty)
                 return null;
-            return new FACCTS.Server.Model.DataModel.CourtPartyAttorneyData()
+            return new FACCTS.Server.Model.DataModel.AttachmentOrder()
             {
                 Id = this.Id,
-                Attorney = this.Attorney.IsDirty ? this.Attorney.ToDTO() : null,
+                OrderType = this.OrderType,
+                XmlContent = this.XmlContent,
+                ServerFileName = this.ServerFileName,
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
             };
         }

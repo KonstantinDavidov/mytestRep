@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Faccts.Model.Entities
 {
-    public partial class Courtrooms
+    public partial class Courtrooms : IDataTransferConvertible<FACCTS.Server.Model.DataModel.Courtroom>
     {
         public Courtrooms(FACCTS.Server.Model.DataModel.Courtroom dto) : this()
         {
@@ -21,6 +21,19 @@ namespace Faccts.Model.Entities
                 this.CourtLocation_Id = dto.CourtLocation.Id;
             }
             
+        }
+
+        public FACCTS.Server.Model.DataModel.Courtroom ToDTO()
+        {
+            if (!this.IsDirty)
+                return null;
+            return new FACCTS.Server.Model.DataModel.Courtroom()
+            {
+                Id = this.Id,
+                RoomName = this.RoomName,
+                CourtLocation = this.CourtLocations.ToDTO(),
+                State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
+            };
         }
     }
 }

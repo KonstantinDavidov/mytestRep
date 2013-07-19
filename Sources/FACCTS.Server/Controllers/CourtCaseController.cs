@@ -1,4 +1,5 @@
-﻿using FACCTS.Server.DataContracts;
+﻿using FACCTS.Server.Code;
+using FACCTS.Server.DataContracts;
 using FACCTS.Server.Filters;
 using FACCTS.Server.Model.DataModel;
 using FACCTS.Server.Models;
@@ -20,11 +21,17 @@ namespace FACCTS.Server.Controllers
     [Authorize]
     public class CourtCaseController : ApiControllerBase
     {
+        private DataSaver _dataSaver;
+
         [ImportingConstructor]
-        public CourtCaseController(ILog log)
+        public CourtCaseController(
+            ILog log
+            , DataSaver dataSaver
+            )
             : base()
         {
             _logger = log;
+            _dataSaver = dataSaver;
         }
 
         private ILog _logger;
@@ -46,7 +53,16 @@ namespace FACCTS.Server.Controllers
         public HttpResponseMessage Put([FromBody] CourtCase courtCase)
         {
             HttpResponseMessage msg = null;
-            msg = Request.CreateErrorResponse(HttpStatusCode.NotFound, "Court Case not Found");
+            try
+            {
+                _dataSaver.SaveData(courtCase);
+                msg = Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            //msg = Request.CreateErrorResponse(HttpStatusCode.NotFound, "Court Case not Found");
 
             return msg;
         }
@@ -89,6 +105,16 @@ namespace FACCTS.Server.Controllers
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
             }
             
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                _dataSaver.Dispose();
+                _dataSaver = null;
+            }
+            base.Dispose(disposing);
         }
     }
 }

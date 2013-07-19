@@ -11,9 +11,6 @@ namespace FACCTS.Server.Model.DataModel
     [Table("ThirdPartyData")]
     public partial class ThirdPartyData : BaseEntity
     {
-        [Key]
-        public long Id { get; set; }
-
         [Column("IsThirdpartyProPer")]
         public bool IsProPer { get; set; }
 

@@ -6,22 +6,22 @@ using System.Threading.Tasks;
 
 namespace Faccts.Model.Entities
 {
-    public partial class HairColor : IDataTransferConvertible<FACCTS.Server.Model.DataModel.HairColor>
+    public partial class Permission : IDataTransferConvertible<FACCTS.Server.Model.DataModel.Permission>
     {
-        public HairColor(FACCTS.Server.Model.DataModel.HairColor dto) : this()
+        partial void Initialize()
         {
-            this.Id = dto.Id;
-            this.Color = dto.Color;
+            
         }
 
-        public FACCTS.Server.Model.DataModel.HairColor ToDTO()
+        public FACCTS.Server.Model.DataModel.Permission ToDTO()
         {
             if (!this.IsDirty)
                 return null;
-            return new FACCTS.Server.Model.DataModel.HairColor()
+            return new FACCTS.Server.Model.DataModel.Permission()
             {
                 Id = this.Id,
-                Color = this.Color,
+                Name = this.Name,
+                Roles = this.Role.Where(x => x.IsDirty).Select(r => r.ToDTO()).ToArray(),
                 State = (FACCTS.Server.Model.DataModel.ObjectState)this.ChangeTracker.State,
             };
         }

@@ -7,7 +7,7 @@ using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
-    public partial class RestrainingPartyIDInfo
+    public partial class RestrainingPartyIDInfo : IDataTransferConvertible<FACCTS.Server.Model.DataModel.RestrainingPartyIdentificationInformation>
     {
         partial void Initialize()
         {
@@ -63,6 +63,8 @@ namespace Faccts.Model.Entities
 
         public FACCTS.Server.Model.DataModel.RestrainingPartyIdentificationInformation ToDTO()
         {
+            if (!this.IsDirty)
+                return null;
             return new FACCTS.Server.Model.DataModel.RestrainingPartyIdentificationInformation()
             {
                 IDNumber = this.IDNumber,

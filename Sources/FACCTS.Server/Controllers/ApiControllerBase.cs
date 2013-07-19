@@ -18,7 +18,12 @@ namespace FACCTS.Server.Controllers
 
         protected override void Dispose(bool disposing)
         {
-            DataManager.Dispose();
+            if (disposing)
+            {
+                DataManager.Dispose();
+                DataManager = null;
+            }
+            
             base.Dispose(disposing);
         }
         

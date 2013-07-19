@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Faccts.Model.Entities
 {
-    public partial class Designation
+    public partial class Designation : IDataTransferConvertible<FACCTS.Server.Model.DataModel.Designation>
     {
         public Designation(FACCTS.Server.Model.DataModel.Designation dto) : this()
         {
@@ -16,10 +16,13 @@ namespace Faccts.Model.Entities
 
         public FACCTS.Server.Model.DataModel.Designation ToDTO()
         {
+            if (!this.IsDirty)
+                return null;
             return new FACCTS.Server.Model.DataModel.Designation()
             {
                 Id = this.Id,
                 DesignationName = this.DesignationName,
+                State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
             };
         }
     }

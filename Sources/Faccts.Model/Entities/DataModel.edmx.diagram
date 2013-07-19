@@ -15,7 +15,7 @@
         <EntityTypeShape EntityType="FACCTS_DBModel.CourtCase" Width="1.5" PointX="8" PointY="12.125" />
         <EntityTypeShape EntityType="FACCTS_DBModel.CourtCaseOrders" Width="1.5" PointX="3.25" PointY="12.75" />
         <EntityTypeShape EntityType="FACCTS_DBModel.CourtCounty" Width="1.5" PointX="0.75" PointY="2.125" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.CourtDepartmenets" Width="1.5" PointX="5.375" PointY="6.75" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CourtDepartment" Width="1.5" PointX="5.375" PointY="6.75" />
         <EntityTypeShape EntityType="FACCTS_DBModel.CourtLocations" Width="1.5" PointX="3.25" PointY="2.125" />
         <EntityTypeShape EntityType="FACCTS_DBModel.CourtMember" Width="1.5" PointX="0.5" PointY="16.25" />
         <EntityTypeShape EntityType="FACCTS_DBModel.CourtParty" PointX="13.875" PointY="12" Width="2.5" />

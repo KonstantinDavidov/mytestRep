@@ -34,6 +34,9 @@ namespace FACCTS.Server.Data.Repositiries
         /// </typeparam>
         IFacctsDataRepository<T> GetRepositoryForEntityType<T>() where T : class;
 
+
+        Object GetRepositoryForEntityType(Type type);
+
         /// <summary>
         /// Get an <see cref="IFacctsDataRepository{T}"/> for entity type, T.
         /// </summary>

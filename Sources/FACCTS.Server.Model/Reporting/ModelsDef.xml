@@ -28,15 +28,11 @@
   </Model>
 
   <Model name="CH130">
-    <Property name="CaseHistoryId" type="long"/>
     <Property name="ConductSection" type="CH130ConductChoice"/>
     <Property name="StayAwayOrdersSection" type="CH130StayAwayOrders"/>
     <Property name="IsNoGuns" type="bool"/>
     <Property name="CAPROSEntrySection" type="CAPROSEntry"/>
     <Property name="NoServiceFeeSection" type="NoServiceFee"/>
-    <Property name="IsExpire" type="bool"/>
-    <Property name="OrdersEndDate" type="DateTime?"/>
-    <Property name="OrdersEndTime" type="DateTime?"/>
     <Property name="IsPOSGeneral" type="bool?"/>
     <Property name="LawersFeeAndCourtCostsSection" type="LawersFeeAndCourtCosts"/>
     <Property name="IsOtherOrdersAttached" type="bool"/>
@@ -79,14 +75,11 @@
   </Model>
   
   <Model name="CH110">
-    <Property name="CaseHistoryId" type="long"/>
     <Property name="ConductSection" type="CH110ConductChoice"/>
     <Property name="StayAwayOrdersSection" type="CH110StayAwayOrders"/>
     <Property name="IsNoGuns" type="bool"/>
     <Property name="CAPROSEntrySection" type="CAPROSEntry"/>
     <Property name="NoServiceFeeSection" type="NoServiceFee"/>
-    <Property name="OrdersEndDate" type="DateTime"/>
-    <Property name="OrdersEndTime" type="DateTime?"/>
     <Property name="IsOtherOrdersAttached" type="bool"/>
     <Property name="OtherOrderDetail" type="string"/>
   </Model>
@@ -101,7 +94,6 @@
   </Model>
   
   <Model name="DV130StayAwayOrders">
-    <Property name="IsEnabled" type="bool"/>
     <Property name="IsStayAwayFromPerson" type="bool"/>
     <Property name="IsStayAwayFromHome" type="bool"/>
     <Property name="IsStayAwayFromVehicle" type="bool"/>
