@@ -59,21 +59,23 @@ namespace Faccts.Model.Entities
 
         public FACCTS.Server.Model.DataModel.CaseHistory ToDTO()
         {
+            if (!this.IsDirty)
+                return null;
             return new FACCTS.Server.Model.DataModel.CaseHistory()
             {
                 Id = this.Id,
                 Date = this.Date,
                 CaseHistoryEvent = this.CaseHistoryEvent,
-                CourtClerk = this.User.IsDirty ? this.User.ToDTO() : null,
+                CourtClerk = this.User.ToDTO(),
                 CCPOR_ID = this.CCPOR_ID,
-                MasterOrder = this.MasterOrder.IsDirty ? this.MasterOrder.ToDTO() : null,
+                MasterOrder = this.MasterOrder.ToDTO(),
                 //CourtCase = this.CourtCase.ToDTO(),
-                MergeCase = this.MergeCase.IsDirty ? this.MergeCase.ToDTO() : null,
-                Hearing = this.Hearing.IsDirty ? this.Hearing.ToDTO() : null,
-                AttorneyForChild = this.AttorneyForChild.IsDirty ? this.AttorneyForChild.ToDTO() : null,
-                Party1Attorney = this.Party1AttorneyData.IsDirty ? this.Party1AttorneyData.ToDTO() : null,
-                Party2Attorney = this.Party2AttorneyData.IsDirty ? this.Party2AttorneyData.ToDTO() : null,
-                ThirdPartyData = this.ThirdPartyData.IsDirty ? this.ThirdPartyData.ToDTO() : null,
+                MergeCase = this.MergeCase.ToDTO(),
+                Hearing = this.Hearing.ToDTO(),
+                AttorneyForChild = this.AttorneyForChild.ToDTO(),
+                Party1Attorney = this.Party1AttorneyData.ToDTO(),
+                Party2Attorney = this.Party2AttorneyData.ToDTO(),
+                ThirdPartyData = this.ThirdPartyData.ToDTO(),
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
 
             };

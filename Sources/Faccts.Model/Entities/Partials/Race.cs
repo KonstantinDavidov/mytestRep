@@ -16,6 +16,8 @@ namespace Faccts.Model.Entities
 
         public FACCTS.Server.Model.DataModel.Race ToDTO()
         {
+            if (!this.IsDirty)
+                return null;
             return new FACCTS.Server.Model.DataModel.Race()
             {
                 Id = this.Id,

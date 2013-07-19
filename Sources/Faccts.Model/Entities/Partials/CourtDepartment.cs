@@ -26,6 +26,8 @@ namespace Faccts.Model.Entities
 
         public FACCTS.Server.Model.DataModel.CourtDepartment ToDTO()
         {
+            if (!this.IsDirty)
+                return null;
             return new FACCTS.Server.Model.DataModel.CourtDepartment()
             {
                 Id = this.Id,
@@ -33,7 +35,7 @@ namespace Faccts.Model.Entities
                 Room = this.Room,
                 BranchOfficer = this.BranchOfficer,
                 Reporter = this.Reporter,
-                CourtCounty = this.CourtCounty.IsDirty ? this.CourtCounty.ToDTO() : null,
+                CourtCounty = this.CourtCounty.ToDTO(),
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
             };
         }

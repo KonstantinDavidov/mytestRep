@@ -16,6 +16,8 @@ namespace Faccts.Model.Entities
 
         public FACCTS.Server.Model.DataModel.EyesColor ToDTO()
         {
+            if (!this.IsDirty)
+                return null;
             return new FACCTS.Server.Model.DataModel.EyesColor()
             {
                 Id = this.Id,

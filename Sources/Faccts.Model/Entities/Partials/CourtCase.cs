@@ -156,15 +156,17 @@ namespace Faccts.Model.Entities
 
         public FACCTS.Server.Model.DataModel.CourtCase ToDTO()
         {
+            if (!this.IsDirty)
+                return null;
             return new FACCTS.Server.Model.DataModel.CourtCase()
             {
                 Id = this.Id,
                 CaseNumber = this.CaseNumber,
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
-                Party1 = this.Party1.IsDirty ? this.Party1.ToDTO() : null,
-                Party2 = this.Party2.IsDirty ? this.Party2.ToDTO() : null,
+                Party1 = this.Party1.ToDTO(),
+                Party2 = this.Party2.ToDTO(),
                 RestrainingPartyIdentificationInformation = this.RestrainingPartyIdentificationInformation.IsDirty ? this.RestrainingPartyIdentificationInformation.ToDTO() : null,
-                CaseHistory = this.CaseHistory.Any(x => x.IsDirty) ? this.CaseHistory.Where(x => x.IsDirty).Select(x => x.ToDTO()).ToArray() : null,
+                CaseHistory = this.CaseHistory.Where(x => x.IsDirty).Select(x => x.ToDTO()).ToArray(),
                 //CourtClerk = this.User1.ToDTO(),
             };
         }

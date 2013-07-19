@@ -16,6 +16,8 @@ namespace Faccts.Model.Entities
 
         public FACCTS.Server.Model.DataModel.HairColor ToDTO()
         {
+            if (!this.IsDirty)
+                return null;
             return new FACCTS.Server.Model.DataModel.HairColor()
             {
                 Id = this.Id,

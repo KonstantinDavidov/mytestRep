@@ -25,11 +25,13 @@ namespace Faccts.Model.Entities
 
         public FACCTS.Server.Model.DataModel.Courtroom ToDTO()
         {
+            if (!this.IsDirty)
+                return null;
             return new FACCTS.Server.Model.DataModel.Courtroom()
             {
                 Id = this.Id,
                 RoomName = this.RoomName,
-                CourtLocation = this.CourtLocations.IsDirty ? this.CourtLocations.ToDTO() : null,
+                CourtLocation = this.CourtLocations.ToDTO(),
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
             };
         }

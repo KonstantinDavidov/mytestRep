@@ -77,6 +77,8 @@ namespace Faccts.Model.Entities
 
         public FACCTS.Server.Model.DataModel.CourtParty ToDTO()
         {
+            if (!this.IsDirty)
+                return null;
             FACCTS.Server.Model.DataModel.CourtParty dto = new FACCTS.Server.Model.DataModel.CourtParty()
                 {
                     Id = this.Id,

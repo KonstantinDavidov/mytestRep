@@ -15,6 +15,8 @@ namespace Faccts.Model.Entities
 
         public FACCTS.Server.Model.DataModel.Appearance ToDTO()
         {
+            if (!this.IsDirty)
+                return null;
             return new FACCTS.Server.Model.DataModel.Appearance()
             {
                 Party1Appear = this.Party1Appear.GetValueOrDefault(false),
