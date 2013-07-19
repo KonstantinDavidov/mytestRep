@@ -243,17 +243,6 @@ namespace FACCTS.Server.Model.OrderModels
 			
 	public partial class CH130
 	{
-		private long _caseHistoryId;
-		public long CaseHistoryId
-		{
-			get{return _caseHistoryId;}
-			set
-			{
-				_caseHistoryId = value;
-
-			}
-		}
-		
 		private CH130ConductChoice _conductSection;
 		public CH130ConductChoice ConductSection
 		{
@@ -305,39 +294,6 @@ namespace FACCTS.Server.Model.OrderModels
 			set
 			{
 				_noServiceFeeSection = value;
-
-			}
-		}
-		
-		private bool _isExpire;
-		public bool IsExpire
-		{
-			get{return _isExpire;}
-			set
-			{
-				_isExpire = value;
-
-			}
-		}
-		
-		private DateTime? _ordersEndDate;
-		public DateTime? OrdersEndDate
-		{
-			get{return _ordersEndDate;}
-			set
-			{
-				_ordersEndDate = value;
-
-			}
-		}
-		
-		private DateTime? _ordersEndTime;
-		public DateTime? OrdersEndTime
-		{
-			get{return _ordersEndTime;}
-			set
-			{
-				_ordersEndTime = value;
 
 			}
 		}
@@ -681,17 +637,6 @@ namespace FACCTS.Server.Model.OrderModels
 			
 	public partial class CH110
 	{
-		private long _caseHistoryId;
-		public long CaseHistoryId
-		{
-			get{return _caseHistoryId;}
-			set
-			{
-				_caseHistoryId = value;
-
-			}
-		}
-		
 		private CH110ConductChoice _conductSection;
 		public CH110ConductChoice ConductSection
 		{
@@ -743,28 +688,6 @@ namespace FACCTS.Server.Model.OrderModels
 			set
 			{
 				_noServiceFeeSection = value;
-
-			}
-		}
-		
-		private DateTime _ordersEndDate;
-		public DateTime OrdersEndDate
-		{
-			get{return _ordersEndDate;}
-			set
-			{
-				_ordersEndDate = value;
-
-			}
-		}
-		
-		private DateTime? _ordersEndTime;
-		public DateTime? OrdersEndTime
-		{
-			get{return _ordersEndTime;}
-			set
-			{
-				_ordersEndTime = value;
 
 			}
 		}
@@ -856,17 +779,6 @@ namespace FACCTS.Server.Model.OrderModels
 			
 	public partial class DV130StayAwayOrders
 	{
-		private bool _isEnabled;
-		public bool IsEnabled
-		{
-			get{return _isEnabled;}
-			set
-			{
-				_isEnabled = value;
-
-			}
-		}
-		
 		private bool _isStayAwayFromPerson;
 		public bool IsStayAwayFromPerson
 		{

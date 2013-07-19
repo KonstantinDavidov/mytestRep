@@ -7,7 +7,7 @@ using FACCTS.Server.Model.Reporting.Entities;
 
 namespace FACCTS.Server.Model.OrderModels
 {
-    public partial class CH130
+    public partial class CH130 : PermanentOrder
     {
         public CH130()
         {
