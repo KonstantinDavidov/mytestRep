@@ -11,8 +11,6 @@
              d:DesignHeight="230.4"
              Background="{DynamicResource ControlBackgroundBrush}">
     <UserControl.Resources>
-        <ext:MefPartExtension InstanceType="{x:Type fs:IDataContainer}"
-                              x:Key="DataContainer" />
     </UserControl.Resources>
     <Grid>
 				<Grid.RowDefinitions>
@@ -42,7 +40,7 @@
 				<TextBox Grid.ColumnSpan="3" TextWrapping="Wrap" Text="{Binding FirmName, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Please type the firm name"/>
 				<TextBox Grid.ColumnSpan="3" TextWrapping="Wrap" Text="{Binding StreetAddress, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Please type the street address"/>
 				<TextBox TextWrapping="Wrap" Text="{Binding City, Mode=TwoWay}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="City"/>
-				<ComboBox SelectedValue="{Binding State, Mode=TwoWay}" Grid.Row="3" Grid.Column="2" Margin="0,-0.001,0,0" VerticalAlignment="Center" ItemsSource="{Binding Source={StaticResource DataContainer}, Path=StateList, Mode=OneWay}" SelectedValuePath="Value"/>
+				<ComboBox SelectedValue="{Binding USAState, Mode=TwoWay}" Grid.Row="3" Grid.Column="2" Margin="0,-0.001,0,0" VerticalAlignment="Center" ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl, AncestorLevel=3}, Path=DataContext.DataContainer.StateList, Mode=OneWay}" SelectedValuePath="Value"/>
 				<TextBox TextWrapping="Wrap" Text="{Binding ZipCode, Mode=TwoWay}" Grid.Row="3" Grid.Column="3" Margin="0,-0.001,0,0" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Zip Code"/>
 				<TextBox TextWrapping="Wrap" Text="{Binding Email, Mode=TwoWay}" Grid.Row="4" Grid.Column="1" Margin="0,-0.001,0,0" Grid.ColumnSpan="3" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Please type te email"/>
 				<TextBlock TextWrapping="Wrap" Text="State Bar ID" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Right"/>

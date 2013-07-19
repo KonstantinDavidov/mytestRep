@@ -8,10 +8,12 @@
 	xmlns:this="clr-namespace:FACCTS.Controls"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
     xmlns:cal="http://www.caliburnproject.org"
+    xmlns:Converters="clr-namespace:FACCTS.Controls.Converters"
 	x:Class="FACCTS.Controls.AttorneyChildrenView"
 	x:Name="UserControl"
 	d:DesignWidth="640" d:DesignHeight="295.68" Background="{DynamicResource ControlBackgroundBrush}">
 	<UserControl.Resources>
+        <Converters:DataContextMultiValueConverter x:Key="DataContextMultiValueConverter" />
         <ControlTemplate x:Key="RadioButtonToggleTemplate"
                          TargetType="{x:Type RadioButton}">
             <ControlTemplate.Resources>
@@ -114,7 +116,17 @@
                 <RadioButton Content="Copy Party 2" Margin="8,0" Style="{DynamicResource ToggleRadioButton}" IsChecked="{Binding AttorneyForChildrenIsTheSameThenParty2, Mode=TwoWay}"/>
 			</StackPanel>
 			<ContentControl Grid.Row="1" Grid.ColumnSpan="2" >
-                <this:AttorneyView DataContext="{Binding CurrentHistoryRecord.AttorneyForChild, Mode=OneWay}"/>
+                <this:AttorneyView>
+                    <this:AttorneyView.DataContext>
+                        <MultiBinding Converter="{StaticResource DataContextMultiValueConverter}"
+                                      ConverterParameter="1">
+                            <Binding Path="CurrentCourtCase.AttorneyForChild"
+                                     Mode="OneWay" />
+                            <Binding Path="CurrentHistoryRecord.AttorneyForChild"
+                                     Mode="OneWay" />
+                        </MultiBinding>
+                    </this:AttorneyView.DataContext>
+                </this:AttorneyView>
 			</ContentControl>
 		</Grid>
 	</GroupBox>

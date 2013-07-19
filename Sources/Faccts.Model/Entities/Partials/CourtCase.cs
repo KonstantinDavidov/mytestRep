@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
 using FACCTS.Server.Model.Enums;
+using System.Reactive.Linq;
+using System.Collections.Specialized;
 
 namespace Faccts.Model.Entities
 {
@@ -179,10 +181,25 @@ namespace Faccts.Model.Entities
             }
         }
 
+        private void UpdateHistoryCollection()
+        {
+            if (this.CaseHistory.FirstOrDefault(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing) == null)
+            {
+                this.CaseHistory.Add(
+                    new CaseHistory()
+                        {
+                            Date = null,
+                            CaseHistoryEvent = FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing,
+                        }
+                    );
+            }
+        }
+
         public CourtPartyAttorneyData Party1AttorneyData
         {
             get
             {
+                UpdateHistoryCollection();
                 return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).Party1AttorneyData;
             }
         }
@@ -191,6 +208,7 @@ namespace Faccts.Model.Entities
         {
             get
             {
+                UpdateHistoryCollection();
                 return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).Party2AttorneyData;
             }
         }
@@ -199,6 +217,7 @@ namespace Faccts.Model.Entities
         {
             get
             {
+                UpdateHistoryCollection();
                 return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).AttorneyForChild;
             }
         }
@@ -207,6 +226,7 @@ namespace Faccts.Model.Entities
         {
             get
             {
+                UpdateHistoryCollection();
                 return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).ThirdPartyData;
             }
         }
@@ -332,5 +352,40 @@ namespace Faccts.Model.Entities
             this.AdditionalParties.Remove(additionalParty);
         }
         
+
+        public void AssignNewHearing(Hearings hearing)
+        {
+            var emptyHearing = this.CaseHistory.FirstOrDefault(y => !y.Date.HasValue && y.CaseHistoryEvent == FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing);
+            if (emptyHearing != null)
+            {
+                emptyHearing.Hearing = hearing;
+                emptyHearing.Date = DateTime.Now;
+                //this.CaseHistory.
+            }
+            else
+            {
+                CaseHistory.Add(
+                   new CaseHistory()
+                   {
+                       Hearing = hearing,
+                       CaseHistoryEvent = FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing,
+                       Date = DateTime.Now,
+                   }
+                   );
+            }
+        }
+
+        private ReactiveCollection<CaseHistory> _displayableCaseHistory;
+        public ReactiveCollection<CaseHistory> DisplayableCaseHistory
+        {
+            get
+            {
+                if (_displayableCaseHistory == null)
+                {
+                    _displayableCaseHistory = this.CaseHistory.CreateDerivedCollection(x => x, filter: x => x.Date != null, signalReset: Observable.Merge(this.CaseHistory.Select(x => x.WhenAny(y => y.Date, y => y.Value))));
+                }
+                return _displayableCaseHistory;
+            }
+        }
     }
 }

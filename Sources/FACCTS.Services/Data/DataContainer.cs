@@ -148,7 +148,7 @@ namespace FACCTS.Services.Data
             RaisePropertyChanged(() => EyesColors);
             RaisePropertyChanged(() => Races);
             RaisePropertyChanged(() => Designations);
-            //RaisePropertyChanged(() => ParticipantRoles);
+            RaisePropertyChanged(() => ParticipantRoles);
         }
 
         public FACCTSConfiguration FacctsConfiguration
@@ -156,6 +156,32 @@ namespace FACCTS.Services.Data
             get
             {
                 return FACCTSConfigurations.Configuration;
+            }
+        }
+
+        private List<EnumDescript<ParticipantRole>> _participantRoles;
+        public List<EnumDescript<ParticipantRole>> ParticipantRoles
+        {
+            get
+            {
+                if (_participantRoles == null)
+                {
+                    _participantRoles = EnumDescript<ParticipantRole>.GetList<ParticipantRole>();
+                }
+                return _participantRoles;
+            }
+        }
+
+        private List<EnumDescript<FACCTS.Server.Model.Enums.Relationship>> _relationships;
+        public List<EnumDescript<FACCTS.Server.Model.Enums.Relationship>> Relationships
+        {
+            get
+            {
+                if (_relationships == null)
+                {
+                    _relationships = EnumDescript<FACCTS.Server.Model.Enums.Relationship>.GetList<FACCTS.Server.Model.Enums.Relationship>();
+                }
+                return _relationships;
             }
         }
 

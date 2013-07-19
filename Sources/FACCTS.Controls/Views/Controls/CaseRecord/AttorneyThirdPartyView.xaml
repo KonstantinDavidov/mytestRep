@@ -34,7 +34,7 @@
                     <MultiBinding Converter="{StaticResource DataContextMultiValueConverter}"
                                   Mode="OneWay"
                                   ConverterParameter="1">
-                        <Binding Path="CurrentCourtCase.ThirdPartyData"
+                        <Binding Path="CurrentCourtCase.ThirdPartyAttorneyData"
                                  Mode="OneWay" />
                         <Binding Path="CurrentHistoryRecord.ThirdPartyData"
                                  Mode="OneWay" />
@@ -54,7 +54,7 @@
                         <MultiBinding Converter="{StaticResource DataContextMultiValueConverter}"
                                       Mode="OneWay"
                                       ConverterParameter="1">
-                            <Binding Path="CurrentCourtCase.ThirdPartyData.Attorney"
+                            <Binding Path="CurrentCourtCase.ThirdPartyAttorneyData.Attorney"
                                      Mode="OneWay" />
                             <Binding Path="CurrentHistoryRecord.ThirdPartyData.Attorney"
                                      Mode="OneWay" />

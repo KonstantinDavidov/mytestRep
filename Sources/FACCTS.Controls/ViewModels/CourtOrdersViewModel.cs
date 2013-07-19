@@ -151,5 +151,13 @@ namespace FACCTS.Controls.ViewModels
             var vm = ServiceLocatorContainer.Locator.GetInstance<GenerateCourtOrdersDialogViewModel>();
             _windowManager.ShowDialog(vm);
         }
+
+        public ObservableCollection<CourtCase> CourtCases
+        {
+            get 
+            { 
+                return DataContainer.CourtCases; 
+            }
+        }
     }
 }
