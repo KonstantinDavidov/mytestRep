@@ -60,8 +60,8 @@ namespace FACCTS.Controls.ViewModels
 			}
 		}
 		
-		private Faccts.Model.Entities.CourtDepartmenets _department;
-		public Faccts.Model.Entities.CourtDepartmenets Department
+		private Faccts.Model.Entities.CourtDepartment _department;
+		public Faccts.Model.Entities.CourtDepartment Department
 		{
 			get{return _department;}
 			set{
@@ -148,8 +148,8 @@ namespace FACCTS.Controls.ViewModels
 			}
 		}
 		
-		private ObservableCollection<Faccts.Model.Entities.CourtDepartmenets> _departments;
-		public ObservableCollection<Faccts.Model.Entities.CourtDepartmenets> Departments
+		private ObservableCollection<Faccts.Model.Entities.CourtDepartment> _departments;
+		public ObservableCollection<Faccts.Model.Entities.CourtDepartment> Departments
 		{
 			get{return _departments;}
 			set{
@@ -404,8 +404,8 @@ namespace FACCTS.Controls.ViewModels
 			}
 		}
 		
-		private Faccts.Model.Entities.CourtDepartmenets _department;
-		public Faccts.Model.Entities.CourtDepartmenets Department
+		private Faccts.Model.Entities.CourtDepartment _department;
+		public Faccts.Model.Entities.CourtDepartment Department
 		{
 			get{return _department;}
 			set{
@@ -547,8 +547,8 @@ namespace FACCTS.Controls.ViewModels
 			}
 		}
 		
-		private ObservableCollection<Faccts.Model.Entities.CourtDepartmenets> _departments;
-		public ObservableCollection<Faccts.Model.Entities.CourtDepartmenets> Departments
+		private ObservableCollection<Faccts.Model.Entities.CourtDepartment> _departments;
+		public ObservableCollection<Faccts.Model.Entities.CourtDepartment> Departments
 		{
 			get{return _departments;}
 			set{

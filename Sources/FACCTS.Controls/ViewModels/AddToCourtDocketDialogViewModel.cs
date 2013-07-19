@@ -68,7 +68,7 @@ namespace FACCTS.Controls.ViewModels
             this.DisplayName = "Add Case to Docket";
             if (this.IsAuthenticated && this.Departments == null)
             {
-                this.Departments = new ObservableCollection<CourtDepartmenets>(DataContainer.AvailableDepartments);
+                this.Departments = new ObservableCollection<CourtDepartment>(DataContainer.AvailableDepartments);
             }
             if (this.IsAuthenticated && this.Courtrooms == null)
             {
