@@ -318,6 +318,7 @@
     <Compile Include="Entities\Partials\HairColor.cs" />
     <Compile Include="Entities\Partials\HearingIssue.cs" />
     <Compile Include="Entities\Partials\Hearings.cs" />
+    <Compile Include="Entities\Partials\Interpreter.cs" />
     <Compile Include="Entities\Partials\MasterOrder.cs" />
     <Compile Include="Entities\Partials\Permission.cs" />
     <Compile Include="Entities\Partials\Race.cs" />

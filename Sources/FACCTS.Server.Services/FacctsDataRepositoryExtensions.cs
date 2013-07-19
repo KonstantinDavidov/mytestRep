@@ -34,6 +34,8 @@ namespace FACCTS.Server.Data
         public static void SaveData<T>(this IFacctsDataRepository<T> repository, IEnumerable<T> entityCollection)
             where T : BaseEntity
         {
+            if (entityCollection == null)
+                return;
             entityCollection.Aggregate(0, (index, item) =>
                 {
                     SaveData(repository, item);

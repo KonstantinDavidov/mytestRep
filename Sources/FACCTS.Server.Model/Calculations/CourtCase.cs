@@ -19,7 +19,7 @@ namespace FACCTS.Server.Model.DataModel
                 {
                     return Enums.CaseStatus.New;
                 }
-                return CaseHistoryEventToStatus(CaseHistory.Where(x => x.Date <= DateTime.Now).First().CaseHistoryEvent);
+                return CaseHistoryEventToStatus(CaseHistory.Where(x => x.Date.GetValueOrDefault(DateTime.Now) <= DateTime.Now).First().CaseHistoryEvent);
             }
         }
 

@@ -63,8 +63,6 @@ namespace Faccts.Model.Entities
 
         public FACCTS.Server.Model.DataModel.RestrainingPartyIdentificationInformation ToDTO()
         {
-            if (!this.IsDirty)
-                return null;
             return new FACCTS.Server.Model.DataModel.RestrainingPartyIdentificationInformation()
             {
                 IDNumber = this.IDNumber,

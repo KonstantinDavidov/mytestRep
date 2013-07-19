@@ -23,7 +23,6 @@ namespace FACCTS.Server.Model.DataModel
         [StringLength(255)]
         public string LastName { get; set; }
 
-        public virtual Designation Designation { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string Contact { get; set; }
