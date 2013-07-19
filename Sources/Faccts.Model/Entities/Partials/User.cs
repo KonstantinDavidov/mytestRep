@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Faccts.Model.Entities
 {
-    public partial class User : INavigationPropertiesLoadable
+    public partial class User : INavigationPropertiesLoadable, IDataTransferConvertible<FACCTS.Server.Model.DataModel.User>
     {
         public User(FACCTS.Server.Model.DataModel.User dtoUser) : this()
         {
@@ -33,6 +33,35 @@ namespace Faccts.Model.Entities
             this.PasswordVerificationToken = dtoUser.PasswordVerificationToken;
             this.PasswordVerificationTokenExpirationDate = dtoUser.PasswordVerificationTokenExpirationDate;
 
+        }
+
+        public FACCTS.Server.Model.DataModel.User ToDTO()
+        {
+            return new FACCTS.Server.Model.DataModel.User()
+            {
+                Id = this.Id,
+                Username = this.Username,
+                Email = this.Email,
+                Password = this.Password,
+                FirstName = this.FirstName,
+                LastName = this.LastName,
+                MiddleName = this.MiddleName,
+                Comment = this.Comment,
+                IsApproved = this.IsApproved,
+                PasswordFailuresSinceLastSuccess = this.PasswordFailuresSinceLastSuccess,
+                LastPasswordFailureDate = this.LastPasswordFailureDate,
+                LastActivityDate = this.LastActivityDate,
+                LastLockoutDate = this.LastLockoutDate,
+                LastLoginDate = this.LastLoginDate,
+                ConfirmationToken = this.ConfirmationToken,
+                CreateDate = this.CreateDate,
+                IsLockedOut = this.IsLockedOut,
+                LastPasswordChangedDate = this.LastPasswordChangedDate,
+                PasswordVerificationToken = this.PasswordVerificationToken,
+                PasswordVerificationTokenExpirationDate = this.PasswordVerificationTokenExpirationDate,
+                Roles = this.Role.Where(r => r.IsDirty).Select(x => x.ToDTO()).ToArray(),
+                State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
+            };
         }
     }
        

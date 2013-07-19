@@ -12,7 +12,7 @@ namespace FACCTS.Server.Model.DataModel
     public partial class CaseHistory : BaseEntity
     {
         [DataType(DataType.Date)]
-        public DateTime Date { get; set; }
+        public DateTime? Date { get; set; }
 
         [EnumDataType(typeof(CaseHistoryEvent))]
         public CaseHistoryEvent CaseHistoryEvent { get; set; }

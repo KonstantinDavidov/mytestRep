@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Faccts.Model.Entities
 {
-    public partial class HairColor
+    public partial class HairColor : IDataTransferConvertible<FACCTS.Server.Model.DataModel.HairColor>
     {
         public HairColor(FACCTS.Server.Model.DataModel.HairColor dto) : this()
         {
@@ -20,6 +20,7 @@ namespace Faccts.Model.Entities
             {
                 Id = this.Id,
                 Color = this.Color,
+                State = (FACCTS.Server.Model.DataModel.ObjectState)this.ChangeTracker.State,
             };
         }
     }

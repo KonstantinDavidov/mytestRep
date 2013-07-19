@@ -11,7 +11,7 @@ using System.Collections.Specialized;
 
 namespace Faccts.Model.Entities
 {
-    public partial class CourtCase
+    public partial class CourtCase : IDataTransferConvertible<FACCTS.Server.Model.DataModel.CourtCase>
     {
         partial void Initialize()
         {            
@@ -161,9 +161,10 @@ namespace Faccts.Model.Entities
                 Id = this.Id,
                 CaseNumber = this.CaseNumber,
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
-                Party1 = this.Party1.ToDTO(),
-                Party2 = this.Party2.ToDTO(),
-                RestrainingPartyIdentificationInformation = this.RestrainingPartyIdentificationInformation.ToDTO(),
+                Party1 = this.Party1.IsDirty ? this.Party1.ToDTO() : null,
+                Party2 = this.Party2.IsDirty ? this.Party2.ToDTO() : null,
+                RestrainingPartyIdentificationInformation = this.RestrainingPartyIdentificationInformation.IsDirty ? this.RestrainingPartyIdentificationInformation.ToDTO() : null,
+                CaseHistory = this.CaseHistory.Any(x => x.IsDirty) ? this.CaseHistory.Where(x => x.IsDirty).Select(x => x.ToDTO()).ToArray() : null,
                 //CourtClerk = this.User1.ToDTO(),
             };
         }

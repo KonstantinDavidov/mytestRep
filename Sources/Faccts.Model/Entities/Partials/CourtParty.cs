@@ -9,7 +9,7 @@ using System.Reactive.Linq;
 
 namespace Faccts.Model.Entities
 {
-    public partial class CourtParty
+    public partial class CourtParty : IDataTransferConvertible<FACCTS.Server.Model.DataModel.CourtParty>
     {
         partial void Initialize()
         {

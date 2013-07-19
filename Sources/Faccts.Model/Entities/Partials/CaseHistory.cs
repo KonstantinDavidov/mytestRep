@@ -7,7 +7,7 @@ using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
-    public partial class CaseHistory
+    public partial class CaseHistory : IDataTransferConvertible<FACCTS.Server.Model.DataModel.CaseHistory>
     {
         partial void Initialize()
         {
@@ -54,6 +54,28 @@ namespace Faccts.Model.Entities
                     Date = null,
                     CaseHistoryEvent = FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing,
                 },
+            };
+        }
+
+        public FACCTS.Server.Model.DataModel.CaseHistory ToDTO()
+        {
+            return new FACCTS.Server.Model.DataModel.CaseHistory()
+            {
+                Id = this.Id,
+                Date = this.Date,
+                CaseHistoryEvent = this.CaseHistoryEvent,
+                CourtClerk = this.User.IsDirty ? this.User.ToDTO() : null,
+                CCPOR_ID = this.CCPOR_ID,
+                MasterOrder = this.MasterOrder.IsDirty ? this.MasterOrder.ToDTO() : null,
+                //CourtCase = this.CourtCase.ToDTO(),
+                MergeCase = this.MergeCase.IsDirty ? this.MergeCase.ToDTO() : null,
+                Hearing = this.Hearing.IsDirty ? this.Hearing.ToDTO() : null,
+                AttorneyForChild = this.AttorneyForChild.IsDirty ? this.AttorneyForChild.ToDTO() : null,
+                Party1Attorney = this.Party1AttorneyData.IsDirty ? this.Party1AttorneyData.ToDTO() : null,
+                Party2Attorney = this.Party2AttorneyData.IsDirty ? this.Party2AttorneyData.ToDTO() : null,
+                ThirdPartyData = this.ThirdPartyData.IsDirty ? this.ThirdPartyData.ToDTO() : null,
+                State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
+
             };
         }
     }
