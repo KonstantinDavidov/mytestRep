@@ -33,11 +33,6 @@ namespace FACCTS.Server.Model.DataModel
 
         public virtual Attorney AttorneyForChild { get; set; }
 
-        [InverseProperty("CaseHistoryRecord")]
-        public virtual ICollection<Witness> Witnesses { get; set; }
-
-        [InverseProperty("CaseHistoryRecord")]
-        public virtual ICollection<Interpreter> Interpreters { get; set; }
 
         public virtual CourtPartyAttorneyData Party1Attorney { get; set; }
 
