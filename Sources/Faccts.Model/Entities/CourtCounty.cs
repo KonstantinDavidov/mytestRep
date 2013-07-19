@@ -21,7 +21,7 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(CourtDepartmenets))]
+    [KnownType(typeof(CourtDepartment))]
     [KnownType(typeof(CourtLocations))]
     [KnownType(typeof(FACCTSConfiguration))]
     [KnownType(typeof(CourtCase))]
@@ -228,13 +228,13 @@ namespace Faccts.Model.Entities
         #region Navigation Properties
     
         [DataMember]
-        public TrackableCollection<CourtDepartmenets> CourtDepartmenets
+        public TrackableCollection<CourtDepartment> CourtDepartmenets
         {
             get
             {
                 if (_courtDepartmenets == null)
                 {
-                    _courtDepartmenets = new TrackableCollection<CourtDepartmenets>();
+                    _courtDepartmenets = new TrackableCollection<CourtDepartment>();
                     _courtDepartmenets.CollectionChanged += FixupCourtDepartmenets;
                 }
                 return _courtDepartmenets;
@@ -253,7 +253,7 @@ namespace Faccts.Model.Entities
                         _courtDepartmenets.CollectionChanged -= FixupCourtDepartmenets;
                         // This is the principal end in an association that performs cascade deletes.
                         // Remove the cascade delete event handler for any entities in the current collection.
-                        foreach (CourtDepartmenets item in _courtDepartmenets)
+                        foreach (CourtDepartment item in _courtDepartmenets)
                         {
                             ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
                         }
@@ -264,7 +264,7 @@ namespace Faccts.Model.Entities
                         _courtDepartmenets.CollectionChanged += FixupCourtDepartmenets;
                         // This is the principal end in an association that performs cascade deletes.
                         // Add the cascade delete event handler for any entities that are already in the new collection.
-                        foreach (CourtDepartmenets item in _courtDepartmenets)
+                        foreach (CourtDepartment item in _courtDepartmenets)
                         {
                             ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
                         }
@@ -273,7 +273,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private TrackableCollection<CourtDepartmenets> _courtDepartmenets;
+        private TrackableCollection<CourtDepartment> _courtDepartmenets;
     
         [DataMember]
         public TrackableCollection<CourtLocations> CourtLocations
@@ -499,7 +499,7 @@ namespace Faccts.Model.Entities
     
             if (e.NewItems != null)
             {
-                foreach (CourtDepartmenets item in e.NewItems)
+                foreach (CourtDepartment item in e.NewItems)
                 {
                     item.CourtCounty = this;
                     if (ChangeTracker.ChangeTrackingEnabled)
@@ -518,7 +518,7 @@ namespace Faccts.Model.Entities
     
             if (e.OldItems != null)
             {
-                foreach (CourtDepartmenets item in e.OldItems)
+                foreach (CourtDepartment item in e.OldItems)
                 {
                     if (ReferenceEquals(item.CourtCounty, this))
                     {

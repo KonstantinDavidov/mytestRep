@@ -21,14 +21,13 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(CourtCounty))]
-    [KnownType(typeof(Hearings))]
-    public partial class CourtDepartmenets: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    [KnownType(typeof(PropertyRestrainingOrdersTROSection))]
+    public partial class PropertyRestrainingOrdersROSection: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
     		private MakeObjectReactiveHelper _reactiveHelper;
     
-    		public CourtDepartmenets()
+    		public PropertyRestrainingOrdersROSection()
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
@@ -51,12 +50,9 @@ namespace Faccts.Model.Entities
     			);
     			Observable.Merge<Object>(
     				this.ObservableForProperty(x => x.Id)
-    				,this.ObservableForProperty(x => x.Name)
-    				,this.ObservableForProperty(x => x.Room)
-    				,this.ObservableForProperty(x => x.BranchOfficer)
-    				,this.ObservableForProperty(x => x.Reporter)
-    				,this.ObservableForProperty(x => x.CourtCountyId)
-    				,this.ObservableForProperty(x => x.CourtCounty.IsDirty)
+    				,this.ObservableForProperty(x => x.Requested)
+    				,this.ObservableForProperty(x => x.IsParty1)
+    				,this.ObservableForProperty(x => x.IsParty2)
     			).
     			Subscribe(_ =>
     			{
@@ -160,150 +156,52 @@ namespace Faccts.Model.Entities
         private long _id;
     
         [DataMember]
-        public string Name
+        public bool Requested
         {
-            get { return _name; }
+            get { return _requested; }
             set
             {
-                if (_name != value)
+                if (_requested != value)
                 {
-    				OnPropertyChanging("Name");
-                    _name = value;
-                    OnPropertyChanged("Name");
+    				OnPropertyChanging("Requested");
+                    _requested = value;
+                    OnPropertyChanged("Requested");
                 }
             }
         }
-        private string _name;
+        private bool _requested;
     
         [DataMember]
-        public string Room
+        public bool IsParty1
         {
-            get { return _room; }
+            get { return _isParty1; }
             set
             {
-                if (_room != value)
+                if (_isParty1 != value)
                 {
-    				OnPropertyChanging("Room");
-                    _room = value;
-                    OnPropertyChanged("Room");
+    				OnPropertyChanging("IsParty1");
+                    _isParty1 = value;
+                    OnPropertyChanged("IsParty1");
                 }
             }
         }
-        private string _room;
+        private bool _isParty1;
     
         [DataMember]
-        public string BranchOfficer
+        public bool IsParty2
         {
-            get { return _branchOfficer; }
+            get { return _isParty2; }
             set
             {
-                if (_branchOfficer != value)
+                if (_isParty2 != value)
                 {
-    				OnPropertyChanging("BranchOfficer");
-                    _branchOfficer = value;
-                    OnPropertyChanged("BranchOfficer");
+    				OnPropertyChanging("IsParty2");
+                    _isParty2 = value;
+                    OnPropertyChanged("IsParty2");
                 }
             }
         }
-        private string _branchOfficer;
-    
-        [DataMember]
-        public string Reporter
-        {
-            get { return _reporter; }
-            set
-            {
-                if (_reporter != value)
-                {
-    				OnPropertyChanging("Reporter");
-                    _reporter = value;
-                    OnPropertyChanged("Reporter");
-                }
-            }
-        }
-        private string _reporter;
-    
-        [DataMember]
-        public long CourtCountyId
-        {
-            get { return _courtCountyId; }
-            set
-            {
-                if (_courtCountyId != value)
-                {
-                    ChangeTracker.RecordOriginalValue("CourtCountyId", _courtCountyId);
-                    if (!IsDeserializing)
-                    {
-                        if (CourtCounty != null && CourtCounty.Id != value)
-                        {
-                            CourtCounty = null;
-                        }
-                    }
-    				OnPropertyChanging("CourtCountyId");
-                    _courtCountyId = value;
-                    OnPropertyChanged("CourtCountyId");
-                }
-            }
-        }
-        private long _courtCountyId;
-
-        #endregion
-
-        #region Navigation Properties
-    
-        [DataMember]
-        public CourtCounty CourtCounty
-        {
-            get { return _courtCounty; }
-            set
-            {
-                if (!ReferenceEquals(_courtCounty, value))
-                {
-                    var previousValue = _courtCounty;
-    				OnNavigationPropertyChanging("CourtCounty");
-                    _courtCounty = value;
-                    FixupCourtCounty(previousValue);
-                    OnNavigationPropertyChanged("CourtCounty");
-                }
-            }
-        }
-        private CourtCounty _courtCounty;
-    
-        [DataMember]
-        public TrackableCollection<Hearings> Hearings
-        {
-            get
-            {
-                if (_hearings == null)
-                {
-                    _hearings = new TrackableCollection<Hearings>();
-                    _hearings.CollectionChanged += FixupHearings;
-                }
-                return _hearings;
-            }
-            set
-            {
-                if (!ReferenceEquals(_hearings, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("Hearings");
-                    if (_hearings != null)
-                    {
-                        _hearings.CollectionChanged -= FixupHearings;
-                    }
-                    _hearings = value;
-                    if (_hearings != null)
-                    {
-                        _hearings.CollectionChanged += FixupHearings;
-                    }
-                    OnNavigationPropertyChanged("Hearings");
-                }
-            }
-        }
-        private TrackableCollection<Hearings> _hearings;
+        private bool _isParty2;
 
         #endregion
 
@@ -400,99 +298,8 @@ namespace Faccts.Model.Entities
             ChangeTracker.ChangeTrackingEnabled = true;
         }
     
-        // This entity type is the dependent end in at least one association that performs cascade deletes.
-        // This event handler will process notifications that occur when the principal end is deleted.
-        internal void HandleCascadeDelete(object sender, ObjectStateChangingEventArgs e)
-        {
-            if (e.NewState == ObjectState.Deleted)
-            {
-                this.MarkAsDeleted();
-            }
-        }
-    
         protected virtual void ClearNavigationProperties()
         {
-            CourtCounty = null;
-            Hearings.Clear();
-        }
-
-        #endregion
-
-        #region Association Fixup
-    
-        private void FixupCourtCounty(CourtCounty previousValue)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.CourtDepartmenets.Contains(this))
-            {
-                previousValue.CourtDepartmenets.Remove(this);
-            }
-    
-            if (CourtCounty != null)
-            {
-                CourtCounty.CourtDepartmenets.Add(this);
-    
-                CourtCountyId = CourtCounty.Id;
-            }
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("CourtCounty")
-                    && (ChangeTracker.OriginalValues["CourtCounty"] == CourtCounty))
-                {
-                    ChangeTracker.OriginalValues.Remove("CourtCounty");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("CourtCounty", previousValue);
-                }
-                if (CourtCounty != null && !CourtCounty.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    CourtCounty.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupHearings(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (Hearings item in e.NewItems)
-                {
-                    item.CourtDepartment = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("Hearings", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (Hearings item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.CourtDepartment, this))
-                    {
-                        item.CourtDepartment = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("Hearings", item);
-                    }
-                }
-            }
         }
 
         #endregion

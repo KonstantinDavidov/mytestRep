@@ -7,7 +7,7 @@ using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
-    public partial class CaseHistory
+    public partial class CaseHistory : IDataTransferConvertible<FACCTS.Server.Model.DataModel.CaseHistory>
     {
         partial void Initialize()
         {
@@ -56,5 +56,30 @@ namespace Faccts.Model.Entities
                 },
             };
         }
+
+        public FACCTS.Server.Model.DataModel.CaseHistory ToDTO()
+        {
+            if (!this.IsDirty)
+                return null;
+            return new FACCTS.Server.Model.DataModel.CaseHistory()
+            {
+                Id = this.Id,
+                Date = this.Date,
+                CaseHistoryEvent = this.CaseHistoryEvent,
+                CourtClerk = this.User.ConvertToDTO(),
+                CCPOR_ID = this.CCPOR_ID,
+                MasterOrder = this.MasterOrder.ConvertToDTO(),
+                //CourtCase = this.CourtCase.ToDTO(),
+                MergeCase = this.MergeCase.ConvertToDTO(),
+                Hearing = this.Hearing.ConvertToDTO(),
+                AttorneyForChild = this.AttorneyForChild.ConvertToDTO(),
+                Party1Attorney = this.Party1AttorneyData.ConvertToDTO(),
+                Party2Attorney = this.Party2AttorneyData.ConvertToDTO(),
+                ThirdPartyData = this.ThirdPartyData.ConvertToDTO(),
+                State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
+
+            };
+        }
+
     }
 }

@@ -52,6 +52,7 @@ namespace Faccts.Model.Entities
     				this.ObservableForProperty(x => x.Id)
     				,this.ObservableForProperty(x => x.Attached)
     				,this.ObservableForProperty(x => x.Text)
+    				,this.ObservableForProperty(x => x.Requested)
     			).
     			Subscribe(_ =>
     			{
@@ -185,6 +186,22 @@ namespace Faccts.Model.Entities
             }
         }
         private string _text;
+    
+        [DataMember]
+        public string Requested
+        {
+            get { return _requested; }
+            set
+            {
+                if (_requested != value)
+                {
+    				OnPropertyChanging("Requested");
+                    _requested = value;
+                    OnPropertyChanged("Requested");
+                }
+            }
+        }
+        private string _requested;
 
         #endregion
 

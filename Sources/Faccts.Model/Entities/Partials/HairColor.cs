@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Faccts.Model.Entities
 {
-    public partial class HairColor
+    public partial class HairColor : IDataTransferConvertible<FACCTS.Server.Model.DataModel.HairColor>
     {
         public HairColor(FACCTS.Server.Model.DataModel.HairColor dto) : this()
         {
@@ -16,11 +16,15 @@ namespace Faccts.Model.Entities
 
         public FACCTS.Server.Model.DataModel.HairColor ToDTO()
         {
+            if (!this.IsDirty)
+                return null;
             return new FACCTS.Server.Model.DataModel.HairColor()
             {
                 Id = this.Id,
                 Color = this.Color,
+                State = (FACCTS.Server.Model.DataModel.ObjectState)this.ChangeTracker.State,
             };
         }
+
     }
 }

@@ -185,8 +185,8 @@ namespace FACCTS.Services.Data
             }
         }
 
-        private List<CourtDepartmenets> _availableDepartments;
-        public List<CourtDepartmenets> AvailableDepartments
+        private List<CourtDepartment> _availableDepartments;
+        public List<CourtDepartment> AvailableDepartments
         {
             get
             {

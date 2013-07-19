@@ -9,7 +9,7 @@ using System.Reactive.Linq;
 
 namespace Faccts.Model.Entities
 {
-    public partial class CourtParty
+    public partial class CourtParty : IDataTransferConvertible<FACCTS.Server.Model.DataModel.CourtParty>
     {
         partial void Initialize()
         {
@@ -77,13 +77,15 @@ namespace Faccts.Model.Entities
 
         public FACCTS.Server.Model.DataModel.CourtParty ToDTO()
         {
+            if (!this.IsDirty)
+                return null;
             FACCTS.Server.Model.DataModel.CourtParty dto = new FACCTS.Server.Model.DataModel.CourtParty()
                 {
                     Id = this.Id,
                     FirstName = this.FirstName,
                     MiddleName = this.MiddleName,
                     LastName = this.LastName,
-                    Designation = this.Designation != null ? this.Designation.ToDTO() : null,
+                    Designation = this.Designation.ConvertToDTO(),
                     Description = this.Description,
                     ParticipantRole = this.ParticipantRole,
                     Address = this.Address,
@@ -96,9 +98,9 @@ namespace Faccts.Model.Entities
                     EntityType = this.EntityType,
                     Email = this.Email,
                     Sex = this.Sex,
-                    HairColor = this.HairColor != null ? this.HairColor.ToDTO() : null,
-                    EyesColor = this.EyesColor != null ? this.EyesColor.ToDTO() : null,
-                    Race = this.Race != null ? this.Race.ToDTO() : null,
+                    HairColor = this.HairColor.ConvertToDTO(),
+                    EyesColor = this.EyesColor.ConvertToDTO(),
+                    Race = this.Race.ConvertToDTO(),
                     RelationToOtherParty = this.RelationToOtherParty,
                     Weight = this.Weight,
                     HeightFt = this.HeightFt,
@@ -110,6 +112,7 @@ namespace Faccts.Model.Entities
                 };
             return dto;
         }
+
         
     }
 }

@@ -8,7 +8,7 @@
   <Model name="AddToCourtDocketDialogViewModel">
     <Property name="CaseNumber" type="string"/>
     <Property name="Courtroom" type="Faccts.Model.Entities.Courtrooms"/>
-    <Property name="Department" type="Faccts.Model.Entities.CourtDepartmenets"/>
+    <Property name="Department" type="Faccts.Model.Entities.CourtDepartment"/>
     <Property name="IsPermanentRO" type="bool"/>
     <Property name="IsCCorCV" type="bool"/>
     <Property name="IsSS" type="bool"/>
@@ -16,7 +16,7 @@
     <Property name="IsOtherHearingIssue" type="bool"/>
     <Property name="OtherHearingIssueText" type="string"/>
     <Property name="Courtrooms" type="Collection" collectionType="Faccts.Model.Entities.Courtrooms"/>
-    <Property name="Departments" type="Collection" collectionType="Faccts.Model.Entities.CourtDepartmenets"/>
+    <Property name="Departments" type="Collection" collectionType="Faccts.Model.Entities.CourtDepartment"/>
     <Property name="Session" type="FACCTS.Server.Model.Enums.DocketSession"/>
   </Model>
 
@@ -52,7 +52,7 @@
     <Property name="NewCourtDate" type="DateTime?"/>
     <Property name="Time" type="DateTime"/>
     <Property name="Courtroom" type="Faccts.Model.Entities.Courtrooms"/>
-    <Property name="Department" type="Faccts.Model.Entities.CourtDepartmenets"/>
+    <Property name="Department" type="Faccts.Model.Entities.CourtDepartment"/>
     <Property name="NoPOS" type="bool"/>
     <Property name="FCSReferral" type="bool"/>
     <Property name="GetAttyToPrepare" type="bool"/>
@@ -65,7 +65,7 @@
     <Property name="AllPaperworksOnSomeDaysBeforeHearing" type="bool"/>
     <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
     <Property name="Courtrooms" type="Collection" collectionType="Faccts.Model.Entities.Courtrooms"/>
-    <Property name="Departments" type="Collection" collectionType="Faccts.Model.Entities.CourtDepartmenets"/>
+    <Property name="Departments" type="Collection" collectionType="Faccts.Model.Entities.CourtDepartment"/>
   </Model>
 
 
@@ -136,7 +136,7 @@
         <xs:enumeration value="DateTime?"></xs:enumeration>
         <xs:enumeration value="Collection"></xs:enumeration>
         <xs:enumeration value="Faccts.Model.Entities.Courtrooms"></xs:enumeration>
-        <xs:enumeration value="Faccts.Model.Entities.CourtDepartmenets"></xs:enumeration>
+        <xs:enumeration value="Faccts.Model.Entities.CourtDepartment"></xs:enumeration>
         <xs:enumeration value="Faccts.Model.Entities.CourtCase"></xs:enumeration>
         <xs:enumeration value="Faccts.Model.Entities.CaseNotes"></xs:enumeration>
         <xs:enumeration value="Faccts.Model.Entities.CaseHistory"></xs:enumeration>

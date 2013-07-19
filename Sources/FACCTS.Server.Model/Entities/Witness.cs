@@ -23,13 +23,12 @@ namespace FACCTS.Server.Model.DataModel
         [StringLength(255)]
         public string LastName { get; set; }
 
-        public virtual Designation Designation { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string Contact { get; set; }
 
         [InverseProperty("Witnesses")]
-        public virtual CaseHistory CaseHistoryRecord { get; set; }
+        public virtual CourtCase CourtCase { get; set; }
 
         [NotMapped]
         public override ObjectState State

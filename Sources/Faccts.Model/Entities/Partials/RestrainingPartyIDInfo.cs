@@ -7,7 +7,7 @@ using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
-    public partial class RestrainingPartyIDInfo
+    public partial class RestrainingPartyIDInfo : IDataTransferConvertible<FACCTS.Server.Model.DataModel.RestrainingPartyIdentificationInformation>
     {
         partial void Initialize()
         {
@@ -70,5 +70,6 @@ namespace Faccts.Model.Entities
                 IssuedDate = this.IDIssuedDate,
             };
         }
+
     }
 }

@@ -54,8 +54,14 @@ namespace FACCTS.Server.Data.Repositiries.Helpers
         public Func<DbContext, object> GetRepositoryFactory<T>()
         {
 
+            return GetRepositoryFactory(typeof(T));
+        }
+
+
+        public Func<DbContext, object> GetRepositoryFactory(Type entityType)
+        {
             Func<DbContext, object> factory;
-            _repositoryFactories.TryGetValue(typeof(T), out factory);
+            _repositoryFactories.TryGetValue(entityType, out factory);
             return factory;
         }
 
@@ -77,6 +83,11 @@ namespace FACCTS.Server.Data.Repositiries.Helpers
             return GetRepositoryFactory<T>() ?? DefaultEntityRepositoryFactory<T>();
         }
 
+        public Func<DbContext, object> GetRepositoryFactoryForEntityType(Type entityType)
+        {
+            return GetRepositoryFactory(entityType) ?? DefaultEntityRepositoryFactory(entityType);
+        }
+
         /// <summary>
         /// Default factory for a <see cref="IRepository{T}"/> where T is an entity.
         /// </summary>
@@ -84,6 +95,16 @@ namespace FACCTS.Server.Data.Repositiries.Helpers
         protected virtual Func<DbContext, object> DefaultEntityRepositoryFactory<T>() where T : class
         {
             return dbContext => new FacctsDataRepository<T>(dbContext);
+        }
+
+        protected virtual Func<DbContext, object> DefaultEntityRepositoryFactory(Type type)
+        {
+            return dbContext =>
+                {
+                    Type f1 = typeof(FacctsDataRepository<>);
+                    Type constructed = f1.MakeGenericType(type);
+                    return Activator.CreateInstance(constructed);
+                };
         }
 
         /// <summary>

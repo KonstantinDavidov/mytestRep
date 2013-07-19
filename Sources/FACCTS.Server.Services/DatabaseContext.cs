@@ -123,6 +123,8 @@ namespace FACCTS.Server.Data
         public DbSet<ScheduledIntegrationTask> ScheduledIntegrationTasks { get; set; }
         public DbSet<MasterOrder> MasterOrders { get; set; }
         public DbSet<AttachmentOrder> AttachmentOrders { get; set; }
+        public DbSet<CourtPartyAttorneyData> CourtPartyAttorneyData { get; set; }
+        public DbSet<ThirdPartyData> ThirdPartyData { get; set; }
         #endregion
 
         public new IDbSet<TEntity> Set<TEntity>() where TEntity : class

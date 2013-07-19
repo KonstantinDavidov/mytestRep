@@ -23,7 +23,7 @@ namespace Faccts.Model.Entities
     [DataContract(IsReference = true)]
     [KnownType(typeof(CaseHistory))]
     [KnownType(typeof(Courtrooms))]
-    [KnownType(typeof(CourtDepartmenets))]
+    [KnownType(typeof(CourtDepartment))]
     [KnownType(typeof(CourtDocketRecord))]
     public partial class Hearings: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
@@ -380,7 +380,7 @@ namespace Faccts.Model.Entities
         private Courtrooms _courtrooms;
     
         [DataMember]
-        public CourtDepartmenets CourtDepartment
+        public CourtDepartment CourtDepartment
         {
             get { return _courtDepartment; }
             set
@@ -395,7 +395,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private CourtDepartmenets _courtDepartment;
+        private CourtDepartment _courtDepartment;
     
         [DataMember]
         public TrackableCollection<CourtDocketRecord> CourtDocketRecords
@@ -652,7 +652,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupCourtDepartment(CourtDepartmenets previousValue, bool skipKeys = false)
+        private void FixupCourtDepartment(CourtDepartment previousValue, bool skipKeys = false)
         {
             if (IsDeserializing)
             {

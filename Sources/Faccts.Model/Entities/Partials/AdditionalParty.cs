@@ -7,7 +7,7 @@ using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
-    public partial class AdditionalParty
+    public partial class AdditionalParty : IDataTransferConvertible<FACCTS.Server.Model.DataModel.Witness>
     {
         partial void Initialize()
         {
@@ -37,5 +37,22 @@ namespace Faccts.Model.Entities
                 return result;
             }
         }
+
+        FACCTS.Server.Model.DataModel.Witness IDataTransferConvertible<FACCTS.Server.Model.DataModel.Witness>.ToDTO()
+        {
+            if (!this.IsDirty)
+                return null;
+            return new FACCTS.Server.Model.DataModel.Witness()
+            {
+                Id = this.Id,
+                EntityType = this.EntityType,
+                WitnessFor = this.PartyFor == Entities.PartyFor.Party1 ? this.CourtCase.Party1.ConvertToDTO() : this.CourtCase.Party2.ConvertToDTO(),
+                FirstName = this.FirstName,
+                LastName = this.LastName,
+                Contact = this.Contact,
+                State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
+            };
+        }
+
     }
 }

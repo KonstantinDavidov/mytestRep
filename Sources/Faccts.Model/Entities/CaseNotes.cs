@@ -162,7 +162,7 @@ namespace Faccts.Model.Entities
         private long _id;
     
         [DataMember]
-        public int Status
+        public FACCTS.Server.Model.Enums.CaseNoteStatus Status
         {
             get { return _status; }
             set
@@ -175,7 +175,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _status;
+        private FACCTS.Server.Model.Enums.CaseNoteStatus _status;
     
         [DataMember]
         public string Text
