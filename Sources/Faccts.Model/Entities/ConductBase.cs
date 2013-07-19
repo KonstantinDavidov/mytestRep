@@ -21,13 +21,16 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(OtherOrdersTROSection))]
-    public partial class OtherOrdersROSection: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    [KnownType(typeof(ConductROSection))]
+    [KnownType(typeof(ConductTROSection))]
+    [KnownType(typeof(ConductDVROSection))]
+    [KnownType(typeof(ConductDVTROSection))]
+    public partial class ConductBase: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
     		private MakeObjectReactiveHelper _reactiveHelper;
     
-    		public OtherOrdersROSection()
+    		public ConductBase()
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
@@ -50,8 +53,9 @@ namespace Faccts.Model.Entities
     			);
     			Observable.Merge<Object>(
     				this.ObservableForProperty(x => x.Id)
-    				,this.ObservableForProperty(x => x.Attached)
-    				,this.ObservableForProperty(x => x.Text)
+    				,this.ObservableForProperty(x => x.NoHarass)
+    				,this.ObservableForProperty(x => x.NoContact)
+    				,this.ObservableForProperty(x => x.NoLocate)
     				,this.ObservableForProperty(x => x.Requested)
     			).
     			Subscribe(_ =>
@@ -156,39 +160,55 @@ namespace Faccts.Model.Entities
         private long _id;
     
         [DataMember]
-        public bool Attached
+        public bool NoHarass
         {
-            get { return _attached; }
+            get { return _noHarass; }
             set
             {
-                if (_attached != value)
+                if (_noHarass != value)
                 {
-    				OnPropertyChanging("Attached");
-                    _attached = value;
-                    OnPropertyChanged("Attached");
+    				OnPropertyChanging("NoHarass");
+                    _noHarass = value;
+                    OnPropertyChanged("NoHarass");
                 }
             }
         }
-        private bool _attached;
+        private bool _noHarass;
     
         [DataMember]
-        public string Text
+        public bool NoContact
         {
-            get { return _text; }
+            get { return _noContact; }
             set
             {
-                if (_text != value)
+                if (_noContact != value)
                 {
-    				OnPropertyChanging("Text");
-                    _text = value;
-                    OnPropertyChanged("Text");
+    				OnPropertyChanging("NoContact");
+                    _noContact = value;
+                    OnPropertyChanged("NoContact");
                 }
             }
         }
-        private string _text;
+        private bool _noContact;
     
         [DataMember]
-        public string Requested
+        public bool NoLocate
+        {
+            get { return _noLocate; }
+            set
+            {
+                if (_noLocate != value)
+                {
+    				OnPropertyChanging("NoLocate");
+                    _noLocate = value;
+                    OnPropertyChanged("NoLocate");
+                }
+            }
+        }
+        private bool _noLocate;
+    
+        [DataMember]
+        public bool Requested
         {
             get { return _requested; }
             set
@@ -201,7 +221,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private string _requested;
+        private bool _requested;
 
         #endregion
 

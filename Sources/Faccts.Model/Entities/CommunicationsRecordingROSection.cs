@@ -21,13 +21,13 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(OtherOrdersTROSection))]
-    public partial class OtherOrdersROSection: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    [KnownType(typeof(CommunicationsRecordingTROSection))]
+    public partial class CommunicationsRecordingROSection: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
     		private MakeObjectReactiveHelper _reactiveHelper;
     
-    		public OtherOrdersROSection()
+    		public CommunicationsRecordingROSection()
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
@@ -50,8 +50,6 @@ namespace Faccts.Model.Entities
     			);
     			Observable.Merge<Object>(
     				this.ObservableForProperty(x => x.Id)
-    				,this.ObservableForProperty(x => x.Attached)
-    				,this.ObservableForProperty(x => x.Text)
     				,this.ObservableForProperty(x => x.Requested)
     			).
     			Subscribe(_ =>
@@ -136,7 +134,7 @@ namespace Faccts.Model.Entities
     	    #region Simple Properties
     
         [DataMember]
-        public long Id
+        public int Id
         {
             get { return _id; }
             set
@@ -153,39 +151,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private long _id;
-    
-        [DataMember]
-        public bool Attached
-        {
-            get { return _attached; }
-            set
-            {
-                if (_attached != value)
-                {
-    				OnPropertyChanging("Attached");
-                    _attached = value;
-                    OnPropertyChanged("Attached");
-                }
-            }
-        }
-        private bool _attached;
-    
-        [DataMember]
-        public string Text
-        {
-            get { return _text; }
-            set
-            {
-                if (_text != value)
-                {
-    				OnPropertyChanging("Text");
-                    _text = value;
-                    OnPropertyChanged("Text");
-                }
-            }
-        }
-        private string _text;
+        private int _id;
     
         [DataMember]
         public string Requested

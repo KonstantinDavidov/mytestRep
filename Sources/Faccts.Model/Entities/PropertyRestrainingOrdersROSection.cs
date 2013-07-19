@@ -21,13 +21,13 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(OtherOrdersTROSection))]
-    public partial class OtherOrdersROSection: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    [KnownType(typeof(PropertyRestrainingOrdersTROSection))]
+    public partial class PropertyRestrainingOrdersROSection: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
     		private MakeObjectReactiveHelper _reactiveHelper;
     
-    		public OtherOrdersROSection()
+    		public PropertyRestrainingOrdersROSection()
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
@@ -50,9 +50,9 @@ namespace Faccts.Model.Entities
     			);
     			Observable.Merge<Object>(
     				this.ObservableForProperty(x => x.Id)
-    				,this.ObservableForProperty(x => x.Attached)
-    				,this.ObservableForProperty(x => x.Text)
     				,this.ObservableForProperty(x => x.Requested)
+    				,this.ObservableForProperty(x => x.IsParty1)
+    				,this.ObservableForProperty(x => x.IsParty2)
     			).
     			Subscribe(_ =>
     			{
@@ -156,39 +156,7 @@ namespace Faccts.Model.Entities
         private long _id;
     
         [DataMember]
-        public bool Attached
-        {
-            get { return _attached; }
-            set
-            {
-                if (_attached != value)
-                {
-    				OnPropertyChanging("Attached");
-                    _attached = value;
-                    OnPropertyChanged("Attached");
-                }
-            }
-        }
-        private bool _attached;
-    
-        [DataMember]
-        public string Text
-        {
-            get { return _text; }
-            set
-            {
-                if (_text != value)
-                {
-    				OnPropertyChanging("Text");
-                    _text = value;
-                    OnPropertyChanged("Text");
-                }
-            }
-        }
-        private string _text;
-    
-        [DataMember]
-        public string Requested
+        public bool Requested
         {
             get { return _requested; }
             set
@@ -201,7 +169,39 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private string _requested;
+        private bool _requested;
+    
+        [DataMember]
+        public bool IsParty1
+        {
+            get { return _isParty1; }
+            set
+            {
+                if (_isParty1 != value)
+                {
+    				OnPropertyChanging("IsParty1");
+                    _isParty1 = value;
+                    OnPropertyChanged("IsParty1");
+                }
+            }
+        }
+        private bool _isParty1;
+    
+        [DataMember]
+        public bool IsParty2
+        {
+            get { return _isParty2; }
+            set
+            {
+                if (_isParty2 != value)
+                {
+    				OnPropertyChanging("IsParty2");
+                    _isParty2 = value;
+                    OnPropertyChanged("IsParty2");
+                }
+            }
+        }
+        private bool _isParty2;
 
         #endregion
 

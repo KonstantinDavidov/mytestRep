@@ -21,13 +21,12 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(OtherOrdersTROSection))]
-    public partial class OtherOrdersROSection: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    public partial class PropertyRecord: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
     		private MakeObjectReactiveHelper _reactiveHelper;
     
-    		public OtherOrdersROSection()
+    		public PropertyRecord()
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
@@ -50,9 +49,9 @@ namespace Faccts.Model.Entities
     			);
     			Observable.Merge<Object>(
     				this.ObservableForProperty(x => x.Id)
-    				,this.ObservableForProperty(x => x.Attached)
-    				,this.ObservableForProperty(x => x.Text)
-    				,this.ObservableForProperty(x => x.Requested)
+    				,this.ObservableForProperty(x => x.Item)
+    				,this.ObservableForProperty(x => x.Description)
+    				,this.ObservableForProperty(x => x.PropertyControSectionId)
     			).
     			Subscribe(_ =>
     			{
@@ -156,52 +155,53 @@ namespace Faccts.Model.Entities
         private long _id;
     
         [DataMember]
-        public bool Attached
+        public string Item
         {
-            get { return _attached; }
+            get { return _item; }
             set
             {
-                if (_attached != value)
+                if (_item != value)
                 {
-    				OnPropertyChanging("Attached");
-                    _attached = value;
-                    OnPropertyChanged("Attached");
+    				OnPropertyChanging("Item");
+                    _item = value;
+                    OnPropertyChanged("Item");
                 }
             }
         }
-        private bool _attached;
+        private string _item;
     
         [DataMember]
-        public string Text
+        public string Description
         {
-            get { return _text; }
+            get { return _description; }
             set
             {
-                if (_text != value)
+                if (_description != value)
                 {
-    				OnPropertyChanging("Text");
-                    _text = value;
-                    OnPropertyChanged("Text");
+    				OnPropertyChanging("Description");
+                    _description = value;
+                    OnPropertyChanged("Description");
                 }
             }
         }
-        private string _text;
+        private string _description;
     
         [DataMember]
-        public string Requested
+        public long PropertyControSectionId
         {
-            get { return _requested; }
+            get { return _propertyControSectionId; }
             set
             {
-                if (_requested != value)
+                if (_propertyControSectionId != value)
                 {
-    				OnPropertyChanging("Requested");
-                    _requested = value;
-                    OnPropertyChanged("Requested");
+                    ChangeTracker.RecordOriginalValue("PropertyControSectionId", _propertyControSectionId);
+    				OnPropertyChanging("PropertyControSectionId");
+                    _propertyControSectionId = value;
+                    OnPropertyChanged("PropertyControSectionId");
                 }
             }
         }
-        private string _requested;
+        private long _propertyControSectionId;
 
         #endregion
 

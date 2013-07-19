@@ -21,13 +21,13 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(OtherOrdersTROSection))]
-    public partial class OtherOrdersROSection: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    [KnownType(typeof(AnimalsTROSection))]
+    public partial class AnimalsROSection: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
     		private MakeObjectReactiveHelper _reactiveHelper;
     
-    		public OtherOrdersROSection()
+    		public AnimalsROSection()
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
@@ -50,9 +50,9 @@ namespace Faccts.Model.Entities
     			);
     			Observable.Merge<Object>(
     				this.ObservableForProperty(x => x.Id)
-    				,this.ObservableForProperty(x => x.Attached)
-    				,this.ObservableForProperty(x => x.Text)
     				,this.ObservableForProperty(x => x.Requested)
+    				,this.ObservableForProperty(x => x.Distance)
+    				,this.ObservableForProperty(x => x.Text)
     			).
     			Subscribe(_ =>
     			{
@@ -156,20 +156,36 @@ namespace Faccts.Model.Entities
         private long _id;
     
         [DataMember]
-        public bool Attached
+        public bool Requested
         {
-            get { return _attached; }
+            get { return _requested; }
             set
             {
-                if (_attached != value)
+                if (_requested != value)
                 {
-    				OnPropertyChanging("Attached");
-                    _attached = value;
-                    OnPropertyChanged("Attached");
+    				OnPropertyChanging("Requested");
+                    _requested = value;
+                    OnPropertyChanged("Requested");
                 }
             }
         }
-        private bool _attached;
+        private bool _requested;
+    
+        [DataMember]
+        public decimal Distance
+        {
+            get { return _distance; }
+            set
+            {
+                if (_distance != value)
+                {
+    				OnPropertyChanging("Distance");
+                    _distance = value;
+                    OnPropertyChanged("Distance");
+                }
+            }
+        }
+        private decimal _distance;
     
         [DataMember]
         public string Text
@@ -186,22 +202,6 @@ namespace Faccts.Model.Entities
             }
         }
         private string _text;
-    
-        [DataMember]
-        public string Requested
-        {
-            get { return _requested; }
-            set
-            {
-                if (_requested != value)
-                {
-    				OnPropertyChanging("Requested");
-                    _requested = value;
-                    OnPropertyChanged("Requested");
-                }
-            }
-        }
-        private string _requested;
 
         #endregion
 
