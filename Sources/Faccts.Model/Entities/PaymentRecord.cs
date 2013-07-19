@@ -21,13 +21,12 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(OtherOrdersTROSection))]
-    public partial class OtherOrdersROSection: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    public partial class PaymentRecord: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
     		private MakeObjectReactiveHelper _reactiveHelper;
     
-    		public OtherOrdersROSection()
+    		public PaymentRecord()
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
@@ -50,9 +49,12 @@ namespace Faccts.Model.Entities
     			);
     			Observable.Merge<Object>(
     				this.ObservableForProperty(x => x.Id)
-    				,this.ObservableForProperty(x => x.Attached)
-    				,this.ObservableForProperty(x => x.Text)
-    				,this.ObservableForProperty(x => x.Requested)
+    				,this.ObservableForProperty(x => x.DebtItem)
+    				,this.ObservableForProperty(x => x.PaymentTo)
+    				,this.ObservableForProperty(x => x.PaymentFor)
+    				,this.ObservableForProperty(x => x.PaymentFrom)
+    				,this.ObservableForProperty(x => x.Date)
+    				,this.ObservableForProperty(x => x.PaymentsROSectionId)
     			).
     			Subscribe(_ =>
     			{
@@ -156,52 +158,101 @@ namespace Faccts.Model.Entities
         private long _id;
     
         [DataMember]
-        public bool Attached
+        public string DebtItem
         {
-            get { return _attached; }
+            get { return _debtItem; }
             set
             {
-                if (_attached != value)
+                if (_debtItem != value)
                 {
-    				OnPropertyChanging("Attached");
-                    _attached = value;
-                    OnPropertyChanged("Attached");
+    				OnPropertyChanging("DebtItem");
+                    _debtItem = value;
+                    OnPropertyChanged("DebtItem");
                 }
             }
         }
-        private bool _attached;
+        private string _debtItem;
     
         [DataMember]
-        public string Text
+        public string PaymentTo
         {
-            get { return _text; }
+            get { return _paymentTo; }
             set
             {
-                if (_text != value)
+                if (_paymentTo != value)
                 {
-    				OnPropertyChanging("Text");
-                    _text = value;
-                    OnPropertyChanged("Text");
+    				OnPropertyChanging("PaymentTo");
+                    _paymentTo = value;
+                    OnPropertyChanged("PaymentTo");
                 }
             }
         }
-        private string _text;
+        private string _paymentTo;
     
         [DataMember]
-        public string Requested
+        public string PaymentFor
         {
-            get { return _requested; }
+            get { return _paymentFor; }
             set
             {
-                if (_requested != value)
+                if (_paymentFor != value)
                 {
-    				OnPropertyChanging("Requested");
-                    _requested = value;
-                    OnPropertyChanged("Requested");
+    				OnPropertyChanging("PaymentFor");
+                    _paymentFor = value;
+                    OnPropertyChanged("PaymentFor");
                 }
             }
         }
-        private string _requested;
+        private string _paymentFor;
+    
+        [DataMember]
+        public string PaymentFrom
+        {
+            get { return _paymentFrom; }
+            set
+            {
+                if (_paymentFrom != value)
+                {
+    				OnPropertyChanging("PaymentFrom");
+                    _paymentFrom = value;
+                    OnPropertyChanged("PaymentFrom");
+                }
+            }
+        }
+        private string _paymentFrom;
+    
+        [DataMember]
+        public System.DateTime Date
+        {
+            get { return _date; }
+            set
+            {
+                if (_date != value)
+                {
+    				OnPropertyChanging("Date");
+                    _date = value;
+                    OnPropertyChanged("Date");
+                }
+            }
+        }
+        private System.DateTime _date;
+    
+        [DataMember]
+        public long PaymentsROSectionId
+        {
+            get { return _paymentsROSectionId; }
+            set
+            {
+                if (_paymentsROSectionId != value)
+                {
+                    ChangeTracker.RecordOriginalValue("PaymentsROSectionId", _paymentsROSectionId);
+    				OnPropertyChanging("PaymentsROSectionId");
+                    _paymentsROSectionId = value;
+                    OnPropertyChanged("PaymentsROSectionId");
+                }
+            }
+        }
+        private long _paymentsROSectionId;
 
         #endregion
 

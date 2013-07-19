@@ -2148,11 +2148,10 @@
             <End Role="CaseHistory" EntitySet="CaseHistory" />
             <End Role="MasterOrder" EntitySet="MasterOrder" />
           </AssociationSet>
-          <EntitySet Name="ConductROSectionSet" EntityType="FACCTS_DBModel.ConductROSection" />
           <EntitySet Name="CH130ROOrderSet" EntityType="FACCTS_DBModel.CH130ROOrder" />
           <AssociationSet Name="CH130OrderConductSection" Association="FACCTS_DBModel.CH130OrderConductSection">
             <End Role="CH130Order" EntitySet="CH130ROOrderSet" />
-            <End Role="ConductSection" EntitySet="ConductROSectionSet" />
+            <End Role="ConductSection" EntitySet="ConductBaseSet" />
           </AssociationSet>
           <EntitySet Name="ServiceSectionSet" EntityType="FACCTS_DBModel.ServiceSection" />
           <AssociationSet Name="CH130OrderServiceSection" Association="FACCTS_DBModel.CH130OrderServiceSection">
@@ -2202,7 +2201,7 @@
           <EntitySet Name="CH110TROOrderSet" EntityType="FACCTS_DBModel.CH110TROOrder" />
           <AssociationSet Name="CH110OrderConductTROSection" Association="FACCTS_DBModel.CH110OrderConductTROSection">
             <End Role="CH110Order" EntitySet="CH110TROOrderSet" />
-            <End Role="ConductTROSection" EntitySet="ConductROSectionSet" />
+            <End Role="ConductTROSection" EntitySet="ConductBaseSet" />
           </AssociationSet>
           <AssociationSet Name="CH110OrderSAOTROSection" Association="FACCTS_DBModel.CH110OrderSAOTROSection">
             <End Role="CH110Order" EntitySet="CH110TROOrderSet" />
@@ -2227,6 +2226,139 @@
           <AssociationSet Name="CH110TROOrderExpirationSection" Association="FACCTS_DBModel.CH110TROOrderExpirationSection">
             <End Role="CH110TROOrder" EntitySet="CH110TROOrderSet" />
             <End Role="ExpirationSection" EntitySet="ExpirationSectionSet" />
+          </AssociationSet>
+          <EntitySet Name="ConductBaseSet" EntityType="FACCTS_DBModel.ConductBase" />
+          <EntitySet Name="DV110TROOrderSet" EntityType="FACCTS_DBModel.DV110TROOrder" />
+          <AssociationSet Name="DV110TROOrderConductDVTROSection" Association="FACCTS_DBModel.DV110TROOrderConductDVTROSection">
+            <End Role="DV110TROOrder" EntitySet="DV110TROOrderSet" />
+            <End Role="ConductDVTROSection" EntitySet="ConductBaseSet" />
+          </AssociationSet>
+          <EntitySet Name="DV110ServiceSectionSet" EntityType="FACCTS_DBModel.DV110ServiceSection" />
+          <AssociationSet Name="DV110TROOrderDV110ServiceSection" Association="FACCTS_DBModel.DV110TROOrderDV110ServiceSection">
+            <End Role="DV110TROOrder" EntitySet="DV110TROOrderSet" />
+            <End Role="DV110ServiceSection" EntitySet="DV110ServiceSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="DV110TROOrderSAOTROSection" Association="FACCTS_DBModel.DV110TROOrderSAOTROSection">
+            <End Role="DV110TROOrder" EntitySet="DV110TROOrderSet" />
+            <End Role="SAOTROSection" EntitySet="SAOROSectionSet" />
+          </AssociationSet>
+          <EntitySet Name="MoveOutROSectionSet" EntityType="FACCTS_DBModel.MoveOutROSection" />
+          <AssociationSet Name="DV110TROOrderMoveOutTROSection" Association="FACCTS_DBModel.DV110TROOrderMoveOutTROSection">
+            <End Role="DV110TROOrder" EntitySet="DV110TROOrderSet" />
+            <End Role="MoveOutTROSection" EntitySet="MoveOutROSectionSet" />
+          </AssociationSet>
+          <EntitySet Name="CommunicationsRecordingROSectionSet" EntityType="FACCTS_DBModel.CommunicationsRecordingROSection" />
+          <AssociationSet Name="DV110TROOrderCommunicationsRecordingTROSection" Association="FACCTS_DBModel.DV110TROOrderCommunicationsRecordingTROSection">
+            <End Role="DV110TROOrder" EntitySet="DV110TROOrderSet" />
+            <End Role="CommunicationsRecordingTROSection" EntitySet="CommunicationsRecordingROSectionSet" />
+          </AssociationSet>
+          <EntitySet Name="AnimalsROSectionSet" EntityType="FACCTS_DBModel.AnimalsROSection" />
+          <AssociationSet Name="DV110TROOrderAnimalsTROSection" Association="FACCTS_DBModel.DV110TROOrderAnimalsTROSection">
+            <End Role="DV110TROOrder" EntitySet="DV110TROOrderSet" />
+            <End Role="AnimalsTROSection" EntitySet="AnimalsROSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="DV110TROOrderOtherOrdersTROSection" Association="FACCTS_DBModel.DV110TROOrderOtherOrdersTROSection">
+            <End Role="DV110TROOrder" EntitySet="DV110TROOrderSet" />
+            <End Role="OtherOrdersTROSection" EntitySet="OtherOrdersROSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="DV110TROOrderNoGunsSection" Association="FACCTS_DBModel.DV110TROOrderNoGunsSection">
+            <End Role="DV110TROOrder" EntitySet="DV110TROOrderSet" />
+            <End Role="NoGunsSection" EntitySet="NoGunsSectionSet" />
+          </AssociationSet>
+          <EntitySet Name="BatterInterventionSectionSet" EntityType="FACCTS_DBModel.BatterInterventionSection" />
+          <AssociationSet Name="DV110TROOrderBatterInterventionSection" Association="FACCTS_DBModel.DV110TROOrderBatterInterventionSection">
+            <End Role="DV110TROOrder" EntitySet="DV110TROOrderSet" />
+            <End Role="BatterInterventionSection" EntitySet="BatterInterventionSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="DV110TROOrderExpirationSection" Association="FACCTS_DBModel.DV110TROOrderExpirationSection">
+            <End Role="DV110TROOrder" EntitySet="DV110TROOrderSet" />
+            <End Role="ExpirationSection" EntitySet="ExpirationSectionSet" />
+          </AssociationSet>
+          <EntitySet Name="PropertyControlROSectionSet" EntityType="FACCTS_DBModel.PropertyControlROSection" />
+          <EntitySet Name="PropertyRecordSet" EntityType="FACCTS_DBModel.PropertyRecord" />
+          <AssociationSet Name="PropertyControlROSectionPropertyRecord" Association="FACCTS_DBModel.PropertyControlROSectionPropertyRecord">
+            <End Role="PropertyControlROSection" EntitySet="PropertyControlROSectionSet" />
+            <End Role="PropertyRecord" EntitySet="PropertyRecordSet" />
+          </AssociationSet>
+          <AssociationSet Name="DV110TROOrderPropertyControlTROSection" Association="FACCTS_DBModel.DV110TROOrderPropertyControlTROSection">
+            <End Role="DV110TROOrder" EntitySet="DV110TROOrderSet" />
+            <End Role="PropertyControlTROSection" EntitySet="PropertyControlROSectionSet" />
+          </AssociationSet>
+          <EntitySet Name="PaymentsROSectionSet" EntityType="FACCTS_DBModel.PaymentsROSection" />
+          <EntitySet Name="PaymentRecordSet" EntityType="FACCTS_DBModel.PaymentRecord" />
+          <AssociationSet Name="PaymentsROSectionPaymentRecord" Association="FACCTS_DBModel.PaymentsROSectionPaymentRecord">
+            <End Role="PaymentsROSection" EntitySet="PaymentsROSectionSet" />
+            <End Role="PaymentRecord" EntitySet="PaymentRecordSet" />
+          </AssociationSet>
+          <AssociationSet Name="DV110TROOrderPaymentsTROSection" Association="FACCTS_DBModel.DV110TROOrderPaymentsTROSection">
+            <End Role="DV110TROOrder" EntitySet="DV110TROOrderSet" />
+            <End Role="PaymentsTROSection" EntitySet="PaymentsROSectionSet" />
+          </AssociationSet>
+          <EntitySet Name="PropertyRestrainingOrdersROSectionSet" EntityType="FACCTS_DBModel.PropertyRestrainingOrdersROSection" />
+          <AssociationSet Name="DV110TROOrderPropertyRestrainingOrdersTROSection" Association="FACCTS_DBModel.DV110TROOrderPropertyRestrainingOrdersTROSection">
+            <End Role="DV110TROOrder" EntitySet="DV110TROOrderSet" />
+            <End Role="PropertyRestrainingOrdersTROSection" EntitySet="PropertyRestrainingOrdersROSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="DV110TROOrderOtherOrdersTROSection1" Association="FACCTS_DBModel.DV110TROOrderOtherOrdersTROSection1">
+            <End Role="DV110TROOrder" EntitySet="DV110TROOrderSet" />
+            <End Role="OtherOrdersTROSection" EntitySet="OtherOrdersROSectionSet" />
+          </AssociationSet>
+          <EntitySet Name="DV130ROOrderSet" EntityType="FACCTS_DBModel.DV130ROOrder" />
+          <AssociationSet Name="DV130ROOrderConductROSection" Association="FACCTS_DBModel.DV130ROOrderConductROSection">
+            <End Role="DV130ROOrder" EntitySet="DV130ROOrderSet" />
+            <End Role="ConductROSection" EntitySet="ConductBaseSet" />
+          </AssociationSet>
+          <AssociationSet Name="DV130ROOrderServiceSection" Association="FACCTS_DBModel.DV130ROOrderServiceSection">
+            <End Role="DV130ROOrder" EntitySet="DV130ROOrderSet" />
+            <End Role="ServiceSection" EntitySet="ServiceSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="DV130ROOrderSAOROSection" Association="FACCTS_DBModel.DV130ROOrderSAOROSection">
+            <End Role="DV130ROOrder" EntitySet="DV130ROOrderSet" />
+            <End Role="SAOROSection" EntitySet="SAOROSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="DV130ROOrderMoveOutROSection" Association="FACCTS_DBModel.DV130ROOrderMoveOutROSection">
+            <End Role="DV130ROOrder" EntitySet="DV130ROOrderSet" />
+            <End Role="MoveOutROSection" EntitySet="MoveOutROSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="DV130ROOrderCommunicationsRecordingROSection" Association="FACCTS_DBModel.DV130ROOrderCommunicationsRecordingROSection">
+            <End Role="DV130ROOrder" EntitySet="DV130ROOrderSet" />
+            <End Role="CommunicationsRecordingROSection" EntitySet="CommunicationsRecordingROSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="DV130ROOrderAnimalsROSection" Association="FACCTS_DBModel.DV130ROOrderAnimalsROSection">
+            <End Role="DV130ROOrder" EntitySet="DV130ROOrderSet" />
+            <End Role="AnimalsROSection" EntitySet="AnimalsROSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="DV130ROOrderOtherOrdersROSection" Association="FACCTS_DBModel.DV130ROOrderOtherOrdersROSection">
+            <End Role="DV130ROOrder" EntitySet="DV130ROOrderSet" />
+            <End Role="OtherOrdersROSection" EntitySet="OtherOrdersROSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="DV130ROOrderBatterInterventionSection" Association="FACCTS_DBModel.DV130ROOrderBatterInterventionSection">
+            <End Role="DV130ROOrder" EntitySet="DV130ROOrderSet" />
+            <End Role="BatterInterventionSection" EntitySet="BatterInterventionSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="DV130ROOrderNoGunsSection" Association="FACCTS_DBModel.DV130ROOrderNoGunsSection">
+            <End Role="DV130ROOrder" EntitySet="DV130ROOrderSet" />
+            <End Role="NoGunsSection" EntitySet="NoGunsSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="DV130ROOrderExpirationSection" Association="FACCTS_DBModel.DV130ROOrderExpirationSection">
+            <End Role="DV130ROOrder" EntitySet="DV130ROOrderSet" />
+            <End Role="ExpirationSection" EntitySet="ExpirationSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="DV130ROOrderPropertyControlROSection" Association="FACCTS_DBModel.DV130ROOrderPropertyControlROSection">
+            <End Role="DV130ROOrder" EntitySet="DV130ROOrderSet" />
+            <End Role="PropertyControlROSection" EntitySet="PropertyControlROSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="DV130ROOrderPaymentsROSection" Association="FACCTS_DBModel.DV130ROOrderPaymentsROSection">
+            <End Role="DV130ROOrder" EntitySet="DV130ROOrderSet" />
+            <End Role="PaymentsROSection" EntitySet="PaymentsROSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="DV130ROOrderPropertyRestrainingOrdersROSection" Association="FACCTS_DBModel.DV130ROOrderPropertyRestrainingOrdersROSection">
+            <End Role="DV130ROOrder" EntitySet="DV130ROOrderSet" />
+            <End Role="PropertyRestrainingOrdersROSection" EntitySet="PropertyRestrainingOrdersROSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="DV130ROOrderOtherOrdersROSection1" Association="FACCTS_DBModel.DV130ROOrderOtherOrdersROSection1">
+            <End Role="DV130ROOrder" EntitySet="DV130ROOrderSet" />
+            <End Role="OtherOrdersROSection" EntitySet="OtherOrdersROSectionSet" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="AdfsIntegrationConfiguration">
@@ -3411,15 +3543,7 @@
         </Association>
         <EnumType Name="MasterOrders" a:ExternalTypeName="FACCTS.Server.Model.Enums.MasterOrders" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         <EnumType Name="AttachmentOrders" a:ExternalTypeName="FACCTS.Server.Model.Enums.AttachmentOrders" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
-        <EntityType Name="ConductROSection">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Boolean" Name="NoHarass" Nullable="false" />
-          <Property Type="Boolean" Name="Requested" Nullable="false" />
-          <Property Type="Boolean" Name="NoContact" Nullable="false" />
-          <Property Type="Boolean" Name="NoLocate" Nullable="false" />
+        <EntityType Name="ConductROSection" BaseType="FACCTS_DBModel.ConductBase">
           <Property Type="Boolean" Name="AppliedToOtherProtected" Nullable="false" />
           <Property Type="Boolean" Name="OtherRequested" Nullable="false" />
           <Property Type="String" Name="OtherText" Nullable="false" />
@@ -3498,6 +3622,7 @@
           <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Boolean" Name="Attached" Nullable="false" />
           <Property Type="String" Name="Text" Nullable="false" />
+          <Property Type="String" Name="Requested" Nullable="false" />
         </EntityType>
         <Association Name="CH130OrderOtherOrdersSection">
           <End Type="FACCTS_DBModel.CH130ROOrder" Role="CH130Order" Multiplicity="1" />
@@ -3639,6 +3764,306 @@
         <Association Name="CH110TROOrderExpirationSection">
           <End Type="FACCTS_DBModel.CH110TROOrder" Role="CH110TROOrder" Multiplicity="1" />
           <End Type="FACCTS_DBModel.ExpirationSection" Role="ExpirationSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="ConductBase">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="NoHarass" Nullable="false" />
+          <Property Type="Boolean" Name="NoContact" Nullable="false" />
+          <Property Type="Boolean" Name="NoLocate" Nullable="false" />
+          <Property Type="Boolean" Name="Requested" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ConductDVROSection" BaseType="FACCTS_DBModel.ConductBase" >
+          <Property Type="String" Name="ExceptionForCCCV" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ConductDVTROSection" BaseType="FACCTS_DBModel.ConductDVROSection" >
+          <Property Type="FACCTS_DBModel.OrderRestrictionState" Name="OrderState" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DV110TROOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ConductDVTROSection" Relationship="FACCTS_DBModel.DV110TROOrderConductDVTROSection" FromRole="DV110TROOrder" ToRole="ConductDVTROSection" />
+          <NavigationProperty Name="DV110ServiceSection" Relationship="FACCTS_DBModel.DV110TROOrderDV110ServiceSection" FromRole="DV110TROOrder" ToRole="DV110ServiceSection" />
+          <NavigationProperty Name="SAOTROSection" Relationship="FACCTS_DBModel.DV110TROOrderSAOTROSection" FromRole="DV110TROOrder" ToRole="SAOTROSection" />
+          <NavigationProperty Name="MoveOutTROSection" Relationship="FACCTS_DBModel.DV110TROOrderMoveOutTROSection" FromRole="DV110TROOrder" ToRole="MoveOutTROSection" />
+          <NavigationProperty Name="CommunicationsRecordingTROSection" Relationship="FACCTS_DBModel.DV110TROOrderCommunicationsRecordingTROSection" FromRole="DV110TROOrder" ToRole="CommunicationsRecordingTROSection" />
+          <NavigationProperty Name="AnimalsTROSection" Relationship="FACCTS_DBModel.DV110TROOrderAnimalsTROSection" FromRole="DV110TROOrder" ToRole="AnimalsTROSection" />
+          <NavigationProperty Name="OtherOrdersTROSection" Relationship="FACCTS_DBModel.DV110TROOrderOtherOrdersTROSection" FromRole="DV110TROOrder" ToRole="OtherOrdersTROSection" />
+          <NavigationProperty Name="NoGunsSection" Relationship="FACCTS_DBModel.DV110TROOrderNoGunsSection" FromRole="DV110TROOrder" ToRole="NoGunsSection" />
+          <NavigationProperty Name="BatterInterventionSection" Relationship="FACCTS_DBModel.DV110TROOrderBatterInterventionSection" FromRole="DV110TROOrder" ToRole="BatterInterventionSection" />
+          <NavigationProperty Name="ExpirationSection" Relationship="FACCTS_DBModel.DV110TROOrderExpirationSection" FromRole="DV110TROOrder" ToRole="ExpirationSection" />
+          <NavigationProperty Name="PropertyControlTROSection" Relationship="FACCTS_DBModel.DV110TROOrderPropertyControlTROSection" FromRole="DV110TROOrder" ToRole="PropertyControlTROSection" />
+          <NavigationProperty Name="PaymentsTROSection" Relationship="FACCTS_DBModel.DV110TROOrderPaymentsTROSection" FromRole="DV110TROOrder" ToRole="PaymentsTROSection" />
+          <NavigationProperty Name="PropertyRestrainingOrdersTROSection" Relationship="FACCTS_DBModel.DV110TROOrderPropertyRestrainingOrdersTROSection" FromRole="DV110TROOrder" ToRole="PropertyRestrainingOrdersTROSection" />
+          <NavigationProperty Name="OtherPropertyOrdersTROSection" Relationship="FACCTS_DBModel.DV110TROOrderOtherOrdersTROSection1" FromRole="DV110TROOrder" ToRole="OtherOrdersTROSection" />
+        </EntityType>
+        <Association Name="DV110TROOrderConductDVTROSection">
+          <End Type="FACCTS_DBModel.DV110TROOrder" Role="DV110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.ConductDVTROSection" Role="ConductDVTROSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="DV110ServiceSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="FACCTS_DBModel.DV110Service" Name="Service" Nullable="false" />
+        </EntityType>
+        <EnumType Name="DV110Service">
+          <Member Name="BothPartiesPresentServiceRequired" Value="0" />
+          <Member Name="PlaintiffOnlyNoServiceRequired" Value="1" />
+          <Member Name="PlaintiffOnlyServiceRequired" Value="2" />
+        </EnumType>
+        <Association Name="DV110TROOrderDV110ServiceSection">
+          <End Type="FACCTS_DBModel.DV110TROOrder" Role="DV110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.DV110ServiceSection" Role="DV110ServiceSection" Multiplicity="1" />
+        </Association>
+        <Association Name="DV110TROOrderSAOTROSection">
+          <End Type="FACCTS_DBModel.DV110TROOrder" Role="DV110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.SAOTROSection" Role="SAOTROSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="MoveOutROSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="Requested" Nullable="false" />
+          <Property Type="String" Name="Text" Nullable="false" />
+          <Property Type="Boolean" Name="Attached" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MoveOutTROSection" BaseType="FACCTS_DBModel.MoveOutROSection" >
+          <Property Type="FACCTS_DBModel.OrderRestrictionState" Name="OrderState" Nullable="false" />
+        </EntityType>
+        <Association Name="DV110TROOrderMoveOutTROSection">
+          <End Type="FACCTS_DBModel.DV110TROOrder" Role="DV110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.MoveOutTROSection" Role="MoveOutTROSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="CommunicationsRecordingROSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Requested" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CommunicationsRecordingTROSection" BaseType="FACCTS_DBModel.CommunicationsRecordingROSection" >
+          <Property Type="FACCTS_DBModel.OrderRestrictionState" Name="OrderState" Nullable="false" />
+        </EntityType>
+        <Association Name="DV110TROOrderCommunicationsRecordingTROSection">
+          <End Type="FACCTS_DBModel.DV110TROOrder" Role="DV110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.CommunicationsRecordingTROSection" Role="CommunicationsRecordingTROSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="AnimalsROSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="Requested" Nullable="false" />
+          <Property Type="Decimal" Name="Distance" Nullable="false" />
+          <Property Type="String" Name="Text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AnimalsTROSection" BaseType="FACCTS_DBModel.AnimalsROSection" >
+          <Property Type="FACCTS_DBModel.OrderRestrictionState" Name="OrderState" Nullable="false" />
+        </EntityType>
+        <Association Name="DV110TROOrderAnimalsTROSection">
+          <End Type="FACCTS_DBModel.DV110TROOrder" Role="DV110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.AnimalsTROSection" Role="AnimalsTROSection" Multiplicity="1" />
+        </Association>
+        <Association Name="DV110TROOrderOtherOrdersTROSection">
+          <End Type="FACCTS_DBModel.DV110TROOrder" Role="DV110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.OtherOrdersTROSection" Role="OtherOrdersTROSection" Multiplicity="1" />
+        </Association>
+        <Association Name="DV110TROOrderNoGunsSection">
+          <End Type="FACCTS_DBModel.DV110TROOrder" Role="DV110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.NoGunsSection" Role="NoGunsSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="BatterInterventionSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="Requested" Nullable="false" />
+        </EntityType>
+        <Association Name="DV110TROOrderBatterInterventionSection">
+          <End Type="FACCTS_DBModel.DV110TROOrder" Role="DV110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.BatterInterventionSection" Role="BatterInterventionSection" Multiplicity="1" />
+        </Association>
+        <Association Name="DV110TROOrderExpirationSection">
+          <End Type="FACCTS_DBModel.DV110TROOrder" Role="DV110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.ExpirationSection" Role="ExpirationSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="PropertyControlROSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="Requested" Nullable="false" />
+          <NavigationProperty Name="PropertyRecord" Relationship="FACCTS_DBModel.PropertyControlROSectionPropertyRecord" FromRole="PropertyControlROSection" ToRole="PropertyRecord" />
+        </EntityType>
+        <EntityType Name="PropertyControlTROSection" BaseType="FACCTS_DBModel.PropertyControlROSection" >
+          <Property Type="FACCTS_DBModel.OrderRestrictionState" Name="OrderState" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertyRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Item" Nullable="false" />
+          <Property Type="String" Name="Description" Nullable="false" />
+          <Property Type="Int64" Name="PropertyControSectionId" Nullable="false" />
+        </EntityType>
+        <Association Name="PropertyControlROSectionPropertyRecord">
+          <End Type="FACCTS_DBModel.PropertyControlROSection" Role="PropertyControlROSection" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.PropertyRecord" Role="PropertyRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PropertyControlROSection">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PropertyRecord">
+              <PropertyRef Name="PropertyControSectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DV110TROOrderPropertyControlTROSection">
+          <End Type="FACCTS_DBModel.DV110TROOrder" Role="DV110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.PropertyControlTROSection" Role="PropertyControlTROSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="PaymentsROSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="Requested" Nullable="false" />
+          <NavigationProperty Name="PaymentRecord" Relationship="FACCTS_DBModel.PaymentsROSectionPaymentRecord" FromRole="PaymentsROSection" ToRole="PaymentRecord" />
+        </EntityType>
+        <EntityType Name="PaymentsTROSection" BaseType="FACCTS_DBModel.PaymentsROSection" >
+          <Property Type="FACCTS_DBModel.OrderRestrictionState" Name="OrderState" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PaymentRecord">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="DebtItem" Nullable="false" />
+          <Property Type="String" Name="PaymentTo" Nullable="false" />
+          <Property Type="String" Name="PaymentFor" Nullable="false" />
+          <Property Type="String" Name="PaymentFrom" Nullable="false" />
+          <Property Type="DateTime" Name="Date" Nullable="false" />
+          <Property Type="Int64" Name="PaymentsROSectionId" Nullable="false" />
+        </EntityType>
+        <Association Name="PaymentsROSectionPaymentRecord">
+          <End Type="FACCTS_DBModel.PaymentsROSection" Role="PaymentsROSection" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.PaymentRecord" Role="PaymentRecord" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PaymentsROSection">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PaymentRecord">
+              <PropertyRef Name="PaymentsROSectionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DV110TROOrderPaymentsTROSection">
+          <End Type="FACCTS_DBModel.DV110TROOrder" Role="DV110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.PaymentsTROSection" Role="PaymentsTROSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="PropertyRestrainingOrdersROSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="Requested" Nullable="false" />
+          <Property Type="Boolean" Name="IsParty1" Nullable="false" />
+          <Property Type="Boolean" Name="IsParty2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PropertyRestrainingOrdersTROSection" BaseType="FACCTS_DBModel.PropertyRestrainingOrdersROSection" >
+          <Property Type="FACCTS_DBModel.OrderRestrictionState" Name="OrderState" Nullable="false" />
+        </EntityType>
+        <Association Name="DV110TROOrderPropertyRestrainingOrdersTROSection">
+          <End Type="FACCTS_DBModel.DV110TROOrder" Role="DV110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.PropertyRestrainingOrdersTROSection" Role="PropertyRestrainingOrdersTROSection" Multiplicity="1" />
+        </Association>
+        <Association Name="DV110TROOrderOtherOrdersTROSection1">
+          <End Type="FACCTS_DBModel.DV110TROOrder" Role="DV110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.OtherOrdersTROSection" Role="OtherOrdersTROSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="DV130ROOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ConductROSection" Relationship="FACCTS_DBModel.DV130ROOrderConductROSection" FromRole="DV130ROOrder" ToRole="ConductROSection" />
+          <NavigationProperty Name="ServiceSection" Relationship="FACCTS_DBModel.DV130ROOrderServiceSection" FromRole="DV130ROOrder" ToRole="ServiceSection" />
+          <NavigationProperty Name="SAOROSection" Relationship="FACCTS_DBModel.DV130ROOrderSAOROSection" FromRole="DV130ROOrder" ToRole="SAOROSection" />
+          <NavigationProperty Name="MoveOutROSection" Relationship="FACCTS_DBModel.DV130ROOrderMoveOutROSection" FromRole="DV130ROOrder" ToRole="MoveOutROSection" />
+          <NavigationProperty Name="CommunicationsRecordingROSection" Relationship="FACCTS_DBModel.DV130ROOrderCommunicationsRecordingROSection" FromRole="DV130ROOrder" ToRole="CommunicationsRecordingROSection" />
+          <NavigationProperty Name="AnimalsROSection" Relationship="FACCTS_DBModel.DV130ROOrderAnimalsROSection" FromRole="DV130ROOrder" ToRole="AnimalsROSection" />
+          <NavigationProperty Name="OtherOrdersROSection" Relationship="FACCTS_DBModel.DV130ROOrderOtherOrdersROSection" FromRole="DV130ROOrder" ToRole="OtherOrdersROSection" />
+          <NavigationProperty Name="BatterInterventionSection" Relationship="FACCTS_DBModel.DV130ROOrderBatterInterventionSection" FromRole="DV130ROOrder" ToRole="BatterInterventionSection" />
+          <NavigationProperty Name="NoGunsSection" Relationship="FACCTS_DBModel.DV130ROOrderNoGunsSection" FromRole="DV130ROOrder" ToRole="NoGunsSection" />
+          <NavigationProperty Name="ExpirationSection" Relationship="FACCTS_DBModel.DV130ROOrderExpirationSection" FromRole="DV130ROOrder" ToRole="ExpirationSection" />
+          <NavigationProperty Name="PropertyControlROSection" Relationship="FACCTS_DBModel.DV130ROOrderPropertyControlROSection" FromRole="DV130ROOrder" ToRole="PropertyControlROSection" />
+          <NavigationProperty Name="PaymentsROSection" Relationship="FACCTS_DBModel.DV130ROOrderPaymentsROSection" FromRole="DV130ROOrder" ToRole="PaymentsROSection" />
+          <NavigationProperty Name="PropertyRestrainingOrdersROSection" Relationship="FACCTS_DBModel.DV130ROOrderPropertyRestrainingOrdersROSection" FromRole="DV130ROOrder" ToRole="PropertyRestrainingOrdersROSection" />
+          <NavigationProperty Name="OtherPropertyOrdersROSection" Relationship="FACCTS_DBModel.DV130ROOrderOtherOrdersROSection1" FromRole="DV130ROOrder" ToRole="OtherOrdersROSection" />
+        </EntityType>
+        <Association Name="DV130ROOrderConductROSection">
+          <End Type="FACCTS_DBModel.DV130ROOrder" Role="DV130ROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.ConductROSection" Role="ConductROSection" Multiplicity="1" />
+        </Association>
+        <Association Name="DV130ROOrderServiceSection">
+          <End Type="FACCTS_DBModel.DV130ROOrder" Role="DV130ROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.ServiceSection" Role="ServiceSection" Multiplicity="1" />
+        </Association>
+        <Association Name="DV130ROOrderSAOROSection">
+          <End Type="FACCTS_DBModel.DV130ROOrder" Role="DV130ROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.SAOROSection" Role="SAOROSection" Multiplicity="1" />
+        </Association>
+        <Association Name="DV130ROOrderMoveOutROSection">
+          <End Type="FACCTS_DBModel.DV130ROOrder" Role="DV130ROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.MoveOutROSection" Role="MoveOutROSection" Multiplicity="1" />
+        </Association>
+        <Association Name="DV130ROOrderCommunicationsRecordingROSection">
+          <End Type="FACCTS_DBModel.DV130ROOrder" Role="DV130ROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.CommunicationsRecordingROSection" Role="CommunicationsRecordingROSection" Multiplicity="1" />
+        </Association>
+        <Association Name="DV130ROOrderAnimalsROSection">
+          <End Type="FACCTS_DBModel.DV130ROOrder" Role="DV130ROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.AnimalsROSection" Role="AnimalsROSection" Multiplicity="1" />
+        </Association>
+        <Association Name="DV130ROOrderOtherOrdersROSection">
+          <End Type="FACCTS_DBModel.DV130ROOrder" Role="DV130ROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.OtherOrdersROSection" Role="OtherOrdersROSection" Multiplicity="1" />
+        </Association>
+        <Association Name="DV130ROOrderBatterInterventionSection">
+          <End Type="FACCTS_DBModel.DV130ROOrder" Role="DV130ROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.BatterInterventionSection" Role="BatterInterventionSection" Multiplicity="1" />
+        </Association>
+        <Association Name="DV130ROOrderNoGunsSection">
+          <End Type="FACCTS_DBModel.DV130ROOrder" Role="DV130ROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.NoGunsSection" Role="NoGunsSection" Multiplicity="1" />
+        </Association>
+        <Association Name="DV130ROOrderExpirationSection">
+          <End Type="FACCTS_DBModel.DV130ROOrder" Role="DV130ROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.ExpirationSection" Role="ExpirationSection" Multiplicity="1" />
+        </Association>
+        <Association Name="DV130ROOrderPropertyControlROSection">
+          <End Type="FACCTS_DBModel.DV130ROOrder" Role="DV130ROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.PropertyControlROSection" Role="PropertyControlROSection" Multiplicity="1" />
+        </Association>
+        <Association Name="DV130ROOrderPaymentsROSection">
+          <End Type="FACCTS_DBModel.DV130ROOrder" Role="DV130ROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.PaymentsROSection" Role="PaymentsROSection" Multiplicity="1" />
+        </Association>
+        <Association Name="DV130ROOrderPropertyRestrainingOrdersROSection">
+          <End Type="FACCTS_DBModel.DV130ROOrder" Role="DV130ROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.PropertyRestrainingOrdersROSection" Role="PropertyRestrainingOrdersROSection" Multiplicity="1" />
+        </Association>
+        <Association Name="DV130ROOrderOtherOrdersROSection1">
+          <End Type="FACCTS_DBModel.DV130ROOrder" Role="DV130ROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.OtherOrdersROSection" Role="OtherOrdersROSection" Multiplicity="1" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -4261,27 +4686,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="ConductROSectionSet">
-      <EntityTypeMapping TypeName="IsTypeOf(FACCTS_DBModel.ConductROSection)">
-        <MappingFragment StoreEntitySet="ConductROSectionSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="NoHarass" ColumnName="NoHarass" />
-          <ScalarProperty Name="Requested" ColumnName="Requested" />
-          <ScalarProperty Name="NoContact" ColumnName="NoContact" />
-          <ScalarProperty Name="NoLocate" ColumnName="NoLocate" />
-          <ScalarProperty Name="AppliedToOtherProtected" ColumnName="AppliedToOtherProtected" />
-          <ScalarProperty Name="OtherRequested" ColumnName="OtherRequested" />
-          <ScalarProperty Name="OtherText" ColumnName="OtherText" />
-          <ScalarProperty Name="OtherAttached" ColumnName="OtherAttached" />
-        </MappingFragment>
-      </EntityTypeMapping>
-      <EntityTypeMapping TypeName="IsTypeOf(FACCTS_DBModel.ConductTROSection)">
-        <MappingFragment StoreEntitySet="ConductROSectionSet_ConductTROSection">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="OrderState" ColumnName="OrderState" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="CH130ROOrderSet">
       <EntityTypeMapping TypeName="IsTypeOf(FACCTS_DBModel.CH130ROOrder)">
         <MappingFragment StoreEntitySet="CH130ROOrderSet">
@@ -4416,14 +4820,6 @@
         <ScalarProperty Name="Id" ColumnName="Permissions_Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="CH130OrderConductSection" TypeName="FACCTS_DBModel.CH130OrderConductSection" StoreEntitySet="CH130ROOrderSet">
-      <EndProperty Name="ConductSection">
-        <ScalarProperty Name="Id" ColumnName="ConductSection_Id" />
-      </EndProperty>
-      <EndProperty Name="CH130Order">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="CH130OrderServiceSection" TypeName="FACCTS_DBModel.CH130OrderServiceSection" StoreEntitySet="CH130ROOrderSet">
       <EndProperty Name="ServiceSection">
         <ScalarProperty Name="Id" ColumnName="ServiceSection_Id" />
@@ -4488,14 +4884,6 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="CH110OrderConductTROSection" TypeName="FACCTS_DBModel.CH110OrderConductTROSection" StoreEntitySet="CH110TROOrderSet">
-      <EndProperty Name="ConductTROSection">
-        <ScalarProperty Name="Id" ColumnName="ConductTROSection_Id" />
-      </EndProperty>
-      <EndProperty Name="CH110Order">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="CH110OrderSAOTROSection" TypeName="FACCTS_DBModel.CH110OrderSAOTROSection" StoreEntitySet="CH110TROOrderSet">
       <EndProperty Name="SAOTROSection">
         <ScalarProperty Name="Id" ColumnName="SAOTROSection_Id" />
@@ -4544,6 +4932,31 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
+          <AssociationSetMapping Name="CH130OrderConductSection" TypeName="FACCTS_DBModel.CH130OrderConductSection" StoreEntitySet="CH130ROOrderSet">
+            <EndProperty Name="CH130Order">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="CH110OrderConductTROSection" TypeName="FACCTS_DBModel.CH110OrderConductTROSection" StoreEntitySet="CH110TROOrderSet">
+            <EndProperty Name="CH110Order">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="ConductBaseSet">
+            <EntityTypeMapping TypeName="IsTypeOf(FACCTS_DBModel.ConductROSection)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+              <MappingFragment StoreEntitySet="ConductROSectionSet">
+                <ScalarProperty Name="AppliedToOtherProtected" ColumnName="AppliedToOtherProtected" />
+                <ScalarProperty Name="OtherRequested" ColumnName="OtherRequested" />
+                <ScalarProperty Name="OtherText" ColumnName="OtherText" />
+                <ScalarProperty Name="OtherAttached" ColumnName="OtherAttached" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(FACCTS_DBModel.ConductTROSection)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+              <MappingFragment StoreEntitySet="ConductROSectionSet_ConductTROSection">
+                <ScalarProperty Name="OrderState" ColumnName="OrderState" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

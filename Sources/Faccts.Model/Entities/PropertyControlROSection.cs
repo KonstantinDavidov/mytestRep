@@ -21,13 +21,14 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(OtherOrdersTROSection))]
-    public partial class OtherOrdersROSection: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    [KnownType(typeof(PropertyControlTROSection))]
+    [KnownType(typeof(PropertyRecord))]
+    public partial class PropertyControlROSection: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
     		private MakeObjectReactiveHelper _reactiveHelper;
     
-    		public OtherOrdersROSection()
+    		public PropertyControlROSection()
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
@@ -50,8 +51,6 @@ namespace Faccts.Model.Entities
     			);
     			Observable.Merge<Object>(
     				this.ObservableForProperty(x => x.Id)
-    				,this.ObservableForProperty(x => x.Attached)
-    				,this.ObservableForProperty(x => x.Text)
     				,this.ObservableForProperty(x => x.Requested)
     			).
     			Subscribe(_ =>
@@ -156,39 +155,7 @@ namespace Faccts.Model.Entities
         private long _id;
     
         [DataMember]
-        public bool Attached
-        {
-            get { return _attached; }
-            set
-            {
-                if (_attached != value)
-                {
-    				OnPropertyChanging("Attached");
-                    _attached = value;
-                    OnPropertyChanged("Attached");
-                }
-            }
-        }
-        private bool _attached;
-    
-        [DataMember]
-        public string Text
-        {
-            get { return _text; }
-            set
-            {
-                if (_text != value)
-                {
-    				OnPropertyChanging("Text");
-                    _text = value;
-                    OnPropertyChanged("Text");
-                }
-            }
-        }
-        private string _text;
-    
-        [DataMember]
-        public string Requested
+        public bool Requested
         {
             get { return _requested; }
             set
@@ -201,7 +168,47 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private string _requested;
+        private bool _requested;
+
+        #endregion
+
+        #region Navigation Properties
+    
+        [DataMember]
+        public TrackableCollection<PropertyRecord> PropertyRecord
+        {
+            get
+            {
+                if (_propertyRecord == null)
+                {
+                    _propertyRecord = new TrackableCollection<PropertyRecord>();
+                    _propertyRecord.CollectionChanged += FixupPropertyRecord;
+                }
+                return _propertyRecord;
+            }
+            set
+            {
+                if (!ReferenceEquals(_propertyRecord, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("PropertyRecord");
+                    if (_propertyRecord != null)
+                    {
+                        _propertyRecord.CollectionChanged -= FixupPropertyRecord;
+                    }
+                    _propertyRecord = value;
+                    if (_propertyRecord != null)
+                    {
+                        _propertyRecord.CollectionChanged += FixupPropertyRecord;
+                    }
+                    OnNavigationPropertyChanged("PropertyRecord");
+                }
+            }
+        }
+        private TrackableCollection<PropertyRecord> _propertyRecord;
 
         #endregion
 
@@ -300,6 +307,46 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
+            PropertyRecord.Clear();
+        }
+
+        #endregion
+
+        #region Association Fixup
+    
+        private void FixupPropertyRecord(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (PropertyRecord item in e.NewItems)
+                {
+                    item.PropertyControSectionId = Id;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("PropertyRecord", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (PropertyRecord item in e.OldItems)
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("PropertyRecord", item);
+                    }
+                }
+            }
         }
 
         #endregion
