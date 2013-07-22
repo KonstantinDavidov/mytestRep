@@ -74,6 +74,20 @@ namespace FACCTS.Controls.ViewModels
                     }
                 }
                 );
+            this.WhenAny(
+                x => x.PersonalInformationViewModel.HasUIErrors,
+                x => x.ChildrenOtherProtectedViewModel.HasUIErrors,
+                x => x.AttorneysViewModel.HasUIErrors,
+                x => x.WitnessInterpereterViewModel.HasUIErrors,
+                x => x.CaseNotesViewModel.HasUIErrors,
+                x => x.CaseHistoryViewModel.HasUIErrors,
+                (x1, x2, x3, x4, x5, x6) =>
+                    x1.Value || x2.Value || x3.Value || x4.Value || x5.Value || x6.Value
+                ).Subscribe(x =>
+                {
+                    this.HasUIErrors = x;
+                }
+                );
             
             ActivateControl(0);
         }
@@ -261,6 +275,24 @@ namespace FACCTS.Controls.ViewModels
                 DataContainer.SaveData(this.CurrentCourtCase);
             }
             
+        }
+
+        private bool _hasUIErrors = false;
+        public bool HasUIErrors
+        {
+            get
+            {
+                return _hasUIErrors;
+            }
+            protected set
+            {
+                if (_hasUIErrors == value)
+                    return;
+
+                this.NotifyOfPropertyChanging();
+                _hasUIErrors = value;
+                this.NotifyOfPropertyChange();
+            }
         }
        
     }

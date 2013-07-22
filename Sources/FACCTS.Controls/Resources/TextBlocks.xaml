@@ -266,7 +266,7 @@
                                            x:Name="wmTextBox"
                                            BorderBrush="{TemplateBinding BorderBrush}"
                                            ToolTip="{TemplateBinding ToolTip}"
-                                           ToolTipService.IsEnabled="True">
+                                           ToolTipService.IsEnabled="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ToolTipService.IsEnabled}">
                         <xctk:WatermarkTextBox.WatermarkTemplate>
                             <DataTemplate>
                                 <ContentControl Content="{Binding ElementName=wmTextBox, Path=Watermark, Mode=OneWay}"
