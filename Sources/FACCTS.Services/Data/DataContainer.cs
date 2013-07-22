@@ -134,6 +134,11 @@ namespace FACCTS.Services.Data
             try
             {
                 CourtCases = new TrackableCollection<CourtCase>(FACCTS.Services.Data.CourtCases.GetAll());
+                CourtCases.Aggregate(0, (index, cc) => 
+                {
+                    cc.AcceptChanges();
+                    return ++ index;
+                });
             }
             finally
             {

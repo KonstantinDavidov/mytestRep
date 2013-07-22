@@ -23,12 +23,12 @@ namespace Faccts.Model.Entities
     [DataContract(IsReference = true)]
     [KnownType(typeof(User))]
     [KnownType(typeof(CourtCase))]
-    [KnownType(typeof(CourtDocketRecord))]
     [KnownType(typeof(CaseHistory))]
     [KnownType(typeof(CaseNotes))]
     [KnownType(typeof(CourtCounty))]
     [KnownType(typeof(CourtParty))]
     [KnownType(typeof(AdditionalParty))]
+    [KnownType(typeof(CourtDocketRecord))]
     public partial class CourtCase: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -70,6 +70,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.CourtCounty.IsDirty)
     				,this.ObservableForProperty(x => x.Party1.IsDirty)
     				,this.ObservableForProperty(x => x.Party2.IsDirty)
+    				,this.ObservableForProperty(x => x.CourtDocketRecord.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -459,42 +460,6 @@ namespace Faccts.Model.Entities
         private CourtCase _parentCase;
     
         [DataMember]
-        public TrackableCollection<CourtDocketRecord> CourtDocketRecord
-        {
-            get
-            {
-                if (_courtDocketRecord == null)
-                {
-                    _courtDocketRecord = new TrackableCollection<CourtDocketRecord>();
-                    _courtDocketRecord.CollectionChanged += FixupCourtDocketRecord;
-                }
-                return _courtDocketRecord;
-            }
-            set
-            {
-                if (!ReferenceEquals(_courtDocketRecord, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("CourtDocketRecord");
-                    if (_courtDocketRecord != null)
-                    {
-                        _courtDocketRecord.CollectionChanged -= FixupCourtDocketRecord;
-                    }
-                    _courtDocketRecord = value;
-                    if (_courtDocketRecord != null)
-                    {
-                        _courtDocketRecord.CollectionChanged += FixupCourtDocketRecord;
-                    }
-                    OnNavigationPropertyChanged("CourtDocketRecord");
-                }
-            }
-        }
-        private TrackableCollection<CourtDocketRecord> _courtDocketRecord;
-    
-        [DataMember]
         public TrackableCollection<CaseHistory> CaseHistory
         {
             get
@@ -655,6 +620,24 @@ namespace Faccts.Model.Entities
             }
         }
         private TrackableCollection<AdditionalParty> _additionalParties;
+    
+        [DataMember]
+        public CourtDocketRecord CourtDocketRecord
+        {
+            get { return _courtDocketRecord; }
+            set
+            {
+                if (!ReferenceEquals(_courtDocketRecord, value))
+                {
+                    var previousValue = _courtDocketRecord;
+    				OnNavigationPropertyChanging("CourtDocketRecord");
+                    _courtDocketRecord = value;
+                    FixupCourtDocketRecord(previousValue);
+                    OnNavigationPropertyChanged("CourtDocketRecord");
+                }
+            }
+        }
+        private CourtDocketRecord _courtDocketRecord;
 
         #endregion
 
@@ -765,13 +748,13 @@ namespace Faccts.Model.Entities
             User = null;
             ChildCases.Clear();
             ParentCase = null;
-            CourtDocketRecord.Clear();
             CaseHistory.Clear();
             CaseNotes.Clear();
             CourtCounty = null;
             Party1 = null;
             Party2 = null;
             AdditionalParties.Clear();
+            CourtDocketRecord = null;
         }
 
         #endregion
@@ -971,6 +954,41 @@ namespace Faccts.Model.Entities
             }
         }
     
+        private void FixupCourtDocketRecord(CourtDocketRecord previousValue)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && ReferenceEquals(previousValue.CourtCase, this))
+            {
+                previousValue.CourtCase = null;
+            }
+    
+            if (CourtDocketRecord != null)
+            {
+                CourtDocketRecord.CourtCase = this;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("CourtDocketRecord")
+                    && (ChangeTracker.OriginalValues["CourtDocketRecord"] == CourtDocketRecord))
+                {
+                    ChangeTracker.OriginalValues.Remove("CourtDocketRecord");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("CourtDocketRecord", previousValue);
+                }
+                if (CourtDocketRecord != null && !CourtDocketRecord.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    CourtDocketRecord.StartTracking();
+                }
+            }
+        }
+    
         private void FixupChildCases(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
@@ -1005,45 +1023,6 @@ namespace Faccts.Model.Entities
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         ChangeTracker.RecordRemovalFromCollectionProperties("ChildCases", item);
-                    }
-                }
-            }
-        }
-    
-        private void FixupCourtDocketRecord(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (CourtDocketRecord item in e.NewItems)
-                {
-                    item.CourtCase = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CourtDocketRecord", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (CourtDocketRecord item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.CourtCase, this))
-                    {
-                        item.CourtCase = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtDocketRecord", item);
                     }
                 }
             }

@@ -64,8 +64,6 @@
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtOrder_Id" ManuallyRouted="false" >
         </AssociationConnector>
         <EntityTypeShape EntityType="FACCTS_DBModel.CourtDocketRecord" Width="1.5" PointX="3.125" PointY="10.125" />
-        <AssociationConnector Association="FACCTS_DBModel.CourtDocketRecordCourtCase" />
-        <AssociationConnector Association="FACCTS_DBModel.CourtDocketRecordHearings" />
         <EntityTypeShape EntityType="FACCTS_DBModel.ThirdPartyData" Width="1.5" PointX="11.375" PointY="20.5" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_ThirdPartyData_dbo_Attorneys_Attorney_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_User_CourtClerk_Id" />
@@ -101,6 +99,8 @@
         <EntityTypeShape EntityType="FACCTS_DBModel.MasterOrder" Width="1.5" PointX="19" PointY="9.125" />
         <AssociationConnector Association="FACCTS_DBModel.MasterOrderAttachmentOrder" />
         <AssociationConnector Association="FACCTS_DBModel.CaseHistoryMasterOrder" />
+        <AssociationConnector Association="FACCTS_DBModel.CourtCaseCourtDocketRecord" />
+        <AssociationConnector Association="FACCTS_DBModel.CourtDocketRecordHearings" />
       </Diagram>
       <Diagram DiagramId="d16b781b547641eeb332d8cb3d0f49f3" Name="CourtOrders" ZoomLevel="80" >
         <EntityTypeShape EntityType="FACCTS_DBModel.ConductROSection" Width="1.5" PointX="6.875" PointY="2" />

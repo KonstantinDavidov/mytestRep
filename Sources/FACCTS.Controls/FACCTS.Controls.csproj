@@ -163,6 +163,7 @@
     <Compile Include="NameValueWrapper.cs" />
     <Compile Include="Utils\StringToBoolean.cs" />
     <Compile Include="Utils\StringToDateTime.cs" />
+    <Compile Include="Validation\ErrorProvider.cs" />
     <Compile Include="ViewModels\Case Record\CaseHistoryViewModel.cs" />
     <Compile Include="ViewModels\Case Record\CaseNotesViewModel.cs" />
     <Compile Include="ViewModels\Case Record\CaseRecordItemViewModel.cs" />

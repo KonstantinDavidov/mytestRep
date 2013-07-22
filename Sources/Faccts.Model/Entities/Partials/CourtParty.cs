@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using ReactiveUI;
 using FACCTS.Server.Model.Enums;
 using System.Reactive.Linq;
+using System.ComponentModel;
 
 namespace Faccts.Model.Entities
 {
-    public partial class CourtParty : IDataTransferConvertible<FACCTS.Server.Model.DataModel.CourtParty>
+    public partial class CourtParty : IDataTransferConvertible<FACCTS.Server.Model.DataModel.CourtParty>, IDataErrorInfo
     {
         partial void Initialize()
         {
@@ -113,6 +114,46 @@ namespace Faccts.Model.Entities
             return dto;
         }
 
-        
+
+
+        public string Error
+        {
+            get { return this[string.Empty]; }
+        }
+
+        public string this[string propertyName]
+        {
+            get
+            {
+                string result = string.Empty;
+                propertyName = propertyName ?? string.Empty;
+                if (propertyName == string.Empty || _requiredFields.ContainsKey(propertyName))
+                {
+                    object propertyValue = this.GetProperty(propertyName);
+                    if (propertyValue is String && string.IsNullOrEmpty(propertyValue.ToString()) || propertyValue == null)
+                    {
+                        result = _requiredFields[propertyName];
+                    }
+                }
+                return result;
+            }
+        }
+
+        private static Dictionary<string, string> _requiredFields = new Dictionary<string, string>()
+        {
+            {"FirstName", "First Name"},
+            {"LastName", "Last Name"},
+            {"Designation", "Designation"},
+            {"Address", "Address"},
+            {"City", "City"},
+            {"State", "State"},
+            {"ZipCode", "Zip code"},
+            {"Sex", "Sex"},
+            {"Race", "Race"},
+            {"EntityType", "Entity"},
+            {"DateOfBirth", "Date of birth"},
+            {"ParentRole", "Parent Role"}
+        };
+
     }
 }
