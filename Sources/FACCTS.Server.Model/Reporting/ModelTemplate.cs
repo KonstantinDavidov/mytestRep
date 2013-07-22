@@ -1,6 +1,4 @@
-﻿
-
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using FACCTS.Server.Model.Reporting.Entities;
@@ -9,7 +7,6 @@ using System.Collections.Generic;
 
 namespace FACCTS.Server.Model.OrderModels
 {
-    
 			
 	public partial class CH130ConductChoice
 	{
@@ -521,6 +518,21 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
+	public partial class DV130PropertyRestraint
+	{
+		public bool IsProtectedHasPropertyRestraint
+		{
+			get; set;
+		}
+		
+		public bool IsRestrainedHasPropertyRestraint
+		{
+			get; set;
+		}
+				
+	}
+	
+			
 	public partial class DV130
 	{
 		public DV130ConductChoice DV130ConductChoiceSection
@@ -574,6 +586,106 @@ namespace FACCTS.Server.Model.OrderModels
 		}
 		
 		public DV130DebtPayment DV130DebtPaymentSection
+		{
+			get; set;
+		}
+		
+		public DV130PropertyRestraint DV130PropertyRestraintSection
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class IsNoVisitationForParents
+	{
+		public string IsEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsNoVisitationForMom
+		{
+			get; set;
+		}
+		
+		public bool IsNoVisitationForDad
+		{
+			get; set;
+		}
+		
+		public bool IsNoVisitationForOther
+		{
+			get; set;
+		}
+		
+		public string OtherDescription
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class VisitationSchedule
+	{
+		public bool IsEnabled
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class ChildVisitation
+	{
+		public string IsEnabled
+		{
+			get; set;
+		}
+		
+		public string IsNoVisitationForParents
+		{
+			get; set;
+		}
+		
+		public bool IsAttachedDocumentAvilable
+		{
+			get; set;
+		}
+		
+		public int AttachedDocumentPagesCount
+		{
+			get; set;
+		}
+		
+		public DateTime AttachedDocumentDate
+		{
+			get; set;
+		}
+		
+		public bool IsPartiesMustGoToMediation
+		{
+			get; set;
+		}
+		
+		public string MedeationDescription
+		{
+			get; set;
+		}
+		
+		public VisitationSchedule VisitationScheduleSection
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class DV140
+	{
+		public ChildVisitation ChildVisitationSection
 		{
 			get; set;
 		}

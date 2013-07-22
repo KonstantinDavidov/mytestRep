@@ -131,6 +131,7 @@
     <Compile Include="Enums\CautionAndMedicalConditions.cs" />
     <Compile Include="Enums\CCPORStatus.cs" />
     <Compile Include="Enums\Custody.cs" />
+    <Compile Include="Enums\CustodyParent.cs" />
     <Compile Include="Enums\Designation.cs" />
     <Compile Include="Enums\Firearm.cs" />
     <Compile Include="Enums\DocketSession.cs" />
