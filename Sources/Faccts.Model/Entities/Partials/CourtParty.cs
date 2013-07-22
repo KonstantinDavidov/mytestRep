@@ -125,18 +125,39 @@ namespace Faccts.Model.Entities
         {
             get
             {
-                string result = string.Empty;
                 propertyName = propertyName ?? string.Empty;
-                if (propertyName == string.Empty || _requiredFields.ContainsKey(propertyName))
+                if (string.IsNullOrEmpty(propertyName))
                 {
-                    object propertyValue = this.GetProperty(propertyName);
-                    if (propertyValue is String && string.IsNullOrEmpty(propertyValue.ToString()) || propertyValue == null)
+                    string result = null;
+                    foreach (var kv in _requiredFields)
                     {
-                        result = _requiredFields[propertyName];
+                        result = Validate(kv.Key);
+                        if (!string.IsNullOrEmpty(result))
+                        {
+                            break;
+                        }
                     }
+                    return result;
                 }
-                return result;
+                else
+                {
+                    return Validate(propertyName);
+                }
             }
+        }
+
+        private string Validate(string propertyName)
+        {
+            string result = string.Empty;
+            if (_requiredFields.ContainsKey(propertyName))
+            {
+                object propertyValue = this.GetProperty(propertyName);
+                if (propertyValue is String && string.IsNullOrEmpty(propertyValue.ToString()) || propertyValue == null)
+                {
+                    result = _requiredFields[propertyName];
+                }
+            }
+            return result;
         }
 
         private static Dictionary<string, string> _requiredFields = new Dictionary<string, string>()
@@ -146,7 +167,7 @@ namespace Faccts.Model.Entities
             {"Designation", "Designation"},
             {"Address", "Address"},
             {"City", "City"},
-            {"State", "State"},
+            {"USAState", "State"},
             {"ZipCode", "Zip code"},
             {"Sex", "Sex"},
             {"Race", "Race"},

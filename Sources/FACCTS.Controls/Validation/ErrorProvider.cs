@@ -1,27 +1,43 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Controls;
+using System.Data;
+using System.Configuration;
 using System.Windows;
 using System.ComponentModel;
-using System.Windows.Data;
+using System.Windows.Controls;
 using System.Reflection;
+using System.Windows.Data;
+using System.Windows.Media;
+using System.Collections.Generic;
 
 namespace FACCTS.Controls.Validation
 {
+    /// <summary>
+    /// A Windows Presentaion Foundation error provider.
+    /// </summary>
     public class ErrorProvider : Decorator
     {
-        private delegate void FoundBindingCallbackDelegate(FrameworkElement element, Binding binding, DependencyProperty dp);
+        private delegate void FoundBindingCallbackDelegate(FrameworkElement element, Binding binding);
         private FrameworkElement _firstInvalidElement;
-        private Dictionary<DependencyObject, Style> _backupStyles = new Dictionary<DependencyObject, Style>();
+        private List<IErrorDisplayStrategy> _displayStrategies;
 
         /// <summary>
         /// Constructor.
         /// </summary>
         public ErrorProvider()
         {
+            _displayStrategies = new List<IErrorDisplayStrategy>();
+            CreateDefaultDisplayStrategies();
+
             this.DataContextChanged += new DependencyPropertyChangedEventHandler(ErrorProvider_DataContextChanged);
             this.Loaded += new RoutedEventHandler(ErrorProvider_Loaded);
+        }
+
+        /// <summary>
+        /// Sets up the default inbuilt display strategies.
+        /// </summary>
+        protected virtual void CreateDefaultDisplayStrategies()
+        {
+            AddDisplayStrategy(new TextBoxErrorDisplayStrategy());
         }
 
         /// <summary>
@@ -31,6 +47,30 @@ namespace FACCTS.Controls.Validation
         private void ErrorProvider_Loaded(object sender, RoutedEventArgs e)
         {
             Validate();
+        }
+
+        /// <summary>
+        /// Adds a display strategy used to display validation errors on a given control.
+        /// </summary>
+        /// <param name="strategy">The strategy to add.</param>
+        public void AddDisplayStrategy(IErrorDisplayStrategy strategy)
+        {
+            if (strategy != null && _displayStrategies.Contains(strategy) == false)
+            {
+                _displayStrategies.Add(strategy);
+            }
+        }
+
+        /// <summary>
+        /// Removes a display strategy that was added using the AddDisplayStrategy pattern.
+        /// </summary>
+        /// <param name="strategy">The strategy to remove.</param>
+        public void RemoveDisplayStrategy(IErrorDisplayStrategy strategy)
+        {
+            if (strategy != null && _displayStrategies.Contains(strategy) == true)
+            {
+                _displayStrategies.Remove(strategy);
+            }
         }
 
         /// <summary>
@@ -79,21 +119,23 @@ namespace FACCTS.Controls.Validation
                         // Display the error on any elements bound to the property
                         FindBindingsRecursively(
                         this.Parent,
-                        delegate(FrameworkElement element, Binding binding, DependencyProperty dp)
+                        delegate(FrameworkElement element, Binding binding)
                         {
                             if (knownBinding.Path.Path == binding.Path.Path)
                             {
-
-                                BindingExpression expression = element.GetBindingExpression(dp);
-                                ValidationError error = new ValidationError(new ExceptionValidationRule(), expression, errorMessage, null);
-                                System.Windows.Controls.Validation.MarkInvalid(expression, error);
-
-                                if (_firstInvalidElement == null)
+                                // Figure out which display strategy should be used to display the error, then display it.
+                                for (int i = _displayStrategies.Count - 1; i >= 0; i--)
                                 {
-                                    _firstInvalidElement = element;
+                                    if (_displayStrategies[i].CanDisplayForElement(element))
+                                    {
+                                        _displayStrategies[i].DisplayError(element, errorMessage);
+                                        if (_firstInvalidElement == null)
+                                        {
+                                            _firstInvalidElement = element;
+                                        }
+                                        return;
+                                    }
                                 }
-                                return;
-
                             }
                         });
                     }
@@ -131,10 +173,19 @@ namespace FACCTS.Controls.Validation
             List<Binding> bindings = new List<Binding>();
             FindBindingsRecursively(
                     this.Parent,
-                    delegate(FrameworkElement element, Binding binding, DependencyProperty dp)
+                    delegate(FrameworkElement element, Binding binding)
                     {
                         // Remember this bound element. We'll use this to display error messages for each property.
                         bindings.Add(binding);
+
+                        // Clear any errors on this framework element.
+                        for (int i = _displayStrategies.Count - 1; i >= 0; i--)
+                        {
+                            if (_displayStrategies[i].CanDisplayForElement(element))
+                            {
+                                _displayStrategies[i].ClearError(element);
+                            }
+                        }
                     });
             return bindings;
         }
@@ -144,10 +195,6 @@ namespace FACCTS.Controls.Validation
         /// </summary>
         private void DataContext_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == "IsValid")
-            {
-                return;
-            }
             Validate();
         }
 
@@ -160,9 +207,7 @@ namespace FACCTS.Controls.Validation
         {
 
             // See if we should display the errors on this element
-            MemberInfo[] members = element.GetType().GetMembers(BindingFlags.Static |
-                    BindingFlags.Public |
-                    BindingFlags.FlattenHierarchy);
+            MemberInfo[] members = element.GetType().GetMembers(BindingFlags.Static | BindingFlags.Public | BindingFlags.GetField | BindingFlags.GetProperty);
 
             foreach (MemberInfo member in members)
             {
@@ -198,7 +243,7 @@ namespace FACCTS.Controls.Validation
                         {
                             if (((FrameworkElement)element).DataContext == this.DataContext)
                             {
-                                callbackDelegate((FrameworkElement)element, bb, dp);
+                                callbackDelegate((FrameworkElement)element, bb);
                             }
                         }
                     }

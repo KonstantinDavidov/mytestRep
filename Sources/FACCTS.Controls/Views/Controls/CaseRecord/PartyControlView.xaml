@@ -32,9 +32,9 @@
                               Source="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl, AncestorLevel=2}, Path=DataContext.DataContainer.EntityTypeList, Mode=OneWay}" />
     </UserControl.Resources>
 	<Grid x:Name="LayoutRoot">
-        <validation:ErrorProvider>
             <GroupBox Header="{Binding Title, ElementName=UserControl, Mode=OneWay}"
                       Grid.IsSharedSizeScope="True">
+            <validation:ErrorProvider x:Name="_errorProvider">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition />
@@ -72,11 +72,12 @@
                                     <ColumnDefinition />
                                     <ColumnDefinition />
                                 </Grid.ColumnDefinitions>
-                                <TextBox TextWrapping="Wrap"
-                                         Text="{Binding FirstName, FallbackValue=Barak, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                         VerticalAlignment="Center"
-                                         Style="{DynamicResource TextBoxWithAdorner}"
-                                         Tag="First Name" />
+                            <TextBox TextWrapping="Wrap"
+                                     VerticalAlignment="Center"
+                                     Style="{DynamicResource TextBoxWithAdorner}"
+                                     Tag="First Name"
+                                     Text="{Binding Path=FirstName, FallbackValue=Barak, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            </TextBox>
                                 <TextBox TextWrapping="Wrap"
                                          Text="{Binding MiddleName, FallbackValue=Ivanovich, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                          VerticalAlignment="Center"
@@ -418,7 +419,7 @@
                         </Grid>
                     </Border>
                 </Grid>
-            </GroupBox>
-        </validation:ErrorProvider>
+            </validation:ErrorProvider>
+        </GroupBox>
     </Grid>
 </UserControl>
