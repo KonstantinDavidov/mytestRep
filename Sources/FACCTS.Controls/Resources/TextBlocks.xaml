@@ -250,7 +250,7 @@
             <ControlTemplate TargetType="{x:Type TextBox}">
                     <xctk:WatermarkTextBox Watermark="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag,Mode=OneWay}"
                                            TextWrapping="{TemplateBinding TextWrapping}"
-                                           Text="{Binding Text, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                           Text="{Binding Text, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
                                            VerticalAlignment="{TemplateBinding VerticalAlignment}"
                                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                                            Width="{TemplateBinding Width}"

@@ -98,10 +98,16 @@
                                        Grid.Column="4" />
                             <ComboBox Grid.Column="5"
                                       VerticalAlignment="Center"
-                                      SelectedItem="{Binding Designation, Mode=TwoWay}"
+                                      SelectedItem="{Binding Designation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       DisplayMemberPath="DesignationName"
-                                      ItemsSource="{Binding Mode=OneWay, Source={StaticResource cvsDesignations}}" />
-                            <TextBlock HorizontalAlignment="Right"
+                                      >
+                                <ComboBox.ItemsSource>
+                                    <CompositeCollection>
+                                        <CollectionContainer Collection="{Binding Mode=OneWay, Source={StaticResource cvsDesignations}}" />
+                                    </CompositeCollection>
+                                </ComboBox.ItemsSource>
+                            </ComboBox>
+                                <TextBlock HorizontalAlignment="Right"
                                        TextWrapping="Wrap"
                                        Text="Description"
                                        Grid.Row="1"
@@ -124,7 +130,7 @@
                             <ComboBox Grid.Row="1"
                                       Grid.Column="5"
                                       VerticalAlignment="Center"
-                                      SelectedValue="{Binding ParticipantRole, Mode=TwoWay}"
+                                      SelectedValue="{Binding ParticipantRole, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedValuePath="Value"
                                       ItemsSource="{Binding Mode=OneWay, Source={StaticResource cvsParticipantRoles}}" />
                             <TextBlock HorizontalAlignment="Right"
@@ -209,7 +215,7 @@
                                      VerticalAlignment="Center"
                                      Tag="City"
                                      Style="{DynamicResource TextBoxWithAdorner}" />
-                            <ComboBox SelectedValue="{Binding USAState, Mode=TwoWay}"
+                            <ComboBox SelectedValue="{Binding USAState, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedValuePath="Value"
                                       ItemsSource="{Binding Mode=OneWay, Source={StaticResource cvsStateList}}"
                                       Grid.Row="1"
@@ -287,7 +293,7 @@
                                       Grid.Column="1"
                                       VerticalAlignment="Center"
                                       ItemsSource="{Binding IsAsync=True, Mode=OneWay, Source={StaticResource cvsSex}}"
-                                      SelectedValue="{Binding Sex, Mode=TwoWay}"
+                                      SelectedValue="{Binding Sex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedValuePath="Value" />
                             <TextBlock HorizontalAlignment="Right"
                                        TextWrapping="Wrap"
@@ -310,7 +316,7 @@
                                       VerticalAlignment="Center"
                                       Grid.Column="1"
                                       ItemsSource="{Binding IsAsync=True, Mode=OneWay, Source={StaticResource cvsEyes}}"
-                                      SelectedItem="{Binding EyesColor, Mode=TwoWay}"
+                                      SelectedItem="{Binding EyesColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       DisplayMemberPath="Color"
                                       Grid.Row="2" />
                             <TextBlock HorizontalAlignment="Right"
@@ -321,7 +327,7 @@
                                       Grid.Column="3"
                                       VerticalAlignment="Center"
                                       ItemsSource="{Binding IsAsync=True, Mode=OneWay, Source={StaticResource cvsraces}}"
-                                      SelectedItem="{Binding Race, Mode=TwoWay}"
+                                      SelectedItem="{Binding Race, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       DisplayMemberPath="RaceName" />
                             <TextBlock HorizontalAlignment="Right"
                                        TextWrapping="Wrap"
@@ -415,7 +421,7 @@
                                       Grid.Column="7"
                                       ItemsSource="{Binding Source={StaticResource cvsEntityTypes}, Mode=OneWay}"
                                       SelectedValuePath="Value"
-                                      SelectedValue="{Binding EntityType, Mode=TwoWay}" />
+                                      SelectedValue="{Binding EntityType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                         </Grid>
                     </Border>
                 </Grid>

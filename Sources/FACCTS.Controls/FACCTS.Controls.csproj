@@ -164,8 +164,6 @@
     <Compile Include="Utils\StringToBoolean.cs" />
     <Compile Include="Utils\StringToDateTime.cs" />
     <Compile Include="Validation\ErrorProvider.cs" />
-    <Compile Include="Validation\IErrorDisplayStrategy.cs" />
-    <Compile Include="Validation\TextBoxErrorDisplayStrategy.cs" />
     <Compile Include="ViewModels\Case Record\CaseHistoryViewModel.cs" />
     <Compile Include="ViewModels\Case Record\CaseNotesViewModel.cs" />
     <Compile Include="ViewModels\Case Record\CaseRecordItemViewModel.cs" />

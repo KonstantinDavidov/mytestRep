@@ -154,7 +154,7 @@ namespace Faccts.Model.Entities
                 object propertyValue = this.GetProperty(propertyName);
                 if (propertyValue is String && string.IsNullOrEmpty(propertyValue.ToString()) || propertyValue == null)
                 {
-                    result = _requiredFields[propertyName];
+                    result = string.Format("{0} can not be blank!", _requiredFields[propertyName]);
                 }
             }
             return result;
