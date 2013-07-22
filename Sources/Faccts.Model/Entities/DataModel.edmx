@@ -3007,10 +3007,9 @@
             <End Role="CH130Order" EntitySet="CH130ROOrderSet" />
             <End Role="ServiceSection" EntitySet="ServiceSectionSet" />
           </AssociationSet>
-          <EntitySet Name="SAOROSectionSet" EntityType="FACCTS_DBModel.SAOROSection" />
           <AssociationSet Name="CH130OrderSAOSection" Association="FACCTS_DBModel.CH130OrderSAOSection">
             <End Role="CH130Order" EntitySet="CH130ROOrderSet" />
-            <End Role="SAOSection" EntitySet="SAOROSectionSet" />
+            <End Role="SAOSection" EntitySet="SAOEAROSectionSet" />
           </AssociationSet>
           <EntitySet Name="NoGunsSectionSet" EntityType="FACCTS_DBModel.NoGunsSection" />
           <AssociationSet Name="CH130OrderNoGunsSection" Association="FACCTS_DBModel.CH130OrderNoGunsSection">
@@ -3054,7 +3053,7 @@
           </AssociationSet>
           <AssociationSet Name="CH110OrderSAOTROSection" Association="FACCTS_DBModel.CH110OrderSAOTROSection">
             <End Role="CH110Order" EntitySet="CH110TROOrderSet" />
-            <End Role="SAOTROSection" EntitySet="SAOROSectionSet" />
+            <End Role="SAOTROSection" EntitySet="SAOEAROSectionSet" />
           </AssociationSet>
           <AssociationSet Name="CH110TROOrderNoGunsSection" Association="FACCTS_DBModel.CH110TROOrderNoGunsSection">
             <End Role="CH110TROOrder" EntitySet="CH110TROOrderSet" />
@@ -3089,7 +3088,7 @@
           </AssociationSet>
           <AssociationSet Name="DV110TROOrderSAOTROSection" Association="FACCTS_DBModel.DV110TROOrderSAOTROSection">
             <End Role="DV110TROOrder" EntitySet="DV110TROOrderSet" />
-            <End Role="SAOTROSection" EntitySet="SAOROSectionSet" />
+            <End Role="SAOTROSection" EntitySet="SAOEAROSectionSet" />
           </AssociationSet>
           <EntitySet Name="MoveOutROSectionSet" EntityType="FACCTS_DBModel.MoveOutROSection" />
           <AssociationSet Name="DV110TROOrderMoveOutTROSection" Association="FACCTS_DBModel.DV110TROOrderMoveOutTROSection">
@@ -3163,7 +3162,7 @@
           </AssociationSet>
           <AssociationSet Name="DV130ROOrderSAOROSection" Association="FACCTS_DBModel.DV130ROOrderSAOROSection">
             <End Role="DV130ROOrder" EntitySet="DV130ROOrderSet" />
-            <End Role="SAOROSection" EntitySet="SAOROSectionSet" />
+            <End Role="SAOROSection" EntitySet="SAOEAROSectionSet" />
           </AssociationSet>
           <AssociationSet Name="DV130ROOrderMoveOutROSection" Association="FACCTS_DBModel.DV130ROOrderMoveOutROSection">
             <End Role="DV130ROOrder" EntitySet="DV130ROOrderSet" />
@@ -3208,6 +3207,69 @@
           <AssociationSet Name="DV130ROOrderOtherOrdersROSection1" Association="FACCTS_DBModel.DV130ROOrderOtherOrdersROSection1">
             <End Role="DV130ROOrder" EntitySet="DV130ROOrderSet" />
             <End Role="OtherOrdersROSection" EntitySet="OtherOrdersROSectionSet" />
+          </AssociationSet>
+          <EntitySet Name="EA110TROOrderSet" EntityType="FACCTS_DBModel.EA110TROOrder" />
+          <AssociationSet Name="EA110TROOrderConductTROSection" Association="FACCTS_DBModel.EA110TROOrderConductTROSection">
+            <End Role="EA110TROOrder" EntitySet="EA110TROOrderSet" />
+            <End Role="ConductTROSection" EntitySet="ConductBaseSet" />
+          </AssociationSet>
+          <EntitySet Name="SAOEAROSectionSet" EntityType="FACCTS_DBModel.SAOEAROSection" />
+          <AssociationSet Name="EA110TROOrderSAOEATROSection" Association="FACCTS_DBModel.EA110TROOrderSAOEATROSection">
+            <End Role="EA110TROOrder" EntitySet="EA110TROOrderSet" />
+            <End Role="SAOEATROSection" EntitySet="SAOEAROSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="EA110TROOrderMoveOutTROSection" Association="FACCTS_DBModel.EA110TROOrderMoveOutTROSection">
+            <End Role="EA110TROOrder" EntitySet="EA110TROOrderSet" />
+            <End Role="MoveOutTROSection" EntitySet="MoveOutROSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="EA110TROOrderNoGunsEASection" Association="FACCTS_DBModel.EA110TROOrderNoGunsEASection">
+            <End Role="EA110TROOrder" EntitySet="EA110TROOrderSet" />
+            <End Role="NoGunsEASection" EntitySet="NoGunsSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="EA110TROOrderCarposEntrySection" Association="FACCTS_DBModel.EA110TROOrderCarposEntrySection">
+            <End Role="EA110TROOrder" EntitySet="EA110TROOrderSet" />
+            <End Role="CarposEntrySection" EntitySet="CarposEntrySectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="EA110TROOrderServiceFeesSection" Association="FACCTS_DBModel.EA110TROOrderServiceFeesSection">
+            <End Role="EA110TROOrder" EntitySet="EA110TROOrderSet" />
+            <End Role="ServiceFeesSection" EntitySet="ServiceFeesSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="EA110TROOrderOtherOrdersTROSection" Association="FACCTS_DBModel.EA110TROOrderOtherOrdersTROSection">
+            <End Role="EA110TROOrder" EntitySet="EA110TROOrderSet" />
+            <End Role="OtherOrdersTROSection" EntitySet="OtherOrdersROSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="EA110TROOrderExpirationSection" Association="FACCTS_DBModel.EA110TROOrderExpirationSection">
+            <End Role="EA110TROOrder" EntitySet="EA110TROOrderSet" />
+            <End Role="ExpirationSection" EntitySet="ExpirationSectionSet" />
+          </AssociationSet>
+          <EntitySet Name="EA130ROOrderSet" EntityType="FACCTS_DBModel.EA130ROOrder" />
+          <AssociationSet Name="EA130ROOrderConductROSection" Association="FACCTS_DBModel.EA130ROOrderConductROSection">
+            <End Role="EA130ROOrder" EntitySet="EA130ROOrderSet" />
+            <End Role="ConductROSection" EntitySet="ConductBaseSet" />
+          </AssociationSet>
+          <AssociationSet Name="EA130ROOrderServiceSection" Association="FACCTS_DBModel.EA130ROOrderServiceSection">
+            <End Role="EA130ROOrder" EntitySet="EA130ROOrderSet" />
+            <End Role="ServiceSection" EntitySet="ServiceSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="EA130ROOrderSAOEAROSection" Association="FACCTS_DBModel.EA130ROOrderSAOEAROSection">
+            <End Role="EA130ROOrder" EntitySet="EA130ROOrderSet" />
+            <End Role="SAOEAROSection" EntitySet="SAOEAROSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="EA130ROOrderNoGunsEASection" Association="FACCTS_DBModel.EA130ROOrderNoGunsEASection">
+            <End Role="EA130ROOrder" EntitySet="EA130ROOrderSet" />
+            <End Role="NoGunsEASection" EntitySet="NoGunsSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="EA130ROOrderServiceFeesEA130Section" Association="FACCTS_DBModel.EA130ROOrderServiceFeesEA130Section">
+            <End Role="EA130ROOrder" EntitySet="EA130ROOrderSet" />
+            <End Role="ServiceFeesEA130Section" EntitySet="ServiceFeesSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="EA130ROOrderOtherOrdersROSection" Association="FACCTS_DBModel.EA130ROOrderOtherOrdersROSection">
+            <End Role="EA130ROOrder" EntitySet="EA130ROOrderSet" />
+            <End Role="OtherOrdersROSection" EntitySet="OtherOrdersROSectionSet" />
+          </AssociationSet>
+          <AssociationSet Name="EA130ROOrderExpirationSection" Association="FACCTS_DBModel.EA130ROOrderExpirationSection">
+            <End Role="EA130ROOrder" EntitySet="EA130ROOrderSet" />
+            <End Role="ExpirationSection" EntitySet="ExpirationSectionSet" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="AdfsIntegrationConfiguration">
@@ -4432,23 +4494,11 @@
           <End Type="FACCTS_DBModel.CH130ROOrder" Role="CH130Order" Multiplicity="1" />
           <End Type="FACCTS_DBModel.ServiceSection" Role="ServiceSection" Multiplicity="1" />
         </Association>
-        <EntityType Name="SAOROSection">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Boolean" Name="Requested" Nullable="false" />
+        <EntityType Name="SAOROSection" BaseType="FACCTS_DBModel.SAOEAROSection">
           <Property Type="Decimal" Name="Distance" Nullable="false" />
-          <Property Type="Boolean" Name="FromPerson" Nullable="false" />
-          <Property Type="Boolean" Name="FromWork" Nullable="false" />
           <Property Type="Boolean" Name="FromChildSchool" Nullable="false" />
-          <Property Type="Boolean" Name="FromHome" Nullable="false" />
-          <Property Type="Boolean" Name="FromVehicle" Nullable="false" />
           <Property Type="Boolean" Name="FromChildCare" Nullable="false" />
-          <Property Type="Boolean" Name="FromOtherProtected" Nullable="false" />
-          <Property Type="Boolean" Name="OtherRequested" Nullable="false" />
-          <Property Type="String" Name="OtherText" Nullable="false" />
-        </EntityType>
+          </EntityType>
         <Association Name="CH130OrderSAOSection">
           <End Type="FACCTS_DBModel.CH130ROOrder" Role="CH130Order" Multiplicity="1" />
           <End Type="FACCTS_DBModel.SAOROSection" Role="SAOSection" Multiplicity="1" />
@@ -4533,7 +4583,6 @@
           </Key>
           <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Boolean" Name="Ordered" Nullable="false" />
-          <Property Type="String" Name="Property1" Nullable="false" />
           <Property Type="Boolean" Name="BasedOnViolence" Nullable="false" />
           <Property Type="Boolean" Name="Waiver" Nullable="false" />
         </EntityType>
@@ -4915,6 +4964,122 @@
           <End Type="FACCTS_DBModel.OtherOrdersROSection" Role="OtherOrdersROSection" Multiplicity="1" />
         </Association>
         <EnumType Name="CaseNoteStatus" a:ExternalTypeName="FACCTS.Server.Model.Enums.CaseNoteStatus" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EntityType Name="EA110TROOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="ElderlyPartyPresent" Nullable="false" />
+          <Property Type="String" Name="ProtectedName" Nullable="false" />
+          <NavigationProperty Name="ConductTROSection" Relationship="FACCTS_DBModel.EA110TROOrderConductTROSection" FromRole="EA110TROOrder" ToRole="ConductTROSection" />
+          <NavigationProperty Name="SAOEATROSection" Relationship="FACCTS_DBModel.EA110TROOrderSAOEATROSection" FromRole="EA110TROOrder" ToRole="SAOEATROSection" />
+          <NavigationProperty Name="MoveOutTROSection" Relationship="FACCTS_DBModel.EA110TROOrderMoveOutTROSection" FromRole="EA110TROOrder" ToRole="MoveOutTROSection" />
+          <NavigationProperty Name="NoGunsEASection" Relationship="FACCTS_DBModel.EA110TROOrderNoGunsEASection" FromRole="EA110TROOrder" ToRole="NoGunsEASection" />
+          <NavigationProperty Name="CarposEntrySection" Relationship="FACCTS_DBModel.EA110TROOrderCarposEntrySection" FromRole="EA110TROOrder" ToRole="CarposEntrySection" />
+          <NavigationProperty Name="ServiceFeesSection" Relationship="FACCTS_DBModel.EA110TROOrderServiceFeesSection" FromRole="EA110TROOrder" ToRole="ServiceFeesSection" />
+          <NavigationProperty Name="OtherOrdersTROSection" Relationship="FACCTS_DBModel.EA110TROOrderOtherOrdersTROSection" FromRole="EA110TROOrder" ToRole="OtherOrdersTROSection" />
+          <NavigationProperty Name="ExpirationSection" Relationship="FACCTS_DBModel.EA110TROOrderExpirationSection" FromRole="EA110TROOrder" ToRole="ExpirationSection" />
+        </EntityType>
+        <Association Name="EA110TROOrderConductTROSection">
+          <End Type="FACCTS_DBModel.EA110TROOrder" Role="EA110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.ConductTROSection" Role="ConductTROSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="SAOEAROSection">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="Requested" Nullable="false" />
+          <Property Type="Boolean" Name="FromPerson" Nullable="false" />
+          <Property Type="Boolean" Name="FromWork" Nullable="false" />
+          <Property Type="Boolean" Name="FromHome" Nullable="false" />
+          <Property Type="Boolean" Name="FromVehicle" Nullable="false" />
+          <Property Type="Boolean" Name="FromOtherProtected" Nullable="false" />
+          <Property Type="Boolean" Name="OtherRequested" Nullable="false" />
+          <Property Type="String" Name="OtherText" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SAOEATROSection" BaseType="FACCTS_DBModel.SAOEAROSection" >
+          <Property Type="FACCTS_DBModel.OrderRestrictionState" Name="OrderState" Nullable="false" />
+        </EntityType>
+        <Association Name="EA110TROOrderSAOEATROSection">
+          <End Type="FACCTS_DBModel.EA110TROOrder" Role="EA110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.SAOEATROSection" Role="SAOEATROSection" Multiplicity="1" />
+        </Association>
+        <Association Name="EA110TROOrderMoveOutTROSection">
+          <End Type="FACCTS_DBModel.EA110TROOrder" Role="EA110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.MoveOutTROSection" Role="MoveOutTROSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="NoGunsEASection" BaseType="FACCTS_DBModel.NoGunsSection" >
+          <Property Type="Boolean" Name="NoIssued" Nullable="false" />
+          <Property Type="Boolean" Name="FinancialAbuseOnly" Nullable="false" />
+          <Property Type="Boolean" Name="NoGunsOrder" Nullable="false" />
+          <Property Type="Boolean" Name="HasInfo" Nullable="false" />
+          <Property Type="Boolean" Name="NoFInancialAbuse" Nullable="false" />
+        </EntityType>
+        <Association Name="EA110TROOrderNoGunsEASection">
+          <End Type="FACCTS_DBModel.EA110TROOrder" Role="EA110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.NoGunsEASection" Role="NoGunsEASection" Multiplicity="1" />
+        </Association>
+        <Association Name="EA110TROOrderCarposEntrySection">
+          <End Type="FACCTS_DBModel.EA110TROOrder" Role="EA110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.CarposEntrySection" Role="CarposEntrySection" Multiplicity="1" />
+        </Association>
+        <Association Name="EA110TROOrderServiceFeesSection">
+          <End Type="FACCTS_DBModel.EA110TROOrder" Role="EA110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.ServiceFeesSection" Role="ServiceFeesSection" Multiplicity="1" />
+        </Association>
+        <Association Name="EA110TROOrderOtherOrdersTROSection">
+          <End Type="FACCTS_DBModel.EA110TROOrder" Role="EA110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.OtherOrdersTROSection" Role="OtherOrdersTROSection" Multiplicity="1" />
+        </Association>
+        <Association Name="EA110TROOrderExpirationSection">
+          <End Type="FACCTS_DBModel.EA110TROOrder" Role="EA110TROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.ExpirationSection" Role="ExpirationSection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="EA130ROOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="ConductROSection" Relationship="FACCTS_DBModel.EA130ROOrderConductROSection" FromRole="EA130ROOrder" ToRole="ConductROSection" />
+          <NavigationProperty Name="ServiceSection" Relationship="FACCTS_DBModel.EA130ROOrderServiceSection" FromRole="EA130ROOrder" ToRole="ServiceSection" />
+          <NavigationProperty Name="SAOEAROSection" Relationship="FACCTS_DBModel.EA130ROOrderSAOEAROSection" FromRole="EA130ROOrder" ToRole="SAOEAROSection" />
+          <NavigationProperty Name="NoGunsEASection" Relationship="FACCTS_DBModel.EA130ROOrderNoGunsEASection" FromRole="EA130ROOrder" ToRole="NoGunsEASection" />
+          <NavigationProperty Name="ServiceFeesEA130Section" Relationship="FACCTS_DBModel.EA130ROOrderServiceFeesEA130Section" FromRole="EA130ROOrder" ToRole="ServiceFeesEA130Section" />
+          <NavigationProperty Name="OtherOrdersROSection" Relationship="FACCTS_DBModel.EA130ROOrderOtherOrdersROSection" FromRole="EA130ROOrder" ToRole="OtherOrdersROSection" />
+          <NavigationProperty Name="ExpirationSection" Relationship="FACCTS_DBModel.EA130ROOrderExpirationSection" FromRole="EA130ROOrder" ToRole="ExpirationSection" />
+        </EntityType>
+        <Association Name="EA130ROOrderConductROSection">
+          <End Type="FACCTS_DBModel.EA130ROOrder" Role="EA130ROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.ConductROSection" Role="ConductROSection" Multiplicity="1" />
+        </Association>
+        <Association Name="EA130ROOrderServiceSection">
+          <End Type="FACCTS_DBModel.EA130ROOrder" Role="EA130ROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.ServiceSection" Role="ServiceSection" Multiplicity="1" />
+        </Association>
+        <Association Name="EA130ROOrderSAOEAROSection">
+          <End Type="FACCTS_DBModel.EA130ROOrder" Role="EA130ROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.SAOEAROSection" Role="SAOEAROSection" Multiplicity="1" />
+        </Association>
+        <Association Name="EA130ROOrderNoGunsEASection">
+          <End Type="FACCTS_DBModel.EA130ROOrder" Role="EA130ROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.NoGunsEASection" Role="NoGunsEASection" Multiplicity="1" />
+        </Association>
+        <EntityType Name="ServiceFeesEA130Section" BaseType="FACCTS_DBModel.ServiceFeesSection" >
+          <Property Type="Boolean" Name="NoServiceFee" Nullable="false" />
+        </EntityType>
+        <Association Name="EA130ROOrderServiceFeesEA130Section">
+          <End Type="FACCTS_DBModel.EA130ROOrder" Role="EA130ROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.ServiceFeesEA130Section" Role="ServiceFeesEA130Section" Multiplicity="1" />
+        </Association>
+        <Association Name="EA130ROOrderOtherOrdersROSection">
+          <End Type="FACCTS_DBModel.EA130ROOrder" Role="EA130ROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.OtherOrdersROSection" Role="OtherOrdersROSection" Multiplicity="1" />
+        </Association>
+        <Association Name="EA130ROOrderExpirationSection">
+          <End Type="FACCTS_DBModel.EA130ROOrder" Role="EA130ROOrder" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.ExpirationSection" Role="ExpirationSection" Multiplicity="1" />
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5551,30 +5716,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SAOROSectionSet">
-      <EntityTypeMapping TypeName="IsTypeOf(FACCTS_DBModel.SAOROSection)">
-        <MappingFragment StoreEntitySet="SAOROSectionSet">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Requested" ColumnName="Requested" />
-          <ScalarProperty Name="Distance" ColumnName="Distance" />
-          <ScalarProperty Name="FromPerson" ColumnName="FromPerson" />
-          <ScalarProperty Name="FromWork" ColumnName="FromWork" />
-          <ScalarProperty Name="FromChildSchool" ColumnName="FromChildSchool" />
-          <ScalarProperty Name="FromHome" ColumnName="FromHome" />
-          <ScalarProperty Name="FromVehicle" ColumnName="FromVehicle" />
-          <ScalarProperty Name="FromChildCare" ColumnName="FromChildCare" />
-          <ScalarProperty Name="FromOtherProtected" ColumnName="FromOtherProtected" />
-          <ScalarProperty Name="OtherRequested" ColumnName="OtherRequested" />
-          <ScalarProperty Name="OtherText" ColumnName="OtherText" />
-        </MappingFragment>
-      </EntityTypeMapping>
-      <EntityTypeMapping TypeName="IsTypeOf(FACCTS_DBModel.SAOTROSection)">
-        <MappingFragment StoreEntitySet="SAOROSectionSet_SAOTROSection">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="OrderState" ColumnName="OrderState" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="NoGunsSectionSet">
       <EntityTypeMapping TypeName="IsTypeOf(FACCTS_DBModel.NoGunsSection)">
         <MappingFragment StoreEntitySet="NoGunsSectionSet">
@@ -5631,7 +5772,6 @@
         <MappingFragment StoreEntitySet="ServiceFeesSectionSet">
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Ordered" ColumnName="Ordered" />
-          <ScalarProperty Name="Property1" ColumnName="Property1" />
           <ScalarProperty Name="BasedOnViolence" ColumnName="BasedOnViolence" />
           <ScalarProperty Name="Waiver" ColumnName="Waiver" />
         </MappingFragment>
@@ -5868,14 +6008,6 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="CH130OrderSAOSection" TypeName="FACCTS_DBModel.CH130OrderSAOSection" StoreEntitySet="CH130ROOrderSet">
-      <EndProperty Name="SAOSection">
-        <ScalarProperty Name="Id" ColumnName="SAOSection_Id" />
-      </EndProperty>
-      <EndProperty Name="CH130Order">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="CH130OrderNoGunsSection" TypeName="FACCTS_DBModel.CH130OrderNoGunsSection" StoreEntitySet="CH130ROOrderSet">
       <EndProperty Name="NoGunsSection">
         <ScalarProperty Name="Id" ColumnName="NoGunsSection_Id" />
@@ -5932,14 +6064,6 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="CH110OrderSAOTROSection" TypeName="FACCTS_DBModel.CH110OrderSAOTROSection" StoreEntitySet="CH110TROOrderSet">
-      <EndProperty Name="SAOTROSection">
-        <ScalarProperty Name="Id" ColumnName="SAOTROSection_Id" />
-      </EndProperty>
-      <EndProperty Name="CH110Order">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="CH110TROOrderNoGunsSection" TypeName="FACCTS_DBModel.CH110TROOrderNoGunsSection" StoreEntitySet="CH110TROOrderSet">
       <EndProperty Name="NoGunsSection">
         <ScalarProperty Name="Id" ColumnName="NoGunsSection_Id" />
@@ -5991,14 +6115,6 @@
     <AssociationSetMapping Name="DV110TROOrderDV110ServiceSection" TypeName="FACCTS_DBModel.DV110TROOrderDV110ServiceSection" StoreEntitySet="DV110TROOrderSet">
       <EndProperty Name="DV110ServiceSection">
         <ScalarProperty Name="Id" ColumnName="DV110ServiceSection_Id" />
-      </EndProperty>
-      <EndProperty Name="DV110TROOrder">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="DV110TROOrderSAOTROSection" TypeName="FACCTS_DBModel.DV110TROOrderSAOTROSection" StoreEntitySet="DV110TROOrderSet">
-      <EndProperty Name="SAOTROSection">
-        <ScalarProperty Name="Id" ColumnName="SAOTROSection_Id" />
       </EndProperty>
       <EndProperty Name="DV110TROOrder">
         <ScalarProperty Name="Id" ColumnName="Id" />
@@ -6108,14 +6224,6 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="DV130ROOrderSAOROSection" TypeName="FACCTS_DBModel.DV130ROOrderSAOROSection" StoreEntitySet="DV130ROOrderSet">
-      <EndProperty Name="SAOROSection">
-        <ScalarProperty Name="Id" ColumnName="SAOROSection_Id" />
-      </EndProperty>
-      <EndProperty Name="DV130ROOrder">
-        <ScalarProperty Name="Id" ColumnName="Id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="DV130ROOrderMoveOutROSection" TypeName="FACCTS_DBModel.DV130ROOrderMoveOutROSection" StoreEntitySet="DV130ROOrderSet">
       <EndProperty Name="MoveOutROSection">
         <ScalarProperty Name="Id" ColumnName="MoveOutROSection_Id" />
@@ -6204,6 +6312,40 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
+          <AssociationSetMapping Name="CH130OrderSAOSection" TypeName="FACCTS_DBModel.CH130OrderSAOSection" StoreEntitySet="CH130ROOrderSet">
+            <EndProperty Name="CH130Order">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="CH110OrderSAOTROSection" TypeName="FACCTS_DBModel.CH110OrderSAOTROSection" StoreEntitySet="CH110TROOrderSet">
+            <EndProperty Name="CH110Order">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="DV110TROOrderSAOTROSection" TypeName="FACCTS_DBModel.DV110TROOrderSAOTROSection" StoreEntitySet="DV110TROOrderSet">
+            <EndProperty Name="DV110TROOrder">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="DV130ROOrderSAOROSection" TypeName="FACCTS_DBModel.DV130ROOrderSAOROSection" StoreEntitySet="DV130ROOrderSet">
+            <EndProperty Name="DV130ROOrder">
+              <ScalarProperty Name="Id" ColumnName="Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="SAOEAROSectionSet">
+            <EntityTypeMapping TypeName="IsTypeOf(FACCTS_DBModel.SAOROSection)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+              <MappingFragment StoreEntitySet="SAOROSectionSet">
+                <ScalarProperty Name="Distance" ColumnName="Distance" />
+                <ScalarProperty Name="FromChildSchool" ColumnName="FromChildSchool" />
+                <ScalarProperty Name="FromChildCare" ColumnName="FromChildCare" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="IsTypeOf(FACCTS_DBModel.SAOTROSection)" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+              <MappingFragment StoreEntitySet="SAOROSectionSet_SAOTROSection">
+                <ScalarProperty Name="OrderState" ColumnName="OrderState" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping></edmx:Mappings>
   </edmx:Runtime>

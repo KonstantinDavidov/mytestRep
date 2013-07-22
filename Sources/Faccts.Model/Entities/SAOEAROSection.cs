@@ -21,13 +21,15 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(NoGunsEASection))]
-    public partial class NoGunsSection: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    [KnownType(typeof(SAOROSection))]
+    [KnownType(typeof(SAOTROSection))]
+    [KnownType(typeof(SAOEATROSection))]
+    public partial class SAOEAROSection: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
     		private MakeObjectReactiveHelper _reactiveHelper;
     
-    		public NoGunsSection()
+    		public SAOEAROSection()
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
@@ -51,6 +53,13 @@ namespace Faccts.Model.Entities
     			Observable.Merge<Object>(
     				this.ObservableForProperty(x => x.Id)
     				,this.ObservableForProperty(x => x.Requested)
+    				,this.ObservableForProperty(x => x.FromPerson)
+    				,this.ObservableForProperty(x => x.FromWork)
+    				,this.ObservableForProperty(x => x.FromHome)
+    				,this.ObservableForProperty(x => x.FromVehicle)
+    				,this.ObservableForProperty(x => x.FromOtherProtected)
+    				,this.ObservableForProperty(x => x.OtherRequested)
+    				,this.ObservableForProperty(x => x.OtherText)
     			).
     			Subscribe(_ =>
     			{
@@ -168,6 +177,118 @@ namespace Faccts.Model.Entities
             }
         }
         private bool _requested;
+    
+        [DataMember]
+        public bool FromPerson
+        {
+            get { return _fromPerson; }
+            set
+            {
+                if (_fromPerson != value)
+                {
+    				OnPropertyChanging("FromPerson");
+                    _fromPerson = value;
+                    OnPropertyChanged("FromPerson");
+                }
+            }
+        }
+        private bool _fromPerson;
+    
+        [DataMember]
+        public bool FromWork
+        {
+            get { return _fromWork; }
+            set
+            {
+                if (_fromWork != value)
+                {
+    				OnPropertyChanging("FromWork");
+                    _fromWork = value;
+                    OnPropertyChanged("FromWork");
+                }
+            }
+        }
+        private bool _fromWork;
+    
+        [DataMember]
+        public bool FromHome
+        {
+            get { return _fromHome; }
+            set
+            {
+                if (_fromHome != value)
+                {
+    				OnPropertyChanging("FromHome");
+                    _fromHome = value;
+                    OnPropertyChanged("FromHome");
+                }
+            }
+        }
+        private bool _fromHome;
+    
+        [DataMember]
+        public bool FromVehicle
+        {
+            get { return _fromVehicle; }
+            set
+            {
+                if (_fromVehicle != value)
+                {
+    				OnPropertyChanging("FromVehicle");
+                    _fromVehicle = value;
+                    OnPropertyChanged("FromVehicle");
+                }
+            }
+        }
+        private bool _fromVehicle;
+    
+        [DataMember]
+        public bool FromOtherProtected
+        {
+            get { return _fromOtherProtected; }
+            set
+            {
+                if (_fromOtherProtected != value)
+                {
+    				OnPropertyChanging("FromOtherProtected");
+                    _fromOtherProtected = value;
+                    OnPropertyChanged("FromOtherProtected");
+                }
+            }
+        }
+        private bool _fromOtherProtected;
+    
+        [DataMember]
+        public bool OtherRequested
+        {
+            get { return _otherRequested; }
+            set
+            {
+                if (_otherRequested != value)
+                {
+    				OnPropertyChanging("OtherRequested");
+                    _otherRequested = value;
+                    OnPropertyChanged("OtherRequested");
+                }
+            }
+        }
+        private bool _otherRequested;
+    
+        [DataMember]
+        public string OtherText
+        {
+            get { return _otherText; }
+            set
+            {
+                if (_otherText != value)
+                {
+    				OnPropertyChanging("OtherText");
+                    _otherText = value;
+                    OnPropertyChanged("OtherText");
+                }
+            }
+        }
+        private string _otherText;
 
         #endregion
 

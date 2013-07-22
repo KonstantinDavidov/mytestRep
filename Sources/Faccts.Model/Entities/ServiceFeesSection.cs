@@ -21,6 +21,7 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
+    [KnownType(typeof(ServiceFeesEA130Section))]
     public partial class ServiceFeesSection: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -50,7 +51,6 @@ namespace Faccts.Model.Entities
     			Observable.Merge<Object>(
     				this.ObservableForProperty(x => x.Id)
     				,this.ObservableForProperty(x => x.Ordered)
-    				,this.ObservableForProperty(x => x.Property1)
     				,this.ObservableForProperty(x => x.BasedOnViolence)
     				,this.ObservableForProperty(x => x.Waiver)
     			).
@@ -170,22 +170,6 @@ namespace Faccts.Model.Entities
             }
         }
         private bool _ordered;
-    
-        [DataMember]
-        public string Property1
-        {
-            get { return _property1; }
-            set
-            {
-                if (_property1 != value)
-                {
-    				OnPropertyChanging("Property1");
-                    _property1 = value;
-                    OnPropertyChanged("Property1");
-                }
-            }
-        }
-        private string _property1;
     
         [DataMember]
         public bool BasedOnViolence
