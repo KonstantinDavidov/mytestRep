@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.Reporting.Entities
 {
-    public class DebtPaymentItem
+    public class ChildCustodyItem
     {
-        public string Name { get; set; }
-        public ParticipantRole PaymentFor { get; set; }
-        public DateTime PaymentDate { get; set; }
+        public long ChildId { get; set; }
+        public CustodyParent LegalCustodyParent { get; set; }
+        public CustodyParent PhysicalCustodyParent { get; set; }
     }
 }

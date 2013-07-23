@@ -4,9 +4,25 @@ using System.Collections.ObjectModel;
 using FACCTS.Server.Model.Reporting.Entities;
 using FACCTS.Server.Model.DataModel;
 using System.Collections.Generic;
+using FACCTS.Server.Model.Enums;
+using FACCTS.Server.Model.Reporting;
 
 namespace FACCTS.Server.Model.OrderModels
 {
+			
+	public partial class OtherOrders
+	{
+		public bool IsEnabled
+		{
+			get; set;
+		}
+		
+		public string OtherOrdersDescription
+		{
+			get; set;
+		}
+				
+	}
 			
 	public partial class CH130ConductChoice
 	{
@@ -473,21 +489,6 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class DV130OtherOrders
-	{
-		public bool IsEnabled
-		{
-			get; set;
-		}
-		
-		public string OtherOrdersDescription
-		{
-			get; set;
-		}
-				
-	}
-	
-			
 	public partial class DV130DebtPayment
 	{
 		public bool IsEnabled
@@ -565,7 +566,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public DV130OtherOrders DV130OtherOrdersSection
+		public OtherOrders DV130OtherOrdersSection
 		{
 			get; set;
 		}
@@ -594,6 +595,11 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
+		
+		public List<PaymentItem> Costs
+		{
+			get; set;
+		}
 				
 	}
 	
@@ -605,17 +611,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public bool IsNoVisitationForMom
-		{
-			get; set;
-		}
-		
-		public bool IsNoVisitationForDad
-		{
-			get; set;
-		}
-		
-		public bool IsNoVisitationForOther
+		public CustodyParent IsNoVisitationParent
 		{
 			get; set;
 		}
@@ -631,6 +627,96 @@ namespace FACCTS.Server.Model.OrderModels
 	public partial class VisitationSchedule
 	{
 		public bool IsEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsWeekendsAvailableForVisitation
+		{
+			get; set;
+		}
+		
+		public DateTime WeekendsStartingDate
+		{
+			get; set;
+		}
+		
+		public bool IsFirstWeekendAvailableForVisitation
+		{
+			get; set;
+		}
+		
+		public bool IsSecondWeekendAvailableForVisitation
+		{
+			get; set;
+		}
+		
+		public bool IsThirdWeekendAvailableForVisitation
+		{
+			get; set;
+		}
+		
+		public bool IsFourthWeekendAvailableForVisitation
+		{
+			get; set;
+		}
+		
+		public bool IsFifthWeekendAvailableForVisitation
+		{
+			get; set;
+		}
+		
+		public DayOfWeek FirstAvailableWeekendDay
+		{
+			get; set;
+		}
+		
+		public DateTime FirstAvailableWeekendTime
+		{
+			get; set;
+		}
+		
+		public DayOfWeek LastAvailableWeekendDay
+		{
+			get; set;
+		}
+		
+		public DateTime LastAvailableWeekendTime
+		{
+			get; set;
+		}
+		
+		public bool IsWeekdaysAvailableForVisitation
+		{
+			get; set;
+		}
+		
+		public DateTime WeekdaysStartingDate
+		{
+			get; set;
+		}
+		
+		public DayOfWeek FirstAvailableWeekdayDay
+		{
+			get; set;
+		}
+		
+		public DateTime FirstAvailableWeekdayTime
+		{
+			get; set;
+		}
+		
+		public DayOfWeek LastAvailableWeekdayDay
+		{
+			get; set;
+		}
+		
+		public DateTime LastAvailableWeekdayTime
+		{
+			get; set;
+		}
+		
+		public bool IsOtherVisitationAvilable
 		{
 			get; set;
 		}
@@ -670,7 +756,17 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public string MedeationDescription
+		public string MediationDescription
+		{
+			get; set;
+		}
+		
+		public CustodyParent VisitationGrantedParent
+		{
+			get; set;
+		}
+		
+		public string VisitationGrantedOtherParentDescription
 		{
 			get; set;
 		}
@@ -683,9 +779,159 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
+	public partial class Transportation
+	{
+		public string IsEnabled
+		{
+			get; set;
+		}
+		
+		public CustodyParent TransportationPickUpPerson
+		{
+			get; set;
+		}
+		
+		public string TransportationPickUpPersonOtherDescription
+		{
+			get; set;
+		}
+		
+		public string TransportationPickUpLocation
+		{
+			get; set;
+		}
+		
+		public CustodyParent TransportationDropOffPerson
+		{
+			get; set;
+		}
+		
+		public string TransportationDropOffPersonOtherDescription
+		{
+			get; set;
+		}
+		
+		public string TransportationDropOffLocation
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class TravelRestrict
+	{
+		public string IsEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsMomRestrained
+		{
+			get; set;
+		}
+		
+		public bool IsDadRestrained
+		{
+			get; set;
+		}
+		
+		public bool IsOtherRestrained
+		{
+			get; set;
+		}
+		
+		public string OtherRestrainedDescription
+		{
+			get; set;
+		}
+		
+		public bool IsUSEscapeDenied
+		{
+			get; set;
+		}
+		
+		public bool IsCAEscapeDenied
+		{
+			get; set;
+		}
+		
+		public bool IsOtherLocationsEscapeDenied
+		{
+			get; set;
+		}
+		
+		public string OtherLocationsDescription
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class ExchangeAndRemoval
+	{
+		public string IsEnabled
+		{
+			get; set;
+		}
+		
+		public Transportation TransportationSection
+		{
+			get; set;
+		}
+		
+		public TravelRestrict TravelRestrictSection
+		{
+			get; set;
+		}
+		
+		public bool IsChildAbductionRiskExist
+		{
+			get; set;
+		}
+		
+		public bool IsDV145Attached
+		{
+			get; set;
+		}
+		
+		public bool IsUSCountryOfHabitualResidence
+		{
+			get; set;
+		}
+		
+		public bool IsOtherCountryOfHabitualResidence
+		{
+			get; set;
+		}
+		
+		public string OtherCountryAsHabitualResidenceDescription
+		{
+			get; set;
+		}
+				
+	}
+	
+			
 	public partial class DV140
 	{
+		public List<ChildCustodyItem> ChildCustodyItems
+		{
+			get; set;
+		}
+		
 		public ChildVisitation ChildVisitationSection
+		{
+			get; set;
+		}
+		
+		public ExchangeAndRemoval ExchangeAndRemovalSection
+		{
+			get; set;
+		}
+		
+		public OtherOrders DV140OtherOrders
 		{
 			get; set;
 		}
