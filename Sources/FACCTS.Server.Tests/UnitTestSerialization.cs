@@ -12,9 +12,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-using System.Data.Entity;
-using System.Data.EntityClient;
-using System.Data.EntityModel;
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -80,7 +77,6 @@ namespace FACCTS.Server.Tests
             testObject.LawersFeeAndCourtCostsSection.IsEnabled = true;
             testObject.LawersFeeAndCourtCostsSection.IsCourtCosts = true;
             testObject.LawersFeeAndCourtCostsSection.IsLawyerFee = true;
-            testObject.LawersFeeAndCourtCostsSection.IsParty1Payer = false;
             testObject.LawersFeeAndCourtCostsSection.LawyersFees.Add(new DataItem { Name = "Agency1", Description = "Cost1" });
             testObject.LawersFeeAndCourtCostsSection.LawyersFees.Add(new DataItem { Name = "Agency2", Description = "Cost2" });
             testObject.LawersFeeAndCourtCostsSection.LawyersFees.Add(new DataItem { Name = "Agency3", Description = "Cost3" });
