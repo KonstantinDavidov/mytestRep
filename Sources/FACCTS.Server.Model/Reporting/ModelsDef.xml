@@ -106,25 +106,68 @@
     <Property name="OtherDescription" type="string"/>
     <Property name="StayAwayDistance" type="int"/>
   </Model>
-  
   <Model name="DV130Moveout">
     <Property name="IsEnabled" type="bool"/>
     <Property name="MoveoutAddress" type="string"/>
   </Model>
-  
   <Model name="DV130Animals">
     <Property name="IsEnabled" type="bool"/>
     <Property name="StayAwayAnimalsDistance" type="int"/>
     <Property name="AnimalsDescription" type="string"/>
   </Model>
+  <Model name="DV130OtherOrders">
+    <Property name="IsEnabled" type="bool"/>
+    <Property name="OtherOrdersDescription" type="string"/>
+  </Model>
+  <Model name="DV130DebtPayment">
+    <Property name="IsEnabled" type="bool" />
+    <Property name="DebtPaymentItems" type="List" collectionType="DebtPaymentItem"/>
+  </Model>
+  <Model name="DV130PropertyControl">
+    <Property name="IsEnabled" type="bool" />
+    <Property name="PropertyControl" type="List" collectionType="DataItem"/>
+  </Model>
+  <Model name="DV130PropertyRestraint">
+    <Property name="IsProtectedHasPropertyRestraint" type="bool"/>
+    <Property name="IsRestrainedHasPropertyRestraint" type="bool"/>
+  </Model>
   <Model name="DV130">
     <Property name="DV130ConductChoiceSection" type="DV130ConductChoice"/>
     <Property name="DV130StayAwayOrdersSection" type="DV130StayAwayOrders"/>
+    <Property name="IsPOSProvidedToCourt" type="bool"/>
     <Property name="DV130MoveoutSection" type="DV130Moveout"/>
     <Property name="IsRecordUnlawfulCommunicationsAllowed" type="bool"/>
     <Property name="DV130AnimalsSection" type="DV130Animals"/>
+    <Property name="DV130OtherOrdersSection" type="DV130OtherOrders"/>
     <Property name="IsBattererIntervention" type="bool"/>
     <Property name="IsNoGuns" type="bool"/>
+    <Property name="DV130PropertyControlSection" type="DV130PropertyControl"/>
+    <Property name="DV130DebtPaymentSection" type="DV130DebtPayment"/>
+    <Property name="DV130PropertyRestraintSection" type="DV130PropertyRestraint"/>
+  </Model>
+  <!--DV140-->
+  <Model name="IsNoVisitationForParents">
+    <Property name="IsEnabled"/>
+    <Property name="IsNoVisitationForMom" type="bool"/>
+    <Property name="IsNoVisitationForDad" type="bool"/>
+    <Property name="IsNoVisitationForOther" type="bool"/>
+    <Property name="OtherDescription" type="string"/>
+  </Model>
+  <Model name="VisitationSchedule">
+    <Property name="IsEnabled" type="bool"/>
+  </Model>
+  <Model name="ChildVisitation">
+    <Property name="IsEnabled"/>
+    <Property name="IsNoVisitationForParents"/>
+    <Property name="IsAttachedDocumentAvilable" type="bool"/>
+    <Property name="AttachedDocumentPagesCount" type="int"/>
+    <Property name="AttachedDocumentDate" type="DateTime"/>
+    <Property name="IsPartiesMustGoToMediation" type="bool"/>
+    <Property name="MedeationDescription" type="string"/>
+    <Property name="VisitationScheduleSection" type="VisitationSchedule"/>
+  </Model>
+  <Model name="DV140">
+    <Property name="ChildVisitationSection" type="ChildVisitation"/>
   </Model>
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">

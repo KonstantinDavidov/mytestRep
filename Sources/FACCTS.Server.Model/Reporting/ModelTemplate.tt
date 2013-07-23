@@ -26,8 +26,6 @@ try{
 	var doc = XDocument.Load(Host.ResolvePath(definitionFile));
 	string baseClass= this.GetAttributeValue(doc.Root,"baseClass","ModelBase");
 #>
-
-
 using System;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
@@ -37,7 +35,6 @@ using System.Collections.Generic;
 
 namespace FACCTS.Server.Model.OrderModels
 {
-    
 <#
 foreach (var item in doc.Root.Elements("Model"))
 {
@@ -53,18 +50,11 @@ foreach (var item in doc.Root.Elements("Model"))
 		{
 			string propName =this.GetAttributeValue(property,"name",string.Empty);
 			string type =this.GetPropertyTypeString(property);
-			string fieldName = string.Format("_{0}",propName.First().ToString().ToLower()+propName.Substring(1));
 			if(string.IsNullOrEmpty(propName))continue;#>
 
-		private <#= type #> <#= fieldName #>;
 		public <#= type #> <#= propName #>
 		{
-			get{return <#= fieldName #>;}
-			set
-			{
-				<#= fieldName #> = value;
-
-			}
+			get; set;
 		}
 		<#}#>
 		

@@ -11,12 +11,12 @@ namespace FACCTS.Server.Model.OrderModels
     {
         public CH130()
         {
-            _cAPROSEntrySection = new CAPROSEntry();
-            _conductSection = new CH130ConductChoice();
-            _isPOSGeneral = null;
-            _lawersFeeAndCourtCostsSection = new LawersFeeAndCourtCosts();
-            _noServiceFeeSection = new NoServiceFee();
-            _stayAwayOrdersSection = new CH130StayAwayOrders();
+            CAPROSEntrySection = new CAPROSEntry();
+            ConductSection = new CH130ConductChoice();
+            IsPOSGeneral = null;
+            LawersFeeAndCourtCostsSection = new LawersFeeAndCourtCosts();
+            NoServiceFeeSection = new NoServiceFee();
+            StayAwayOrdersSection = new CH130StayAwayOrders();
         }
     }
 }
