@@ -159,7 +159,7 @@ namespace Faccts.Model.Entities
         {
             get
             {
-                return this.Error.Any();
+                return !this.Error.Any();
             }
         }
     }

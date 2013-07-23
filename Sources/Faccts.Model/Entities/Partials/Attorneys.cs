@@ -69,7 +69,7 @@ namespace Faccts.Model.Entities
 
         public bool IsValid
         {
-            get { return Errors.Any(); }
+            get { return !Errors.Any(); }
         }
     }
 }

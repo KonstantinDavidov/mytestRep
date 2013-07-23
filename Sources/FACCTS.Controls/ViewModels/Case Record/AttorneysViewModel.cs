@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
+using System.Reactive.Linq;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -44,8 +45,35 @@ namespace FACCTS.Controls.ViewModels
             this.DisplayName = "Attorneys";
         }
 
+        private IDisposable _subscriber;
+        public override void Handle(CurrentCourtCaseChangedEvent message)
+        {
+            if (_subscriber != null)
+            {
+                _subscriber.Dispose();
+                _subscriber = null;
+            }
+            base.Handle(message);
+            if (this.CurrentCourtCase != null)
+            {
+                _subscriber = Observable.Merge(
+                    this.CurrentCourtCase.Party1AttorneyData.Attorney.Changed,
+                    this.CurrentCourtCase.Party2AttorneyData.Attorney.Changed,
+                    this.CurrentCourtCase.AttorneyForChild.Changed,
+                    this.CurrentCourtCase.ThirdPartyAttorneyData.Attorney.Changed
+                    ).Subscribe(_ =>
+                    {
+                        
+                         this.HasUIErrors = this.CurrentCourtCase.Party1AttorneyData.IsDirty && !this.CurrentCourtCase.Party1AttorneyData.Attorney.IsValid
+                                    || this.CurrentCourtCase.Party2AttorneyData.IsDirty && !this.CurrentCourtCase.Party2AttorneyData.Attorney.IsValid
+                                    || this.CurrentCourtCase.AttorneyForChild.IsDirty && !this.CurrentCourtCase.AttorneyForChild.IsValid
+                                    || this.CurrentCourtCase.ThirdPartyAttorneyData.IsDirty && !this.CurrentCourtCase.ThirdPartyAttorneyData.Attorney.IsValid;
 
-
+                    }
+                    );
+               
+            }
+        }
 
         public void Handle(CurrentHearingChanged message)
         {
