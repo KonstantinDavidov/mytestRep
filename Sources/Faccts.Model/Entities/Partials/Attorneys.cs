@@ -1,13 +1,14 @@
 ﻿using FACCTS.Server.Model.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Faccts.Model.Entities
 {
-    public partial class Attorneys : IDataTransferConvertible<FACCTS.Server.Model.DataModel.Attorney>
+    public partial class Attorneys : IDataTransferConvertible<FACCTS.Server.Model.DataModel.Attorney>, IDataErrorInfo
     {
         public FACCTS.Server.Model.DataModel.Attorney ToDTO()
         {
@@ -31,5 +32,32 @@ namespace Faccts.Model.Entities
             };
         }
 
+
+        public string Error
+        {
+            get { return this[string.Empty]; }
+        }
+
+        public string this[string propertyName]
+        {
+            get 
+            {
+                propertyName = propertyName ?? string.Empty;
+                return this.ValidateByPropertyName(_requiredFields, propertyName);
+            }
+        }
+
+        private static Dictionary<string, string> _requiredFields = new Dictionary<string, string>()
+        {
+            {"FirstName", "First Name"},
+            {"LastName", "Last Name"},
+            {"StateBarId", "State Bar Id"},
+            {"FirmName", "Firm Name"},
+            {"StreetAddress", "Street Address"},
+            {"City", "City"},
+            {"State", "State"},
+            {"ZipCode", "Zip Code"},
+            {"Phone", "Phone"},
+        };
     }
 }

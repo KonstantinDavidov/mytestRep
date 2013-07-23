@@ -22,5 +22,26 @@ namespace Faccts.Model.Entities
             }
             return result;
         }
+
+        public static string ValidateByPropertyName(this IDataErrorInfo source, IDictionary<string, string> requiredFields, string propertyName)
+        {
+            if (string.IsNullOrEmpty(propertyName))
+            {
+                string result = null;
+                foreach (var kv in requiredFields)
+                {
+                    result = Validate(source, requiredFields, kv.Key);
+                    if (!string.IsNullOrEmpty(result))
+                    {
+                        break;
+                    }
+                }
+                return result;
+            }
+            else
+            {
+                return Validate(source, requiredFields, propertyName);
+            }
+        }
     }
 }

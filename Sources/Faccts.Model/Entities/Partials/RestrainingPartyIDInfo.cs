@@ -42,25 +42,11 @@ namespace Faccts.Model.Entities
             get
             {
                 propertyName = propertyName ?? string.Empty;
-                if (string.IsNullOrEmpty(propertyName))
-                {
-                    string result = null;
-                    foreach (var kv in _requiredFields)
-                    {
-                        result = this.Validate(_requiredFields, kv.Key);
-                        if (!string.IsNullOrEmpty(result))
-                        {
-                            break;
-                        }
-                    }
-                    return result;
-                }
-                else
-                {
-                    return this.Validate(_requiredFields, propertyName);
-                }
+                return this.ValidateByPropertyName(_requiredFields, propertyName);
             }
         }
+
+        
 
         private static Dictionary<string, string> _requiredFields = new Dictionary<string, string>()
         {
