@@ -227,13 +227,30 @@
         </Setter>
     </Style>
 
-   <Style x:Key="TextBoxWithAdorner" TargetType="{x:Type TextBox}" BasedOn="{StaticResource {x:Type TextBox}}">
-    <Setter Property="Template">
+    <Style TargetType="{x:Type TextBox}" x:Key="ErrorTextBox"
+           BasedOn="{StaticResource {x:Type TextBox}}">
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError"
+                     Value="true">
+                <Setter Property="ToolTip"
+                        Value="{Binding RelativeSource={RelativeSource Self}, 
+                       Path=(Validation.Errors)[0].ErrorContent}" />
+            </Trigger>
+        </Style.Triggers>
+
+    </Style>
+
+    <Style x:Key="TextBoxWithAdorner"
+           TargetType="{x:Type TextBox}"
+           BasedOn="{StaticResource ErrorTextBox}">
+        <Setter Property="ToolTipService.IsEnabled"
+                Value="True" />
+        <Setter Property="Template">
         <Setter.Value>
             <ControlTemplate TargetType="{x:Type TextBox}">
                     <xctk:WatermarkTextBox Watermark="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag,Mode=OneWay}"
                                            TextWrapping="{TemplateBinding TextWrapping}"
-                                           Text="{Binding Text, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}}"
+                                           Text="{Binding Text, Mode=TwoWay, RelativeSource={RelativeSource Mode=TemplatedParent}, UpdateSourceTrigger=PropertyChanged}"
                                            VerticalAlignment="{TemplateBinding VerticalAlignment}"
                                            HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
                                            Width="{TemplateBinding Width}"
@@ -246,7 +263,10 @@
                                            MaxWidth="{TemplateBinding MaxWidth}"
                                            MaxHeight="{TemplateBinding MaxHeight}"
                                            SelectAllOnGotFocus="True"
-                                           x:Name="wmTextBox">
+                                           x:Name="wmTextBox"
+                                           BorderBrush="{TemplateBinding BorderBrush}"
+                                           ToolTip="{TemplateBinding ToolTip}"
+                                           ToolTipService.IsEnabled="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=ToolTipService.IsEnabled}">
                         <xctk:WatermarkTextBox.WatermarkTemplate>
                             <DataTemplate>
                                 <ContentControl Content="{Binding ElementName=wmTextBox, Path=Watermark, Mode=OneWay}"

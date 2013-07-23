@@ -5,10 +5,15 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:cal="http://www.caliburnproject.org"
     xmlns:this="clr-namespace:FACCTS.Controls"
+	xmlns:Converters="clr-namespace:FACCTS.Controls.Converters"
 	mc:Ignorable="d"
 	x:Class="FACCTS.Controls.Views.Controls.CaseRecordRightPaneView"
 	x:Name="UserControl"
 	d:DesignWidth="843.72" d:DesignHeight="480" Background="{DynamicResource ControlBackgroundBrush}">
+
+	<UserControl.Resources>
+		<Converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
+	</UserControl.Resources>
 
 	<Grid x:Name="LayoutRoot" RenderTransformOrigin="0.575,0.505">
 		<Grid.ColumnDefinitions>
@@ -71,10 +76,14 @@
 				<CheckBox HorizontalAlignment="Left" Margin="0,0,-0.001,0" VerticalAlignment="Center" Grid.Column="3" Content="Attroney" IsChecked="{Binding Party2AttorneyData.HasAttorney}"/>
 			</Grid>
 		</Border>
-        <GroupBox Grid.Row="1" Grid.ColumnSpan="3" cal:View.Model="{Binding ActiveItem, Mode=OneWay}" Header="{Binding ActiveItem.DisplayName, Mode=OneWay}"/>
+		<GroupBox Grid.Row="1" Grid.ColumnSpan="3" cal:View.Model="{Binding ActiveItem, Mode=OneWay}" Header="{Binding ActiveItem.DisplayName, Mode=OneWay}"/>
 		<Border BorderThickness="1" Grid.RowSpan="2" Grid.Row="2" Grid.ColumnSpan="3" Style="{DynamicResource OrdinalBorder}" VerticalAlignment="Bottom">
 			<UniformGrid VerticalAlignment="Top" Rows="1" Columns="2" HorizontalAlignment="Left">
-				<Button Content="Save" VerticalAlignment="Top" Width="75" cal:Message.Attach="CaseRecordSave"/>
+				<Button Content="Save"
+					VerticalAlignment="Top"
+					Width="75"
+					cal:Message.Attach="CaseRecordSave"
+					IsEnabled="{Binding HasUIErrors, Converter={StaticResource InvertedBooleanConverter}, Mode=OneWay}"/>
 			</UniformGrid>
 		</Border>
 	</Grid>

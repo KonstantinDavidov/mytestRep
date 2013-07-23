@@ -25,7 +25,7 @@ namespace FACCTS.Controls.ViewModels
             this.DisplayName = "Personal Information";
         }
 
-        private IDisposable _subscriber;
+        private IDisposable _subscriber, _subscriber2;
         public override CourtCase CurrentCourtCase
         {
             get
@@ -41,6 +41,11 @@ namespace FACCTS.Controls.ViewModels
                     _subscriber.Dispose();
                     _subscriber = null;
                 }
+                if (_subscriber2 != null)
+                {
+                    _subscriber2.Dispose();
+                    _subscriber2 = null;
+                }
                 base.CurrentCourtCase = value;
                 if (base.CurrentCourtCase != null)
                 {
@@ -50,6 +55,15 @@ namespace FACCTS.Controls.ViewModels
                             this.IsDirty = x;
                         }
                         );
+                    _subscriber2 = Observable.Merge(
+                        base.CurrentCourtCase.Party1.Changed,
+                        base.CurrentCourtCase.Party2.Changed
+                        ).
+                    Subscribe(_ =>
+                    {
+                        this.HasUIErrors = (base.CurrentCourtCase.Party1.IsDirty && !string.IsNullOrEmpty(base.CurrentCourtCase.Party1.Error)) || (base.CurrentCourtCase.Party2.IsDirty && !string.IsNullOrEmpty(base.CurrentCourtCase.Party2.Error));
+                    }
+                    );
                 }
             }
         }
@@ -70,7 +84,6 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-        
         
     }
 }

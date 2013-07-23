@@ -85,5 +85,18 @@ namespace FACCTS.Controls.ViewModels
                     break;
             }
         }
+
+        private bool _hasUIErrors = false;
+        public virtual bool HasUIErrors
+        {
+            get
+            {
+                return _hasUIErrors;
+            }
+            protected set
+            {
+                this.RaiseAndSetIfChanged(ref _hasUIErrors, value);
+            }
+        }
     }
 }

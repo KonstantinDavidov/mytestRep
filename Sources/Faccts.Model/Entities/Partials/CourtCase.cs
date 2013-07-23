@@ -395,5 +395,15 @@ namespace Faccts.Model.Entities
                 return _displayableCaseHistory;
             }
         }
+
+        public bool HasDocket
+        {
+            get
+            {
+                if (this.CourtDocketRecord == null)
+                    return false;
+                return this.CourtDocketRecord.Hearing != null && this.CourtDocketRecord.Hearing.CaseHistory.CaseHistoryEvent == CaseHistoryEvent.Hearing;
+            }
+        }
     }
 }

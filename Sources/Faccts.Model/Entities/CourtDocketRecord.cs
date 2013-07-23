@@ -51,8 +51,6 @@ namespace Faccts.Model.Entities
     			);
     			Observable.Merge<Object>(
     				this.ObservableForProperty(x => x.Id)
-    				,this.ObservableForProperty(x => x.CourtCaseId)
-    				,this.ObservableForProperty(x => x.HearingId)
     				,this.ObservableForProperty(x => x.CourtCase.IsDirty)
     				,this.ObservableForProperty(x => x.Hearing.IsDirty)
     			).
@@ -156,54 +154,6 @@ namespace Faccts.Model.Entities
             }
         }
         private long _id;
-    
-        [DataMember]
-        public long CourtCaseId
-        {
-            get { return _courtCaseId; }
-            set
-            {
-                if (_courtCaseId != value)
-                {
-                    ChangeTracker.RecordOriginalValue("CourtCaseId", _courtCaseId);
-                    if (!IsDeserializing)
-                    {
-                        if (CourtCase != null && CourtCase.Id != value)
-                        {
-                            CourtCase = null;
-                        }
-                    }
-    				OnPropertyChanging("CourtCaseId");
-                    _courtCaseId = value;
-                    OnPropertyChanged("CourtCaseId");
-                }
-            }
-        }
-        private long _courtCaseId;
-    
-        [DataMember]
-        public long HearingId
-        {
-            get { return _hearingId; }
-            set
-            {
-                if (_hearingId != value)
-                {
-                    ChangeTracker.RecordOriginalValue("HearingId", _hearingId);
-                    if (!IsDeserializing)
-                    {
-                        if (Hearing != null && Hearing.Id != value)
-                        {
-                            Hearing = null;
-                        }
-                    }
-    				OnPropertyChanging("HearingId");
-                    _hearingId = value;
-                    OnPropertyChanged("HearingId");
-                }
-            }
-        }
-        private long _hearingId;
 
         #endregion
 
@@ -343,6 +293,7 @@ namespace Faccts.Model.Entities
         protected virtual void ClearNavigationProperties()
         {
             CourtCase = null;
+            FixupCourtCaseKeys();
             Hearing = null;
         }
 
@@ -357,17 +308,16 @@ namespace Faccts.Model.Entities
                 return;
             }
     
-            if (previousValue != null && previousValue.CourtDocketRecord.Contains(this))
+            if (previousValue != null && ReferenceEquals(previousValue.CourtDocketRecord, this))
             {
-                previousValue.CourtDocketRecord.Remove(this);
+                previousValue.CourtDocketRecord = null;
             }
     
             if (CourtCase != null)
             {
-                CourtCase.CourtDocketRecord.Add(this);
-    
-                CourtCaseId = CourtCase.Id;
+                CourtCase.CourtDocketRecord = this;
             }
+    
             if (ChangeTracker.ChangeTrackingEnabled)
             {
                 if (ChangeTracker.OriginalValues.ContainsKey("CourtCase")
@@ -383,6 +333,18 @@ namespace Faccts.Model.Entities
                 {
                     CourtCase.StartTracking();
                 }
+                FixupCourtCaseKeys();
+            }
+        }
+    
+        private void FixupCourtCaseKeys()
+        {
+            const string IdKeyName = "CourtCase.Id";
+    
+            if(ChangeTracker.ExtendedProperties.ContainsKey(IdKeyName))
+            {
+                ChangeTracker.RecordOriginalValue(IdKeyName, ChangeTracker.ExtendedProperties[IdKeyName]);
+                ChangeTracker.ExtendedProperties.Remove(IdKeyName);
             }
         }
     
@@ -393,17 +355,16 @@ namespace Faccts.Model.Entities
                 return;
             }
     
-            if (previousValue != null && previousValue.CourtDocketRecords.Contains(this))
+            if (previousValue != null && ReferenceEquals(previousValue.CourtDocketRecord, this))
             {
-                previousValue.CourtDocketRecords.Remove(this);
+                previousValue.CourtDocketRecord = null;
             }
     
             if (Hearing != null)
             {
-                Hearing.CourtDocketRecords.Add(this);
-    
-                HearingId = Hearing.Id;
+                Hearing.CourtDocketRecord = this;
             }
+    
             if (ChangeTracker.ChangeTrackingEnabled)
             {
                 if (ChangeTracker.OriginalValues.ContainsKey("Hearing")

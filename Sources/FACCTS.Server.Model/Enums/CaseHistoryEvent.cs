@@ -17,5 +17,7 @@ namespace FACCTS.Server.Model.Enums
         Merged = 4,
         [Description("Reissued")]
         Reissued = 5,
+        [Description("Continuance")]
+        Continuance = 6,
     }
 }
