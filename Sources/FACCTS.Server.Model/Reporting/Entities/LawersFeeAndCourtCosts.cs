@@ -12,7 +12,7 @@ namespace FACCTS.Server.Model.Reporting.Entities
         public bool IsEnabled { get; set; }
         public bool IsLawyerFee { get; set; }
         public bool IsCourtCosts { get; set; }
-        public bool IsParty1Payer { get; set; }
+        public ParticipantRole Payer { get; set; }
         public List<DataItem> LawyersFees
         {
             get;

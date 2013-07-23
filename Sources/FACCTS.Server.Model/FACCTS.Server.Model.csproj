@@ -157,6 +157,7 @@
     <Compile Include="Reporting\Entities\CaseInfo.cs" />
     <Compile Include="Reporting\Entities\CH110.cs" />
     <Compile Include="Reporting\Entities\CH130.cs" />
+    <Compile Include="Reporting\Entities\ChildCustodyItem.cs" />
     <Compile Include="Reporting\Entities\DataItem.cs" />
     <Compile Include="Reporting\Entities\DebtPaymentItem.cs" />
     <Compile Include="Reporting\Entities\DV130.cs" />
@@ -170,6 +171,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Reporting\PaymentItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

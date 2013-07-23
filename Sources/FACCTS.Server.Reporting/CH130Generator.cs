@@ -248,8 +248,8 @@ namespace FACCTS.Server.Reporting
             {
                 Utils.SetPdfField(form, mapper, "orderPayAttorneyCosts");
                 Utils.SetPdfField(form, mapper, "courtCosts", reportData.LawersFeeAndCourtCostsSection.IsCourtCosts);
-                bool IsProtectedPayer = (reportData.LawersFeeAndCourtCostsSection.IsParty1Payer && courtCase.Party1.ParticipantRole == ParticipantRole.PPSC) ||
-                    (!reportData.LawersFeeAndCourtCostsSection.IsParty1Payer && courtCase.Party2.ParticipantRole == ParticipantRole.PPSC);
+                bool IsProtectedPayer = (reportData.LawersFeeAndCourtCostsSection.Payer == ParticipantRole.PPSC && courtCase.Party1.ParticipantRole == ParticipantRole.PPSC) ||
+                    (!(reportData.LawersFeeAndCourtCostsSection.Payer == ParticipantRole.PPSC) && courtCase.Party2.ParticipantRole == ParticipantRole.PPSC);
                 Utils.SetPdfField(form, mapper, "feePaidBy", IsProtectedPayer ? "1" : "2");
                 Utils.SetPdfField(form, mapper, "feePaidTo", IsProtectedPayer ? "2" : "1");
                 if (reportData.LawersFeeAndCourtCostsSection.IsLawyerFee)
