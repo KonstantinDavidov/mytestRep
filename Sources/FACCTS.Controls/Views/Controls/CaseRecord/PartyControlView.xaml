@@ -7,11 +7,14 @@
              xmlns:fs="clr-namespace:FACCTS.Services.Data;assembly=FACCTS.Services"
              xmlns:Converters="clr-namespace:FACCTS.Controls.Converters"
              xmlns:validation="clr-namespace:FACCTS.Controls.Validation"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:ei="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
              mc:Ignorable="d"
              x:Class="FACCTS.Controls.Views.Controls.PartyControlView"
              x:Name="UserControl"
              d:DesignWidth="665.12"
-             d:DesignHeight="234.382">
+             d:DesignHeight="234.382"
+             >
     <UserControl.Resources>
     	<Converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
 
