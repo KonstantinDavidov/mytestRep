@@ -721,7 +721,7 @@
     <Property Name="CourtCounty_Id" Type="bigint" Nullable="true" />
     <Property Name="RestrainingPartyIdentificationInformation_IDType" Type="int" Nullable="false" />
     <Property Name="RestrainingPartyIdentificationInformation_IDNumber" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="RestrainingPartyIdentificationInformation_IDIssuedDate" Type="datetime" Nullable="false" />
+    <Property Name="RestrainingPartyIdentificationInformation_IDIssuedDate" Type="datetime" Nullable="true" />
   </EntityType>
   <EntityType Name="CourtCaseOrders">
     <Key>
@@ -4321,7 +4321,7 @@
         <ComplexType Name="RestrainingPartyIDInfo" >
           <Property Type="FACCTS_DBModel.IdentificationIDType" Name="IDType" Nullable="false" />
           <Property Type="String" Name="IDNumber" Nullable="false" />
-          <Property Type="DateTime" Name="IDIssuedDate" Nullable="false" />
+          <Property Type="DateTime" Name="IDIssuedDate" Nullable="true" />
         </ComplexType>
         <ComplexType Name="Appearance" >
           <Property Type="Boolean" Name="Party1Appear" Nullable="true" />

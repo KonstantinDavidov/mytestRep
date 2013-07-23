@@ -131,7 +131,7 @@ namespace Faccts.Model.Entities
                     string result = null;
                     foreach (var kv in _requiredFields)
                     {
-                        result = Validate(kv.Key);
+                        result = this.Validate(_requiredFields, kv.Key);
                         if (!string.IsNullOrEmpty(result))
                         {
                             break;
@@ -141,24 +141,11 @@ namespace Faccts.Model.Entities
                 }
                 else
                 {
-                    return Validate(propertyName);
+                    return this.Validate(_requiredFields, propertyName);
                 }
             }
         }
 
-        private string Validate(string propertyName)
-        {
-            string result = string.Empty;
-            if (_requiredFields.ContainsKey(propertyName))
-            {
-                object propertyValue = this.GetProperty(propertyName);
-                if (propertyValue is String && string.IsNullOrEmpty(propertyValue.ToString()) || propertyValue == null)
-                {
-                    result = string.Format("{0} can not be blank!", _requiredFields[propertyName]);
-                }
-            }
-            return result;
-        }
 
         private static Dictionary<string, string> _requiredFields = new Dictionary<string, string>()
         {

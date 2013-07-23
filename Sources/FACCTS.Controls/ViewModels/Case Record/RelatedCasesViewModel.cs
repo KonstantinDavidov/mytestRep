@@ -17,7 +17,7 @@ using System.Reactive.Linq;
 namespace FACCTS.Controls.ViewModels
 {
     [Export(typeof(RelatedCasesViewModel))]
-    public partial class RelatedCasesViewModel : ViewModelBase, IHandle<CurrentCourtCaseChangedEvent>, IHandle<SelectedCourtCasesChangedEvent>
+    public partial class RelatedCasesViewModel : CaseRecordItemViewModel, IHandle<SelectedCourtCasesChangedEvent>
     {
         private IWindowManager _windowManager;
         private IEventAggregator _eventAggregator; 
@@ -80,29 +80,14 @@ namespace FACCTS.Controls.ViewModels
             _windowManager.ShowDialog(vm);
         }
 
-        private Faccts.Model.Entities.CourtCase _currentCourtCase;
-        public Faccts.Model.Entities.CourtCase CurrentCourtCase
-        {
-            get { return _currentCourtCase; }
-            set
-            {
-                if (_currentCourtCase != value)
-                {
-                    this.RaiseAndSetIfChanged(ref _currentCourtCase, value);
-                    CanSeparate = _currentCourtCase != null;
-                }
-            }
-        }
-
-
-        private IDisposable _observable;
-        public void Handle(CurrentCourtCaseChangedEvent message)
+        
+        public override void Handle(CurrentCourtCaseChangedEvent message)
         {
             if (this.CurrentCourtCase != null)
             {
                 this.CurrentCourtCase.ChildCases.CollectionChanged -= ChildCases_CollectionChanged;
             }
-            this.CurrentCourtCase = message.CourtCase;
+            base.Handle(message);
             if (this.CurrentCourtCase != null)
             {
                 this.CurrentCourtCase.ChildCases.CollectionChanged += ChildCases_CollectionChanged;
@@ -117,11 +102,11 @@ namespace FACCTS.Controls.ViewModels
                     return (ExpandoObject)o;
                 }
                 , signalReset: this.WhenAny(x => x.RelatedCasesChangedNotifier, y => y));
-                
+
 
             }
-            
         }
+
 
         private void UpdateRelatedCaseCollection(int itemsInCollection)
         {

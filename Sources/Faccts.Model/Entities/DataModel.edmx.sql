@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 07/22/2013 13:49:53
+-- Date Created: 07/23/2013 16:29:49
 -- Generated from EDMX file: D:\FACCTS\FACCTSNEW\faccts.net\Sources\Faccts.Model\Entities\DataModel.edmx
 -- --------------------------------------------------
 
@@ -70,12 +70,6 @@ IF OBJECT_ID(N'[dbo].[FK_dbo_CourtCase_dbo_CourtCase_ParentCase_Id]', 'F') IS NO
 GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtOrder_Id]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CaseHistory] DROP CONSTRAINT [FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtOrder_Id];
-GO
-IF OBJECT_ID(N'[dbo].[FK_CourtDocketRecordCourtCase]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CourtDocketRecordSet] DROP CONSTRAINT [FK_CourtDocketRecordCourtCase];
-GO
-IF OBJECT_ID(N'[dbo].[FK_CourtDocketRecordHearings]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CourtDocketRecordSet] DROP CONSTRAINT [FK_CourtDocketRecordHearings];
 GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_ThirdPartyData_dbo_Attorneys_Attorney_Id]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ThirdPartyData] DROP CONSTRAINT [FK_dbo_ThirdPartyData_dbo_Attorneys_Attorney_Id];
@@ -340,6 +334,12 @@ IF OBJECT_ID(N'[dbo].[FK_EA130ROOrderOtherOrdersROSection]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_EA130ROOrderExpirationSection]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[EA130ROOrderSet] DROP CONSTRAINT [FK_EA130ROOrderExpirationSection];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CourtCaseCourtDocketRecord]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CourtDocketRecordSet] DROP CONSTRAINT [FK_CourtCaseCourtDocketRecord];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CourtDocketRecordHearings]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CourtDocketRecordSet] DROP CONSTRAINT [FK_CourtDocketRecordHearings];
 GO
 IF OBJECT_ID(N'[dbo].[FK_ConductROSection_inherits_ConductBase]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ConductBaseSet_ConductROSection] DROP CONSTRAINT [FK_ConductROSection_inherits_ConductBase];
@@ -794,7 +794,7 @@ CREATE TABLE [dbo].[CourtCase] (
     [CourtCounty_Id] bigint  NULL,
     [RestrainingPartyIdentificationInformation_IDType] int  NOT NULL,
     [RestrainingPartyIdentificationInformation_IDNumber] nvarchar(max)  NOT NULL,
-    [RestrainingPartyIdentificationInformation_IDIssuedDate] datetime  NOT NULL
+    [RestrainingPartyIdentificationInformation_IDIssuedDate] datetime  NULL
 );
 GO
 

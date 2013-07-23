@@ -323,6 +323,7 @@
     <Compile Include="Entities\Partials\CourtPartyAttorneyData.cs" />
     <Compile Include="Entities\Partials\Courtrooms.cs" />
     <Compile Include="Entities\Partials\Designation.cs" />
+    <Compile Include="Entities\Partials\EntityExtensions.cs" />
     <Compile Include="Entities\Partials\EyesColor.cs" />
     <Compile Include="Entities\Partials\HairColor.cs" />
     <Compile Include="Entities\Partials\HearingIssue.cs" />

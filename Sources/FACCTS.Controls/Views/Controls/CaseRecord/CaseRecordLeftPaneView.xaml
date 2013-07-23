@@ -5,12 +5,26 @@
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:utils="clr-namespace:FACCTS.Controls.Utils"
+             xmlns:Converters="clr-namespace:FACCTS.Controls.Converters"
              mc:Ignorable="d"
              x:Class="FACCTS.Controls.Views.Controls.CaseRecordLeftPaneView"
              x:Name="UserControl"
              d:DesignWidth="375.7"
              d:DesignHeight="480"
              Background="{DynamicResource ControlBackgroundBrush}">
+    <UserControl.Resources>
+        <Converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <DataTemplate x:Key="LestBoxItemContentTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding DisplayName, Mode=OneWay}" />
+                <TextBlock Text="!"
+                           Foreground="Red"
+                           FontSize="12"
+                           FontWeight="Bold"
+                           Visibility="{Binding HasUIErrors, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot">
 		<Grid.RowDefinitions>
@@ -59,17 +73,17 @@
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="SelectionChanged">
                         <cal:ActionMessage MethodName="ActivateControl">
-                            <cal:Parameter Value="{Binding ElementName=listBox, Path=SelectedIndex}" />
+                            <cal:Parameter Value="{Binding ElementName=listBox, Path=SelectedItem.Content, Mode=OneWay}" />
                         </cal:ActionMessage>
                     </i:EventTrigger>
                 </i:Interaction.Triggers>
-                <ListBoxItem Content="Personal Information" IsSelected="True"/>
-				<ListBoxItem Content="Children - Other Protected"/>
-				<ListBoxItem Content="Attorneys"/>
-				<ListBoxItem Content="Witness and Interpreter"/>
-				<ListBoxItem Content="Related Cases"/>
-				<ListBoxItem Content="Case History"/>
-				<ListBoxItem Content="Case Notes"/>
+                <ListBoxItem Content="{Binding PersonalInformationViewModel, Mode=OneWay}" IsSelected="True" ContentTemplate="{DynamicResource LestBoxItemContentTemplate}"/>
+                <ListBoxItem Content="{Binding ChildrenOtherProtectedViewModel, Mode=OneWay}" ContentTemplate="{DynamicResource LestBoxItemContentTemplate}"/>
+                <ListBoxItem Content="{Binding AttorneysViewModel, Mode=OneWay}" ContentTemplate="{DynamicResource LestBoxItemContentTemplate}"/>
+                <ListBoxItem Content="{Binding WitnessInterpereterViewModel, Mode=OneWay}" ContentTemplate="{DynamicResource LestBoxItemContentTemplate}"/>
+                <ListBoxItem Content="{Binding RelatedCasesViewModel, Mode=OneWay}" ContentTemplate="{DynamicResource LestBoxItemContentTemplate}"/>
+                <ListBoxItem Content="{Binding CaseHistoryViewModel, Mode=OneWay}" ContentTemplate="{DynamicResource LestBoxItemContentTemplate}"/>
+                <ListBoxItem Content="{Binding CaseNotesViewModel, Mode=OneWay}" ContentTemplate="{DynamicResource LestBoxItemContentTemplate}"/>
 			</ListBox>
 		</GroupBox>
         <Border Grid.Row="2" Padding="10">
