@@ -417,6 +417,7 @@
     <Compile Include="Entities\User.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Validation\IValidatableObject.cs" />
     <Compile Include="Entities\WSFederationConfiguration.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

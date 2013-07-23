@@ -7,10 +7,11 @@ using ReactiveUI;
 using FACCTS.Server.Model.Enums;
 using System.Reactive.Linq;
 using System.ComponentModel;
+using Faccts.Model.Entities.Validation;
 
 namespace Faccts.Model.Entities
 {
-    public partial class CourtParty : IDataTransferConvertible<FACCTS.Server.Model.DataModel.CourtParty>, IDataErrorInfo
+    public partial class CourtParty : IDataTransferConvertible<FACCTS.Server.Model.DataModel.CourtParty>, IValidatableObject
     {
         partial void Initialize()
         {
@@ -126,7 +127,7 @@ namespace Faccts.Model.Entities
             get
             {
                 propertyName = propertyName ?? string.Empty;
-                return this.ValidateByPropertyName(_requiredFields, propertyName);
+                return this.ValidateByPropertyName(_requiredFields, _errors, propertyName);
             }
         }
 
@@ -147,5 +148,19 @@ namespace Faccts.Model.Entities
             {"ParentRole", "Parent Role"}
         };
 
+
+        private Dictionary<string, string> _errors = new Dictionary<string, string>();
+        public IList<string> Errors
+        {
+            get { return _errors.Select(kv => kv.Value).ToList().AsReadOnly(); }
+        }
+
+        public bool IsValid
+        {
+            get
+            {
+                return this.Error.Any();
+            }
+        }
     }
 }

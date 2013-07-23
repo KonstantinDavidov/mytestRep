@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
 using System.ComponentModel;
+using Faccts.Model.Entities.Validation;
 
 namespace Faccts.Model.Entities
 {
-    public partial class RestrainingPartyIDInfo : IDataTransferConvertible<FACCTS.Server.Model.DataModel.RestrainingPartyIdentificationInformation>, IDataErrorInfo
+    public partial class RestrainingPartyIDInfo : IDataTransferConvertible<FACCTS.Server.Model.DataModel.RestrainingPartyIdentificationInformation>, IValidatableObject
     {
         partial void Initialize()
         {
@@ -42,7 +43,7 @@ namespace Faccts.Model.Entities
             get
             {
                 propertyName = propertyName ?? string.Empty;
-                return this.ValidateByPropertyName(_requiredFields, propertyName);
+                return this.ValidateByPropertyName(_requiredFields, _errors, propertyName);
             }
         }
 
@@ -54,5 +55,16 @@ namespace Faccts.Model.Entities
             {"IDIssuedDate", "Issued Date"},
             {"IDNumber", "ID Number"}
         };
+
+        private Dictionary<string, string> _errors = new Dictionary<string, string>();
+        public IList<string> Errors
+        {
+            get { return _errors.Values.ToList().AsReadOnly(); }
+        }
+
+        public bool IsValid
+        {
+            get { return Errors.Any(); }
+        }
     }
 }

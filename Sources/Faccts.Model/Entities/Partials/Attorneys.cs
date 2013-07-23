@@ -1,4 +1,5 @@
-﻿using FACCTS.Server.Model.Enums;
+﻿using Faccts.Model.Entities.Validation;
+using FACCTS.Server.Model.Enums;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Faccts.Model.Entities
 {
-    public partial class Attorneys : IDataTransferConvertible<FACCTS.Server.Model.DataModel.Attorney>, IDataErrorInfo
+    public partial class Attorneys : IDataTransferConvertible<FACCTS.Server.Model.DataModel.Attorney>, IValidatableObject
     {
         public FACCTS.Server.Model.DataModel.Attorney ToDTO()
         {
@@ -43,7 +44,7 @@ namespace Faccts.Model.Entities
             get 
             {
                 propertyName = propertyName ?? string.Empty;
-                return this.ValidateByPropertyName(_requiredFields, propertyName);
+                return this.ValidateByPropertyName(_requiredFields, _errors, propertyName);
             }
         }
 
@@ -59,5 +60,16 @@ namespace Faccts.Model.Entities
             {"ZipCode", "Zip Code"},
             {"Phone", "Phone"},
         };
+
+        private Dictionary<string, string> _errors = new Dictionary<string, string>();
+        public IList<string> Errors
+        {
+            get { return _errors.Values.ToList().AsReadOnly(); }
+        }
+
+        public bool IsValid
+        {
+            get { return Errors.Any(); }
+        }
     }
 }
