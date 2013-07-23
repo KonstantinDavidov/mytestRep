@@ -91,7 +91,10 @@
     <Compile Include="Entities\Configuration\WSFederationConfiguration.cs" />
     <Compile Include="Entities\Configuration\WSTrustConfiguration.cs" />
     <Compile Include="Entities\CourtCase.cs" />
+<<<<<<< HEAD
     <Compile Include="Entities\CourtCaseOrder.cs" />
+=======
+>>>>>>> e54be96ad60972456dc6551e11eb5064e4c49607
     <Compile Include="Entities\CourtCounty.cs" />
     <Compile Include="Entities\CourtDepartment.cs" />
     <Compile Include="Entities\CourtLocation.cs" />

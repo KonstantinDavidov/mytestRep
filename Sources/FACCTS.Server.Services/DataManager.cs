@@ -113,6 +113,7 @@ namespace FACCTS.Server.Data
             }
         }
 
+<<<<<<< HEAD
         public IFacctsDataRepository<CourtCaseOrder> CourtCaseOrdersRepository
         {
             get
@@ -123,6 +124,8 @@ namespace FACCTS.Server.Data
 
 
 
+=======
+>>>>>>> e54be96ad60972456dc6551e11eb5064e4c49607
         public IFacctsDataRepository<Courtroom> CourtroomRepository
         {
             get
