@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
 using FACCTS.Services.Dialog;
+using System.Reactive.Linq;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -16,7 +17,7 @@ namespace FACCTS.Controls.ViewModels
     public partial class WitnessInterpereterViewModel : CaseRecordItemViewModel, IHandle<CurrentHearingChanged>
     {
         private IDialogService _dialogService;
-
+        private IDisposable _observer1, _observer2;
         [ImportingConstructor]
         public WitnessInterpereterViewModel(
             IDialogService dialogService
@@ -28,6 +29,36 @@ namespace FACCTS.Controls.ViewModels
                 {
                     this.NotifyOfPropertyChange(() => WitnessesFor);
                     this.NotifyOfPropertyChange(() => InterpretersFor);
+                    if (_observer1 != null)
+                    {
+                        _observer1.Dispose();
+                        _observer1 = null;
+                    }
+                    if (_observer2 != null)
+                    {
+                        _observer2.Dispose();
+                        _observer2 = null;
+                    }
+                    if (this.CurrentCourtCase != null)
+                    {
+                        _observer1 = this.CurrentCourtCase.Witnesses.ItemChanged.Subscribe(z => 
+                        {
+                            this.HasUIErrors = this.CurrentCourtCase.IsDirty && 
+                                (
+                                this.CurrentCourtCase.Witnesses.Any(z1 => !z1.IsValid)
+                                || this.CurrentCourtCase.IsDirty && this.CurrentCourtCase.Interpreters.Any(z1 => !z1.IsValid)
+                                );
+                        }
+                        );
+                        _observer2 = this.CurrentCourtCase.Interpreters.ItemChanged.Subscribe(z =>
+                        {
+                            this.HasUIErrors = this.CurrentCourtCase.IsDirty &&  (
+                                this.CurrentCourtCase.Witnesses.Any(z1 => !z1.IsValid)
+                                || this.CurrentCourtCase.IsDirty && this.CurrentCourtCase.Interpreters.Any(z1 => !z1.IsValid)
+                                );
+                        }
+                        );
+                    }
                 }
                 );
 

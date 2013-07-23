@@ -116,8 +116,10 @@
                                                     SelectedValueBinding="{Binding PartyFor, Mode=TwoWay}"
                                                     Header="Interpreter For"
                                                     Width="0.3*" />
-                            <DataGridTextColumn Binding="{Binding FirstName, Mode=TwoWay}" Header="First Name" Width="0.2*"/>
-                            <DataGridTextColumn Binding="{Binding LastName, Mode=TwoWay}"
+                            <DataGridTextColumn Binding="{Binding FirstName, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" 
+                                                Header="First Name"
+                                                Width="0.2*"/>
+                            <DataGridTextColumn Binding="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                 Header="Last Name"
                                                 Width="0.2*" />
                            
