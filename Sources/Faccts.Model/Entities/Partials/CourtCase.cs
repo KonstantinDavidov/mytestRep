@@ -247,6 +247,14 @@ namespace Faccts.Model.Entities
                 if (_witnesses == null)
                 {
                     _witnesses = this.AdditionalParties.CreateDerivedCollection(x => x, x => x.Designation == ExtendedDesignation.Witness);
+                    _witnesses.ChangeTrackingEnabled = true;
+                    _witnesses.ItemChanged.Subscribe(x =>
+                    {
+                        if (x.PropertyName == "IsDirty" && (bool)x.GetValue())
+                        {
+                            this.IsDirty = true;
+                        }
+                    });
                 }
                 return _witnesses;
             }
@@ -260,6 +268,15 @@ namespace Faccts.Model.Entities
                 if (_interpreters == null)
                 {
                     _interpreters = this.AdditionalParties.CreateDerivedCollection<AdditionalParty, Interpreter>(x => (Interpreter)x, x => x is Interpreter && x.Designation == ExtendedDesignation.Interpreter);
+                    _interpreters.ChangeTrackingEnabled = true;
+                    _interpreters.ItemChanged.Subscribe(x =>
+                        {
+                            if (x.PropertyName == "IsDirty" && (bool)x.GetValue())
+                            {
+                                this.IsDirty = true;
+                            }
+                        }
+                        );
                 }
                 return _interpreters;
             }
