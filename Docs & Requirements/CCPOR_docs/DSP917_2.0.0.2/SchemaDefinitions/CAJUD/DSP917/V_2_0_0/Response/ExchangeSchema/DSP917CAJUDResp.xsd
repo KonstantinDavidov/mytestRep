@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 (x64) (http://www.altova.com) by Edmund (Judicial Council of California) -->
+<!-- 
+ California Administrative Office of the Courts
+ CCMS Data Exchange DSP917 - Court Sends Restraining Order Issuance/Cancel/Update Notification 
+ Copyright (c)  2011 by the Judicial Council of California/Administrative Office of the Courts. All Rights Reserved.
+ Document Type - An Exchange Schema that provides payload structure for CCMS Exchanges
+ Revision History
+ ===========================================
+ Version # - Date - Author - Description 
+ Version - 1.0.0 - August 2011 - California Administrative Office of the Courts - Initial Creation 
+ ===========================================
+ -->
+<xsd:schema xmlns:sresp="http://niem.gov/niem/structures/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Response" xmlns:cajudresp="https://isb.srv.courts-tc.ca.gov/portal/cajud/schema/dsp917resp/2.0.0/xsd" xmlns:ncresp="http://niem.gov/niem/niem-core/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Response" xmlns:iresp="http://niem.gov/niem/appinfo/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Response" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:niem-xsdresp="http://niem.gov/niem/proxy/xsd/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Response" targetNamespace="https://isb.srv.courts-tc.ca.gov/portal/cajud/schema/dsp917resp/2.0.0/xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:import namespace="http://niem.gov/niem/structures/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Response" schemaLocation="../niem/structures/2.0/structures.xsd"/>
+	<xsd:import namespace="http://niem.gov/niem/niem-core/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Response" schemaLocation="../constraint/niem-core/2.0/niem-core.xsd"/>
+	<xsd:import namespace="http://niem.gov/niem/appinfo/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Response" schemaLocation="../niem/appinfo/2.0/appinfo.xsd"/>
+	<xsd:import namespace="http://niem.gov/niem/proxy/xsd/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Response" schemaLocation="../niem/proxy/xsd/2.0/xsd.xsd"/>
+	<xsd:complexType name="CaseRestrainingOrderType">
+		<xsd:annotation>
+			<xsd:documentation>A data type for a set of details of the restraining order.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sresp:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="ncresp:ActivityCategoryText"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ErrorInformationType">
+		<xsd:annotation>
+			<xsd:documentation>A description of an application error in human and machine readable form.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sresp:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudresp:ErrorInformationMessageCode"/>
+					<xsd:element ref="cajudresp:ErrorInformationMessageText"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ProductExchangeErrorActivityType">
+		<xsd:annotation>
+			<xsd:documentation>An activity that describes an error event that occurred.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sresp:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudresp:ErrorInformation" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ProductExchangePackageType">
+		<xsd:annotation>
+			<xsd:documentation>An SOA/Exchange wrapper to provide a common base and structure for CAJUD Exchanges.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sresp:ComplexObjectType">
+				<xsd:choice>
+					<xsd:element ref="cajudresp:ProductExchangeErrorActivity"/>
+					<xsd:element ref="cajudresp:ProductExchangeResponseActivity"/>
+				</xsd:choice>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ProductExchangeResponseActivityType">
+		<xsd:annotation>
+			<xsd:documentation>An activity of delivering a product and/or its content bases on a query and or request.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sresp:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudresp:ControlNumber" minOccurs="0"/>
+					<xsd:element ref="cajudresp:OrderIdentification"/>
+					<xsd:element ref="cajudresp:CaseRestrainingOrder" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="OrderIdentificationType">
+		<xsd:annotation>
+			<xsd:documentation>A data type for the system-generated unique identifier of an order.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sresp:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="ncresp:IdentificationID"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:element name="CaseRestrainingOrder" type="cajudresp:CaseRestrainingOrderType">
+		<xsd:annotation>
+			<xsd:documentation>A data concept for a set of details of the restraining order.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="ErrorInformation" type="cajudresp:ErrorInformationType">
+		<xsd:annotation>
+			<xsd:documentation>A description of an application error in human and machine readable form.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="ErrorInformationMessageCode">
+		<xsd:annotation>
+			<xsd:documentation>A code value describing the error.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncresp:TextType">
+					<xsd:maxLength value="50"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="ErrorInformationMessageText">
+		<xsd:annotation>
+			<xsd:documentation>A human readable error message.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncresp:TextType">
+					<xsd:maxLength value="250"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="ProductExchangeErrorActivity" type="cajudresp:ProductExchangeErrorActivityType">
+		<xsd:annotation>
+			<xsd:documentation>An activity that describes an error event that occurred.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="ProductExchangePackage" type="cajudresp:ProductExchangePackageType">
+		<xsd:annotation>
+			<xsd:documentation>An SOA/Exchange wrapper to provide a common base and structure for CAJUD Exchanges.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="ProductExchangeResponseActivity" type="cajudresp:ProductExchangeResponseActivityType">
+		<xsd:annotation>
+			<xsd:documentation>An activity of delivering a product and/or its content bases on a query and or request.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="ControlNumber">
+		<xsd:annotation>
+			<xsd:documentation>A unique identifier for the Restraining Order in CLETS.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncresp:TextType">
+					<xsd:maxLength value="2000"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="OrderIdentification" type="cajudresp:OrderIdentificationType">
+		<xsd:annotation>
+			<xsd:documentation>A system-generated unique identifier of an order.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+</xsd:schema>

@@ -1,0 +1,67 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:this="clr-namespace:FACCTS.Controls"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:Converters="clr-namespace:FACCTS.Controls.Converters"
+             mc:Ignorable="d"
+             x:Class="FACCTS.Controls.AttorneyThirdPartyView"
+             x:Name="UserControl"
+             d:DesignWidth="640"
+             d:DesignHeight="332.239"
+             Background="{DynamicResource ControlBackgroundBrush}">
+    <UserControl.Resources>
+        <Converters:DataContextMultiValueConverter x:Key="DataContextMultiValueConverter" />
+    </UserControl.Resources>
+
+    <GroupBox Header="Third Party Attorney" Grid.IsSharedSizeScope="True">
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" SharedSizeGroup="Column1"/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" MinHeight="50"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+            <StackPanel VerticalAlignment="Center"
+                        Grid.Column="1"
+                        Orientation="Horizontal"
+                        >
+                <StackPanel.DataContext>
+                    <MultiBinding Converter="{StaticResource DataContextMultiValueConverter}"
+                                  Mode="OneWay"
+                                  ConverterParameter="1">
+                        <Binding Path="CurrentCourtCase.ThirdPartyAttorneyData"
+                                 Mode="OneWay" />
+                        <Binding Path="CurrentHistoryRecord.ThirdPartyData"
+                                 Mode="OneWay" />
+                    </MultiBinding>
+                </StackPanel.DataContext>
+                <CheckBox Content="Pro Per"
+                          Margin="0,0,8,0"
+                          IsChecked="{Binding IsThirdPartyProPer, Mode=TwoWay}"/>
+                <CheckBox Content="Third party is Requestor in EA Case"
+                          Margin="8,0,0,0"
+                          IsChecked="{Binding IsThirdPartyRequestorInEACase, Mode=TwoWay}"/>
+                
+			</StackPanel>
+			<ContentControl Grid.Row="1" Grid.ColumnSpan="2" >
+                <this:AttorneyView>
+                    <this:AttorneyView.DataContext>
+                        <MultiBinding Converter="{StaticResource DataContextMultiValueConverter}"
+                                      Mode="OneWay"
+                                      ConverterParameter="1">
+                            <Binding Path="CurrentCourtCase.ThirdPartyAttorneyData.Attorney"
+                                     Mode="OneWay" />
+                            <Binding Path="CurrentHistoryRecord.ThirdPartyData.Attorney"
+                                     Mode="OneWay" />
+                        </MultiBinding>
+                    </this:AttorneyView.DataContext>
+                </this:AttorneyView>
+			</ContentControl>
+		</Grid>
+	</GroupBox>
+</UserControl>

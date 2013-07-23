@@ -1,0 +1,434 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:ext="clr-namespace:FACCTS.Controls.MarkupExtension"
+             xmlns:fs="clr-namespace:FACCTS.Services.Data;assembly=FACCTS.Services"
+             xmlns:Converters="clr-namespace:FACCTS.Controls.Converters"
+             xmlns:validation="clr-namespace:FACCTS.Controls.Validation"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:ei="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+             mc:Ignorable="d"
+             x:Class="FACCTS.Controls.Views.Controls.PartyControlView"
+             x:Name="UserControl"
+             d:DesignWidth="665.12"
+             d:DesignHeight="234.382"
+             >
+    <UserControl.Resources>
+    	<Converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
+
+        <CollectionViewSource x:Key="cvsSex" Source="{Binding DataContext.DataContainer.Sexes, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl, AncestorLevel=2}}"/>
+        <CollectionViewSource x:Key="cvsStateList"
+                              Source="{Binding DataContext.DataContainer.StateList, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl, AncestorLevel=2}}" />
+        <CollectionViewSource x:Key="cvsHair"
+                              Source="{Binding DataContext.DataContainer.HairColors, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl, AncestorLevel=2}}"/>
+        <CollectionViewSource x:Key="cvsEyes"
+                              Source="{Binding DataContext.DataContainer.EyesColors, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl, AncestorLevel=2}}"/>
+        <CollectionViewSource x:Key="cvsraces"
+                              Source="{Binding DataContext.DataContainer.Races, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl, AncestorLevel=2}}"/>
+        <CollectionViewSource x:Key="cvsDesignations"
+                              Source="{Binding DataContext.DataContainer.Designations, Mode=OneWay,RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl, AncestorLevel=2}}"/>
+        <CollectionViewSource x:Key="cvsParticipantRoles"
+                              Source="{Binding DataContext.DataContainer.ParticipantRoles, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl, AncestorLevel=2}}"/>
+        <CollectionViewSource x:Key="cvsEntityTypes"
+                              Source="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl, AncestorLevel=2}, Path=DataContext.DataContainer.EntityTypeList, Mode=OneWay}" />
+    </UserControl.Resources>
+	<Grid x:Name="LayoutRoot">
+            <GroupBox Header="{Binding Title, ElementName=UserControl, Mode=OneWay}"
+                      Grid.IsSharedSizeScope="True">
+            <validation:ErrorProvider x:Name="_errorProvider">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Border BorderBrush="{DynamicResource ControlBorderBrush}"
+                            BorderThickness="1"
+                            Margin="0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"
+                                                  SharedSizeGroup="FirstColumn" />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="10" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <TextBlock HorizontalAlignment="Right"
+                                       Margin="0,0,0,-0.001"
+                                       TextWrapping="Wrap"
+                                       Text="First, Middle, Last Name"
+                                       VerticalAlignment="Center" />
+                            <Grid Grid.ColumnSpan="3"
+                                  Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                            <TextBox TextWrapping="Wrap"
+                                     VerticalAlignment="Center"
+                                     Style="{DynamicResource TextBoxWithAdorner}"
+                                     Tag="First Name"
+                                     Text="{Binding Path=FirstName, FallbackValue=Barak, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            </TextBox>
+                                <TextBox TextWrapping="Wrap"
+                                         Text="{Binding MiddleName, FallbackValue=Ivanovich, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         VerticalAlignment="Center"
+                                         Style="{DynamicResource TextBoxWithAdorner}"
+                                         Tag="Middle Name"
+                                         Grid.Column="1" />
+                                <TextBox TextWrapping="Wrap"
+                                         Text="{Binding LastName, FallbackValue=Obama, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         VerticalAlignment="Center"
+                                         Tag="Last Name"
+                                         Style="{DynamicResource TextBoxWithAdorner}"
+                                         Grid.Column="2" />
+                            </Grid>
+                            <TextBlock HorizontalAlignment="Right"
+                                       TextWrapping="Wrap"
+                                       Text="Designation"
+                                       VerticalAlignment="Center"
+                                       Grid.Column="4" />
+                            <ComboBox Grid.Column="5"
+                                      VerticalAlignment="Center"
+                                      SelectedItem="{Binding Designation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      DisplayMemberPath="DesignationName"
+                                      >
+                                <ComboBox.ItemsSource>
+                                    <CompositeCollection>
+                                        <CollectionContainer Collection="{Binding Mode=OneWay, Source={StaticResource cvsDesignations}}" />
+                                    </CompositeCollection>
+                                </ComboBox.ItemsSource>
+                            </ComboBox>
+                                <TextBlock HorizontalAlignment="Right"
+                                       TextWrapping="Wrap"
+                                       Text="Description"
+                                       Grid.Row="1"
+                                       VerticalAlignment="Center" />
+                            <Grid Grid.ColumnSpan="4"
+                                  Grid.Column="1"
+                                  Grid.Row="1"
+                                  VerticalAlignment="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1.5*" />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="0.7*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBox TextWrapping="Wrap"
+                                         Text="{Binding Description, FallbackValue=Some Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                         VerticalAlignment="Center"
+                                         Style="{DynamicResource TextBoxWithAdorner}"
+                                         Tag="Please type the description" />
+                            </Grid>
+                            <ComboBox Grid.Row="1"
+                                      Grid.Column="5"
+                                      VerticalAlignment="Center"
+                                      SelectedValue="{Binding ParticipantRole, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedValuePath="Value"
+                                      ItemsSource="{Binding Mode=OneWay, Source={StaticResource cvsParticipantRoles}}" />
+                            <TextBlock HorizontalAlignment="Right"
+                                       TextWrapping="Wrap"
+                                       Text="Participant Role"
+                                       VerticalAlignment="Center"
+                                       Grid.Column="2"
+                                       Grid.ColumnSpan="3"
+                                       Grid.Row="1" />
+                            <TextBlock TextWrapping="Wrap"
+                                       Text="Relation to Party 1"
+                                       Visibility="{Binding IsParty1, Converter={StaticResource InvertedBooleanConverter}, ElementName=textBlock, FallbackValue=Visible, Mode=OneWay}"
+                                       VerticalAlignment="Center"
+                                       Grid.Row="2"
+                                       HorizontalAlignment="Right" />
+                            <TextBlock TextWrapping="Wrap"
+                                       Text="Relation to Party 2"
+                                       Visibility="{Binding IsParty1, Converter={StaticResource BoolToVisibilityConverter}, ElementName=UserControl, FallbackValue=Collapsed, Mode=OneWay}"
+                                       VerticalAlignment="Center"
+                                       Grid.Row="2"
+                                       HorizontalAlignment="Right" />
+                            <ComboBox Grid.Column="1"
+                                      VerticalAlignment="Center"
+                                      Grid.Row="2"
+                                      ItemsSource="{Binding DataContext.DataContainer.Relationships, Mode=OneWay, RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=2, AncestorType=UserControl}}"
+                                      SelectedValuePath="Value"
+                                      Text="{Binding RelationToOtherParty, Mode=TwoWay}"
+                                      IsEditable="True" />
+                        </Grid>
+                    </Border>
+                    <Border BorderBrush="{DynamicResource ControlBorderBrush}"
+                            BorderThickness="1"
+                            Margin="0"
+                            Grid.Row="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition SharedSizeGroup="FirstColumn"
+                                                  Width="Auto" />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="0.5*" />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="10" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <TextBlock HorizontalAlignment="Right"
+                                       Margin="0,0,0,-0.001"
+                                       TextWrapping="Wrap"
+                                       Text="Address"
+                                       VerticalAlignment="Center" />
+                            <TextBox Grid.ColumnSpan="3"
+                                     TextWrapping="Wrap"
+                                     Text="{Binding Address, FallbackValue=Washington, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     Grid.Column="1"
+                                     VerticalAlignment="Center"
+                                     Tag="Please type the address"
+                                     Style="{DynamicResource TextBoxWithAdorner}" />
+                            <TextBlock HorizontalAlignment="Right"
+                                       TextWrapping="Wrap"
+                                       VerticalAlignment="Center"
+                                       Grid.Column="4"><Run Text="Phone" /></TextBlock>
+                            <TextBox TextWrapping="Wrap"
+                                     Text="{Binding Phone, FallbackValue=9112345678, Mode=TwoWay}"
+                                     Grid.Column="5"
+                                     VerticalAlignment="Center"
+                                     Tag="Phone Number"
+                                     Style="{DynamicResource TextBoxWithAdorner}" />
+                            <TextBlock HorizontalAlignment="Right"
+                                       TextWrapping="Wrap"
+                                       Text="City, State, Postal"
+                                       VerticalAlignment="Center"
+                                       Grid.Row="1" />
+                            <TextBox TextWrapping="Wrap"
+                                     Text="{Binding City, FallbackValue=New York, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     Grid.Row="1"
+                                     Grid.Column="1"
+                                     VerticalAlignment="Center"
+                                     Tag="City"
+                                     Style="{DynamicResource TextBoxWithAdorner}" />
+                            <ComboBox SelectedValue="{Binding USAState, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedValuePath="Value"
+                                      ItemsSource="{Binding Mode=OneWay, Source={StaticResource cvsStateList}}"
+                                      Grid.Row="1"
+                                      Grid.Column="2"
+                                      VerticalAlignment="Center" />
+                            <TextBox TextWrapping="Wrap"
+                                     Text="{Binding ZipCode, FallbackValue=10011, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     Grid.Row="1"
+                                     Grid.Column="3"
+                                     VerticalAlignment="Center"
+                                     Tag="Zip code"
+                                     Style="{DynamicResource TextBoxWithAdorner}" />
+                            <TextBlock HorizontalAlignment="Right"
+                                       TextWrapping="Wrap"
+                                       Text="Fax"
+                                       VerticalAlignment="Center"
+                                       Grid.Row="1"
+                                       Grid.Column="4" />
+                            <TextBox TextWrapping="Wrap"
+                                     Text="{Binding Fax, FallbackValue=9012345678, Mode=TwoWay}"
+                                     Grid.Row="1"
+                                     Grid.Column="5"
+                                     VerticalAlignment="Center"
+                                     Tag="Fax"
+                                     Style="{DynamicResource TextBoxWithAdorner}" />
+                            <TextBlock HorizontalAlignment="Right"
+                                       TextWrapping="Wrap"
+                                       VerticalAlignment="Center"
+                                       Grid.Row="2"
+                                       Text="Address Type" />
+                            <ComboBox VerticalAlignment="Center"
+                                      Grid.Row="2"
+                                      Grid.Column="1" />
+                            <TextBlock TextWrapping="Wrap"
+                                       Text="Email"
+                                       VerticalAlignment="Center"
+                                       Grid.Row="2"
+                                       Grid.Column="4"
+                                       HorizontalAlignment="Right" />
+                            <TextBox TextWrapping="Wrap"
+                                     Text="{Binding Email, Mode=TwoWay}"
+                                     VerticalAlignment="Center"
+                                     Grid.Row="2"
+                                     Grid.Column="5" />
+                        </Grid>
+                    </Border>
+                    <Border BorderBrush="{DynamicResource ControlBorderBrush}"
+                            BorderThickness="1"
+                            Margin="0,0,0,-7.2"
+                            Grid.Row="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition SharedSizeGroup="FirstColumn"
+                                                  Width="Auto" />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="10" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <TextBlock Margin="0,0,0,-0.001"
+                                       TextWrapping="Wrap"
+                                       Text="Sex"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Right" />
+                            <ComboBox Margin="0,0,0,-0.001"
+                                      Grid.Column="1"
+                                      VerticalAlignment="Center"
+                                      ItemsSource="{Binding IsAsync=True, Mode=OneWay, Source={StaticResource cvsSex}}"
+                                      SelectedValue="{Binding Sex, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedValuePath="Value" />
+                            <TextBlock HorizontalAlignment="Right"
+                                       TextWrapping="Wrap"
+                                       Text="Hair"
+                                       VerticalAlignment="Center"
+                                       Grid.Row="1" />
+                            <ComboBox Margin="0,0,0,-0.001"
+                                      VerticalAlignment="Center"
+                                      Grid.Column="1"
+                                      ItemsSource="{Binding IsAsync=True, Mode=OneWay, Source={StaticResource cvsHair}}"
+                                      SelectedItem="{Binding HairColor, Mode=TwoWay}"
+                                      DisplayMemberPath="Color"
+                                      Grid.Row="1" />
+                            <TextBlock HorizontalAlignment="Right"
+                                       TextWrapping="Wrap"
+                                       Text="Eyes"
+                                       VerticalAlignment="Center"
+                                       Grid.Row="2" />
+                            <ComboBox Margin="0,0,0,-0.001"
+                                      VerticalAlignment="Center"
+                                      Grid.Column="1"
+                                      ItemsSource="{Binding IsAsync=True, Mode=OneWay, Source={StaticResource cvsEyes}}"
+                                      SelectedItem="{Binding EyesColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      DisplayMemberPath="Color"
+                                      Grid.Row="2" />
+                            <TextBlock HorizontalAlignment="Right"
+                                       TextWrapping="Wrap"
+                                       VerticalAlignment="Center"
+                                       Grid.Column="2"><Run Text="Race" /></TextBlock>
+                            <ComboBox Margin="0"
+                                      Grid.Column="3"
+                                      VerticalAlignment="Center"
+                                      ItemsSource="{Binding IsAsync=True, Mode=OneWay, Source={StaticResource cvsraces}}"
+                                      SelectedItem="{Binding Race, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      DisplayMemberPath="RaceName" />
+                            <TextBlock HorizontalAlignment="Right"
+                                       TextWrapping="Wrap"
+                                       Text="Weight"
+                                       Grid.Row="1"
+                                       Grid.Column="4"
+                                       VerticalAlignment="Center" />
+                            <xctk:IntegerUpDown Grid.Row="1"
+                                                Grid.Column="5"
+                                                VerticalAlignment="Center"
+                                                Value="{Binding Weight, FallbackValue=0, Mode=TwoWay}" />
+                            <TextBlock HorizontalAlignment="Right"
+                                       TextWrapping="Wrap"
+                                       Text="Height"
+                                       VerticalAlignment="Center"
+                                       Grid.Row="1"
+                                       Grid.Column="2" />
+                            <StackPanel HorizontalAlignment="Left"
+                                        VerticalAlignment="Center"
+                                        Grid.Row="1"
+                                        Grid.Column="3"
+                                        Orientation="Horizontal">
+                                <TextBox TextWrapping="Wrap"
+                                         Width="50"
+                                         VerticalAlignment="Center"
+                                         VerticalContentAlignment="Stretch"
+                                         Text="{Binding HeightFt, FallbackValue=0, Mode=TwoWay}" />
+                                <TextBlock TextWrapping="Wrap"
+                                           Text="Ft."
+                                           VerticalAlignment="Center" />
+                                <TextBox TextWrapping="Wrap"
+                                         Width="50"
+                                         VerticalAlignment="Center"
+                                         Text="{Binding HeightIns, FallbackValue=1, Mode=TwoWay}" />
+                                <TextBlock TextWrapping="Wrap"
+                                           Text="Ins."
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                            <TextBlock HorizontalAlignment="Right"
+                                       TextWrapping="Wrap"
+                                       Text="Date of Birth"
+                                       VerticalAlignment="Center"
+                                       Grid.Row="2"
+                                       Grid.Column="2" />
+                            <DatePicker Grid.Row="2"
+                                        Grid.Column="3"
+                                        VerticalAlignment="Center"
+                                        SelectedDate="{Binding DateOfBirthNullable}" />
+                            <TextBlock HorizontalAlignment="Right"
+                                       TextWrapping="Wrap"
+                                       Text="Age"
+                                       VerticalAlignment="Center"
+                                       Grid.Row="2"
+                                       Grid.Column="4" />
+                            <StackPanel Grid.RowSpan="3"
+                                        Grid.Row="2"
+                                        Grid.Column="5"
+                                        Orientation="Horizontal"
+                                        VerticalAlignment="Center">
+                                <xctk:IntegerUpDown Width="114.175"
+                                                    Value="{Binding Age, FallbackValue=20, Mode=TwoWay}" />
+                                <TextBlock HorizontalAlignment="Right"
+                                           TextWrapping="Wrap"
+                                           Text="Yrs."
+                                           VerticalAlignment="Center" />
+                            </StackPanel>
+                            <TextBlock HorizontalAlignment="Right"
+                                       TextWrapping="Wrap"
+                                       Text="Entity"
+                                       VerticalAlignment="Center"
+                                       Grid.Row="1"
+                                       Grid.Column="6"
+                                       Margin="8,0" />
+                            <TextBlock HorizontalAlignment="Right"
+                                       TextWrapping="Wrap"
+                                       Text="Parent Role"
+                                       VerticalAlignment="Center"
+                                       Grid.Row="2"
+                                       Grid.Column="6"
+                                       Margin="8,0" />
+                            <ComboBox VerticalAlignment="Center"
+                                      Grid.Row="2"
+                                      Grid.Column="7"
+                                      Text="{Binding ParentRole, Mode=TwoWay}"
+                                      IsEditable="True">
+                                <ComboBoxItem Content="Mom" />
+                                <ComboBoxItem Content="Dad" />
+                            </ComboBox>
+                            <ComboBox VerticalAlignment="Center"
+                                      Grid.Row="1"
+                                      Grid.Column="7"
+                                      ItemsSource="{Binding Source={StaticResource cvsEntityTypes}, Mode=OneWay}"
+                                      SelectedValuePath="Value"
+                                      SelectedValue="{Binding EntityType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                        </Grid>
+                    </Border>
+                </Grid>
+            </validation:ErrorProvider>
+        </GroupBox>
+    </Grid>
+</UserControl>

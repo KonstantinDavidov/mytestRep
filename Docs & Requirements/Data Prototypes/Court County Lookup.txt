@@ -1,0 +1,24 @@
+The Court County ID Lookup Table
+
+
+CREATE TABLE `court_county_id` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `court_code` varchar(8) DEFAULT NULL,
+  `county` varchar(64) DEFAULT NULL,
+  `court_name` varchar(16) DEFAULT NULL,
+  `location` varchar(64) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_county` (`county`) USING BTREE;
+
+
+describe court_county_id;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| id         | int(11)     | NO   | PRI | NULL    | auto_increment |
+| court_code | varchar(8)  | YES  |     | NULL    |                |
+| county     | varchar(64) | YES  | MUL | NULL    |                |
+| court_name | varchar(16) | YES  |     | NULL    |                |
+| location   | varchar(64) | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+

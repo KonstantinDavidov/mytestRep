@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 (x64) (http://www.altova.com) by Edmund (Judicial Council of California) -->
+<xsd:schema xmlns:s="http://niem.gov/niem/structures/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Response" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:nc="http://niem.gov/niem/niem-core/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Response" xmlns:niem-xsd="http://niem.gov/niem/proxy/xsd/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Response" xmlns:i="http://niem.gov/niem/appinfo/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Response" targetNamespace="http://niem.gov/niem/niem-core/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Response" version="1">
+	<xsd:annotation>
+		<xsd:documentation>NIEM Core includes both Universal (U) and Common (C) components.  The identities for U and C components in Core are maintained with metadata.</xsd:documentation>
+		<xsd:appinfo>
+			<i:ConformantIndicator>true</i:ConformantIndicator>
+		</xsd:appinfo>
+	</xsd:annotation>
+	<xsd:import namespace="http://niem.gov/niem/structures/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Response" schemaLocation="../../../niem/structures/2.0/structures.xsd"/>
+	<xsd:import namespace="http://niem.gov/niem/appinfo/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Response" schemaLocation="../../../niem/appinfo/2.0/appinfo.xsd"/>
+	<xsd:import namespace="http://niem.gov/niem/proxy/xsd/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Response" schemaLocation="../../../niem/proxy/xsd/2.0/xsd.xsd"/>
+	<xsd:element name="ActivityCategoryText" nillable="true">
+		<xsd:annotation>
+			<xsd:documentation>A kind of activity.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="nc:TextType"/>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:complexType name="TextType">
+		<xsd:annotation>
+			<xsd:documentation>A data type for a character string.</xsd:documentation>
+			<xsd:appinfo>
+				<i:Base i:namespace="http://niem.gov/niem/proxy/xsd/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Response" i:name="string"/>
+			</xsd:appinfo>
+		</xsd:annotation>
+		<xsd:simpleContent>
+			<xsd:extension base="niem-xsd:string"/>
+		</xsd:simpleContent>
+	</xsd:complexType>
+	<xsd:element name="IdentificationID" nillable="true">
+		<xsd:annotation>
+			<xsd:documentation>A value that identifies something.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="niem-xsd:string">
+					<xsd:maxLength value="50"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

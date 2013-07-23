@@ -1,0 +1,96 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:utils="clr-namespace:FACCTS.Controls.Utils"
+             xmlns:Converters="clr-namespace:FACCTS.Controls.Converters"
+             mc:Ignorable="d"
+             x:Class="FACCTS.Controls.Views.Controls.CaseRecordLeftPaneView"
+             x:Name="UserControl"
+             d:DesignWidth="375.7"
+             d:DesignHeight="480"
+             Background="{DynamicResource ControlBackgroundBrush}">
+    <UserControl.Resources>
+        <Converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+        <DataTemplate x:Key="LestBoxItemContentTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding DisplayName, Mode=OneWay}" />
+                <TextBlock Text="!"
+                           Foreground="Red"
+                           FontSize="12"
+                           FontWeight="Bold"
+                           Visibility="{Binding HasUIErrors, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}" />
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot">
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<GroupBox Header="Court Cases">
+            <TabControl SelectedIndex="0">
+				<TabItem Header="Calendar" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition/>
+						</Grid.RowDefinitions>
+						<ListBox VerticalAlignment="Stretch"
+							DisplayMemberPath="CaseNumber"
+							SelectedItem="{Binding CurrentCourtCase, Mode=TwoWay}"
+							SelectionMode="Extended"
+							cal:Message.Attach="[Event SelectionChanged] = [Action SelectionCourtCasesChanged($eventArgs)]"
+                                 ItemsSource="{Binding CourtCases, Mode=OneWay}"/>
+					</Grid>
+				</TabItem>
+				<TabItem Header="History" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                    <Grid>
+                        <TreeView cal:Message.Attach="[Event SelectedItemChanged] = [Action SelectedHistoryChanged($eventArgs)]">
+                            <TreeViewItem Header="{Binding CurrentCourtCase.CaseNumber, Mode=OneWay}"
+                                          ItemsSource="{Binding CurrentCourtCase.Hearings, Mode=OneWay}"
+                                          IsExpanded="True"
+                                          >
+                                <TreeViewItem.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock>
+                                            <Run Text="Hearing " />
+                                            <Run Text="{Binding HearingDate, Mode=OneWay}" />
+                                        </TextBlock>
+                                    </DataTemplate>
+                                </TreeViewItem.ItemTemplate>
+                            </TreeViewItem>
+                        </TreeView>
+                    </Grid>
+                </TabItem>
+			</TabControl>
+		</GroupBox>
+		<GroupBox Header="Court Case Edit" Grid.Row="1">
+			<ListBox x:Name="listBox">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <cal:ActionMessage MethodName="ActivateControl">
+                            <cal:Parameter Value="{Binding ElementName=listBox, Path=SelectedItem.Content, Mode=OneWay}" />
+                        </cal:ActionMessage>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <ListBoxItem Content="{Binding PersonalInformationViewModel, Mode=OneWay}" IsSelected="True" ContentTemplate="{DynamicResource LestBoxItemContentTemplate}"/>
+                <ListBoxItem Content="{Binding ChildrenOtherProtectedViewModel, Mode=OneWay}" ContentTemplate="{DynamicResource LestBoxItemContentTemplate}"/>
+                <ListBoxItem Content="{Binding AttorneysViewModel, Mode=OneWay}" ContentTemplate="{DynamicResource LestBoxItemContentTemplate}"/>
+                <ListBoxItem Content="{Binding WitnessInterpereterViewModel, Mode=OneWay}" ContentTemplate="{DynamicResource LestBoxItemContentTemplate}"/>
+                <ListBoxItem Content="{Binding RelatedCasesViewModel, Mode=OneWay}" ContentTemplate="{DynamicResource LestBoxItemContentTemplate}"/>
+                <ListBoxItem Content="{Binding CaseHistoryViewModel, Mode=OneWay}" ContentTemplate="{DynamicResource LestBoxItemContentTemplate}"/>
+                <ListBoxItem Content="{Binding CaseNotesViewModel, Mode=OneWay}" ContentTemplate="{DynamicResource LestBoxItemContentTemplate}"/>
+			</ListBox>
+		</GroupBox>
+        <Border Grid.Row="2" Padding="10">
+            <UniformGrid Rows="1" Columns="2">
+                <Button Content="New Case" VerticalAlignment="Top" HorizontalAlignment="Left" cal:Message.Attach="NewCase"/>
+            </UniformGrid>
+            
+        </Border>
+	</Grid>
+</UserControl>

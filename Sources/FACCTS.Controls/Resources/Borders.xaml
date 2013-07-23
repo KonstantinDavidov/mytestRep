@@ -1,0 +1,13 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+	<Style x:Key="OrdinalBorder" TargetType="{x:Type Border}">
+		<Setter Property="BorderBrush" Value="{DynamicResource ControlBorderBrush}"/>
+		<Setter Property="CornerRadius" Value="5"/>
+		<Setter Property="BorderThickness" Value="0.2"/>
+		<Setter Property="Height" Value="Auto"/>
+		<Setter Property="Width" Value="Auto"/>
+		<Setter Property="Padding" Value="8"/>
+	</Style>
+	<!-- Resource dictionary entries should be defined here. -->
+</ResourceDictionary>

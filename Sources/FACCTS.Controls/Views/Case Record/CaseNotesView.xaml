@@ -1,0 +1,68 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:rt="clr-namespace:WpfRichText;assembly=WpfRichText"
+             xmlns:Converters="clr-namespace:FACCTS.Controls.Converters"
+             xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             x:Class="FACCTS.Controls.Views.CaseNotesView"
+             d:DesignHeight="450.507"
+             d:DesignWidth="601.725">
+
+    <UserControl.Resources>
+    	<Converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
+		<Converters:ObjectToBooleanConverter x:Key="ObjectToBooleanConverter"/>
+        <CollectionViewSource x:Key="cvsUsers"
+                              Source="{Binding AvailableUsers, Mode=OneWay}">
+            <CollectionViewSource.SortDescriptions>
+                <scm:SortDescription PropertyName="FullName" />
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+        <DataTemplate x:Key="FullNameItemTemplate">
+        	<TextBlock TextWrapping="NoWrap"><InlineUIContainer>
+        			<TextBlock TextWrapping="NoWrap"
+                               ><Run Text="{Binding FirstName, Mode=OneWay}"/><Run Text=" "/><Run Text=" " /></TextBlock>
+        		</InlineUIContainer><Run Text=" "/><InlineUIContainer>
+        			<TextBlock TextWrapping="NoWrap"><Run Text="{Binding MiddleName, Mode=OneWay}" /><Run Text=" "/><Run Text=" " /></TextBlock>
+        		</InlineUIContainer><Run Text=" "/><InlineUIContainer>
+        			<TextBlock TextWrapping="NoWrap" Text="{Binding LastName, Mode=OneWay}"/>
+        		</InlineUIContainer></TextBlock>
+        </DataTemplate>
+	</UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot"
+          IsEnabled="{Binding CurrentCourtCase, Converter={StaticResource ObjectToBooleanConverter}, Mode=OneWay}">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition MinWidth="150" Width="Auto"/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+		<ListBox SelectedIndex="0" ItemsSource="{Binding Mode=OneWay, Source={StaticResource cvsUsers}}" SelectedItem="{Binding SelectedUser, Mode=TwoWay}" ItemTemplate="{DynamicResource FullNameItemTemplate}"/>
+		<Grid Grid.Column="1">
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+            <rt:RichTextEditor IsToolBarVisible="False"
+                               IsContextMenuEnabled="False"
+                               Text="{Binding CaseNoteForSelectedUser.Text, Mode=TwoWay}"
+                               Foreground="Black" IsReadOnly="{Binding CanEditNote, Converter={StaticResource InvertedBooleanConverter}, Mode=OneWay}" />
+            <Border BorderThickness="1" Grid.Row="1" Style="{DynamicResource OrdinalBorder}" Visibility="{Binding CanEditNote, Converter={StaticResource BoolToVisibilityConverter}, Mode=OneWay}">
+				<UniformGrid HorizontalAlignment="Left" VerticalAlignment="Top" Rows="1" Columns="2" Margin="0">
+                    <Button x:Name="button" Content="Make Private"
+                            Width="75"
+                            Margin="5,0"
+                            IsEnabled="{Binding CaseNoteForSelectedUser.IsPublic,Mode=OneWay}"
+                            cal:Message.Attach="[Event Click] = [Action MakePublic]"/>
+                    <Button Content="Make Public"
+                            Width="75"
+                            Margin="5,0"
+                            IsEnabled="{Binding CaseNoteForSelectedUser.IsPublic, Converter={StaticResource InvertedBooleanConverter}, Mode=OneWay}"
+                            cal:Message.Attach="[Event Click] = [Action MakePrivate]" />
+                </UniformGrid>
+			</Border>
+		</Grid>
+	</Grid>
+</UserControl>

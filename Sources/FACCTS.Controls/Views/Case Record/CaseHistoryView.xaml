@@ -1,0 +1,60 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Converters="clr-namespace:FACCTS.Controls.Converters"
+             xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+             mc:Ignorable="d"
+             x:Class="FACCTS.Controls.Views.CaseHistoryView"
+             x:Name="UserControl"
+             d:DesignWidth="640"
+             d:DesignHeight="480">
+
+    <UserControl.Resources>
+		<Converters:ObjectToBooleanConverter x:Key="ObjectToBooleanConverter"/>
+        <CollectionViewSource x:Key="cvsCaseHistory"
+                              Source="{Binding CurrentCourtCase.DisplayableCaseHistory, Mode=OneWay}">
+            <CollectionViewSource.SortDescriptions>
+                <scm:SortDescription PropertyName="Date"  Direction="Ascending"/>
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+    </UserControl.Resources>
+
+    <Grid x:Name="LayoutRoot"
+          IsEnabled="{Binding CurrentCourtCase, Converter={StaticResource ObjectToBooleanConverter}, Mode=OneWay}">
+		<DataGrid AutoGenerateColumns="False" CanUserAddRows="False" CanUserResizeRows="False" ItemsSource="{Binding Mode=OneWay, Source={StaticResource cvsCaseHistory}}" VerticalAlignment="Stretch">
+			<DataGrid.Columns>
+				<DataGridTextColumn Binding="{Binding Date, Mode=OneWay, StringFormat=\{0:d\}}"
+					Header="Date"
+					Width="0.1*" IsReadOnly="True" />
+				<DataGridTextColumn Binding="{Binding CaseEventName, Mode=OneWay}"
+					Header="Event"
+					Width="0.1*" IsReadOnly="True" />
+				<DataGridCheckBoxColumn Binding="{Binding Hearing.Appearance.Party1Appear, FallbackValue=True, Mode=OneWay}"
+					Header="Party 1 Present"
+					Width="0.1*" />
+				<DataGridCheckBoxColumn Binding="{Binding Appearance.Party1Sworn, FallbackValue=True, Mode=OneWay}"
+					Header="Party 1 Sworn"
+					Width="0.1*" />
+				<DataGridCheckBoxColumn Binding="{Binding Appearance.Party1Atty, Mode=OneWay}"
+					Header="Party 1 Atty"
+					Width="0.1*" />
+				<DataGridCheckBoxColumn Binding="{Binding Appearance.Party2Appear}"
+					Header="Party 2 Present"
+					Width="0.1*" IsReadOnly="True" />
+				<DataGridCheckBoxColumn Binding="{Binding Appearance.Party2Sworn, Mode=OneWay}"
+					Header="Party 2 Sworn"
+					Width="0.1*" />
+				<DataGridCheckBoxColumn Binding="{Binding Appearance.Party2Atty, Mode=OneWay}"
+					Header="Party 2 Atty"
+					Width="0.1*" />
+				<DataGridTextColumn Binding="{Binding CourtCaseOrders.AvailableCourtOrder.Name, Mode=OneWay}"
+					Header="Orders"
+					Width="0.1*" />
+				<DataGridTextColumn Binding="{Binding MergeCase.CaseNumber, Mode=OneWay}"
+					Header="Merge Case ID"
+					Width="0.1*" />
+			</DataGrid.Columns>
+		</DataGrid>
+	</Grid>
+</UserControl>

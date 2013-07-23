@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="FACCTS.Controls.Views.Controls.CaseStatusRightPaneView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="631.6" Background="{DynamicResource ControlBackgroundBrush}">
+    <Grid>
+    	<Grid.RowDefinitions>
+    		<RowDefinition/>
+    		<RowDefinition Height="Auto"/>
+    	</Grid.RowDefinitions>
+    	<GroupBox Header="Case Status">
+            <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding CourtCases, Mode=OneWay}" Style="{StaticResource {x:Type DataGrid}}">
+    			<DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding CaseNumber, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="Case Number"/>
+                    <DataGridTextColumn Binding="{Binding CaseStatus, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="Status"/>
+                    <DataGridTextColumn Binding="{Binding FirstActivityDate, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="Last Activity"/>
+                    <DataGridTextColumn Binding="{Binding LastActivity, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="Next Activity"/>
+                    <DataGridTextColumn Binding="{Binding CCPORId, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="CCPOR ID"/>
+                    <DataGridTextColumn Binding="{Binding CCPORStatus, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="CCPOR Status"/>
+                    <DataGridTextColumn Binding="{Binding CourtClerk, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="Court Clerk"/>
+                    <DataGridTextColumn Binding="{Binding CaseRecord.CourtParty.FullName}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="Party 1"/>
+                    <DataGridTextColumn Binding="{Binding CaseRecord.CourtParty1.FullName}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="Party 2"/>
+    			</DataGrid.Columns>
+    		</DataGrid>
+    	</GroupBox>
+    	<Border BorderBrush="Black" BorderThickness="1" Grid.Row="1">
+    		<Grid VerticalAlignment="Top">
+    			<Grid.ColumnDefinitions>
+    				<ColumnDefinition/>
+    				<ColumnDefinition Width="Auto"/>
+    				<ColumnDefinition Width="10"/>
+    			</Grid.ColumnDefinitions>
+    			<UniformGrid VerticalAlignment="Top" Rows="1" Columns="6" HorizontalAlignment="Left">
+    				<Button Content="Expand" />
+    				<Button Content="Collapse" />
+                </UniformGrid>
+            </Grid>
+    	</Border>
+            
+    </Grid>
+</UserControl>

@@ -1,0 +1,549 @@
+/*
+ * HTML5 Boilerplate
+ *
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+body {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+/*
+ * Remove text-shadow in selection highlight: h5bp.com/i
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
+ */
+
+img {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Chrome Frame prompt
+   ========================================================================== */
+
+.chromeframe {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-size: 9pt;
+}
+
+a {
+    color: #0088cc;
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    color: #005580;
+    text-decoration: underline;
+}
+
+hr {
+    color: #aaaaaa;
+    height: 0;
+}
+
+form hr {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+}
+
+table td {
+    padding: 1px;
+}
+
+table thead td {
+    padding: 3px 5px;
+}
+
+tr.active {
+    background-color: #aaaaaa;
+}
+
+label {
+    display: inline-block;
+    margin: 10px 5px 5px;
+}
+
+input[type="text"], input[type="email"], select {
+    padding: 2px;
+    width: 180px;
+}
+
+fieldset {
+    margin: 4px 0;
+    padding: 5px 10px;
+    border: 1px solid #aaaaaa;
+    border-radius: 3px;
+}
+
+.bordered {
+    border: 1px solid #aaa;
+}
+
+#header {
+    height: 50px;
+    background-color: #000000;
+}
+
+#tabs-wrapper {
+    padding: 20px;
+}
+
+#main-tabs > div {
+    display: table;
+    width: 100%;
+    margin: 20px;
+}
+
+#main-tabs span {
+    display: inline-block;
+}
+
+#login-info {
+    float: right;
+}
+
+#login-info label {
+    vertical-align: middle;
+    font-weight: normal;
+    margin: 0;
+}
+
+#login-info span {
+    vertical-align: middle;
+}
+
+.left-side-wrapper {
+    float: left;
+    width: 30%;
+    height: 700px;
+}
+
+.right-side-wrapper {
+    float: left;
+    width: 70%;
+    height: 700px;
+}
+
+.right-side {
+    margin: 0 60px 20px 15px;
+}
+
+.right-side > div {
+    height: 588px;
+}
+
+.section {
+    margin: 10px 0 4px;
+    border: 1px solid #aaaaaa;
+    border-radius: 3px;
+    padding-bottom: 15px;
+    height: 570px;
+    /*overflow-x: scroll;*/
+}
+
+#user-tabs label {
+    margin: 2px 15px 2px 0;
+}
+
+table.clickable tr {
+    cursor: default;
+}
+
+#profile-form {
+    margin-top: 30px;
+}
+
+#substitute-users-table {
+    width: 180px;
+}
+
+#user-role {
+    padding: 20px;
+}
+
+.user-role-table {
+    margin: 4px 0;
+    padding: 5px 10px;
+    border: 1px solid #aaaaaa;
+    border-radius: 3px;
+    height: 60px;
+}
+
+.user-role-table td {
+    vertical-align: bottom;
+}
+
+.user-role-table .td-user-role {
+    width: 200px;
+    vertical-align: top;
+}
+
+.user-role-table td label {
+    color: #aaaaaa;
+}
+
+.user-role-table .td-user-role label {
+    color: #000000;
+}
+
+.right {
+    text-align: right;
+}
+
+.form-fields-block {
+    margin-top: 30px;
+}
+
+.form-field {
+    margin-bottom: 10px;
+}
+
+.form-field label {
+    width: 200px;
+    text-align: right;
+}
+
+.checkbox-field input[type="checkbox"]{
+    margin: 2px 0 5px 200px;
+    vertical-align: bottom;
+}
+
+.checkbox-field label {
+    padding: 2px;
+    margin: 0;
+    text-align: left;
+}
+
+.form-element {
+    margin-bottom: 10px;
+    margin-left: 220px;
+}
+
+.form-field-image {
+    display: inline-block;
+}
+
+.form-field-image label {
+    display: inline;
+}
+
+#dialog-form label {
+    width: 130px;
+    text-align: right;
+}
+
+#dialog-form label.error {
+    display: block;
+    text-align: left;
+    width: inherit;
+    margin-left: 140px;
+}
+
+#dialog-form .checkbox-field input[type="checkbox"]{
+    margin: 2px 0 8px 128px;
+    vertical-align: bottom;
+}
+
+#dialog-form .checkbox-field label {
+    padding: 7px 0;
+    margin: 0;
+    text-align: left;
+}
+
+.important {
+    color: #b94a48 !important;
+}
+
+.error {
+    color: #ff0000;
+}
+
+a, .ui-widget-content a {
+    color: #0088cc;
+    text-decoration: none;
+}
+
+a:hover, a:focus, ui-widget-content a:hover, ui-widget-content a:focus {
+    color: #005580;
+    text-decoration: underline;
+}
+
+.ui-tabs, .ui-tabs-panel {
+    overflow: hidden;
+}
+
+.ui-tabs .ui-tabs-panel {
+    padding: 0;
+}
+
+.ui-tabs-panel label {
+    margin: 10px 5px 5px;
+}
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Image replacement
+ */
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    /* IE 6/7 fallback */
+    *text-indent: -9999px;
+}
+
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
+}
+
+/*
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screenreaders, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}

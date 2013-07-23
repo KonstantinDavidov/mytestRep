@@ -1,0 +1,343 @@
+﻿<UserControl x:Class="FACCTS.Controls.Views.DV130FL342ChildSupportView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="850" Background="{DynamicResource ControlBackgroundBrush}">
+    <StackPanel>
+        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+            <StackPanel Orientation="Vertical">
+                <Label FontWeight="Bold">
+                    Attachment To
+                </Label>
+                <Grid Margin="50 0 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <CheckBox Grid.Column="0" Grid.Row="0">
+                        FOAH
+                    </CheckBox>
+                    <CheckBox Grid.Column="1" Grid.Row="0">
+                        DVRO
+                    </CheckBox>
+                    <CheckBox Grid.Column="2" Grid.Row="0">
+                        Judgement
+                    </CheckBox>
+                    <CheckBox Grid.Column="3" Grid.Row="0">
+                        Other
+                    </CheckBox>
+                    <TextBox Width="150" Grid.Column="4" Grid.Row="0"/>
+                </Grid>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+            <CheckBox FontWeight="Bold">
+                Computer Printout Attachment
+            </CheckBox>
+        </Border>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Vertical">
+                <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                    <StackPanel Orientation="Vertical">
+                        <Label FontWeight="Bold">
+                            Baseline Child Support
+                        </Label>
+                        <DataGrid>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Child First Name" Width="Auto"/>
+                                <DataGridTextColumn Header="Child Last Name"  Width="Auto"/>
+                                <DataGridTextColumn Header="Paid To"  Width="Auto"/>
+                                <DataGridTextColumn Header="Paid By"  Width="Auto"/>
+                                <DataGridTextColumn Header="$/Mo. Child Support"  Width="Auto"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Vertical">
+                                <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Label FontWeight="Bold">
+                                            Paid By:
+                                        </Label>
+                                        <ComboBox>
+                                            <ComboBoxItem>
+                                                Petitioner
+                                            </ComboBoxItem>
+                                            <ComboBoxItem>
+                                                Respondent
+                                            </ComboBoxItem>
+                                            <ComboBoxItem>
+                                                Other Parent
+                                            </ComboBoxItem>
+                                        </ComboBox>
+                                        <Label FontWeight="Bold">
+                                            Paid To:
+                                        </Label>
+                                        <ComboBox>
+                                            <ComboBoxItem>
+                                                Petitioner
+                                            </ComboBoxItem>
+                                            <ComboBoxItem>
+                                                Respondent
+                                            </ComboBoxItem>
+                                            <ComboBoxItem>
+                                                Other Parent
+                                            </ComboBoxItem>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </Border>
+                                <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                                    <StackPanel Orientation="Vertical">
+                                        <Label FontWeight="Bold">
+                                            Payable
+                                        </Label>
+                                        <Grid Margin="25 0 0 0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition />
+                                            </Grid.RowDefinitions>
+                                            <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0">
+                                                <RadioButton Width="15"/>
+                                                <Label >
+                                                    1st of Mo.
+                                                </Label>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0">
+                                                <RadioButton Width="15"/>
+                                                <Label >
+                                                    1st and 15th of Mo.
+                                                </Label>
+                                            </StackPanel>
+                                            <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="0">
+                                                <RadioButton Width="15"/>
+                                                <Label >
+                                                    Other
+                                                </Label>
+                                            </StackPanel>
+                                            <TextBox Width="100" Grid.Column="3" Grid.Row="0"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+                            </StackPanel>
+                            <StackPanel Orientation="Vertical">
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Label>... Base CS</Label>
+                                    <TextBox Width="100"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <Label>... On Total</Label>
+                                    <TextBox Width="100"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox FontWeight="Bold">
+                            Low Income App ...
+                        </CheckBox>
+                        <CheckBox FontWeight="Bold">
+                            Non-Guidline Order...
+                        </CheckBox>
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                    <StackPanel Orientation="Vertical">
+                        <Label FontWeight="Bold">
+                            Income
+                        </Label>
+                        <DataGrid>
+                            <DataGrid.Columns>
+                                <DataGridTemplateColumn Header="Parties"/>
+                                <DataGridTemplateColumn Header="Gross/Mo."/>
+                                <DataGridTemplateColumn Header="Net/Mo."/>
+                                <DataGridTemplateColumn Header="TANF/CalWks"/>
+                                <DataGridTemplateColumn Header="Earning Cap./Mo."/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical">
+                            <Label FontWeight="Bold">
+                                Time Sharing
+                            </Label>
+                            <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Label >
+                                        Number of Children on This ...
+                                    </Label>
+                                    <TextBox Width="50"/>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Label Grid.Column="1" Grid.Row="0">
+                                    Petitioner
+                                </Label>
+                                <Label Grid.Column="2" Grid.Row="0">
+                                    Respondent
+                                </Label>
+                                <Label Grid.Column="3" Grid.Row="0">
+                                    Other Parent
+                                </Label>
+                                <Label FontWeight="Bold" Grid.Column="0" Grid.Row="1">
+                                    % Time
+                                </Label>
+                                <TextBox Grid.Column="1" Grid.Row="1" Width="50"/>
+                                <TextBox Grid.Column="2" Grid.Row="1" Width="50"/>
+                                <TextBox Grid.Column="3" Grid.Row="1" Width="50"/>
+                            </Grid>
+                        </Border>
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                    <StackPanel Orientation="Vertical">
+                        <Label FontWeight="Bold">
+                            Hardship
+                        </Label>
+                        <DataGrid>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="1" />
+                                <DataGridTextColumn Header="Petitioner" />
+                                <DataGridTextColumn Header="Respondent" />
+                                <DataGridTextColumn Header="Other Parent" />
+                                <DataGridTextColumn Header="End of Hardship" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                    <StackPanel Orientation="Vertical">
+                        <Label FontWeight="Bold">
+                            The Court Further Orders
+                        </Label>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Width="300"/>
+                            <Button>
+                                Clear
+                            </Button>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                    <StackPanel Orientation="Vertical">
+                        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                            <StackPanel Orientation="Horizontal">
+                                <Label FontWeight="Bold">
+                                    Commensing
+                                </Label>
+                                <xctk:DateTimeUpDown Format="LongDate"/>
+                            </StackPanel>
+                        </Border>
+                        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                            <StackPanel Orientation="Vertical">
+                                <Label FontWeight="Bold">
+                                    Health Insurance
+                                </Label>
+                                <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                            <RowDefinition />
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Column="1" Grid.Row="0">
+                                            Petitioner
+                                        </Label>
+                                        <Label Grid.Column="2" Grid.Row="0">
+                                            Respondent
+                                        </Label>
+                                        <Label Grid.Column="3" Grid.Row="0">
+                                            Other Parent
+                                        </Label>
+                                        <Label Grid.Column="0" Grid.Row="1">
+                                            To Maintain
+                                        </Label>
+                                        <CheckBox Grid.Column="1" Grid.Row="1"/>
+                                        <CheckBox Grid.Column="2" Grid.Row="1"/>
+                                        <CheckBox Grid.Column="3" Grid.Row="1"/>
+                                        <Label Grid.Column="0" Grid.Row="2">
+                                            Has None
+                                        </Label>
+                                        <CheckBox Grid.Column="1" Grid.Row="2"/>
+                                        <CheckBox Grid.Column="2" Grid.Row="2"/>
+                                        <CheckBox Grid.Column="3" Grid.Row="2"/>
+                                    </Grid>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Border>
+                <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+                    <GroupBox Header="ADD ONS">
+                        <StackPanel Orientation="Vertical">
+                            <DataGrid>
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn Header="Child Care"/>
+                                    <DataGridTemplateColumn Header="Percent"/>
+                                    <DataGridTemplateColumn Header="Per Month"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <DataGrid>
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn Header="Uninsured Health"/>
+                                    <DataGridTemplateColumn Header="Percent"/>
+                                    <DataGridTemplateColumn Header="Per Month"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <DataGrid>
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn Header="Education"/>
+                                    <DataGridTemplateColumn Header="Percent"/>
+                                    <DataGridTemplateColumn Header="Per Month"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                            <DataGrid>
+                                <DataGrid.Columns>
+                                    <DataGridTemplateColumn Header="Travel"/>
+                                    <DataGridTemplateColumn Header="Percent"/>
+                                    <DataGridTemplateColumn Header="Per Month"/>
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </StackPanel>
+                    </GroupBox>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

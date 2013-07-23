@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Fragment>
+    <EnsureTable Id="ComboBox"/>
+    
+    <UI>
+      <Dialog Id="IisSettings" Title="WiX Installer Example" Width="370" Height="270">
+        <Control Id="Next" Type="PushButton" Default="yes" Text="Next" X="236" Y="243" Width="56" Height="17">
+          <Condition Action="disable">WEBSITEVALUE = "" OR APPPOOLVALUE = "" OR VIRTUALDIRECTORYVALUE = ""</Condition>
+          <Condition Action="enable"><![CDATA[WEBSITEVALUE <> "" AND APPPOOLVALUE <> "" AND VIRTUALDIRECTORYVALUE <> ""]]></Condition>
+        </Control>
+        
+        <Control Id="Back" Type="PushButton" Text="Back" X="180" Y="243" Width="56" Height="17" />
+        <Control Id="Cancel" Type="PushButton" Cancel="yes" Text="Cancel" X="304" Y="243" Width="56" Height="17">
+          <Publish Event="SpawnDialog" Value="CancelDlg">1</Publish>
+        </Control>
+
+        <Control Id="Title" Type="Text" Transparent="yes" NoPrefix="yes" Text="IIS Settings" X="15" Y="6" Width="219" Height="28" />
+
+        <Control Id="BannerLine" Type="Line" X="0" Y="44" Width="370" Height="0" />
+        <Control Id="BottomLine" Type="Line" X="0" Y="234" Width="370" Height="0" />
+
+        <Control Type="Text" Id="WebSiteLabel" Text="Web Site:" Width="290" Height="10" X="20" Y="105" />
+        <Control Id="WebSiteCombo" Type="ComboBox" Property="WEBSITEVALUE" Sorted="yes" ComboList="yes" X="20" Y="117" Width="250" Height="16" />
+
+        <Control Type="Text" Id="AppPoolLabel" Text="Application Pool:" Width="290" Height="10" X="20" Y="140" />
+        <Control Id="AppPoolCombo" Type="ComboBox" Property="APPPOOLVALUE" Sorted="yes" ComboList="yes" X="20" Y="152" Width="250" Height="16" />
+
+        <Control Type="Text" Id="VirtualDirectoryLabel" Text="Virtual Directory:" Width="290" Height="10" X="20" Y="175" />
+        <Control Type="Edit" Id="VirtualDirectoryTextbox" Property="VIRTUALDIRECTORYVALUE" Width="250" Height="15" X="20" Y="187" />
+      </Dialog>
+    </UI>
+	</Fragment>
+</Wix>

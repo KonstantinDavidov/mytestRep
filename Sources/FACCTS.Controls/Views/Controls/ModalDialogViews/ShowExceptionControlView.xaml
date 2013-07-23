@@ -1,0 +1,34 @@
+﻿<UserControl
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:cal="http://www.caliburnproject.org"
+	mc:Ignorable="d"
+	x:Class="FACCTS.Controls.ShowExceptionControlView"
+	x:Name="UserControl"
+	d:DesignWidth="640" Width="350" Height="248">
+
+	<Border BorderBrush="Black" BorderThickness="1" Margin="10" x:Name="LayoutRoot" Background="{DynamicResource ControlBackgroundBrush}" Padding="20">
+		<Grid >
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="73.667"/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="An exception appeared while executing the application. See details below" VerticalAlignment="Center" Grid.Column="2" Height="47.88" Width="158.213"/>
+			<ContentControl >
+				<Canvas x:Name="Layer_1" Width="80" Height="80" >
+					<Rectangle Fill="Black" Stretch="Fill" Height="48" Width="20" RenderTransformOrigin="0.6,-0.105" Canvas.Left="25" Canvas.Top="10"/>
+					<Path Fill="#FFE2FF00" Data="F1 M145.742,55.559L54.742,146.559 145.742,237.559 236.742,146.559 145.742,55.559z M160.122,97.934L149.42,180.2 142.063,180.2 131.362,97.934 160.122,97.934z M145.742,200.934C141.31,200.934 137.716,197.34 137.716,192.908 137.716,188.475 141.31,184.882 145.742,184.882 150.174,184.882 153.768,188.475 153.768,192.908 153.768,197.34 150.174,200.934 145.742,200.934z" Height="70" Stretch="Fill" Width="70" />
+				</Canvas>
+			</ContentControl>
+			<TextBox Grid.ColumnSpan="2" TextWrapping="Wrap" Text="{Binding ExceptionContent, Mode=OneWay}" Grid.Row="1" IsReadOnly="True"/>
+            <Button Content="OK" HorizontalAlignment="Right" VerticalAlignment="Top" Width="75" Grid.Row="2" Grid.Column="1" IsDefault="True" Margin="0,7,0,0" cal:Message.Attach="Close"/>
+		</Grid>
+	</Border>
+</UserControl>

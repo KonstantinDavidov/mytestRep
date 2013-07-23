@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="IntegrationWCFService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8733/FACCTS.WCFService/IntegrationService/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8733/FACCTS.WCFService/IntegrationService/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8733/FACCTS.WCFService/IntegrationService/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/FACCTS.Server.Model.DataModel" />
+      <xsd:import schemaLocation="http://localhost:8733/FACCTS.WCFService/IntegrationService/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/FACCTS.Server.Model.Enums" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IIntegrationWCFService_InsertManualIntegrationTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertManualIntegrationTask" />
+  </wsdl:message>
+  <wsdl:message name="IIntegrationWCFService_InsertManualIntegrationTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertManualIntegrationTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIntegrationWCFService_UpdateManualIntegrationTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateManualIntegrationTask" />
+  </wsdl:message>
+  <wsdl:message name="IIntegrationWCFService_UpdateManualIntegrationTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateManualIntegrationTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIntegrationWCFService_DeleteManualIntegrationTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteManualIntegrationTask" />
+  </wsdl:message>
+  <wsdl:message name="IIntegrationWCFService_DeleteManualIntegrationTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteManualIntegrationTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIntegrationWCFService_DeleteManualIntegrationTaskById_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteManualIntegrationTaskById" />
+  </wsdl:message>
+  <wsdl:message name="IIntegrationWCFService_DeleteManualIntegrationTaskById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteManualIntegrationTaskByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIntegrationWCFService_InsertScheduledIntegrationTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:InsertScheduledIntegrationTask" />
+  </wsdl:message>
+  <wsdl:message name="IIntegrationWCFService_InsertScheduledIntegrationTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InsertScheduledIntegrationTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIntegrationWCFService_UpdateScheduledIntegrationTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateScheduledIntegrationTask" />
+  </wsdl:message>
+  <wsdl:message name="IIntegrationWCFService_UpdateScheduledIntegrationTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateScheduledIntegrationTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIntegrationWCFService_DeleteScheduledIntegrationTask_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteScheduledIntegrationTask" />
+  </wsdl:message>
+  <wsdl:message name="IIntegrationWCFService_DeleteScheduledIntegrationTask_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteScheduledIntegrationTaskResponse" />
+  </wsdl:message>
+  <wsdl:message name="IIntegrationWCFService_DeleteScheduledIntegrationTaskById_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteScheduledIntegrationTaskById" />
+  </wsdl:message>
+  <wsdl:message name="IIntegrationWCFService_DeleteScheduledIntegrationTaskById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteScheduledIntegrationTaskByIdResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IIntegrationWCFService">
+    <wsdl:operation name="InsertManualIntegrationTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIntegrationWCFService/InsertManualIntegrationTask" message="tns:IIntegrationWCFService_InsertManualIntegrationTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIntegrationWCFService/InsertManualIntegrationTaskResponse" message="tns:IIntegrationWCFService_InsertManualIntegrationTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateManualIntegrationTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIntegrationWCFService/UpdateManualIntegrationTask" message="tns:IIntegrationWCFService_UpdateManualIntegrationTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIntegrationWCFService/UpdateManualIntegrationTaskResponse" message="tns:IIntegrationWCFService_UpdateManualIntegrationTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteManualIntegrationTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIntegrationWCFService/DeleteManualIntegrationTask" message="tns:IIntegrationWCFService_DeleteManualIntegrationTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIntegrationWCFService/DeleteManualIntegrationTaskResponse" message="tns:IIntegrationWCFService_DeleteManualIntegrationTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteManualIntegrationTaskById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIntegrationWCFService/DeleteManualIntegrationTaskById" message="tns:IIntegrationWCFService_DeleteManualIntegrationTaskById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIntegrationWCFService/DeleteManualIntegrationTaskByIdResponse" message="tns:IIntegrationWCFService_DeleteManualIntegrationTaskById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertScheduledIntegrationTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIntegrationWCFService/InsertScheduledIntegrationTask" message="tns:IIntegrationWCFService_InsertScheduledIntegrationTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIntegrationWCFService/InsertScheduledIntegrationTaskResponse" message="tns:IIntegrationWCFService_InsertScheduledIntegrationTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateScheduledIntegrationTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIntegrationWCFService/UpdateScheduledIntegrationTask" message="tns:IIntegrationWCFService_UpdateScheduledIntegrationTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIntegrationWCFService/UpdateScheduledIntegrationTaskResponse" message="tns:IIntegrationWCFService_UpdateScheduledIntegrationTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteScheduledIntegrationTask">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIntegrationWCFService/DeleteScheduledIntegrationTask" message="tns:IIntegrationWCFService_DeleteScheduledIntegrationTask_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIntegrationWCFService/DeleteScheduledIntegrationTaskResponse" message="tns:IIntegrationWCFService_DeleteScheduledIntegrationTask_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteScheduledIntegrationTaskById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IIntegrationWCFService/DeleteScheduledIntegrationTaskById" message="tns:IIntegrationWCFService_DeleteScheduledIntegrationTaskById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IIntegrationWCFService/DeleteScheduledIntegrationTaskByIdResponse" message="tns:IIntegrationWCFService_DeleteScheduledIntegrationTaskById_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IIntegrationWCFService" type="tns:IIntegrationWCFService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="InsertManualIntegrationTask">
+      <soap:operation soapAction="http://tempuri.org/IIntegrationWCFService/InsertManualIntegrationTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateManualIntegrationTask">
+      <soap:operation soapAction="http://tempuri.org/IIntegrationWCFService/UpdateManualIntegrationTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteManualIntegrationTask">
+      <soap:operation soapAction="http://tempuri.org/IIntegrationWCFService/DeleteManualIntegrationTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteManualIntegrationTaskById">
+      <soap:operation soapAction="http://tempuri.org/IIntegrationWCFService/DeleteManualIntegrationTaskById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertScheduledIntegrationTask">
+      <soap:operation soapAction="http://tempuri.org/IIntegrationWCFService/InsertScheduledIntegrationTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateScheduledIntegrationTask">
+      <soap:operation soapAction="http://tempuri.org/IIntegrationWCFService/UpdateScheduledIntegrationTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteScheduledIntegrationTask">
+      <soap:operation soapAction="http://tempuri.org/IIntegrationWCFService/DeleteScheduledIntegrationTask" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteScheduledIntegrationTaskById">
+      <soap:operation soapAction="http://tempuri.org/IIntegrationWCFService/DeleteScheduledIntegrationTaskById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="IntegrationWCFService">
+    <wsdl:port name="BasicHttpBinding_IIntegrationWCFService" binding="tns:BasicHttpBinding_IIntegrationWCFService">
+      <soap:address location="http://localhost:8733/FACCTS.WCFService/IntegrationService/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

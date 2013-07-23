@@ -1,0 +1,12 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:local="clr-namespace:FACCTS.Controls"
+	x:Class="FACCTS.Controls.Views.DropDismissDialogView"
+	x:Name="Window"
+	Title="{Binding DisplayName}"
+	Width="428" Height="331" ResizeMode="NoResize" WindowStartupLocation="CenterOwner">
+	<Border BorderBrush="Black" BorderThickness="1" Padding="40,40,20,20">
+        <local:DropDismissCaseControlView/>
+	</Border>
+</Window>

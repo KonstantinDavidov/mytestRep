@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Profile";
+    Layout = "~/Areas/Admin/Views/Shared/_CourtStaffLayout.cshtml";
+}
+@model FACCTS.Server.Areas.Admin.Models.EditUser
+
+@if (string.IsNullOrEmpty(ViewBag.userName))
+{
+    <div>Staff is not selected</div>
+}
+else 
+{
+    using (Html.BeginForm()) 
+    {
+        <div class="dEdit">
+            <div><span>First Name</span>    @Html.EditorFor(x => x.FirstName)</div>
+            <div><span>Middle Name</span>   @Html.EditorFor(x => x.MiddleName)</div>
+            <div><span>Last Name</span>     @Html.EditorFor(x => x.LastName)</div>
+        
+            <br />
+    
+            <div><span>User ID</span>       @Html.EditorFor(x => x.UserName)</div>
+            <div><span>User Email</span>    @Html.EditorFor(x => x.Email)</div>
+            <div><span>User Phone</span>    @Html.EditorFor(x => x.Phone)</div>
+            
+            <div>
+                <span>CLETS Certified</span> @Html.EditorFor(x => x.Certified)
+            </div>
+
+            <input type="submit" value="Update" />
+        </div>
+    }
+
+    <hr />
+
+    using (Html.BeginForm("LoadUserImage", "CourtStaff", new { userName = ViewBag.userName }, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        <div id="div-user-image">
+            <span>Picture</span>
+            <div>
+                <img id="userImage" alt="Picture" src="@Url.Action("GetImage", "CourtStaff", new { userName = ViewBag.userName })" />
+
+                <br />
+                <input type="file" id="userImageFile" name="userImageFile" onchange="this.parentNode.parentNode.parentNode.submit();" />
+                <a onclick="javascipt: document.getElementById('userImageFile').click()">Click to Change</a>
+            </div>
+        </div>
+    }
+ 
+} 

@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="FACCTS.Controls.Views.RelatedCasesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+			 xmlns:cal="http://www.caliburnproject.org" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="518" Background="{DynamicResource ControlBackgroundBrush}">
+    <Grid>
+    	<Grid.ColumnDefinitions>
+    		<ColumnDefinition/>
+    		<ColumnDefinition Width="Auto"/>
+    	</Grid.ColumnDefinitions>
+    	<Grid.RowDefinitions>
+    		<RowDefinition/>
+    		<RowDefinition Height="Auto"/>
+    		<RowDefinition Height="Auto"/>
+    	</Grid.RowDefinitions>
+    	<DataGrid Grid.ColumnSpan="2" VerticalAlignment="Stretch" ItemsSource="{Binding RelatedCasesCollection}">
+    		<DataGrid.Columns>
+    			<DataGridTextColumn Binding="{Binding CaseNumber, Mode=OneWay}" Header="Case Number"/>
+    			<DataGridTextColumn Binding="{Binding Casetype, Mode=OneWay}" Header="Case Type"/>
+    			<DataGridTextColumn Binding="{Binding County, Mode=OneWay}" Header="County"/>
+    			<DataGridTextColumn Binding="{x:Null}" Header="CPO/TRO"/>
+    			<DataGridTextColumn Binding="{x:Null}" Header="Expiration Date"/>
+    			<DataGridTextColumn Binding="{Binding LeadCase}" Header="Lead Case"/>
+    		</DataGrid.Columns>
+    	</DataGrid>
+    	<Border BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
+    		<Grid>
+    			<Button Content="Save" HorizontalAlignment="Left" Margin="0,0,0,-0.001" VerticalAlignment="Top" Width="75"/>
+    		</Grid>
+    	</Border>
+    	<Border Style="{DynamicResource OrdinalBorder}" VerticalAlignment="Top" Grid.Row="1" BorderThickness="1">
+    		<UniformGrid HorizontalAlignment="Left" VerticalAlignment="Top" Rows="1" Columns="2" Margin="0,0,-66.4,0">
+    			<Button Content="Consolidate" Width="75" Margin="5,0" cal:Message.Attach="Consolidate" IsEnabled="{Binding CanConsolidate, Mode=OneWay}"/>
+    			<Button Content="Separate" Width="75" Margin="5,0" cal:Message.Attach="Separate" IsEnabled="{Binding CanSeparate, Mode=OneWay}"/>
+    		</UniformGrid>
+    	</Border>
+            
+    </Grid>
+</UserControl>

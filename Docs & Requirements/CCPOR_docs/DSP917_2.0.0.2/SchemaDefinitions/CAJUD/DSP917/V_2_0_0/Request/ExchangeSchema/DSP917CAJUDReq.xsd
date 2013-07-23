@@ -1,0 +1,3859 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 (x64) (http://www.altova.com) by Edmund (Judicial Council of California) -->
+<!-- 
+ California Administrative Office of the Courts
+ CCMS Data Exchange DSP917 - Court Sends Restraining Order Issuance/Cancel/Update Notification 
+ Copyright (c)  2011 by the Judicial Council of California/Administrative Office of the Courts. All Rights Reserved.
+ Document Type - An Exchange Schema that provides payload structure for CCMS Exchanges
+ Revision History
+ ===========================================
+ Version # - Date - Author - Description 
+ Version - 1.0.0 - August 2011 - California Administrative Office of the Courts - Initial Creation 
+ ===========================================
+ -->
+<xsd:schema xmlns:sreq="http://niem.gov/niem/structures/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Request" xmlns:cajudreq="https://isb.srv.courts-tc.ca.gov/portal/cajud/schema/dsp917req/2.0.0/xsd" xmlns:ncreq="http://niem.gov/niem/niem-core/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Request" xmlns:ireq="http://niem.gov/niem/appinfo/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Request" xmlns:jreq="http://niem.gov/niem/domains/jxdm/4.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Request" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:niem-xsdreq="http://niem.gov/niem/proxy/xsd/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Request" targetNamespace="https://isb.srv.courts-tc.ca.gov/portal/cajud/schema/dsp917req/2.0.0/xsd" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xsd:import namespace="http://niem.gov/niem/structures/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Request" schemaLocation="../niem/structures/2.0/structures.xsd"/>
+	<xsd:import namespace="http://niem.gov/niem/niem-core/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Request" schemaLocation="../constraint/niem-core/2.0/niem-core.xsd"/>
+	<xsd:import namespace="http://niem.gov/niem/domains/jxdm/4.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Request" schemaLocation="../niem/domains/jxdm/4.0/jxdm.xsd"/>
+	<xsd:import namespace="http://niem.gov/niem/appinfo/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Request" schemaLocation="../niem/appinfo/2.0/appinfo.xsd"/>
+	<xsd:import namespace="http://niem.gov/niem/proxy/xsd/2.0/CAJUD/CCMS/SendRestrainingOrderNotification-DSP917/Request" schemaLocation="../niem/proxy/xsd/2.0/xsd.xsd"/>
+	<xsd:complexType name="AdditionalProtectedPersonInformationType">
+		<xsd:annotation>
+			<xsd:documentation>Information for additional protected persons.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:HouseholdMemberCode" minOccurs="0" maxOccurs="1"/>
+					<xsd:element ref="cajudreq:RelationshipCode" minOccurs="0" maxOccurs="1"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="CancellationDateType">
+		<xsd:annotation>
+			<xsd:documentation>A data type for the date on which the restraining order was cancelled, dismissed or terminated.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="ncreq:Date"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="CaseAugmentationType">
+		<xsd:annotation>
+			<xsd:documentation>Additional information about a case.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="jreq:CaseOtherIdentification"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="CaseRestrainingOrderType">
+		<xsd:annotation>
+			<xsd:documentation>A data type for a set of details of the restraining order.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="ncreq:ActivityCategoryText"/>
+					<xsd:element ref="cajudreq:AddUpdateCancelText"/>
+					<xsd:element ref="cajudreq:CancellationDate" minOccurs="0"/>
+					<xsd:element ref="cajudreq:CancellationReasonText" minOccurs="0"/>
+					<xsd:element ref="cajudreq:CCPOROrderIdentifierText" minOccurs="0"/>
+					<xsd:element ref="cajudreq:ConfidentialCode" minOccurs="1"/>
+					<xsd:element ref="cajudreq:ContactAllowedCode" minOccurs="0"/>
+					<xsd:element ref="jreq:CourtName"/>
+					<xsd:element ref="cajudreq:CourtOrderChildCustodyCode" minOccurs="0"/>
+					<xsd:element ref="ncreq:ExpirationDate" minOccurs="0"/>
+					<xsd:element ref="cajudreq:FileControlNumber" minOccurs="0"/>
+					<xsd:element ref="cajudreq:FirearmProvisionsCode" minOccurs="0"/>
+					<xsd:element ref="ncreq:IdentificationID"/>
+					<xsd:element ref="cajudreq:IssuanceStateCode" minOccurs="0"/>
+					<xsd:element ref="cajudreq:IssuedDate" minOccurs="0"/>
+					<xsd:element ref="cajudreq:IssuingTerritoryCode" minOccurs="0"/>
+					<xsd:element ref="cajudreq:IssuingTribeText" minOccurs="0"/>
+					<xsd:element ref="cajudreq:MiscellaneousInformationText" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element ref="cajudreq:NotesText" minOccurs="0"/>
+					<xsd:element ref="cajudreq:NeverExpiresCode" minOccurs="0"/>
+					<xsd:element ref="cajudreq:OtherOrdersText" minOccurs="0"/>
+					<xsd:element ref="cajudreq:PresentInCourtCode" minOccurs="1"/>
+					<xsd:element ref="cajudreq:RestrainingOrderAttachment" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element ref="cajudreq:SealedCode" minOccurs="1"/>
+					<xsd:element ref="cajudreq:ServedDate" minOccurs="0"/>
+					<xsd:element ref="cajudreq:Server" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element ref="cajudreq:StayAwayText" minOccurs="0"/>
+					<xsd:element ref="cajudreq:VacateAddress" minOccurs="0"/>
+					<xsd:element ref="cajudreq:VisitationCode" minOccurs="0"/>
+					<xsd:element ref="cajudreq:YardsToStayAwayQuantity" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ContactInformationType">
+		<xsd:annotation>
+			<xsd:documentation>A set of details on how to contact a person or an organization.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="ncreq:ContactMailingAddress"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="CourtType">
+		<xsd:annotation>
+			<xsd:documentation>A court that is handing the court case.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:OrganizationCourtIdentification"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="CourtCaseType">
+		<xsd:annotation>
+			<xsd:documentation>An aggregation of information, in any format, that describes a set of related activities and occurrences. The domain or discipline defines the limits of the information included in a specific kind of case.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="ncreq:ActivityDate"/>
+					<xsd:element ref="cajudreq:CaseAugmentation" minOccurs="0"/>
+					<xsd:element ref="ncreq:CaseDocketID"/>
+					<xsd:element ref="cajudreq:CaseRestrainingOrder"/>
+					<xsd:element ref="cajudreq:OriginatingAgencyID"/>
+					<xsd:element ref="cajudreq:ProtectedParticipant" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element ref="cajudreq:RestrainedParticipant" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="DescriptiveMetadataType">
+		<xsd:annotation>
+			<xsd:documentation>A set of  information that further qualifies primary data; data about data that typically tends to be more application specific.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:ExternalIdentifier" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ExternalIdentifierType">
+		<xsd:annotation>
+			<xsd:documentation>An external system identifier that uniquely identifies a Case, Person, Warrant, etc..across multiple systems or applications.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:IdentificationCategoryDescriptionCode" minOccurs="0"/>
+					<xsd:element ref="ncreq:IdentificationID" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="IssuedDateType">
+		<xsd:annotation>
+			<xsd:documentation>A data type for the date the restraining/protective order was issued by the court.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="ncreq:Date"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="LocationStreetType">
+		<xsd:annotation>
+			<xsd:documentation>A road, thoroughfare or highway.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="ncreq:StreetType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:StreetCategoryCode" minOccurs="0"/>
+					<xsd:element ref="cajudreq:StreetPredirectionalCode" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:simpleType name="NameCodeType">
+		<xsd:annotation>
+			<xsd:documentation>A code value for the type of name for participant.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="FILEDAS">
+				<xsd:annotation>
+					<xsd:documentation>Filed As</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="FDBA">
+				<xsd:annotation>
+					<xsd:documentation>FDBA (Formerly Doing Business As)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ESA">
+				<xsd:annotation>
+					<xsd:documentation>ESA (Erroneously Sued As)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ALIAS">
+				<xsd:annotation>
+					<xsd:documentation>Alias</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MONIKER">
+				<xsd:annotation>
+					<xsd:documentation>Moniker</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="TRUENAME">
+				<xsd:annotation>
+					<xsd:documentation>True Name</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="AKA">
+				<xsd:annotation>
+					<xsd:documentation>AKA (Also Known As)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="NONE">
+				<xsd:annotation>
+					<xsd:documentation>NA</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="DBA">
+				<xsd:annotation>
+					<xsd:documentation>DBA (Doing Business As)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="FKA">
+				<xsd:annotation>
+					<xsd:documentation>FKA (Formerly Known As)</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="NAMEONCASE">
+				<xsd:annotation>
+					<xsd:documentation>Name on case</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="OrganizationType">
+		<xsd:annotation>
+			<xsd:documentation>A set of details about a unit which conducts some sort of business or operations.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:OrganizationCourtIdentification"/>
+					<xsd:element ref="cajudreq:OrganizationName"/>
+					<xsd:element ref="ncreq:OrganizationOtherIdentification" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="OrganizationCourtIdentificationType">
+		<xsd:annotation>
+			<xsd:documentation>A court identification number.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="ncreq:IdentificationID"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="OrganizationNameType">
+		<xsd:annotation>
+			<xsd:documentation>A set of names and/or acronyms by which an organization may be known.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:OrganizationCaseNameCategoryCode" minOccurs="0"/>
+					<xsd:element ref="cajudreq:OrganizationFullName"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="OrganizationVehicleAssociationType">
+		<xsd:annotation>
+			<xsd:documentation>An association between an organization and vehicle.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="ncreq:OrganizationReference"/>
+					<xsd:element ref="ncreq:VehicleReference"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="PersonType">
+		<xsd:annotation>
+			<xsd:documentation>A human being that is involved in an activity in any role at any given point in time.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:PersonBirth" minOccurs="0"/>
+					<xsd:element ref="cajudreq:PersonCourtIdentification" minOccurs="0"/>
+					<xsd:element ref="cajudreq:PersonDemographics" minOccurs="0"/>
+					<xsd:element ref="cajudreq:PersonName" minOccurs="0"/>
+					<xsd:element ref="ncreq:PersonOtherIdentification" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element ref="ncreq:PersonPhysicalFeature" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="PersonBirthType">
+		<xsd:annotation>
+			<xsd:documentation>A data concept for the details of a person birth.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="ncreq:PersonBirthDate" minOccurs="0"/>
+					<xsd:element ref="cajudreq:PersonStateOfBirth" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="PersonCourtIdentificationType">
+		<xsd:annotation>
+			<xsd:documentation>A unique identifier assigned by a court to a person.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="ncreq:IdentificationID"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="PersonDemographicsType">
+		<xsd:annotation>
+			<xsd:documentation>A data type for the demographics of a human being that is involved in an activity in any role at any given point in time.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:PersonEyeColorCode" minOccurs="0"/>
+					<xsd:element ref="cajudreq:PersonHairColorCode" minOccurs="0"/>
+					<xsd:element ref="ncreq:PersonHeightMeasure" minOccurs="0"/>
+					<xsd:element ref="cajudreq:PersonRaceCode" minOccurs="0"/>
+					<xsd:element ref="cajudreq:PersonSexCode" minOccurs="0"/>
+					<xsd:element ref="cajudreq:PersonSkinToneCode" minOccurs="0"/>
+					<xsd:element ref="ncreq:PersonWeightMeasure" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="PersonNameType">
+		<xsd:annotation>
+			<xsd:documentation>A combination of names and/or titles by which a person is known.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:PersonCaseNameCategoryCode" minOccurs="0"/>
+					<xsd:element ref="ncreq:PersonGivenName"/>
+					<xsd:element ref="ncreq:PersonMiddleName" minOccurs="0"/>
+					<xsd:element ref="ncreq:PersonNameSuffixText" minOccurs="0"/>
+					<xsd:element ref="ncreq:PersonSurName"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="PersonStateOfBirthType">
+		<xsd:annotation>
+			<xsd:documentation>US State where a person was born.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:LocationStateUSPostalServiceCode"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="PersonVehicleAssociationType">
+		<xsd:annotation>
+			<xsd:documentation>An association between a person and vehicle.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="ncreq:PersonReference"/>
+					<xsd:element ref="ncreq:VehicleReference"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ProductExchangePackageType">
+		<xsd:annotation>
+			<xsd:documentation>An SOA/Exchange wrapper to provide a common base and structure for CAJUD Exchanges.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:ProductRelatedObjects"/>
+					<xsd:element ref="cajudreq:RestrainedParticipantPersonContactInformationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element ref="cajudreq:RestrainedParticipantOrganizationContactInformationAssociation" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element ref="cajudreq:PersonVehicleAssociation" minOccurs="0" maxOccurs="unbounded"/>
+					<xsd:element ref="cajudreq:OrganizationVehicleAssociation" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ProductRelatedActivitiesType">
+		<xsd:annotation>
+			<xsd:documentation>A logical grouping of activities that are related to the product being exchanged.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:CourtCase"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ProductRelatedContactInformationType">
+		<xsd:annotation>
+			<xsd:documentation>A logical grouping of contact information for the product being exchanged.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:ContactInformation" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ProductRelatedItemsType">
+		<xsd:annotation>
+			<xsd:documentation>A logical grouping of articles or things that are related to the product being exchanged. that are related to the product being exchanged.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:Vehicle" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ProductRelatedMetadataType">
+		<xsd:annotation>
+			<xsd:documentation>A logical grouping of metadata that are related to the product being exchanged.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:DescriptiveMetadata"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ProductRelatedObjectsType">
+		<xsd:annotation>
+			<xsd:documentation>A logical grouping of peer level objects.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:ProductRelatedActivities"/>
+					<xsd:element ref="cajudreq:ProductRelatedContactInformation" minOccurs="0"/>
+					<xsd:element ref="cajudreq:ProductRelatedItems" minOccurs="0"/>
+					<xsd:element ref="cajudreq:ProductRelatedMetadata" minOccurs="0"/>
+					<xsd:element ref="cajudreq:ProductRelatedOrganizations"/>
+					<xsd:element ref="cajudreq:ProductRelatedPeople" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ProductRelatedOrganizationsType">
+		<xsd:annotation>
+			<xsd:documentation>A logical grouping of organizations that are related to the product being exchanged.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:Court"/>
+					<xsd:element ref="cajudreq:Organization" minOccurs="0" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ProductRelatedPeopleType">
+		<xsd:annotation>
+			<xsd:documentation>A logical grouping of people that are related to the product being exchanged.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:Person" maxOccurs="unbounded"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ProtectedParticipantType">
+		<xsd:annotation>
+			<xsd:documentation>An individual who protected a participant in the case activity.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:AdditionalProtectedPersonInformation" minOccurs="0" maxOccurs="1"/>
+					<xsd:element ref="cajudreq:ParticipantCategoryCode"/>
+					<xsd:element ref="cajudreq:RoleOfEntity"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="RestrainedParticipantType">
+		<xsd:annotation>
+			<xsd:documentation>An individual who restrained a participant in the case activity.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:CautionMedicalConditionCode" minOccurs="0" maxOccurs="9"/>
+					<xsd:element ref="cajudreq:ParticipantCategoryCode"/>
+					<xsd:element ref="cajudreq:RoleOfEntity"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="RestrainedParticipantOrganizationContactInformationAssociationType">
+		<xsd:annotation>
+			<xsd:documentation>A data type for an association between a restrained organization as a participant and contact information.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:ContactInformationCategoryAddressTypeCode" minOccurs="0"/>
+					<xsd:element ref="ncreq:ContactInformationReference"/>
+					<xsd:element ref="ncreq:OrganizationReference"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="RestrainedParticipantPersonContactInformationAssociationType">
+		<xsd:annotation>
+			<xsd:documentation>A data type for an association between a restrained organization as a person and contact information.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:ContactInformationCategoryAddressTypeCode" minOccurs="0"/>
+					<xsd:element ref="ncreq:ContactInformationReference"/>
+					<xsd:element ref="ncreq:PersonReference"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="RestrainingOrderAttachmentType">
+		<xsd:annotation>
+			<xsd:documentation>A data type for the attachments of a restraining order. </xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="ncreq:DocumentBinary" minOccurs="1"/>
+					<xsd:element ref="ncreq:DocumentCategoryText" minOccurs="1"/>
+					<xsd:element ref="ncreq:DocumentDescriptionText" minOccurs="1"/>
+					<xsd:element ref="ncreq:DocumentFormatCategoryText" minOccurs="1"/>
+					<xsd:element ref="ncreq:DocumentTitleText" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="RoleOfEntityType">
+		<xsd:annotation>
+			<xsd:documentation>Role played by an object (Person or Organization).</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:EntityRoleCode" minOccurs="0" maxOccurs="1"/>
+					<xsd:choice>
+						<xsd:element ref="ncreq:RoleOfOrganizationReference" minOccurs="0"/>
+						<xsd:element ref="ncreq:RoleOfPersonReference" minOccurs="0"/>
+					</xsd:choice>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ServedDateType">
+		<xsd:annotation>
+			<xsd:documentation>A data type for the date the restraining/protective order was served.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="ncreq:Date"/>
+					<xsd:element ref="cajudreq:Time" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="ServerType">
+		<xsd:annotation>
+			<xsd:documentation>A data type for the bailiff's information only populated if the restraining order is served in court.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:AgentIdText" minOccurs="0"/>
+					<xsd:element ref="cajudreq:AgencyNameText" minOccurs="0"/>
+					<xsd:element ref="cajudreq:PrivatePersonCode" minOccurs="0"/>
+					<xsd:element ref="cajudreq:RoleOfEntity" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:simpleType name="StateCodeType">
+		<xsd:annotation>
+			<xsd:documentation>A code value for US states</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="AL">
+				<xsd:annotation>
+					<xsd:documentation>Alabama</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="AK">
+				<xsd:annotation>
+					<xsd:documentation>Alaska</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="AZ">
+				<xsd:annotation>
+					<xsd:documentation>Arizona</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="AR">
+				<xsd:annotation>
+					<xsd:documentation>Arkansas</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CA">
+				<xsd:annotation>
+					<xsd:documentation>California</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CO">
+				<xsd:annotation>
+					<xsd:documentation>Colorado</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="CT">
+				<xsd:annotation>
+					<xsd:documentation>Connecticut</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="DE">
+				<xsd:annotation>
+					<xsd:documentation>Delaware</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="DC">
+				<xsd:annotation>
+					<xsd:documentation>Washington, Dc</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="FL">
+				<xsd:annotation>
+					<xsd:documentation>Florida</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="GA">
+				<xsd:annotation>
+					<xsd:documentation>Georgia</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="HI">
+				<xsd:annotation>
+					<xsd:documentation>Hawaii</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ID">
+				<xsd:annotation>
+					<xsd:documentation>Idaho</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="IL">
+				<xsd:annotation>
+					<xsd:documentation>Illinois</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="IN">
+				<xsd:annotation>
+					<xsd:documentation>Indiana</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="IA">
+				<xsd:annotation>
+					<xsd:documentation>Iowa</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="KS">
+				<xsd:annotation>
+					<xsd:documentation>Kansas</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="KY">
+				<xsd:annotation>
+					<xsd:documentation>Kentucky</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="LA">
+				<xsd:annotation>
+					<xsd:documentation>Louisiana</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ME">
+				<xsd:annotation>
+					<xsd:documentation>Maine</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MD">
+				<xsd:annotation>
+					<xsd:documentation>Maryland</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MA">
+				<xsd:annotation>
+					<xsd:documentation>Massachusetts</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MI">
+				<xsd:annotation>
+					<xsd:documentation>Michigan</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MN">
+				<xsd:annotation>
+					<xsd:documentation>Minnesota</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MS">
+				<xsd:annotation>
+					<xsd:documentation>Mississippi</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MO">
+				<xsd:annotation>
+					<xsd:documentation>Missouri</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="MT">
+				<xsd:annotation>
+					<xsd:documentation>Montana</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="NE">
+				<xsd:annotation>
+					<xsd:documentation>Nebraska</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="NV">
+				<xsd:annotation>
+					<xsd:documentation>Nevada</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="NH">
+				<xsd:annotation>
+					<xsd:documentation>New Hampshire</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="NJ">
+				<xsd:annotation>
+					<xsd:documentation>New Jersey</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="NM">
+				<xsd:annotation>
+					<xsd:documentation>New Mexico</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="NY">
+				<xsd:annotation>
+					<xsd:documentation>New York</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="NC">
+				<xsd:annotation>
+					<xsd:documentation>North Carolina</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="ND">
+				<xsd:annotation>
+					<xsd:documentation>North Dakota</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="OH">
+				<xsd:annotation>
+					<xsd:documentation>Ohio</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="OK">
+				<xsd:annotation>
+					<xsd:documentation>Oklahoma</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="OR">
+				<xsd:annotation>
+					<xsd:documentation>Oregon</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="PA">
+				<xsd:annotation>
+					<xsd:documentation>Pennsylvania</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="RI">
+				<xsd:annotation>
+					<xsd:documentation>Rhode Island</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="SC">
+				<xsd:annotation>
+					<xsd:documentation>South Carolina</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="SD">
+				<xsd:annotation>
+					<xsd:documentation>South Dakota</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="TN">
+				<xsd:annotation>
+					<xsd:documentation>Tennessee</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="TX">
+				<xsd:annotation>
+					<xsd:documentation>Texas</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="UT">
+				<xsd:annotation>
+					<xsd:documentation>Utah</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="VT">
+				<xsd:annotation>
+					<xsd:documentation>Vermont</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="VA">
+				<xsd:annotation>
+					<xsd:documentation>Virginia</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="WA">
+				<xsd:annotation>
+					<xsd:documentation>Washington</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="WV">
+				<xsd:annotation>
+					<xsd:documentation>West Virginia</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="WI">
+				<xsd:annotation>
+					<xsd:documentation>Wisconsin</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="WY">
+				<xsd:annotation>
+					<xsd:documentation>Wyoming</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:complexType name="VacateAddressType">
+		<xsd:annotation>
+			<xsd:documentation>A data type for the address including street and city that the restrained party must move from.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="ncreq:AddressFullText"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:complexType name="VehicleType">
+		<xsd:annotation>
+			<xsd:documentation>A description of  a motor-driven conveyance designed to carry its operator, passengers, and cargo, including trailers, and excepting boats.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexContent>
+			<xsd:extension base="sreq:ComplexObjectType">
+				<xsd:sequence>
+					<xsd:element ref="cajudreq:ConveyanceColorPrimaryText" minOccurs="0"/>
+					<xsd:element ref="ncreq:ConveyanceRegistrationPlateIdentification" minOccurs="0"/>
+					<xsd:element ref="cajudreq:ItemBrandNameText" minOccurs="0"/>
+					<xsd:element ref="cajudreq:ItemCategoryText" minOccurs="0"/>
+					<xsd:element ref="cajudreq:ItemModelNameText" minOccurs="0"/>
+					<xsd:element ref="ncreq:VehicleIdentification" minOccurs="0"/>
+					<xsd:element ref="ncreq:Year" minOccurs="0"/>
+				</xsd:sequence>
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+	<xsd:simpleType name="YesOrNoType">
+		<xsd:annotation>
+			<xsd:documentation>Yes or No enumerated type used for Yes/No elements</xsd:documentation>
+		</xsd:annotation>
+		<xsd:restriction base="xsd:token">
+			<xsd:enumeration value="N">
+				<xsd:annotation>
+					<xsd:documentation>No</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+			<xsd:enumeration value="Y">
+				<xsd:annotation>
+					<xsd:documentation>Yes</xsd:documentation>
+				</xsd:annotation>
+			</xsd:enumeration>
+		</xsd:restriction>
+	</xsd:simpleType>
+	<xsd:element name="AdditionalProtectedPersonInformation" type="cajudreq:AdditionalProtectedPersonInformationType">
+		<xsd:annotation>
+			<xsd:documentation>Information for additional protected persons.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="AddUpdateCancelText">
+		<xsd:annotation>
+			<xsd:documentation>A text value indicating whether the current exchange is adding, updating, or canceling a Restraining Order.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncreq:TextType">
+					<xsd:maxLength value="1"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="AgencyNameText">
+		<xsd:annotation>
+			<xsd:documentation>A text value for the name of the Agency who served the restraining order.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncreq:TextType">
+					<xsd:maxLength value="30"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="AgentIdText">
+		<xsd:annotation>
+			<xsd:documentation>A text value for the id of the person who served the restraining order.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncreq:TextType">
+					<xsd:maxLength value="5"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="CancellationDate" type="cajudreq:CancellationDateType">
+		<xsd:annotation>
+			<xsd:documentation>The date on which the restraining order was cancelled, dismissed or terminated.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="CancellationReasonText">
+		<xsd:annotation>
+			<xsd:documentation>The reason that the restraining order was cancelled, dismissed or terminated.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncreq:TextType">
+					<xsd:maxLength value="1"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="CaseAugmentation" type="cajudreq:CaseAugmentationType">
+		<xsd:annotation>
+			<xsd:documentation>Additional information about a case.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="CaseRestrainingOrder" type="cajudreq:CaseRestrainingOrderType">
+		<xsd:annotation>
+			<xsd:documentation>A data concept for a set of details of the restraining order.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="CautionMedicalConditionCode">
+		<xsd:annotation>
+			<xsd:documentation>A code value to alert the user of potential  dangers associated with a restrained person.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:token">
+				<xsd:enumeration value="00">
+					<xsd:annotation>
+						<xsd:documentation>Armed and dangerous</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="01">
+					<xsd:annotation>
+						<xsd:documentation>Other</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="05">
+					<xsd:annotation>
+						<xsd:documentation>Violent tendencies</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="10">
+					<xsd:annotation>
+						<xsd:documentation>Martial arts expert</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="15">
+					<xsd:annotation>
+						<xsd:documentation>Explosive expertise</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="20">
+					<xsd:annotation>
+						<xsd:documentation>Known to abuse drugs</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="25">
+					<xsd:annotation>
+						<xsd:documentation>Escape risk</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="30">
+					<xsd:annotation>
+						<xsd:documentation>Sexually violent predator - contact ORI for detailed information</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="40">
+					<xsd:annotation>
+						<xsd:documentation>International Flight Risk</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="50">
+					<xsd:annotation>
+						<xsd:documentation>Heart condition</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="55">
+					<xsd:annotation>
+						<xsd:documentation>Alcoholic</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="60">
+					<xsd:annotation>
+						<xsd:documentation>Allergies</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="65">
+					<xsd:annotation>
+						<xsd:documentation>Epilepsy</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="70">
+					<xsd:annotation>
+						<xsd:documentation>Suicidal</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="80">
+					<xsd:annotation>
+						<xsd:documentation>Medication required</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="85">
+					<xsd:annotation>
+						<xsd:documentation>Hemophiliac</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="90">
+					<xsd:annotation>
+						<xsd:documentation>Diabetic</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="CCPOROrderIdentifierText">
+		<xsd:annotation>
+			<xsd:documentation>A text value containing the unique value assigned by CCPOR to the Restraining Order.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncreq:TextType">
+					<xsd:maxLength value="6"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="ConfidentialCode" type="cajudreq:YesOrNoType">
+		<xsd:annotation>
+			<xsd:documentation>Yes/No indicator if the protective order is confidential.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="ContactInformation" type="cajudreq:ContactInformationType">
+		<xsd:annotation>
+			<xsd:documentation>A set of details on how to contact a person or an organization.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="ContactInformationCategoryAddressTypeCode">
+		<xsd:annotation>
+			<xsd:documentation>A code that categorizes the usage of an address associated with contact information, such as home, work, etc.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:token">
+				<xsd:enumeration value="BUS">
+					<xsd:annotation>
+						<xsd:documentation>Business Address</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="UNK">
+					<xsd:annotation>
+						<xsd:documentation>Unknown</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="COL">
+					<xsd:annotation>
+						<xsd:documentation>Collection</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MILFPO">
+					<xsd:annotation>
+						<xsd:documentation>Military F.P.O. Box</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BILL">
+					<xsd:annotation>
+						<xsd:documentation>Billing</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TRA">
+					<xsd:annotation>
+						<xsd:documentation>Transient</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="INT">
+					<xsd:annotation>
+						<xsd:documentation>International</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MILAPO">
+					<xsd:annotation>
+						<xsd:documentation>Military A.P.O. Box</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MAIL">
+					<xsd:annotation>
+						<xsd:documentation>Mailing Address</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="POBOX">
+					<xsd:annotation>
+						<xsd:documentation>P.O. Box</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="NONE">
+					<xsd:annotation>
+						<xsd:documentation>NA</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="HOM">
+					<xsd:annotation>
+						<xsd:documentation>Home Address</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="WARR">
+					<xsd:annotation>
+						<xsd:documentation>Warrant</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GEN">
+					<xsd:annotation>
+						<xsd:documentation>General Delivery</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="ContactAllowedCode" type="cajudreq:YesOrNoType">
+		<xsd:annotation>
+			<xsd:documentation>Yes/No whether or not the restrained person can contact the protected person.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="ConveyanceColorPrimaryText">
+		<xsd:annotation>
+			<xsd:documentation>A text value for a single, upper-most, front-most, or majority color of a conveyance.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncreq:TextType">
+					<xsd:maxLength value="5"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Court" type="cajudreq:CourtType">
+		<xsd:annotation>
+			<xsd:documentation>A court that is handing the court case.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="CourtCase" type="cajudreq:CourtCaseType">
+		<xsd:annotation>
+			<xsd:documentation>An aggregation of information, in any format, that describes a set of related activities and occurrences. The domain or discipline defines the limits of the information included in a specific kind of case.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="CourtOrderChildCustodyCode">
+		<xsd:annotation>
+			<xsd:documentation>A code value to indicate who has custody of the child(ren), i.e. whether the restrained person, protected person, other party or joint custody.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:token">
+				<xsd:enumeration value="JT">
+					<xsd:annotation>
+						<xsd:documentation>Joint Custody</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="OP">
+					<xsd:annotation>
+						<xsd:documentation>Other Party</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PP">
+					<xsd:annotation>
+						<xsd:documentation>Protected Person</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="RP">
+					<xsd:annotation>
+						<xsd:documentation>Restrained Person</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="DescriptiveMetadata" type="cajudreq:DescriptiveMetadataType">
+		<xsd:annotation>
+			<xsd:documentation>A set of  information that further qualifies primary data; data about data that typically tends to be more application specific.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="EntityRoleCode">
+		<xsd:annotation>
+			<xsd:documentation>A code value for the role of a person or organization in relation to an activity.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:token">
+				<xsd:enumeration value="APPSC">
+					<xsd:annotation>
+						<xsd:documentation>Additional Protected Person</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PPSC">
+					<xsd:annotation>
+						<xsd:documentation>Protected Person - Case Participant</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="RESPER">
+					<xsd:annotation>
+						<xsd:documentation>Restrained Person</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="AFS">
+					<xsd:annotation>
+						<xsd:documentation>Agent For Service</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="ExternalIdentifier" type="cajudreq:ExternalIdentifierType">
+		<xsd:annotation>
+			<xsd:documentation>An external system identifier that uniquely identifies a Case, Person, Warrant, etc..across multiple systems or applications.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="FileControlNumber">
+		<xsd:annotation>
+			<xsd:documentation>A unique identifier assigned to a restraining order that is sent to the DOJ.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncreq:TextType">
+					<xsd:maxLength value="2000"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="FirearmProvisionsCode">
+		<xsd:annotation>
+			<xsd:documentation>Code value to indicate whether firearm restrictions are to be enforced.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:token">
+				<xsd:enumeration value="B">
+					<xsd:annotation>
+						<xsd:documentation>Cannot Purchase or Recieve and must Surrender all (Both P and S)</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="N">
+					<xsd:annotation>
+						<xsd:documentation>No Firearm Restrictions</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="P">
+					<xsd:annotation>
+						<xsd:documentation>Cannot Purchase or Recieve</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="S">
+					<xsd:annotation>
+						<xsd:documentation>Must Surrender All</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="HouseholdMemberCode" type="cajudreq:YesOrNoType">
+		<xsd:annotation>
+			<xsd:documentation>Yes/No indicator if additional protected person(s) reside with the initial protected person.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="IdentificationCategoryCode" substitutionGroup="ncreq:IdentificationCategory">
+		<xsd:annotation>
+			<xsd:documentation>A code value that specifies the kind of identification.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:token">
+				<xsd:enumeration value="AF">
+					<xsd:annotation>
+						<xsd:documentation>Air Force Serial</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="AR">
+					<xsd:annotation>
+						<xsd:documentation>Alien Registration</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="AS">
+					<xsd:annotation>
+						<xsd:documentation>Army Serial and/or National Guard Serial and/or Air National Guard Serial</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CG">
+					<xsd:annotation>
+						<xsd:documentation>US Coast Guard Serial</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CI">
+					<xsd:annotation>
+						<xsd:documentation>Canadian Social Insurance</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CII">
+					<xsd:annotation>
+						<xsd:documentation>Criminal Identification Number (associated with a fingerprint record) also referred to as a State Identification Number (SID)</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="DLN">
+					<xsd:annotation>
+						<xsd:documentation>Drivers License Number</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="FBN">
+					<xsd:annotation>
+						<xsd:documentation>FBI Number</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MC">
+					<xsd:annotation>
+						<xsd:documentation>Marine Corps Serial</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MD">
+					<xsd:annotation>
+						<xsd:documentation>Mariner's Document/ID</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MP">
+					<xsd:annotation>
+						<xsd:documentation>Royal Canadian Mounted Police ID</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="NS">
+					<xsd:annotation>
+						<xsd:documentation>Navy Serial</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="OA">
+					<xsd:annotation>
+						<xsd:documentation>Originating Agency Police ID</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PP">
+					<xsd:annotation>
+						<xsd:documentation>Passport</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PI">
+					<xsd:annotation>
+						<xsd:documentation>Personal ID</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PS">
+					<xsd:annotation>
+						<xsd:documentation>Port Security Card</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SID">
+					<xsd:annotation>
+						<xsd:documentation>State Identification Number (associated with a fingerprint record) also referred to as a Criminal Identification Number (CII)</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SSN">
+					<xsd:annotation>
+						<xsd:documentation>Social Security Number</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="VA">
+					<xsd:annotation>
+						<xsd:documentation>Veterans Administration Claim</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="IdentificationCategoryDescriptionCode">
+		<xsd:annotation>
+			<xsd:documentation>A description code of a kind of identification.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:token">
+				<xsd:enumeration value="BKNMBR">
+					<xsd:annotation>
+						<xsd:documentation>Booking Number</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CRIMINAL">
+					<xsd:annotation>
+						<xsd:documentation>Criminal</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CTYATYCSFLNMBR">
+					<xsd:annotation>
+						<xsd:documentation>City Attorney Case File Number</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="DA">
+					<xsd:annotation>
+						<xsd:documentation>District Attorney</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="DRNUM">
+					<xsd:annotation>
+						<xsd:documentation>DR Number</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="FINGPRNT">
+					<xsd:annotation>
+						<xsd:documentation>Finger Print Card Number</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PROCSNMBR">
+					<xsd:annotation>
+						<xsd:documentation>Probation Case Number</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SHRFNMBR">
+					<xsd:annotation>
+						<xsd:documentation>Sheriff's ID number</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SRVNMBR">
+					<xsd:annotation>
+						<xsd:documentation>Service Agency Case Number</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="IdentificationJurisdictionCountyText" substitutionGroup="ncreq:IdentificationJurisdiction" nillable="true">
+		<xsd:annotation>
+			<xsd:documentation>A county in which a unique identification is issued.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncreq:TextType">
+					<xsd:maxLength value="30"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="IdentificationJurisdictionStateCode" type="cajudreq:StateCodeType" substitutionGroup="ncreq:IdentificationJurisdiction" nillable="true">
+		<xsd:annotation>
+			<xsd:documentation>A code value for a state in which a unique identification is issued.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="IssuanceStateCode" type="cajudreq:StateCodeType">
+		<xsd:annotation>
+			<xsd:documentation>The State that issued the Order.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="IssuedDate" type="cajudreq:IssuedDateType">
+		<xsd:annotation>
+			<xsd:documentation>The date the restraining/protective order was issued by the court.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="IssuingTerritoryCode">
+		<xsd:annotation>
+			<xsd:documentation>A code value for a territory issuing a protective order.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:token">
+				<xsd:enumeration value="AM">
+					<xsd:annotation>
+						<xsd:documentation>American Samoa</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CG">
+					<xsd:annotation>
+						<xsd:documentation>Caroline Islands</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CZ">
+					<xsd:annotation>
+						<xsd:documentation>Canal Zone</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GM">
+					<xsd:annotation>
+						<xsd:documentation>Guam</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PR">
+					<xsd:annotation>
+						<xsd:documentation>Poerto Rico</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="IssuingTribeText">
+		<xsd:annotation>
+			<xsd:documentation>A text value to identify the Tribe who issued the Restraining Order.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncreq:TextType">
+					<xsd:maxLength value="100"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="ItemBrandNameText">
+		<xsd:annotation>
+			<xsd:documentation>A text value to identify a manufacturer of a property item.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncreq:TextType">
+					<xsd:maxLength value="5"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="ItemCategoryText">
+		<xsd:annotation>
+			<xsd:documentation>A text value for kind of property item.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncreq:TextType">
+					<xsd:maxLength value="5"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="ItemModelNameText">
+		<xsd:annotation>
+			<xsd:documentation>A name of a specific design or kind of item made by a manufacturer.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncreq:TextType">
+					<xsd:maxLength value="5"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="LocationCountryNameCode" substitutionGroup="ncreq:LocationCountry">
+		<xsd:annotation>
+			<xsd:documentation>The ISO county code value for a country.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:token">
+				<xsd:enumeration value="RW">
+					<xsd:annotation>
+						<xsd:documentation>Rwanda</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="AE">
+					<xsd:annotation>
+						<xsd:documentation>United Arab Emirates</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="LT">
+					<xsd:annotation>
+						<xsd:documentation>Lithuania</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MO">
+					<xsd:annotation>
+						<xsd:documentation>Macau</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BB">
+					<xsd:annotation>
+						<xsd:documentation>Barbados</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BY">
+					<xsd:annotation>
+						<xsd:documentation>Byelarus</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CM">
+					<xsd:annotation>
+						<xsd:documentation>Cameroon</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MK">
+					<xsd:annotation>
+						<xsd:documentation>Macedonia</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TZ">
+					<xsd:annotation>
+						<xsd:documentation>Tanzania, United Republic of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SS">
+					<xsd:annotation>
+						<xsd:documentation>Scotland</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GB">
+					<xsd:annotation>
+						<xsd:documentation>United Kingdom</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BQ">
+					<xsd:annotation>
+						<xsd:documentation>Bouvet Island</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PL">
+					<xsd:annotation>
+						<xsd:documentation>Poland</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="EG">
+					<xsd:annotation>
+						<xsd:documentation>Egypt</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CH">
+					<xsd:annotation>
+						<xsd:documentation>Switzerland</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="LV">
+					<xsd:annotation>
+						<xsd:documentation>Latvia</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MU">
+					<xsd:annotation>
+						<xsd:documentation>Mauritius</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="NE">
+					<xsd:annotation>
+						<xsd:documentation>Niger</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BU">
+					<xsd:annotation>
+						<xsd:documentation>Burma (Myanmar)</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="IR">
+					<xsd:annotation>
+						<xsd:documentation>Iran</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="ND">
+					<xsd:annotation>
+						<xsd:documentation>Newfoundland</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="JU">
+					<xsd:annotation>
+						<xsd:documentation>Juan de Nova Island</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="AF">
+					<xsd:annotation>
+						<xsd:documentation>Afghanistan</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="DM">
+					<xsd:annotation>
+						<xsd:documentation>Dominica</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PM">
+					<xsd:annotation>
+						<xsd:documentation>Saint Pierre and Miquelon, Territorial Collectivity of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BR">
+					<xsd:annotation>
+						<xsd:documentation>Brazil</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="LK">
+					<xsd:annotation>
+						<xsd:documentation>Sri Lanka</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="ID">
+					<xsd:annotation>
+						<xsd:documentation>Indonesia</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MZ">
+					<xsd:annotation>
+						<xsd:documentation>Mozambique</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CL">
+					<xsd:annotation>
+						<xsd:documentation>Chile, Republic of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="QA">
+					<xsd:annotation>
+						<xsd:documentation>Qatar</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SE">
+					<xsd:annotation>
+						<xsd:documentation>Sweden</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PH">
+					<xsd:annotation>
+						<xsd:documentation>Philippines</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="KH">
+					<xsd:annotation>
+						<xsd:documentation>Cambodia</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="HU">
+					<xsd:annotation>
+						<xsd:documentation>Hungary</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MW">
+					<xsd:annotation>
+						<xsd:documentation>Malawi</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GT">
+					<xsd:annotation>
+						<xsd:documentation>Guatemala</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GM">
+					<xsd:annotation>
+						<xsd:documentation>Gambia, The</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BL">
+					<xsd:annotation>
+						<xsd:documentation>British Solomon Islands</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="ET">
+					<xsd:annotation>
+						<xsd:documentation>Ethiopia</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="NONE">
+					<xsd:annotation>
+						<xsd:documentation>None</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BG">
+					<xsd:annotation>
+						<xsd:documentation>Bulgaria</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BS">
+					<xsd:annotation>
+						<xsd:documentation>Bahamas</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="ME">
+					<xsd:annotation>
+						<xsd:documentation>Montenegro</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="DN">
+					<xsd:annotation>
+						<xsd:documentation>Coral Sea Islands, Territory of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="ST">
+					<xsd:annotation>
+						<xsd:documentation>Sao Tome</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="EU">
+					<xsd:annotation>
+						<xsd:documentation>Europa Island</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="YB">
+					<xsd:annotation>
+						<xsd:documentation>Guernsey, Bailiwick of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="EH">
+					<xsd:annotation>
+						<xsd:documentation>Western Sahara</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="LC">
+					<xsd:annotation>
+						<xsd:documentation>Saint Lucia</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BP">
+					<xsd:annotation>
+						<xsd:documentation>Bonaire</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MR">
+					<xsd:annotation>
+						<xsd:documentation>Mauritania</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="IQ">
+					<xsd:annotation>
+						<xsd:documentation>Iraq</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TF">
+					<xsd:annotation>
+						<xsd:documentation>French Southern and Antarctic Lands, Territory of the</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="KR">
+					<xsd:annotation>
+						<xsd:documentation>South Korea</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="UA">
+					<xsd:annotation>
+						<xsd:documentation>Ukraine</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="WU">
+					<xsd:annotation>
+						<xsd:documentation>Wallis and Futuna, Territory of the</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="VU">
+					<xsd:annotation>
+						<xsd:documentation>Vanuatu</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="HR">
+					<xsd:annotation>
+						<xsd:documentation>Croatia</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="IK">
+					<xsd:annotation>
+						<xsd:documentation>Manahiki Island</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="WL">
+					<xsd:annotation>
+						<xsd:documentation>Wales</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SR">
+					<xsd:annotation>
+						<xsd:documentation>Suriname</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="DE">
+					<xsd:annotation>
+						<xsd:documentation>Germany</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="EC">
+					<xsd:annotation>
+						<xsd:documentation>Ecuador</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PF">
+					<xsd:annotation>
+						<xsd:documentation>Tahiti</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="JP">
+					<xsd:annotation>
+						<xsd:documentation>Japan</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="XX">
+					<xsd:annotation>
+						<xsd:documentation>Unknown Place of Birth</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="DK">
+					<xsd:annotation>
+						<xsd:documentation>Denmark, Kingdom of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="KZ">
+					<xsd:annotation>
+						<xsd:documentation>Kazakhstan</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SV">
+					<xsd:annotation>
+						<xsd:documentation>El Salvador</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TM">
+					<xsd:annotation>
+						<xsd:documentation>Turkmenistan</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SO">
+					<xsd:annotation>
+						<xsd:documentation>Somalia</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="AD">
+					<xsd:annotation>
+						<xsd:documentation>Andorra</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="WN">
+					<xsd:annotation>
+						<xsd:documentation>West Indies</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CV">
+					<xsd:annotation>
+						<xsd:documentation>Cape Verde Islands</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MX">
+					<xsd:annotation>
+						<xsd:documentation>Mexico</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PK">
+					<xsd:annotation>
+						<xsd:documentation>Pakistan</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="ZW">
+					<xsd:annotation>
+						<xsd:documentation>Zimbabwe</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PA">
+					<xsd:annotation>
+						<xsd:documentation>Panama</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MN">
+					<xsd:annotation>
+						<xsd:documentation>Mongolia</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BT">
+					<xsd:annotation>
+						<xsd:documentation>Bhutan</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GR">
+					<xsd:annotation>
+						<xsd:documentation>Greece</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="JN">
+					<xsd:annotation>
+						<xsd:documentation>Jan Mayen</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GD">
+					<xsd:annotation>
+						<xsd:documentation>Grenada</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GO">
+					<xsd:annotation>
+						<xsd:documentation>Glorioso Islands</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GF">
+					<xsd:annotation>
+						<xsd:documentation>French Guiana</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="FR">
+					<xsd:annotation>
+						<xsd:documentation>France</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TQ">
+					<xsd:annotation>
+						<xsd:documentation>Tongareva</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="IN">
+					<xsd:annotation>
+						<xsd:documentation>India</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SM">
+					<xsd:annotation>
+						<xsd:documentation>San Marino</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CZ">
+					<xsd:annotation>
+						<xsd:documentation>Czech Republic</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="ES">
+					<xsd:annotation>
+						<xsd:documentation>Spain</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="ER">
+					<xsd:annotation>
+						<xsd:documentation>Eritrea</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="DJ">
+					<xsd:annotation>
+						<xsd:documentation>Djibouti, Republic of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MC">
+					<xsd:annotation>
+						<xsd:documentation>Monaco</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TH">
+					<xsd:annotation>
+						<xsd:documentation>Thailand</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="IM">
+					<xsd:annotation>
+						<xsd:documentation>Madeira Islands</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MV">
+					<xsd:annotation>
+						<xsd:documentation>Maldives</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="AH">
+					<xsd:annotation>
+						<xsd:documentation>Azores Islands</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="AO">
+					<xsd:annotation>
+						<xsd:documentation>Angola</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="LS">
+					<xsd:annotation>
+						<xsd:documentation>Lesotho</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CO">
+					<xsd:annotation>
+						<xsd:documentation>Colombia, Republic of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="RE">
+					<xsd:annotation>
+						<xsd:documentation>Reunion, Department of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MQ">
+					<xsd:annotation>
+						<xsd:documentation>Martinique</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="LR">
+					<xsd:annotation>
+						<xsd:documentation>Liberia</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="AQ">
+					<xsd:annotation>
+						<xsd:documentation>Antarctica</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GZ">
+					<xsd:annotation>
+						<xsd:documentation>Gaza</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PT">
+					<xsd:annotation>
+						<xsd:documentation>Portugal</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BA">
+					<xsd:annotation>
+						<xsd:documentation>Bosnia-Herzegovina</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="AI">
+					<xsd:annotation>
+						<xsd:documentation>Anguilla</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="HT">
+					<xsd:annotation>
+						<xsd:documentation>Haiti</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GN">
+					<xsd:annotation>
+						<xsd:documentation>Guinea</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TJ">
+					<xsd:annotation>
+						<xsd:documentation>Tajikistan</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="FG">
+					<xsd:annotation>
+						<xsd:documentation>Guiana, French</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MH">
+					<xsd:annotation>
+						<xsd:documentation>Marshall Island</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="WS">
+					<xsd:annotation>
+						<xsd:documentation>Samoa</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SZ">
+					<xsd:annotation>
+						<xsd:documentation>Swaziland</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BZ">
+					<xsd:annotation>
+						<xsd:documentation>Belize</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CA">
+					<xsd:annotation>
+						<xsd:documentation>Canada</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GA">
+					<xsd:annotation>
+						<xsd:documentation>Gabon</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="ZI">
+					<xsd:annotation>
+						<xsd:documentation>Canary Islands</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="IT">
+					<xsd:annotation>
+						<xsd:documentation>Italy</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="ML">
+					<xsd:annotation>
+						<xsd:documentation>Mali</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SK">
+					<xsd:annotation>
+						<xsd:documentation>Slovakia</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="KM">
+					<xsd:annotation>
+						<xsd:documentation>Comoros, Federal Islamic Republic of the</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="NZ">
+					<xsd:annotation>
+						<xsd:documentation>New Zealand</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="IS">
+					<xsd:annotation>
+						<xsd:documentation>Iceland</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="NO">
+					<xsd:annotation>
+						<xsd:documentation>Norway</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="FK">
+					<xsd:annotation>
+						<xsd:documentation>Falkland Islands, Colony of the</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TN">
+					<xsd:annotation>
+						<xsd:documentation>Tunisia</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TP">
+					<xsd:annotation>
+						<xsd:documentation>Trust Territory of the Pacific Islands</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="KN">
+					<xsd:annotation>
+						<xsd:documentation>St. Kitts and Nevis</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="KO">
+					<xsd:annotation>
+						<xsd:documentation>Korea - South Korea</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="FJ">
+					<xsd:annotation>
+						<xsd:documentation>Fiji</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GW">
+					<xsd:annotation>
+						<xsd:documentation>Guinea-Bissau</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="AT">
+					<xsd:annotation>
+						<xsd:documentation>Austria</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="RV">
+					<xsd:annotation>
+						<xsd:documentation>Socialist Republic of Vietnam</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="KY">
+					<xsd:annotation>
+						<xsd:documentation>Cayman Islands</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="AM">
+					<xsd:annotation>
+						<xsd:documentation>Armenia</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BO">
+					<xsd:annotation>
+						<xsd:documentation>Bolivia</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="LO">
+					<xsd:annotation>
+						<xsd:documentation>Laos</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CU">
+					<xsd:annotation>
+						<xsd:documentation>Curacao</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="NC">
+					<xsd:annotation>
+						<xsd:documentation>New Caledonia and Dependencies</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="YT">
+					<xsd:annotation>
+						<xsd:documentation>Mayotte, Territorial Collectivity of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="RO">
+					<xsd:annotation>
+						<xsd:documentation>Romania/Rumania</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="ZA">
+					<xsd:annotation>
+						<xsd:documentation>South Africa</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="DC">
+					<xsd:annotation>
+						<xsd:documentation>Ducie Islands</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BJ">
+					<xsd:annotation>
+						<xsd:documentation>Benin</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GL">
+					<xsd:annotation>
+						<xsd:documentation>Greenland</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PG">
+					<xsd:annotation>
+						<xsd:documentation>Papua New Guinea</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SI">
+					<xsd:annotation>
+						<xsd:documentation>Slovenia</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="NP">
+					<xsd:annotation>
+						<xsd:documentation>Nepal</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GI">
+					<xsd:annotation>
+						<xsd:documentation>Gibraltar</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="NR">
+					<xsd:annotation>
+						<xsd:documentation>Naura</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BE">
+					<xsd:annotation>
+						<xsd:documentation>Belgium</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TG">
+					<xsd:annotation>
+						<xsd:documentation>Togo</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TK">
+					<xsd:annotation>
+						<xsd:documentation>Tokelau</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="DZ">
+					<xsd:annotation>
+						<xsd:documentation>Algeria</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="UG">
+					<xsd:annotation>
+						<xsd:documentation>Uganda</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SC">
+					<xsd:annotation>
+						<xsd:documentation>Seychelles</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PW">
+					<xsd:annotation>
+						<xsd:documentation>Palau, Republic of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CY">
+					<xsd:annotation>
+						<xsd:documentation>Cyprus, Republic of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="IE">
+					<xsd:annotation>
+						<xsd:documentation>Ireland</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MA">
+					<xsd:annotation>
+						<xsd:documentation>Morocco</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TT">
+					<xsd:annotation>
+						<xsd:documentation>Trinidad  Tobago</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CC">
+					<xsd:annotation>
+						<xsd:documentation>Cuba, Republic of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GQ">
+					<xsd:annotation>
+						<xsd:documentation>Equatorial Guinea</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="FI">
+					<xsd:annotation>
+						<xsd:documentation>Finland</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CK">
+					<xsd:annotation>
+						<xsd:documentation>Cook Islands</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SY">
+					<xsd:annotation>
+						<xsd:documentation>Syria</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="RU">
+					<xsd:annotation>
+						<xsd:documentation>Russian Federation</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CG">
+					<xsd:annotation>
+						<xsd:documentation>Congo, Republic of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="HK">
+					<xsd:annotation>
+						<xsd:documentation>Hong Kong</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SG">
+					<xsd:annotation>
+						<xsd:documentation>Singapore</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="LI">
+					<xsd:annotation>
+						<xsd:documentation>Liechtenstein</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TC">
+					<xsd:annotation>
+						<xsd:documentation>Turks And Caicos Islands</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="RC">
+					<xsd:annotation>
+						<xsd:documentation>People's Republic of China</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="FO">
+					<xsd:annotation>
+						<xsd:documentation>Faroe Islands</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="AS">
+					<xsd:annotation>
+						<xsd:documentation>American Samoa</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TW">
+					<xsd:annotation>
+						<xsd:documentation>Taiwan</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SD">
+					<xsd:annotation>
+						<xsd:documentation>Sudan</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="JO">
+					<xsd:annotation>
+						<xsd:documentation>Jordan</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MD">
+					<xsd:annotation>
+						<xsd:documentation>Moldova</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GS">
+					<xsd:annotation>
+						<xsd:documentation>South Georgia and the South Sandwich Islands</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BN">
+					<xsd:annotation>
+						<xsd:documentation>Brunei</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="UV">
+					<xsd:annotation>
+						<xsd:documentation>Bassas Da India</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="IB">
+					<xsd:annotation>
+						<xsd:documentation>Isle of Man</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="HN">
+					<xsd:annotation>
+						<xsd:documentation>Honduras</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="KI">
+					<xsd:annotation>
+						<xsd:documentation>Kiribati</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BM">
+					<xsd:annotation>
+						<xsd:documentation>Bermuda</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="AR">
+					<xsd:annotation>
+						<xsd:documentation>Argentina</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="NF">
+					<xsd:annotation>
+						<xsd:documentation>Norfolk Island, Territory of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="AW">
+					<xsd:annotation>
+						<xsd:documentation>Aruba</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PC">
+					<xsd:annotation>
+						<xsd:documentation>Pitcairn, Henderson, Ducie, and Oeno Islands</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="DB">
+					<xsd:annotation>
+						<xsd:documentation>Clipperton Island</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="AU">
+					<xsd:annotation>
+						<xsd:documentation>Australia</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="UZ">
+					<xsd:annotation>
+						<xsd:documentation>Uzbekistan, Republic of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="KG">
+					<xsd:annotation>
+						<xsd:documentation>Kyrgyzstan</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MG">
+					<xsd:annotation>
+						<xsd:documentation>Madagascar</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="NG">
+					<xsd:annotation>
+						<xsd:documentation>Nigeria</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GU">
+					<xsd:annotation>
+						<xsd:documentation>Guam</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MY">
+					<xsd:annotation>
+						<xsd:documentation>Malaysia</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="HO">
+					<xsd:annotation>
+						<xsd:documentation>The Netherlands</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TR">
+					<xsd:annotation>
+						<xsd:documentation>Turkey</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="AZ">
+					<xsd:annotation>
+						<xsd:documentation>Azerbaijan</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CF">
+					<xsd:annotation>
+						<xsd:documentation>Central African Republic</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CS">
+					<xsd:annotation>
+						<xsd:documentation>Serbia</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="NI">
+					<xsd:annotation>
+						<xsd:documentation>Nicaragua</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GH">
+					<xsd:annotation>
+						<xsd:documentation>Ghana</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="IL">
+					<xsd:annotation>
+						<xsd:documentation>Israel</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="NU">
+					<xsd:annotation>
+						<xsd:documentation>Niue</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="NA">
+					<xsd:annotation>
+						<xsd:documentation>Namibia</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TV">
+					<xsd:annotation>
+						<xsd:documentation>Tuvalu</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="VB">
+					<xsd:annotation>
+						<xsd:documentation>Svalbard</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="US">
+					<xsd:annotation>
+						<xsd:documentation>United States of America</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TA">
+					<xsd:annotation>
+						<xsd:documentation>Tuamotu Archipelago</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="LB">
+					<xsd:annotation>
+						<xsd:documentation>Lebanon</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SH">
+					<xsd:annotation>
+						<xsd:documentation>Saint Helena</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="KW">
+					<xsd:annotation>
+						<xsd:documentation>Kuwait</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="YY">
+					<xsd:annotation>
+						<xsd:documentation>All Others</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BI">
+					<xsd:annotation>
+						<xsd:documentation>Burundi</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="HM">
+					<xsd:annotation>
+						<xsd:documentation>Heard Island and McDonald Islands, Territory of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PE">
+					<xsd:annotation>
+						<xsd:documentation>Peru</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="UY">
+					<xsd:annotation>
+						<xsd:documentation>Uruguay</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="VE">
+					<xsd:annotation>
+						<xsd:documentation>Venezuela, Republic of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="AB">
+					<xsd:annotation>
+						<xsd:documentation>Antigua and Barbuda</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="DO">
+					<xsd:annotation>
+						<xsd:documentation>Dominican Republic</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SN">
+					<xsd:annotation>
+						<xsd:documentation>Senegal</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="JE">
+					<xsd:annotation>
+						<xsd:documentation>Jersey, Bailiwick of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TS">
+					<xsd:annotation>
+						<xsd:documentation>Tromelin Island</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="EE">
+					<xsd:annotation>
+						<xsd:documentation>Estonia</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CR">
+					<xsd:annotation>
+						<xsd:documentation>Costa Rica, Republic of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="NN">
+					<xsd:annotation>
+						<xsd:documentation>Northern Ireland</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TO">
+					<xsd:annotation>
+						<xsd:documentation>Tonga</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="DD">
+					<xsd:annotation>
+						<xsd:documentation>Cocos Islands, Territory of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="IY">
+					<xsd:annotation>
+						<xsd:documentation>Cote d'Ivoire, Republic of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="KV">
+					<xsd:annotation>
+						<xsd:documentation>Kosovo</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BD">
+					<xsd:annotation>
+						<xsd:documentation>Bangladesh</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CX">
+					<xsd:annotation>
+						<xsd:documentation>Christmas Island</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TD">
+					<xsd:annotation>
+						<xsd:documentation>Chad</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="VC">
+					<xsd:annotation>
+						<xsd:documentation>Saint Vincent and the Grenadines</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="NK">
+					<xsd:annotation>
+						<xsd:documentation>Korea - North Korea</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PY">
+					<xsd:annotation>
+						<xsd:documentation>Paraguay</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GP">
+					<xsd:annotation>
+						<xsd:documentation>Guadeloupe - St. Martin.</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="VA">
+					<xsd:annotation>
+						<xsd:documentation>Vatican City</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="FM">
+					<xsd:annotation>
+						<xsd:documentation>Micronesia, Federated States of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="AL">
+					<xsd:annotation>
+						<xsd:documentation>Albania</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="LU">
+					<xsd:annotation>
+						<xsd:documentation>Luxembourg</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MS">
+					<xsd:annotation>
+						<xsd:documentation>Montserrat</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="OM">
+					<xsd:annotation>
+						<xsd:documentation>Oman</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GE">
+					<xsd:annotation>
+						<xsd:documentation>Georgia</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="JM">
+					<xsd:annotation>
+						<xsd:documentation>Jamaica</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="KE">
+					<xsd:annotation>
+						<xsd:documentation>Kenya</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SL">
+					<xsd:annotation>
+						<xsd:documentation>Sierre Leone/ Sierra Leone</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="FP">
+					<xsd:annotation>
+						<xsd:documentation>French Polynesia, Territory of</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BH">
+					<xsd:annotation>
+						<xsd:documentation>Bahrain/Bahrein</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SA">
+					<xsd:annotation>
+						<xsd:documentation>Saudi Arabia</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CN">
+					<xsd:annotation>
+						<xsd:documentation>China - People's Republic of China</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TE">
+					<xsd:annotation>
+						<xsd:documentation>Spartly Islands</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BW">
+					<xsd:annotation>
+						<xsd:documentation>Botswana</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="LY">
+					<xsd:annotation>
+						<xsd:documentation>Libya</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MT">
+					<xsd:annotation>
+						<xsd:documentation>Malta</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="IO">
+					<xsd:annotation>
+						<xsd:documentation>British Indian Ocean Terr</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="LocationStateUSPostalServiceCode" type="cajudreq:StateCodeType" substitutionGroup="ncreq:LocationState">
+		<xsd:annotation>
+			<xsd:documentation>A state, commonwealth, province, or other such geopolitical subdivision of a country.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="LocationStreet" type="cajudreq:LocationStreetType" substitutionGroup="ncreq:AddressDeliveryPoint">
+		<xsd:annotation>
+			<xsd:documentation>A road, thoroughfare or highway.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="MiscellaneousInformationText">
+		<xsd:annotation>
+			<xsd:documentation>A free text field used to further describe the subject of order or other relevant information.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncreq:TextType">
+					<xsd:maxLength value="200"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="NeverExpiresCode" type="cajudreq:YesOrNoType">
+		<xsd:annotation>
+			<xsd:documentation>Yes/No indicator to denote if the Restraining Order never expires.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="NotesText">
+		<xsd:annotation>
+			<xsd:documentation>A text element for additional notes.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncreq:TextType">
+					<xsd:maxLength value="500"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="Organization" type="cajudreq:OrganizationType">
+		<xsd:annotation>
+			<xsd:documentation>A set of details about a unit which conducts some sort of business or operations.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="OrganizationCaseNameCategoryCode" type="cajudreq:NameCodeType">
+		<xsd:annotation>
+			<xsd:documentation>A code value for the type of name for participant.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="OrganizationCourtIdentification" type="cajudreq:OrganizationCourtIdentificationType">
+		<xsd:annotation>
+			<xsd:documentation>A court identification number.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="OrganizationFullName">
+		<xsd:annotation>
+			<xsd:documentation>An organization's full name without acronyms or abbreviations.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncreq:TextType">
+					<xsd:maxLength value="255"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="OrganizationName" type="cajudreq:OrganizationNameType">
+		<xsd:annotation>
+			<xsd:documentation>A set of names and/or acronyms by which an organization may be known.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="OrganizationVehicleAssociation" type="cajudreq:OrganizationVehicleAssociationType">
+		<xsd:annotation>
+			<xsd:documentation>An association between an organization and vehicle.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="OriginatingAgencyID">
+		<xsd:annotation>
+			<xsd:documentation>DOJ issued identifier for the originating agency for the case.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncreq:TextType">
+					<xsd:maxLength value="9"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="OtherOrdersText">
+		<xsd:annotation>
+			<xsd:documentation>A text field for additional terms/conditions and other orders.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncreq:TextType">
+					<xsd:maxLength value="500"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="ParticipantCategoryCode">
+		<xsd:annotation>
+			<xsd:documentation>A code value for the category of a participant.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:token">
+				<xsd:enumeration value="ENTITY">
+					<xsd:annotation>
+						<xsd:documentation>Entity</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GOVERNMENT_AGENCY">
+					<xsd:annotation>
+						<xsd:documentation>Govt Agency</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PERSON">
+					<xsd:annotation>
+						<xsd:documentation>Person</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="Person" type="cajudreq:PersonType">
+		<xsd:annotation>
+			<xsd:documentation>A human being that is involved in an activity in any role at any given point in time.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="PersonBirth" type="cajudreq:PersonBirthType">
+		<xsd:annotation>
+			<xsd:documentation>A data concept for the details of a person birth.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="PersonCaseNameCategoryCode" type="cajudreq:NameCodeType">
+		<xsd:annotation>
+			<xsd:documentation>A code value for the type of name on a case for the participant.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="PersonCourtIdentification" type="cajudreq:PersonCourtIdentificationType">
+		<xsd:annotation>
+			<xsd:documentation>A unique identifier assigned by a court to a person.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="PersonDemographics" type="cajudreq:PersonDemographicsType">
+		<xsd:annotation>
+			<xsd:documentation>A data type for the demographics of a human being that is involved in an activity in any role at any given point in time.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="PersonEyeColorCode">
+		<xsd:annotation>
+			<xsd:documentation>A color of the eyes of a person.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:token">
+				<xsd:enumeration value="BLU">
+					<xsd:annotation>
+						<xsd:documentation>Blue</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BLK">
+					<xsd:annotation>
+						<xsd:documentation>Black</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BRO">
+					<xsd:annotation>
+						<xsd:documentation>Brown</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GRN">
+					<xsd:annotation>
+						<xsd:documentation>Green</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GRY">
+					<xsd:annotation>
+						<xsd:documentation>Grey</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="HAZ">
+					<xsd:annotation>
+						<xsd:documentation>Hazel</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MAR">
+					<xsd:annotation>
+						<xsd:documentation>Maroon</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MUL">
+					<xsd:annotation>
+						<xsd:documentation>Multicolored</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PNK">
+					<xsd:annotation>
+						<xsd:documentation>Pink</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="XXX">
+					<xsd:annotation>
+						<xsd:documentation>Unknown</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="PersonHairColorCode">
+		<xsd:annotation>
+			<xsd:documentation>A color of the hair of a person.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:token">
+				<xsd:enumeration value="BLK">
+					<xsd:annotation>
+						<xsd:documentation>Black</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BLN">
+					<xsd:annotation>
+						<xsd:documentation>Blond</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BLU">
+					<xsd:annotation>
+						<xsd:documentation>Blue</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BRO">
+					<xsd:annotation>
+						<xsd:documentation>Brown</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GRN">
+					<xsd:annotation>
+						<xsd:documentation>Green</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="GRY">
+					<xsd:annotation>
+						<xsd:documentation>Grey</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="ONG">
+					<xsd:annotation>
+						<xsd:documentation>Orange</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PLE">
+					<xsd:annotation>
+						<xsd:documentation>Purple</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PNK">
+					<xsd:annotation>
+						<xsd:documentation>Pink</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="RED">
+					<xsd:annotation>
+						<xsd:documentation>Red</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SDY">
+					<xsd:annotation>
+						<xsd:documentation>Sandy</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="WHI">
+					<xsd:annotation>
+						<xsd:documentation>White</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="XXX">
+					<xsd:annotation>
+						<xsd:documentation>Unknown</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="PersonName" type="cajudreq:PersonNameType">
+		<xsd:annotation>
+			<xsd:documentation>A combination of names and/or titles by which a person is known.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="PersonRaceCode">
+		<xsd:annotation>
+			<xsd:documentation>A classification of a person based on factors such as geographical locations and genetics.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:token">
+				<xsd:enumeration value="A">
+					<xsd:annotation>
+						<xsd:documentation>Other Asian</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="B">
+					<xsd:annotation>
+						<xsd:documentation>Black</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="C">
+					<xsd:annotation>
+						<xsd:documentation>Chinese</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="D">
+					<xsd:annotation>
+						<xsd:documentation>Cambodian</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="F">
+					<xsd:annotation>
+						<xsd:documentation>Filipino</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="G">
+					<xsd:annotation>
+						<xsd:documentation>Guamanian</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="H">
+					<xsd:annotation>
+						<xsd:documentation>Hispanic</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="I">
+					<xsd:annotation>
+						<xsd:documentation>American Indian</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="J">
+					<xsd:annotation>
+						<xsd:documentation>Japanese</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="K">
+					<xsd:annotation>
+						<xsd:documentation>Korean</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="L">
+					<xsd:annotation>
+						<xsd:documentation>Laotian</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="O">
+					<xsd:annotation>
+						<xsd:documentation>Other</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="P">
+					<xsd:annotation>
+						<xsd:documentation>Pacific Islander</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="S">
+					<xsd:annotation>
+						<xsd:documentation>Samoan</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="U">
+					<xsd:annotation>
+						<xsd:documentation>Hawaiian</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="V">
+					<xsd:annotation>
+						<xsd:documentation>Vietnamese</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="W">
+					<xsd:annotation>
+						<xsd:documentation>White</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="X">
+					<xsd:annotation>
+						<xsd:documentation>Unknown</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="Z">
+					<xsd:annotation>
+						<xsd:documentation>Asian Indian</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="PersonSexCode">
+		<xsd:annotation>
+			<xsd:documentation>A gender or sex of a person.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:token">
+				<xsd:enumeration value="M">
+					<xsd:annotation>
+						<xsd:documentation>Male</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="F">
+					<xsd:annotation>
+						<xsd:documentation>Female</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="X">
+					<xsd:annotation>
+						<xsd:documentation>Unknown</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="PersonSkinToneCode">
+		<xsd:annotation>
+			<xsd:documentation>A color or tone of the skin of a person.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:token">
+				<xsd:enumeration value="ALB">
+					<xsd:annotation>
+						<xsd:documentation>Albino</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BLK">
+					<xsd:annotation>
+						<xsd:documentation>Black</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="DBR">
+					<xsd:annotation>
+						<xsd:documentation>Dark Brown</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="DRK">
+					<xsd:annotation>
+						<xsd:documentation>Dark</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="FAR">
+					<xsd:annotation>
+						<xsd:documentation>Fair</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="LBR">
+					<xsd:annotation>
+						<xsd:documentation>Light Brown</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="LGT">
+					<xsd:annotation>
+						<xsd:documentation>Light</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MED">
+					<xsd:annotation>
+						<xsd:documentation>Medium</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="MBR">
+					<xsd:annotation>
+						<xsd:documentation>Medium Brown</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="OLV">
+					<xsd:annotation>
+						<xsd:documentation>Olive</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="RUD">
+					<xsd:annotation>
+						<xsd:documentation>Ruddy</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SAL">
+					<xsd:annotation>
+						<xsd:documentation>Sallow</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="YEL">
+					<xsd:annotation>
+						<xsd:documentation>Yellow</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="PersonStateOfBirth" type="cajudreq:PersonStateOfBirthType">
+		<xsd:annotation>
+			<xsd:documentation>US State where a person was born.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="PersonVehicleAssociation" type="cajudreq:PersonVehicleAssociationType">
+		<xsd:annotation>
+			<xsd:documentation>An association between a person and vehicle.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="PhysicalFeatureCodeText" substitutionGroup="ncreq:PhysicalFeatureCategory">
+		<xsd:annotation>
+			<xsd:documentation>A code value for a specific kind of physical feature.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncreq:TextType">
+					<xsd:maxLength value="10"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="PresentInCourtCode" type="cajudreq:YesOrNoType">
+		<xsd:annotation>
+			<xsd:documentation>True if the restrained person was present in court, false otherwise.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="PrivatePersonCode" type="cajudreq:YesOrNoType">
+		<xsd:annotation>
+			<xsd:documentation>Yes/No indicator if the process server is a private person or agency employee.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="ProductExchangePackage" type="cajudreq:ProductExchangePackageType">
+		<xsd:annotation>
+			<xsd:documentation>An SOA/Exchange wrapper to provide a common base and structure for CAJUD Exchanges.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="ProductRelatedActivities" type="cajudreq:ProductRelatedActivitiesType">
+		<xsd:annotation>
+			<xsd:documentation>A logical grouping of activities that are related to the product being exchanged.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="ProductRelatedContactInformation" type="cajudreq:ProductRelatedContactInformationType">
+		<xsd:annotation>
+			<xsd:documentation>A logical grouping of contact information for the product being exchanged.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="ProductRelatedItems" type="cajudreq:ProductRelatedItemsType">
+		<xsd:annotation>
+			<xsd:documentation>A logical grouping of articles or things that are related to the product being exchanged. that are related to the product being exchanged.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="ProductRelatedMetadata" type="cajudreq:ProductRelatedMetadataType">
+		<xsd:annotation>
+			<xsd:documentation>A logical grouping of metadata that are related to the product being exchanged.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="ProductRelatedObjects" type="cajudreq:ProductRelatedObjectsType">
+		<xsd:annotation>
+			<xsd:documentation>A logical grouping of peer level objects.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="ProductRelatedOrganizations" type="cajudreq:ProductRelatedOrganizationsType">
+		<xsd:annotation>
+			<xsd:documentation>A logical grouping of organizations that are related to the product being exchanged.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="ProductRelatedPeople" type="cajudreq:ProductRelatedPeopleType">
+		<xsd:annotation>
+			<xsd:documentation>A logical grouping of people that are related to the product being exchanged.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="ProtectedParticipant" type="cajudreq:ProtectedParticipantType">
+		<xsd:annotation>
+			<xsd:documentation>An individual who protected a participant in the case activity.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="RelationshipCode">
+		<xsd:annotation>
+			<xsd:documentation>A code value indicating relationship between additional protected person and primary protected person.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:token">
+				<xsd:enumeration value="C">
+					<xsd:annotation>
+						<xsd:documentation>Child</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="F">
+					<xsd:annotation>
+						<xsd:documentation>Friend</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="O">
+					<xsd:annotation>
+						<xsd:documentation>Other Relative</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="P">
+					<xsd:annotation>
+						<xsd:documentation>Parent</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="S">
+					<xsd:annotation>
+						<xsd:documentation>Sibling</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="RestrainedParticipant" type="cajudreq:RestrainedParticipantType">
+		<xsd:annotation>
+			<xsd:documentation>An individual who restrained a participant in the case activity.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="RestrainedParticipantOrganizationContactInformationAssociation" type="cajudreq:RestrainedParticipantOrganizationContactInformationAssociationType">
+		<xsd:annotation>
+			<xsd:documentation>A data concept for an association between a restrained organization as a participant and contact information.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="RestrainedParticipantPersonContactInformationAssociation" type="cajudreq:RestrainedParticipantPersonContactInformationAssociationType">
+		<xsd:annotation>
+			<xsd:documentation>A data concept for an association between a restrained person as a participant and contact information.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="RestrainingOrderAttachment" type="cajudreq:RestrainingOrderAttachmentType">
+		<xsd:annotation>
+			<xsd:documentation>A data concept for the attachments of a restraining order.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="RoleOfEntity" type="cajudreq:RoleOfEntityType">
+		<xsd:annotation>
+			<xsd:documentation>Role played by an object (Person or Organization).</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="SealedCode" type="cajudreq:YesOrNoType">
+		<xsd:annotation>
+			<xsd:documentation>Yes/No indicator if the protective order should be sealed.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="ServedDate" type="cajudreq:ServedDateType">
+		<xsd:annotation>
+			<xsd:documentation>A data concept for the date the restraining/protective order was served.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="Server" type="cajudreq:ServerType">
+		<xsd:annotation>
+			<xsd:documentation>A data concept for the bailiff's information only populated if the restraining order is served in court.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="StayAwayText">
+		<xsd:annotation>
+			<xsd:documentation>A text for the location(s) the restrained person is ordered to stay away from.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncreq:TextType">
+					<xsd:maxLength value="4"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="StreetCategoryCode">
+		<xsd:annotation>
+			<xsd:documentation>The USPS standard code for kind of street.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:token">
+				<xsd:enumeration value="AVE">
+					<xsd:annotation>
+						<xsd:documentation>Avenue</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BLVD">
+					<xsd:annotation>
+						<xsd:documentation>Boulevard</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="BR">
+					<xsd:annotation>
+						<xsd:documentation>Branch</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CIR">
+					<xsd:annotation>
+						<xsd:documentation>Circle</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CRK">
+					<xsd:annotation>
+						<xsd:documentation>Creek</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CT">
+					<xsd:annotation>
+						<xsd:documentation>Court</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CTR">
+					<xsd:annotation>
+						<xsd:documentation>Center</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="CYN">
+					<xsd:annotation>
+						<xsd:documentation>Canyon</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="DR">
+					<xsd:annotation>
+						<xsd:documentation>Drive</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="EXPY">
+					<xsd:annotation>
+						<xsd:documentation>Expressway</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="HWY">
+					<xsd:annotation>
+						<xsd:documentation>Highway</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="LK">
+					<xsd:annotation>
+						<xsd:documentation>Lake</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="LN">
+					<xsd:annotation>
+						<xsd:documentation>Lane</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="LNDG">
+					<xsd:annotation>
+						<xsd:documentation>Landing</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PARK">
+					<xsd:annotation>
+						<xsd:documentation>Park</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PKWY">
+					<xsd:annotation>
+						<xsd:documentation>Parkway</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PL">
+					<xsd:annotation>
+						<xsd:documentation>Place</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PLZ">
+					<xsd:annotation>
+						<xsd:documentation>Plaza</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="PT">
+					<xsd:annotation>
+						<xsd:documentation>Point</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="RD">
+					<xsd:annotation>
+						<xsd:documentation>Road</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="RNCH">
+					<xsd:annotation>
+						<xsd:documentation>Ranch</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="RTE">
+					<xsd:annotation>
+						<xsd:documentation>Route</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SMT">
+					<xsd:annotation>
+						<xsd:documentation>Summit</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SQ">
+					<xsd:annotation>
+						<xsd:documentation>Square</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="ST">
+					<xsd:annotation>
+						<xsd:documentation>Street</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TER">
+					<xsd:annotation>
+						<xsd:documentation>Terrace</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="TRL">
+					<xsd:annotation>
+						<xsd:documentation>Trail</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="UNK">
+					<xsd:annotation>
+						<xsd:documentation>Unknown Street Type</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="VIS">
+					<xsd:annotation>
+						<xsd:documentation>Vista</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="VLY">
+					<xsd:annotation>
+						<xsd:documentation>Valley</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="WAY">
+					<xsd:annotation>
+						<xsd:documentation>Way</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="WALK">
+					<xsd:annotation>
+						<xsd:documentation>Walk</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="StreetPredirectionalCode">
+		<xsd:annotation>
+			<xsd:documentation>A direction that appears before a street name.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:token">
+				<xsd:enumeration value="E">
+					<xsd:annotation>
+						<xsd:documentation>East</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="N">
+					<xsd:annotation>
+						<xsd:documentation>North</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="NE">
+					<xsd:annotation>
+						<xsd:documentation>North East</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="NW">
+					<xsd:annotation>
+						<xsd:documentation>North-West</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="S">
+					<xsd:annotation>
+						<xsd:documentation>South</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SE">
+					<xsd:annotation>
+						<xsd:documentation>South East</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="SW">
+					<xsd:annotation>
+						<xsd:documentation>South-West</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="W">
+					<xsd:annotation>
+						<xsd:documentation>West</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="Time">
+		<xsd:annotation>
+			<xsd:documentation>A 5 character text value (HH:MM) for the time.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="ncreq:TextType">
+					<xsd:maxLength value="5"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="VacateAddress" type="cajudreq:VacateAddressType">
+		<xsd:annotation>
+			<xsd:documentation>A data concept for the address including street and city that the restrained party must move from.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="Vehicle" type="cajudreq:VehicleType">
+		<xsd:annotation>
+			<xsd:documentation>A description of  a motor-driven conveyance designed to carry its operator, passengers, and cargo, including trailers, and excepting boats.</xsd:documentation>
+		</xsd:annotation>
+	</xsd:element>
+	<xsd:element name="VisitationCode">
+		<xsd:annotation>
+			<xsd:documentation>A text value for the visitation rights of a restrained person.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:simpleType>
+			<xsd:restriction base="xsd:token">
+				<xsd:enumeration value="N">
+					<xsd:annotation>
+						<xsd:documentation>No</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="S">
+					<xsd:annotation>
+						<xsd:documentation>Supervised</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+				<xsd:enumeration value="Y">
+					<xsd:annotation>
+						<xsd:documentation>Yes</xsd:documentation>
+					</xsd:annotation>
+				</xsd:enumeration>
+			</xsd:restriction>
+		</xsd:simpleType>
+	</xsd:element>
+	<xsd:element name="YardsToStayAwayQuantity">
+		<xsd:annotation>
+			<xsd:documentation>The number of yards the court orders the restrained person to stay away from the protected person and/or property.</xsd:documentation>
+		</xsd:annotation>
+		<xsd:complexType>
+			<xsd:simpleContent>
+				<xsd:restriction base="niem-xsdreq:nonNegativeInteger">
+					<xsd:totalDigits value="6"/>
+				</xsd:restriction>
+			</xsd:simpleContent>
+		</xsd:complexType>
+	</xsd:element>
+</xsd:schema>

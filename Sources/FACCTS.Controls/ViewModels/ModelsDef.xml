@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ModelsDef>
+
+  <Model name="NewCourtCaseDialogViewModel">
+    <Property name="CaseNumber" type="string"/>
+    <Property name="IsEditing" type="bool"/>
+  </Model>
+  <Model name="AddToCourtDocketDialogViewModel">
+    <Property name="CaseNumber" type="string"/>
+    <Property name="Courtroom" type="Faccts.Model.Entities.Courtrooms"/>
+    <Property name="Department" type="Faccts.Model.Entities.CourtDepartment"/>
+    <Property name="IsPermanentRO" type="bool"/>
+    <Property name="IsCCorCV" type="bool"/>
+    <Property name="IsSS" type="bool"/>
+    <Property name="IsCS" type="bool"/>
+    <Property name="IsOtherHearingIssue" type="bool"/>
+    <Property name="OtherHearingIssueText" type="string"/>
+    <Property name="Courtrooms" type="Collection" collectionType="Faccts.Model.Entities.Courtrooms"/>
+    <Property name="Departments" type="Collection" collectionType="Faccts.Model.Entities.CourtDepartment"/>
+    <Property name="Session" type="FACCTS.Server.Model.Enums.DocketSession"/>
+  </Model>
+
+  <Model name="RelatedCasesViewModel">
+    <Property name="CanConsolidate" type="bool"/>
+    <Property name="CanSeparate" type="bool"/>
+    <Property name="SelectedCourtCases" collectionType="Faccts.Model.Entities.CourtCase" type="Collection"/>
+    <Property name="RelatedCasesChangedNotifier" type="double"/>
+  </Model>
+
+  <Model name="SeparateCaseDialogViewModel">
+    <Property name="CaseNumber" type="string"/>
+    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
+  </Model>
+
+  <Model name="DropDismissDialogViewModel">
+    <Property name="CaseNumber" type="string"/>
+    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
+    <Property name="Dismiss" type="bool"/>
+  </Model>
+  
+  <Model name="CourtDocketViewModel">
+    <Property name="CanDropDismiss" type="bool"/>
+    <Property name="IsRefreshing" type="bool"/>
+    <Property name="CanReissue" type="bool"/>
+    <Property name="CalendarDate" type="DateTime?"/>
+    <Property name="Courtroom" type="Faccts.Model.Entities.Courtrooms"/>
+    <Property name="SessionIndex" type="int"/>
+  </Model>
+  
+  <Model name="ReissueCaseDialogViewModel">
+    <Property name="CaseNumber" type="string"/>
+    <Property name="NewCourtDate" type="DateTime?"/>
+    <Property name="Time" type="DateTime"/>
+    <Property name="Courtroom" type="Faccts.Model.Entities.Courtrooms"/>
+    <Property name="Department" type="Faccts.Model.Entities.CourtDepartment"/>
+    <Property name="NoPOS" type="bool"/>
+    <Property name="FCSReferral" type="bool"/>
+    <Property name="GetAttyToPrepare" type="bool"/>
+    <Property name="IsOtherReason" type="bool"/>
+    <Property name="OtherReason" type="string"/>
+    <Property name="ReissuanceAfterDays" type="int"/>
+    <Property name="PaperworkOnDays" type="int"/>
+    <Property name="NoServiceRequired" type="bool"/>
+    <Property name="ReissuanceOnSomeDaysBeforeHearing" type="bool"/>
+    <Property name="AllPaperworksOnSomeDaysBeforeHearing" type="bool"/>
+    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
+    <Property name="Courtrooms" type="Collection" collectionType="Faccts.Model.Entities.Courtrooms"/>
+    <Property name="Departments" type="Collection" collectionType="Faccts.Model.Entities.CourtDepartment"/>
+  </Model>
+
+
+  <Model name="AttorneysViewModel">
+    <Property name="AttorneyForChildrenIsTheSameThenParty1" type="bool"/>
+    <Property name="AttorneyForChildrenIsTheSameThenParty2" type="bool"/>
+    <Property name="CurrentHistoryRecord" type="Faccts.Model.Entities.CaseHistory"/>
+  </Model>
+
+  <Model name="CaseNotesViewModel">
+    <Property name="CaseNoteForSelectedUser" type="Faccts.Model.Entities.CaseNotes"/>
+    <Property name="SelectedUser" type="Faccts.Model.Entities.User"/>
+    <Property name="CanEditNote" type="bool"/>
+  </Model>
+  
+  <Model name="GenerateCourtOrdersDialogViewModel">
+    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
+    <Property name="MasterOrder" type="FACCTS.Server.Model.Enums.MasterOrders"/>
+    <!--Properties for attachments-->
+    <Property name="HasDV140CC_CV" type="bool"/>
+    <Property name="HasDV145TravelRestriction" type="bool"/>
+    <Property name="HasDV150Supervision" type="bool"/>
+    <Property name="HasFL342" type="bool"/>
+    <Property name="HasFL343" type="bool"/>
+    <Property name="HasOtherAttachment" type="bool"/>
+    <!--Properties for other orders-->
+    <Property name="HasDV730" type="bool"/>
+    <Property name="HasDV115" type="bool"/>
+    <Property name="HasDV116" type="bool"/>
+    <Property name="SelectedIndex" type="int"/>
+  </Model>
+  
+  <Model name="WitnessInterpereterViewModel">
+    <Property name="CurrentHistoryRecord" type="Faccts.Model.Entities.CaseHistory"/>
+  </Model>
+  
+  <xs:schema 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="ModelsDef">
+      <xs:complexType>
+        <xs:sequence>
+          <xs:element name="Model" minOccurs="1" maxOccurs="unbounded">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="Property" minOccurs="1" maxOccurs="unbounded">
+                  <xs:complexType>
+                    <xs:attribute name="name" type="xs:string" use="required" />
+                    <xs:attribute name="type" type="systemTypes" default="string" />
+                    <xs:attribute name="collectionType" type="xs:string" use="optional" />
+                  </xs:complexType>
+                </xs:element>
+              </xs:sequence>
+              <xs:attribute name="name" type="xs:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:sequence>
+        <xs:attribute name="baseClass" type="xs:string" default="ModelBase" />
+      </xs:complexType>
+    </xs:element>
+    <xs:simpleType name="systemTypes">
+      <xs:restriction base="xs:string">
+        <xs:enumeration value="string"></xs:enumeration>
+        <xs:enumeration value="int"></xs:enumeration>
+        <xs:enumeration value="decimal"></xs:enumeration>
+        <xs:enumeration value="double"></xs:enumeration>
+        <xs:enumeration value="bool"></xs:enumeration>
+        <xs:enumeration value="DateTime"></xs:enumeration>
+        <xs:enumeration value="DateTime?"></xs:enumeration>
+        <xs:enumeration value="Collection"></xs:enumeration>
+        <xs:enumeration value="Faccts.Model.Entities.Courtrooms"></xs:enumeration>
+        <xs:enumeration value="Faccts.Model.Entities.CourtDepartment"></xs:enumeration>
+        <xs:enumeration value="Faccts.Model.Entities.CourtCase"></xs:enumeration>
+        <xs:enumeration value="Faccts.Model.Entities.CaseNotes"></xs:enumeration>
+        <xs:enumeration value="Faccts.Model.Entities.CaseHistory"></xs:enumeration>
+        <xs:enumeration value="Faccts.Model.Entities.User"></xs:enumeration>
+        <xs:enumeration value="Faccts.Model.Entities.Hearings"></xs:enumeration>
+        <xs:enumeration value="Faccts.Model.Entities.HearingIssue"></xs:enumeration>
+        <xs:enumeration value="FACCTS.Server.Model.Enums.MasterOrders"/>
+        <xs:enumeration value="FACCTS.Server.Model.Enums.DocketSession"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:schema>
+</ModelsDef>

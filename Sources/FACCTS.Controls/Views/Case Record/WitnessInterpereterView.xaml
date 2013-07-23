@@ -1,0 +1,148 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:Converters="clr-namespace:FACCTS.Controls.Converters"
+             xmlns:ext="clr-namespace:FACCTS.Controls.MarkupExtension"
+             xmlns:fs="clr-namespace:FACCTS.Services.Data;assembly=FACCTS.Services"
+             xmlns:validation="clr-namespace:FACCTS.Controls.Validation"
+             x:Class="FACCTS.Controls.Views.WitnessInterpereterView"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="596" Background="{DynamicResource ControlBackgroundBrush}">
+	<UserControl.Resources>
+		<Converters:ObjectToBooleanConverter x:Key="ObjectToBooleanConverter"/>
+        <ext:MefPartExtension x:Key="DataContainer"
+                              InstanceType="{x:Type fs:IDataContainer}" />
+        <CollectionViewSource x:Key="cvsDesignations"
+                              Source="{Binding Source={StaticResource DataContainer}, Path=Designations, Mode=OneWay}" />
+        <CollectionViewSource Source="{Binding WitnessesFor, Mode=OneWay}"
+                              x:Key="cvsWitnessesFor" />
+        <CollectionViewSource Source="{Binding InterpretersFor, Mode=OneWay}"
+                              x:Key="cvsInterpretersFor" />
+        <Converters:DataContextMultiValueConverter x:Key="DataContextMultiValueConverter" />
+    </UserControl.Resources>
+    <Grid x:Name="LayoutRoot"
+          IsEnabled="{Binding CurrentCourtCase, Converter={StaticResource ObjectToBooleanConverter}, FallbackValue=False, Mode=OneWay}">
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+		<GroupBox Header="List of Witnesses">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+                <Border Grid.ColumnSpan="2"
+                        DataContext="{Binding CurrentCourtCase, Mode=OneWay}">
+                    <validation:ErrorProvider>
+                        <DataGrid ItemsSource="{Binding Witnesses, Mode=OneWay}"
+                              x:Name="dgWitness"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                                  CanUserDeleteRows="False"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch">
+						<DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding EntityType, Mode=OneWay}"
+                                                Header="Entity Type"
+                                                IsReadOnly="True"
+                                                Width="0.1*" />
+                            <DataGridComboBoxColumn SelectedValueBinding="{Binding PartyFor, Mode=TwoWay}"
+                                                    SelectedValuePath="PartyFor"
+                                                    ItemsSource="{Binding Source={StaticResource cvsWitnessesFor}, Mode=OneWay}"
+                                                    Header="Witness For"
+                                                    Width="0.2*" />
+                            <DataGridTextColumn Binding="{Binding FirstName, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                                                Header="First Name"
+                                                Width="0.2*" />
+                            <DataGridTextColumn Binding="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                                                Header="Last Name"
+                                                Width="0.2*" />
+                            <DataGridTextColumn Binding="{Binding Contact, Mode=TwoWay}"
+                                                Header="Contact"
+                                                Width="0.2*" />
+                        </DataGrid.Columns>
+					</DataGrid>
+                    </validation:ErrorProvider>
+                </Border>
+    			
+				<UniformGrid HorizontalAlignment="Right" Grid.Row="1" Rows="1" Columns="2">
+					<Button Content="Add" Width="75" cal:Message.Attach="AddWitness"/>
+					<Button Content="Remove" Width="75" IsEnabled="{Binding SelectedItem, Converter={StaticResource ObjectToBooleanConverter}, ElementName=dgWitness, Mode=OneWay}">
+						<i:Interaction.Triggers>
+							<i:EventTrigger EventName="Click">
+								<cal:ActionMessage MethodName="RemoveWitness">
+									<cal:Parameter Value="{Binding SelectedItem, ElementName=dgWitness}" />
+								</cal:ActionMessage>
+							</i:EventTrigger>
+						</i:Interaction.Triggers>
+					</Button>
+				</UniformGrid>
+			</Grid>
+		</GroupBox>
+		<GroupBox Header="List of Interpreters" Grid.Row="1">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition Width="Auto"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+                <Border Grid.ColumnSpan="2"
+                        DataContext="{Binding CurrentCourtCase, Mode=OneWay}">
+                    <DataGrid x:Name="dataGrid"
+                              ItemsSource="{Binding Interpreters,Mode=OneWay}"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              HorizontalAlignment="Stretch"
+                              VerticalAlignment="Stretch">
+					    <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding EntityType, Mode=OneWay}"
+                                                Header="Entity Type"
+                                                IsReadOnly="True"
+                                                Width="0.1*" />
+                            <DataGridComboBoxColumn ItemsSource="{Binding Source={StaticResource cvsInterpretersFor}, Mode=OneWay}"
+                                                    SelectedValuePath="PartyFor"
+                                                    SelectedValueBinding="{Binding PartyFor, Mode=TwoWay}"
+                                                    Header="Interpreter For"
+                                                    Width="0.3*" />
+                            <DataGridTextColumn Binding="{Binding FirstName, Mode=TwoWay}" Header="First Name" Width="0.2*"/>
+                            <DataGridTextColumn Binding="{Binding LastName, Mode=TwoWay}"
+                                                Header="Last Name"
+                                                Width="0.2*" />
+                           
+                            <DataGridTextColumn Binding="{Binding Language, Mode=TwoWay}"
+                                                Header="Language"
+                                                Width="0.2*" />
+					    </DataGrid.Columns>
+				    </DataGrid>
+                </Border>
+                <UniformGrid HorizontalAlignment="Right" Grid.Row="1" Rows="1" Columns="2">
+					<Button Content="Add" Width="75" cal:Message.Attach="AddInterpreter"/>
+                    <Button Content="Remove"
+                            Width="75"
+                            IsEnabled="{Binding SelectedItem, Converter={StaticResource ObjectToBooleanConverter}, ElementName=dataGrid, Mode=OneWay}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="RemoveInterpreter">
+                                    <cal:Parameter Value="{Binding SelectedItem, ElementName=dataGrid, Mode=OneWay}" />
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </UniformGrid>
+			</Grid>
+		</GroupBox>
+            
+	</Grid>
+</UserControl>

@@ -1,0 +1,35 @@
+﻿<UserControl
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:sys="clr-namespace:System;assembly=mscorlib.dll"
+			 xmlns:Converters="clr-namespace:FACCTS.Controls.Converters" x:Name="userControl" x:Class="FACCTS.Controls.Views.Controls.AttorneysPartyView" 
+			 mc:Ignorable="d" 
+			 d:DesignHeight="248" d:DesignWidth="823" Background="{DynamicResource ControlBackgroundBrush}"
+			 xmlns:utils="clr-namespace:FACCTS.Controls.Utils"
+			 xmlns:this="clr-namespace:FACCTS.Controls"
+			 >
+	<UserControl.Resources>
+		<Converters:NullableBoolleanToBooleanConverter x:Key="NullableBoolleanToBooleanConverter"/>
+		<Converters:InvertedBooleanConverter x:Key="InvertedBooleanConverter"/>
+	</UserControl.Resources>
+	<GroupBox Header="{Binding DisplayName, ElementName=userControl, FallbackValue=Attroney for Party 1, Mode=OneWay}" Grid.IsSharedSizeScope="True">
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto" SharedSizeGroup="Column1"/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" MinHeight="50"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<StackPanel VerticalAlignment="Center" Grid.Column="1">
+				<CheckBox x:Name="checkBox" Content="Pro Per" Margin="0,5" VerticalAlignment="Center" IsChecked="{Binding HasAttorney, Converter={StaticResource InvertedBooleanConverter}, Mode=TwoWay}" HorizontalAlignment="Left"/>
+			</StackPanel>
+			<ContentControl Grid.Row="1" Grid.ColumnSpan="2" IsEnabled="{Binding IsChecked, Converter={StaticResource InvertedBooleanConverter}, ElementName=checkBox, Mode=OneWay}">
+				<this:AttorneyView DataContext="{Binding Attorney, Mode=OneWay}"/>
+			</ContentControl>
+		</Grid>
+	</GroupBox>
+</UserControl>

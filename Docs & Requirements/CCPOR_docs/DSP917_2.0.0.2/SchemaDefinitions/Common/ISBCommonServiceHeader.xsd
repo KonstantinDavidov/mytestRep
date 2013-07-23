@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tnshdr="https://isb.srv.courts-tc.ca.gov/portal/isb/schema/ALL/ISBServices/CommonServices/2.0.0" targetNamespace="https://isb.srv.courts-tc.ca.gov/portal/isb/schema/ALL/ISBServices/CommonServices/2.0.0" elementFormDefault="unqualified" attributeFormDefault="unqualified">
+	<element name="ISBCommonServiceHeader">
+		<complexType>
+			<sequence>
+				<element name="Source" type="xsd:string"/>
+				<element name="Target" type="xsd:string" minOccurs="0"/>
+				<element name="InterfaceName" type="xsd:string"/>
+				<element name="DocumentType" type="xsd:string"/>
+				<element name="DocumentId" type="xsd:string" minOccurs="0"/>
+				<element name="CorrelationId" type="xsd:string" minOccurs="0"/>
+				<element name="DistributionId" type="xsd:string" minOccurs="0"/>
+				<element name="ISBTransactionId" type="xsd:string"/>
+				<element name="Environment" type="xsd:string"/>
+				<element name="Hostname" type="xsd:string"/>
+				<element name="TimeStamp" type="xsd:dateTime"/>
+				<element name="CourtCd" type="xsd:string" minOccurs="0"/>
+				<element name="UserId" type="xsd:string" minOccurs="0"/>
+				<element name="RoutingInfo" minOccurs="0" maxOccurs="unbounded">
+					<complexType>
+						<sequence>
+							<element name="Name" type="xsd:string"/>
+							<element name="Value" type="xsd:string"/>
+						</sequence>
+					</complexType>
+				</element>
+				<element name="SequencingInfo" minOccurs="0">
+					<complexType>
+						<sequence>
+							<element name="Id" type="xsd:string"/>
+							<element name="RelatedSequenceId" type="xsd:string"/>
+							<element name="GroupId" type="xsd:string" />
+						</sequence>
+					</complexType>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+</schema>

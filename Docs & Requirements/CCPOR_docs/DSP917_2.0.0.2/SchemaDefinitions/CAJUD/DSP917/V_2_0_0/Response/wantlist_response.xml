@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<w:WantList w:release="2.0" w:product="NIEM"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:nc="http://niem.gov/niem/niem-core/2.0"
+  xmlns:niem-xsd="http://niem.gov/niem/proxy/xsd/2.0" xmlns:w="http://niem.gov/niem/wantlist/2">
+  <w:Element w:name="nc:ActivityCategoryText" w:isReference="false"/>
+  <w:Element w:name="nc:IdentificationID" w:isReference="false"/>
+  <w:Type w:name="nc:TextType" w:isRequested="true"/>
+  <w:Type w:name="niem-xsd:base64Binary" w:isRequested="true"/>
+  <w:Type w:name="niem-xsd:date" w:isRequested="true"/>
+  <w:Type w:name="niem-xsd:dateTime" w:isRequested="true"/>
+  <w:Type w:name="niem-xsd:decimal" w:isRequested="true"/>
+  <w:Type w:name="niem-xsd:gYear" w:isRequested="true"/>
+  <w:Type w:name="niem-xsd:nonNegativeInteger" w:isRequested="true"/>
+  <w:Type w:name="niem-xsd:string" w:isRequested="true"/>
+  <w:Type w:name="niem-xsd:time" w:isRequested="true"/>
+  <w:Type w:name="xsd:base64Binary" w:isRequested="true"/>
+  <w:Type w:name="xsd:date" w:isRequested="true"/>
+  <w:Type w:name="xsd:dateTime" w:isRequested="true"/>
+  <w:Type w:name="xsd:decimal" w:isRequested="true"/>
+  <w:Type w:name="xsd:gYear" w:isRequested="true"/>
+  <w:Type w:name="xsd:nonNegativeInteger" w:isRequested="true"/>
+  <w:Type w:name="xsd:string" w:isRequested="true"/>
+  <w:Type w:name="xsd:time" w:isRequested="true"/>
+</w:WantList>

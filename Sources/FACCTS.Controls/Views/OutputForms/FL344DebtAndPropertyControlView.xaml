@@ -1,0 +1,141 @@
+﻿<UserControl x:Class="FACCTS.Controls.Views.FL344DebtAndPropertyControlView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="700" d:DesignWidth="700">
+    <StackPanel Orientation="Vertical">
+        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+            <StackPanel Orientation="Vertical">
+                <CheckBox FontWeight="Bold">
+                    Property Control - Possess..
+                </CheckBox>
+                <Grid Margin="25 0 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <CheckBox Grid.Column="0" Grid.Row="0" VerticalAlignment="Bottom">
+                        Attach
+                    </CheckBox>
+                    <DataGrid Grid.Column="1" Grid.Row="0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Property"/>
+                            <DataGridTextColumn Header="Given To"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1" Grid.Row="1">
+                        <Button Width="25">+</Button>
+                        <Button Width="25">-</Button>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+            <StackPanel Orientation="Vertical">
+                <Label FontWeight="Bold">
+                    Total Debt
+                </Label>
+                <Grid Margin="25 0 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBox Width="100" Grid.Column="0" Grid.Row="0"/>
+                    <TextBox Width="100" Grid.Column="1" Grid.Row="0"/>
+                    <TextBox Width="100" Grid.Column="2" Grid.Row="0"/>
+                    <xctk:DateTimeUpDown Format="LongDate" Width="100" Grid.Column="3" Grid.Row="0"/>
+                    <TextBox Width="100" Grid.Column="4" Grid.Row="0"/>
+                    <Label Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">
+                        Total Debt
+                    </Label>
+                    <Label Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center">
+                        Pay To
+                    </Label>
+                    <Label Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center">
+                        Amount
+                    </Label>
+                    <Label Grid.Column="3" Grid.Row="1" HorizontalAlignment="Center">
+                        Due Date:
+                    </Label>
+                    <Label Grid.Column="4" Grid.Row="1" HorizontalAlignment="Center">
+                        Paid By
+                    </Label>
+                </Grid>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+            <StackPanel Orientation="Vertical">
+                <Label FontWeight="Bold">
+                    Property Restraining
+                </Label>
+                <Grid Margin="25 0 0 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <ComboBox Grid.Column="0" Grid.Row="0">
+                        <ComboBoxItem>
+                            Protected
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Restained
+                        </ComboBoxItem>
+                        <ComboBoxItem>
+                            Claimant
+                        </ComboBoxItem>
+                    </ComboBox>
+                    <CheckBox Grid.Column="1" Grid.Row="1">
+                        NO transfer encumber, etc
+                    </CheckBox>
+                    <CheckBox Grid.Column="1" Grid.Row="2">
+                        NO canceling, cashing, borrowing against insurance
+                    </CheckBox>
+                    <CheckBox Grid.Column="1" Grid.Row="3">
+                        NO debt incurred w/o party liability
+                    </CheckBox>
+                    <CheckBox Grid.Column="2" Grid.Row="3">
+                        Must Notify Other Party of Expedentures
+                    </CheckBox>
+                </Grid>
+            </StackPanel>
+        </Border>
+        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}" Height="73.893">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label FontWeight="Bold" Grid.Column="0" Grid.Row="0" Content="Other Orders" VerticalAlignment="Center"/>
+                <TextBox TextWrapping="Wrap" AcceptsReturn="True" Width="250" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3"/>
+                <CheckBox Grid.Column="2" Grid.Row="0" Content="Attach" VerticalAlignment="Bottom" Margin="0,0,0,6.472"/>
+                <Button Grid.Column="2" Grid.Row="1" Content="Clear" VerticalAlignment="Center"/>
+            </Grid>
+        </Border>
+    </StackPanel>
+</UserControl>

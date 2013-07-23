@@ -1,0 +1,80 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
+            xmlns:cal="http://www.caliburnproject.org"
+             xmlns:Converters="clr-namespace:FACCTS.Controls.Converters" x:Class="FACCTS.Controls.Views.Controls.CourtDocketLeftPaneView"
+             xmlns:ext="clr-namespace:FACCTS.Controls.MarkupExtension"
+             xmlns:fs="clr-namespace:FACCTS.Services.Data;assembly=FACCTS.Services"
+             mc:Ignorable="d" 
+             d:DesignHeight="471" d:DesignWidth="303" Background="{DynamicResource ControlBackgroundBrush}">
+	<UserControl.Resources>
+		<Converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+        
+    </UserControl.Resources>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<GroupBox Header="Court Case List">
+            <ListBox x:Name="listBox" ItemsSource="{Binding CourtCases, Mode=OneWay}" SelectedItem="{Binding CurrentCourtCase, Mode=TwoWay}" DisplayMemberPath="CaseNumber"/>
+		</GroupBox>
+		<GroupBox Header="Court Docket Calendar" Grid.Row="1">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+				<Calendar Grid.ColumnSpan="3" SelectedDate="{Binding CalendarDate, Mode=TwoWay}" x:Name="Calendar"/>
+				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Filter by Courtroom" VerticalAlignment="Center" Grid.Row="1"/>
+                <ComboBox Grid.Row="1"
+                          Grid.Column="1"
+                          DisplayMemberPath="Name"
+                          SelectedValuePath="UnderlyingObject"
+                          SelectedIndex="0"
+                          SelectedValue="{Binding Courtroom, Mode=TwoWay}"
+                          ItemsSource="{Binding Courtrooms, Mode=OneWay}">
+                </ComboBox>
+				<TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2"><Run Text="Filter by AM/PM" /></TextBlock>
+                <ComboBox Margin="0"
+                          Grid.Row="2"
+                          Grid.Column="1"
+                          SelectedIndex="{Binding SessionIndex, Mode=TwoWay, FallbackValue=2}">
+                    <ComboBoxItem>AM</ComboBoxItem>
+                    <ComboBoxItem>PM</ComboBoxItem>
+                    <ComboBoxItem>Both</ComboBoxItem>
+                </ComboBox>
+            </Grid>
+		</GroupBox>
+		<Border BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
+			<UniformGrid Rows="1" Columns="2" HorizontalAlignment="Left">
+				<Button Content="Add Case" cal:Message.Attach="AddCase" Padding="5,3">
+                    <Button.IsEnabled>
+                        <MultiBinding Converter="{x:Static Converters:AndConverter.Instance}">
+                            <Binding Path="SelectedItem"
+                                     Converter="{x:Static Converters:ObjectToBooleanConverter.Instance}"
+                                     ElementName="listBox"
+                                     Mode="OneWay" />
+                            <Binding ElementName="Calendar"
+                                     Path="SelectedDate"
+                                     Mode="OneWay"
+                                     Converter="{x:Static Converters:ObjectToBooleanConverter.Instance}" />
+                        </MultiBinding>
+                    </Button.IsEnabled>
+                </Button>
+				<Button Content="View Cases" cal:Message.Attach="RefreshDocket"/>
+			</UniformGrid>
+    		
+		</Border>
+            
+	</Grid>
+</UserControl>
