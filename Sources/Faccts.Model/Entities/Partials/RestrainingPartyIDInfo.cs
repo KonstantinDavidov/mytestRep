@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
+using System.ComponentModel;
 
 namespace Faccts.Model.Entities
 {
-    public partial class RestrainingPartyIDInfo : IDataTransferConvertible<FACCTS.Server.Model.DataModel.RestrainingPartyIdentificationInformation>
+    public partial class RestrainingPartyIDInfo : IDataTransferConvertible<FACCTS.Server.Model.DataModel.RestrainingPartyIdentificationInformation>, IDataErrorInfo
     {
         partial void Initialize()
         {
@@ -19,47 +20,6 @@ namespace Faccts.Model.Entities
                 );
         }
 
-        public FACCTS.Server.Model.Enums.IdentificationIDType IDTypeEnum
-        {
-            get
-            {
-                return this.IDType;
-            }
-            set
-            {
-                this.IDType = value;
-            }
-        }
-
-        private DateTime? _IDIssuedDateNullable;
-        public DateTime? IDIssuedDateNullable
-        {
-            get
-            {
-                if (DateTime.Now.Subtract(TimeSpan.FromDays(365 * 200)) >= this.IDIssuedDate)
-                {
-                    _IDIssuedDateNullable = null;
-                }
-                else
-                {
-                    _IDIssuedDateNullable = this.IDIssuedDate;
-                }
-                return _IDIssuedDateNullable;
-            }
-            set
-            {
-                if (_IDIssuedDateNullable == value)
-                    return;
-
-                this.OnPropertyChanging("IDIssuedDate");
-                _IDIssuedDateNullable = value;
-                if (_IDIssuedDateNullable.HasValue)
-                {
-                    this.IDIssuedDate = _IDIssuedDateNullable.Value;
-                }
-                this.OnPropertyChanged("IDIssuedDate");
-            }
-        }
 
         public FACCTS.Server.Model.DataModel.RestrainingPartyIdentificationInformation ToDTO()
         {
@@ -71,5 +31,42 @@ namespace Faccts.Model.Entities
             };
         }
 
+
+        public string Error
+        {
+            get { return this[string.Empty]; }
+        }
+
+        public string this[string propertyName]
+        {
+            get
+            {
+                propertyName = propertyName ?? string.Empty;
+                if (string.IsNullOrEmpty(propertyName))
+                {
+                    string result = null;
+                    foreach (var kv in _requiredFields)
+                    {
+                        result = this.Validate(_requiredFields, kv.Key);
+                        if (!string.IsNullOrEmpty(result))
+                        {
+                            break;
+                        }
+                    }
+                    return result;
+                }
+                else
+                {
+                    return this.Validate(_requiredFields, propertyName);
+                }
+            }
+        }
+
+        private static Dictionary<string, string> _requiredFields = new Dictionary<string, string>()
+        {
+            {"IDType", "ID Type"},
+            {"IDIssuedDate", "Issued Date"},
+            {"IDNumber", "ID Number"}
+        };
     }
 }
