@@ -28,6 +28,10 @@ namespace Faccts.Model.Entities
             this.Party1 = new CourtParty();
             this.Party2 = new CourtParty();
             this.RestrainingPartyIdentificationInformation = new RestrainingPartyIDInfo();
+            this.Party1AttorneyData = new CourtPartyAttorneyData();
+            this.Party2AttorneyData = new CourtPartyAttorneyData();
+            this.ThirdPartyAttorneyData = new ThirdPartyData();
+            this.AttorneyForChild = new Attorneys();
             this.WhenAny(x => x.Party1.IsDirty, x => x.Party2.IsDirty, x => x.RestrainingPartyIdentificationInformation.IsDirty,
                 (x1, x2, x3) => x1.Value || x2.Value || x3.Value
                 )
@@ -189,55 +193,6 @@ namespace Faccts.Model.Entities
             }
         }
 
-        private void UpdateHistoryCollection()
-        {
-            if (this.CaseHistory.FirstOrDefault(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing) == null)
-            {
-                this.CaseHistory.Add(
-                    new CaseHistory()
-                        {
-                            Date = null,
-                            CaseHistoryEvent = FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing,
-                        }
-                    );
-            }
-        }
-
-        public CourtPartyAttorneyData Party1AttorneyData
-        {
-            get
-            {
-                UpdateHistoryCollection();
-                return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).Party1AttorneyData;
-            }
-        }
-
-        public CourtPartyAttorneyData Party2AttorneyData
-        {
-            get
-            {
-                UpdateHistoryCollection();
-                return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).Party2AttorneyData;
-            }
-        }
-
-        public Attorneys AttorneyForChild
-        {
-            get
-            {
-                UpdateHistoryCollection();
-                return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).AttorneyForChild;
-            }
-        }
-
-        public ThirdPartyData ThirdPartyAttorneyData
-        {
-            get
-            {
-                UpdateHistoryCollection();
-                return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).ThirdPartyData;
-            }
-        }
 
         private ReactiveCollection<AdditionalParty> _witnesses;
         public ReactiveCollection<AdditionalParty> Witnesses

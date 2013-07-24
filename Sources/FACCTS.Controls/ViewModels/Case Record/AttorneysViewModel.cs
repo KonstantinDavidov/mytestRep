@@ -33,11 +33,11 @@ namespace FACCTS.Controls.ViewModels
                         } else
                         if (x.IsParty1)
                         {
-                            CurrentHistoryRecord.AttorneyForChild = CurrentHistoryRecord.Party1AttorneyData.Attorney;
+                            CurrentCourtCase.AttorneyForChild = CurrentCourtCase.Party1AttorneyData.Attorney;
                         }
                         else
                         {
-                            CurrentHistoryRecord.AttorneyForChild = CurrentHistoryRecord.Party2AttorneyData.Attorney;
+                            CurrentCourtCase.AttorneyForChild = CurrentCourtCase.Party2AttorneyData.Attorney;
                         }
                     }
                 );

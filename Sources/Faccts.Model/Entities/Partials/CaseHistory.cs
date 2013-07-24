@@ -17,10 +17,7 @@ namespace Faccts.Model.Entities
                     this.OnPropertyChanged("CaseEventName");
                 });
             this.Hearing = new Hearings();
-            this.Party1AttorneyData = new CourtPartyAttorneyData();
-            this.Party2AttorneyData = new CourtPartyAttorneyData();
-            this.ThirdPartyData = new ThirdPartyData();
-            this.AttorneyForChild = new Attorneys();
+
         }
 
         public string CaseEventName
