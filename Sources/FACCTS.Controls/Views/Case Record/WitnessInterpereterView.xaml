@@ -8,6 +8,7 @@
              xmlns:Converters="clr-namespace:FACCTS.Controls.Converters"
              xmlns:ext="clr-namespace:FACCTS.Controls.MarkupExtension"
              xmlns:fs="clr-namespace:FACCTS.Services.Data;assembly=FACCTS.Services"
+             xmlns:validation="clr-namespace:FACCTS.Controls.Validation"
              x:Class="FACCTS.Controls.Views.WitnessInterpereterView"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="596" Background="{DynamicResource ControlBackgroundBrush}">
@@ -41,11 +42,12 @@
 				</Grid.RowDefinitions>
                 <Border Grid.ColumnSpan="2"
                         DataContext="{Binding CurrentCourtCase, Mode=OneWay}">
-                   
-                    <DataGrid ItemsSource="{Binding Witnesses, Mode=OneWay}"
+                    <validation:ErrorProvider>
+                        <DataGrid ItemsSource="{Binding Witnesses, Mode=OneWay}"
                               x:Name="dgWitness"
                               AutoGenerateColumns="False"
                               CanUserAddRows="False"
+                                  CanUserDeleteRows="False"
                               HorizontalAlignment="Stretch"
                               VerticalAlignment="Stretch">
 						<DataGrid.Columns>
@@ -58,10 +60,10 @@
                                                     ItemsSource="{Binding Source={StaticResource cvsWitnessesFor}, Mode=OneWay}"
                                                     Header="Witness For"
                                                     Width="0.2*" />
-                            <DataGridTextColumn Binding="{Binding FirstName, Mode=TwoWay}"
+                            <DataGridTextColumn Binding="{Binding FirstName, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                 Header="First Name"
                                                 Width="0.2*" />
-                            <DataGridTextColumn Binding="{Binding LastName, Mode=TwoWay}"
+                            <DataGridTextColumn Binding="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                 Header="Last Name"
                                                 Width="0.2*" />
                             <DataGridTextColumn Binding="{Binding Contact, Mode=TwoWay}"
@@ -69,7 +71,8 @@
                                                 Width="0.2*" />
                         </DataGrid.Columns>
 					</DataGrid>
-				</Border>
+                    </validation:ErrorProvider>
+                </Border>
     			
 				<UniformGrid HorizontalAlignment="Right" Grid.Row="1" Rows="1" Columns="2">
 					<Button Content="Add" Width="75" cal:Message.Attach="AddWitness"/>
@@ -113,8 +116,11 @@
                                                     SelectedValueBinding="{Binding PartyFor, Mode=TwoWay}"
                                                     Header="Interpreter For"
                                                     Width="0.3*" />
-                            <DataGridTextColumn Binding="{Binding FirstName, Mode=TwoWay}" Header="First Name" Width="0.2*"/>
-                            <DataGridTextColumn Binding="{Binding LastName, Mode=TwoWay}"
+                            <DataGridTextColumn Binding="{Binding FirstName, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" 
+                                                Header="First Name"
+                                                Width="0.2*"/>
+                            <DataGridTextColumn Binding="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+
                                                 Header="Last Name"
                                                 Width="0.2*" />
                            

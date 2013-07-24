@@ -1,104 +1,70 @@
-﻿
-
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Collections.ObjectModel;
 using FACCTS.Server.Model.Reporting.Entities;
 using FACCTS.Server.Model.DataModel;
 using System.Collections.Generic;
+using FACCTS.Server.Model.Enums;
+using FACCTS.Server.Model.Reporting;
 
 namespace FACCTS.Server.Model.OrderModels
 {
-    
+			
+	public partial class OtherOrders
+	{
+		public bool IsEnabled
+		{
+			get; set;
+		}
+		
+		public string OtherOrdersDescription
+		{
+			get; set;
+		}
+				
+	}
+	
 			
 	public partial class CH130ConductChoice
 	{
-		private bool _isEnabled;
 		public bool IsEnabled
 		{
-			get{return _isEnabled;}
-			set
-			{
-				_isEnabled = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isNoAbuse;
 		public bool IsNoAbuse
 		{
-			get{return _isNoAbuse;}
-			set
-			{
-				_isNoAbuse = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isNoContact;
 		public bool IsNoContact
 		{
-			get{return _isNoContact;}
-			set
-			{
-				_isNoContact = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isDontTryToLocate;
 		public bool IsDontTryToLocate
 		{
-			get{return _isDontTryToLocate;}
-			set
-			{
-				_isDontTryToLocate = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isInvolveOtherProtected;
 		public bool IsInvolveOtherProtected
 		{
-			get{return _isInvolveOtherProtected;}
-			set
-			{
-				_isInvolveOtherProtected = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isInvolveOther;
 		public bool IsInvolveOther
 		{
-			get{return _isInvolveOther;}
-			set
-			{
-				_isInvolveOther = value;
-
-			}
+			get; set;
 		}
 		
-		private string _otherDescription;
 		public string OtherDescription
 		{
-			get{return _otherDescription;}
-			set
-			{
-				_otherDescription = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isOtherAttached;
 		public bool IsOtherAttached
 		{
-			get{return _isOtherAttached;}
-			set
-			{
-				_isOtherAttached = value;
-
-			}
+			get; set;
 		}
 				
 	}
@@ -106,136 +72,64 @@ namespace FACCTS.Server.Model.OrderModels
 			
 	public partial class CH130StayAwayOrders
 	{
-		private bool _isEnabled;
 		public bool IsEnabled
 		{
-			get{return _isEnabled;}
-			set
-			{
-				_isEnabled = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromPerson;
 		public bool IsStayAwayFromPerson
 		{
-			get{return _isStayAwayFromPerson;}
-			set
-			{
-				_isStayAwayFromPerson = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromHome;
 		public bool IsStayAwayFromHome
 		{
-			get{return _isStayAwayFromHome;}
-			set
-			{
-				_isStayAwayFromHome = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromVehicle;
 		public bool IsStayAwayFromVehicle
 		{
-			get{return _isStayAwayFromVehicle;}
-			set
-			{
-				_isStayAwayFromVehicle = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromChildCare;
 		public bool IsStayAwayFromChildCare
 		{
-			get{return _isStayAwayFromChildCare;}
-			set
-			{
-				_isStayAwayFromChildCare = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromChildSchool;
 		public bool IsStayAwayFromChildSchool
 		{
-			get{return _isStayAwayFromChildSchool;}
-			set
-			{
-				_isStayAwayFromChildSchool = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromWork;
 		public bool IsStayAwayFromWork
 		{
-			get{return _isStayAwayFromWork;}
-			set
-			{
-				_isStayAwayFromWork = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromOtherProtected;
 		public bool IsStayAwayFromOtherProtected
 		{
-			get{return _isStayAwayFromOtherProtected;}
-			set
-			{
-				_isStayAwayFromOtherProtected = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromOther;
 		public bool IsStayAwayFromOther
 		{
-			get{return _isStayAwayFromOther;}
-			set
-			{
-				_isStayAwayFromOther = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isAttachOther;
 		public bool IsAttachOther
 		{
-			get{return _isAttachOther;}
-			set
-			{
-				_isAttachOther = value;
-
-			}
+			get; set;
 		}
 		
-		private string _otherDescription;
 		public string OtherDescription
 		{
-			get{return _otherDescription;}
-			set
-			{
-				_otherDescription = value;
-
-			}
+			get; set;
 		}
 		
-		private int _stayAwayDistance;
 		public int StayAwayDistance
 		{
-			get{return _stayAwayDistance;}
-			set
-			{
-				_stayAwayDistance = value;
-
-			}
+			get; set;
 		}
 				
 	}
@@ -243,103 +137,49 @@ namespace FACCTS.Server.Model.OrderModels
 			
 	public partial class CH130
 	{
-		private CH130ConductChoice _conductSection;
 		public CH130ConductChoice ConductSection
 		{
-			get{return _conductSection;}
-			set
-			{
-				_conductSection = value;
-
-			}
+			get; set;
 		}
 		
-		private CH130StayAwayOrders _stayAwayOrdersSection;
 		public CH130StayAwayOrders StayAwayOrdersSection
 		{
-			get{return _stayAwayOrdersSection;}
-			set
-			{
-				_stayAwayOrdersSection = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isNoGuns;
 		public bool IsNoGuns
 		{
-			get{return _isNoGuns;}
-			set
-			{
-				_isNoGuns = value;
-
-			}
+			get; set;
 		}
 		
-		private CAPROSEntry _cAPROSEntrySection;
 		public CAPROSEntry CAPROSEntrySection
 		{
-			get{return _cAPROSEntrySection;}
-			set
-			{
-				_cAPROSEntrySection = value;
-
-			}
+			get; set;
 		}
 		
-		private NoServiceFee _noServiceFeeSection;
 		public NoServiceFee NoServiceFeeSection
 		{
-			get{return _noServiceFeeSection;}
-			set
-			{
-				_noServiceFeeSection = value;
-
-			}
+			get; set;
 		}
 		
-		private bool? _isPOSGeneral;
 		public bool? IsPOSGeneral
 		{
-			get{return _isPOSGeneral;}
-			set
-			{
-				_isPOSGeneral = value;
-
-			}
+			get; set;
 		}
 		
-		private LawersFeeAndCourtCosts _lawersFeeAndCourtCostsSection;
 		public LawersFeeAndCourtCosts LawersFeeAndCourtCostsSection
 		{
-			get{return _lawersFeeAndCourtCostsSection;}
-			set
-			{
-				_lawersFeeAndCourtCostsSection = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isOtherOrdersAttached;
 		public bool IsOtherOrdersAttached
 		{
-			get{return _isOtherOrdersAttached;}
-			set
-			{
-				_isOtherOrdersAttached = value;
-
-			}
+			get; set;
 		}
 		
-		private string _otherOrderDetail;
 		public string OtherOrderDetail
 		{
-			get{return _otherOrderDetail;}
-			set
-			{
-				_otherOrderDetail = value;
-
-			}
+			get; set;
 		}
 				
 	}
@@ -347,92 +187,44 @@ namespace FACCTS.Server.Model.OrderModels
 			
 	public partial class CH110ConductChoice
 	{
-		private bool _isEnabled;
 		public bool IsEnabled
 		{
-			get{return _isEnabled;}
-			set
-			{
-				_isEnabled = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isNoAbuse;
 		public bool IsNoAbuse
 		{
-			get{return _isNoAbuse;}
-			set
-			{
-				_isNoAbuse = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isNoContact;
 		public bool IsNoContact
 		{
-			get{return _isNoContact;}
-			set
-			{
-				_isNoContact = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isDontTryToLocate;
 		public bool IsDontTryToLocate
 		{
-			get{return _isDontTryToLocate;}
-			set
-			{
-				_isDontTryToLocate = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isInvolveOtherProtected;
 		public bool IsInvolveOtherProtected
 		{
-			get{return _isInvolveOtherProtected;}
-			set
-			{
-				_isInvolveOtherProtected = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isInvolveOther;
 		public bool IsInvolveOther
 		{
-			get{return _isInvolveOther;}
-			set
-			{
-				_isInvolveOther = value;
-
-			}
+			get; set;
 		}
 		
-		private string _otherDescription;
 		public string OtherDescription
 		{
-			get{return _otherDescription;}
-			set
-			{
-				_otherDescription = value;
-
-			}
+			get; set;
 		}
 		
-		private OrderRestrictionState _conductState;
 		public OrderRestrictionState ConductState
 		{
-			get{return _conductState;}
-			set
-			{
-				_conductState = value;
-
-			}
+			get; set;
 		}
 				
 	}
@@ -440,48 +232,24 @@ namespace FACCTS.Server.Model.OrderModels
 			
 	public partial class CH110RestrainedPersonPayment
 	{
-		private bool _isEnabled;
 		public bool IsEnabled
 		{
-			get{return _isEnabled;}
-			set
-			{
-				_isEnabled = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isAttonrneyFees;
 		public bool IsAttonrneyFees
 		{
-			get{return _isAttonrneyFees;}
-			set
-			{
-				_isAttonrneyFees = value;
-
-			}
+			get; set;
 		}
 		
-		private string _otherDescription;
 		public string OtherDescription
 		{
-			get{return _otherDescription;}
-			set
-			{
-				_otherDescription = value;
-
-			}
+			get; set;
 		}
 		
-		private List<OtherProtected> _otherProtectedPersons;
 		public List<OtherProtected> OtherProtectedPersons
 		{
-			get{return _otherProtectedPersons;}
-			set
-			{
-				_otherProtectedPersons = value;
-
-			}
+			get; set;
 		}
 				
 	}
@@ -489,147 +257,69 @@ namespace FACCTS.Server.Model.OrderModels
 			
 	public partial class CH110StayAwayOrders
 	{
-		private bool _isEnabled;
 		public bool IsEnabled
 		{
-			get{return _isEnabled;}
-			set
-			{
-				_isEnabled = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromPerson;
 		public bool IsStayAwayFromPerson
 		{
-			get{return _isStayAwayFromPerson;}
-			set
-			{
-				_isStayAwayFromPerson = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromHome;
 		public bool IsStayAwayFromHome
 		{
-			get{return _isStayAwayFromHome;}
-			set
-			{
-				_isStayAwayFromHome = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromVehicle;
 		public bool IsStayAwayFromVehicle
 		{
-			get{return _isStayAwayFromVehicle;}
-			set
-			{
-				_isStayAwayFromVehicle = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromChildCare;
 		public bool IsStayAwayFromChildCare
 		{
-			get{return _isStayAwayFromChildCare;}
-			set
-			{
-				_isStayAwayFromChildCare = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromChildSchool;
 		public bool IsStayAwayFromChildSchool
 		{
-			get{return _isStayAwayFromChildSchool;}
-			set
-			{
-				_isStayAwayFromChildSchool = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromWork;
 		public bool IsStayAwayFromWork
 		{
-			get{return _isStayAwayFromWork;}
-			set
-			{
-				_isStayAwayFromWork = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromOtherProtected;
 		public bool IsStayAwayFromOtherProtected
 		{
-			get{return _isStayAwayFromOtherProtected;}
-			set
-			{
-				_isStayAwayFromOtherProtected = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromOther;
 		public bool IsStayAwayFromOther
 		{
-			get{return _isStayAwayFromOther;}
-			set
-			{
-				_isStayAwayFromOther = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isAttachOther;
 		public bool IsAttachOther
 		{
-			get{return _isAttachOther;}
-			set
-			{
-				_isAttachOther = value;
-
-			}
+			get; set;
 		}
 		
-		private string _otherDescription;
 		public string OtherDescription
 		{
-			get{return _otherDescription;}
-			set
-			{
-				_otherDescription = value;
-
-			}
+			get; set;
 		}
 		
-		private int _stayAwayDistance;
 		public int StayAwayDistance
 		{
-			get{return _stayAwayDistance;}
-			set
-			{
-				_stayAwayDistance = value;
-
-			}
+			get; set;
 		}
 		
-		private OrderRestrictionState _stayAwayState;
 		public OrderRestrictionState StayAwayState
 		{
-			get{return _stayAwayState;}
-			set
-			{
-				_stayAwayState = value;
-
-			}
+			get; set;
 		}
 				
 	}
@@ -637,81 +327,39 @@ namespace FACCTS.Server.Model.OrderModels
 			
 	public partial class CH110
 	{
-		private CH110ConductChoice _conductSection;
 		public CH110ConductChoice ConductSection
 		{
-			get{return _conductSection;}
-			set
-			{
-				_conductSection = value;
-
-			}
+			get; set;
 		}
 		
-		private CH110StayAwayOrders _stayAwayOrdersSection;
 		public CH110StayAwayOrders StayAwayOrdersSection
 		{
-			get{return _stayAwayOrdersSection;}
-			set
-			{
-				_stayAwayOrdersSection = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isNoGuns;
 		public bool IsNoGuns
 		{
-			get{return _isNoGuns;}
-			set
-			{
-				_isNoGuns = value;
-
-			}
+			get; set;
 		}
 		
-		private CAPROSEntry _cAPROSEntrySection;
 		public CAPROSEntry CAPROSEntrySection
 		{
-			get{return _cAPROSEntrySection;}
-			set
-			{
-				_cAPROSEntrySection = value;
-
-			}
+			get; set;
 		}
 		
-		private NoServiceFee _noServiceFeeSection;
 		public NoServiceFee NoServiceFeeSection
 		{
-			get{return _noServiceFeeSection;}
-			set
-			{
-				_noServiceFeeSection = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isOtherOrdersAttached;
 		public bool IsOtherOrdersAttached
 		{
-			get{return _isOtherOrdersAttached;}
-			set
-			{
-				_isOtherOrdersAttached = value;
-
-			}
+			get; set;
 		}
 		
-		private string _otherOrderDetail;
 		public string OtherOrderDetail
 		{
-			get{return _otherOrderDetail;}
-			set
-			{
-				_otherOrderDetail = value;
-
-			}
+			get; set;
 		}
 				
 	}
@@ -719,59 +367,29 @@ namespace FACCTS.Server.Model.OrderModels
 			
 	public partial class DV130ConductChoice
 	{
-		private bool _isEnabled;
 		public bool IsEnabled
 		{
-			get{return _isEnabled;}
-			set
-			{
-				_isEnabled = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isNoAbuse;
 		public bool IsNoAbuse
 		{
-			get{return _isNoAbuse;}
-			set
-			{
-				_isNoAbuse = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isNoContact;
 		public bool IsNoContact
 		{
-			get{return _isNoContact;}
-			set
-			{
-				_isNoContact = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isDontTryToLocate;
 		public bool IsDontTryToLocate
 		{
-			get{return _isDontTryToLocate;}
-			set
-			{
-				_isDontTryToLocate = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isExceptionsExist;
 		public bool IsExceptionsExist
 		{
-			get{return _isExceptionsExist;}
-			set
-			{
-				_isExceptionsExist = value;
-
-			}
+			get; set;
 		}
 				
 	}
@@ -779,125 +397,59 @@ namespace FACCTS.Server.Model.OrderModels
 			
 	public partial class DV130StayAwayOrders
 	{
-		private bool _isStayAwayFromPerson;
 		public bool IsStayAwayFromPerson
 		{
-			get{return _isStayAwayFromPerson;}
-			set
-			{
-				_isStayAwayFromPerson = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromHome;
 		public bool IsStayAwayFromHome
 		{
-			get{return _isStayAwayFromHome;}
-			set
-			{
-				_isStayAwayFromHome = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromVehicle;
 		public bool IsStayAwayFromVehicle
 		{
-			get{return _isStayAwayFromVehicle;}
-			set
-			{
-				_isStayAwayFromVehicle = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromChildCareOrSchool;
 		public bool IsStayAwayFromChildCareOrSchool
 		{
-			get{return _isStayAwayFromChildCareOrSchool;}
-			set
-			{
-				_isStayAwayFromChildCareOrSchool = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromPersonSchool;
 		public bool IsStayAwayFromPersonSchool
 		{
-			get{return _isStayAwayFromPersonSchool;}
-			set
-			{
-				_isStayAwayFromPersonSchool = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromWork;
 		public bool IsStayAwayFromWork
 		{
-			get{return _isStayAwayFromWork;}
-			set
-			{
-				_isStayAwayFromWork = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromOtherProtected;
 		public bool IsStayAwayFromOtherProtected
 		{
-			get{return _isStayAwayFromOtherProtected;}
-			set
-			{
-				_isStayAwayFromOtherProtected = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isStayAwayFromOther;
 		public bool IsStayAwayFromOther
 		{
-			get{return _isStayAwayFromOther;}
-			set
-			{
-				_isStayAwayFromOther = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isAttachOther;
 		public bool IsAttachOther
 		{
-			get{return _isAttachOther;}
-			set
-			{
-				_isAttachOther = value;
-
-			}
+			get; set;
 		}
 		
-		private string _otherDescription;
 		public string OtherDescription
 		{
-			get{return _otherDescription;}
-			set
-			{
-				_otherDescription = value;
-
-			}
+			get; set;
 		}
 		
-		private int _stayAwayDistance;
 		public int StayAwayDistance
 		{
-			get{return _stayAwayDistance;}
-			set
-			{
-				_stayAwayDistance = value;
-
-			}
+			get; set;
 		}
 				
 	}
@@ -905,26 +457,14 @@ namespace FACCTS.Server.Model.OrderModels
 			
 	public partial class DV130Moveout
 	{
-		private bool _isEnabled;
 		public bool IsEnabled
 		{
-			get{return _isEnabled;}
-			set
-			{
-				_isEnabled = value;
-
-			}
+			get; set;
 		}
 		
-		private string _moveoutAddress;
 		public string MoveoutAddress
 		{
-			get{return _moveoutAddress;}
-			set
-			{
-				_moveoutAddress = value;
-
-			}
+			get; set;
 		}
 				
 	}
@@ -932,37 +472,64 @@ namespace FACCTS.Server.Model.OrderModels
 			
 	public partial class DV130Animals
 	{
-		private bool _isEnabled;
 		public bool IsEnabled
 		{
-			get{return _isEnabled;}
-			set
-			{
-				_isEnabled = value;
-
-			}
+			get; set;
 		}
 		
-		private int _stayAwayAnimalsDistance;
 		public int StayAwayAnimalsDistance
 		{
-			get{return _stayAwayAnimalsDistance;}
-			set
-			{
-				_stayAwayAnimalsDistance = value;
-
-			}
+			get; set;
 		}
 		
-		private string _animalsDescription;
 		public string AnimalsDescription
 		{
-			get{return _animalsDescription;}
-			set
-			{
-				_animalsDescription = value;
-
-			}
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class DV130DebtPayment
+	{
+		public bool IsEnabled
+		{
+			get; set;
+		}
+		
+		public List<DebtPaymentItem> DebtPaymentItems
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class DV130PropertyControl
+	{
+		public bool IsEnabled
+		{
+			get; set;
+		}
+		
+		public List<DataItem> PropertyControl
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class DV130PropertyRestraint
+	{
+		public bool IsProtectedHasPropertyRestraint
+		{
+			get; set;
+		}
+		
+		public bool IsRestrainedHasPropertyRestraint
+		{
+			get; set;
 		}
 				
 	}
@@ -970,81 +537,539 @@ namespace FACCTS.Server.Model.OrderModels
 			
 	public partial class DV130
 	{
-		private DV130ConductChoice _dV130ConductChoiceSection;
 		public DV130ConductChoice DV130ConductChoiceSection
 		{
-			get{return _dV130ConductChoiceSection;}
-			set
-			{
-				_dV130ConductChoiceSection = value;
-
-			}
+			get; set;
 		}
 		
-		private DV130StayAwayOrders _dV130StayAwayOrdersSection;
 		public DV130StayAwayOrders DV130StayAwayOrdersSection
 		{
-			get{return _dV130StayAwayOrdersSection;}
-			set
-			{
-				_dV130StayAwayOrdersSection = value;
-
-			}
+			get; set;
 		}
 		
-		private DV130Moveout _dV130MoveoutSection;
+		public bool IsPOSProvidedToCourt
+		{
+			get; set;
+		}
+		
 		public DV130Moveout DV130MoveoutSection
 		{
-			get{return _dV130MoveoutSection;}
-			set
-			{
-				_dV130MoveoutSection = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isRecordUnlawfulCommunicationsAllowed;
 		public bool IsRecordUnlawfulCommunicationsAllowed
 		{
-			get{return _isRecordUnlawfulCommunicationsAllowed;}
-			set
-			{
-				_isRecordUnlawfulCommunicationsAllowed = value;
-
-			}
+			get; set;
 		}
 		
-		private DV130Animals _dV130AnimalsSection;
 		public DV130Animals DV130AnimalsSection
 		{
-			get{return _dV130AnimalsSection;}
-			set
-			{
-				_dV130AnimalsSection = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isBattererIntervention;
+		public OtherOrders DV130OtherOrdersSection
+		{
+			get; set;
+		}
+		
 		public bool IsBattererIntervention
 		{
-			get{return _isBattererIntervention;}
-			set
-			{
-				_isBattererIntervention = value;
-
-			}
+			get; set;
 		}
 		
-		private bool _isNoGuns;
 		public bool IsNoGuns
 		{
-			get{return _isNoGuns;}
-			set
-			{
-				_isNoGuns = value;
-
-			}
+			get; set;
+		}
+		
+		public DV130PropertyControl DV130PropertyControlSection
+		{
+			get; set;
+		}
+		
+		public DV130DebtPayment DV130DebtPaymentSection
+		{
+			get; set;
+		}
+		
+		public DV130PropertyRestraint DV130PropertyRestraintSection
+		{
+			get; set;
+		}
+		
+		public List<PaymentItem> Costs
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class IsNoVisitationForParents
+	{
+		public string IsEnabled
+		{
+			get; set;
+		}
+		
+		public CustodyParent IsNoVisitationParent
+		{
+			get; set;
+		}
+		
+		public string OtherDescription
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class VisitationSchedule
+	{
+		public bool IsEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsWeekendsAvailableForVisitation
+		{
+			get; set;
+		}
+		
+		public DateTime WeekendsStartingDate
+		{
+			get; set;
+		}
+		
+		public bool IsFirstWeekendAvailableForVisitation
+		{
+			get; set;
+		}
+		
+		public bool IsSecondWeekendAvailableForVisitation
+		{
+			get; set;
+		}
+		
+		public bool IsThirdWeekendAvailableForVisitation
+		{
+			get; set;
+		}
+		
+		public bool IsFourthWeekendAvailableForVisitation
+		{
+			get; set;
+		}
+		
+		public bool IsFifthWeekendAvailableForVisitation
+		{
+			get; set;
+		}
+		
+		public DayOfWeek FirstAvailableWeekendDay
+		{
+			get; set;
+		}
+		
+		public DateTime FirstAvailableWeekendTime
+		{
+			get; set;
+		}
+		
+		public DayOfWeek LastAvailableWeekendDay
+		{
+			get; set;
+		}
+		
+		public DateTime LastAvailableWeekendTime
+		{
+			get; set;
+		}
+		
+		public bool IsWeekdaysAvailableForVisitation
+		{
+			get; set;
+		}
+		
+		public DateTime WeekdaysStartingDate
+		{
+			get; set;
+		}
+		
+		public DayOfWeek FirstAvailableWeekdayDay
+		{
+			get; set;
+		}
+		
+		public DateTime FirstAvailableWeekdayTime
+		{
+			get; set;
+		}
+		
+		public DayOfWeek LastAvailableWeekdayDay
+		{
+			get; set;
+		}
+		
+		public DateTime LastAvailableWeekdayTime
+		{
+			get; set;
+		}
+		
+		public bool IsOtherVisitationAvilable
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class ChildVisitation
+	{
+		public string IsEnabled
+		{
+			get; set;
+		}
+		
+		public string IsNoVisitationForParents
+		{
+			get; set;
+		}
+		
+		public bool IsAttachedDocumentAvilable
+		{
+			get; set;
+		}
+		
+		public int AttachedDocumentPagesCount
+		{
+			get; set;
+		}
+		
+		public DateTime AttachedDocumentDate
+		{
+			get; set;
+		}
+		
+		public bool IsPartiesMustGoToMediation
+		{
+			get; set;
+		}
+		
+		public string MediationDescription
+		{
+			get; set;
+		}
+		
+		public CustodyParent VisitationGrantedParent
+		{
+			get; set;
+		}
+		
+		public string VisitationGrantedOtherParentDescription
+		{
+			get; set;
+		}
+		
+		public VisitationSchedule VisitationScheduleSection
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class Transportation
+	{
+		public string IsEnabled
+		{
+			get; set;
+		}
+		
+		public CustodyParent TransportationPickUpPerson
+		{
+			get; set;
+		}
+		
+		public string TransportationPickUpPersonOtherDescription
+		{
+			get; set;
+		}
+		
+		public string TransportationPickUpLocation
+		{
+			get; set;
+		}
+		
+		public CustodyParent TransportationDropOffPerson
+		{
+			get; set;
+		}
+		
+		public string TransportationDropOffPersonOtherDescription
+		{
+			get; set;
+		}
+		
+		public string TransportationDropOffLocation
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class TravelRestrict
+	{
+		public string IsEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsMomRestrained
+		{
+			get; set;
+		}
+		
+		public bool IsDadRestrained
+		{
+			get; set;
+		}
+		
+		public bool IsOtherRestrained
+		{
+			get; set;
+		}
+		
+		public string OtherRestrainedDescription
+		{
+			get; set;
+		}
+		
+		public bool IsUSEscapeDenied
+		{
+			get; set;
+		}
+		
+		public bool IsCAEscapeDenied
+		{
+			get; set;
+		}
+		
+		public bool IsOtherLocationsEscapeDenied
+		{
+			get; set;
+		}
+		
+		public string OtherLocationsDescription
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class ExchangeAndRemoval
+	{
+		public string IsEnabled
+		{
+			get; set;
+		}
+		
+		public Transportation TransportationSection
+		{
+			get; set;
+		}
+		
+		public TravelRestrict TravelRestrictSection
+		{
+			get; set;
+		}
+		
+		public bool IsChildAbductionRiskExist
+		{
+			get; set;
+		}
+		
+		public bool IsDV145Attached
+		{
+			get; set;
+		}
+		
+		public bool IsUSCountryOfHabitualResidence
+		{
+			get; set;
+		}
+		
+		public bool IsOtherCountryOfHabitualResidence
+		{
+			get; set;
+		}
+		
+		public string OtherCountryAsHabitualResidenceDescription
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class DV140
+	{
+		public List<ChildCustodyItem> ChildCustodyItems
+		{
+			get; set;
+		}
+		
+		public ChildVisitation ChildVisitationSection
+		{
+			get; set;
+		}
+		
+		public ExchangeAndRemoval ExchangeAndRemovalSection
+		{
+			get; set;
+		}
+		
+		public OtherOrders DV140OtherOrders
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class DV150
+	{
+		public bool IsPartiesMustGoToMediation
+		{
+			get; set;
+		}
+		
+		public string MediationPlaceDescription
+		{
+			get; set;
+		}
+		
+		public bool IsVisitsSupervised
+		{
+			get; set;
+		}
+		
+		public CustodyParent SupervisedPerson
+		{
+			get; set;
+		}
+		
+		public string OtherVisitationPersonDescription
+		{
+			get; set;
+		}
+		
+		public bool IsExchangesOfChildrenAreSupervised
+		{
+			get; set;
+		}
+		
+		public bool IsAllDV140VisitSupervised
+		{
+			get; set;
+		}
+		
+		public byte SupervisedVisitsPerWeek
+		{
+			get; set;
+		}
+		
+		public byte SupervisedVisitsHours
+		{
+			get; set;
+		}
+		
+		public string SupervisedScheduleDescription
+		{
+			get; set;
+		}
+		
+		public bool OtherScheduleAttached
+		{
+			get; set;
+		}
+		
+		public string ProviderName
+		{
+			get; set;
+		}
+		
+		public string ProviderAddress
+		{
+			get; set;
+		}
+		
+		public string ProviderPhone
+		{
+			get; set;
+		}
+		
+		public SupervisionProviderType ProviderType
+		{
+			get; set;
+		}
+		
+		public bool IsMomPay
+		{
+			get; set;
+		}
+		
+		public decimal MomPayment
+		{
+			get; set;
+		}
+		
+		public bool IsDadPay
+		{
+			get; set;
+		}
+		
+		public decimal DadPayment
+		{
+			get; set;
+		}
+		
+		public bool IsOtherPay
+		{
+			get; set;
+		}
+		
+		public decimal OtherPayment
+		{
+			get; set;
+		}
+		
+		public string OtherDescription
+		{
+			get; set;
+		}
+		
+		public DateTime? MomContactProviderDate
+		{
+			get; set;
+		}
+		
+		public DateTime? DadContactProviderDate
+		{
+			get; set;
+		}
+		
+		public string OtherContactProviderDescription
+		{
+			get; set;
+		}
+		
+		public string OtherOrdersdescription
+		{
+			get; set;
 		}
 				
 	}

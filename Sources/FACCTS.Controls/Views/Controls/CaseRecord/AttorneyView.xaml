@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ext="clr-namespace:FACCTS.Controls.MarkupExtension"
              xmlns:fs="clr-namespace:FACCTS.Services.Data;assembly=FACCTS.Services"
+             xmlns:validation="clr-namespace:FACCTS.Controls.Validation"
              mc:Ignorable="d"
              x:Class="FACCTS.Controls.AttorneyView"
              x:Name="UserControl"
@@ -12,42 +13,157 @@
              Background="{DynamicResource ControlBackgroundBrush}">
     <UserControl.Resources>
     </UserControl.Resources>
-    <Grid>
-				<Grid.RowDefinitions>
-					<RowDefinition/>
-					<RowDefinition/>
-					<RowDefinition/>
-					<RowDefinition/>
-					<RowDefinition/>
-				</Grid.RowDefinitions>	
-				<Grid.ColumnDefinitions>
-					<ColumnDefinition Width="Auto" SharedSizeGroup="Column1"/>
-					<ColumnDefinition/>
-					<ColumnDefinition/>
-					<ColumnDefinition/>
-					<ColumnDefinition Width="20"/>
-					<ColumnDefinition Width="Auto"/>
-					<ColumnDefinition/>
-					<ColumnDefinition Width="10"/>
-				</Grid.ColumnDefinitions>
-				<TextBlock HorizontalAlignment="Right" Margin="0" TextWrapping="Wrap" Text="First, Last name" VerticalAlignment="Center"/>
-				<TextBlock HorizontalAlignment="Right" Margin="0" TextWrapping="Wrap" Text="Firm name" VerticalAlignment="Center" Grid.Row="1"/>
-				<TextBlock HorizontalAlignment="Right" Margin="0" TextWrapping="Wrap" Text="Street Address" VerticalAlignment="Center" Grid.Row="2"/>
-				<TextBlock HorizontalAlignment="Right" Margin="0" TextWrapping="Wrap" Text="City, State, Zip" VerticalAlignment="Center" Grid.Row="3"/>
-				<TextBlock HorizontalAlignment="Right" Margin="0" TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="4"><Run Text="Email"/></TextBlock>
-				<TextBox Grid.ColumnSpan="2" TextWrapping="Wrap" Text="{Binding FirstName, Mode=TwoWay}" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="First Name"/>
-				<TextBox TextWrapping="Wrap" Text="{Binding LastName}" Grid.Column="3" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Last Name"/>
-				<TextBox Grid.ColumnSpan="3" TextWrapping="Wrap" Text="{Binding FirmName, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Please type the firm name"/>
-				<TextBox Grid.ColumnSpan="3" TextWrapping="Wrap" Text="{Binding StreetAddress, Mode=TwoWay}" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Please type the street address"/>
-				<TextBox TextWrapping="Wrap" Text="{Binding City, Mode=TwoWay}" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="City"/>
-				<ComboBox SelectedValue="{Binding USAState, Mode=TwoWay}" Grid.Row="3" Grid.Column="2" Margin="0,-0.001,0,0" VerticalAlignment="Center" ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl, AncestorLevel=3}, Path=DataContext.DataContainer.StateList, Mode=OneWay}" SelectedValuePath="Value"/>
-				<TextBox TextWrapping="Wrap" Text="{Binding ZipCode, Mode=TwoWay}" Grid.Row="3" Grid.Column="3" Margin="0,-0.001,0,0" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Zip Code"/>
-				<TextBox TextWrapping="Wrap" Text="{Binding Email, Mode=TwoWay}" Grid.Row="4" Grid.Column="1" Margin="0,-0.001,0,0" Grid.ColumnSpan="3" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Please type te email"/>
-				<TextBlock TextWrapping="Wrap" Text="State Bar ID" Grid.Column="5" VerticalAlignment="Center" HorizontalAlignment="Right"/>
-				<TextBlock TextWrapping="Wrap" Text="Phone" Grid.Row="3" Grid.Column="5" VerticalAlignment="Center" Margin="0,4,0,3.999" HorizontalAlignment="Right"/>
-				<TextBlock TextWrapping="Wrap" Text="Fax" Grid.Row="4" Grid.Column="5" VerticalAlignment="Center" Margin="0,4,0,3.999" HorizontalAlignment="Right"/>
-				<TextBox Height="23" TextWrapping="Wrap" Text="{Binding StateBarId, Mode=TwoWay}" Grid.Column="6" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="State Bar ID"/>
-				<TextBox Height="23" TextWrapping="Wrap" Text="{Binding Phone, Mode=TwoWay}" Grid.Row="3" Grid.Column="6" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Phone"/>
-				<TextBox Height="23" TextWrapping="Wrap" Text="{Binding Fax, Mode=TwoWay}" Grid.Row="4" Grid.Column="6" Margin="0,0,0,-0.001" VerticalAlignment="Center" Style="{DynamicResource TextBoxWithAdorner}" Tag="Fax"/>
-			</Grid>
+    <validation:ErrorProvider>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"
+                                  SharedSizeGroup="Column1" />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="10" />
+            </Grid.ColumnDefinitions>
+            <TextBlock HorizontalAlignment="Right"
+                       Margin="0"
+                       TextWrapping="Wrap"
+                       Text="First, Last name"
+                       VerticalAlignment="Center" />
+            <TextBlock HorizontalAlignment="Right"
+                       Margin="0"
+                       TextWrapping="Wrap"
+                       Text="Firm name"
+                       VerticalAlignment="Center"
+                       Grid.Row="1" />
+            <TextBlock HorizontalAlignment="Right"
+                       Margin="0"
+                       TextWrapping="Wrap"
+                       Text="Street Address"
+                       VerticalAlignment="Center"
+                       Grid.Row="2" />
+            <TextBlock HorizontalAlignment="Right"
+                       Margin="0"
+                       TextWrapping="Wrap"
+                       Text="City, State, Zip"
+                       VerticalAlignment="Center"
+                       Grid.Row="3" />
+            <TextBlock HorizontalAlignment="Right"
+                       Margin="0"
+                       TextWrapping="Wrap"
+                       VerticalAlignment="Center"
+                       Grid.Row="4"><Run Text="Email" /></TextBlock>
+            <TextBox Grid.ColumnSpan="2"
+                     TextWrapping="Wrap"
+                     Text="{Binding FirstName, Mode=TwoWay}"
+                     Grid.Column="1"
+                     VerticalAlignment="Center"
+                     Style="{DynamicResource TextBoxWithAdorner}"
+                     Tag="First Name" />
+            <TextBox TextWrapping="Wrap"
+                     Text="{Binding LastName}"
+                     Grid.Column="3"
+                     VerticalAlignment="Center"
+                     Style="{DynamicResource TextBoxWithAdorner}"
+                     Tag="Last Name" />
+            <TextBox Grid.ColumnSpan="3"
+                     TextWrapping="Wrap"
+                     Text="{Binding FirmName, Mode=TwoWay}"
+                     Grid.Row="1"
+                     Grid.Column="1"
+                     VerticalAlignment="Center"
+                     Style="{DynamicResource TextBoxWithAdorner}"
+                     Tag="Please type the firm name" />
+            <TextBox Grid.ColumnSpan="3"
+                     TextWrapping="Wrap"
+                     Text="{Binding StreetAddress, Mode=TwoWay}"
+                     Grid.Row="2"
+                     Grid.Column="1"
+                     VerticalAlignment="Center"
+                     Style="{DynamicResource TextBoxWithAdorner}"
+                     Tag="Please type the street address" />
+            <TextBox TextWrapping="Wrap"
+                     Text="{Binding City, Mode=TwoWay}"
+                     Grid.Row="3"
+                     Grid.Column="1"
+                     VerticalAlignment="Center"
+                     Style="{DynamicResource TextBoxWithAdorner}"
+                     Tag="City" />
+            <ComboBox SelectedValue="{Binding USAState, Mode=TwoWay}"
+                      Grid.Row="3"
+                      Grid.Column="2"
+                      Margin="0,-0.001,0,0"
+                      VerticalAlignment="Center"
+                      ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl, AncestorLevel=3}, Path=DataContext.DataContainer.StateList, Mode=OneWay}"
+                      SelectedValuePath="Value" />
+            <TextBox TextWrapping="Wrap"
+                     Text="{Binding ZipCode, Mode=TwoWay}"
+                     Grid.Row="3"
+                     Grid.Column="3"
+                     Margin="0,-0.001,0,0"
+                     VerticalAlignment="Center"
+                     Style="{DynamicResource TextBoxWithAdorner}"
+                     Tag="Zip Code" />
+            <TextBox TextWrapping="Wrap"
+                     Text="{Binding Email, Mode=TwoWay}"
+                     Grid.Row="4"
+                     Grid.Column="1"
+                     Margin="0,-0.001,0,0"
+                     Grid.ColumnSpan="3"
+                     VerticalAlignment="Center"
+                     Style="{DynamicResource TextBoxWithAdorner}"
+                     Tag="Please type te email" />
+            <TextBlock TextWrapping="Wrap"
+                       Text="State Bar ID"
+                       Grid.Column="5"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Right" />
+            <TextBlock TextWrapping="Wrap"
+                       Text="Phone"
+                       Grid.Row="3"
+                       Grid.Column="5"
+                       VerticalAlignment="Center"
+                       Margin="0,4,0,3.999"
+                       HorizontalAlignment="Right" />
+            <TextBlock TextWrapping="Wrap"
+                       Text="Fax"
+                       Grid.Row="4"
+                       Grid.Column="5"
+                       VerticalAlignment="Center"
+                       Margin="0,4,0,3.999"
+                       HorizontalAlignment="Right" />
+            <TextBox Height="23"
+                     TextWrapping="Wrap"
+                     Text="{Binding StateBarId, Mode=TwoWay}"
+                     Grid.Column="6"
+                     VerticalAlignment="Center"
+                     Style="{DynamicResource TextBoxWithAdorner}"
+                     Tag="State Bar ID" />
+            <TextBox Height="23"
+                     TextWrapping="Wrap"
+                     Text="{Binding Phone, Mode=TwoWay}"
+                     Grid.Row="3"
+                     Grid.Column="6"
+                     VerticalAlignment="Center"
+                     Style="{DynamicResource TextBoxWithAdorner}"
+                     Tag="Phone" />
+            <TextBox Height="23"
+                     TextWrapping="Wrap"
+                     Text="{Binding Fax, Mode=TwoWay}"
+                     Grid.Row="4"
+                     Grid.Column="6"
+                     Margin="0,0,0,-0.001"
+                     VerticalAlignment="Center"
+                     Style="{DynamicResource TextBoxWithAdorner}"
+                     Tag="Fax" />
+        </Grid>
+    </validation:ErrorProvider>
 </UserControl>

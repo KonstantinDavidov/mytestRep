@@ -23,8 +23,8 @@ namespace Faccts.Model.Entities
     [DataContract(IsReference = true)]
     [KnownType(typeof(CourtParty))]
     [KnownType(typeof(ThirdPartyData))]
-    [KnownType(typeof(CaseHistory))]
     [KnownType(typeof(CourtPartyAttorneyData))]
+    [KnownType(typeof(CourtCase))]
     public partial class Attorneys: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -419,42 +419,6 @@ namespace Faccts.Model.Entities
         private TrackableCollection<ThirdPartyData> _thirdPartyData;
     
         [DataMember]
-        public TrackableCollection<CaseHistory> CaseHistory
-        {
-            get
-            {
-                if (_caseHistory == null)
-                {
-                    _caseHistory = new TrackableCollection<CaseHistory>();
-                    _caseHistory.CollectionChanged += FixupCaseHistory;
-                }
-                return _caseHistory;
-            }
-            set
-            {
-                if (!ReferenceEquals(_caseHistory, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("CaseHistory");
-                    if (_caseHistory != null)
-                    {
-                        _caseHistory.CollectionChanged -= FixupCaseHistory;
-                    }
-                    _caseHistory = value;
-                    if (_caseHistory != null)
-                    {
-                        _caseHistory.CollectionChanged += FixupCaseHistory;
-                    }
-                    OnNavigationPropertyChanged("CaseHistory");
-                }
-            }
-        }
-        private TrackableCollection<CaseHistory> _caseHistory;
-    
-        [DataMember]
         public TrackableCollection<CourtPartyAttorneyData> CourtPartyAttorneyData
         {
             get
@@ -489,6 +453,42 @@ namespace Faccts.Model.Entities
             }
         }
         private TrackableCollection<CourtPartyAttorneyData> _courtPartyAttorneyData;
+    
+        [DataMember]
+        public TrackableCollection<CourtCase> CourtCases
+        {
+            get
+            {
+                if (_courtCases == null)
+                {
+                    _courtCases = new TrackableCollection<CourtCase>();
+                    _courtCases.CollectionChanged += FixupCourtCases;
+                }
+                return _courtCases;
+            }
+            set
+            {
+                if (!ReferenceEquals(_courtCases, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("CourtCases");
+                    if (_courtCases != null)
+                    {
+                        _courtCases.CollectionChanged -= FixupCourtCases;
+                    }
+                    _courtCases = value;
+                    if (_courtCases != null)
+                    {
+                        _courtCases.CollectionChanged += FixupCourtCases;
+                    }
+                    OnNavigationPropertyChanged("CourtCases");
+                }
+            }
+        }
+        private TrackableCollection<CourtCase> _courtCases;
 
         #endregion
 
@@ -589,8 +589,8 @@ namespace Faccts.Model.Entities
         {
             CourtParty.Clear();
             ThirdPartyData.Clear();
-            CaseHistory.Clear();
             CourtPartyAttorneyData.Clear();
+            CourtCases.Clear();
         }
 
         #endregion
@@ -675,45 +675,6 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupCaseHistory(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (CaseHistory item in e.NewItems)
-                {
-                    item.AttorneyForChild = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CaseHistory", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (CaseHistory item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.AttorneyForChild, this))
-                    {
-                        item.AttorneyForChild = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CaseHistory", item);
-                    }
-                }
-            }
-        }
-    
         private void FixupCourtPartyAttorneyData(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
@@ -748,6 +709,45 @@ namespace Faccts.Model.Entities
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         ChangeTracker.RecordRemovalFromCollectionProperties("CourtPartyAttorneyData", item);
+                    }
+                }
+            }
+        }
+    
+        private void FixupCourtCases(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (CourtCase item in e.NewItems)
+                {
+                    item.AttorneyForChild = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("CourtCases", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (CourtCase item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.AttorneyForChild, this))
+                    {
+                        item.AttorneyForChild = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtCases", item);
                     }
                 }
             }

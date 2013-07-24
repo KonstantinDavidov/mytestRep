@@ -80,11 +80,7 @@
         <AssociationConnector Association="FACCTS_DBModel.CourtPartyCourtCase" />
         <AssociationConnector Association="FACCTS_DBModel.CourtPartyCourtCase1" />
         <EntityTypeShape EntityType="FACCTS_DBModel.CourtPartyAttorneyData" Width="1.5" PointX="5.6403679035791976" PointY="4.311595903854629" />
-        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_Attorneys_AttorneyForChild_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtPartyAttorneyData_dbo_Attorneys_Attorney_Id" />
-        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtPartyAttorneyData_Party1Attorney_Id" />
-        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtPartyAttorneyData_Party2Attorney_Id" />
-        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_ThirdPartyData_ThirdPartyData_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtParty_Party1_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtParty_Party2_Id" />
         <EntityTypeShape EntityType="FACCTS_DBModel.AdditionalParty" Width="1.5" PointX="6.5" PointY="23.125" />
@@ -101,6 +97,9 @@
         <AssociationConnector Association="FACCTS_DBModel.CaseHistoryMasterOrder" />
         <AssociationConnector Association="FACCTS_DBModel.CourtCaseCourtDocketRecord" />
         <AssociationConnector Association="FACCTS_DBModel.CourtDocketRecordHearings" />
+        <AssociationConnector Association="FACCTS_DBModel.CourtPartyCourtPartyAttorneyData" />
+        <AssociationConnector Association="FACCTS_DBModel.CourtCaseThirdPartyData" />
+        <AssociationConnector Association="FACCTS_DBModel.CourtCaseAttorneys" />
       </Diagram>
       <Diagram DiagramId="d16b781b547641eeb332d8cb3d0f49f3" Name="CourtOrders" ZoomLevel="80" >
         <EntityTypeShape EntityType="FACCTS_DBModel.ConductROSection" Width="1.5" PointX="6.875" PointY="2" />

@@ -7,14 +7,16 @@ using ReactiveUI;
 using FACCTS.Server.Model.Enums;
 using System.Reactive.Linq;
 using System.ComponentModel;
+using Faccts.Model.Entities.Validation;
 using FACCTS.Server.Model.DataModel;
 
 namespace Faccts.Model.Entities
 {
-    public partial class CourtParty : IDataTransferConvertible<FACCTS.Server.Model.DataModel.CourtParty>, IDataErrorInfo
+    public partial class CourtParty : IDataTransferConvertible<FACCTS.Server.Model.DataModel.CourtParty>, IValidatableObject
     {
         partial void Initialize()
         {
+            this.AttorneyData = new CourtPartyAttorneyData();
             this.WhenAny(x => x.FirstName, x => x.LastName, x => x.MiddleName, (x, y, z) => new { FirstName = x.Value, LastName = y.Value, MiddleName = z.Value })
                 .Subscribe(x =>
                 {
@@ -112,6 +114,7 @@ namespace Faccts.Model.Entities
                     DateOfBirth = this.DateOfBirth,
                     Age = this.Age,
                     State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
+                    AttorneyData = this.AttorneyData.ToDTO(),
 
                 };
             return dto;
@@ -129,39 +132,10 @@ namespace Faccts.Model.Entities
             get
             {
                 propertyName = propertyName ?? string.Empty;
-                if (string.IsNullOrEmpty(propertyName))
-                {
-                    string result = null;
-                    foreach (var kv in _requiredFields)
-                    {
-                        result = Validate(kv.Key);
-                        if (!string.IsNullOrEmpty(result))
-                        {
-                            break;
-                        }
-                    }
-                    return result;
-                }
-                else
-                {
-                    return Validate(propertyName);
-                }
+                return this.ValidateByPropertyName(_requiredFields, _errors, propertyName);
             }
         }
 
-        private string Validate(string propertyName)
-        {
-            string result = string.Empty;
-            if (_requiredFields.ContainsKey(propertyName))
-            {
-                object propertyValue = this.GetProperty(propertyName);
-                if (propertyValue is String && string.IsNullOrEmpty(propertyValue.ToString()) || propertyValue == null)
-                {
-                    result = string.Format("{0} can not be blank!", _requiredFields[propertyName]);
-                }
-            }
-            return result;
-        }
 
         private static Dictionary<string, string> _requiredFields = new Dictionary<string, string>()
         {
@@ -179,5 +153,19 @@ namespace Faccts.Model.Entities
             {"ParentRole", "Parent Role"}
         };
 
+
+        private Dictionary<string, string> _errors = new Dictionary<string, string>();
+        public IList<string> Errors
+        {
+            get { return _errors.Select(kv => kv.Value).ToList().AsReadOnly(); }
+        }
+
+        public bool IsValid
+        {
+            get
+            {
+                return !this.Error.Any();
+            }
+        }
     }
 }

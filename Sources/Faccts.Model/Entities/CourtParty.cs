@@ -27,6 +27,7 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(Race))]
     [KnownType(typeof(EyesColor))]
     [KnownType(typeof(CourtCase))]
+    [KnownType(typeof(CourtPartyAttorneyData))]
     public partial class CourtParty: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -69,7 +70,6 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.HeightIns)
     				,this.ObservableForProperty(x => x.DateOfBirth)
     				,this.ObservableForProperty(x => x.Age)
-    				,this.ObservableForProperty(x => x.HasAttorney)
     				,this.ObservableForProperty(x => x.Designation_Id)
     				,this.ObservableForProperty(x => x.HairColor_Id)
     				,this.ObservableForProperty(x => x.EyesColor_Id)
@@ -87,6 +87,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.HairColor.IsDirty)
     				,this.ObservableForProperty(x => x.Race.IsDirty)
     				,this.ObservableForProperty(x => x.EyesColor.IsDirty)
+    				,this.ObservableForProperty(x => x.AttorneyData.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -412,22 +413,6 @@ namespace Faccts.Model.Entities
             }
         }
         private int _age;
-    
-        [DataMember]
-        public Nullable<bool> HasAttorney
-        {
-            get { return _hasAttorney; }
-            set
-            {
-                if (_hasAttorney != value)
-                {
-    				OnPropertyChanging("HasAttorney");
-                    _hasAttorney = value;
-                    OnPropertyChanged("HasAttorney");
-                }
-            }
-        }
-        private Nullable<bool> _hasAttorney;
     
         [DataMember]
         public Nullable<long> Designation_Id
@@ -790,6 +775,24 @@ namespace Faccts.Model.Entities
             }
         }
         private TrackableCollection<CourtCase> _courtCase;
+    
+        [DataMember]
+        public CourtPartyAttorneyData AttorneyData
+        {
+            get { return _attorneyData; }
+            set
+            {
+                if (!ReferenceEquals(_attorneyData, value))
+                {
+                    var previousValue = _attorneyData;
+    				OnNavigationPropertyChanging("AttorneyData");
+                    _attorneyData = value;
+                    FixupAttorneyData(previousValue);
+                    OnNavigationPropertyChanged("AttorneyData");
+                }
+            }
+        }
+        private CourtPartyAttorneyData _attorneyData;
 
         #endregion
 
@@ -904,6 +907,7 @@ namespace Faccts.Model.Entities
             Race = null;
             EyesColor = null;
             CourtCase.Clear();
+            AttorneyData = null;
         }
 
         #endregion
@@ -1093,6 +1097,41 @@ namespace Faccts.Model.Entities
                 if (EyesColor != null && !EyesColor.ChangeTracker.ChangeTrackingEnabled)
                 {
                     EyesColor.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupAttorneyData(CourtPartyAttorneyData previousValue)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && ReferenceEquals(previousValue.CourtParty, this))
+            {
+                previousValue.CourtParty = null;
+            }
+    
+            if (AttorneyData != null)
+            {
+                AttorneyData.CourtParty = this;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("AttorneyData")
+                    && (ChangeTracker.OriginalValues["AttorneyData"] == AttorneyData))
+                {
+                    ChangeTracker.OriginalValues.Remove("AttorneyData");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("AttorneyData", previousValue);
+                }
+                if (AttorneyData != null && !AttorneyData.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    AttorneyData.StartTracking();
                 }
             }
         }

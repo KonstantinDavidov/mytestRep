@@ -51,6 +51,8 @@ namespace FACCTS.Server.Model.DataModel
 
         public long? InterpreterId { get; set; }
 
+        public virtual CourtPartyAttorneyData AttorneyData { get; set; }
+
         public virtual Interpreter Interpreter { get; set; }
 
         public string FullName

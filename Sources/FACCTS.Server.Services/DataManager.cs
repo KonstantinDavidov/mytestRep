@@ -113,6 +113,16 @@ namespace FACCTS.Server.Data
             }
         }
 
+
+        public IFacctsDataRepository<CourtCaseOrder> CourtCaseOrdersRepository
+        {
+            get
+            {
+                return GetStandardRepo<CourtCaseOrder>();
+            }
+        }
+
+
         public IFacctsDataRepository<Courtroom> CourtroomRepository
         {
             get

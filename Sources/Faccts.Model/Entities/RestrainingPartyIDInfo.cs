@@ -115,7 +115,7 @@ namespace Faccts.Model.Entities
         private string _iDNumber;
     
         [DataMember]
-        public System.DateTime IDIssuedDate
+        public Nullable<System.DateTime> IDIssuedDate
         {
             get { return _iDIssuedDate; }
             set
@@ -129,7 +129,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private System.DateTime _iDIssuedDate;
+        private Nullable<System.DateTime> _iDIssuedDate;
 
         #endregion
 

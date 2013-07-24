@@ -17,10 +17,7 @@ namespace Faccts.Model.Entities
                     this.OnPropertyChanged("CaseEventName");
                 });
             this.Hearing = new Hearings();
-            this.Party1AttorneyData = new CourtPartyAttorneyData();
-            this.Party2AttorneyData = new CourtPartyAttorneyData();
-            this.ThirdPartyData = new ThirdPartyData();
-            this.AttorneyForChild = new Attorneys();
+
         }
 
         public string CaseEventName
@@ -72,10 +69,6 @@ namespace Faccts.Model.Entities
                 //CourtCase = this.CourtCase.ToDTO(),
                 MergeCase = this.MergeCase.ConvertToDTO(),
                 Hearing = this.Hearing.ConvertToDTO(),
-                AttorneyForChild = this.AttorneyForChild.ConvertToDTO(),
-                Party1Attorney = this.Party1AttorneyData.ConvertToDTO(),
-                Party2Attorney = this.Party2AttorneyData.ConvertToDTO(),
-                ThirdPartyData = this.ThirdPartyData.ConvertToDTO(),
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
 
             };

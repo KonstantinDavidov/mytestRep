@@ -31,15 +31,6 @@ namespace FACCTS.Server.Model.DataModel
 
         public virtual Hearing Hearing { get; set; }
 
-        public virtual Attorney AttorneyForChild { get; set; }
-
-
-        public virtual CourtPartyAttorneyData Party1Attorney { get; set; }
-
-        public virtual CourtPartyAttorneyData Party2Attorney { get; set; }
-
-        public virtual ThirdPartyData ThirdPartyData { get; set; }
-
 
         public long Id { get; set; }
 
