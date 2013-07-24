@@ -20,27 +20,12 @@
         </Grid.RowDefinitions>
         <localcontrols:AttorneysPartyView Grid.Row="0"
                                           DisplayName="Attorney for Party 1"
-                                          >
-            <localcontrols:AttorneysPartyView.DataContext>
-                <MultiBinding Converter="{StaticResource DataContextMultiValueConverter}">
-                    <Binding Path="CurrentCourtCase.Party1AttorneyData"
-                             Mode="OneWay"/>
-                    <Binding Path="CurrentHistoryRecord.Party1AttorneyData"
-                             Mode="OneWay" />
-                </MultiBinding>
-            </localcontrols:AttorneysPartyView.DataContext>
+                                          DataContext="{Binding Path=CurrentCourtCase.Party1.AttorneyData, Mode=OneWay}">
         </localcontrols:AttorneysPartyView>
         <localcontrols:AttorneysPartyView Grid.Row="1"
                                           DisplayName="Attorney for Party 2"
-                                          >
-            <localcontrols:AttorneysPartyView.DataContext>
-                <MultiBinding Converter="{StaticResource DataContextMultiValueConverter}">
-                    <Binding Path="CurrentCourtCase.Party2AttorneyData"
-                             Mode="OneWay" />
-                    <Binding Path="CurrentHistoryRecord.Party2AttorneyData"
-                             Mode="OneWay" />
-                </MultiBinding>
-            </localcontrols:AttorneysPartyView.DataContext>
+                                          DataContext="{Binding Path=CurrentCourtCase.Party2.AttorneyData, Mode=OneWay}">
+            
         </localcontrols:AttorneysPartyView>
         <this:AttorneyChildrenView Grid.Row="2"/>
         <this:AttorneyThirdPartyView Grid.Row="3" />

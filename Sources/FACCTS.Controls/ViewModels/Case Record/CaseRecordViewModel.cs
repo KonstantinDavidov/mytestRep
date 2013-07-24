@@ -88,8 +88,8 @@ namespace FACCTS.Controls.ViewModels
                     this.HasUIErrors = x;
                 }
                 );
-            
-            ActivateControl(0);
+
+            ActivateControl(PersonalInformationViewModel);
         }
 
         public override IDataContainer DataContainer
@@ -176,43 +176,19 @@ namespace FACCTS.Controls.ViewModels
         }
 
         private IWindowManager _windowManager;
-        protected PersonalInformationViewModel PersonalInformationViewModel { get; set; }
-        protected ChildrenOtherProtectedViewModel ChildrenOtherProtectedViewModel { get; set; }
-        protected AttorneysViewModel AttorneysViewModel {get; set;}
-        protected WitnessInterpereterViewModel WitnessInterpereterViewModel { get; set; }
-        protected RelatedCasesViewModel RelatedCasesViewModel { get; set; }
-        protected CaseNotesViewModel CaseNotesViewModel { get; set; }
-        protected CaseHistoryViewModel CaseHistoryViewModel { get; set; }
+        public PersonalInformationViewModel PersonalInformationViewModel { get; protected set; }
+        public ChildrenOtherProtectedViewModel ChildrenOtherProtectedViewModel { get; protected set; }
+        public AttorneysViewModel AttorneysViewModel { get; protected set; }
+        public WitnessInterpereterViewModel WitnessInterpereterViewModel { get; protected set; }
+        public RelatedCasesViewModel RelatedCasesViewModel { get; protected set; }
+        public CaseNotesViewModel CaseNotesViewModel { get; protected set; }
+        public CaseHistoryViewModel CaseHistoryViewModel { get; protected set; }
 
-        public void ActivateControl(int selectedIndex)
+        public void ActivateControl(CaseRecordItemViewModel selectedViewModel)
         {
-            switch(selectedIndex)
-            {
-                case 0:
-                    ActivateItem(PersonalInformationViewModel);
-                    break;
-                case 1:
-                    ActivateItem(ChildrenOtherProtectedViewModel);
-                    break;
-                case 2:
-                    ActivateItem(AttorneysViewModel);
-                    break;
-                case 3:
-                    ActivateItem(WitnessInterpereterViewModel);
-                    break;
-                case 4:
-                    ActivateItem(RelatedCasesViewModel);
-                    break;
-                case 5:
-                    ActivateItem(CaseHistoryViewModel);
-                    break;
-                case 6:
-                    ActivateItem(CaseNotesViewModel);
-                    break;
-                default:
-                    ActivateItem(PersonalInformationViewModel);
-                    break;
-            }
+            if (selectedViewModel == null)
+                return;
+            ActivateItem(selectedViewModel);
         }
 
         public void NewCase()

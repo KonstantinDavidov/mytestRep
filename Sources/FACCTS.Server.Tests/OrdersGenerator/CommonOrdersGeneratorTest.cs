@@ -70,7 +70,7 @@ namespace FACCTS.Server.Tests.OrdersGenerator
             testModel.LawersFeeAndCourtCostsSection.IsEnabled = true;
             testModel.LawersFeeAndCourtCostsSection.IsCourtCosts = true;
             testModel.LawersFeeAndCourtCostsSection.IsLawyerFee = true;
-            testModel.LawersFeeAndCourtCostsSection.IsParty1Payer = false;
+            testModel.LawersFeeAndCourtCostsSection.Payer = ParticipantRole.PPSC;
             testModel.LawersFeeAndCourtCostsSection.LawyersFees.Add(new DataItem{ Name="Agency1", Description="Cost1"});
             testModel.LawersFeeAndCourtCostsSection.LawyersFees.Add(new DataItem{Name = "Agency2", Description="Cost2"});
             testModel.LawersFeeAndCourtCostsSection.LawyersFees.Add(new DataItem { Name = "Agency3", Description = "Cost3" });

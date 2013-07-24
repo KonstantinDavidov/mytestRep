@@ -1,5 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ModelsDef>
+  <!--Common-->
+  <Model name="OtherOrders">
+    <Property name="IsEnabled" type="bool"/>
+    <Property name="OtherOrdersDescription" type="string"/>
+  </Model>
   <!--CH130-->
  <Model name="CH130ConductChoice">
    <Property name="IsEnabled" type="bool"/>
@@ -106,25 +111,146 @@
     <Property name="OtherDescription" type="string"/>
     <Property name="StayAwayDistance" type="int"/>
   </Model>
-  
   <Model name="DV130Moveout">
     <Property name="IsEnabled" type="bool"/>
     <Property name="MoveoutAddress" type="string"/>
   </Model>
-  
   <Model name="DV130Animals">
     <Property name="IsEnabled" type="bool"/>
     <Property name="StayAwayAnimalsDistance" type="int"/>
     <Property name="AnimalsDescription" type="string"/>
   </Model>
+  <Model name="DV130DebtPayment">
+    <Property name="IsEnabled" type="bool" />
+    <Property name="DebtPaymentItems" type="List" collectionType="DebtPaymentItem"/>
+  </Model>
+  <Model name="DV130PropertyControl">
+    <Property name="IsEnabled" type="bool" />
+    <Property name="PropertyControl" type="List" collectionType="DataItem"/>
+  </Model>
+  <Model name="DV130PropertyRestraint">
+    <Property name="IsProtectedHasPropertyRestraint" type="bool"/>
+    <Property name="IsRestrainedHasPropertyRestraint" type="bool"/>
+  </Model>
   <Model name="DV130">
     <Property name="DV130ConductChoiceSection" type="DV130ConductChoice"/>
     <Property name="DV130StayAwayOrdersSection" type="DV130StayAwayOrders"/>
+    <Property name="IsPOSProvidedToCourt" type="bool"/>
     <Property name="DV130MoveoutSection" type="DV130Moveout"/>
     <Property name="IsRecordUnlawfulCommunicationsAllowed" type="bool"/>
     <Property name="DV130AnimalsSection" type="DV130Animals"/>
+    <Property name="DV130OtherOrdersSection" type="OtherOrders"/>
     <Property name="IsBattererIntervention" type="bool"/>
     <Property name="IsNoGuns" type="bool"/>
+    <Property name="DV130PropertyControlSection" type="DV130PropertyControl"/>
+    <Property name="DV130DebtPaymentSection" type="DV130DebtPayment"/>
+    <Property name="DV130PropertyRestraintSection" type="DV130PropertyRestraint"/>
+    <Property name="Costs" type="List" collectionType="PaymentItem" />
+  </Model>
+  <!--DV140-->
+  <Model name="IsNoVisitationForParents">
+    <Property name="IsEnabled"/>
+    <Property name="IsNoVisitationParent" type="CustodyParent"/>
+    <Property name="OtherDescription" type="string"/>
+  </Model>
+  <Model name="VisitationSchedule">
+    <Property name="IsEnabled" type="bool"/>
+    <Property name="IsWeekendsAvailableForVisitation" type="bool"/>
+    <Property name="WeekendsStartingDate" type="DateTime"/>
+    <Property name="IsFirstWeekendAvailableForVisitation" type="bool"/>
+    <Property name="IsSecondWeekendAvailableForVisitation" type="bool"/>
+    <Property name="IsThirdWeekendAvailableForVisitation" type="bool"/>
+    <Property name="IsFourthWeekendAvailableForVisitation" type="bool"/>
+    <Property name="IsFifthWeekendAvailableForVisitation" type="bool"/>
+    <Property name="FirstAvailableWeekendDay" type="DayOfWeek"/>
+    <Property name="FirstAvailableWeekendTime" type="DateTime"/>
+    <Property name="LastAvailableWeekendDay" type="DayOfWeek"/>
+    <Property name="LastAvailableWeekendTime" type="DateTime"/>
+    <Property name="IsWeekdaysAvailableForVisitation" type="bool"/>
+    <Property name="WeekdaysStartingDate" type="DateTime"/>
+    <Property name="FirstAvailableWeekdayDay" type="DayOfWeek"/>
+    <Property name="FirstAvailableWeekdayTime" type="DateTime"/>
+    <Property name="LastAvailableWeekdayDay" type="DayOfWeek"/>
+    <Property name="LastAvailableWeekdayTime" type="DateTime"/>
+    <Property name="IsOtherVisitationAvilable" type="bool"/>
+  </Model>
+  <Model name="ChildVisitation">
+    <Property name="IsEnabled"/>
+    <Property name="IsNoVisitationForParents"/>
+    <Property name="IsAttachedDocumentAvilable" type="bool"/>
+    <Property name="AttachedDocumentPagesCount" type="int"/>
+    <Property name="AttachedDocumentDate" type="DateTime"/>
+    <Property name="IsPartiesMustGoToMediation" type="bool"/>
+    <Property name="MediationDescription" type="string"/>
+    <Property name="VisitationGrantedParent" type="CustodyParent"/>
+    <Property name="VisitationGrantedOtherParentDescription"/>
+    <Property name="VisitationScheduleSection" type="VisitationSchedule"/>
+  </Model>
+  <Model name="Transportation">
+    <Property name="IsEnabled"/>
+    <Property name="TransportationPickUpPerson" type="CustodyParent"/>
+    <Property name="TransportationPickUpPersonOtherDescription" type="string"/>
+    <Property name="TransportationPickUpLocation" type="string"/>
+    <Property name="TransportationDropOffPerson" type="CustodyParent"/>
+    <Property name="TransportationDropOffPersonOtherDescription" type="string"/>
+    <Property name="TransportationDropOffLocation" type="string"/>
+  </Model>
+  <Model name="TravelRestrict">
+    <Property name="IsEnabled"/>
+    <Property name="IsMomRestrained" type="bool"/>
+    <Property name="IsDadRestrained" type="bool"/>
+    <Property name="IsOtherRestrained" type="bool"/>
+    <Property name="OtherRestrainedDescription" type="string"/>
+    <Property name="IsUSEscapeDenied" type="bool"/>
+    <Property name="IsCAEscapeDenied" type="bool"/>
+    <Property name="IsOtherLocationsEscapeDenied" type="bool"/>
+    <Property name="OtherLocationsDescription" type="string"/>
+  </Model>
+  <Model name="ExchangeAndRemoval">
+    <Property name="IsEnabled"/>
+    <Property name="TransportationSection" type="Transportation"/>
+    <Property name="TravelRestrictSection" type="TravelRestrict"/>
+    <Property name="IsChildAbductionRiskExist" type="bool"/>
+    <Property name="IsDV145Attached" type="bool"/>
+    <Property name="IsUSCountryOfHabitualResidence" type="bool"/>
+    <Property name="IsOtherCountryOfHabitualResidence" type="bool"/>
+    <Property name="OtherCountryAsHabitualResidenceDescription" type="string"/>
+  </Model>
+  <Model name="DV140">
+    <Property name="ChildCustodyItems" type="List" collectionType="ChildCustodyItem"/>
+    <Property name="ChildVisitationSection" type="ChildVisitation"/>
+    <Property name="ExchangeAndRemovalSection" type="ExchangeAndRemoval"/>
+    <Property name="DV140OtherOrders" type="OtherOrders"/>
+  </Model>
+  
+  <!-- DV150 Supervision-->
+  <Model name="DV150">
+    <Property name="IsPartiesMustGoToMediation" type="bool"/>
+    <Property name="MediationPlaceDescription" type="string"/>
+    <Property name="IsVisitsSupervised" type="bool"/>
+    <Property name="SupervisedPerson" type="CustodyParent"/>
+    <Property name="OtherVisitationPersonDescription" type="string" />
+    <Property name="IsExchangesOfChildrenAreSupervised" type="bool"/>
+    <Property name="IsAllDV140VisitSupervised" type="bool"/>
+    <Property name ="SupervisedVisitsPerWeek" type="byte"/>
+    <Property name="SupervisedVisitsHours" type="byte"/>
+    <Property name="SupervisedScheduleDescription" type="string"/>
+    <Property name="OtherScheduleAttached" type="bool"/>
+    <Property name="ProviderName" type="string"/>
+    <Property name="ProviderAddress" type="string"/>
+    <Property name="ProviderPhone" type="string" />
+    <Property name="ProviderType" type="SupervisionProviderType"/>
+    <Property name="IsMomPay" type="bool"/>
+    <Property name="MomPayment" type="decimal"/>
+    <Property name="IsDadPay" type="bool"/>
+    <Property name="DadPayment" type="decimal"/>
+    <Property name="IsOtherPay" type="bool"/>
+    <Property name="OtherPayment" type="decimal"/>
+    <Property name="OtherDescription" type="string"/>
+    <Property name="MomContactProviderDate" type="DateTime?"/>
+    <Property name="DadContactProviderDate" type="DateTime?"/>
+    <Property name="OtherContactProviderDescription" type="string"/>
+    <Property name="OtherOrdersdescription" type="string"/>
   </Model>
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">

@@ -61,7 +61,9 @@ namespace FACCTS.Controls.ViewModels
                         ).
                     Subscribe(_ =>
                     {
-                        this.HasUIErrors = (base.CurrentCourtCase.Party1.IsDirty && !string.IsNullOrEmpty(base.CurrentCourtCase.Party1.Error)) || (base.CurrentCourtCase.Party2.IsDirty && !string.IsNullOrEmpty(base.CurrentCourtCase.Party2.Error));
+                        this.HasUIErrors = (base.CurrentCourtCase.Party1.IsDirty && !base.CurrentCourtCase.Party1.IsValid) 
+                            || (base.CurrentCourtCase.Party2.IsDirty && !base.CurrentCourtCase.Party2.IsValid)
+                            || (base.CurrentCourtCase.RestrainingPartyIdentificationInformation.IsDirty && !base.CurrentCourtCase.RestrainingPartyIdentificationInformation.IsValid);
                     }
                     );
                 }

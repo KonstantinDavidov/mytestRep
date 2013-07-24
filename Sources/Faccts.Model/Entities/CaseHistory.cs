@@ -25,9 +25,6 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(Hearings))]
     [KnownType(typeof(CourtCase))]
     [KnownType(typeof(User))]
-    [KnownType(typeof(Attorneys))]
-    [KnownType(typeof(CourtPartyAttorneyData))]
-    [KnownType(typeof(ThirdPartyData))]
     [KnownType(typeof(MasterOrder))]
     public partial class CaseHistory: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
@@ -65,20 +62,12 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.CourtOrder_Id)
     				,this.ObservableForProperty(x => x.CourtClerk_Id)
     				,this.ObservableForProperty(x => x.CourtCase_Id)
-    				,this.ObservableForProperty(x => x.AttorneyForChild_Id)
-    				,this.ObservableForProperty(x => x.Party1Attorney_Id)
-    				,this.ObservableForProperty(x => x.Party2Attorney_Id)
-    				,this.ObservableForProperty(x => x.ThirdPartyData_Id)
     				,this.ObservableForProperty(x => x.CourtCaseOrders.IsDirty)
     				,this.ObservableForProperty(x => x.Hearing.IsDirty)
     				,this.ObservableForProperty(x => x.MergeCase.IsDirty)
     				,this.ObservableForProperty(x => x.CourtCaseOrders1.IsDirty)
     				,this.ObservableForProperty(x => x.User.IsDirty)
     				,this.ObservableForProperty(x => x.CourtCase.IsDirty)
-    				,this.ObservableForProperty(x => x.AttorneyForChild.IsDirty)
-    				,this.ObservableForProperty(x => x.Party1AttorneyData.IsDirty)
-    				,this.ObservableForProperty(x => x.Party2AttorneyData.IsDirty)
-    				,this.ObservableForProperty(x => x.ThirdPartyData.IsDirty)
     				,this.ObservableForProperty(x => x.MasterOrder.IsDirty)
     			).
     			Subscribe(_ =>
@@ -356,102 +345,6 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<long> _courtCase_Id;
-    
-        [DataMember]
-        public Nullable<long> AttorneyForChild_Id
-        {
-            get { return _attorneyForChild_Id; }
-            set
-            {
-                if (_attorneyForChild_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("AttorneyForChild_Id", _attorneyForChild_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (AttorneyForChild != null && AttorneyForChild.Id != value)
-                        {
-                            AttorneyForChild = null;
-                        }
-                    }
-    				OnPropertyChanging("AttorneyForChild_Id");
-                    _attorneyForChild_Id = value;
-                    OnPropertyChanged("AttorneyForChild_Id");
-                }
-            }
-        }
-        private Nullable<long> _attorneyForChild_Id;
-    
-        [DataMember]
-        public Nullable<long> Party1Attorney_Id
-        {
-            get { return _party1Attorney_Id; }
-            set
-            {
-                if (_party1Attorney_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("Party1Attorney_Id", _party1Attorney_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (Party1AttorneyData != null && Party1AttorneyData.Id != value)
-                        {
-                            Party1AttorneyData = null;
-                        }
-                    }
-    				OnPropertyChanging("Party1Attorney_Id");
-                    _party1Attorney_Id = value;
-                    OnPropertyChanged("Party1Attorney_Id");
-                }
-            }
-        }
-        private Nullable<long> _party1Attorney_Id;
-    
-        [DataMember]
-        public Nullable<long> Party2Attorney_Id
-        {
-            get { return _party2Attorney_Id; }
-            set
-            {
-                if (_party2Attorney_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("Party2Attorney_Id", _party2Attorney_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (Party2AttorneyData != null && Party2AttorneyData.Id != value)
-                        {
-                            Party2AttorneyData = null;
-                        }
-                    }
-    				OnPropertyChanging("Party2Attorney_Id");
-                    _party2Attorney_Id = value;
-                    OnPropertyChanged("Party2Attorney_Id");
-                }
-            }
-        }
-        private Nullable<long> _party2Attorney_Id;
-    
-        [DataMember]
-        public Nullable<long> ThirdPartyData_Id
-        {
-            get { return _thirdPartyData_Id; }
-            set
-            {
-                if (_thirdPartyData_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("ThirdPartyData_Id", _thirdPartyData_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (ThirdPartyData != null && ThirdPartyData.Id != value)
-                        {
-                            ThirdPartyData = null;
-                        }
-                    }
-    				OnPropertyChanging("ThirdPartyData_Id");
-                    _thirdPartyData_Id = value;
-                    OnPropertyChanged("ThirdPartyData_Id");
-                }
-            }
-        }
-        private Nullable<long> _thirdPartyData_Id;
 
         #endregion
 
@@ -573,78 +466,6 @@ namespace Faccts.Model.Entities
             }
         }
         private CourtCase _courtCase;
-    
-        [DataMember]
-        public Attorneys AttorneyForChild
-        {
-            get { return _attorneyForChild; }
-            set
-            {
-                if (!ReferenceEquals(_attorneyForChild, value))
-                {
-                    var previousValue = _attorneyForChild;
-    				OnNavigationPropertyChanging("AttorneyForChild");
-                    _attorneyForChild = value;
-                    FixupAttorneyForChild(previousValue);
-                    OnNavigationPropertyChanged("AttorneyForChild");
-                }
-            }
-        }
-        private Attorneys _attorneyForChild;
-    
-        [DataMember]
-        public CourtPartyAttorneyData Party1AttorneyData
-        {
-            get { return _party1AttorneyData; }
-            set
-            {
-                if (!ReferenceEquals(_party1AttorneyData, value))
-                {
-                    var previousValue = _party1AttorneyData;
-    				OnNavigationPropertyChanging("Party1AttorneyData");
-                    _party1AttorneyData = value;
-                    FixupParty1AttorneyData(previousValue);
-                    OnNavigationPropertyChanged("Party1AttorneyData");
-                }
-            }
-        }
-        private CourtPartyAttorneyData _party1AttorneyData;
-    
-        [DataMember]
-        public CourtPartyAttorneyData Party2AttorneyData
-        {
-            get { return _party2AttorneyData; }
-            set
-            {
-                if (!ReferenceEquals(_party2AttorneyData, value))
-                {
-                    var previousValue = _party2AttorneyData;
-    				OnNavigationPropertyChanging("Party2AttorneyData");
-                    _party2AttorneyData = value;
-                    FixupParty2AttorneyData(previousValue);
-                    OnNavigationPropertyChanged("Party2AttorneyData");
-                }
-            }
-        }
-        private CourtPartyAttorneyData _party2AttorneyData;
-    
-        [DataMember]
-        public ThirdPartyData ThirdPartyData
-        {
-            get { return _thirdPartyData; }
-            set
-            {
-                if (!ReferenceEquals(_thirdPartyData, value))
-                {
-                    var previousValue = _thirdPartyData;
-    				OnNavigationPropertyChanging("ThirdPartyData");
-                    _thirdPartyData = value;
-                    FixupThirdPartyData(previousValue);
-                    OnNavigationPropertyChanged("ThirdPartyData");
-                }
-            }
-        }
-        private ThirdPartyData _thirdPartyData;
     
         [DataMember]
         public MasterOrder MasterOrder
@@ -777,10 +598,6 @@ namespace Faccts.Model.Entities
             CourtCaseOrders1 = null;
             User = null;
             CourtCase = null;
-            AttorneyForChild = null;
-            Party1AttorneyData = null;
-            Party2AttorneyData = null;
-            ThirdPartyData = null;
             MasterOrder = null;
         }
 
@@ -1019,170 +836,6 @@ namespace Faccts.Model.Entities
                 if (CourtCase != null && !CourtCase.ChangeTracker.ChangeTrackingEnabled)
                 {
                     CourtCase.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupAttorneyForChild(Attorneys previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.CaseHistory.Contains(this))
-            {
-                previousValue.CaseHistory.Remove(this);
-            }
-    
-            if (AttorneyForChild != null)
-            {
-                AttorneyForChild.CaseHistory.Add(this);
-    
-                AttorneyForChild_Id = AttorneyForChild.Id;
-            }
-            else if (!skipKeys)
-            {
-                AttorneyForChild_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("AttorneyForChild")
-                    && (ChangeTracker.OriginalValues["AttorneyForChild"] == AttorneyForChild))
-                {
-                    ChangeTracker.OriginalValues.Remove("AttorneyForChild");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("AttorneyForChild", previousValue);
-                }
-                if (AttorneyForChild != null && !AttorneyForChild.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    AttorneyForChild.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupParty1AttorneyData(CourtPartyAttorneyData previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.CaseHistory.Contains(this))
-            {
-                previousValue.CaseHistory.Remove(this);
-            }
-    
-            if (Party1AttorneyData != null)
-            {
-                Party1AttorneyData.CaseHistory.Add(this);
-    
-                Party1Attorney_Id = Party1AttorneyData.Id;
-            }
-            else if (!skipKeys)
-            {
-                Party1Attorney_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("Party1AttorneyData")
-                    && (ChangeTracker.OriginalValues["Party1AttorneyData"] == Party1AttorneyData))
-                {
-                    ChangeTracker.OriginalValues.Remove("Party1AttorneyData");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("Party1AttorneyData", previousValue);
-                }
-                if (Party1AttorneyData != null && !Party1AttorneyData.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    Party1AttorneyData.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupParty2AttorneyData(CourtPartyAttorneyData previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.CaseHistory1.Contains(this))
-            {
-                previousValue.CaseHistory1.Remove(this);
-            }
-    
-            if (Party2AttorneyData != null)
-            {
-                Party2AttorneyData.CaseHistory1.Add(this);
-    
-                Party2Attorney_Id = Party2AttorneyData.Id;
-            }
-            else if (!skipKeys)
-            {
-                Party2Attorney_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("Party2AttorneyData")
-                    && (ChangeTracker.OriginalValues["Party2AttorneyData"] == Party2AttorneyData))
-                {
-                    ChangeTracker.OriginalValues.Remove("Party2AttorneyData");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("Party2AttorneyData", previousValue);
-                }
-                if (Party2AttorneyData != null && !Party2AttorneyData.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    Party2AttorneyData.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupThirdPartyData(ThirdPartyData previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.CaseHistory.Contains(this))
-            {
-                previousValue.CaseHistory.Remove(this);
-            }
-    
-            if (ThirdPartyData != null)
-            {
-                ThirdPartyData.CaseHistory.Add(this);
-    
-                ThirdPartyData_Id = ThirdPartyData.Id;
-            }
-            else if (!skipKeys)
-            {
-                ThirdPartyData_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("ThirdPartyData")
-                    && (ChangeTracker.OriginalValues["ThirdPartyData"] == ThirdPartyData))
-                {
-                    ChangeTracker.OriginalValues.Remove("ThirdPartyData");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("ThirdPartyData", previousValue);
-                }
-                if (ThirdPartyData != null && !ThirdPartyData.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    ThirdPartyData.StartTracking();
                 }
             }
         }

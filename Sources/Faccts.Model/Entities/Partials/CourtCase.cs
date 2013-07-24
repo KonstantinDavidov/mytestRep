@@ -28,6 +28,8 @@ namespace Faccts.Model.Entities
             this.Party1 = new CourtParty();
             this.Party2 = new CourtParty();
             this.RestrainingPartyIdentificationInformation = new RestrainingPartyIDInfo();
+            this.ThirdPartyAttorneyData = new ThirdPartyData();
+            this.AttorneyForChild = new Attorneys();
             this.WhenAny(x => x.Party1.IsDirty, x => x.Party2.IsDirty, x => x.RestrainingPartyIdentificationInformation.IsDirty,
                 (x1, x2, x3) => x1.Value || x2.Value || x3.Value
                 )
@@ -79,6 +81,7 @@ namespace Faccts.Model.Entities
 
             this.CCPORId = courtCaseDto.CCPORId;
             this.CCPORStatus = (int?)courtCaseDto.CCPORStatus;
+            //this.Party1 = new CourtParty(courtCaseDto.Party1);
             RaiseNavigationPropertyLoading(() => User);
         }
 
@@ -171,6 +174,8 @@ namespace Faccts.Model.Entities
                 Children = this.Children.Where(x => x.IsDirty).Select(x => ((IDataTransferConvertible<FACCTS.Server.Model.DataModel.Child>)x).ConvertToDTO()).ToArray(),
                 Witnesses = this.Witnesses.Where(x => x.IsDirty).Select(x => x.ConvertToDTO()).ToArray(),
                 Interpreters = this.Interpreters.Where(x => x.IsDirty).Select(x => ((IDataTransferConvertible<FACCTS.Server.Model.DataModel.Interpreter>)x).ConvertToDTO()).ToArray(),
+                ThirdPartyData = this.ThirdPartyAttorneyData.ToDTO(),
+                AttorneyForChild = this.AttorneyForChild.ToDTO(),
                 //CourtClerk = this.User1.ToDTO(),
             };
         }
@@ -189,55 +194,6 @@ namespace Faccts.Model.Entities
             }
         }
 
-        private void UpdateHistoryCollection()
-        {
-            if (this.CaseHistory.FirstOrDefault(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing) == null)
-            {
-                this.CaseHistory.Add(
-                    new CaseHistory()
-                        {
-                            Date = null,
-                            CaseHistoryEvent = FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing,
-                        }
-                    );
-            }
-        }
-
-        public CourtPartyAttorneyData Party1AttorneyData
-        {
-            get
-            {
-                UpdateHistoryCollection();
-                return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).Party1AttorneyData;
-            }
-        }
-
-        public CourtPartyAttorneyData Party2AttorneyData
-        {
-            get
-            {
-                UpdateHistoryCollection();
-                return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).Party2AttorneyData;
-            }
-        }
-
-        public Attorneys AttorneyForChild
-        {
-            get
-            {
-                UpdateHistoryCollection();
-                return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).AttorneyForChild;
-            }
-        }
-
-        public ThirdPartyData ThirdPartyAttorneyData
-        {
-            get
-            {
-                UpdateHistoryCollection();
-                return this.CaseHistory.OrderByDescending(x => x.Date.GetValueOrDefault(DateTime.MaxValue)).First(x => x.CaseHistoryEvent == CaseHistoryEvent.Hearing).ThirdPartyData;
-            }
-        }
 
         private ReactiveCollection<AdditionalParty> _witnesses;
         public ReactiveCollection<AdditionalParty> Witnesses
@@ -247,6 +203,15 @@ namespace Faccts.Model.Entities
                 if (_witnesses == null)
                 {
                     _witnesses = this.AdditionalParties.CreateDerivedCollection(x => x, x => x.Designation == ExtendedDesignation.Witness);
+                    _witnesses.ChangeTrackingEnabled = true;
+                    _witnesses.ItemChanged.Subscribe(x =>
+                    {
+                        if (x.PropertyName == "IsDirty" && (bool)x.GetValue())
+                        {
+                            this.IsDirty = true;
+                        }
+                    });
+
                 }
                 return _witnesses;
             }
@@ -260,6 +225,15 @@ namespace Faccts.Model.Entities
                 if (_interpreters == null)
                 {
                     _interpreters = this.AdditionalParties.CreateDerivedCollection<AdditionalParty, Interpreter>(x => (Interpreter)x, x => x is Interpreter && x.Designation == ExtendedDesignation.Interpreter);
+                    _interpreters.ChangeTrackingEnabled = true;
+                    _interpreters.ItemChanged.Subscribe(x =>
+                        {
+                            if (x.PropertyName == "IsDirty" && (bool)x.GetValue())
+                            {
+                                this.IsDirty = true;
+                            }
+                        }
+                        );
                 }
                 return _interpreters;
             }

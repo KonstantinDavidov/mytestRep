@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Windows.Data;
 using System.Windows.Media;
 using System.Collections.Generic;
+using Caliburn.Micro;
 
 namespace FACCTS.Controls.Validation
 {
@@ -27,6 +28,16 @@ namespace FACCTS.Controls.Validation
         {
             this.DataContextChanged += new DependencyPropertyChangedEventHandler(ErrorProvider_DataContextChanged);
             this.Loaded += new RoutedEventHandler(ErrorProvider_Loaded);
+            this.IsVisibleChanged += ErrorProvider_IsVisibleChanged;
+        }
+
+        private void ErrorProvider_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)e.NewValue)
+            {
+                UpdateValidationStates();
+            }
+            
         }
 
         /// <summary>
@@ -55,6 +66,22 @@ namespace FACCTS.Controls.Validation
 
             Validate();
         }
+
+        public void UpdateValidationStates()
+        {
+            this.FindBindingsRecursively(
+                this.Parent,
+                (element, binding, dp) =>
+                {
+                    BindingExpression expression = element.GetBindingExpression(dp);
+                    if (expression != null)
+                    {
+                        expression.UpdateSource();
+                    }
+                }
+                );
+        }
+
 
         /// <summary>
         /// Validates all properties on the current data source.

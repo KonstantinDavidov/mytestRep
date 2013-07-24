@@ -61,6 +61,11 @@ namespace FACCTS.Server.Model.DataModel
         [InverseProperty("CourtCaseForInterpreter")]
         public virtual ICollection<Interpreter> Interpreters { get; set; }
 
+        public virtual Attorney AttorneyForChild { get; set; }
+
+
+        public virtual ThirdPartyData ThirdPartyData { get; set; }
+
         #endregion
 
         public long Id { get; set; }
