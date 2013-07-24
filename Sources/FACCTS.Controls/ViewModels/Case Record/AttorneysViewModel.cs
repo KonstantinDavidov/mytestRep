@@ -33,11 +33,11 @@ namespace FACCTS.Controls.ViewModels
                         } else
                         if (x.IsParty1)
                         {
-                            CurrentCourtCase.AttorneyForChild = CurrentCourtCase.Party1AttorneyData.Attorney;
+                            CurrentCourtCase.AttorneyForChild = CurrentCourtCase.Party1.AttorneyData.Attorney;
                         }
                         else
                         {
-                            CurrentCourtCase.AttorneyForChild = CurrentCourtCase.Party2AttorneyData.Attorney;
+                            CurrentCourtCase.AttorneyForChild = CurrentCourtCase.Party2.AttorneyData.Attorney;
                         }
                     }
                 );
@@ -57,17 +57,17 @@ namespace FACCTS.Controls.ViewModels
             if (this.CurrentCourtCase != null)
             {
                 _subscriber = Observable.Merge(
-                    this.CurrentCourtCase.Party1AttorneyData.Attorney.Changed,
-                    this.CurrentCourtCase.Party2AttorneyData.Attorney.Changed,
+                    this.CurrentCourtCase.Party1.AttorneyData.Attorney.Changed,
+                    this.CurrentCourtCase.Party2.AttorneyData.Attorney.Changed,
                     this.CurrentCourtCase.AttorneyForChild.Changed,
                     this.CurrentCourtCase.ThirdPartyAttorneyData.Attorney.Changed
                     ).Subscribe(_ =>
                     {
-                        
-                         this.HasUIErrors = this.CurrentCourtCase.Party1AttorneyData.IsDirty && !this.CurrentCourtCase.Party1AttorneyData.Attorney.IsValid
-                                    || this.CurrentCourtCase.Party2AttorneyData.IsDirty && !this.CurrentCourtCase.Party2AttorneyData.Attorney.IsValid
-                                    || this.CurrentCourtCase.AttorneyForChild.IsDirty && !this.CurrentCourtCase.AttorneyForChild.IsValid
-                                    || this.CurrentCourtCase.ThirdPartyAttorneyData.IsDirty && !this.CurrentCourtCase.ThirdPartyAttorneyData.Attorney.IsValid;
+
+                        this.HasUIErrors = this.CurrentCourtCase.Party1.AttorneyData != null && this.CurrentCourtCase.Party1.AttorneyData.IsDirty && !this.CurrentCourtCase.Party1.AttorneyData.Attorney.IsValid
+                                    || this.CurrentCourtCase.Party2.AttorneyData != null && this.CurrentCourtCase.Party2.AttorneyData.IsDirty && !this.CurrentCourtCase.Party2.AttorneyData.Attorney.IsValid
+                                    || this.CurrentCourtCase.AttorneyForChild != null && this.CurrentCourtCase.AttorneyForChild.IsDirty && !this.CurrentCourtCase.AttorneyForChild.IsValid
+                                    || this.CurrentCourtCase.ThirdPartyAttorneyData != null && this.CurrentCourtCase.ThirdPartyAttorneyData.IsDirty && !this.CurrentCourtCase.ThirdPartyAttorneyData.Attorney.IsValid;
 
                     }
                     );

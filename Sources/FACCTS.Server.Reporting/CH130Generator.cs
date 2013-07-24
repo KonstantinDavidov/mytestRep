@@ -47,12 +47,12 @@ namespace FACCTS.Server.Reporting
 
             //Protected party
             CourtParty protectedParty = isParty1Protected ? courtCase.Party1 : courtCase.Party2;
-            CourtPartyAttorneyData protectedPartyAttoney = isParty1Protected ? courtCase.Party1Attorney : courtCase.Party2Attorney;
+            CourtPartyAttorneyData protectedPartyAttoney = isParty1Protected ? courtCase.Party1.AttorneyData : courtCase.Party2.AttorneyData;
             bool isProtectedHasAttorney = protectedPartyAttoney != null && protectedPartyAttoney.HasAttorney.HasValue && protectedPartyAttoney.HasAttorney.Value && (protectedPartyAttoney.Attorney != null);
 
             //Restrained party
             CourtParty restrainedParty = isParty1Protected ? courtCase.Party2 : courtCase.Party1;
-            CourtPartyAttorneyData restrainedPartyAttoney = isParty1Protected ? courtCase.Party2Attorney : courtCase.Party1Attorney; ;
+            CourtPartyAttorneyData restrainedPartyAttoney = isParty1Protected ? courtCase.Party2.AttorneyData : courtCase.Party1.AttorneyData;
             bool isRestrainedHasAttorney = restrainedPartyAttoney != null && restrainedPartyAttoney.HasAttorney.HasValue && restrainedPartyAttoney.HasAttorney.Value && (restrainedPartyAttoney.Attorney != null);
 
             Utils.SetPdfField(form, mapper, "caseNumber", courtCase.CaseNumber);

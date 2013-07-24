@@ -79,6 +79,9 @@ namespace FACCTS.Server.Model.DataModel
 
         public int Age { get; set; }
 
+        public virtual CourtPartyAttorneyData AttorneyData { get; set; }
+
+
         [NotMapped]
         public string FullName
         {

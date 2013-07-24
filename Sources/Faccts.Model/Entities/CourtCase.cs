@@ -29,7 +29,6 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(CourtParty))]
     [KnownType(typeof(AdditionalParty))]
     [KnownType(typeof(CourtDocketRecord))]
-    [KnownType(typeof(CourtPartyAttorneyData))]
     [KnownType(typeof(ThirdPartyData))]
     [KnownType(typeof(Attorneys))]
     public partial class CourtCase: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
@@ -74,8 +73,6 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.Party1.IsDirty)
     				,this.ObservableForProperty(x => x.Party2.IsDirty)
     				,this.ObservableForProperty(x => x.CourtDocketRecord.IsDirty)
-    				,this.ObservableForProperty(x => x.Party1AttorneyData.IsDirty)
-    				,this.ObservableForProperty(x => x.Party2AttorneyData.IsDirty)
     				,this.ObservableForProperty(x => x.ThirdPartyAttorneyData.IsDirty)
     				,this.ObservableForProperty(x => x.AttorneyForChild.IsDirty)
     			).
@@ -174,10 +171,6 @@ namespace Faccts.Model.Entities
                     }
                     if (!IsDeserializing)
                     {
-                        if (Party2AttorneyData != null && Party2AttorneyData.Id != value)
-                        {
-                            Party2AttorneyData = null;
-                        }
                         if (ThirdPartyAttorneyData != null && ThirdPartyAttorneyData.Id != value)
                         {
                             ThirdPartyAttorneyData = null;
@@ -662,51 +655,6 @@ namespace Faccts.Model.Entities
         private CourtDocketRecord _courtDocketRecord;
     
         [DataMember]
-        public CourtPartyAttorneyData Party1AttorneyData
-        {
-            get { return _party1AttorneyData; }
-            set
-            {
-                if (!ReferenceEquals(_party1AttorneyData, value))
-                {
-                    var previousValue = _party1AttorneyData;
-    				OnNavigationPropertyChanging("Party1AttorneyData");
-                    _party1AttorneyData = value;
-                    FixupParty1AttorneyData(previousValue);
-                    OnNavigationPropertyChanged("Party1AttorneyData");
-                }
-            }
-        }
-        private CourtPartyAttorneyData _party1AttorneyData;
-    
-        [DataMember]
-        public CourtPartyAttorneyData Party2AttorneyData
-        {
-            get { return _party2AttorneyData; }
-            set
-            {
-                if (!ReferenceEquals(_party2AttorneyData, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added && value != null)
-                    {
-                        // This the dependent end of an identifying relationship, so the principal end cannot be changed if it is already set,
-                        // otherwise it can only be set to an entity with a primary key that is the same value as the dependent's foreign key.
-                        if (Id != value.Id)
-                        {
-                            throw new InvalidOperationException("The principal end of an identifying relationship can only be changed when the dependent end is in the Added state.");
-                        }
-                    }
-                    var previousValue = _party2AttorneyData;
-    				OnNavigationPropertyChanging("Party2AttorneyData");
-                    _party2AttorneyData = value;
-                    FixupParty2AttorneyData(previousValue);
-                    OnNavigationPropertyChanged("Party2AttorneyData");
-                }
-            }
-        }
-        private CourtPartyAttorneyData _party2AttorneyData;
-    
-        [DataMember]
         public ThirdPartyData ThirdPartyAttorneyData
         {
             get { return _thirdPartyAttorneyData; }
@@ -886,8 +834,6 @@ namespace Faccts.Model.Entities
             Party2 = null;
             AdditionalParties.Clear();
             CourtDocketRecord = null;
-            Party1AttorneyData = null;
-            Party2AttorneyData = null;
             ThirdPartyAttorneyData = null;
             AttorneyForChild = null;
         }
@@ -1120,111 +1066,6 @@ namespace Faccts.Model.Entities
                 if (CourtDocketRecord != null && !CourtDocketRecord.ChangeTracker.ChangeTrackingEnabled)
                 {
                     CourtDocketRecord.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupParty1AttorneyData(CourtPartyAttorneyData previousValue)
-        {
-            // This is the principal end in an association that performs cascade deletes.
-            // Update the event listener to refer to the new dependent.
-            if (previousValue != null)
-            {
-                ChangeTracker.ObjectStateChanging -= previousValue.HandleCascadeDelete;
-            }
-    
-            if (Party1AttorneyData != null)
-            {
-                ChangeTracker.ObjectStateChanging += Party1AttorneyData.HandleCascadeDelete;
-            }
-    
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && ReferenceEquals(previousValue.CourtCase, this))
-            {
-                previousValue.CourtCase = null;
-            }
-    
-            if (Party1AttorneyData != null)
-            {
-                Party1AttorneyData.CourtCase = this;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("Party1AttorneyData")
-                    && (ChangeTracker.OriginalValues["Party1AttorneyData"] == Party1AttorneyData))
-                {
-                    ChangeTracker.OriginalValues.Remove("Party1AttorneyData");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("Party1AttorneyData", previousValue);
-                    // This is the principal end of an identifying association, so the dependent must be deleted when the relationship is removed.
-                    // If the current state of the dependent is Added, the relationship can be changed without causing the dependent to be deleted.
-                    if (previousValue != null && previousValue.ChangeTracker.State != ObjectState.Added)
-                    {
-                        previousValue.MarkAsDeleted();
-                    }
-                }
-                if (Party1AttorneyData != null && !Party1AttorneyData.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    Party1AttorneyData.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupParty2AttorneyData(CourtPartyAttorneyData previousValue)
-        {
-            // This is the dependent end in an association that performs cascade deletes.
-            // Update the principal's event listener to refer to the new dependent.
-            // This is a unidirectional relationship from the dependent to the principal, so the dependent end is
-            // responsible for managing the cascade delete event handler. In all other cases the principal end will manage it.
-            if (previousValue != null)
-            {
-                previousValue.ChangeTracker.ObjectStateChanging -= HandleCascadeDelete;
-            }
-    
-            if (Party2AttorneyData != null)
-            {
-                Party2AttorneyData.ChangeTracker.ObjectStateChanging += HandleCascadeDelete;
-            }
-    
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (Party2AttorneyData != null)
-            {
-                Id = Party2AttorneyData.Id;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("Party2AttorneyData")
-                    && (ChangeTracker.OriginalValues["Party2AttorneyData"] == Party2AttorneyData))
-                {
-                    ChangeTracker.OriginalValues.Remove("Party2AttorneyData");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("Party2AttorneyData", previousValue);
-                    // This is the dependent end of an identifying association, so it must be deleted when the relationship is
-                    // removed. If the current state is Added, the relationship can be changed without causing the dependent to be deleted.
-                    // This is a unidirectional relationship from the dependent to the principal, so the dependent end is
-                    // responsible for cascading the delete. In all other cases the principal end will manage it.
-                    if (previousValue != null && ChangeTracker.State != ObjectState.Added)
-                    {
-                        this.MarkAsDeleted();
-                    }
-                }
-                if (Party2AttorneyData != null && !Party2AttorneyData.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    Party2AttorneyData.StartTracking();
                 }
             }
         }

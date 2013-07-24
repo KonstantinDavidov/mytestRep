@@ -233,6 +233,10 @@
       <End Role="CourtParty" EntitySet="CourtParty" />
       <End Role="CourtCase" EntitySet="CourtCase" />
     </AssociationSet>
+    <AssociationSet Name="FK_dbo_CourtPartyAttorneyData_dbo_Attorneys_Attorney_Id" Association="FACCTS_DBModel.Store.FK_dbo_CourtPartyAttorneyData_dbo_Attorneys_Attorney_Id">
+      <End Role="Attorneys" EntitySet="Attorneys" />
+      <End Role="CourtPartyAttorneyData" EntitySet="CourtPartyAttorneyData" />
+    </AssociationSet>
     <AssociationSet Name="FK_dbo_CourtCase_dbo_CourtParty_Party1_Id" Association="FACCTS_DBModel.Store.FK_dbo_CourtCase_dbo_CourtParty_Party1_Id">
       <End Role="CourtParty" EntitySet="CourtParty" />
       <End Role="CourtCase" EntitySet="CourtCase" />
@@ -509,6 +513,18 @@
       <End Role="CourtDocketRecord" EntitySet="CourtDocketRecordSet" />
       <End Role="Hearings" EntitySet="Hearings" />
     </AssociationSet>
+    <AssociationSet Name="CourtCaseThirdPartyData" Association="FACCTS_DBModel.Store.CourtCaseThirdPartyData">
+      <End Role="CourtCase" EntitySet="CourtCase" />
+      <End Role="ThirdPartyData" EntitySet="ThirdPartyData" />
+    </AssociationSet>
+    <AssociationSet Name="CourtCaseAttorneys" Association="FACCTS_DBModel.Store.CourtCaseAttorneys">
+      <End Role="CourtCase" EntitySet="CourtCase" />
+      <End Role="Attorneys" EntitySet="Attorneys" />
+    </AssociationSet>
+    <AssociationSet Name="CourtPartyCourtPartyAttorneyData" Association="FACCTS_DBModel.Store.CourtPartyCourtPartyAttorneyData">
+      <End Role="CourtParty" EntitySet="CourtParty" />
+      <End Role="CourtPartyAttorneyData" EntitySet="CourtPartyAttorneyData" />
+    </AssociationSet>
     <AssociationSet Name="FK_ConductROSection_inherits_ConductBase" Association="FACCTS_DBModel.Store.FK_ConductROSection_inherits_ConductBase">
       <End Role="ConductBase" EntitySet="ConductBaseSet" />
       <End Role="ConductROSection" EntitySet="ConductBaseSet_ConductROSection" />
@@ -633,10 +649,6 @@
     <Property Name="CourtOrder_Id" Type="bigint" Nullable="true" />
     <Property Name="CourtClerk_Id" Type="bigint" Nullable="true" />
     <Property Name="CourtCase_Id" Type="bigint" Nullable="true" />
-    <Property Name="AttorneyForChild_Id" Type="bigint" Nullable="true" />
-    <Property Name="Party1Attorney_Id" Type="bigint" Nullable="true" />
-    <Property Name="Party2Attorney_Id" Type="bigint" Nullable="true" />
-    <Property Name="ThirdPartyData_Id" Type="bigint" Nullable="true" />
   </EntityType>
   <EntityType Name="CaseNotes">
     <Key>
@@ -791,6 +803,7 @@
     <Property Name="Email" Type="nvarchar(max)" Nullable="true" />
     <Property Name="RelationToOtherParty" Type="nvarchar(max)" Nullable="true" />
     <Property Name="USAState" Type="int" Nullable="false" />
+    <Property Name="AttorneyData_Id" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Courtrooms">
     <Key>
@@ -1927,18 +1940,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_dbo_CaseHistory_dbo_Attorneys_AttorneyForChild_Id">
-    <End Role="Attorneys" Type="FACCTS_DBModel.Store.Attorneys" Multiplicity="0..1" />
-    <End Role="CaseHistory" Type="FACCTS_DBModel.Store.CaseHistory" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Attorneys">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CaseHistory">
-        <PropertyRef Name="AttorneyForChild_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_dbo_CourtPartyAttorneyData_dbo_Attorneys_Attorney_Id">
     <End Role="Attorneys" Type="FACCTS_DBModel.Store.Attorneys" Multiplicity="0..1" />
     <End Role="CourtPartyAttorneyData" Type="FACCTS_DBModel.Store.CourtPartyAttorneyData" Multiplicity="*" />
@@ -1948,42 +1949,6 @@
       </Principal>
       <Dependent Role="CourtPartyAttorneyData">
         <PropertyRef Name="Attorney_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_CaseHistory_dbo_CourtPartyAttorneyData_Party1Attorney_Id">
-    <End Role="CourtPartyAttorneyData" Type="FACCTS_DBModel.Store.CourtPartyAttorneyData" Multiplicity="0..1" />
-    <End Role="CaseHistory" Type="FACCTS_DBModel.Store.CaseHistory" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CourtPartyAttorneyData">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CaseHistory">
-        <PropertyRef Name="Party1Attorney_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_CaseHistory_dbo_CourtPartyAttorneyData_Party2Attorney_Id">
-    <End Role="CourtPartyAttorneyData" Type="FACCTS_DBModel.Store.CourtPartyAttorneyData" Multiplicity="0..1" />
-    <End Role="CaseHistory" Type="FACCTS_DBModel.Store.CaseHistory" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CourtPartyAttorneyData">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CaseHistory">
-        <PropertyRef Name="Party2Attorney_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_CaseHistory_dbo_ThirdPartyData_ThirdPartyData_Id">
-    <End Role="ThirdPartyData" Type="FACCTS_DBModel.Store.ThirdPartyData" Multiplicity="0..1" />
-    <End Role="CaseHistory" Type="FACCTS_DBModel.Store.CaseHistory" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ThirdPartyData">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CaseHistory">
-        <PropertyRef Name="ThirdPartyData_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -2815,6 +2780,44 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="CourtCaseThirdPartyData">
+    <End Role="CourtCase" Type="FACCTS_DBModel.Store.CourtCase" Multiplicity="0..1" />
+    <End Role="ThirdPartyData" Type="FACCTS_DBModel.Store.ThirdPartyData" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <ReferentialConstraint>
+      <Principal Role="ThirdPartyData">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CourtCase">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CourtCaseAttorneys">
+    <End Role="CourtCase" Type="FACCTS_DBModel.Store.CourtCase" Multiplicity="0..1" />
+    <End Role="Attorneys" Type="FACCTS_DBModel.Store.Attorneys" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Attorneys">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CourtCase">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CourtPartyCourtPartyAttorneyData">
+    <End Role="CourtParty" Type="FACCTS_DBModel.Store.CourtParty" Multiplicity="*" />
+    <End Role="CourtPartyAttorneyData" Type="FACCTS_DBModel.Store.CourtPartyAttorneyData" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="CourtPartyAttorneyData">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CourtParty">
+        <PropertyRef Name="AttorneyData_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_RoleUser_Role">
     <End Role="Role" Type="FACCTS_DBModel.Store.Role" Multiplicity="1" />
     <End Role="RoleUser" Type="FACCTS_DBModel.Store.RoleUser" Multiplicity="*" />
@@ -3612,14 +3615,6 @@
             <End Role="CourtDocketRecord" EntitySet="CourtDocketRecordSet" />
             <End Role="Hearings" EntitySet="Hearings" />
           </AssociationSet>
-          <AssociationSet Name="CourtCaseCourtPartyAttorneyData" Association="FACCTS_DBModel.CourtCaseCourtPartyAttorneyData">
-            <End Role="CourtCase" EntitySet="CourtCase" />
-            <End Role="CourtPartyAttorneyData" EntitySet="CourtPartyAttorneyData" />
-          </AssociationSet>
-          <AssociationSet Name="CourtCaseCourtPartyAttorneyData1" Association="FACCTS_DBModel.CourtCaseCourtPartyAttorneyData1">
-            <End Role="CourtCase" EntitySet="CourtCase" />
-            <End Role="CourtPartyAttorneyData" EntitySet="CourtPartyAttorneyData" />
-          </AssociationSet>
           <AssociationSet Name="CourtCaseThirdPartyData" Association="FACCTS_DBModel.CourtCaseThirdPartyData">
             <End Role="CourtCase" EntitySet="CourtCase" />
             <End Role="ThirdPartyData" EntitySet="ThirdPartyData" />
@@ -3627,6 +3622,10 @@
           <AssociationSet Name="CourtCaseAttorneys" Association="FACCTS_DBModel.CourtCaseAttorneys">
             <End Role="CourtCase" EntitySet="CourtCase" />
             <End Role="Attorneys" EntitySet="Attorneys" />
+          </AssociationSet>
+          <AssociationSet Name="CourtPartyCourtPartyAttorneyData" Association="FACCTS_DBModel.CourtPartyCourtPartyAttorneyData">
+            <End Role="CourtParty" EntitySet="CourtParty" />
+            <End Role="CourtPartyAttorneyData" EntitySet="CourtPartyAttorneyData" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="AdfsIntegrationConfiguration">
@@ -3762,8 +3761,6 @@
           <Property Name="RestrainingPartyIdentificationInformation" Type="FACCTS_DBModel.RestrainingPartyIDInfo" Nullable="false" />
           <NavigationProperty Name="AdditionalParties" Relationship="FACCTS_DBModel.CourtCaseAdditionalParty" FromRole="CourtCase" ToRole="AdditionalParty" />
           <NavigationProperty Name="CourtDocketRecord" Relationship="FACCTS_DBModel.CourtCaseCourtDocketRecord" FromRole="CourtCase" ToRole="CourtDocketRecord" />
-          <NavigationProperty Name="Party1AttorneyData" Relationship="FACCTS_DBModel.CourtCaseCourtPartyAttorneyData" FromRole="CourtCase" ToRole="CourtPartyAttorneyData" />
-          <NavigationProperty Name="Party2AttorneyData" Relationship="FACCTS_DBModel.CourtCaseCourtPartyAttorneyData1" FromRole="CourtCase" ToRole="CourtPartyAttorneyData" />
           <NavigationProperty Name="ThirdPartyAttorneyData" Relationship="FACCTS_DBModel.CourtCaseThirdPartyData" FromRole="CourtCase" ToRole="ThirdPartyData" />
           <NavigationProperty Name="AttorneyForChild" Relationship="FACCTS_DBModel.CourtCaseAttorneys" FromRole="CourtCase" ToRole="Attorneys" />
         </EntityType>
@@ -3874,6 +3871,7 @@
           <NavigationProperty Name="Race" Relationship="FACCTS_DBModel.CourtPartyRace" FromRole="CourtParty" ToRole="Race" />
           <NavigationProperty Name="EyesColor" Relationship="FACCTS_DBModel.CourtPartyEyesColor" FromRole="CourtParty" ToRole="EyesColor" />
           <NavigationProperty Name="CourtCase" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtParty_Party1_Id" FromRole="CourtParty" ToRole="CourtCase" />
+          <NavigationProperty Name="AttorneyData" Relationship="FACCTS_DBModel.CourtPartyCourtPartyAttorneyData" FromRole="CourtParty" ToRole="CourtPartyAttorneyData" />
         </EntityType>
         <EntityType Name="Courtrooms">
           <Key>
@@ -4592,7 +4590,7 @@
           <Property Type="Boolean" Name="HasAttorney" />
           <Property Type="Int64" Name="Attorney_Id" />
           <NavigationProperty Name="Attorney" Relationship="FACCTS_DBModel.FK_dbo_CourtPartyAttorneyData_dbo_Attorneys_Attorney_Id" FromRole="CourtPartyAttorneyData" ToRole="Attorneys" />
-          <NavigationProperty Name="CourtCase" Relationship="FACCTS_DBModel.CourtCaseCourtPartyAttorneyData" FromRole="CourtPartyAttorneyData" ToRole="CourtCase" />
+          <NavigationProperty Name="CourtParty" Relationship="FACCTS_DBModel.CourtPartyCourtPartyAttorneyData" FromRole="CourtPartyAttorneyData" ToRole="CourtParty" />
         </EntityType>
         <Association Name="FK_dbo_CourtPartyAttorneyData_dbo_Attorneys_Attorney_Id">
           <End Type="FACCTS_DBModel.Attorneys" Role="Attorneys" Multiplicity="0..1" />
@@ -5365,30 +5363,6 @@
           <End Type="FACCTS_DBModel.CourtDocketRecord" Role="CourtDocketRecord" Multiplicity="1" />
           <End Type="FACCTS_DBModel.Hearings" Role="Hearings" Multiplicity="1" />
         </Association>
-        <Association Name="CourtCaseCourtPartyAttorneyData">
-          <End Type="FACCTS_DBModel.CourtCase" Role="CourtCase" Multiplicity="1" />
-          <End Type="FACCTS_DBModel.CourtPartyAttorneyData" Role="CourtPartyAttorneyData" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="CourtCase">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CourtPartyAttorneyData">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="CourtCaseCourtPartyAttorneyData1">
-          <End Type="FACCTS_DBModel.CourtCase" Role="CourtCase" Multiplicity="1" />
-          <End Type="FACCTS_DBModel.CourtPartyAttorneyData" Role="CourtPartyAttorneyData" Multiplicity="1" />
-          <ReferentialConstraint>
-            <Principal Role="CourtPartyAttorneyData">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CourtCase">
-              <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="CourtCaseThirdPartyData">
           <End Type="FACCTS_DBModel.CourtCase" Role="CourtCase" Multiplicity="1" />
           <End Type="FACCTS_DBModel.ThirdPartyData" Role="ThirdPartyData" Multiplicity="1" >
@@ -5414,6 +5388,10 @@
               <PropertyRef Name="Id" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <Association Name="CourtPartyCourtPartyAttorneyData">
+          <End Type="FACCTS_DBModel.CourtParty" Role="CourtParty" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.CourtPartyAttorneyData" Role="CourtPartyAttorneyData" Multiplicity="1" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -6873,6 +6851,14 @@
         <ScalarProperty Name="Id" ColumnName="Hearing_Id" />
       </EndProperty>
       <EndProperty Name="CourtDocketRecord">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CourtPartyCourtPartyAttorneyData" TypeName="FACCTS_DBModel.CourtPartyCourtPartyAttorneyData" StoreEntitySet="CourtParty">
+      <EndProperty Name="CourtPartyAttorneyData">
+        <ScalarProperty Name="Id" ColumnName="AttorneyData_Id" />
+      </EndProperty>
+      <EndProperty Name="CourtParty">
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>

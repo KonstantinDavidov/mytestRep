@@ -28,8 +28,6 @@ namespace Faccts.Model.Entities
             this.Party1 = new CourtParty();
             this.Party2 = new CourtParty();
             this.RestrainingPartyIdentificationInformation = new RestrainingPartyIDInfo();
-            this.Party1AttorneyData = new CourtPartyAttorneyData();
-            this.Party2AttorneyData = new CourtPartyAttorneyData();
             this.ThirdPartyAttorneyData = new ThirdPartyData();
             this.AttorneyForChild = new Attorneys();
             this.WhenAny(x => x.Party1.IsDirty, x => x.Party2.IsDirty, x => x.RestrainingPartyIdentificationInformation.IsDirty,
@@ -83,6 +81,7 @@ namespace Faccts.Model.Entities
 
             this.CCPORId = courtCaseDto.CCPORId;
             this.CCPORStatus = (int?)courtCaseDto.CCPORStatus;
+            //this.Party1 = new CourtParty(courtCaseDto.Party1);
             RaiseNavigationPropertyLoading(() => User);
         }
 
@@ -175,6 +174,8 @@ namespace Faccts.Model.Entities
                 Children = this.Children.Where(x => x.IsDirty).Select(x => ((IDataTransferConvertible<FACCTS.Server.Model.DataModel.Child>)x).ConvertToDTO()).ToArray(),
                 Witnesses = this.Witnesses.Where(x => x.IsDirty).Select(x => x.ConvertToDTO()).ToArray(),
                 Interpreters = this.Interpreters.Where(x => x.IsDirty).Select(x => ((IDataTransferConvertible<FACCTS.Server.Model.DataModel.Interpreter>)x).ConvertToDTO()).ToArray(),
+                ThirdPartyData = this.ThirdPartyAttorneyData.ToDTO(),
+                AttorneyForChild = this.AttorneyForChild.ToDTO(),
                 //CourtClerk = this.User1.ToDTO(),
             };
         }

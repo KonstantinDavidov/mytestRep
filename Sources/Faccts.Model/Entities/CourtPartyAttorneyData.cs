@@ -22,7 +22,7 @@ namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
     [KnownType(typeof(Attorneys))]
-    [KnownType(typeof(CourtCase))]
+    [KnownType(typeof(CourtParty))]
     public partial class CourtPartyAttorneyData: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -54,7 +54,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.HasAttorney)
     				,this.ObservableForProperty(x => x.Attorney_Id)
     				,this.ObservableForProperty(x => x.Attorney.IsDirty)
-    				,this.ObservableForProperty(x => x.CourtCase.IsDirty)
+    				,this.ObservableForProperty(x => x.CourtParty.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -149,13 +149,6 @@ namespace Faccts.Model.Entities
                     {
                         throw new InvalidOperationException("The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
                     }
-                    if (!IsDeserializing)
-                    {
-                        if (CourtCase != null && CourtCase.Id != value)
-                        {
-                            CourtCase = null;
-                        }
-                    }
     				OnPropertyChanging("Id");
                     _id = value;
                     OnPropertyChanged("Id");
@@ -227,31 +220,22 @@ namespace Faccts.Model.Entities
         private Attorneys _attorney;
     
         [DataMember]
-        public CourtCase CourtCase
+        public CourtParty CourtParty
         {
-            get { return _courtCase; }
+            get { return _courtParty; }
             set
             {
-                if (!ReferenceEquals(_courtCase, value))
+                if (!ReferenceEquals(_courtParty, value))
                 {
-                    if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added && value != null)
-                    {
-                        // This the dependent end of an identifying relationship, so the principal end cannot be changed if it is already set,
-                        // otherwise it can only be set to an entity with a primary key that is the same value as the dependent's foreign key.
-                        if (Id != value.Id)
-                        {
-                            throw new InvalidOperationException("The principal end of an identifying relationship can only be changed when the dependent end is in the Added state.");
-                        }
-                    }
-                    var previousValue = _courtCase;
-    				OnNavigationPropertyChanging("CourtCase");
-                    _courtCase = value;
-                    FixupCourtCase(previousValue);
-                    OnNavigationPropertyChanged("CourtCase");
+                    var previousValue = _courtParty;
+    				OnNavigationPropertyChanging("CourtParty");
+                    _courtParty = value;
+                    FixupCourtParty(previousValue);
+                    OnNavigationPropertyChanged("CourtParty");
                 }
             }
         }
-        private CourtCase _courtCase;
+        private CourtParty _courtParty;
 
         #endregion
 
@@ -348,20 +332,10 @@ namespace Faccts.Model.Entities
             ChangeTracker.ChangeTrackingEnabled = true;
         }
     
-        // This entity type is the dependent end in at least one association that performs cascade deletes.
-        // This event handler will process notifications that occur when the principal end is deleted.
-        internal void HandleCascadeDelete(object sender, ObjectStateChangingEventArgs e)
-        {
-            if (e.NewState == ObjectState.Deleted)
-            {
-                this.MarkAsDeleted();
-            }
-        }
-    
         protected virtual void ClearNavigationProperties()
         {
             Attorney = null;
-            CourtCase = null;
+            CourtParty = null;
         }
 
         #endregion
@@ -409,38 +383,37 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupCourtCase(CourtCase previousValue)
+        private void FixupCourtParty(CourtParty previousValue)
         {
             if (IsDeserializing)
             {
                 return;
             }
     
-            if (previousValue != null && ReferenceEquals(previousValue.Party1AttorneyData, this))
+            if (previousValue != null && ReferenceEquals(previousValue.AttorneyData, this))
             {
-                previousValue.Party1AttorneyData = null;
+                previousValue.AttorneyData = null;
             }
     
-            if (CourtCase != null)
+            if (CourtParty != null)
             {
-                CourtCase.Party1AttorneyData = this;
-                Id = CourtCase.Id;
+                CourtParty.AttorneyData = this;
             }
     
             if (ChangeTracker.ChangeTrackingEnabled)
             {
-                if (ChangeTracker.OriginalValues.ContainsKey("CourtCase")
-                    && (ChangeTracker.OriginalValues["CourtCase"] == CourtCase))
+                if (ChangeTracker.OriginalValues.ContainsKey("CourtParty")
+                    && (ChangeTracker.OriginalValues["CourtParty"] == CourtParty))
                 {
-                    ChangeTracker.OriginalValues.Remove("CourtCase");
+                    ChangeTracker.OriginalValues.Remove("CourtParty");
                 }
                 else
                 {
-                    ChangeTracker.RecordOriginalValue("CourtCase", previousValue);
+                    ChangeTracker.RecordOriginalValue("CourtParty", previousValue);
                 }
-                if (CourtCase != null && !CourtCase.ChangeTracker.ChangeTrackingEnabled)
+                if (CourtParty != null && !CourtParty.ChangeTracker.ChangeTrackingEnabled)
                 {
-                    CourtCase.StartTracking();
+                    CourtParty.StartTracking();
                 }
             }
         }

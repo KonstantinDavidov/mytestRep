@@ -110,6 +110,7 @@ namespace Faccts.Model.Entities
                     DateOfBirth = this.DateOfBirth,
                     Age = this.Age,
                     State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
+                    AttorneyData = this.AttorneyData.ToDTO(),
 
                 };
             return dto;

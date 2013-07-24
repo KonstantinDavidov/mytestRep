@@ -65,10 +65,6 @@ namespace FACCTS.Server.Model.DataModel
         public virtual Attorney AttorneyForChild { get; set; }
 
 
-        public virtual CourtPartyAttorneyData Party1Attorney { get; set; }
-
-        public virtual CourtPartyAttorneyData Party2Attorney { get; set; }
-
         public virtual ThirdPartyData ThirdPartyData { get; set; }
 
         #endregion
