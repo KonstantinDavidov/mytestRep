@@ -113,10 +113,7 @@ namespace FACCTS.Server.Data
             }
         }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> 48f24c935d2a55ca87103346ffc0cddd34a8cced
+
         public IFacctsDataRepository<CourtCaseOrder> CourtCaseOrdersRepository
         {
             get
@@ -125,13 +122,7 @@ namespace FACCTS.Server.Data
             }
         }
 
-<<<<<<< HEAD
-=======
 
-
-=======
->>>>>>> e54be96ad60972456dc6551e11eb5064e4c49607
->>>>>>> 48f24c935d2a55ca87103346ffc0cddd34a8cced
         public IFacctsDataRepository<Courtroom> CourtroomRepository
         {
             get
