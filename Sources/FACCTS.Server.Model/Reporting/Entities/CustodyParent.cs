@@ -2,7 +2,7 @@
 using System.ComponentModel;
 
 
-namespace FACCTS.Server.Model.Enums
+namespace FACCTS.Server.Model.Reporting.Entities
 {
     public enum CustodyParent
     {

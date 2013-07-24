@@ -222,6 +222,36 @@
     <Property name="ExchangeAndRemovalSection" type="ExchangeAndRemoval"/>
     <Property name="DV140OtherOrders" type="OtherOrders"/>
   </Model>
+  
+  <!-- DV150 Supervision-->
+  <Model name="DV150">
+    <Property name="IsPartiesMustGoToMediation" type="bool"/>
+    <Property name="MediationPlaceDescription" type="string"/>
+    <Property name="IsVisitsSupervised" type="bool"/>
+    <Property name="SupervisedPerson" type="CustodyParent"/>
+    <Property name="OtherVisitationPersonDescription" type="string" />
+    <Property name="IsExchangesOfChildrenAreSupervised" type="bool"/>
+    <Property name="IsAllDV140VisitSupervised" type="bool"/>
+    <Property name ="SupervisedVisitsPerWeek" type="byte"/>
+    <Property name="SupervisedVisitsHours" type="byte"/>
+    <Property name="SupervisedScheduleDescription" type="string"/>
+    <Property name="OtherScheduleAttached" type="bool"/>
+    <Property name="ProviderName" type="string"/>
+    <Property name="ProviderAddress" type="string"/>
+    <Property name="ProviderPhone" type="string" />
+    <Property name="ProviderType" type="SupervisionProviderType"/>
+    <Property name="IsMomPay" type="bool"/>
+    <Property name="MomPayment" type="decimal"/>
+    <Property name="IsDadPay" type="bool"/>
+    <Property name="DadPayment" type="decimal"/>
+    <Property name="IsOtherPay" type="bool"/>
+    <Property name="OtherPayment" type="decimal"/>
+    <Property name="OtherDescription" type="string"/>
+    <Property name="MomContactProviderDate" type="DateTime?"/>
+    <Property name="DadContactProviderDate" type="DateTime?"/>
+    <Property name="OtherContactProviderDescription" type="string"/>
+    <Property name="OtherOrdersdescription" type="string"/>
+  </Model>
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="ModelsDef">

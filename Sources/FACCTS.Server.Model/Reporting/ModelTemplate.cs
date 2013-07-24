@@ -23,6 +23,7 @@ namespace FACCTS.Server.Model.OrderModels
 		}
 				
 	}
+	
 			
 	public partial class CH130ConductChoice
 	{
@@ -932,6 +933,141 @@ namespace FACCTS.Server.Model.OrderModels
 		}
 		
 		public OtherOrders DV140OtherOrders
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class DV150
+	{
+		public bool IsPartiesMustGoToMediation
+		{
+			get; set;
+		}
+		
+		public string MediationPlaceDescription
+		{
+			get; set;
+		}
+		
+		public bool IsVisitsSupervised
+		{
+			get; set;
+		}
+		
+		public CustodyParent SupervisedPerson
+		{
+			get; set;
+		}
+		
+		public string OtherVisitationPersonDescription
+		{
+			get; set;
+		}
+		
+		public bool IsExchangesOfChildrenAreSupervised
+		{
+			get; set;
+		}
+		
+		public bool IsAllDV140VisitSupervised
+		{
+			get; set;
+		}
+		
+		public byte SupervisedVisitsPerWeek
+		{
+			get; set;
+		}
+		
+		public byte SupervisedVisitsHours
+		{
+			get; set;
+		}
+		
+		public string SupervisedScheduleDescription
+		{
+			get; set;
+		}
+		
+		public bool OtherScheduleAttached
+		{
+			get; set;
+		}
+		
+		public string ProviderName
+		{
+			get; set;
+		}
+		
+		public string ProviderAddress
+		{
+			get; set;
+		}
+		
+		public string ProviderPhone
+		{
+			get; set;
+		}
+		
+		public SupervisionProviderType ProviderType
+		{
+			get; set;
+		}
+		
+		public bool IsMomPay
+		{
+			get; set;
+		}
+		
+		public decimal MomPayment
+		{
+			get; set;
+		}
+		
+		public bool IsDadPay
+		{
+			get; set;
+		}
+		
+		public decimal DadPayment
+		{
+			get; set;
+		}
+		
+		public bool IsOtherPay
+		{
+			get; set;
+		}
+		
+		public decimal OtherPayment
+		{
+			get; set;
+		}
+		
+		public string OtherDescription
+		{
+			get; set;
+		}
+		
+		public DateTime? MomContactProviderDate
+		{
+			get; set;
+		}
+		
+		public DateTime? DadContactProviderDate
+		{
+			get; set;
+		}
+		
+		public string OtherContactProviderDescription
+		{
+			get; set;
+		}
+		
+		public string OtherOrdersdescription
 		{
 			get; set;
 		}
