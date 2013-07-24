@@ -72,7 +72,6 @@
   <Model name="AttorneysViewModel">
     <Property name="AttorneyForChildrenIsTheSameThenParty1" type="bool"/>
     <Property name="AttorneyForChildrenIsTheSameThenParty2" type="bool"/>
-    <Property name="CurrentHistoryRecord" type="Faccts.Model.Entities.CaseHistory"/>
   </Model>
 
   <Model name="CaseNotesViewModel">

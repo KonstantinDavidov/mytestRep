@@ -33,40 +33,17 @@
             <RowDefinition Height="Auto"/>
 		</Grid.RowDefinitions>
 		<GroupBox Header="Court Cases">
-            <TabControl SelectedIndex="0">
-				<TabItem Header="Calendar" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-					<Grid>
-						<Grid.RowDefinitions>
-							<RowDefinition/>
-						</Grid.RowDefinitions>
-						<ListBox VerticalAlignment="Stretch"
-							DisplayMemberPath="CaseNumber"
-							SelectedItem="{Binding CurrentCourtCase, Mode=TwoWay}"
-							SelectionMode="Extended"
-							cal:Message.Attach="[Event SelectionChanged] = [Action SelectionCourtCasesChanged($eventArgs)]"
-                                 ItemsSource="{Binding CourtCases, Mode=OneWay}"/>
-					</Grid>
-				</TabItem>
-				<TabItem Header="History" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
-                    <Grid>
-                        <TreeView cal:Message.Attach="[Event SelectedItemChanged] = [Action SelectedHistoryChanged($eventArgs)]">
-                            <TreeViewItem Header="{Binding CurrentCourtCase.CaseNumber, Mode=OneWay}"
-                                          ItemsSource="{Binding CurrentCourtCase.Hearings, Mode=OneWay}"
-                                          IsExpanded="True"
-                                          >
-                                <TreeViewItem.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock>
-                                            <Run Text="Hearing " />
-                                            <Run Text="{Binding HearingDate, Mode=OneWay}" />
-                                        </TextBlock>
-                                    </DataTemplate>
-                                </TreeViewItem.ItemTemplate>
-                            </TreeViewItem>
-                        </TreeView>
-                    </Grid>
-                </TabItem>
-			</TabControl>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <ListBox VerticalAlignment="Stretch"
+                         DisplayMemberPath="CaseNumber"
+                         SelectedItem="{Binding CurrentCourtCase, Mode=TwoWay}"
+                         SelectionMode="Extended"
+                         cal:Message.Attach="[Event SelectionChanged] = [Action SelectionCourtCasesChanged($eventArgs)]"
+                         ItemsSource="{Binding CourtCases, Mode=OneWay}" />
+            </Grid>
 		</GroupBox>
 		<GroupBox Header="Court Case Edit" Grid.Row="1">
 			<ListBox x:Name="listBox">

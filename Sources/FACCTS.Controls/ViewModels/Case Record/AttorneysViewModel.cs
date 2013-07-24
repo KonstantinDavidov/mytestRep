@@ -13,7 +13,7 @@ using System.Reactive.Linq;
 namespace FACCTS.Controls.ViewModels
 {
     [Export(typeof(AttorneysViewModel))]
-    public partial class AttorneysViewModel : CaseRecordItemViewModel, IHandle<CurrentHearingChanged>
+    public partial class AttorneysViewModel : CaseRecordItemViewModel
     {
 
         [ImportingConstructor]
@@ -75,14 +75,6 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-        public void Handle(CurrentHearingChanged message)
-        {
-            if (message == null || message.Hearing == null)
-            {
-                this.CurrentHistoryRecord = null;
-                return;
-            }
-            this.CurrentHistoryRecord = message.Hearing.CaseHistory;
-        }
+        
     }
 }
