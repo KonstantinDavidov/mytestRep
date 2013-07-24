@@ -62,6 +62,15 @@ namespace FACCTS.Server.Model.DataModel
         [InverseProperty("CourtCase")]
         public virtual ICollection<Interpreter> Interpreters { get; set; }
 
+        public virtual Attorney AttorneyForChild { get; set; }
+
+
+        public virtual CourtPartyAttorneyData Party1Attorney { get; set; }
+
+        public virtual CourtPartyAttorneyData Party2Attorney { get; set; }
+
+        public virtual ThirdPartyData ThirdPartyData { get; set; }
+
         #endregion
 
         [NotMapped]

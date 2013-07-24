@@ -25,8 +25,6 @@ namespace FACCTS.Server.Reporting
 
             CaseHistory caseHistory = DataManager.CaseHistoryRepository.GetAll(
                         ch => ch.Hearing,
-                        ch => ch.Party1Attorney,
-                        ch => ch.Party2Attorney,
                         ch => ch.CourtCase
                        ).FirstOrDefault(ch => ch.Id == reportData.CaseHistoryId);
 
@@ -49,12 +47,12 @@ namespace FACCTS.Server.Reporting
 
             //Protected party
             CourtParty protectedParty = isParty1Protected ? courtCase.Party1 : courtCase.Party2;
-            CourtPartyAttorneyData  protectedPartyAttoney = isParty1Protected ? caseHistory.Party1Attorney : caseHistory.Party2Attorney;
+            CourtPartyAttorneyData protectedPartyAttoney = isParty1Protected ? courtCase.Party1Attorney : courtCase.Party2Attorney;
             bool isProtectedHasAttorney = protectedPartyAttoney != null && protectedPartyAttoney.HasAttorney.HasValue && protectedPartyAttoney.HasAttorney.Value && (protectedPartyAttoney.Attorney != null);
 
             //Restrained party
             CourtParty restrainedParty = isParty1Protected ? courtCase.Party2 : courtCase.Party1;
-            CourtPartyAttorneyData restrainedPartyAttoney = isParty1Protected ? caseHistory.Party2Attorney : caseHistory.Party1Attorney;;
+            CourtPartyAttorneyData restrainedPartyAttoney = isParty1Protected ? courtCase.Party2Attorney : courtCase.Party1Attorney; ;
             bool isRestrainedHasAttorney = restrainedPartyAttoney != null && restrainedPartyAttoney.HasAttorney.HasValue && restrainedPartyAttoney.HasAttorney.Value && (restrainedPartyAttoney.Attorney != null);
 
             Utils.SetPdfField(form, mapper, "caseNumber", courtCase.CaseNumber);

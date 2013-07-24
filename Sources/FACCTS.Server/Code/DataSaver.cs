@@ -46,10 +46,10 @@ namespace FACCTS.Server.Code
                 DataManager.CourtPartyRepository.SaveData(cc.Party2);
                 DataManager.CaseHistoryRepository.SaveData(cc.CaseHistory);
                 DataManager.HearingRepository.SaveData(cc.CaseHistory.Select(x => x.Hearing));
-                DataManager.CourtPartyAttorneyDataRepository.SaveData(cc.CaseHistory.Select(x => x.Party1Attorney));
-                DataManager.AttorneyRepository.SaveData(cc.CaseHistory.Where(x => x.Party1Attorney != null).Select(x => x.Party1Attorney.Attorney));
-                DataManager.CourtPartyAttorneyDataRepository.SaveData(cc.CaseHistory.Select(x => x.Party2Attorney));
-                DataManager.AttorneyRepository.SaveData(cc.CaseHistory.Where(x => x.Party2Attorney != null).Select(x => x.Party2Attorney.Attorney));
+                //DataManager.CourtPartyAttorneyDataRepository.SaveData(cc.CaseHistory.Select(x => x.Party1Attorney));
+                //DataManager.AttorneyRepository.SaveData(cc.CaseHistory.Where(x => x.Party1Attorney != null).Select(x => x.Party1Attorney.Attorney));
+                //DataManager.CourtPartyAttorneyDataRepository.SaveData(cc.CaseHistory.Select(x => x.Party2Attorney));
+                //DataManager.AttorneyRepository.SaveData(cc.CaseHistory.Where(x => x.Party2Attorney != null).Select(x => x.Party2Attorney.Attorney));
                 DataManager.CaseNoteRepository.SaveData(cc.CaseNotes);
                 DataManager.WitnessRepository.SaveData(cc.Witnesses);
                 DataManager.InterpreterRepository.SaveData(cc.Interpreters);
