@@ -67,6 +67,8 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.Party1_Id)
     				,this.ObservableForProperty(x => x.Party2_Id)
     				,this.ObservableForProperty(x => x.CourtCounty_Id)
+    				,this.ObservableForProperty(x => x.ThirdPartyDataId)
+    				,this.ObservableForProperty(x => x.AttorneysId)
     				,this.ObservableForProperty(x => x.User.IsDirty)
     				,this.ObservableForProperty(x => x.ParentCase.IsDirty)
     				,this.ObservableForProperty(x => x.CourtCounty.IsDirty)
@@ -168,17 +170,6 @@ namespace Faccts.Model.Entities
                     if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added)
                     {
                         throw new InvalidOperationException("The property 'Id' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
-                    }
-                    if (!IsDeserializing)
-                    {
-                        if (ThirdPartyAttorneyData != null && ThirdPartyAttorneyData.Id != value)
-                        {
-                            ThirdPartyAttorneyData = null;
-                        }
-                        if (AttorneyForChild != null && AttorneyForChild.Id != value)
-                        {
-                            AttorneyForChild = null;
-                        }
                     }
     				OnPropertyChanging("Id");
                     _id = value;
@@ -355,6 +346,54 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<long> _courtCounty_Id;
+    
+        [DataMember]
+        public Nullable<long> ThirdPartyDataId
+        {
+            get { return _thirdPartyDataId; }
+            set
+            {
+                if (_thirdPartyDataId != value)
+                {
+                    ChangeTracker.RecordOriginalValue("ThirdPartyDataId", _thirdPartyDataId);
+                    if (!IsDeserializing)
+                    {
+                        if (ThirdPartyAttorneyData != null && ThirdPartyAttorneyData.Id != value)
+                        {
+                            ThirdPartyAttorneyData = null;
+                        }
+                    }
+    				OnPropertyChanging("ThirdPartyDataId");
+                    _thirdPartyDataId = value;
+                    OnPropertyChanged("ThirdPartyDataId");
+                }
+            }
+        }
+        private Nullable<long> _thirdPartyDataId;
+    
+        [DataMember]
+        public Nullable<long> AttorneysId
+        {
+            get { return _attorneysId; }
+            set
+            {
+                if (_attorneysId != value)
+                {
+                    ChangeTracker.RecordOriginalValue("AttorneysId", _attorneysId);
+                    if (!IsDeserializing)
+                    {
+                        if (AttorneyForChild != null && AttorneyForChild.Id != value)
+                        {
+                            AttorneyForChild = null;
+                        }
+                    }
+    				OnPropertyChanging("AttorneysId");
+                    _attorneysId = value;
+                    OnPropertyChanged("AttorneysId");
+                }
+            }
+        }
+        private Nullable<long> _attorneysId;
 
         #endregion
 
@@ -662,15 +701,6 @@ namespace Faccts.Model.Entities
             {
                 if (!ReferenceEquals(_thirdPartyAttorneyData, value))
                 {
-                    if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added && value != null)
-                    {
-                        // This the dependent end of an identifying relationship, so the principal end cannot be changed if it is already set,
-                        // otherwise it can only be set to an entity with a primary key that is the same value as the dependent's foreign key.
-                        if (Id != value.Id)
-                        {
-                            throw new InvalidOperationException("The principal end of an identifying relationship can only be changed when the dependent end is in the Added state.");
-                        }
-                    }
                     var previousValue = _thirdPartyAttorneyData;
     				OnNavigationPropertyChanging("ThirdPartyAttorneyData");
                     _thirdPartyAttorneyData = value;
@@ -689,15 +719,6 @@ namespace Faccts.Model.Entities
             {
                 if (!ReferenceEquals(_attorneyForChild, value))
                 {
-                    if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added && value != null)
-                    {
-                        // This the dependent end of an identifying relationship, so the principal end cannot be changed if it is already set,
-                        // otherwise it can only be set to an entity with a primary key that is the same value as the dependent's foreign key.
-                        if (Id != value.Id)
-                        {
-                            throw new InvalidOperationException("The principal end of an identifying relationship can only be changed when the dependent end is in the Added state.");
-                        }
-                    }
                     var previousValue = _attorneyForChild;
     				OnNavigationPropertyChanging("AttorneyForChild");
                     _attorneyForChild = value;
@@ -801,16 +822,6 @@ namespace Faccts.Model.Entities
         {
             IsDeserializing = false;
             ChangeTracker.ChangeTrackingEnabled = true;
-        }
-    
-        // This entity type is the dependent end in at least one association that performs cascade deletes.
-        // This event handler will process notifications that occur when the principal end is deleted.
-        internal void HandleCascadeDelete(object sender, ObjectStateChangingEventArgs e)
-        {
-            if (e.NewState == ObjectState.Deleted)
-            {
-                this.MarkAsDeleted();
-            }
         }
         // Records the original values for the complex property RestrainingPartyIdentificationInformation
         private void HandleRestrainingPartyIdentificationInformationChanging(object sender, EventArgs args)
@@ -1070,30 +1081,27 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupThirdPartyAttorneyData(ThirdPartyData previousValue)
+        private void FixupThirdPartyAttorneyData(ThirdPartyData previousValue, bool skipKeys = false)
         {
-            // This is the dependent end in an association that performs cascade deletes.
-            // Update the principal's event listener to refer to the new dependent.
-            // This is a unidirectional relationship from the dependent to the principal, so the dependent end is
-            // responsible for managing the cascade delete event handler. In all other cases the principal end will manage it.
-            if (previousValue != null)
-            {
-                previousValue.ChangeTracker.ObjectStateChanging -= HandleCascadeDelete;
-            }
-    
-            if (ThirdPartyAttorneyData != null)
-            {
-                ThirdPartyAttorneyData.ChangeTracker.ObjectStateChanging += HandleCascadeDelete;
-            }
-    
             if (IsDeserializing)
             {
                 return;
             }
     
+            if (previousValue != null && previousValue.CourtCases.Contains(this))
+            {
+                previousValue.CourtCases.Remove(this);
+            }
+    
             if (ThirdPartyAttorneyData != null)
             {
-                Id = ThirdPartyAttorneyData.Id;
+                ThirdPartyAttorneyData.CourtCases.Add(this);
+    
+                ThirdPartyDataId = ThirdPartyAttorneyData.Id;
+            }
+            else if (!skipKeys)
+            {
+                ThirdPartyDataId = null;
             }
     
             if (ChangeTracker.ChangeTrackingEnabled)
@@ -1106,14 +1114,6 @@ namespace Faccts.Model.Entities
                 else
                 {
                     ChangeTracker.RecordOriginalValue("ThirdPartyAttorneyData", previousValue);
-                    // This is the dependent end of an identifying association, so it must be deleted when the relationship is
-                    // removed. If the current state is Added, the relationship can be changed without causing the dependent to be deleted.
-                    // This is a unidirectional relationship from the dependent to the principal, so the dependent end is
-                    // responsible for cascading the delete. In all other cases the principal end will manage it.
-                    if (previousValue != null && ChangeTracker.State != ObjectState.Added)
-                    {
-                        this.MarkAsDeleted();
-                    }
                 }
                 if (ThirdPartyAttorneyData != null && !ThirdPartyAttorneyData.ChangeTracker.ChangeTrackingEnabled)
                 {
@@ -1122,22 +1122,27 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupAttorneyForChild(Attorneys previousValue)
+        private void FixupAttorneyForChild(Attorneys previousValue, bool skipKeys = false)
         {
             if (IsDeserializing)
             {
                 return;
             }
     
-            if (previousValue != null && ReferenceEquals(previousValue.CourtCase, this))
+            if (previousValue != null && previousValue.CourtCases.Contains(this))
             {
-                previousValue.CourtCase = null;
+                previousValue.CourtCases.Remove(this);
             }
     
             if (AttorneyForChild != null)
             {
-                AttorneyForChild.CourtCase = this;
-                Id = AttorneyForChild.Id;
+                AttorneyForChild.CourtCases.Add(this);
+    
+                AttorneysId = AttorneyForChild.Id;
+            }
+            else if (!skipKeys)
+            {
+                AttorneysId = null;
             }
     
             if (ChangeTracker.ChangeTrackingEnabled)

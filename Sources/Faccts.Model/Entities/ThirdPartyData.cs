@@ -22,6 +22,7 @@ namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
     [KnownType(typeof(Attorneys))]
+    [KnownType(typeof(CourtCase))]
     public partial class ThirdPartyData: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -233,6 +234,42 @@ namespace Faccts.Model.Entities
             }
         }
         private Attorneys _attorney;
+    
+        [DataMember]
+        public TrackableCollection<CourtCase> CourtCases
+        {
+            get
+            {
+                if (_courtCases == null)
+                {
+                    _courtCases = new TrackableCollection<CourtCase>();
+                    _courtCases.CollectionChanged += FixupCourtCases;
+                }
+                return _courtCases;
+            }
+            set
+            {
+                if (!ReferenceEquals(_courtCases, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("CourtCases");
+                    if (_courtCases != null)
+                    {
+                        _courtCases.CollectionChanged -= FixupCourtCases;
+                    }
+                    _courtCases = value;
+                    if (_courtCases != null)
+                    {
+                        _courtCases.CollectionChanged += FixupCourtCases;
+                    }
+                    OnNavigationPropertyChanged("CourtCases");
+                }
+            }
+        }
+        private TrackableCollection<CourtCase> _courtCases;
 
         #endregion
 
@@ -332,6 +369,7 @@ namespace Faccts.Model.Entities
         protected virtual void ClearNavigationProperties()
         {
             Attorney = null;
+            CourtCases.Clear();
         }
 
         #endregion
@@ -375,6 +413,45 @@ namespace Faccts.Model.Entities
                 if (Attorney != null && !Attorney.ChangeTracker.ChangeTrackingEnabled)
                 {
                     Attorney.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupCourtCases(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (CourtCase item in e.NewItems)
+                {
+                    item.ThirdPartyAttorneyData = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("CourtCases", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (CourtCase item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.ThirdPartyAttorneyData, this))
+                    {
+                        item.ThirdPartyAttorneyData = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtCases", item);
+                    }
                 }
             }
         }

@@ -70,7 +70,6 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.HeightIns)
     				,this.ObservableForProperty(x => x.DateOfBirth)
     				,this.ObservableForProperty(x => x.Age)
-    				,this.ObservableForProperty(x => x.HasAttorney)
     				,this.ObservableForProperty(x => x.Designation_Id)
     				,this.ObservableForProperty(x => x.HairColor_Id)
     				,this.ObservableForProperty(x => x.EyesColor_Id)
@@ -414,22 +413,6 @@ namespace Faccts.Model.Entities
             }
         }
         private int _age;
-    
-        [DataMember]
-        public Nullable<bool> HasAttorney
-        {
-            get { return _hasAttorney; }
-            set
-            {
-                if (_hasAttorney != value)
-                {
-    				OnPropertyChanging("HasAttorney");
-                    _hasAttorney = value;
-                    OnPropertyChanged("HasAttorney");
-                }
-            }
-        }
-        private Nullable<bool> _hasAttorney;
     
         [DataMember]
         public Nullable<long> Designation_Id

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 07/24/2013 15:49:32
+-- Date Created: 07/24/2013 16:17:28
 -- Generated from EDMX file: D:\FACCTS\FACCTSNEW\faccts.net\Sources\Faccts.Model\Entities\DataModel.edmx
 -- --------------------------------------------------
 
@@ -118,6 +118,9 @@ IF OBJECT_ID(N'[dbo].[FK_CourtPartyCourtCase]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_CourtPartyCourtCase1]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CourtCase] DROP CONSTRAINT [FK_CourtPartyCourtCase1];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_CourtPartyAttorneyData_dbo_Attorneys_Attorney_Id]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CourtPartyAttorneyData] DROP CONSTRAINT [FK_dbo_CourtPartyAttorneyData_dbo_Attorneys_Attorney_Id];
 GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_CourtCase_dbo_CourtParty_Party1_Id]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CourtCase] DROP CONSTRAINT [FK_dbo_CourtCase_dbo_CourtParty_Party1_Id];
@@ -325,6 +328,15 @@ IF OBJECT_ID(N'[dbo].[FK_CourtCaseCourtDocketRecord]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_CourtDocketRecordHearings]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CourtDocketRecordSet] DROP CONSTRAINT [FK_CourtDocketRecordHearings];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CourtCaseThirdPartyData]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CourtCase] DROP CONSTRAINT [FK_CourtCaseThirdPartyData];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CourtCaseAttorneys]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CourtCase] DROP CONSTRAINT [FK_CourtCaseAttorneys];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CourtPartyCourtPartyAttorneyData]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CourtParty] DROP CONSTRAINT [FK_CourtPartyCourtPartyAttorneyData];
 GO
 IF OBJECT_ID(N'[dbo].[FK_ConductROSection_inherits_ConductBase]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ConductBaseSet_ConductROSection] DROP CONSTRAINT [FK_ConductROSection_inherits_ConductBase];
@@ -775,7 +787,9 @@ CREATE TABLE [dbo].[CourtCase] (
     [CourtCounty_Id] bigint  NULL,
     [RestrainingPartyIdentificationInformation_IDType] int  NOT NULL,
     [RestrainingPartyIdentificationInformation_IDNumber] nvarchar(max)  NOT NULL,
-    [RestrainingPartyIdentificationInformation_IDIssuedDate] datetime  NULL
+    [RestrainingPartyIdentificationInformation_IDIssuedDate] datetime  NULL,
+    [ThirdPartyDataId] bigint  NULL,
+    [AttorneysId] bigint  NULL
 );
 GO
 
@@ -852,7 +866,6 @@ CREATE TABLE [dbo].[CourtParty] (
     [HeightIns] decimal(18,2)  NOT NULL,
     [DateOfBirth] datetime  NOT NULL,
     [Age] int  NOT NULL,
-    [HasAttorney] bit  NULL,
     [Designation_Id] bigint  NULL,
     [HairColor_Id] bigint  NULL,
     [EyesColor_Id] bigint  NULL,
@@ -3621,24 +3634,6 @@ ON [dbo].[CourtDocketRecordSet]
     ([Hearing_Id]);
 GO
 
--- Creating foreign key on [Id] in table 'CourtCase'
-ALTER TABLE [dbo].[CourtCase]
-ADD CONSTRAINT [FK_CourtCaseThirdPartyData]
-    FOREIGN KEY ([Id])
-    REFERENCES [dbo].[ThirdPartyData]
-        ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Id] in table 'CourtCase'
-ALTER TABLE [dbo].[CourtCase]
-ADD CONSTRAINT [FK_CourtCaseAttorneys]
-    FOREIGN KEY ([Id])
-    REFERENCES [dbo].[Attorneys]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
 -- Creating foreign key on [AttorneyData_Id] in table 'CourtParty'
 ALTER TABLE [dbo].[CourtParty]
 ADD CONSTRAINT [FK_CourtPartyCourtPartyAttorneyData]
@@ -3651,6 +3646,34 @@ ADD CONSTRAINT [FK_CourtPartyCourtPartyAttorneyData]
 CREATE INDEX [IX_FK_CourtPartyCourtPartyAttorneyData]
 ON [dbo].[CourtParty]
     ([AttorneyData_Id]);
+GO
+
+-- Creating foreign key on [ThirdPartyDataId] in table 'CourtCase'
+ALTER TABLE [dbo].[CourtCase]
+ADD CONSTRAINT [FK_CourtCaseThirdPartyData]
+    FOREIGN KEY ([ThirdPartyDataId])
+    REFERENCES [dbo].[ThirdPartyData]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CourtCaseThirdPartyData'
+CREATE INDEX [IX_FK_CourtCaseThirdPartyData]
+ON [dbo].[CourtCase]
+    ([ThirdPartyDataId]);
+GO
+
+-- Creating foreign key on [AttorneysId] in table 'CourtCase'
+ALTER TABLE [dbo].[CourtCase]
+ADD CONSTRAINT [FK_CourtCaseAttorneys]
+    FOREIGN KEY ([AttorneysId])
+    REFERENCES [dbo].[Attorneys]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CourtCaseAttorneys'
+CREATE INDEX [IX_FK_CourtCaseAttorneys]
+ON [dbo].[CourtCase]
+    ([AttorneysId]);
 GO
 
 -- Creating foreign key on [Id] in table 'ConductBaseSet_ConductROSection'

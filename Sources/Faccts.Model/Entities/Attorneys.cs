@@ -64,7 +64,6 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.Email)
     				,this.ObservableForProperty(x => x.StateBarId)
     				,this.ObservableForProperty(x => x.USAState)
-    				,this.ObservableForProperty(x => x.CourtCase.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -456,22 +455,40 @@ namespace Faccts.Model.Entities
         private TrackableCollection<CourtPartyAttorneyData> _courtPartyAttorneyData;
     
         [DataMember]
-        public CourtCase CourtCase
+        public TrackableCollection<CourtCase> CourtCases
         {
-            get { return _courtCase; }
+            get
+            {
+                if (_courtCases == null)
+                {
+                    _courtCases = new TrackableCollection<CourtCase>();
+                    _courtCases.CollectionChanged += FixupCourtCases;
+                }
+                return _courtCases;
+            }
             set
             {
-                if (!ReferenceEquals(_courtCase, value))
+                if (!ReferenceEquals(_courtCases, value))
                 {
-                    var previousValue = _courtCase;
-    				OnNavigationPropertyChanging("CourtCase");
-                    _courtCase = value;
-                    FixupCourtCase(previousValue);
-                    OnNavigationPropertyChanged("CourtCase");
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("CourtCases");
+                    if (_courtCases != null)
+                    {
+                        _courtCases.CollectionChanged -= FixupCourtCases;
+                    }
+                    _courtCases = value;
+                    if (_courtCases != null)
+                    {
+                        _courtCases.CollectionChanged += FixupCourtCases;
+                    }
+                    OnNavigationPropertyChanged("CourtCases");
                 }
             }
         }
-        private CourtCase _courtCase;
+        private TrackableCollection<CourtCase> _courtCases;
 
         #endregion
 
@@ -573,65 +590,12 @@ namespace Faccts.Model.Entities
             CourtParty.Clear();
             ThirdPartyData.Clear();
             CourtPartyAttorneyData.Clear();
-            CourtCase = null;
+            CourtCases.Clear();
         }
 
         #endregion
 
         #region Association Fixup
-    
-        private void FixupCourtCase(CourtCase previousValue)
-        {
-            // This is the principal end in an association that performs cascade deletes.
-            // Update the event listener to refer to the new dependent.
-            if (previousValue != null)
-            {
-                ChangeTracker.ObjectStateChanging -= previousValue.HandleCascadeDelete;
-            }
-    
-            if (CourtCase != null)
-            {
-                ChangeTracker.ObjectStateChanging += CourtCase.HandleCascadeDelete;
-            }
-    
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && ReferenceEquals(previousValue.AttorneyForChild, this))
-            {
-                previousValue.AttorneyForChild = null;
-            }
-    
-            if (CourtCase != null)
-            {
-                CourtCase.AttorneyForChild = this;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("CourtCase")
-                    && (ChangeTracker.OriginalValues["CourtCase"] == CourtCase))
-                {
-                    ChangeTracker.OriginalValues.Remove("CourtCase");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("CourtCase", previousValue);
-                    // This is the principal end of an identifying association, so the dependent must be deleted when the relationship is removed.
-                    // If the current state of the dependent is Added, the relationship can be changed without causing the dependent to be deleted.
-                    if (previousValue != null && previousValue.ChangeTracker.State != ObjectState.Added)
-                    {
-                        previousValue.MarkAsDeleted();
-                    }
-                }
-                if (CourtCase != null && !CourtCase.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    CourtCase.StartTracking();
-                }
-            }
-        }
     
         private void FixupCourtParty(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -745,6 +709,45 @@ namespace Faccts.Model.Entities
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         ChangeTracker.RecordRemovalFromCollectionProperties("CourtPartyAttorneyData", item);
+                    }
+                }
+            }
+        }
+    
+        private void FixupCourtCases(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (CourtCase item in e.NewItems)
+                {
+                    item.AttorneyForChild = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("CourtCases", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (CourtCase item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.AttorneyForChild, this))
+                    {
+                        item.AttorneyForChild = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtCases", item);
                     }
                 }
             }
