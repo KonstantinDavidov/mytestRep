@@ -15,7 +15,7 @@ namespace FACCTS.Server.Model.DataModel
         {
             get
             {
-                if (CaseHistory == null)
+                if (CaseHistory == null || !CaseHistory.Any())
                 {
                     return Enums.CaseStatus.New;
                 }
