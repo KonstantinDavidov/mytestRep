@@ -9,7 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 using ReactiveUI;
 using FACCTS.Services.Dialog;
+<<<<<<< HEAD
 using System.Reactive.Linq;
+=======
+>>>>>>> e54be96ad60972456dc6551e11eb5064e4c49607
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -17,7 +20,11 @@ namespace FACCTS.Controls.ViewModels
     public partial class WitnessInterpereterViewModel : CaseRecordItemViewModel, IHandle<CurrentHearingChanged>
     {
         private IDialogService _dialogService;
+<<<<<<< HEAD
         private IDisposable _observer1, _observer2;
+=======
+
+>>>>>>> e54be96ad60972456dc6551e11eb5064e4c49607
         [ImportingConstructor]
         public WitnessInterpereterViewModel(
             IDialogService dialogService
@@ -29,6 +36,7 @@ namespace FACCTS.Controls.ViewModels
                 {
                     this.NotifyOfPropertyChange(() => WitnessesFor);
                     this.NotifyOfPropertyChange(() => InterpretersFor);
+<<<<<<< HEAD
                     if (_observer1 != null)
                     {
                         _observer1.Dispose();
@@ -59,6 +67,8 @@ namespace FACCTS.Controls.ViewModels
                         }
                         );
                     }
+=======
+>>>>>>> e54be96ad60972456dc6551e11eb5064e4c49607
                 }
                 );
 

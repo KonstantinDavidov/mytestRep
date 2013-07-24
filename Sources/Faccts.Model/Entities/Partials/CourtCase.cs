@@ -247,6 +247,7 @@ namespace Faccts.Model.Entities
                 if (_witnesses == null)
                 {
                     _witnesses = this.AdditionalParties.CreateDerivedCollection(x => x, x => x.Designation == ExtendedDesignation.Witness);
+<<<<<<< HEAD
                     _witnesses.ChangeTrackingEnabled = true;
                     _witnesses.ItemChanged.Subscribe(x =>
                     {
@@ -255,6 +256,8 @@ namespace Faccts.Model.Entities
                             this.IsDirty = true;
                         }
                     });
+=======
+>>>>>>> e54be96ad60972456dc6551e11eb5064e4c49607
                 }
                 return _witnesses;
             }
@@ -268,6 +271,7 @@ namespace Faccts.Model.Entities
                 if (_interpreters == null)
                 {
                     _interpreters = this.AdditionalParties.CreateDerivedCollection<AdditionalParty, Interpreter>(x => (Interpreter)x, x => x is Interpreter && x.Designation == ExtendedDesignation.Interpreter);
+<<<<<<< HEAD
                     _interpreters.ChangeTrackingEnabled = true;
                     _interpreters.ItemChanged.Subscribe(x =>
                         {
@@ -277,6 +281,8 @@ namespace Faccts.Model.Entities
                             }
                         }
                         );
+=======
+>>>>>>> e54be96ad60972456dc6551e11eb5064e4c49607
                 }
                 return _interpreters;
             }
