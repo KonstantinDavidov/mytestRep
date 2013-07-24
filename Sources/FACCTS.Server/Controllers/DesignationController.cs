@@ -14,7 +14,7 @@ namespace FACCTS.Server.Controllers
     [Authorize]
     public class DesignationController : ApiControllerBase
     {
-        // GET api/Designation
+        /*// GET api/Designation
         public IEnumerable<Designation> Get()
         {
             return DataManager.DesignationRepository.GetAll();
@@ -31,6 +31,6 @@ namespace FACCTS.Server.Controllers
                 HttpStatusCode.NotFound));
             }
             return entity;
-        }
+        }*/
     }
 }

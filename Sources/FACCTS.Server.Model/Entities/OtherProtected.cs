@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public partial class OtherProtected : BaseEntity
+    public class OtherProtected : PersonBase
     {
         public OtherProtected()
         {
@@ -17,46 +17,19 @@ namespace FACCTS.Server.Model.DataModel
             this.RelationshipToPlaintiff = Relationship.O;
         }
 
-        public FACCTSEntity EntityType { get; set; } 
-
         public Relationship RelationshipToPlaintiff { get; set; }
-
-        [StringLength(100)]
-        public string FirstName { get; set; }
-
-        [StringLength(100)]
-        public string LastName { get; set; }
-
-        public DateTime DateOfBirth { get; set; }
-
-        public Gender Sex { get; set; }
-
-        public int Age { get; set; }
 
         public bool IsHouseHold { get; set; }
 
-        [NotMapped]
+        public long? CourtCaseForOtherProtectedId { get; set; }
+
+        public CourtCase CourtCaseForOtherProtected { get; set; }
+
         public string FullName
         {
             get
             {
                 return this.FirstName + " " + this.LastName;
-            }
-        }
-
-        [InverseProperty("OtherProtected")]
-        public virtual CourtCase CourtCase { get; set; }
-
-        [NotMapped]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
             }
         }
     }

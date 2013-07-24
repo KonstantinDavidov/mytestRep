@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public partial class CaseHistory : BaseEntity
+    public class CaseHistory : IEntityWithId, IEntityWithState
     {
         [DataType(DataType.Date)]
         public DateTime? Date { get; set; }
@@ -31,18 +31,10 @@ namespace FACCTS.Server.Model.DataModel
 
         public virtual Hearing Hearing { get; set; }
 
+
+        public long Id { get; set; }
+
         [NotMapped]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
-        
+        public ObjectState State { get; set; }
     }
 }

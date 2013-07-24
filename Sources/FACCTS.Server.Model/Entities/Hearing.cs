@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace FACCTS.Server.Model.DataModel
 {
     [Table("Hearings")]
-    public partial class Hearing : BaseEntity
+    public class Hearing : IEntityWithId, IEntityWithState
     {
         public DateTime HearingDate { get; set; }
 
@@ -27,17 +27,9 @@ namespace FACCTS.Server.Model.DataModel
 
         public DocketSession Session { get; set; }
 
+        public long Id { get; set; }
+
         [NotMapped]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
+        public ObjectState State { get; set; }
     }
 }

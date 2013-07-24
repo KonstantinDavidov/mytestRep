@@ -49,10 +49,19 @@ namespace FACCTS.Server.Data
                        m.ToTable("RolePermission");
                    });
 
+            modelBuilder.Configurations.Add(new PersonBaseConfiguration());
+            modelBuilder.Configurations.Add(new ChildConfiguration());
+            modelBuilder.Configurations.Add(new OtherProtectedConfiguration());
+            modelBuilder.Configurations.Add(new WitnessConfiguration());
+            modelBuilder.Configurations.Add(new InterpreterConfiguration());
+            modelBuilder.Configurations.Add(new AttorneyConfiguration());
+            modelBuilder.Configurations.Add(new AddressInfoConfiguration());
+            modelBuilder.Configurations.Add(new CourtPartyConfiguration());
+
             modelBuilder.Configurations.Add(new ManualIntegrationTaskConfiguration());
             modelBuilder.Configurations.Add(new ScheduledIntegrationTaskConfiguration());
             modelBuilder.Configurations.Add(new MasterOrderConfiguration());
-            modelBuilder.Configurations.Add(new AttachmentOrderConfiguration());
+            modelBuilder.Configurations.Add(new AttachmentOrderConfiguration());            
 
             base.OnModelCreating(modelBuilder);
         }
@@ -68,7 +77,6 @@ namespace FACCTS.Server.Data
 
         #region Dictionary tables
         
-        public DbSet<Designation> Designations { get; set; }
         public DbSet<EyesColor> EyesColor { get; set; }
         public DbSet<HairColor> HairColor { get; set; }
         public DbSet<Race> Races { get; set; }

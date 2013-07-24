@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    [Table("Children")]
-    public partial class Child : BaseEntity
+    public class Child : PersonBase
     {
         public Child()
         {
@@ -18,34 +17,10 @@ namespace FACCTS.Server.Model.DataModel
             this.RelationshipToProtected = Relationship.C;
         }
 
-
-        public FACCTSEntity EntityType { get; set; } 
-
-        [StringLength(100)]
-        public string FirstName { get; set; }
-
-        [StringLength(100)]
-        public string LastName { get; set; }
-
         public Relationship RelationshipToProtected { get; set; }
 
-        public Gender Sex { get; set; }
-        [DataType(DataType.Date)]
-        public DateTime DateOfBirth { get; set; }
-        [InverseProperty("Children")]
-        public virtual CourtCase CourtCase { get; set; }
+        public long? CourtCaseForChildId { get; set; }
 
-        [NotMapped]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
+        public CourtCase CourtCaseForChild { get; set; }
     }
 }

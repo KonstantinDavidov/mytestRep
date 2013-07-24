@@ -8,6 +8,7 @@ using FACCTS.Server.Model.Enums;
 using System.Reactive.Linq;
 using System.ComponentModel;
 using Faccts.Model.Entities.Validation;
+using FACCTS.Server.Model.DataModel;
 
 namespace Faccts.Model.Entities
 {
@@ -88,15 +89,17 @@ namespace Faccts.Model.Entities
                     FirstName = this.FirstName,
                     MiddleName = this.MiddleName,
                     LastName = this.LastName,
-                    Designation = this.Designation.ConvertToDTO(),
                     Description = this.Description,
                     ParticipantRole = this.ParticipantRole,
-                    Address = this.Address,
-                    City = this.City,
-                    USAState = (USAState)this.USAState,
-                    ZipCode = this.ZipCode,
-                    Phone = this.Phone,
-                    Fax = this.Fax,
+                    AddressInfo = new AddressInfo
+                    {
+                        StreetAddress = this.Address,
+                        City = this.City,
+                        USAState = (USAState)this.USAState,
+                        ZipCode = this.ZipCode,
+                        Phone = this.Phone,
+                        Fax = this.Fax,
+                    },                    
                     ParentRole = this.ParentRole,
                     EntityType = this.EntityType,
                     Email = this.Email,

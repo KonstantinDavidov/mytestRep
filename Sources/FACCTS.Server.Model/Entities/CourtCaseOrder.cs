@@ -11,7 +11,7 @@ using System.Xml.Linq;
 namespace FACCTS.Server.Model.DataModel
 {
     [Table("CourtCaseOrders")]
-    public partial class CourtCaseOrder : BaseEntity
+    public partial class CourtCaseOrder : IEntityWithId, IEntityWithState
     {
         public CourtCaseOrder()
         {
@@ -48,18 +48,10 @@ namespace FACCTS.Server.Model.DataModel
         [StringLength(255)]
         public string ServerFileName { get; set; }
 
+        public long Id { get; set; }
+
         [NotMapped]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
+        public ObjectState State { get; set; }
     }
 
 

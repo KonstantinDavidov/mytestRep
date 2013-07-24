@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public class ManualIntegrationTask : BaseEntity
+    public class ManualIntegrationTask : IEntityWithId, IEntityWithState
     {
 
         public DateTime? ReceiveTime { get; set; }
@@ -27,5 +27,9 @@ namespace FACCTS.Server.Model.DataModel
         public User User { get; set; }
 
         public IntegrationTaskState TaskState { get; set; }
+
+        public long Id { get; set; }
+
+        public ObjectState State { get; set; }
     }
 }

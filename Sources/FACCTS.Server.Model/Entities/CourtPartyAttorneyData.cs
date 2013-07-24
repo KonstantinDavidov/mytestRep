@@ -8,23 +8,15 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public partial class CourtPartyAttorneyData : BaseEntity
+    public partial class CourtPartyAttorneyData : IEntityWithId, IEntityWithState
     {
         public bool? HasAttorney { get; set; }
 
         public virtual Attorney Attorney { get; set; }
 
+        public long Id { get; set; }
+
         [NotMapped]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
+        public ObjectState State { get; set; }
     }
 }

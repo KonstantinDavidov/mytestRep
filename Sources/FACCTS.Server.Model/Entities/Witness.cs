@@ -9,38 +9,19 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    [Table("Witnesses")]
-    public partial class Witness : BaseEntity
+    public class Witness : PersonBase
     {
+        public Witness()
+        {
+            EntityType = FACCTSEntity.PERSON;
+        }
 
-        public FACCTSEntity EntityType { get; set; } 
+        public long? CourtPartyId {get; set;}
 
         public virtual CourtParty WitnessFor { get; set; }
 
-        [StringLength(255)]
-        public string FirstName { get; set; }
+        public long? CourtCaseForWitnessId { get; set; }
 
-        [StringLength(255)]
-        public string LastName { get; set; }
-
-
-        [DataType(DataType.MultilineText)]
-        public string Contact { get; set; }
-
-        [InverseProperty("Witnesses")]
-        public virtual CourtCase CourtCase { get; set; }
-
-        [NotMapped]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
+        public CourtCase CourtCaseForWitness { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Faccts.Model.Entities
 {
-    public partial class Designation : IDataTransferConvertible<FACCTS.Server.Model.DataModel.Designation>
+    /*public partial class Designation : IDataTransferConvertible<FACCTS.Server.Model.DataModel.Designation>
     {
         public Designation(FACCTS.Server.Model.DataModel.Designation dto) : this()
         {
@@ -26,5 +26,5 @@ namespace Faccts.Model.Entities
             };
         }
 
-    }
+    }*/
 }

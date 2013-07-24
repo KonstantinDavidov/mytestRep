@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace FACCTS.Server.Model.DataModel
 {
     [Table("CourtDepartmenets")]
-    public partial class CourtDepartment : BaseEntity
+    public partial class CourtDepartment : IEntityWithId, IEntityWithState
     {
 
         [StringLength(150)]
@@ -32,17 +32,9 @@ namespace FACCTS.Server.Model.DataModel
 
         public long CourtCountyId { get; set; }
 
+        public long Id { get; set; }
+
         [NotMapped]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
+        public ObjectState State { get; set; }
     }
 }

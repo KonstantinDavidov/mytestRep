@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public partial class RelyingParties
+    public class RelyingParties
     {
         [Key]
         public int Id { get; set; }

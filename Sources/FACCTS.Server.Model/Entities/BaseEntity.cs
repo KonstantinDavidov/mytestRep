@@ -22,18 +22,8 @@ namespace FACCTS.Server.Model.DataModel
         ObjectState State { get; set; }
     }
 
-    public class BaseEntity : IEntityWithState
+    public interface IEntityWithId
     {
-        public BaseEntity()
-        {
-            State = ObjectState.Unchanged;
-        }
-
-        [Key]
-        [Column("Id")]
-        public virtual long Id { get; set; }
-
-        [CsvField(Ignore = true)]
-        public virtual ObjectState State { get; set; }
+        long Id { get; set; }
     }
 }

@@ -18,6 +18,7 @@ namespace FACCTS.Server.Data.EntityConfigurations
 
             HasOptional(t => t.User).WithMany().HasForeignKey(t => t.UserId);
 
+            Property(t => t.Id).HasColumnName(DbConsts.ID_COLUMN_NAME);
             Property(t => t.StartTime).HasColumnName(DbConsts.SCHELULED_INTEGRATION_TASK_START_TIME_COLUMN_NAME);
             Property(t => t.RepeatPeriod).HasColumnName(DbConsts.SCHELULED_INTEGRATION_TASK_REPEAT_PERIOD_COLUMN_NAME);
             Property(t => t.Info).HasColumnName(DbConsts.SCHELULED_INTEGRATION_TASK_INFO_COLUMN_NAME);

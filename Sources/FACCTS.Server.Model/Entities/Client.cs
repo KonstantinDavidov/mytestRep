@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public partial class Client : BaseEntity
+    public class Client : IEntityWithId, IEntityWithState
     {
         public string Name { get; set; }
         
@@ -23,17 +23,9 @@ namespace FACCTS.Server.Model.DataModel
 
         public bool AllowCodeFlow { get; set; }
 
+        public long Id { get; set; }
+
         [NotMapped]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
+        public ObjectState State { get; set; }
     }
 }

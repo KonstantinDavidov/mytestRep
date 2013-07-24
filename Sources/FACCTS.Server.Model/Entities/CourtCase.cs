@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public partial class CourtCase : BaseEntity
+    public partial class CourtCase : IEntityWithId, IEntityWithState
     {
 
         public CourtCase()
@@ -17,7 +17,6 @@ namespace FACCTS.Server.Model.DataModel
         {
             ParentCase = null;
         }
-
 
         [StringLength(20)]
         public string CaseNumber { get; set; }
@@ -38,10 +37,10 @@ namespace FACCTS.Server.Model.DataModel
 
         public virtual CourtParty Party2 { get; set; }
 
-        [InverseProperty("CourtCase")]
+        [InverseProperty("CourtCaseForChild")]
         public virtual ICollection<Child> Children { get; set; }
 
-        [InverseProperty("CourtCase")]
+        [InverseProperty("CourtCaseForOtherProtected")]
         public virtual ICollection<OtherProtected> OtherProtected { get; set; }
 
         [InverseProperty("CourtCase")]
@@ -56,10 +55,10 @@ namespace FACCTS.Server.Model.DataModel
 
         public RestrainingPartyIdentificationInformation RestrainingPartyIdentificationInformation { get; set; }
 
-        [InverseProperty("CourtCase")]
+        [InverseProperty("CourtCaseForWitness")]
         public virtual ICollection<Witness> Witnesses { get; set; }
 
-        [InverseProperty("CourtCase")]
+        [InverseProperty("CourtCaseForInterpreter")]
         public virtual ICollection<Interpreter> Interpreters { get; set; }
 
         public virtual Attorney AttorneyForChild { get; set; }
@@ -69,18 +68,9 @@ namespace FACCTS.Server.Model.DataModel
 
         #endregion
 
-        [NotMapped]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
+        public long Id { get; set; }
 
+        [NotMapped]
+        public ObjectState State { get; set; }
     }
 }

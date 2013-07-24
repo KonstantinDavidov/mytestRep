@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.Enums
 {
-    //public enum Designation
-    //{
-    //    [Description("None")]
-    //    None = 0,
-    //    [Description("Plaintiff")]
-    //    Plaintiff = 1,
-    //    [Description("Respondent")]
-    //    Respondent = 2,
-    //}
+    public enum Designation
+    {
+        [Description("None")]
+        None = 0,
+        [Description("Plaintiff")]
+        Plaintiff = 1,
+        [Description("Respondent")]
+        Respondent = 2
+    }
 }
