@@ -165,3 +165,4 @@ Sources/FACCTS.Server/Web.config
 Sources/FACCTS.Server/Logs/Log
 Sources/FACCTS.Server/Web.config
 packages
+/Sources/Configuration/connectionStrings.config
