@@ -8,6 +8,12 @@ namespace Faccts.Model.Entities
 {
     public partial class HairColor : IDataTransferConvertible<FACCTS.Server.Model.DataModel.HairColor>
     {
+        partial void Initialize()
+        {
+            this.MarkAsUnchanged();
+            this.ChangeTracker.ChangeTrackingEnabled = false;
+        }
+
         public HairColor(FACCTS.Server.Model.DataModel.HairColor dto) : this()
         {
             this.Id = dto.Id;
