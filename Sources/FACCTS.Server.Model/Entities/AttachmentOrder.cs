@@ -7,16 +7,20 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public class AttachmentOrder : BaseEntity
+    public class AttachmentOrder : IEntityWithId, IEntityWithState
     {
         public long MasterOrderId { get; set; }
 
-        public virtual MasterOrder MasterOrder { get; set; } 
+        public virtual MasterOrder MasterOrder { get; set; }
 
         public AttachmentOrders OrderType { get; set; }
 
         public string XmlContent { get; set; }
 
         public string ServerFileName { get; set; }
+
+        public long Id { get; set; }
+
+        public ObjectState State { get; set; }
     }
 }

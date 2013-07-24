@@ -18,15 +18,18 @@ namespace Faccts.Model.Entities
                 Id = this.Id,
                 FirstName = this.FirstName,
                 LastName = this.LastName,
-                City = this.City,
+                AddressInfo = new FACCTS.Server.Model.DataModel.AddressInfo
+                {
+                    City = this.City,
+                    Fax = this.Fax,
+                    Phone = this.Phone,
+                    USAState = (USAState)this.USAState,
+                    StreetAddress = this.StreetAddress,
+                    ZipCode = this.ZipCode,
+                },
                 Email = this.Email,
-                Fax = this.Fax,
                 FirmName = this.FirmName,
-                Phone = this.Phone,
-                USAState = (USAState)this.USAState,
                 StateBarId = this.StateBarId,
-                StreetAddress = this.StreetAddress,
-                ZipCode = this.ZipCode,
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
             };
         }

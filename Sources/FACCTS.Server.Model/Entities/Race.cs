@@ -6,28 +6,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public partial class Race : BaseEntity
+    public partial class Race : IEntityWithState
     {
         [Key]
         [CsvField(Index = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public override long Id { get; set; }
+        public long Id { get; set; }
         [CsvField(Index = 1)]
         [StringLength(150)]
         public string RaceName { get; set; }
 
         [NotMapped]
         [CsvField(Ignore = true)]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
+        public ObjectState State { get; set; }
     }
 }

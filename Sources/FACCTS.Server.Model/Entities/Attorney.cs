@@ -9,47 +9,12 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    [Table("Attorneys")]
-    public partial class Attorney : BaseEntity
+    public class Attorney : PersonBase
     {
-
-        [StringLength(150)]
-        public string FirstName { get; set; }
-
-        [StringLength(150)]
-        public string LastName { get; set; }
-
-        [StringLength(100)]
         public string FirmName { get; set; }
 
-        [StringLength(200)]
-        public string StreetAddress { get; set; }
-
-        [StringLength(100)]
-        public string City { get; set; }
-
-        public USAState USAState { get; set; }
-
-        [DataType(DataType.PostalCode)]
-        [StringLength(20)]
-        public string ZipCode { get; set; }
-
-        [DataType(DataType.PhoneNumber)]
-        [StringLength(20)]
-        public string Phone { get; set; }
-
-        [DataType(DataType.PhoneNumber)]
-        [StringLength(20)]
-        public string Fax { get; set; }
-
-        [DataType(DataType.EmailAddress)]
-        [StringLength(50)]
-        public string Email { get; set; }
-
-        [StringLength(50)]
         public string StateBarId { get; set; }
 
-        [NotMapped]
         public string FullName
         {
             get
@@ -57,20 +22,5 @@ namespace FACCTS.Server.Model.DataModel
                 return this.FirstName + " " + this.LastName;
             }
         }
-
-        [NotMapped]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
-
-
     }
 }

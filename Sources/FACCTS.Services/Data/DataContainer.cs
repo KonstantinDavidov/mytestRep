@@ -152,7 +152,6 @@ namespace FACCTS.Services.Data
             RaisePropertyChanged(() => HairColors);
             RaisePropertyChanged(() => EyesColors);
             RaisePropertyChanged(() => Races);
-            RaisePropertyChanged(() => Designations);
             RaisePropertyChanged(() => ParticipantRoles);
         }
 
@@ -291,19 +290,6 @@ namespace FACCTS.Services.Data
                     _races = FACCTS.Services.Data.Races.GetAll();
                 }
                 return _races;
-            }
-        }
-
-        private List<Designation> _designations;
-        public List<Designation> Designations
-        {
-            get
-            {
-                if (_designations == null)
-                {
-                    _designations = FACCTS.Services.Data.Designations.GetAll();
-                }
-                return _designations;
             }
         }
 

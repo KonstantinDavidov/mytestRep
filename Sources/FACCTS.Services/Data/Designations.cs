@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Services.Data
 {
-    internal class Designations : WebApiClientBase
+    /*internal class Designations : WebApiClientBase
     {
         protected List<FACCTS.Server.Model.DataModel.Designation> GetDsiagnations()
         {
@@ -20,5 +20,5 @@ namespace FACCTS.Services.Data
                 return null;
             return values.Select(x => new Faccts.Model.Entities.Designation(x)).ToList();
         }
-    }
+    }*/
 }

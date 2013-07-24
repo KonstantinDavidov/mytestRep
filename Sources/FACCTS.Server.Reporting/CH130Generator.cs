@@ -67,20 +67,20 @@ namespace FACCTS.Server.Reporting
             Utils.SetPdfField(form, mapper, "protectedAttorneyFirm", isProtectedHasAttorney ? protectedPartyAttoney.Attorney.FirmName : null);
             Utils.SetPdfField(form, mapper, "protectedAttorneyBarID",isProtectedHasAttorney ? protectedPartyAttoney.Attorney.StateBarId : null);
 
-            Utils.SetPdfField(form, mapper, "protectedAddressStreet",isProtectedHasAttorney ? protectedPartyAttoney.Attorney.StreetAddress : protectedParty.Address);
-            Utils.SetPdfField(form, mapper, "protectedAddressCity", isProtectedHasAttorney ? protectedPartyAttoney.Attorney.City :  protectedParty.City);
-            Utils.SetPdfField(form, mapper, "protectedAddressState", isProtectedHasAttorney ? protectedPartyAttoney.Attorney.USAState.ToString() : protectedParty.USAState.ToString());
-            Utils.SetPdfField(form, mapper, "protectedAddressPostal", isProtectedHasAttorney ? protectedPartyAttoney.Attorney.ZipCode : protectedParty.ZipCode);
-            Utils.SetPdfField(form, mapper, "protectedPhone", isProtectedHasAttorney ? protectedPartyAttoney.Attorney.Phone : protectedParty.Phone);
-            Utils.SetPdfField(form, mapper, "protectedFax", isProtectedHasAttorney ? protectedPartyAttoney.Attorney.Fax : protectedParty.Fax);
+            Utils.SetPdfField(form, mapper, "protectedAddressStreet", isProtectedHasAttorney ? protectedPartyAttoney.Attorney.AddressInfo.StreetAddress : protectedParty.AddressInfo.StreetAddress);
+            Utils.SetPdfField(form, mapper, "protectedAddressCity", isProtectedHasAttorney ? protectedPartyAttoney.Attorney.AddressInfo.City : protectedParty.AddressInfo.City);
+            Utils.SetPdfField(form, mapper, "protectedAddressState", isProtectedHasAttorney ? protectedPartyAttoney.Attorney.AddressInfo.USAState.ToString() : protectedParty.AddressInfo.USAState.ToString());
+            Utils.SetPdfField(form, mapper, "protectedAddressPostal", isProtectedHasAttorney ? protectedPartyAttoney.Attorney.AddressInfo.ZipCode : protectedParty.AddressInfo.ZipCode);
+            Utils.SetPdfField(form, mapper, "protectedPhone", isProtectedHasAttorney ? protectedPartyAttoney.Attorney.AddressInfo.Phone : protectedParty.AddressInfo.Phone);
+            Utils.SetPdfField(form, mapper, "protectedFax", isProtectedHasAttorney ? protectedPartyAttoney.Attorney.AddressInfo.Fax : protectedParty.AddressInfo.Fax);
             Utils.SetPdfField(form, mapper, "protectedEmail", isProtectedHasAttorney ? protectedPartyAttoney.Attorney.Email : protectedParty.Email);
 
             //restrained person
             Utils.SetPdfField(form, mapper, "restrainedName", restrainedParty.FullName);
-            Utils.SetPdfField(form, mapper, "restrainedAddressStreet", restrainedParty.Address);
-            Utils.SetPdfField(form, mapper, "restrainedAddressCity", restrainedParty.City);
+            Utils.SetPdfField(form, mapper, "restrainedAddressStreet", restrainedParty.AddressInfo.StreetAddress);
+            Utils.SetPdfField(form, mapper, "restrainedAddressCity", restrainedParty.AddressInfo.City);
             Utils.SetPdfField(form, mapper, "restrainedAddressState", restrainedParty.State.ToString());
-            Utils.SetPdfField(form, mapper, "restrainedAddressPostal", restrainedParty.ZipCode);
+            Utils.SetPdfField(form, mapper, "restrainedAddressPostal", restrainedParty.AddressInfo.ZipCode);
             Utils.SetPdfField(form, mapper, "restrainedEyeColor", restrainedParty.EyesColor.Color);
             Utils.SetPdfField(form, mapper, "restrainedHairColor", restrainedParty.HairColor.Color);
             Utils.SetPdfField(form, mapper, "restrainedRace", restrainedParty.Race.RaceName);

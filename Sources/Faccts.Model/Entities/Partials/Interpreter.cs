@@ -17,7 +17,7 @@ namespace Faccts.Model.Entities
             {
                 Id = this.Id,
                 EntityType = this.EntityType,
-                InterpreterFor = this.PartyFor == Entities.PartyFor.Party1 ? this.CourtCase.Party1.ConvertToDTO() : this.CourtCase.Party2.ConvertToDTO(),
+                //InterpreterFor = this.PartyFor == Entities.PartyFor.Party1 ? this.CourtCase.Party1.ConvertToDTO() : this.CourtCase.Party2.ConvertToDTO(),
                 FirstName = this.FirstName,
                 LastName = this.LastName,
                 Language = this.Language,

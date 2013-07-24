@@ -12,11 +12,11 @@ namespace FACCTS.Server.Data
     public static class FacctsDataRepositoryExtensions
     {
         public static void SaveData<T>(this IFacctsDataRepository<T> repository, T entity)
-            where T : BaseEntity
+            where T : class, IEntityWithState
         {
             if (entity == null)
                 return;
-            switch(entity.State)
+            switch (entity.State)
             {
                 case ObjectState.Added:
                     repository.Insert(entity);
@@ -32,15 +32,15 @@ namespace FACCTS.Server.Data
         }
 
         public static void SaveData<T>(this IFacctsDataRepository<T> repository, IEnumerable<T> entityCollection)
-            where T : BaseEntity
+            where T : class, IEntityWithState
         {
             if (entityCollection == null)
                 return;
             entityCollection.Aggregate(0, (index, item) =>
-                {
-                    SaveData(repository, item);
-                    return ++index;
-                }
+                    {
+                        SaveData(repository, item);
+                        return ++index;
+                    }
                 );
         }
     }

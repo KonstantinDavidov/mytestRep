@@ -120,13 +120,6 @@ namespace FACCTS.Server.Data
                 return GetStandardRepo<Courtroom>();
             }
         }
-        public IFacctsDictionaryDataRepository<Designation> DesignationRepository
-        {
-            get
-            {
-                return GetStandardDictionaryRepo<Designation>();
-            }
-        }
 
         public IFacctsDictionaryDataRepository<Race> RaceRepository
         {

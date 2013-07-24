@@ -9,37 +9,15 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    [Table("Interpreters")]
-    public partial class Interpreter : BaseEntity
+    public class Interpreter : PersonBase
     {
-
-        public FACCTSEntity EntityType { get; set; } 
-
-        public virtual CourtParty InterpreterFor { get; set; }
-
-        [StringLength(255)]
-        public string FirstName { get; set; }
-
-        [StringLength(255)]
-        public string LastName { get; set; }
-
-        [StringLength(150)]
+        public Interpreter()
+        {
+        }
         public string Language { get; set; }
 
-        [InverseProperty("Interpreters")]
-        public virtual CourtCase CourtCase { get; set; }
+        public long? CourtCaseForInterpreterId { get; set; }
 
-        [NotMapped]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
+        public CourtCase CourtCaseForInterpreter { get; set; }
     }
 }

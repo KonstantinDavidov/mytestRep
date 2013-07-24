@@ -13,12 +13,12 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public partial class CourtCounty : BaseEntity
+    public class CourtCounty : IEntityWithState //: BaseEntity
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [CsvField(Index = 0)]
-        public override long Id { get; set; }
+        public long Id { get; set; }
 
         [Column("court_code")]
         [CsvField(Index = 1)]
@@ -44,7 +44,7 @@ namespace FACCTS.Server.Model.DataModel
         [StringLength(64)]
         public string Location { get; set; }
 
-        [CsvField(Ignore=true)]
+        [CsvField(Ignore = true)]
         [InverseProperty("CourtCounty")]
         public virtual ICollection<CourtLocation> CourtLocations { get; set; }
 
@@ -59,17 +59,7 @@ namespace FACCTS.Server.Model.DataModel
         }
 
         [NotMapped]
-        [CsvField(Ignore=true)]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
+        [CsvField(Ignore = true)]
+        public ObjectState State { get; set; }
     }
 }
