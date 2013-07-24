@@ -83,7 +83,7 @@
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtPartyAttorneyData_dbo_Attorneys_Attorney_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtParty_Party1_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtParty_Party2_Id" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.AdditionalParty" Width="1.5" PointX="6.5" PointY="23.125" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.PersonBase" Width="1.5" PointX="6.5" PointY="23.125" />
         <AssociationConnector Association="FACCTS_DBModel.CourtCaseAdditionalParty" />
         <EntityTypeShape EntityType="FACCTS_DBModel.Child" Width="1.5" PointX="4.75" PointY="26.5" />
         <InheritanceConnector EntityType="FACCTS_DBModel.Child" />
@@ -100,6 +100,12 @@
         <AssociationConnector Association="FACCTS_DBModel.CourtPartyCourtPartyAttorneyData" />
         <AssociationConnector Association="FACCTS_DBModel.CourtCaseThirdPartyData" />
         <AssociationConnector Association="FACCTS_DBModel.CourtCaseAttorneys" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id1" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_ThirdPartyData_ThirdPartyData_Id" />
+        <InheritanceConnector EntityType="FACCTS_DBModel.Child" />
+        <InheritanceConnector EntityType="FACCTS_DBModel.OtherProtected" />
+        <InheritanceConnector EntityType="FACCTS_DBModel.Interpreter" />
+        <InheritanceConnector EntityType="FACCTS_DBModel.Attorneys" />
       </Diagram>
       <Diagram DiagramId="d16b781b547641eeb332d8cb3d0f49f3" Name="CourtOrders" ZoomLevel="80" >
         <EntityTypeShape EntityType="FACCTS_DBModel.ConductROSection" Width="1.5" PointX="6.875" PointY="2" />

@@ -62,6 +62,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.CourtOrder_Id)
     				,this.ObservableForProperty(x => x.CourtClerk_Id)
     				,this.ObservableForProperty(x => x.CourtCase_Id)
+    				,this.ObservableForProperty(x => x.Hearing_Id)
     				,this.ObservableForProperty(x => x.CourtCaseOrders.IsDirty)
     				,this.ObservableForProperty(x => x.Hearing.IsDirty)
     				,this.ObservableForProperty(x => x.MergeCase.IsDirty)
@@ -69,6 +70,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.User.IsDirty)
     				,this.ObservableForProperty(x => x.CourtCase.IsDirty)
     				,this.ObservableForProperty(x => x.MasterOrder.IsDirty)
+    				,this.ObservableForProperty(x => x.Hearings.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -345,6 +347,30 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<long> _courtCase_Id;
+    
+        [DataMember]
+        public Nullable<long> Hearing_Id
+        {
+            get { return _hearing_Id; }
+            set
+            {
+                if (_hearing_Id != value)
+                {
+                    ChangeTracker.RecordOriginalValue("Hearing_Id", _hearing_Id);
+                    if (!IsDeserializing)
+                    {
+                        if (Hearings != null && Hearings.Id != value)
+                        {
+                            Hearings = null;
+                        }
+                    }
+    				OnPropertyChanging("Hearing_Id");
+                    _hearing_Id = value;
+                    OnPropertyChanged("Hearing_Id");
+                }
+            }
+        }
+        private Nullable<long> _hearing_Id;
 
         #endregion
 
@@ -484,6 +510,24 @@ namespace Faccts.Model.Entities
             }
         }
         private MasterOrder _masterOrder;
+    
+        [DataMember]
+        public Hearings Hearings
+        {
+            get { return _hearings; }
+            set
+            {
+                if (!ReferenceEquals(_hearings, value))
+                {
+                    var previousValue = _hearings;
+    				OnNavigationPropertyChanging("Hearings");
+                    _hearings = value;
+                    FixupHearings(previousValue);
+                    OnNavigationPropertyChanged("Hearings");
+                }
+            }
+        }
+        private Hearings _hearings;
 
         #endregion
 
@@ -599,6 +643,7 @@ namespace Faccts.Model.Entities
             User = null;
             CourtCase = null;
             MasterOrder = null;
+            Hearings = null;
         }
 
         #endregion
@@ -889,6 +934,47 @@ namespace Faccts.Model.Entities
                 if (MasterOrder != null && !MasterOrder.ChangeTracker.ChangeTrackingEnabled)
                 {
                     MasterOrder.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupHearings(Hearings previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.CaseHistory1.Contains(this))
+            {
+                previousValue.CaseHistory1.Remove(this);
+            }
+    
+            if (Hearings != null)
+            {
+                Hearings.CaseHistory1.Add(this);
+    
+                Hearing_Id = Hearings.Id;
+            }
+            else if (!skipKeys)
+            {
+                Hearing_Id = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("Hearings")
+                    && (ChangeTracker.OriginalValues["Hearings"] == Hearings))
+                {
+                    ChangeTracker.OriginalValues.Remove("Hearings");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("Hearings", previousValue);
+                }
+                if (Hearings != null && !Hearings.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    Hearings.StartTracking();
                 }
             }
         }

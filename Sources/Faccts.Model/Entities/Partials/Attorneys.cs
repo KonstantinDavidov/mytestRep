@@ -11,6 +11,11 @@ namespace Faccts.Model.Entities
 {
     public partial class Attorneys : IDataTransferConvertible<FACCTS.Server.Model.DataModel.Attorney>, IValidatableObject
     {
+        public Attorneys() : base()
+        {
+            this.AddressInfo = new AddressInfo();
+        }
+
         public FACCTS.Server.Model.DataModel.Attorney ToDTO()
         {
             if (!this.IsDirty)
@@ -20,15 +25,7 @@ namespace Faccts.Model.Entities
                 Id = this.Id,
                 FirstName = this.FirstName,
                 LastName = this.LastName,
-                AddressInfo = new FACCTS.Server.Model.DataModel.AddressInfo
-                {
-                    City = this.City,
-                    Fax = this.Fax,
-                    Phone = this.Phone,
-                    USAState = (USAState)this.USAState,
-                    StreetAddress = this.StreetAddress,
-                    ZipCode = this.ZipCode,
-                },
+                AddressInfo = this.AddressInfo.ConvertToDTO(),
                 Email = this.Email,
                 FirmName = this.FirmName,
                 StateBarId = this.StateBarId,
@@ -57,11 +54,10 @@ namespace Faccts.Model.Entities
             {"LastName", "Last Name"},
             {"StateBarId", "State Bar Id"},
             {"FirmName", "Firm Name"},
-            {"StreetAddress", "Street Address"},
-            {"City", "City"},
-            {"State", "State"},
-            {"ZipCode", "Zip Code"},
-            {"Phone", "Phone"},
+            {"AddressInfo.StreetAddress", "Street Address"},
+            {"AddressInfo.City", "City"},
+            {"AddressInfo.USAState", "State"},
+            {"AddressInfo.ZipCode", "Zip Code"},
         };
 
         private Dictionary<string, string> _errors = new Dictionary<string, string>();

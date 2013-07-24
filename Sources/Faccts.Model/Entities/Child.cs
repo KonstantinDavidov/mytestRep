@@ -21,41 +21,9 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    public partial class Child : AdditionalParty, IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    public partial class Child : PersonBase, IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
         #region Simple Properties
-    
-        [DataMember]
-        public FACCTS.Server.Model.Enums.Gender Sex
-        {
-            get { return _sex; }
-            set
-            {
-                if (_sex != value)
-                {
-    				OnPropertyChanging("Sex");
-                    _sex = value;
-                    OnPropertyChanged("Sex");
-                }
-            }
-        }
-        private FACCTS.Server.Model.Enums.Gender _sex;
-    
-        [DataMember]
-        public Nullable<System.DateTime> DateOfBirth
-        {
-            get { return _dateOfBirth; }
-            set
-            {
-                if (_dateOfBirth != value)
-                {
-    				OnPropertyChanging("DateOfBirth");
-                    _dateOfBirth = value;
-                    OnPropertyChanged("DateOfBirth");
-                }
-            }
-        }
-        private Nullable<System.DateTime> _dateOfBirth;
     
         [DataMember]
         public FACCTS.Server.Model.Enums.Relationship RelationToProtected

@@ -24,6 +24,10 @@ namespace Faccts.Model.Entities
                 {
                     result = string.Format("{0} can not be blank!", requiredFields[propertyName]);
                 }
+                else if (propertyValue is IDataErrorInfo)
+                {
+                    result = (propertyValue as IDataErrorInfo)[string.Empty];                        
+                }
             }
             if (!string.IsNullOrEmpty(result))
             {

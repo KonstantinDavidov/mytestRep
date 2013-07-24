@@ -60,11 +60,6 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.MiddleName)
     				,this.ObservableForProperty(x => x.LastName)
     				,this.ObservableForProperty(x => x.Description)
-    				,this.ObservableForProperty(x => x.Address)
-    				,this.ObservableForProperty(x => x.City)
-    				,this.ObservableForProperty(x => x.ZipCode)
-    				,this.ObservableForProperty(x => x.Phone)
-    				,this.ObservableForProperty(x => x.Fax)
     				,this.ObservableForProperty(x => x.Weight)
     				,this.ObservableForProperty(x => x.HeightFt)
     				,this.ObservableForProperty(x => x.HeightIns)
@@ -81,7 +76,6 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.EntityType)
     				,this.ObservableForProperty(x => x.Email)
     				,this.ObservableForProperty(x => x.RelationToOtherParty)
-    				,this.ObservableForProperty(x => x.USAState)
     				,this.ObservableForProperty(x => x.Attorneys.IsDirty)
     				,this.ObservableForProperty(x => x.Designation.IsDirty)
     				,this.ObservableForProperty(x => x.HairColor.IsDirty)
@@ -253,86 +247,6 @@ namespace Faccts.Model.Entities
             }
         }
         private string _description;
-    
-        [DataMember]
-        public string Address
-        {
-            get { return _address; }
-            set
-            {
-                if (_address != value)
-                {
-    				OnPropertyChanging("Address");
-                    _address = value;
-                    OnPropertyChanged("Address");
-                }
-            }
-        }
-        private string _address;
-    
-        [DataMember]
-        public string City
-        {
-            get { return _city; }
-            set
-            {
-                if (_city != value)
-                {
-    				OnPropertyChanging("City");
-                    _city = value;
-                    OnPropertyChanged("City");
-                }
-            }
-        }
-        private string _city;
-    
-        [DataMember]
-        public string ZipCode
-        {
-            get { return _zipCode; }
-            set
-            {
-                if (_zipCode != value)
-                {
-    				OnPropertyChanging("ZipCode");
-                    _zipCode = value;
-                    OnPropertyChanged("ZipCode");
-                }
-            }
-        }
-        private string _zipCode;
-    
-        [DataMember]
-        public string Phone
-        {
-            get { return _phone; }
-            set
-            {
-                if (_phone != value)
-                {
-    				OnPropertyChanging("Phone");
-                    _phone = value;
-                    OnPropertyChanged("Phone");
-                }
-            }
-        }
-        private string _phone;
-    
-        [DataMember]
-        public string Fax
-        {
-            get { return _fax; }
-            set
-            {
-                if (_fax != value)
-                {
-    				OnPropertyChanging("Fax");
-                    _fax = value;
-                    OnPropertyChanged("Fax");
-                }
-            }
-        }
-        private string _fax;
     
         [DataMember]
         public decimal Weight
@@ -629,22 +543,48 @@ namespace Faccts.Model.Entities
             }
         }
         private string _relationToOtherParty;
+
+        #endregion
+
+        #region Complex Properties
     
         [DataMember]
-        public FACCTS.Server.Model.Enums.USAState USAState
+        public AddressInfo AddressInfo
         {
-            get { return _uSAState; }
+            get
+            {
+                if (!_addressInfoInitialized && _addressInfo == null)
+                {
+                    _addressInfo = new AddressInfo();
+                    ((INotifyComplexPropertyChanging)_addressInfo).ComplexPropertyChanging += HandleAddressInfoChanging;
+                }
+                _addressInfoInitialized = true;
+                return _addressInfo;
+            }
             set
             {
-                if (_uSAState != value)
+                _addressInfoInitialized = true;
+                if (!Equals(_addressInfo, value))
                 {
-    				OnPropertyChanging("USAState");
-                    _uSAState = value;
-                    OnPropertyChanged("USAState");
+                    if (_addressInfo != null)
+                    {
+                        ((INotifyComplexPropertyChanging)_addressInfo).ComplexPropertyChanging -= HandleAddressInfoChanging;
+                    }
+    
+                    HandleAddressInfoChanging(this, null);
+    				OnPropertyChanging("AddressInfo");
+                    _addressInfo = value;
+                    OnPropertyChanged("AddressInfo");
+    
+                    if (value != null)
+                    {
+                        ((INotifyComplexPropertyChanging)_addressInfo).ComplexPropertyChanging += HandleAddressInfoChanging;
+                    }
                 }
             }
         }
-        private FACCTS.Server.Model.Enums.USAState _uSAState;
+        private AddressInfo _addressInfo;
+        private bool _addressInfoInitialized;
 
         #endregion
 
@@ -898,6 +838,15 @@ namespace Faccts.Model.Entities
                 this.MarkAsDeleted();
             }
         }
+        // Records the original values for the complex property AddressInfo
+        private void HandleAddressInfoChanging(object sender, EventArgs args)
+        {
+            if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
+            {
+                ChangeTracker.State = ObjectState.Modified;
+            }
+        }
+    
     
         protected virtual void ClearNavigationProperties()
         {

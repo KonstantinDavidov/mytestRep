@@ -21,16 +21,17 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
+    [KnownType(typeof(Attorneys))]
     [KnownType(typeof(Child))]
     [KnownType(typeof(OtherProtected))]
     [KnownType(typeof(Interpreter))]
     [KnownType(typeof(CourtCase))]
-    public partial class AdditionalParty: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    public partial class PersonBase: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
     		private MakeObjectReactiveHelper _reactiveHelper;
     
-    		public AdditionalParty()
+    		public PersonBase()
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
@@ -56,10 +57,14 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.EntityType)
     				,this.ObservableForProperty(x => x.FirstName)
     				,this.ObservableForProperty(x => x.LastName)
-    				,this.ObservableForProperty(x => x.Designation)
     				,this.ObservableForProperty(x => x.PartyFor)
     				,this.ObservableForProperty(x => x.Contact)
     				,this.ObservableForProperty(x => x.CourtCaseId)
+    				,this.ObservableForProperty(x => x.Sex)
+    				,this.ObservableForProperty(x => x.DateOfBirth)
+    				,this.ObservableForProperty(x => x.Age)
+    				,this.ObservableForProperty(x => x.Email)
+    				,this.ObservableForProperty(x => x.PersonType)
     				,this.ObservableForProperty(x => x.CourtCase.IsDirty)
     			).
     			Subscribe(_ =>
@@ -212,22 +217,6 @@ namespace Faccts.Model.Entities
         private string _lastName;
     
         [DataMember]
-        public ExtendedDesignation Designation
-        {
-            get { return _designation; }
-            set
-            {
-                if (_designation != value)
-                {
-    				OnPropertyChanging("Designation");
-                    _designation = value;
-                    OnPropertyChanged("Designation");
-                }
-            }
-        }
-        private ExtendedDesignation _designation;
-    
-        [DataMember]
         public PartyFor PartyFor
         {
             get { return _partyFor; }
@@ -282,6 +271,128 @@ namespace Faccts.Model.Entities
             }
         }
         private long _courtCaseId;
+    
+        [DataMember]
+        public FACCTS.Server.Model.Enums.Gender Sex
+        {
+            get { return _sex; }
+            set
+            {
+                if (_sex != value)
+                {
+    				OnPropertyChanging("Sex");
+                    _sex = value;
+                    OnPropertyChanged("Sex");
+                }
+            }
+        }
+        private FACCTS.Server.Model.Enums.Gender _sex;
+    
+        [DataMember]
+        public Nullable<System.DateTime> DateOfBirth
+        {
+            get { return _dateOfBirth; }
+            set
+            {
+                if (_dateOfBirth != value)
+                {
+    				OnPropertyChanging("DateOfBirth");
+                    _dateOfBirth = value;
+                    OnPropertyChanged("DateOfBirth");
+                }
+            }
+        }
+        private Nullable<System.DateTime> _dateOfBirth;
+    
+        [DataMember]
+        public Nullable<int> Age
+        {
+            get { return _age; }
+            set
+            {
+                if (_age != value)
+                {
+    				OnPropertyChanging("Age");
+                    _age = value;
+                    OnPropertyChanged("Age");
+                }
+            }
+        }
+        private Nullable<int> _age;
+    
+        [DataMember]
+        public string Email
+        {
+            get { return _email; }
+            set
+            {
+                if (_email != value)
+                {
+    				OnPropertyChanging("Email");
+                    _email = value;
+                    OnPropertyChanged("Email");
+                }
+            }
+        }
+        private string _email;
+    
+        [DataMember]
+        public FACCTS.Server.Model.Enums.PersonType PersonType
+        {
+            get { return _personType; }
+            set
+            {
+                if (_personType != value)
+                {
+    				OnPropertyChanging("PersonType");
+                    _personType = value;
+                    OnPropertyChanged("PersonType");
+                }
+            }
+        }
+        private FACCTS.Server.Model.Enums.PersonType _personType;
+
+        #endregion
+
+        #region Complex Properties
+    
+        [DataMember]
+        public AddressInfo AddressInfo
+        {
+            get
+            {
+                if (!_addressInfoInitialized && _addressInfo == null)
+                {
+                    _addressInfo = new AddressInfo();
+                    ((INotifyComplexPropertyChanging)_addressInfo).ComplexPropertyChanging += HandleAddressInfoChanging;
+                }
+                _addressInfoInitialized = true;
+                return _addressInfo;
+            }
+            set
+            {
+                _addressInfoInitialized = true;
+                if (!Equals(_addressInfo, value))
+                {
+                    if (_addressInfo != null)
+                    {
+                        ((INotifyComplexPropertyChanging)_addressInfo).ComplexPropertyChanging -= HandleAddressInfoChanging;
+                    }
+    
+                    HandleAddressInfoChanging(this, null);
+    				OnPropertyChanging("AddressInfo");
+                    _addressInfo = value;
+                    OnPropertyChanged("AddressInfo");
+    
+                    if (value != null)
+                    {
+                        ((INotifyComplexPropertyChanging)_addressInfo).ComplexPropertyChanging += HandleAddressInfoChanging;
+                    }
+                }
+            }
+        }
+        private AddressInfo _addressInfo;
+        private bool _addressInfoInitialized;
 
         #endregion
 
@@ -399,6 +510,15 @@ namespace Faccts.Model.Entities
             IsDeserializing = false;
             ChangeTracker.ChangeTrackingEnabled = true;
         }
+        // Records the original values for the complex property AddressInfo
+        private void HandleAddressInfoChanging(object sender, EventArgs args)
+        {
+            if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
+            {
+                ChangeTracker.State = ObjectState.Modified;
+            }
+        }
+    
     
         protected virtual void ClearNavigationProperties()
         {
@@ -416,14 +536,14 @@ namespace Faccts.Model.Entities
                 return;
             }
     
-            if (previousValue != null && previousValue.AdditionalParties.Contains(this))
+            if (previousValue != null && previousValue.Persons.Contains(this))
             {
-                previousValue.AdditionalParties.Remove(this);
+                previousValue.Persons.Remove(this);
             }
     
             if (CourtCase != null)
             {
-                CourtCase.AdditionalParties.Add(this);
+                CourtCase.Persons.Add(this);
     
                 CourtCaseId = CourtCase.Id;
             }

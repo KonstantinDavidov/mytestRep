@@ -77,7 +77,7 @@ namespace FACCTS.Controls.ViewModels
             
         }
 
-        public void RemoveWitness(AdditionalParty witness)
+        public void RemoveWitness(PersonBase witness)
         {
             if (_dialogService.MessageBox("Do you really want to remove the witness?", "Witness removal", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
             {

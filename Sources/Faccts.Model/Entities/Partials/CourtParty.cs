@@ -17,6 +17,7 @@ namespace Faccts.Model.Entities
         partial void Initialize()
         {
             this.AttorneyData = new CourtPartyAttorneyData();
+            this.AddressInfo = new AddressInfo();
             this.WhenAny(x => x.FirstName, x => x.LastName, x => x.MiddleName, (x, y, z) => new { FirstName = x.Value, LastName = y.Value, MiddleName = z.Value })
                 .Subscribe(x =>
                 {
@@ -91,15 +92,7 @@ namespace Faccts.Model.Entities
                     LastName = this.LastName,
                     Description = this.Description,
                     ParticipantRole = this.ParticipantRole,
-                    AddressInfo = new AddressInfo
-                    {
-                        StreetAddress = this.Address,
-                        City = this.City,
-                        USAState = (USAState)this.USAState,
-                        ZipCode = this.ZipCode,
-                        Phone = this.Phone,
-                        Fax = this.Fax,
-                    },                    
+                    AddressInfo = this.AddressInfo.ToDTO(),                    
                     ParentRole = this.ParentRole,
                     EntityType = this.EntityType,
                     Email = this.Email,
@@ -142,15 +135,16 @@ namespace Faccts.Model.Entities
             {"FirstName", "First Name"},
             {"LastName", "Last Name"},
             {"Designation", "Designation"},
-            {"Address", "Address"},
-            {"City", "City"},
-            {"USAState", "State"},
-            {"ZipCode", "Zip code"},
             {"Sex", "Sex"},
             {"Race", "Race"},
             {"EntityType", "Entity"},
             {"DateOfBirth", "Date of birth"},
-            {"ParentRole", "Parent Role"}
+            {"ParentRole", "Parent Role"},
+            {"AddressInfo", "Address Info"},
+            {"AddressInfo.StreetAddress", "Street Address"},
+            {"AddressInfo.City", "City"},
+            {"AddressInfo.USAState", "State"},
+            {"AddressInfo.ZipCode", "Zip Code"},
         };
 
 

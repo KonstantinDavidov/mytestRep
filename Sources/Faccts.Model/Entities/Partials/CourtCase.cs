@@ -195,14 +195,14 @@ namespace Faccts.Model.Entities
         }
 
 
-        private ReactiveCollection<AdditionalParty> _witnesses;
-        public ReactiveCollection<AdditionalParty> Witnesses
+        private ReactiveCollection<PersonBase> _witnesses;
+        public ReactiveCollection<PersonBase> Witnesses
         {
             get
             {
                 if (_witnesses == null)
                 {
-                    _witnesses = this.AdditionalParties.CreateDerivedCollection(x => x, x => x.Designation == ExtendedDesignation.Witness);
+                    _witnesses = this.Persons.CreateDerivedCollection(x => x, x => x.PersonType == PersonType.Witness);
                     _witnesses.ChangeTrackingEnabled = true;
                     _witnesses.ItemChanged.Subscribe(x =>
                     {
@@ -224,7 +224,7 @@ namespace Faccts.Model.Entities
             {
                 if (_interpreters == null)
                 {
-                    _interpreters = this.AdditionalParties.CreateDerivedCollection<AdditionalParty, Interpreter>(x => (Interpreter)x, x => x is Interpreter && x.Designation == ExtendedDesignation.Interpreter);
+                    _interpreters = this.Persons.CreateDerivedCollection<PersonBase, Interpreter>(x => (Interpreter)x, x => x is Interpreter && x.PersonType == PersonType.Interpreter);
                     _interpreters.ChangeTrackingEnabled = true;
                     _interpreters.ItemChanged.Subscribe(x =>
                         {
@@ -246,7 +246,7 @@ namespace Faccts.Model.Entities
             {
                 if (_children == null)
                 {
-                    _children = this.AdditionalParties.CreateDerivedCollection<AdditionalParty, Child>(x => (Child)x, x => x is Child && x.Designation == ExtendedDesignation.Son || x.Designation == ExtendedDesignation.Daughter);
+                    _children = this.Persons.CreateDerivedCollection<PersonBase, Child>(x => (Child)x, x => x is Child && x.PersonType == PersonType.Child);
                 }
                 return _children;
             }
@@ -259,7 +259,7 @@ namespace Faccts.Model.Entities
             {
                 if (_otherProtected == null)
                 {
-                    _otherProtected = this.AdditionalParties.CreateDerivedCollection<AdditionalParty, OtherProtected>(x => (OtherProtected)x, x => x is OtherProtected && x.Designation == ExtendedDesignation.OtherProtected);
+                    _otherProtected = this.Persons.CreateDerivedCollection<PersonBase, OtherProtected>(x => (OtherProtected)x, x => x is OtherProtected && x.PersonType == PersonType.OtherProtected);
                 }
                 return _otherProtected;
             }
@@ -267,11 +267,11 @@ namespace Faccts.Model.Entities
 
         public void NewChild()
         {
-            this.AdditionalParties.Add(
+            this.Persons.Add(
                 new Child()
                 {
                     PartyFor = PartyFor.Party1,
-                    Designation = ExtendedDesignation.Son,
+                    PersonType = PersonType.Child,
                     Sex = Gender.F,
                     EntityType = FACCTSEntity.PERSON,
                 }
@@ -280,15 +280,15 @@ namespace Faccts.Model.Entities
 
         public void RemoveChild(Child child)
         {
-            this.AdditionalParties.Remove(child);
+            this.Persons.Remove(child);
         }
 
         public void NewWitness()
         {
-            this.AdditionalParties.Add(
-                    new AdditionalParty()
+            this.Persons.Add(
+                    new PersonBase()
                     {
-                        Designation = ExtendedDesignation.Witness,
+                        PersonType = PersonType.Witness,
                         EntityType = FACCTSEntity.PERSON,
                         PartyFor = PartyFor.Party1,
                     }
@@ -297,10 +297,10 @@ namespace Faccts.Model.Entities
 
         public void NewInterpreter()
         {
-            this.AdditionalParties.Add(
+            this.Persons.Add(
                 new Interpreter()
                 {
-                    Designation = ExtendedDesignation.Interpreter,
+                    PersonType = PersonType.Interpreter,
                     EntityType = FACCTSEntity.PERSON,
                     PartyFor = PartyFor.Party1,
                 }
@@ -309,14 +309,14 @@ namespace Faccts.Model.Entities
 
         public void RemoveInterpreter(Interpreter interpreter)
         {
-            this.AdditionalParties.Remove(interpreter);
+            this.Persons.Remove(interpreter);
         }
 
         public void NewOtherProtected()
         {
-            this.AdditionalParties.Add(new OtherProtected()
+            this.Persons.Add(new OtherProtected()
                 {
-                    Designation = ExtendedDesignation.OtherProtected,
+                    PersonType = PersonType.OtherProtected,
                     EntityType = FACCTSEntity.PERSON,
                     Sex = Gender.F,
                     PartyFor = PartyFor.Party1,
@@ -326,12 +326,12 @@ namespace Faccts.Model.Entities
 
         public void RemoveOtherProtected(OtherProtected otherProtected)
         {
-            this.AdditionalParties.Remove(otherProtected);
+            this.Persons.Remove(otherProtected);
         }
 
-        public void RemoveAdditionalParty(AdditionalParty additionalParty)
+        public void RemoveAdditionalParty(PersonBase additionalParty)
         {
-            this.AdditionalParties.Remove(additionalParty);
+            this.Persons.Remove(additionalParty);
         }
         
 

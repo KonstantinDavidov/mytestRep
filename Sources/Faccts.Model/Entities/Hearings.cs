@@ -58,6 +58,12 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.Courtroom_Id)
     				,this.ObservableForProperty(x => x.Department_Id)
     				,this.ObservableForProperty(x => x.Session)
+    				,this.ObservableForProperty(x => x.HearingIssues_PermanentRO)
+    				,this.ObservableForProperty(x => x.HearingIssues_ChildCustodyOrChildVisitation)
+    				,this.ObservableForProperty(x => x.HearingIssues_ChildSupport)
+    				,this.ObservableForProperty(x => x.HearingIssues_SpousalSupport)
+    				,this.ObservableForProperty(x => x.HearingIssues_IsOtherIssue)
+    				,this.ObservableForProperty(x => x.HearingIssues_OtheIssueText)
     				,this.ObservableForProperty(x => x.CaseHistory.IsDirty)
     				,this.ObservableForProperty(x => x.Courtrooms.IsDirty)
     				,this.ObservableForProperty(x => x.CourtDepartment.IsDirty)
@@ -259,6 +265,102 @@ namespace Faccts.Model.Entities
             }
         }
         private FACCTS.Server.Model.Enums.DocketSession _session;
+    
+        [DataMember]
+        public bool HearingIssues_PermanentRO
+        {
+            get { return _hearingIssues_PermanentRO; }
+            set
+            {
+                if (_hearingIssues_PermanentRO != value)
+                {
+    				OnPropertyChanging("HearingIssues_PermanentRO");
+                    _hearingIssues_PermanentRO = value;
+                    OnPropertyChanged("HearingIssues_PermanentRO");
+                }
+            }
+        }
+        private bool _hearingIssues_PermanentRO;
+    
+        [DataMember]
+        public bool HearingIssues_ChildCustodyOrChildVisitation
+        {
+            get { return _hearingIssues_ChildCustodyOrChildVisitation; }
+            set
+            {
+                if (_hearingIssues_ChildCustodyOrChildVisitation != value)
+                {
+    				OnPropertyChanging("HearingIssues_ChildCustodyOrChildVisitation");
+                    _hearingIssues_ChildCustodyOrChildVisitation = value;
+                    OnPropertyChanged("HearingIssues_ChildCustodyOrChildVisitation");
+                }
+            }
+        }
+        private bool _hearingIssues_ChildCustodyOrChildVisitation;
+    
+        [DataMember]
+        public bool HearingIssues_ChildSupport
+        {
+            get { return _hearingIssues_ChildSupport; }
+            set
+            {
+                if (_hearingIssues_ChildSupport != value)
+                {
+    				OnPropertyChanging("HearingIssues_ChildSupport");
+                    _hearingIssues_ChildSupport = value;
+                    OnPropertyChanged("HearingIssues_ChildSupport");
+                }
+            }
+        }
+        private bool _hearingIssues_ChildSupport;
+    
+        [DataMember]
+        public bool HearingIssues_SpousalSupport
+        {
+            get { return _hearingIssues_SpousalSupport; }
+            set
+            {
+                if (_hearingIssues_SpousalSupport != value)
+                {
+    				OnPropertyChanging("HearingIssues_SpousalSupport");
+                    _hearingIssues_SpousalSupport = value;
+                    OnPropertyChanged("HearingIssues_SpousalSupport");
+                }
+            }
+        }
+        private bool _hearingIssues_SpousalSupport;
+    
+        [DataMember]
+        public bool HearingIssues_IsOtherIssue
+        {
+            get { return _hearingIssues_IsOtherIssue; }
+            set
+            {
+                if (_hearingIssues_IsOtherIssue != value)
+                {
+    				OnPropertyChanging("HearingIssues_IsOtherIssue");
+                    _hearingIssues_IsOtherIssue = value;
+                    OnPropertyChanged("HearingIssues_IsOtherIssue");
+                }
+            }
+        }
+        private bool _hearingIssues_IsOtherIssue;
+    
+        [DataMember]
+        public string HearingIssues_OtheIssueText
+        {
+            get { return _hearingIssues_OtheIssueText; }
+            set
+            {
+                if (_hearingIssues_OtheIssueText != value)
+                {
+    				OnPropertyChanging("HearingIssues_OtheIssueText");
+                    _hearingIssues_OtheIssueText = value;
+                    OnPropertyChanged("HearingIssues_OtheIssueText");
+                }
+            }
+        }
+        private string _hearingIssues_OtheIssueText;
 
         #endregion
 
@@ -415,6 +517,42 @@ namespace Faccts.Model.Entities
             }
         }
         private CourtDocketRecord _courtDocketRecord;
+    
+        [DataMember]
+        public TrackableCollection<CaseHistory> CaseHistory1
+        {
+            get
+            {
+                if (_caseHistory1 == null)
+                {
+                    _caseHistory1 = new TrackableCollection<CaseHistory>();
+                    _caseHistory1.CollectionChanged += FixupCaseHistory1;
+                }
+                return _caseHistory1;
+            }
+            set
+            {
+                if (!ReferenceEquals(_caseHistory1, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("CaseHistory1");
+                    if (_caseHistory1 != null)
+                    {
+                        _caseHistory1.CollectionChanged -= FixupCaseHistory1;
+                    }
+                    _caseHistory1 = value;
+                    if (_caseHistory1 != null)
+                    {
+                        _caseHistory1.CollectionChanged += FixupCaseHistory1;
+                    }
+                    OnNavigationPropertyChanged("CaseHistory1");
+                }
+            }
+        }
+        private TrackableCollection<CaseHistory> _caseHistory1;
 
         #endregion
 
@@ -535,6 +673,7 @@ namespace Faccts.Model.Entities
             Courtrooms = null;
             CourtDepartment = null;
             CourtDocketRecord = null;
+            CaseHistory1.Clear();
         }
 
         #endregion
@@ -707,6 +846,45 @@ namespace Faccts.Model.Entities
                 if (CourtDocketRecord != null && !CourtDocketRecord.ChangeTracker.ChangeTrackingEnabled)
                 {
                     CourtDocketRecord.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupCaseHistory1(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (CaseHistory item in e.NewItems)
+                {
+                    item.Hearings = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("CaseHistory1", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (CaseHistory item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Hearings, this))
+                    {
+                        item.Hearings = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CaseHistory1", item);
+                    }
                 }
             }
         }

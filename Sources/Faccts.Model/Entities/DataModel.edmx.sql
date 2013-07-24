@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 07/24/2013 16:17:28
+-- Date Created: 07/24/2013 19:03:50
 -- Generated from EDMX file: D:\FACCTS\FACCTSNEW\faccts.net\Sources\Faccts.Model\Entities\DataModel.edmx
 -- --------------------------------------------------
 
@@ -329,14 +329,20 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_CourtDocketRecordHearings]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CourtDocketRecordSet] DROP CONSTRAINT [FK_CourtDocketRecordHearings];
 GO
+IF OBJECT_ID(N'[dbo].[FK_CourtPartyCourtPartyAttorneyData]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CourtParty] DROP CONSTRAINT [FK_CourtPartyCourtPartyAttorneyData];
+GO
 IF OBJECT_ID(N'[dbo].[FK_CourtCaseThirdPartyData]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CourtCase] DROP CONSTRAINT [FK_CourtCaseThirdPartyData];
 GO
 IF OBJECT_ID(N'[dbo].[FK_CourtCaseAttorneys]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CourtCase] DROP CONSTRAINT [FK_CourtCaseAttorneys];
 GO
-IF OBJECT_ID(N'[dbo].[FK_CourtPartyCourtPartyAttorneyData]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CourtParty] DROP CONSTRAINT [FK_CourtPartyCourtPartyAttorneyData];
+IF OBJECT_ID(N'[dbo].[FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CaseHistory] DROP CONSTRAINT [FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id1];
+GO
+IF OBJECT_ID(N'[dbo].[FK_dbo_CourtCase_dbo_ThirdPartyData_ThirdPartyData_Id]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CourtCase] DROP CONSTRAINT [FK_dbo_CourtCase_dbo_ThirdPartyData_ThirdPartyData_Id];
 GO
 IF OBJECT_ID(N'[dbo].[FK_ConductROSection_inherits_ConductBase]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ConductBaseSet_ConductROSection] DROP CONSTRAINT [FK_ConductROSection_inherits_ConductBase];
@@ -695,23 +701,6 @@ CREATE TABLE [dbo].[AdfsIntegrationConfiguration] (
 );
 GO
 
--- Creating table 'Attorneys'
-CREATE TABLE [dbo].[Attorneys] (
-    [Id] bigint IDENTITY(1,1) NOT NULL,
-    [FirstName] nvarchar(150)  NULL,
-    [LastName] nvarchar(150)  NULL,
-    [FirmName] nvarchar(100)  NULL,
-    [StreetAddress] nvarchar(200)  NULL,
-    [City] nvarchar(100)  NULL,
-    [ZipCode] nvarchar(20)  NULL,
-    [Phone] nvarchar(20)  NULL,
-    [Fax] nvarchar(20)  NULL,
-    [Email] nvarchar(50)  NULL,
-    [StateBarId] nvarchar(50)  NULL,
-    [USAState] int  NOT NULL
-);
-GO
-
 -- Creating table 'CaseHistory'
 CREATE TABLE [dbo].[CaseHistory] (
     [Id] bigint IDENTITY(1,1) NOT NULL,
@@ -722,7 +711,8 @@ CREATE TABLE [dbo].[CaseHistory] (
     [MergeCase_Id] bigint  NULL,
     [CourtOrder_Id] bigint  NULL,
     [CourtClerk_Id] bigint  NULL,
-    [CourtCase_Id] bigint  NULL
+    [CourtCase_Id] bigint  NULL,
+    [Hearing_Id] bigint  NULL
 );
 GO
 
@@ -789,7 +779,12 @@ CREATE TABLE [dbo].[CourtCase] (
     [RestrainingPartyIdentificationInformation_IDNumber] nvarchar(max)  NOT NULL,
     [RestrainingPartyIdentificationInformation_IDIssuedDate] datetime  NULL,
     [ThirdPartyDataId] bigint  NULL,
-    [AttorneysId] bigint  NULL
+    [AttorneysId] bigint  NULL,
+    [RP_IDType] int  NOT NULL,
+    [RP_IDNumber] nvarchar(max)  NULL,
+    [RP_IssuedDate] datetime  NULL,
+    [AttorneyForChild_Id] bigint  NULL,
+    [ThirdPartyData_Id] bigint  NULL
 );
 GO
 
@@ -856,11 +851,6 @@ CREATE TABLE [dbo].[CourtParty] (
     [MiddleName] nvarchar(255)  NULL,
     [LastName] nvarchar(255)  NULL,
     [Description] nvarchar(max)  NULL,
-    [Address] nvarchar(max)  NULL,
-    [City] nvarchar(100)  NULL,
-    [ZipCode] nvarchar(20)  NULL,
-    [Phone] nvarchar(20)  NULL,
-    [Fax] nvarchar(20)  NULL,
     [Weight] decimal(18,2)  NOT NULL,
     [HeightFt] decimal(18,2)  NOT NULL,
     [HeightIns] decimal(18,2)  NOT NULL,
@@ -877,7 +867,12 @@ CREATE TABLE [dbo].[CourtParty] (
     [EntityType] int  NOT NULL,
     [Email] nvarchar(max)  NULL,
     [RelationToOtherParty] nvarchar(max)  NULL,
-    [USAState] int  NOT NULL,
+    [AddressInfo_StreetAddress] nvarchar(max)  NOT NULL,
+    [AddressInfo_City] nvarchar(max)  NOT NULL,
+    [AddressInfo_USAState] int  NOT NULL,
+    [AddressInfo_ZipCode] nvarchar(max)  NOT NULL,
+    [AddressInfo_Phone] nvarchar(max)  NOT NULL,
+    [AddressInfo_Fax] nvarchar(max)  NOT NULL,
     [AttorneyData_Id] bigint  NOT NULL
 );
 GO
@@ -1157,7 +1152,13 @@ CREATE TABLE [dbo].[Hearings] (
     [Appearance_Party2Appear] bit  NULL,
     [Appearance_Party2AttorneyPresent] bit  NULL,
     [Appearance_Party2Atty] bit  NULL,
-    [Appearance_Party2Sworn] bit  NULL
+    [Appearance_Party2Sworn] bit  NULL,
+    [HearingIssues_PermanentRO] bit  NOT NULL,
+    [HearingIssues_ChildCustodyOrChildVisitation] bit  NOT NULL,
+    [HearingIssues_ChildSupport] bit  NOT NULL,
+    [HearingIssues_SpousalSupport] bit  NOT NULL,
+    [HearingIssues_IsOtherIssue] bit  NOT NULL,
+    [HearingIssues_OtheIssueText] nvarchar(max)  NULL
 );
 GO
 
@@ -1174,7 +1175,8 @@ CREATE TABLE [dbo].[ThirdPartyData] (
     [Id] bigint IDENTITY(1,1) NOT NULL,
     [IsThirdPartyProPer] bit  NOT NULL,
     [IsThirdPartyRequestorInEACase] bit  NOT NULL,
-    [Attorney_Id] bigint  NULL
+    [Attorney_Id] bigint  NULL,
+    [IsThirdpartyProPer] bit  NOT NULL
 );
 GO
 
@@ -1186,16 +1188,26 @@ CREATE TABLE [dbo].[CourtPartyAttorneyData] (
 );
 GO
 
--- Creating table 'AdditionalPartySet'
-CREATE TABLE [dbo].[AdditionalPartySet] (
+-- Creating table 'PersonBaseSet'
+CREATE TABLE [dbo].[PersonBaseSet] (
     [Id] bigint IDENTITY(1,1) NOT NULL,
     [EntityType] int  NOT NULL,
     [FirstName] nvarchar(max)  NOT NULL,
     [LastName] nvarchar(max)  NOT NULL,
-    [Designation] int  NOT NULL,
     [PartyFor] int  NOT NULL,
     [Contact] nvarchar(max)  NOT NULL,
-    [CourtCaseId] bigint  NOT NULL
+    [CourtCaseId] bigint  NOT NULL,
+    [Sex] int  NOT NULL,
+    [DateOfBirth] datetime  NULL,
+    [Age] int  NULL,
+    [AddressInfo_StreetAddress] nvarchar(max)  NOT NULL,
+    [AddressInfo_City] nvarchar(max)  NOT NULL,
+    [AddressInfo_USAState] int  NOT NULL,
+    [AddressInfo_ZipCode] nvarchar(max)  NOT NULL,
+    [AddressInfo_Phone] nvarchar(max)  NOT NULL,
+    [AddressInfo_Fax] nvarchar(max)  NOT NULL,
+    [Email] nvarchar(max)  NOT NULL,
+    [PersonType] int  NOT NULL
 );
 GO
 
@@ -1489,6 +1501,14 @@ CREATE TABLE [dbo].[EA130ROOrderSet] (
 );
 GO
 
+-- Creating table 'PersonBaseSet_Attorneys'
+CREATE TABLE [dbo].[PersonBaseSet_Attorneys] (
+    [FirmName] nvarchar(100)  NULL,
+    [StateBarId] nvarchar(50)  NULL,
+    [Id] bigint  NOT NULL
+);
+GO
+
 -- Creating table 'ConductBaseSet_ConductROSection'
 CREATE TABLE [dbo].[ConductBaseSet_ConductROSection] (
     [AppliedToOtherProtected] bit  NOT NULL,
@@ -1610,26 +1630,22 @@ CREATE TABLE [dbo].[ServiceFeesSectionSet_ServiceFeesEA130Section] (
 );
 GO
 
--- Creating table 'AdditionalPartySet_Child'
-CREATE TABLE [dbo].[AdditionalPartySet_Child] (
-    [Sex] int  NOT NULL,
-    [DateOfBirth] datetime  NULL,
+-- Creating table 'PersonBaseSet_Child'
+CREATE TABLE [dbo].[PersonBaseSet_Child] (
     [RelationToProtected] int  NOT NULL,
     [Id] bigint  NOT NULL
 );
 GO
 
--- Creating table 'AdditionalPartySet_OtherProtected'
-CREATE TABLE [dbo].[AdditionalPartySet_OtherProtected] (
+-- Creating table 'PersonBaseSet_OtherProtected'
+CREATE TABLE [dbo].[PersonBaseSet_OtherProtected] (
     [RelationToProtected] int  NOT NULL,
-    [DateOfBirth] datetime  NULL,
-    [Sex] int  NOT NULL,
     [Id] bigint  NOT NULL
 );
 GO
 
--- Creating table 'AdditionalPartySet_Interpreter'
-CREATE TABLE [dbo].[AdditionalPartySet_Interpreter] (
+-- Creating table 'PersonBaseSet_Interpreter'
+CREATE TABLE [dbo].[PersonBaseSet_Interpreter] (
     [Language] nvarchar(max)  NOT NULL,
     [Id] bigint  NOT NULL
 );
@@ -1656,12 +1672,6 @@ GO
 -- Creating primary key on [Id] in table 'AdfsIntegrationConfiguration'
 ALTER TABLE [dbo].[AdfsIntegrationConfiguration]
 ADD CONSTRAINT [PK_AdfsIntegrationConfiguration]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
--- Creating primary key on [Id] in table 'Attorneys'
-ALTER TABLE [dbo].[Attorneys]
-ADD CONSTRAINT [PK_Attorneys]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -1899,9 +1909,9 @@ ADD CONSTRAINT [PK_CourtPartyAttorneyData]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'AdditionalPartySet'
-ALTER TABLE [dbo].[AdditionalPartySet]
-ADD CONSTRAINT [PK_AdditionalPartySet]
+-- Creating primary key on [Id] in table 'PersonBaseSet'
+ALTER TABLE [dbo].[PersonBaseSet]
+ADD CONSTRAINT [PK_PersonBaseSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -2073,6 +2083,12 @@ ADD CONSTRAINT [PK_EA130ROOrderSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [Id] in table 'PersonBaseSet_Attorneys'
+ALTER TABLE [dbo].[PersonBaseSet_Attorneys]
+ADD CONSTRAINT [PK_PersonBaseSet_Attorneys]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
 -- Creating primary key on [Id] in table 'ConductBaseSet_ConductROSection'
 ALTER TABLE [dbo].[ConductBaseSet_ConductROSection]
 ADD CONSTRAINT [PK_ConductBaseSet_ConductROSection]
@@ -2169,21 +2185,21 @@ ADD CONSTRAINT [PK_ServiceFeesSectionSet_ServiceFeesEA130Section]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'AdditionalPartySet_Child'
-ALTER TABLE [dbo].[AdditionalPartySet_Child]
-ADD CONSTRAINT [PK_AdditionalPartySet_Child]
+-- Creating primary key on [Id] in table 'PersonBaseSet_Child'
+ALTER TABLE [dbo].[PersonBaseSet_Child]
+ADD CONSTRAINT [PK_PersonBaseSet_Child]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'AdditionalPartySet_OtherProtected'
-ALTER TABLE [dbo].[AdditionalPartySet_OtherProtected]
-ADD CONSTRAINT [PK_AdditionalPartySet_OtherProtected]
+-- Creating primary key on [Id] in table 'PersonBaseSet_OtherProtected'
+ALTER TABLE [dbo].[PersonBaseSet_OtherProtected]
+ADD CONSTRAINT [PK_PersonBaseSet_OtherProtected]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'AdditionalPartySet_Interpreter'
-ALTER TABLE [dbo].[AdditionalPartySet_Interpreter]
-ADD CONSTRAINT [PK_AdditionalPartySet_Interpreter]
+-- Creating primary key on [Id] in table 'PersonBaseSet_Interpreter'
+ALTER TABLE [dbo].[PersonBaseSet_Interpreter]
+ADD CONSTRAINT [PK_PersonBaseSet_Interpreter]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
@@ -2207,7 +2223,7 @@ GO
 ALTER TABLE [dbo].[CourtParty]
 ADD CONSTRAINT [FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id]
     FOREIGN KEY ([Attorney_Id])
-    REFERENCES [dbo].[Attorneys]
+    REFERENCES [dbo].[PersonBaseSet_Attorneys]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -2449,7 +2465,7 @@ GO
 ALTER TABLE [dbo].[ThirdPartyData]
 ADD CONSTRAINT [FK_dbo_ThirdPartyData_dbo_Attorneys_Attorney_Id]
     FOREIGN KEY ([Attorney_Id])
-    REFERENCES [dbo].[Attorneys]
+    REFERENCES [dbo].[PersonBaseSet_Attorneys]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -2663,7 +2679,7 @@ GO
 ALTER TABLE [dbo].[CourtPartyAttorneyData]
 ADD CONSTRAINT [FK_dbo_CourtPartyAttorneyData_dbo_Attorneys_Attorney_Id]
     FOREIGN KEY ([Attorney_Id])
-    REFERENCES [dbo].[Attorneys]
+    REFERENCES [dbo].[PersonBaseSet_Attorneys]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -2701,8 +2717,8 @@ ON [dbo].[CourtCase]
     ([Party2_Id]);
 GO
 
--- Creating foreign key on [CourtCaseId] in table 'AdditionalPartySet'
-ALTER TABLE [dbo].[AdditionalPartySet]
+-- Creating foreign key on [CourtCaseId] in table 'PersonBaseSet'
+ALTER TABLE [dbo].[PersonBaseSet]
 ADD CONSTRAINT [FK_CourtCaseAdditionalParty]
     FOREIGN KEY ([CourtCaseId])
     REFERENCES [dbo].[CourtCase]
@@ -2711,7 +2727,7 @@ ADD CONSTRAINT [FK_CourtCaseAdditionalParty]
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CourtCaseAdditionalParty'
 CREATE INDEX [IX_FK_CourtCaseAdditionalParty]
-ON [dbo].[AdditionalPartySet]
+ON [dbo].[PersonBaseSet]
     ([CourtCaseId]);
 GO
 
@@ -3666,7 +3682,7 @@ GO
 ALTER TABLE [dbo].[CourtCase]
 ADD CONSTRAINT [FK_CourtCaseAttorneys]
     FOREIGN KEY ([AttorneysId])
-    REFERENCES [dbo].[Attorneys]
+    REFERENCES [dbo].[PersonBaseSet_Attorneys]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
@@ -3674,6 +3690,43 @@ ADD CONSTRAINT [FK_CourtCaseAttorneys]
 CREATE INDEX [IX_FK_CourtCaseAttorneys]
 ON [dbo].[CourtCase]
     ([AttorneysId]);
+GO
+
+-- Creating foreign key on [Hearing_Id] in table 'CaseHistory'
+ALTER TABLE [dbo].[CaseHistory]
+ADD CONSTRAINT [FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id1]
+    FOREIGN KEY ([Hearing_Id])
+    REFERENCES [dbo].[Hearings]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id1'
+CREATE INDEX [IX_FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id1]
+ON [dbo].[CaseHistory]
+    ([Hearing_Id]);
+GO
+
+-- Creating foreign key on [ThirdPartyData_Id] in table 'CourtCase'
+ALTER TABLE [dbo].[CourtCase]
+ADD CONSTRAINT [FK_dbo_CourtCase_dbo_ThirdPartyData_ThirdPartyData_Id]
+    FOREIGN KEY ([ThirdPartyData_Id])
+    REFERENCES [dbo].[ThirdPartyData]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_dbo_CourtCase_dbo_ThirdPartyData_ThirdPartyData_Id'
+CREATE INDEX [IX_FK_dbo_CourtCase_dbo_ThirdPartyData_ThirdPartyData_Id]
+ON [dbo].[CourtCase]
+    ([ThirdPartyData_Id]);
+GO
+
+-- Creating foreign key on [Id] in table 'PersonBaseSet_Attorneys'
+ALTER TABLE [dbo].[PersonBaseSet_Attorneys]
+ADD CONSTRAINT [FK_Attorneys_inherits_PersonBase]
+    FOREIGN KEY ([Id])
+    REFERENCES [dbo].[PersonBaseSet]
+        ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
 -- Creating foreign key on [Id] in table 'ConductBaseSet_ConductROSection'
@@ -3820,29 +3873,29 @@ ADD CONSTRAINT [FK_ServiceFeesEA130Section_inherits_ServiceFeesSection]
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [Id] in table 'AdditionalPartySet_Child'
-ALTER TABLE [dbo].[AdditionalPartySet_Child]
-ADD CONSTRAINT [FK_Child_inherits_AdditionalParty]
+-- Creating foreign key on [Id] in table 'PersonBaseSet_Child'
+ALTER TABLE [dbo].[PersonBaseSet_Child]
+ADD CONSTRAINT [FK_Child_inherits_PersonBase]
     FOREIGN KEY ([Id])
-    REFERENCES [dbo].[AdditionalPartySet]
+    REFERENCES [dbo].[PersonBaseSet]
         ([Id])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [Id] in table 'AdditionalPartySet_OtherProtected'
-ALTER TABLE [dbo].[AdditionalPartySet_OtherProtected]
-ADD CONSTRAINT [FK_OtherProtected_inherits_AdditionalParty]
+-- Creating foreign key on [Id] in table 'PersonBaseSet_OtherProtected'
+ALTER TABLE [dbo].[PersonBaseSet_OtherProtected]
+ADD CONSTRAINT [FK_OtherProtected_inherits_PersonBase]
     FOREIGN KEY ([Id])
-    REFERENCES [dbo].[AdditionalPartySet]
+    REFERENCES [dbo].[PersonBaseSet]
         ([Id])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [Id] in table 'AdditionalPartySet_Interpreter'
-ALTER TABLE [dbo].[AdditionalPartySet_Interpreter]
-ADD CONSTRAINT [FK_Interpreter_inherits_AdditionalParty]
+-- Creating foreign key on [Id] in table 'PersonBaseSet_Interpreter'
+ALTER TABLE [dbo].[PersonBaseSet_Interpreter]
+ADD CONSTRAINT [FK_Interpreter_inherits_PersonBase]
     FOREIGN KEY ([Id])
-    REFERENCES [dbo].[AdditionalPartySet]
+    REFERENCES [dbo].[PersonBaseSet]
         ([Id])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO

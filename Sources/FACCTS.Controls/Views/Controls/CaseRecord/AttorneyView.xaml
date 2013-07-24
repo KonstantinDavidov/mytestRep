@@ -84,20 +84,20 @@
                      Tag="Please type the firm name" />
             <TextBox Grid.ColumnSpan="3"
                      TextWrapping="Wrap"
-                     Text="{Binding StreetAddress, Mode=TwoWay}"
+                     Text="{Binding AddressInfo.StreetAddress, Mode=TwoWay}"
                      Grid.Row="2"
                      Grid.Column="1"
                      VerticalAlignment="Center"
                      Style="{DynamicResource TextBoxWithAdorner}"
                      Tag="Please type the street address" />
             <TextBox TextWrapping="Wrap"
-                     Text="{Binding City, Mode=TwoWay}"
+                     Text="{Binding AddressInfo.City, Mode=TwoWay}"
                      Grid.Row="3"
                      Grid.Column="1"
                      VerticalAlignment="Center"
                      Style="{DynamicResource TextBoxWithAdorner}"
                      Tag="City" />
-            <ComboBox SelectedValue="{Binding USAState, Mode=TwoWay}"
+            <ComboBox SelectedValue="{Binding AddressInfo.USAState, Mode=TwoWay}"
                       Grid.Row="3"
                       Grid.Column="2"
                       Margin="0,-0.001,0,0"
@@ -105,7 +105,7 @@
                       ItemsSource="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=UserControl, AncestorLevel=3}, Path=DataContext.DataContainer.StateList, Mode=OneWay}"
                       SelectedValuePath="Value" />
             <TextBox TextWrapping="Wrap"
-                     Text="{Binding ZipCode, Mode=TwoWay}"
+                     Text="{Binding AddressInfo.ZipCode, Mode=TwoWay}"
                      Grid.Row="3"
                      Grid.Column="3"
                      Margin="0,-0.001,0,0"
@@ -149,7 +149,7 @@
                      Tag="State Bar ID" />
             <TextBox Height="23"
                      TextWrapping="Wrap"
-                     Text="{Binding Phone, Mode=TwoWay}"
+                     Text="{Binding AddressInfo.Phone, Mode=TwoWay}"
                      Grid.Row="3"
                      Grid.Column="6"
                      VerticalAlignment="Center"
@@ -157,7 +157,7 @@
                      Tag="Phone" />
             <TextBox Height="23"
                      TextWrapping="Wrap"
-                     Text="{Binding Fax, Mode=TwoWay}"
+                     Text="{Binding AddressInfo.Fax, Mode=TwoWay}"
                      Grid.Row="4"
                      Grid.Column="6"
                      Margin="0,0,0,-0.001"
