@@ -293,6 +293,19 @@ namespace FACCTS.Services.Data
             }
         }
 
+        private List<EnumDescript<FACCTS.Server.Model.Enums.Designation>> _designations;
+        public List<EnumDescript<FACCTS.Server.Model.Enums.Designation>> Designations 
+        {
+            get
+            {
+                if (_designations == null)
+                {
+                    _designations = EnumDescript<FACCTS.Server.Model.Enums.Designation>.GetList<FACCTS.Server.Model.Enums.Designation>();
+                }
+                return _designations;
+            } 
+        }
+
         public TrackableCollection<CourtDocketRecord> CourtDocketRecords
         {
             get

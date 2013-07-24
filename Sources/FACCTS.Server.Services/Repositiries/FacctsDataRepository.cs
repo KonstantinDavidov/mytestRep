@@ -1,5 +1,6 @@
 ﻿using FACCTS.Server.Common;
 using FACCTS.Server.DataContracts;
+using FACCTS.Server.Model.DataModel;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -99,6 +100,42 @@ namespace FACCTS.Server.Data.Repositiries
             {
                 Entities.Attach(entity);
                 Entities.Remove(entity);
+            }
+        }
+
+        public virtual void ModifyByState(TEntity entity)
+        {
+            if (entity == null)
+                throw new ArgumentNullException("entity");
+            if (!(entity is IEntityWithState))
+            {
+                throw new NotSupportedException("An entity should be a IEntityWithState");
+            }
+
+            DbEntityEntry dbEntityEntry = Context.Entry(entity);
+            if (dbEntityEntry.State == EntityState.Detached)
+            {
+                Entities.Add(entity);
+                Context.ChangeTracker.Entries<IEntityWithState>().Aggregate(0, (index, item) =>
+                    {
+                        switch((item.Entity as IEntityWithState).State)
+                        {
+                            case ObjectState.Added:
+                                item.State = EntityState.Added;
+                                break;
+                            case ObjectState.Deleted:
+                                item.State = EntityState.Deleted;
+                                break;
+                            case ObjectState.Modified:
+                                item.State = EntityState.Modified;
+                                break;
+                            default:
+                                item.State = EntityState.Unchanged;
+                                break;
+                        }
+                        return 0;
+                    }
+                    );
             }
         }
 

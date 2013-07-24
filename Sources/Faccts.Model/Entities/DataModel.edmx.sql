@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 07/24/2013 19:03:50
+-- Date Created: 07/24/2013 20:34:05
 -- Generated from EDMX file: D:\FACCTS\FACCTSNEW\faccts.net\Sources\Faccts.Model\Entities\DataModel.edmx
 -- --------------------------------------------------
 
@@ -43,9 +43,6 @@ IF OBJECT_ID(N'[dbo].[FK_dbo_CourtMember_dbo_CourtMember_SubstituteId]', 'F') IS
 GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_CourtMember_dbo_User_Id]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CourtMember] DROP CONSTRAINT [FK_dbo_CourtMember_dbo_User_Id];
-GO
-IF OBJECT_ID(N'[dbo].[FK_dbo_CourtParty_dbo_Designation_Designation_Id]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CourtParty] DROP CONSTRAINT [FK_dbo_CourtParty_dbo_Designation_Designation_Id];
 GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_ManualIntegrationTasks_dbo_User_UserId]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ManualIntegrationTasks] DROP CONSTRAINT [FK_dbo_ManualIntegrationTasks_dbo_User_UserId];
@@ -129,7 +126,7 @@ IF OBJECT_ID(N'[dbo].[FK_dbo_CourtCase_dbo_CourtParty_Party2_Id]', 'F') IS NOT N
     ALTER TABLE [dbo].[CourtCase] DROP CONSTRAINT [FK_dbo_CourtCase_dbo_CourtParty_Party2_Id];
 GO
 IF OBJECT_ID(N'[dbo].[FK_CourtCaseAdditionalParty]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AdditionalPartySet] DROP CONSTRAINT [FK_CourtCaseAdditionalParty];
+    ALTER TABLE [dbo].[PersonBaseSet] DROP CONSTRAINT [FK_CourtCaseAdditionalParty];
 GO
 IF OBJECT_ID(N'[dbo].[FK_MasterOrderAttachmentOrder]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[AttachmentOrder] DROP CONSTRAINT [FK_MasterOrderAttachmentOrder];
@@ -344,6 +341,9 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_CourtCase_dbo_ThirdPartyData_ThirdPartyData_Id]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CourtCase] DROP CONSTRAINT [FK_dbo_CourtCase_dbo_ThirdPartyData_ThirdPartyData_Id];
 GO
+IF OBJECT_ID(N'[dbo].[FK_Attorneys_inherits_PersonBase]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PersonBaseSet_Attorneys] DROP CONSTRAINT [FK_Attorneys_inherits_PersonBase];
+GO
 IF OBJECT_ID(N'[dbo].[FK_ConductROSection_inherits_ConductBase]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ConductBaseSet_ConductROSection] DROP CONSTRAINT [FK_ConductROSection_inherits_ConductBase];
 GO
@@ -392,14 +392,14 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_ServiceFeesEA130Section_inherits_ServiceFeesSection]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[ServiceFeesSectionSet_ServiceFeesEA130Section] DROP CONSTRAINT [FK_ServiceFeesEA130Section_inherits_ServiceFeesSection];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Child_inherits_AdditionalParty]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AdditionalPartySet_Child] DROP CONSTRAINT [FK_Child_inherits_AdditionalParty];
+IF OBJECT_ID(N'[dbo].[FK_Child_inherits_PersonBase]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PersonBaseSet_Child] DROP CONSTRAINT [FK_Child_inherits_PersonBase];
 GO
-IF OBJECT_ID(N'[dbo].[FK_OtherProtected_inherits_AdditionalParty]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AdditionalPartySet_OtherProtected] DROP CONSTRAINT [FK_OtherProtected_inherits_AdditionalParty];
+IF OBJECT_ID(N'[dbo].[FK_OtherProtected_inherits_PersonBase]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PersonBaseSet_OtherProtected] DROP CONSTRAINT [FK_OtherProtected_inherits_PersonBase];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Interpreter_inherits_AdditionalParty]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[AdditionalPartySet_Interpreter] DROP CONSTRAINT [FK_Interpreter_inherits_AdditionalParty];
+IF OBJECT_ID(N'[dbo].[FK_Interpreter_inherits_PersonBase]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[PersonBaseSet_Interpreter] DROP CONSTRAINT [FK_Interpreter_inherits_PersonBase];
 GO
 
 -- --------------------------------------------------
@@ -408,9 +408,6 @@ GO
 
 IF OBJECT_ID(N'[dbo].[AdfsIntegrationConfiguration]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AdfsIntegrationConfiguration];
-GO
-IF OBJECT_ID(N'[dbo].[Attorneys]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Attorneys];
 GO
 IF OBJECT_ID(N'[dbo].[CaseHistory]', 'U') IS NOT NULL
     DROP TABLE [dbo].[CaseHistory];
@@ -453,9 +450,6 @@ IF OBJECT_ID(N'[dbo].[Courtrooms]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[Delegation]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Delegation];
-GO
-IF OBJECT_ID(N'[dbo].[Designation]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Designation];
 GO
 IF OBJECT_ID(N'[dbo].[DiagnosticsConfiguration]', 'U') IS NOT NULL
     DROP TABLE [dbo].[DiagnosticsConfiguration];
@@ -529,8 +523,8 @@ GO
 IF OBJECT_ID(N'[dbo].[CourtPartyAttorneyData]', 'U') IS NOT NULL
     DROP TABLE [dbo].[CourtPartyAttorneyData];
 GO
-IF OBJECT_ID(N'[dbo].[AdditionalPartySet]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[AdditionalPartySet];
+IF OBJECT_ID(N'[dbo].[PersonBaseSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PersonBaseSet];
 GO
 IF OBJECT_ID(N'[dbo].[AttachmentOrder]', 'U') IS NOT NULL
     DROP TABLE [dbo].[AttachmentOrder];
@@ -616,6 +610,9 @@ GO
 IF OBJECT_ID(N'[dbo].[EA130ROOrderSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[EA130ROOrderSet];
 GO
+IF OBJECT_ID(N'[dbo].[PersonBaseSet_Attorneys]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PersonBaseSet_Attorneys];
+GO
 IF OBJECT_ID(N'[dbo].[ConductBaseSet_ConductROSection]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ConductBaseSet_ConductROSection];
 GO
@@ -664,14 +661,14 @@ GO
 IF OBJECT_ID(N'[dbo].[ServiceFeesSectionSet_ServiceFeesEA130Section]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ServiceFeesSectionSet_ServiceFeesEA130Section];
 GO
-IF OBJECT_ID(N'[dbo].[AdditionalPartySet_Child]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[AdditionalPartySet_Child];
+IF OBJECT_ID(N'[dbo].[PersonBaseSet_Child]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PersonBaseSet_Child];
 GO
-IF OBJECT_ID(N'[dbo].[AdditionalPartySet_OtherProtected]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[AdditionalPartySet_OtherProtected];
+IF OBJECT_ID(N'[dbo].[PersonBaseSet_OtherProtected]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PersonBaseSet_OtherProtected];
 GO
-IF OBJECT_ID(N'[dbo].[AdditionalPartySet_Interpreter]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[AdditionalPartySet_Interpreter];
+IF OBJECT_ID(N'[dbo].[PersonBaseSet_Interpreter]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PersonBaseSet_Interpreter];
 GO
 IF OBJECT_ID(N'[dbo].[RoleUser]', 'U') IS NOT NULL
     DROP TABLE [dbo].[RoleUser];
@@ -856,7 +853,6 @@ CREATE TABLE [dbo].[CourtParty] (
     [HeightIns] decimal(18,2)  NOT NULL,
     [DateOfBirth] datetime  NOT NULL,
     [Age] int  NOT NULL,
-    [Designation_Id] bigint  NULL,
     [HairColor_Id] bigint  NULL,
     [EyesColor_Id] bigint  NULL,
     [Race_Id] bigint  NULL,
@@ -873,6 +869,7 @@ CREATE TABLE [dbo].[CourtParty] (
     [AddressInfo_ZipCode] nvarchar(max)  NOT NULL,
     [AddressInfo_Phone] nvarchar(max)  NOT NULL,
     [AddressInfo_Fax] nvarchar(max)  NOT NULL,
+    [Designation] int  NULL,
     [AttorneyData_Id] bigint  NOT NULL
 );
 GO
@@ -891,13 +888,6 @@ CREATE TABLE [dbo].[Delegation] (
     [UserName] nvarchar(max)  NOT NULL,
     [Realm] nvarchar(max)  NOT NULL,
     [Description] nvarchar(max)  NULL
-);
-GO
-
--- Creating table 'Designation'
-CREATE TABLE [dbo].[Designation] (
-    [Id] bigint  NOT NULL,
-    [DesignationName] nvarchar(150)  NULL
 );
 GO
 
@@ -1759,12 +1749,6 @@ ADD CONSTRAINT [PK_Delegation]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Id] in table 'Designation'
-ALTER TABLE [dbo].[Designation]
-ADD CONSTRAINT [PK_Designation]
-    PRIMARY KEY CLUSTERED ([Id] ASC);
-GO
-
 -- Creating primary key on [Id] in table 'DiagnosticsConfiguration'
 ALTER TABLE [dbo].[DiagnosticsConfiguration]
 ADD CONSTRAINT [PK_DiagnosticsConfiguration]
@@ -2338,20 +2322,6 @@ ADD CONSTRAINT [FK_dbo_CourtMember_dbo_User_Id]
     REFERENCES [dbo].[User]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Designation_Id] in table 'CourtParty'
-ALTER TABLE [dbo].[CourtParty]
-ADD CONSTRAINT [FK_dbo_CourtParty_dbo_Designation_Designation_Id]
-    FOREIGN KEY ([Designation_Id])
-    REFERENCES [dbo].[Designation]
-        ([Id])
-    ON DELETE CASCADE ON UPDATE NO ACTION;
-
--- Creating non-clustered index for FOREIGN KEY 'FK_dbo_CourtParty_dbo_Designation_Designation_Id'
-CREATE INDEX [IX_FK_dbo_CourtParty_dbo_Designation_Designation_Id]
-ON [dbo].[CourtParty]
-    ([Designation_Id]);
 GO
 
 -- Creating foreign key on [UserId] in table 'ManualIntegrationTasks'

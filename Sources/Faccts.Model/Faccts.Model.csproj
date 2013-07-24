@@ -206,9 +206,6 @@
     <Compile Include="Entities\Delegation.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Designation.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\DiagnosticsConfiguration.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

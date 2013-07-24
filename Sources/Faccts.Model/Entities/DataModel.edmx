@@ -21,7 +21,6 @@
     <EntitySet Name="CourtParty" EntityType="FACCTS_DBModel.Store.CourtParty" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Courtrooms" EntityType="FACCTS_DBModel.Store.Courtrooms" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Delegation" EntityType="FACCTS_DBModel.Store.Delegation" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Designation" EntityType="FACCTS_DBModel.Store.Designation" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="DiagnosticsConfiguration" EntityType="FACCTS_DBModel.Store.DiagnosticsConfiguration" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="EyesColor" EntityType="FACCTS_DBModel.Store.EyesColor" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="FACCTSConfiguration" EntityType="FACCTS_DBModel.Store.FACCTSConfiguration" store:Type="Tables" Schema="dbo" />
@@ -132,10 +131,6 @@
     <AssociationSet Name="FK_dbo_CourtMember_dbo_User_Id" Association="FACCTS_DBModel.Store.FK_dbo_CourtMember_dbo_User_Id">
       <End Role="User" EntitySet="User" />
       <End Role="CourtMember" EntitySet="CourtMember" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_CourtParty_dbo_Designation_Designation_Id" Association="FACCTS_DBModel.Store.FK_dbo_CourtParty_dbo_Designation_Designation_Id">
-      <End Role="Designation" EntitySet="Designation" />
-      <End Role="CourtParty" EntitySet="CourtParty" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_ManualIntegrationTasks_dbo_User_UserId" Association="FACCTS_DBModel.Store.FK_dbo_ManualIntegrationTasks_dbo_User_UserId">
       <End Role="User" EntitySet="User" />
@@ -788,7 +783,6 @@
     <Property Name="HeightIns" Type="decimal" Nullable="false" Precision="18" Scale="2" />
     <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
     <Property Name="Age" Type="int" Nullable="false" />
-    <Property Name="Designation_Id" Type="bigint" Nullable="true" />
     <Property Name="HairColor_Id" Type="bigint" Nullable="true" />
     <Property Name="EyesColor_Id" Type="bigint" Nullable="true" />
     <Property Name="Race_Id" Type="bigint" Nullable="true" />
@@ -805,6 +799,7 @@
     <Property Name="AddressInfo_ZipCode" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AddressInfo_Phone" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AddressInfo_Fax" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Designation" Type="int" Nullable="true" />
     <Property Name="AttorneyData_Id" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Courtrooms">
@@ -823,13 +818,6 @@
     <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Realm" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Description" Type="nvarchar(max)" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Designation">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="bigint" Nullable="false" />
-    <Property Name="DesignationName" Type="nvarchar" Nullable="true" MaxLength="150" />
   </EntityType>
   <EntityType Name="DiagnosticsConfiguration">
     <Key>
@@ -1704,20 +1692,6 @@
       </Principal>
       <Dependent Role="CourtMember">
         <PropertyRef Name="Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_dbo_CourtParty_dbo_Designation_Designation_Id">
-    <End Role="Designation" Type="FACCTS_DBModel.Store.Designation" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="CourtParty" Type="FACCTS_DBModel.Store.CourtParty" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Designation">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CourtParty">
-        <PropertyRef Name="Designation_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3211,7 +3185,6 @@
           <EntitySet Name="CourtParty" EntityType="FACCTS_DBModel.CourtParty" />
           <EntitySet Name="Courtrooms" EntityType="FACCTS_DBModel.Courtrooms" />
           <EntitySet Name="Delegation" EntityType="FACCTS_DBModel.Delegation" />
-          <EntitySet Name="Designation" EntityType="FACCTS_DBModel.Designation" />
           <EntitySet Name="DiagnosticsConfiguration" EntityType="FACCTS_DBModel.DiagnosticsConfiguration" />
           <EntitySet Name="EyesColor" EntityType="FACCTS_DBModel.EyesColor" />
           <EntitySet Name="FACCTSConfiguration" EntityType="FACCTS_DBModel.FACCTSConfiguration" />
@@ -3267,10 +3240,6 @@
           <AssociationSet Name="FK_dbo_CourtMember_dbo_User_Id" Association="FACCTS_DBModel.FK_dbo_CourtMember_dbo_User_Id">
             <End Role="User" EntitySet="User" />
             <End Role="CourtMember" EntitySet="CourtMember" />
-          </AssociationSet>
-          <AssociationSet Name="FK_dbo_CourtParty_dbo_Designation_Designation_Id" Association="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Designation_Designation_Id">
-            <End EntitySet="Designation" Role="Designation" />
-            <End EntitySet="CourtParty" Role="CourtParty" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_ManualIntegrationTasks_dbo_User_UserId" Association="FACCTS_DBModel.FK_dbo_ManualIntegrationTasks_dbo_User_UserId">
             <End Role="User" EntitySet="User" />
@@ -3910,13 +3879,11 @@
           <Property Name="HeightIns" Nullable="false" Precision="18" Scale="2" Type="Decimal" />
           <Property Name="DateOfBirth" Nullable="false" Precision="3" Type="DateTime" />
           <Property Name="Age" Nullable="false" Type="Int32" />
-          <Property Name="Designation_Id" Type="Int64" />
           <Property Name="HairColor_Id" Type="Int64" Nullable="true" />
           <Property Name="EyesColor_Id" Type="Int64" Nullable="true" />
           <Property Name="Race_Id" Type="Int64" />
           <Property Name="Attorney_Id" Type="Int64" />
           <NavigationProperty Name="Attorneys" Relationship="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id" FromRole="CourtParty" ToRole="Attorneys" />
-          <NavigationProperty Name="Designation" Relationship="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Designation_Designation_Id" FromRole="CourtParty" ToRole="Designation" />
           <Property Type="FACCTS_DBModel.ParticipantRole" Name="ParticipantRole" Nullable="false" />
           <Property Type="FACCTS_DBModel.Gender" Name="Sex" Nullable="false" />
           <Property Type="String" Name="ParentRole" Unicode="true" FixedLength="false" MaxLength="50" />
@@ -3929,6 +3896,7 @@
           <NavigationProperty Name="CourtCase" Relationship="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtParty_Party1_Id" FromRole="CourtParty" ToRole="CourtCase" />
           <NavigationProperty Name="AttorneyData" Relationship="FACCTS_DBModel.CourtPartyCourtPartyAttorneyData" FromRole="CourtParty" ToRole="CourtPartyAttorneyData" />
           <Property Name="AddressInfo" Type="FACCTS_DBModel.AddressInfo" Nullable="false" />
+          <Property Type="FACCTS_DBModel.Designation" Name="Designation" Nullable="true" />
         </EntityType>
         <EntityType Name="Courtrooms">
           <Key>
@@ -3948,14 +3916,6 @@
           <Property Type="String" Name="UserName" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Realm" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="Description" MaxLength="Max" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="Designation">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Type="Int64" Name="Id" Nullable="false" />
-          <Property Type="String" Name="DesignationName" MaxLength="150" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="CourtParty" Relationship="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Designation_Designation_Id" FromRole="Designation" ToRole="CourtParty" />
         </EntityType>
         <EntityType Name="DiagnosticsConfiguration">
           <Key>
@@ -4308,20 +4268,6 @@
             </Principal>
             <Dependent Role="CourtMember">
               <PropertyRef Name="Id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_dbo_CourtParty_dbo_Designation_Designation_Id">
-          <End Type="FACCTS_DBModel.Designation" Multiplicity="0..1" Role="Designation">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="FACCTS_DBModel.CourtParty" Multiplicity="*" Role="CourtParty" />
-          <ReferentialConstraint>
-            <Principal Role="Designation">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="CourtParty">
-              <PropertyRef Name="Designation_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -5491,6 +5437,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EnumType Name="Designation" a:ExternalTypeName="FACCTS.Server.Model.Enums.Designation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -5684,7 +5631,6 @@
           <ScalarProperty Name="HeightIns" ColumnName="HeightIns" />
           <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
           <ScalarProperty Name="Age" ColumnName="Age" />
-          <ScalarProperty Name="Designation_Id" ColumnName="Designation_Id" />
           <ScalarProperty Name="HairColor_Id" ColumnName="HairColor_Id" />
           <ScalarProperty Name="EyesColor_Id" ColumnName="EyesColor_Id" />
           <ScalarProperty Name="Race_Id" ColumnName="Race_Id" />
@@ -5703,6 +5649,7 @@
             <ScalarProperty Name="Phone" ColumnName="AddressInfo_Phone" />
             <ScalarProperty Name="Fax" ColumnName="AddressInfo_Fax" />
           </ComplexProperty>
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -5722,14 +5669,6 @@
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="Realm" ColumnName="Realm" />
           <ScalarProperty Name="Description" ColumnName="Description" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Designation">
-      <EntityTypeMapping TypeName="IsTypeOf(FACCTS_DBModel.Designation)">
-        <MappingFragment StoreEntitySet="Designation">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="DesignationName" ColumnName="DesignationName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

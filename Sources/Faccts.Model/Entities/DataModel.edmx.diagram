@@ -21,7 +21,6 @@
         <EntityTypeShape EntityType="FACCTS_DBModel.CourtParty" PointX="13.875" PointY="12" Width="2.5" />
         <EntityTypeShape EntityType="FACCTS_DBModel.Courtrooms" Width="1.5" PointX="5.625" PointY="2.125" />
         <EntityTypeShape EntityType="FACCTS_DBModel.Delegation" Width="1.5" PointX="17" PointY="2" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.Designation" Width="1.5" PointX="14.25" PointY="9.75" />
         <EntityTypeShape EntityType="FACCTS_DBModel.DiagnosticsConfiguration" Width="1.5" PointX="10.5" PointY="0.5" />
         <EntityTypeShape EntityType="FACCTS_DBModel.EyesColor" Width="1.5" PointX="17.25" PointY="15.5" />
         <EntityTypeShape EntityType="FACCTS_DBModel.FACCTSConfiguration" Width="1.5" PointX="0.75" PointY="5.125" />
@@ -52,7 +51,6 @@
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Courtrooms_dbo_CourtLocations_CourtLocation_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtMember_dbo_CourtMember_SubstituteId" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtMember_dbo_User_Id" />
-        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Designation_Designation_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_ManualIntegrationTasks_dbo_User_UserId" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_ScheduledIntegrationTasks_dbo_User_UserId" />
         <EntityTypeShape EntityType="FACCTS_DBModel.Hearings" Width="1.5" PointX="3.125" PointY="6" />

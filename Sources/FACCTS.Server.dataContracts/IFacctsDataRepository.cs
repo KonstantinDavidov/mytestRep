@@ -12,5 +12,6 @@ namespace FACCTS.Server.DataContracts
         void Update(TEntity entity);
         void Delete(TEntity entity);
         void Delete(int id);
+        void ModifyByState(TEntity entity);
     }
 }
