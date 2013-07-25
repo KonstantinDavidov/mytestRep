@@ -36,6 +36,8 @@ namespace FACCTS.Server.Model.DataModel
 
         public virtual ICollection<CourtOrder> CourtOrders { get; set; }
 
+        public virtual ICollection<Appearance> Appearances { get; set; }
+
         public ObjectState State { get; set; }
     }
 }

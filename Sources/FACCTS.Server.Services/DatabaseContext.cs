@@ -52,6 +52,7 @@ namespace FACCTS.Server.Data
             modelBuilder.Configurations.Add(new HearingConfiguration());
             modelBuilder.Configurations.Add(new CourtOrderConfiguration());
             modelBuilder.Configurations.Add(new CaseHistoryConfiguration());
+            modelBuilder.Configurations.Add(new CaseNoteConfiguration());
 
             modelBuilder.Configurations.Add(new PersonBaseConfiguration());
             modelBuilder.Configurations.Add(new ChildConfiguration());

@@ -250,7 +250,61 @@
     <Property name="MomContactProviderDate" type="DateTime?"/>
     <Property name="DadContactProviderDate" type="DateTime?"/>
     <Property name="OtherContactProviderDescription" type="string"/>
-    <Property name="OtherOrdersdescription" type="string"/>
+    <Property name="OtherOrdersDescription" type="string"/>
+  </Model>
+  <!-- DV145 Travel restriction-->
+  <Model name="SuspiciousDoneThings">
+    <Property name="IsEnabled" type="bool"/>
+    <Property name="IsJobQuited" type="bool"/>
+    <Property name="IsBankAccountClosed" type="bool"/>
+    <Property name="IsAssetsLost" type="bool"/>
+    <Property name="IsHomeSold" type="bool"/>
+    <Property name="IsLeaseEnded" type="bool"/>
+    <Property name="IsDocumentsLost" type="bool"/>
+    <Property name="IsAppliedForDocuments" type="bool"/>
+  </Model>
+  <Model name="NegativeHistory">
+    <Property name="IsEnabled" type="bool"/>
+    <Property name="IsDomesticViolence" type="bool" />
+    <Property name="IsChildAbuse" type="bool"/>
+    <Property name="IsParentingMissing" type="bool"/>
+    <Property name="IsDeniedTalking" type="bool"/>
+  </Model>
+  <Model name="NecessaryTravelDocuments">
+    <Property name="IsEnabled" type="bool"/>
+    <Property name="IsTravelItineraryRequired" type="bool"/>
+    <Property name="IsCopiesOfAirlineTicketsRequired" type="bool"/>
+    <Property name="IsAddressesAndPhonesRequired" type="bool"/>
+    <Property name="IsOtherParentAirlineTicketRequired" type="bool"/>
+    <Property name="IsOtherExist" type="bool"/>
+    <Property name="OtherDescription" type="string"/>
+  </Model>
+  <Model name="DV145">
+    <Property name="IsPastROViolations" type="bool"/>
+    <Property name="IsNoTiesWithCalifornia" type="bool"/>
+    <Property name="SuspiciousDoneThingsSection" type="SuspiciousDoneThings"/>
+    <Property name="NegativeHistorySection" type="NegativeHistory"/>
+    <Property name="HasCriminalRecord" type="bool"/>
+    <Property name="HasOtherLocationsTies" type="bool"/>
+    <Property name="IsPostBondRequered" type="bool"/>
+    <Property name="BondAmount" type="decimal"/>
+    <Property name="IsMoveWithoutPermissionDenied" type="bool"/>
+    <Property name="MoveDenaiedLocations" type="RestrainedLocations"/>
+    <Property name="OtherMoveDenaiedLocationsDescription" type="string"/>
+    <Property name="IsTravelWithoutPermissionDenied" type="bool"/>
+    <Property name="TravelDenaiedLocations" type="RestrainedLocations"/>
+    <Property name="OtherTravelDenaiedLocationsDescription" type="string"/>
+    <Property name="OtherParentToGivePermission" type="string"/>
+    <Property name="IsNotifyOtherStateRequired" type="bool"/>
+    <Property name="OtherState" type="USAState"/>
+    <Property name="TravelDocumentsApplyDenied" type="bool"/>
+    <Property name="TurnedInDocuments" type="string"/>
+    <Property name="NecessaryTravelDocumentsSection" type="NecessaryTravelDocuments"/>
+    <Property name="IsNotifyForeignEmbassyRequired" type="bool"/>
+    <Property name="IsForeignCustodyCourtOrderRequired" type="bool"/>
+    <Property name="IsEnforcingCourtOrderRequired" type="bool"/>
+    <Property name="EnforcingAgencyName" type="string"/>
+    <Property name="OtherPermissionsOrder" type="OtherOrders"/>
   </Model>
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">

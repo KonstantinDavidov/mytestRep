@@ -21,8 +21,8 @@ namespace FACCTS.Server.Data.EntityConfigurations
 
             HasKey(a => new { a.PersonId, a.HearingId });
 
-            HasRequired(a => a.Person).WithMany().HasForeignKey(a => a.PersonId);
-            HasRequired(a => a.Hearing).WithMany().HasForeignKey(a => a.HearingId);
+            HasRequired(a => a.Person).WithMany(p=>p.Appearances).HasForeignKey(a => a.PersonId);
+            HasRequired(a => a.Hearing).WithMany(h=>h.Appearances).HasForeignKey(a => a.HearingId);
 
             Property(a => a.PersonId).HasColumnName(DbConsts.APPEARANCE_PERSON_ID_COLUMN_NAME);
             Property(a => a.HearingId).HasColumnName(DbConsts.APPEARANCE_HEARING_ID_COLUMN_NAME);

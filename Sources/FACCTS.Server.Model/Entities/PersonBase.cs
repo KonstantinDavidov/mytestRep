@@ -15,6 +15,8 @@ namespace FACCTS.Server.Model.DataModel
             AddressInfo = new AddressInfo();
         }
 
+        public long Id { get; set; }
+
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -36,7 +38,7 @@ namespace FACCTS.Server.Model.DataModel
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        public long Id { get; set; }
+        public ICollection<Appearance> Appearances { get; set; }
 
         public ObjectState State { get; set; }
     }
