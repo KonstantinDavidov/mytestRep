@@ -69,6 +69,10 @@ namespace FACCTS.Server.Data
             modelBuilder.Configurations.Add(new ManualIntegrationTaskConfiguration());
             modelBuilder.Configurations.Add(new ScheduledIntegrationTaskConfiguration());
 
+            modelBuilder.Configurations.Add(new EyesColorConfiguration());
+            modelBuilder.Configurations.Add(new HairColorConfiguration());
+            modelBuilder.Configurations.Add(new RaceConfiguration());
+
             base.OnModelCreating(modelBuilder);
         }
 

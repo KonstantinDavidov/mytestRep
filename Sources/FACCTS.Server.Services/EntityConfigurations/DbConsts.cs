@@ -116,5 +116,14 @@ namespace FACCTS.Server.Data.EntityConfigurations
         public const string ADDRESS_INFO_ZIP_CODE_COLUMN_NAME = "ZipCode";
         public const string ADDRESS_INFO_PHONE_COLUMN_NAME = "Phone";
         public const string ADDRESS_INFO_FAX_COLUMN_NAME = "Fax";
+
+        public const string EYES_COLORS_TABLE_NAME = "EyesColors";
+        public const string EYES_COLOR_COLOR_COLUMN_NAME = "Color";
+
+        public const string HAIR_COLORS_TABLE_NAME = "HairColors";
+        public const string HAIR_COLOR_COLOR_COLUMN_NAME = "Color";
+
+        public const string RACE_TABLE_NAME = "Race";
+        public const string RACE_RACE_NAME_COLUMN_NAME = "RaceName";
     }
 }
