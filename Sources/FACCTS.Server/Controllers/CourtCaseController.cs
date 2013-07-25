@@ -41,7 +41,13 @@ namespace FACCTS.Server.Controllers
             return DataManager.CourtCaseRepository
                 .GetAll(
                 x => x.Party1,
+                x => x.Party1.HairColor,
+                x => x.Party1.EyesColor,
+                x => x.Party1.Race,
                 x => x.Party2,
+                x => x.Party2.HairColor,
+                x => x.Party2.EyesColor,
+                x => x.Party2.Race,
                 x => x.CaseHistory,
                 x => x.CaseNotes,
                 x => x.Interpreters,

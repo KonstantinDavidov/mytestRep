@@ -52,7 +52,7 @@ namespace Faccts.Model.Entities
         {
             get 
             {
-                if (this.CourtParty.IsProPer)
+                if (this.CourtParty == null || this.CourtParty.IsProPer)
                 {
                     return null;
                 }

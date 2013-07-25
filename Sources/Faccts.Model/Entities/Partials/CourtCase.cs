@@ -87,6 +87,7 @@ namespace Faccts.Model.Entities
                 this.Party2 = new CourtParty(dto.Party2);
                 this.CaseHistory = new TrackableCollection<Entities.CaseHistory>(dto.CaseHistory.Select(x => new CaseHistory(x)));
                 this.CaseNotes = new TrackableCollection<Entities.CaseNotes>(dto.CaseNotes.Select(x => new CaseNotes(x)));
+                this.RestrainingPartyIdentificationInformation = new RestrainingPartyIDInfo(dto.RestrainingPartyIdentificationInformation);
                 RaiseNavigationPropertyLoading(() => User);
             }
             

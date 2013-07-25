@@ -48,6 +48,7 @@ namespace Faccts.Model.Entities
                 this.HeightIns = dto.HeightIns;
                 this.Attorney = new Attorneys(dto.Attorney);
                 this.IsProPer = dto.IsProPer;
+                this.AddressInfo = new AddressInfo(dto.AddressInfo);
             }
             
 
