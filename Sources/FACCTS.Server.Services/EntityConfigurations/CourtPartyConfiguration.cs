@@ -27,12 +27,15 @@ namespace FACCTS.Server.Data.EntityConfigurations
             Property(p => p.Weight).HasColumnName(DbConsts.COURT_PARTY_WEIGHT_COLUMN_NAME);
             Property(p => p.HeightFt).HasColumnName(DbConsts.COURT_PARTY_HEIGHT_FT_COLUMN_NAME);
             Property(p => p.HeightIns).HasColumnName(DbConsts.COURT_PARTY_HEIGHT_INS_COLUMN_NAME);
+            Property(p => p.AttorneyId).HasColumnName(DbConsts.COURT_PARTY_ATTORNEY_ID_COLUMN_NAME);
+            Property(p => p.IsProPer).HasColumnName(DbConsts.COURT_PARTY_IS_PROPER_COLUMN_NAME);
 
             HasMany(p => p.Witnesses).WithOptional(w => w.WitnessFor).HasForeignKey(w => w.CourtPartyId);
             HasOptional(p => p.Interpreter).WithMany().HasForeignKey(p => p.InterpreterId);
             HasOptional(p => p.HairColor).WithMany().HasForeignKey(p => p.HairColorId);
             HasOptional(p => p.EyesColor).WithMany().HasForeignKey(p => p.EyesColorId);
             HasOptional(p => p.Race).WithMany().HasForeignKey(p => p.RaceId);
+            HasOptional(p => p.Attorney).WithMany().HasForeignKey(p => p.AttorneyId);
         }
     }
 }

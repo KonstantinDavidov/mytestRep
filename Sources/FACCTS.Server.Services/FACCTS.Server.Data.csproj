@@ -77,6 +77,8 @@
     <Compile Include="DataManager.cs" />
     <Compile Include="DropCreateFacctsModelChanged.cs" />
     <Compile Include="EntityConfigurations\AddressInfoConfiguration.cs" />
+    <Compile Include="EntityConfigurations\AppearanceConfiguration.cs" />
+    <Compile Include="EntityConfigurations\AppearanceWithSwornConfiguration.cs" />
     <Compile Include="EntityConfigurations\AttorneyConfiguration.cs" />
     <Compile Include="EntityConfigurations\CaseHistoryConfiguration.cs" />
     <Compile Include="EntityConfigurations\ChildConfiguration.cs" />

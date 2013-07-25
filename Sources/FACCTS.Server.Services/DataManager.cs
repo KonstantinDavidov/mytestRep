@@ -154,14 +154,6 @@ namespace FACCTS.Server.Data
             get { return GetStandardRepo<Hearing>(); }
         }
 
-        public IFacctsDataRepository<CourtPartyAttorneyData> CourtPartyAttorneyDataRepository
-        {
-            get
-            {
-                return GetStandardRepo<CourtPartyAttorneyData>();
-            }
-        }
-
         public IFacctsDataRepository<Attorney> AttorneyRepository
         {
             get

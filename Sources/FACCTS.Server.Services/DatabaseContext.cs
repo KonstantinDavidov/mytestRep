@@ -62,6 +62,9 @@ namespace FACCTS.Server.Data
             modelBuilder.Configurations.Add(new AddressInfoConfiguration());
             modelBuilder.Configurations.Add(new CourtPartyConfiguration());
 
+            modelBuilder.Configurations.Add(new AppearanceConfiguration());
+            modelBuilder.Configurations.Add(new AppearanceWithSwornConfiguration());
+
             modelBuilder.Configurations.Add(new ManualIntegrationTaskConfiguration());
             modelBuilder.Configurations.Add(new ScheduledIntegrationTaskConfiguration());
 
@@ -132,7 +135,6 @@ namespace FACCTS.Server.Data
         public DbSet<ManualIntegrationTask> ManualIntegrationTasks { get; set; }
         public DbSet<ScheduledIntegrationTask> ScheduledIntegrationTasks { get; set; }
         public DbSet<CourtOrder> CourtOrders { get; set; }
-        public DbSet<CourtPartyAttorneyData> CourtPartyAttorneyData { get; set; }
         public DbSet<ThirdPartyData> ThirdPartyData { get; set; }
         #endregion
 

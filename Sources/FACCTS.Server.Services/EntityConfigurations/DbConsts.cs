@@ -94,6 +94,15 @@ namespace FACCTS.Server.Data.EntityConfigurations
         public const string COURT_PARTY_HAIR_COLOR_ID_COLUMN_NAME = "HairColorId";
         public const string COURT_PARTY_EYES_CLOR_ID_COLUMN_NAME = "EyesColorId";
         public const string COURT_PARTY_RACE_ID_COLUMN_NAME = "RaceId";
+        public const string COURT_PARTY_ATTORNEY_ID_COLUMN_NAME = "AttorneyId";
+        public const string COURT_PARTY_IS_PROPER_COLUMN_NAME = "IsProPer";
+
+        public const string APPEARANCES_TABLE_NAME = "Appearances";
+        public const string APPEARANCE_PERSON_ID_COLUMN_NAME = "PersonId";
+        public const string APPEARANCE_HEARING_ID_COLUMN_NAME = "HearingId";
+        public const string APPEARANCE_SWORN_COLUMN_NAME = "Sworn";
+        public const string APPEARANCE_DISCRIMINATOR_COLUMN_NAME = "AppearanceType";
+
 
         public const string ADDRESS_INFO_STREET_ADDRESS_COLUMN_NAME = "StreetAddress";
         public const string ADDRESS_INFO_CITY_COLUMN_NAME = "City";

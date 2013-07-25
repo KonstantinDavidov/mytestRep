@@ -32,8 +32,6 @@ namespace FACCTS.Server.Model.DataModel
 
         public HearingIssue HearingIssues { get; set; }
 
-        public Appearance Appearance { get; set; }
-
         public DocketSession Session { get; set; }
 
         public virtual ICollection<CourtOrder> CourtOrders { get; set; }

@@ -8,19 +8,16 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    [ComplexType]
-    public partial class Appearance
+    public class Appearance : IEntityWithState
     {
-        public bool Party1Appear { get; set; }
+        public long PersonId { get; set; }
 
-        public bool Party1Sworn { get; set; }
+        public virtual PersonBase Person { get; set; }
 
-        public bool Party1AttorneyPresent { get; set; }
+        public long HearingId { get; set; }
 
-        public bool Party2Appear { get; set; }
+        public virtual Hearing Hearing { get; set; }
 
-        public bool Party2Sworn { get; set; }
-
-        public bool Party2AttorneyPresent { get; set; }
+        public ObjectState State { get; set; }
     }
 }
