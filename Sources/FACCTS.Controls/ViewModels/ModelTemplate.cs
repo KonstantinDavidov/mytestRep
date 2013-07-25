@@ -639,8 +639,8 @@ namespace FACCTS.Controls.ViewModels
 			}
 		}
 		
-		private FACCTS.Server.Model.Enums.MasterOrders _masterOrder;
-		public FACCTS.Server.Model.Enums.MasterOrders MasterOrder
+		private FACCTS.Server.Model.Enums.CourtOrdersTypes _masterOrder;
+		public FACCTS.Server.Model.Enums.CourtOrdersTypes MasterOrder
 		{
 			get{return _masterOrder;}
 			set{

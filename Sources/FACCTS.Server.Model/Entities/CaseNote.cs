@@ -20,7 +20,8 @@ namespace FACCTS.Server.Model.DataModel
 
         public string Text { get; set; }
 
-        [InverseProperty("CaseNotes")]
+        public long CourtCaseId { get; set; }
+
         public virtual CourtCase CourtCase { get; set; }
 
         public long Id { get; set; }

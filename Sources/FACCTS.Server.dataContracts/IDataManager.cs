@@ -25,7 +25,7 @@ namespace FACCTS.Server.DataContracts
         IFacctsDataRepository<CourtDepartment> CourtDepartmentRepository { get; }
         IFacctsDataRepository<CaseHistory> CaseHistoryRepository { get; }
 
-        IFacctsDataRepository<CourtCaseOrder> CourtCaseOrdersRepository { get; }
+        IFacctsDataRepository<CourtOrder> CourtOrdersRepository { get; }
 
         IFacctsDictionaryDataRepository<FACCTSConfiguration> FACCTSConfigurationRepository { get; }
         IFacctsDataRepository<Courtroom> CourtroomRepository { get; }
@@ -34,7 +34,6 @@ namespace FACCTS.Server.DataContracts
 
         IFacctsDataRepository<ManualIntegrationTask> ManualIntegrationTaskRepository { get; }
         IFacctsDataRepository<ScheduledIntegrationTask> ScheduledIntegrationTaskRepository { get; }
-        IFacctsDataRepository<CourtPartyAttorneyData> CourtPartyAttorneyDataRepository { get; }
         IFacctsDataRepository<Attorney> AttorneyRepository { get; }
         IFacctsDataRepository<CaseNote> CaseNoteRepository { get; }
         IFacctsDataRepository<Witness> WitnessRepository { get; }

@@ -698,7 +698,7 @@ namespace FACCTS.Server.Data
             //        Sex = testSex
             //    }
             //};
-            testCourtCase.CourtCounty = context.CourtCounties.FirstOrDefault();
+            //testCourtCase.CourtCounty = context.CourtCounties.FirstOrDefault();
 
             testCourtCase.OtherProtected = new List<OtherProtected>(){
                 new OtherProtected(){
@@ -809,19 +809,8 @@ namespace FACCTS.Server.Data
                 };
 
             testCourtCase.CaseHistory = new List<CaseHistory>();
-            testCourtCase.CaseHistory.Add(new CaseHistory()
-            {
-                Date = DateTime.Now,
-                CaseHistoryEvent = Model.Enums.CaseHistoryEvent.New,
-                
-                Hearing = new Hearing()
+            var hearing = new Hearing()
                 {
-                    Appearance = new Appearance()
-                    {
-                        Party1Appear = true,
-                        Party1AttorneyPresent = true,
-                        Party1Sworn = true
-                    },
                     HearingDate = DateTime.Now,
                     Judge = "Dredd",
                     HearingIssues = new HearingIssue()
@@ -833,15 +822,27 @@ namespace FACCTS.Server.Data
                         PermanentRO = true,
                         SpousalSupport = true
                     }
-                }
-            }
-            );
+                };
+            testCourtCase.CaseHistory.Add(new CaseHistory()
+            {
+                Date = DateTime.Now,
+                CaseHistoryEvent = Model.Enums.CaseHistoryEvent.New,
+                Hearing = hearing
+            });
+
+            var appearance = new AppearanceWithSworn
+            {
+                Person = testCourtCase.Party1,
+                Hearing = hearing,
+                Sworn = true
+            };
 
             testCourtCase.CaseNumber = "22-3456";
             testCourtCase.CCPORId = "ccporId";
             testCourtCase.CourtClerk = context.CourtMembers.FirstOrDefault();
 
             context.CourtCases.Add(testCourtCase);
+            context.Set<Appearance>().Add(appearance);
             context.SaveChanges();
         }
 

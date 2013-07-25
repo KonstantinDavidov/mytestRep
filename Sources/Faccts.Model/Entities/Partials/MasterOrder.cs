@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace Faccts.Model.Entities
 {
-    public partial class MasterOrder : IDataTransferConvertible<FACCTS.Server.Model.DataModel.MasterOrder>
+    public partial class MasterOrder : IDataTransferConvertible<FACCTS.Server.Model.DataModel.CourtOrder>
     {
         partial void Initialize()
         {
             
         }
 
-        public FACCTS.Server.Model.DataModel.MasterOrder ToDTO()
+        public FACCTS.Server.Model.DataModel.CourtOrder ToDTO()
         {
             if (!this.IsDirty)
                 return null;
-            return new FACCTS.Server.Model.DataModel.MasterOrder()
+            return new FACCTS.Server.Model.DataModel.CourtOrder()
             {
                 Id = this.Id,
                 OrderType = this.OrderType,

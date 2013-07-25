@@ -8,13 +8,17 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public class MasterOrder: IEntityWithId, IEntityWithState
+    public class CourtOrder: IEntityWithId, IEntityWithState
     {
-        public virtual CaseHistory ParentHistoryNote { get; set; }
+        public long Id { get; set; }
 
-        public MasterOrders OrderType { get; set; }
+        public CourtOrdersTypes OrderType { get; set; }
 
-        public virtual ICollection<AttachmentOrder> AttachmentOrders { get; set; }
+        public long? ParentOrderId { get; set; }
+
+        public CourtOrder ParentOrder { get; set; }
+
+        public virtual ICollection<CourtOrder> Attachments { get; set; }
 
         public string XMLContent { get; set; }
 
@@ -22,7 +26,9 @@ namespace FACCTS.Server.Model.DataModel
 
         public string ServerFileName { get; set; }
 
-        public long Id { get; set; }
+        public long HearingId { get; set; }
+
+        public virtual Hearing Hearing { get; set; }
 
         public ObjectState State { get; set; }
     }

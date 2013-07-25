@@ -114,11 +114,11 @@ namespace FACCTS.Server.Data
         }
 
 
-        public IFacctsDataRepository<CourtCaseOrder> CourtCaseOrdersRepository
+        public IFacctsDataRepository<CourtOrder> CourtOrdersRepository
         {
             get
             {
-                return GetStandardRepo<CourtCaseOrder>();
+                return GetStandardRepo<CourtOrder>();
             }
         }
 
@@ -152,14 +152,6 @@ namespace FACCTS.Server.Data
         public IFacctsDataRepository<Hearing> HearingRepository
         {
             get { return GetStandardRepo<Hearing>(); }
-        }
-
-        public IFacctsDataRepository<CourtPartyAttorneyData> CourtPartyAttorneyDataRepository
-        {
-            get
-            {
-                return GetStandardRepo<CourtPartyAttorneyData>();
-            }
         }
 
         public IFacctsDataRepository<Attorney> AttorneyRepository
