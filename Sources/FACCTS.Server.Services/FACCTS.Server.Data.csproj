@@ -86,12 +86,15 @@
     <Compile Include="EntityConfigurations\CourtCaseConfiguration.cs" />
     <Compile Include="EntityConfigurations\CourtPartyConfiguration.cs" />
     <Compile Include="EntityConfigurations\DbConsts.cs" />
+    <Compile Include="EntityConfigurations\EyesColorConfiguration.cs" />
+    <Compile Include="EntityConfigurations\HairColorConfiguration.cs" />
     <Compile Include="EntityConfigurations\HearingConfiguration.cs" />
     <Compile Include="EntityConfigurations\InterpreterConfiguration.cs" />
     <Compile Include="EntityConfigurations\ManualIntegrationTaskConfiguration.cs" />
     <Compile Include="EntityConfigurations\CourtOrderConfiguration.cs" />
     <Compile Include="EntityConfigurations\OtherProtectedConfiguration.cs" />
     <Compile Include="EntityConfigurations\PersonBaseConfiguration.cs" />
+    <Compile Include="EntityConfigurations\RaceConfiguration.cs" />
     <Compile Include="EntityConfigurations\ScheduledIntegrationTaskConfiguration.cs" />
     <Compile Include="EntityConfigurations\WitnessConfiguration.cs" />
     <Compile Include="FacctsDatabaseInitializer.cs" />
