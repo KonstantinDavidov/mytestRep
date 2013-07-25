@@ -26,6 +26,34 @@ namespace Faccts.Model.Entities
                 );
         }
 
+        public CourtParty(FACCTS.Server.Model.DataModel.CourtParty dto)
+            : this()
+        {
+            if (dto != null)
+            {
+                this.Id = dto.Id;
+                this.FirstName = dto.FirstName;
+                this.MiddleName = dto.MiddleName;
+                this.LastName = dto.LastName;
+                this.Description = dto.Description;
+                this.ParticipantRole = dto.ParticipantRole;
+                this.Designation = dto.Designation;
+                this.ParentRole = dto.ParentRole;
+                this.HairColor = new HairColor(dto.HairColor);
+                this.EyesColor = new EyesColor(dto.EyesColor);
+                this.Race = new Race(dto.Race);
+                this.RelationToOtherParty = dto.RelationToOtherParty;
+                this.Weight = dto.Weight;
+                this.HeightFt = dto.HeightFt;
+                this.HeightIns = dto.HeightIns;
+                this.Attorney = new Attorneys(dto.Attorney);
+                this.IsProPer = dto.IsProPer;
+            }
+            
+
+            this.MarkAsUnchanged();
+        }
+
         private IObservable<IObservedChange<CourtParty, string>> _fullNameChanged;
         public IObservable<IObservedChange<CourtParty, string>> FullNameChanged
         {

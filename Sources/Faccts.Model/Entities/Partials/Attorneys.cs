@@ -16,6 +16,21 @@ namespace Faccts.Model.Entities
             this.AddressInfo = new AddressInfo();
         }
 
+        public Attorneys(FACCTS.Server.Model.DataModel.Attorney dto)
+        {
+            if (dto != null)
+            {
+                this.Id = dto.Id;
+                this.FirstName = dto.FirstName;
+                this.LastName = dto.LastName;
+                this.AddressInfo = new AddressInfo(dto.AddressInfo);
+                this.FirmName = dto.FirmName;
+                this.StateBarId = dto.StateBarId;
+                this.Email = dto.Email;
+            }
+            this.MarkAsUnchanged();
+        }
+
         public FACCTS.Server.Model.DataModel.Attorney ToDTO()
         {
             if (!this.IsDirty)
@@ -33,17 +48,11 @@ namespace Faccts.Model.Entities
             };
         }
 
-
-        public string Error
-        {
-            get { return this[string.Empty]; }
-        }
-
-        public string this[string propertyName]
+        public override string this[string propertyName]
         {
             get 
             {
-                if (this.CourtParty.First().IsProPer)
+                if (this.CourtParty.IsProPer)
                 {
                     return null;
                 }

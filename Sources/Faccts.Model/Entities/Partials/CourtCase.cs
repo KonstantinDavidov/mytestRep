@@ -74,15 +74,24 @@ namespace Faccts.Model.Entities
             return result;
         }
 
-        public CourtCase(FACCTS.Server.Model.DataModel.CourtCase courtCaseDto) : this()
+        public CourtCase(FACCTS.Server.Model.DataModel.CourtCase dto) : this()
         {
-            this.CaseNumber = courtCaseDto.CaseNumber;
-            this.Id = courtCaseDto.Id;
+            if (dto != null)
+            {
+                this.CaseNumber = dto.CaseNumber;
+                this.Id = dto.Id;
 
-            this.CCPORId = courtCaseDto.CCPORId;
-            this.CCPORStatus = (int?)courtCaseDto.CCPORStatus;
-            //this.Party1 = new CourtParty(courtCaseDto.Party1);
-            RaiseNavigationPropertyLoading(() => User);
+                this.CCPORId = dto.CCPORId;
+                this.CCPORStatus = (int?)dto.CCPORStatus;
+                this.Party1 = new CourtParty(dto.Party1);
+                this.Party2 = new CourtParty(dto.Party2);
+                this.CaseHistory = new TrackableCollection<Entities.CaseHistory>(dto.CaseHistory.Select(x => new CaseHistory(x)));
+                this.CaseNotes = new TrackableCollection<Entities.CaseNotes>(dto.CaseNotes.Select(x => new CaseNotes(x)));
+                RaiseNavigationPropertyLoading(() => User);
+            }
+            
+            
+            this.MarkAsUnchanged();
         }
 
         public FACCTS.Server.Model.Enums.CaseStatus CaseStatus

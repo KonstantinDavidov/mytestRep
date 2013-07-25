@@ -22,6 +22,20 @@ namespace Faccts.Model.Entities
             };
         }
 
+        public AddressInfo(FACCTS.Server.Model.DataModel.AddressInfo dto)
+            : this()
+        {
+            if (dto != null)
+            {
+                StreetAddress = dto.StreetAddress;
+                City = dto.City;
+                USAState = dto.USAState;
+                ZipCode = dto.ZipCode;
+                Phone = dto.Phone;
+                Fax = dto.Fax;
+            }
+        }
+
         private Dictionary<string, string> _errors = new Dictionary<string, string>();
         public IList<string> Errors
         {

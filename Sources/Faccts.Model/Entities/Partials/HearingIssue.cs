@@ -13,6 +13,20 @@ namespace Faccts.Model.Entities
             
         }
 
+        public HearingIssue(FACCTS.Server.Model.DataModel.HearingIssue dto)
+            : this()
+        {
+            if (dto != null)
+            {
+                this.PermanentRO = dto.PermanentRO;
+                this.SpousalSupport = dto.SpousalSupport;
+                this.OtheIssueText = dto.OtheIssueText;
+                this.IsOtherIssue = dto.IsOtherIssue;
+                this.ChildCustodyOrChildVisitation = dto.ChildCustodyOrChildVisitation;
+                this.ChildSupport = dto.ChildSupport;
+            }
+        }
+
         public FACCTS.Server.Model.DataModel.HearingIssue ToDTO()
         {
             return new FACCTS.Server.Model.DataModel.HearingIssue()

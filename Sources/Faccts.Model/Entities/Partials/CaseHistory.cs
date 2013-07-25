@@ -20,6 +20,23 @@ namespace Faccts.Model.Entities
 
         }
 
+        public CaseHistory(FACCTS.Server.Model.DataModel.CaseHistory dto) 
+            : this()
+        {
+            if (dto != null)
+            {
+                this.Id = dto.Id;
+                this.Date = dto.Date;
+                this.CaseHistoryEvent = dto.CaseHistoryEvent;
+                this.User = new User(dto.CourtClerk);
+                this.CCPOR_ID = dto.CCPOR_ID;
+                this.MergeCase = new CourtCase(dto.MergeCase);
+                this.Hearings = new Hearings(dto.Hearing);
+            }
+            
+            this.MarkAsUnchanged();
+        }
+
         public string CaseEventName
         {
             get
