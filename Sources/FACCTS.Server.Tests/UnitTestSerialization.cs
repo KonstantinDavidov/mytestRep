@@ -12,15 +12,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-using System.Data.Entity;
-using System.Data.EntityClient;
-using System.Data.EntityModel;
->>>>>>> e54be96ad60972456dc6551e11eb5064e4c49607
->>>>>>> 48f24c935d2a55ca87103346ffc0cddd34a8cced
 using System.IO;
 using System.Reflection;
 using System.Text;
@@ -86,14 +77,7 @@ namespace FACCTS.Server.Tests
             testObject.LawersFeeAndCourtCostsSection.IsEnabled = true;
             testObject.LawersFeeAndCourtCostsSection.IsCourtCosts = true;
             testObject.LawersFeeAndCourtCostsSection.IsLawyerFee = true;
-<<<<<<< HEAD
-           // testObject.LawersFeeAndCourtCostsSection.IsParty1Payer = false;
-=======
-<<<<<<< HEAD
-=======
-            testObject.LawersFeeAndCourtCostsSection.IsParty1Payer = false;
->>>>>>> e54be96ad60972456dc6551e11eb5064e4c49607
->>>>>>> 48f24c935d2a55ca87103346ffc0cddd34a8cced
+
             testObject.LawersFeeAndCourtCostsSection.LawyersFees.Add(new DataItem { Name = "Agency1", Description = "Cost1" });
             testObject.LawersFeeAndCourtCostsSection.LawyersFees.Add(new DataItem { Name = "Agency2", Description = "Cost2" });
             testObject.LawersFeeAndCourtCostsSection.LawyersFees.Add(new DataItem { Name = "Agency3", Description = "Cost3" });
@@ -152,9 +136,10 @@ namespace FACCTS.Server.Tests
         /// <returns>Data for deserialization</returns>
         private string getData()
         {
-            IDataManager dm = new DataManager(new RepositoryProvider(new RepositoryFactories()));
-            CourtCaseOrder cc = dm.CourtCaseOrdersRepository.GetById(43); //Need input params as ID
-            return cc.XMLContent;
+            //IDataManager dm = new DataManager(new RepositoryProvider(new RepositoryFactories()));
+            //CourtCaseOrder cc = dm.CourtCaseOrdersRepository.GetById(43); //Need input params as ID
+            //return cc.XMLContent;
+            return string.Empty;
         }
 
         /// <summary>
@@ -176,25 +161,23 @@ namespace FACCTS.Server.Tests
         [TestMethod]
         public void TestInsert()
         {
-            XDocument document = XDocument.Load("c:\\FACTS\\faccts.net\\Sources\\bin\\Debug\\myFileName.xml");
-<<<<<<< HEAD
-            CourtCaseOrder courtOrder = new CourtCaseOrder()
-=======
-            CourtCaseOrder courtOrder = new CourtCaseOrder
->>>>>>> 48f24c935d2a55ca87103346ffc0cddd34a8cced
-            {
-                AvailableCourtOrderId = 45,
-                OrderType = MasterOrders.CH130,
-                XMLContent = document.ToString(),
-                IsSigned = false,
-                ServerFileName = "myFileName.xml"
-            };
+            //XDocument document = XDocument.Load("c:\\FACTS\\faccts.net\\Sources\\bin\\Debug\\myFileName.xml");
 
-            IDataManager dm = new DataManager(new RepositoryProvider(new RepositoryFactories()));
-            dm.CourtCaseOrdersRepository.Insert(courtOrder);
-            dm.Commit();
-            dm.CourtCaseOrdersRepository.SaveData<CourtCaseOrder>(courtOrder);
-            var s = dm.CourtCaseOrdersRepository.GetAll();
+            //CourtCaseOrder courtOrder = new CourtCaseOrder
+
+            //{
+            //    AvailableCourtOrderId = 45,
+            //    OrderType = MasterOrders.CH130,
+            //    XMLContent = document.ToString(),
+            //    IsSigned = false,
+            //    ServerFileName = "myFileName.xml"
+            //};
+
+            //IDataManager dm = new DataManager(new RepositoryProvider(new RepositoryFactories()));
+            //dm.CourtCaseOrdersRepository.Insert(courtOrder);
+            //dm.Commit();
+            //dm.CourtCaseOrdersRepository.SaveData<CourtCaseOrder>(courtOrder);
+            //var s = dm.CourtCaseOrdersRepository.GetAll();
         }
     }
 }

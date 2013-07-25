@@ -43,6 +43,10 @@ namespace Faccts.Model.Entities
         {
             get 
             {
+                if (this.CourtParty.First().IsProPer)
+                {
+                    return null;
+                }
                 propertyName = propertyName ?? string.Empty;
                 return this.ValidateByPropertyName(_requiredFields, _errors, propertyName);
             }
