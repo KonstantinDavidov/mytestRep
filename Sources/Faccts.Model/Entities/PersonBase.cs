@@ -26,6 +26,7 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(OtherProtected))]
     [KnownType(typeof(Interpreter))]
     [KnownType(typeof(CourtCase))]
+    [KnownType(typeof(Appearance))]
     public partial class PersonBase: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -415,6 +416,54 @@ namespace Faccts.Model.Entities
             }
         }
         private CourtCase _courtCase;
+    
+        [DataMember]
+        public TrackableCollection<Appearance> Appearances
+        {
+            get
+            {
+                if (_appearances == null)
+                {
+                    _appearances = new TrackableCollection<Appearance>();
+                    _appearances.CollectionChanged += FixupAppearances;
+                }
+                return _appearances;
+            }
+            set
+            {
+                if (!ReferenceEquals(_appearances, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("Appearances");
+                    if (_appearances != null)
+                    {
+                        _appearances.CollectionChanged -= FixupAppearances;
+                        // This is the principal end in an association that performs cascade deletes.
+                        // Remove the cascade delete event handler for any entities in the current collection.
+                        foreach (Appearance item in _appearances)
+                        {
+                            ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
+                        }
+                    }
+                    _appearances = value;
+                    if (_appearances != null)
+                    {
+                        _appearances.CollectionChanged += FixupAppearances;
+                        // This is the principal end in an association that performs cascade deletes.
+                        // Add the cascade delete event handler for any entities that are already in the new collection.
+                        foreach (Appearance item in _appearances)
+                        {
+                            ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
+                        }
+                    }
+                    OnNavigationPropertyChanged("Appearances");
+                }
+            }
+        }
+        private TrackableCollection<Appearance> _appearances;
 
         #endregion
 
@@ -523,6 +572,7 @@ namespace Faccts.Model.Entities
         protected virtual void ClearNavigationProperties()
         {
             CourtCase = null;
+            Appearances.Clear();
         }
 
         #endregion
@@ -561,6 +611,57 @@ namespace Faccts.Model.Entities
                 if (CourtCase != null && !CourtCase.ChangeTracker.ChangeTrackingEnabled)
                 {
                     CourtCase.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupAppearances(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (Appearance item in e.NewItems)
+                {
+                    item.Person = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("Appearances", item);
+                    }
+                    // This is the principal end in an association that performs cascade deletes.
+                    // Update the event listener to refer to the new dependent.
+                    ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (Appearance item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Person, this))
+                    {
+                        item.Person = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("Appearances", item);
+                        // Delete the dependent end of this identifying association. If the current state is Added,
+                        // allow the relationship to be changed without causing the dependent to be deleted.
+                        if (item.ChangeTracker.State != ObjectState.Added)
+                        {
+                            item.MarkAsDeleted();
+                        }
+                    }
+                    // This is the principal end in an association that performs cascade deletes.
+                    // Remove the previous dependent from the event listener.
+                    ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
                 }
             }
         }

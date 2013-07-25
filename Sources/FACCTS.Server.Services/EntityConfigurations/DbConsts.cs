@@ -23,6 +23,12 @@ namespace FACCTS.Server.Data.EntityConfigurations
         public const string COURT_CASE_ATTORNEY_FOR_CHILD_ID_COLUMN_NAME = "AttorneyForChildId";
         public const string COURT_CASE_THIRD_PARTY_DATA_ID_COLUMN_NAME = "ThirdPartyDataId";
 
+        public const string CASE_NOTES_TABLE_NAME = "CaseNotes";
+        public const string CASE_NOTE_STATUS_COLUMN_NAME = "Status";
+        public const string CASE_NOTE_TEXT_COLUMN_NAME = "Text";
+        public const string CASE_NOTE_COURT_CASE_ID_COLUMN_NAME = "CourtCaseId";
+        public const string CASE_NOTE_AUTHOR_ID_COLUMN_NAME = "AuthorId";
+
         public const string HEARINGS_TABLE_NAME = "Hearings";
         public const string HEARING_HEARING_DATE_COLUMN_NAME = "HearingDate";
         public const string HEARING_COURTROOM_ID_COLUMN_NAME = "CourtroomId";
@@ -110,5 +116,14 @@ namespace FACCTS.Server.Data.EntityConfigurations
         public const string ADDRESS_INFO_ZIP_CODE_COLUMN_NAME = "ZipCode";
         public const string ADDRESS_INFO_PHONE_COLUMN_NAME = "Phone";
         public const string ADDRESS_INFO_FAX_COLUMN_NAME = "Fax";
+
+        public const string EYES_COLORS_TABLE_NAME = "EyesColors";
+        public const string EYES_COLOR_COLOR_COLUMN_NAME = "Color";
+
+        public const string HAIR_COLORS_TABLE_NAME = "HairColors";
+        public const string HAIR_COLOR_COLOR_COLUMN_NAME = "Color";
+
+        public const string RACE_TABLE_NAME = "Race";
+        public const string RACE_RACE_NAME_COLUMN_NAME = "RaceName";
     }
 }

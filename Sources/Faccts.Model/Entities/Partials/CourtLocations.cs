@@ -10,7 +10,7 @@ namespace Faccts.Model.Entities
     {
         partial void Initialize()
         {
-            
+            this.ChangeTracker.ChangeTrackingEnabled = false;
         }
 
         public FACCTS.Server.Model.DataModel.CourtLocation ToDTO()

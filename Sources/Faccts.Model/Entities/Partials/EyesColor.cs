@@ -8,6 +8,12 @@ namespace Faccts.Model.Entities
 {
     public partial class EyesColor : IDataTransferConvertible<FACCTS.Server.Model.DataModel.EyesColor>
     {
+        partial void Initialize()
+        {
+            this.MarkAsUnchanged();
+            this.ChangeTracker.ChangeTrackingEnabled = false;
+        }
+
         public EyesColor(FACCTS.Server.Model.DataModel.EyesColor dto) : this()
         {
             this.Id = dto.Id;

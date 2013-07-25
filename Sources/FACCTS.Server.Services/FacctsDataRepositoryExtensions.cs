@@ -16,18 +16,7 @@ namespace FACCTS.Server.Data
         {
             if (entity == null)
                 return;
-            switch (entity.State)
-            {
-                case ObjectState.Added:
-                    repository.Insert(entity);
-                    break;
-                case ObjectState.Deleted:
-                    repository.Delete(entity);
-                    break;
-                case ObjectState.Modified:
-                    repository.Update(entity);
-                    break;
-            }
+            repository.ModifyByState(entity);
             entity.State = ObjectState.Unchanged;
         }
 

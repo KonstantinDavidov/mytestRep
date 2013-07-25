@@ -10,7 +10,8 @@ namespace Faccts.Model.Entities
     {
         partial void Initialize()
         {
-            
+            this.MarkAsUnchanged();
+            this.ChangeTracker.ChangeTrackingEnabled = false;
         }
 
         public FACCTS.Server.Model.DataModel.Role ToDTO()

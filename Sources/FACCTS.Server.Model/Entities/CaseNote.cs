@@ -12,6 +12,7 @@ namespace FACCTS.Server.Model.DataModel
     [Table("CaseNotes")]
     public class CaseNote : IEntityWithId, IEntityWithState
     {
+        public long AuthorId { get; set; }
 
         public virtual User Author { get; set; }
 
@@ -26,7 +27,6 @@ namespace FACCTS.Server.Model.DataModel
 
         public long Id { get; set; }
 
-        [NotMapped]
         public ObjectState State { get; set; }
     }
 }

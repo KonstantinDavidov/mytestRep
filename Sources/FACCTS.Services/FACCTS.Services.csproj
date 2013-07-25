@@ -124,7 +124,6 @@
     <Compile Include="Data\CourtDepartments.cs" />
     <Compile Include="Data\CourtRooms.cs" />
     <Compile Include="Data\DataContainer.cs" />
-    <Compile Include="Data\Designations.cs" />
     <Compile Include="Data\EyesColors.cs" />
     <Compile Include="Data\FACCTSConfigurations.cs" />
     <Compile Include="Data\HairColors.cs" />

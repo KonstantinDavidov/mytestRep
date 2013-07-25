@@ -23,7 +23,7 @@ namespace FACCTS.Server.Data.EntityConfigurations
             Property(c => c.Date).HasColumnName(DbConsts.CASE_HISTORY_DATE_COLUMN_NAME);
             Property(c => c.CaseHistoryEvent).HasColumnName(DbConsts.CASE_HISTORY_CASE_HISTORY_EVENT_COLUMN_NAME);
             Property(c => c.CourtClerkId).HasColumnName(DbConsts.CASE_HISTORY_COURT_CLERK_ID_COLUMN_NAME);
-            Property(c => c.CCPOR_ID).HasColumnName(DbConsts.CASE_HISTORY_CCPOR_ID_COLUMN_NAME);
+            Property(c => c.CCPOR_ID).HasColumnName(DbConsts.CASE_HISTORY_CCPOR_ID_COLUMN_NAME).HasMaxLength(30);
             Property(c => c.CourtCaseId).HasColumnName(DbConsts.CASE_HISTORY_COURT_CASE_ID_COLUMN_NAME);
             Property(c => c.MergeCaseId).HasColumnName(DbConsts.CASE_HISTORY_MERGE_CASE_ID_COLUMN_NAME);
             Property(c => c.HearingId).HasColumnName(DbConsts.CASE_HISTORY_HEARING_ID_COLUMN_NAME);

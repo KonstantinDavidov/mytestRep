@@ -25,6 +25,8 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(Courtrooms))]
     [KnownType(typeof(CourtDepartment))]
     [KnownType(typeof(CourtDocketRecord))]
+    [KnownType(typeof(Appearance))]
+    [KnownType(typeof(CourtOrders))]
     public partial class Hearings: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -58,12 +60,8 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.Courtroom_Id)
     				,this.ObservableForProperty(x => x.Department_Id)
     				,this.ObservableForProperty(x => x.Session)
-    				,this.ObservableForProperty(x => x.HearingIssues_PermanentRO)
-    				,this.ObservableForProperty(x => x.HearingIssues_ChildCustodyOrChildVisitation)
-    				,this.ObservableForProperty(x => x.HearingIssues_ChildSupport)
-    				,this.ObservableForProperty(x => x.HearingIssues_SpousalSupport)
-    				,this.ObservableForProperty(x => x.HearingIssues_IsOtherIssue)
-    				,this.ObservableForProperty(x => x.HearingIssues_OtheIssueText)
+    				,this.ObservableForProperty(x => x.CourtCaseId)
+    				,this.ObservableForProperty(x => x.CourtDepartmentId)
     				,this.ObservableForProperty(x => x.CaseHistory.IsDirty)
     				,this.ObservableForProperty(x => x.Courtrooms.IsDirty)
     				,this.ObservableForProperty(x => x.CourtDepartment.IsDirty)
@@ -267,100 +265,36 @@ namespace Faccts.Model.Entities
         private FACCTS.Server.Model.Enums.DocketSession _session;
     
         [DataMember]
-        public bool HearingIssues_PermanentRO
+        public long CourtCaseId
         {
-            get { return _hearingIssues_PermanentRO; }
+            get { return _courtCaseId; }
             set
             {
-                if (_hearingIssues_PermanentRO != value)
+                if (_courtCaseId != value)
                 {
-    				OnPropertyChanging("HearingIssues_PermanentRO");
-                    _hearingIssues_PermanentRO = value;
-                    OnPropertyChanged("HearingIssues_PermanentRO");
+    				OnPropertyChanging("CourtCaseId");
+                    _courtCaseId = value;
+                    OnPropertyChanged("CourtCaseId");
                 }
             }
         }
-        private bool _hearingIssues_PermanentRO;
+        private long _courtCaseId;
     
         [DataMember]
-        public bool HearingIssues_ChildCustodyOrChildVisitation
+        public Nullable<long> CourtDepartmentId
         {
-            get { return _hearingIssues_ChildCustodyOrChildVisitation; }
+            get { return _courtDepartmentId; }
             set
             {
-                if (_hearingIssues_ChildCustodyOrChildVisitation != value)
+                if (_courtDepartmentId != value)
                 {
-    				OnPropertyChanging("HearingIssues_ChildCustodyOrChildVisitation");
-                    _hearingIssues_ChildCustodyOrChildVisitation = value;
-                    OnPropertyChanged("HearingIssues_ChildCustodyOrChildVisitation");
+    				OnPropertyChanging("CourtDepartmentId");
+                    _courtDepartmentId = value;
+                    OnPropertyChanged("CourtDepartmentId");
                 }
             }
         }
-        private bool _hearingIssues_ChildCustodyOrChildVisitation;
-    
-        [DataMember]
-        public bool HearingIssues_ChildSupport
-        {
-            get { return _hearingIssues_ChildSupport; }
-            set
-            {
-                if (_hearingIssues_ChildSupport != value)
-                {
-    				OnPropertyChanging("HearingIssues_ChildSupport");
-                    _hearingIssues_ChildSupport = value;
-                    OnPropertyChanged("HearingIssues_ChildSupport");
-                }
-            }
-        }
-        private bool _hearingIssues_ChildSupport;
-    
-        [DataMember]
-        public bool HearingIssues_SpousalSupport
-        {
-            get { return _hearingIssues_SpousalSupport; }
-            set
-            {
-                if (_hearingIssues_SpousalSupport != value)
-                {
-    				OnPropertyChanging("HearingIssues_SpousalSupport");
-                    _hearingIssues_SpousalSupport = value;
-                    OnPropertyChanged("HearingIssues_SpousalSupport");
-                }
-            }
-        }
-        private bool _hearingIssues_SpousalSupport;
-    
-        [DataMember]
-        public bool HearingIssues_IsOtherIssue
-        {
-            get { return _hearingIssues_IsOtherIssue; }
-            set
-            {
-                if (_hearingIssues_IsOtherIssue != value)
-                {
-    				OnPropertyChanging("HearingIssues_IsOtherIssue");
-                    _hearingIssues_IsOtherIssue = value;
-                    OnPropertyChanged("HearingIssues_IsOtherIssue");
-                }
-            }
-        }
-        private bool _hearingIssues_IsOtherIssue;
-    
-        [DataMember]
-        public string HearingIssues_OtheIssueText
-        {
-            get { return _hearingIssues_OtheIssueText; }
-            set
-            {
-                if (_hearingIssues_OtheIssueText != value)
-                {
-    				OnPropertyChanging("HearingIssues_OtheIssueText");
-                    _hearingIssues_OtheIssueText = value;
-                    OnPropertyChanged("HearingIssues_OtheIssueText");
-                }
-            }
-        }
-        private string _hearingIssues_OtheIssueText;
+        private Nullable<long> _courtDepartmentId;
 
         #endregion
 
@@ -403,44 +337,6 @@ namespace Faccts.Model.Entities
         }
         private HearingIssue _hearingIssue;
         private bool _hearingIssueInitialized;
-    
-        [DataMember]
-        public Appearance Appearance
-        {
-            get
-            {
-                if (!_appearanceInitialized && _appearance == null)
-                {
-                    _appearance = new Appearance();
-                    ((INotifyComplexPropertyChanging)_appearance).ComplexPropertyChanging += HandleAppearanceChanging;
-                }
-                _appearanceInitialized = true;
-                return _appearance;
-            }
-            set
-            {
-                _appearanceInitialized = true;
-                if (!Equals(_appearance, value))
-                {
-                    if (_appearance != null)
-                    {
-                        ((INotifyComplexPropertyChanging)_appearance).ComplexPropertyChanging -= HandleAppearanceChanging;
-                    }
-    
-                    HandleAppearanceChanging(this, null);
-    				OnPropertyChanging("Appearance");
-                    _appearance = value;
-                    OnPropertyChanged("Appearance");
-    
-                    if (value != null)
-                    {
-                        ((INotifyComplexPropertyChanging)_appearance).ComplexPropertyChanging += HandleAppearanceChanging;
-                    }
-                }
-            }
-        }
-        private Appearance _appearance;
-        private bool _appearanceInitialized;
 
         #endregion
 
@@ -519,40 +415,100 @@ namespace Faccts.Model.Entities
         private CourtDocketRecord _courtDocketRecord;
     
         [DataMember]
-        public TrackableCollection<CaseHistory> CaseHistory1
+        public TrackableCollection<Appearance> Appearances
         {
             get
             {
-                if (_caseHistory1 == null)
+                if (_appearances == null)
                 {
-                    _caseHistory1 = new TrackableCollection<CaseHistory>();
-                    _caseHistory1.CollectionChanged += FixupCaseHistory1;
+                    _appearances = new TrackableCollection<Appearance>();
+                    _appearances.CollectionChanged += FixupAppearances;
                 }
-                return _caseHistory1;
+                return _appearances;
             }
             set
             {
-                if (!ReferenceEquals(_caseHistory1, value))
+                if (!ReferenceEquals(_appearances, value))
                 {
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
-    				OnNavigationPropertyChanging("CaseHistory1");
-                    if (_caseHistory1 != null)
+    				OnNavigationPropertyChanging("Appearances");
+                    if (_appearances != null)
                     {
-                        _caseHistory1.CollectionChanged -= FixupCaseHistory1;
+                        _appearances.CollectionChanged -= FixupAppearances;
+                        // This is the principal end in an association that performs cascade deletes.
+                        // Remove the cascade delete event handler for any entities in the current collection.
+                        foreach (Appearance item in _appearances)
+                        {
+                            ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
+                        }
                     }
-                    _caseHistory1 = value;
-                    if (_caseHistory1 != null)
+                    _appearances = value;
+                    if (_appearances != null)
                     {
-                        _caseHistory1.CollectionChanged += FixupCaseHistory1;
+                        _appearances.CollectionChanged += FixupAppearances;
+                        // This is the principal end in an association that performs cascade deletes.
+                        // Add the cascade delete event handler for any entities that are already in the new collection.
+                        foreach (Appearance item in _appearances)
+                        {
+                            ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
+                        }
                     }
-                    OnNavigationPropertyChanged("CaseHistory1");
+                    OnNavigationPropertyChanged("Appearances");
                 }
             }
         }
-        private TrackableCollection<CaseHistory> _caseHistory1;
+        private TrackableCollection<Appearance> _appearances;
+    
+        [DataMember]
+        public TrackableCollection<CourtOrders> CourtOrders
+        {
+            get
+            {
+                if (_courtOrders == null)
+                {
+                    _courtOrders = new TrackableCollection<CourtOrders>();
+                    _courtOrders.CollectionChanged += FixupCourtOrders;
+                }
+                return _courtOrders;
+            }
+            set
+            {
+                if (!ReferenceEquals(_courtOrders, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("CourtOrders");
+                    if (_courtOrders != null)
+                    {
+                        _courtOrders.CollectionChanged -= FixupCourtOrders;
+                        // This is the principal end in an association that performs cascade deletes.
+                        // Remove the cascade delete event handler for any entities in the current collection.
+                        foreach (CourtOrders item in _courtOrders)
+                        {
+                            ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
+                        }
+                    }
+                    _courtOrders = value;
+                    if (_courtOrders != null)
+                    {
+                        _courtOrders.CollectionChanged += FixupCourtOrders;
+                        // This is the principal end in an association that performs cascade deletes.
+                        // Add the cascade delete event handler for any entities that are already in the new collection.
+                        foreach (CourtOrders item in _courtOrders)
+                        {
+                            ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
+                        }
+                    }
+                    OnNavigationPropertyChanged("CourtOrders");
+                }
+            }
+        }
+        private TrackableCollection<CourtOrders> _courtOrders;
 
         #endregion
 
@@ -657,15 +613,6 @@ namespace Faccts.Model.Entities
             }
         }
     
-        // Records the original values for the complex property Appearance
-        private void HandleAppearanceChanging(object sender, EventArgs args)
-        {
-            if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
-            {
-                ChangeTracker.State = ObjectState.Modified;
-            }
-        }
-    
     
         protected virtual void ClearNavigationProperties()
         {
@@ -673,7 +620,8 @@ namespace Faccts.Model.Entities
             Courtrooms = null;
             CourtDepartment = null;
             CourtDocketRecord = null;
-            CaseHistory1.Clear();
+            Appearances.Clear();
+            CourtOrders.Clear();
         }
 
         #endregion
@@ -850,7 +798,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupCaseHistory1(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupAppearances(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
             {
@@ -859,7 +807,7 @@ namespace Faccts.Model.Entities
     
             if (e.NewItems != null)
             {
-                foreach (CaseHistory item in e.NewItems)
+                foreach (Appearance item in e.NewItems)
                 {
                     item.Hearings = this;
                     if (ChangeTracker.ChangeTrackingEnabled)
@@ -868,14 +816,17 @@ namespace Faccts.Model.Entities
                         {
                             item.StartTracking();
                         }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CaseHistory1", item);
+                        ChangeTracker.RecordAdditionToCollectionProperties("Appearances", item);
                     }
+                    // This is the principal end in an association that performs cascade deletes.
+                    // Update the event listener to refer to the new dependent.
+                    ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
                 }
             }
     
             if (e.OldItems != null)
             {
-                foreach (CaseHistory item in e.OldItems)
+                foreach (Appearance item in e.OldItems)
                 {
                     if (ReferenceEquals(item.Hearings, this))
                     {
@@ -883,8 +834,62 @@ namespace Faccts.Model.Entities
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CaseHistory1", item);
+                        ChangeTracker.RecordRemovalFromCollectionProperties("Appearances", item);
+                        // Delete the dependent end of this identifying association. If the current state is Added,
+                        // allow the relationship to be changed without causing the dependent to be deleted.
+                        if (item.ChangeTracker.State != ObjectState.Added)
+                        {
+                            item.MarkAsDeleted();
+                        }
                     }
+                    // This is the principal end in an association that performs cascade deletes.
+                    // Remove the previous dependent from the event listener.
+                    ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
+                }
+            }
+        }
+    
+        private void FixupCourtOrders(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (CourtOrders item in e.NewItems)
+                {
+                    item.Hearings = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("CourtOrders", item);
+                    }
+                    // This is the principal end in an association that performs cascade deletes.
+                    // Update the event listener to refer to the new dependent.
+                    ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (CourtOrders item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Hearings, this))
+                    {
+                        item.Hearings = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtOrders", item);
+                    }
+                    // This is the principal end in an association that performs cascade deletes.
+                    // Remove the previous dependent from the event listener.
+                    ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
                 }
             }
         }

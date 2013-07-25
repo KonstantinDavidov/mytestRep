@@ -25,7 +25,6 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(Hearings))]
     [KnownType(typeof(CourtCase))]
     [KnownType(typeof(User))]
-    [KnownType(typeof(MasterOrder))]
     public partial class CaseHistory: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -63,14 +62,20 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.CourtClerk_Id)
     				,this.ObservableForProperty(x => x.CourtCase_Id)
     				,this.ObservableForProperty(x => x.Hearing_Id)
+    				,this.ObservableForProperty(x => x.CourtClerkId)
+    				,this.ObservableForProperty(x => x.CCPORId)
+    				,this.ObservableForProperty(x => x.CourtCaseId)
+    				,this.ObservableForProperty(x => x.MergeCaseId)
+    				,this.ObservableForProperty(x => x.HearingId)
     				,this.ObservableForProperty(x => x.CourtCaseOrders.IsDirty)
     				,this.ObservableForProperty(x => x.Hearing.IsDirty)
     				,this.ObservableForProperty(x => x.MergeCase.IsDirty)
     				,this.ObservableForProperty(x => x.CourtCaseOrders1.IsDirty)
     				,this.ObservableForProperty(x => x.User.IsDirty)
     				,this.ObservableForProperty(x => x.CourtCase.IsDirty)
-    				,this.ObservableForProperty(x => x.MasterOrder.IsDirty)
     				,this.ObservableForProperty(x => x.Hearings.IsDirty)
+    				,this.ObservableForProperty(x => x.Hearings1.IsDirty)
+    				,this.ObservableForProperty(x => x.User1.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -371,6 +376,102 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<long> _hearing_Id;
+    
+        [DataMember]
+        public Nullable<long> CourtClerkId
+        {
+            get { return _courtClerkId; }
+            set
+            {
+                if (_courtClerkId != value)
+                {
+                    ChangeTracker.RecordOriginalValue("CourtClerkId", _courtClerkId);
+                    if (!IsDeserializing)
+                    {
+                        if (User1 != null && User1.Id != value)
+                        {
+                            User1 = null;
+                        }
+                    }
+    				OnPropertyChanging("CourtClerkId");
+                    _courtClerkId = value;
+                    OnPropertyChanged("CourtClerkId");
+                }
+            }
+        }
+        private Nullable<long> _courtClerkId;
+    
+        [DataMember]
+        public string CCPORId
+        {
+            get { return _cCPORId; }
+            set
+            {
+                if (_cCPORId != value)
+                {
+    				OnPropertyChanging("CCPORId");
+                    _cCPORId = value;
+                    OnPropertyChanged("CCPORId");
+                }
+            }
+        }
+        private string _cCPORId;
+    
+        [DataMember]
+        public long CourtCaseId
+        {
+            get { return _courtCaseId; }
+            set
+            {
+                if (_courtCaseId != value)
+                {
+    				OnPropertyChanging("CourtCaseId");
+                    _courtCaseId = value;
+                    OnPropertyChanged("CourtCaseId");
+                }
+            }
+        }
+        private long _courtCaseId;
+    
+        [DataMember]
+        public Nullable<long> MergeCaseId
+        {
+            get { return _mergeCaseId; }
+            set
+            {
+                if (_mergeCaseId != value)
+                {
+    				OnPropertyChanging("MergeCaseId");
+                    _mergeCaseId = value;
+                    OnPropertyChanged("MergeCaseId");
+                }
+            }
+        }
+        private Nullable<long> _mergeCaseId;
+    
+        [DataMember]
+        public Nullable<long> HearingId
+        {
+            get { return _hearingId; }
+            set
+            {
+                if (_hearingId != value)
+                {
+                    ChangeTracker.RecordOriginalValue("HearingId", _hearingId);
+                    if (!IsDeserializing)
+                    {
+                        if (Hearings1 != null && Hearings1.Id != value)
+                        {
+                            Hearings1 = null;
+                        }
+                    }
+    				OnPropertyChanging("HearingId");
+                    _hearingId = value;
+                    OnPropertyChanged("HearingId");
+                }
+            }
+        }
+        private Nullable<long> _hearingId;
 
         #endregion
 
@@ -494,24 +595,6 @@ namespace Faccts.Model.Entities
         private CourtCase _courtCase;
     
         [DataMember]
-        public MasterOrder MasterOrder
-        {
-            get { return _masterOrder; }
-            set
-            {
-                if (!ReferenceEquals(_masterOrder, value))
-                {
-                    var previousValue = _masterOrder;
-    				OnNavigationPropertyChanging("MasterOrder");
-                    _masterOrder = value;
-                    FixupMasterOrder(previousValue);
-                    OnNavigationPropertyChanged("MasterOrder");
-                }
-            }
-        }
-        private MasterOrder _masterOrder;
-    
-        [DataMember]
         public Hearings Hearings
         {
             get { return _hearings; }
@@ -528,6 +611,42 @@ namespace Faccts.Model.Entities
             }
         }
         private Hearings _hearings;
+    
+        [DataMember]
+        public Hearings Hearings1
+        {
+            get { return _hearings1; }
+            set
+            {
+                if (!ReferenceEquals(_hearings1, value))
+                {
+                    var previousValue = _hearings1;
+    				OnNavigationPropertyChanging("Hearings1");
+                    _hearings1 = value;
+                    FixupHearings1(previousValue);
+                    OnNavigationPropertyChanged("Hearings1");
+                }
+            }
+        }
+        private Hearings _hearings1;
+    
+        [DataMember]
+        public User User1
+        {
+            get { return _user1; }
+            set
+            {
+                if (!ReferenceEquals(_user1, value))
+                {
+                    var previousValue = _user1;
+    				OnNavigationPropertyChanging("User1");
+                    _user1 = value;
+                    FixupUser1(previousValue);
+                    OnNavigationPropertyChanged("User1");
+                }
+            }
+        }
+        private User _user1;
 
         #endregion
 
@@ -642,8 +761,9 @@ namespace Faccts.Model.Entities
             CourtCaseOrders1 = null;
             User = null;
             CourtCase = null;
-            MasterOrder = null;
             Hearings = null;
+            Hearings1 = null;
+            User1 = null;
         }
 
         #endregion
@@ -885,59 +1005,6 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupMasterOrder(MasterOrder previousValue)
-        {
-            // This is the principal end in an association that performs cascade deletes.
-            // Update the event listener to refer to the new dependent.
-            if (previousValue != null)
-            {
-                ChangeTracker.ObjectStateChanging -= previousValue.HandleCascadeDelete;
-            }
-    
-            if (MasterOrder != null)
-            {
-                ChangeTracker.ObjectStateChanging += MasterOrder.HandleCascadeDelete;
-            }
-    
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && ReferenceEquals(previousValue.CaseHistory, this))
-            {
-                previousValue.CaseHistory = null;
-            }
-    
-            if (MasterOrder != null)
-            {
-                MasterOrder.CaseHistory = this;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("MasterOrder")
-                    && (ChangeTracker.OriginalValues["MasterOrder"] == MasterOrder))
-                {
-                    ChangeTracker.OriginalValues.Remove("MasterOrder");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("MasterOrder", previousValue);
-                    // This is the principal end of an identifying association, so the dependent must be deleted when the relationship is removed.
-                    // If the current state of the dependent is Added, the relationship can be changed without causing the dependent to be deleted.
-                    if (previousValue != null && previousValue.ChangeTracker.State != ObjectState.Added)
-                    {
-                        previousValue.MarkAsDeleted();
-                    }
-                }
-                if (MasterOrder != null && !MasterOrder.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    MasterOrder.StartTracking();
-                }
-            }
-        }
-    
         private void FixupHearings(Hearings previousValue, bool skipKeys = false)
         {
             if (IsDeserializing)
@@ -945,17 +1012,11 @@ namespace Faccts.Model.Entities
                 return;
             }
     
-            if (previousValue != null && previousValue.CaseHistory1.Contains(this))
-            {
-                previousValue.CaseHistory1.Remove(this);
-            }
-    
             if (Hearings != null)
             {
-                Hearings.CaseHistory1.Add(this);
-    
                 Hearing_Id = Hearings.Id;
             }
+    
             else if (!skipKeys)
             {
                 Hearing_Id = null;
@@ -975,6 +1036,82 @@ namespace Faccts.Model.Entities
                 if (Hearings != null && !Hearings.ChangeTracker.ChangeTrackingEnabled)
                 {
                     Hearings.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupHearings1(Hearings previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (Hearings1 != null)
+            {
+                HearingId = Hearings1.Id;
+            }
+    
+            else if (!skipKeys)
+            {
+                HearingId = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("Hearings1")
+                    && (ChangeTracker.OriginalValues["Hearings1"] == Hearings1))
+                {
+                    ChangeTracker.OriginalValues.Remove("Hearings1");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("Hearings1", previousValue);
+                }
+                if (Hearings1 != null && !Hearings1.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    Hearings1.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupUser1(User previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.CaseHistory.Contains(this))
+            {
+                previousValue.CaseHistory.Remove(this);
+            }
+    
+            if (User1 != null)
+            {
+                User1.CaseHistory.Add(this);
+    
+                CourtClerkId = User1.Id;
+            }
+            else if (!skipKeys)
+            {
+                CourtClerkId = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("User1")
+                    && (ChangeTracker.OriginalValues["User1"] == User1))
+                {
+                    ChangeTracker.OriginalValues.Remove("User1");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("User1", previousValue);
+                }
+                if (User1 != null && !User1.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    User1.StartTracking();
                 }
             }
         }

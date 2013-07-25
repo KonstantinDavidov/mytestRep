@@ -65,7 +65,6 @@ namespace Faccts.Model.Entities
                 CaseHistoryEvent = this.CaseHistoryEvent,
                 CourtClerk = this.User.ConvertToDTO(),
                 CCPOR_ID = this.CCPOR_ID,
-                MasterOrder = this.MasterOrder.ConvertToDTO(),
                 //CourtCase = this.CourtCase.ToDTO(),
                 MergeCase = this.MergeCase.ConvertToDTO(),
                 Hearing = this.Hearing.ConvertToDTO(),

@@ -101,9 +101,9 @@
                                        Grid.Column="4" />
                             <ComboBox Grid.Column="5"
                                       VerticalAlignment="Center"
-                                      SelectedItem="{Binding Designation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                                      DisplayMemberPath="DesignationName"
-                                      >
+                                      SelectedValue="{Binding Designation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                      SelectedValuePath="Value"
+                                      ItemStringFormat="{Binding Source={StaticResource cvsDesignations}, Mode=OneWay}">
                                 <ComboBox.ItemsSource>
                                     <CompositeCollection>
                                         <CollectionContainer Collection="{Binding Mode=OneWay, Source={StaticResource cvsDesignations}}" />

@@ -9,6 +9,12 @@ namespace Faccts.Model.Entities
 {
     public partial class User : INavigationPropertiesLoadable, IDataTransferConvertible<FACCTS.Server.Model.DataModel.User>
     {
+        partial void Initialize()
+        {
+            this.MarkAsUnchanged();
+            this.ChangeTracker.ChangeTrackingEnabled = false;
+        }
+
         public User(FACCTS.Server.Model.DataModel.User dtoUser) : this()
         {
             this.Id = dtoUser.Id;
