@@ -57,6 +57,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.CourtCase_Id)
     				,this.ObservableForProperty(x => x.CaseRecord_Id)
     				,this.ObservableForProperty(x => x.CourtCase_Id1)
+    				,this.ObservableForProperty(x => x.CourtCaseId)
     				,this.ObservableForProperty(x => x.User.IsDirty)
     				,this.ObservableForProperty(x => x.CourtCase.IsDirty)
     			).
@@ -272,6 +273,22 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<long> _courtCase_Id1;
+    
+        [DataMember]
+        public long CourtCaseId
+        {
+            get { return _courtCaseId; }
+            set
+            {
+                if (_courtCaseId != value)
+                {
+    				OnPropertyChanging("CourtCaseId");
+                    _courtCaseId = value;
+                    OnPropertyChanged("CourtCaseId");
+                }
+            }
+        }
+        private long _courtCaseId;
 
         #endregion
 

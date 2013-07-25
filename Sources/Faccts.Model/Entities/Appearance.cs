@@ -20,231 +20,252 @@ using System.Reactive.Linq;
 
 namespace Faccts.Model.Entities
 {
-    public partial class Appearance : INotifyComplexPropertyChanging, IReactiveNotifyPropertyChanged
+    [DataContract(IsReference = true)]
+    [KnownType(typeof(AppearanceWithSworn))]
+    [KnownType(typeof(Hearings))]
+    [KnownType(typeof(PersonBase))]
+    public partial class Appearance: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
+    		
+    		private MakeObjectReactiveHelper _reactiveHelper;
     
-    	private MakeObjectReactiveHelper _reactiveHelper;
-    	public Appearance()
-    	{
-    		_reactiveHelper = new MakeObjectReactiveHelper(this);
-    		Initialize();
-    		Observable.Merge<Object>(
-    				this.ObservableForProperty(x => x.Party1Appear)
-    				,this.ObservableForProperty(x => x.Party1Sworn)
-    				,this.ObservableForProperty(x => x.Party1AttorneyPresent)
-    				,this.ObservableForProperty(x => x.Party1Atty)
-    				,this.ObservableForProperty(x => x.Party2Appear)
-    				,this.ObservableForProperty(x => x.Party2AttorneyPresent)
-    				,this.ObservableForProperty(x => x.Party2Atty)
-    				,this.ObservableForProperty(x => x.Party2Sworn)
+    		public Appearance()
+    		{
+    			_reactiveHelper = new MakeObjectReactiveHelper(this);
+    			Initialize();
+    			Observable.FromEvent<EventHandler<ObjectStateChangingEventArgs>, ObjectStateChangingEventArgs>(
+    			handler =>
+    				{
+    					EventHandler<ObjectStateChangingEventArgs> eh = (sender, e) => handler(e);
+    					return eh;
+    				},
+    				handler =>  ChangeTracker.ObjectStateChanging += handler,
+    				handler =>  ChangeTracker.ObjectStateChanging -= handler
+    			)
+    			.Subscribe(e =>
+    				{
+    					if(e.NewState == ObjectState.Unchanged)
+    					{
+    						IsDirty = false;
+    					}
+    				}
+    			);
+    			Observable.Merge<Object>(
+    				this.ObservableForProperty(x => x.PersonId)
+    				,this.ObservableForProperty(x => x.HearingId)
+    				,this.ObservableForProperty(x => x.Hearings.IsDirty)
+    				,this.ObservableForProperty(x => x.Person.IsDirty)
     			).
     			Subscribe(_ =>
     			{
-    				IsDirty = true;
+    				if (ChangeTracker.State != ObjectState.Unchanged)
+    				{
+    					IsDirty = true;
+    				}
     			}
     			);
-    	}
-    
-    	partial void Initialize();
-    	
-    	private bool _isDirty;
-    	public bool IsDirty
-    	{
-    		get
-    		{
-    			return _isDirty;
     		}
-    		set
+    
+    		partial void Initialize();
+    		
+    
+    
+    		private bool _isDirty;
+    		public bool IsDirty
     		{
-    			if (_isDirty == value)
-    				return;
-    			OnPropertyChanging("IsDirty");
-    			_isDirty = value;
-    			OnPropertyChanged("IsDirty");
+    			get
+    			{
+    				return _isDirty;
+    			}
+    			set
+    			{
+    				if (_isDirty == value)
+    					return;
+    				OnPropertyChanging("IsDirty");
+    				_isDirty = value;
+    				OnPropertyChanged("IsDirty");
+    			}
     		}
-    	}
+    				
     
-    	public IObservable<IObservedChange<object, object>> Changed 
-    	{
-    		get { return _reactiveHelper.Changed; }
-    	}
-    	public IObservable<IObservedChange<object, object>> Changing 
-    	{
-    		get { return _reactiveHelper.Changing; }
-    	}
-    	public IDisposable SuppressChangeNotifications() 
-    	{
-    		return _reactiveHelper.SuppressChangeNotifications();
-    	}
+    		public IObservable<IObservedChange<object, object>> Changed 
+    		{
+    			get { return _reactiveHelper.Changed; }
+    		}
+    		public IObservable<IObservedChange<object, object>> Changing 
+    		{
+    			get { return _reactiveHelper.Changing; }
+    		}
+    		public IDisposable SuppressChangeNotifications() 
+    		{
+    			return _reactiveHelper.SuppressChangeNotifications();
+    		}
     
-    	private PropertyChangingEventHandler _propertyChanging;
-    	public event PropertyChangingEventHandler PropertyChanging
-    	{
-    		add { _propertyChanging += value; }
-    		remove {_propertyChanging -= value; }
-    	}
-        #region Simple Properties
+    		private PropertyChangingEventHandler _propertyChanging;
+    		public event PropertyChangingEventHandler PropertyChanging
+    		{
+    			add
+    			{
+    				_propertyChanging += value;
+    			}
+    			remove
+    			{
+    				_propertyChanging -= value;
+    			}
+    		}
+    
+    		public event EventHandler<LoadingNavigationPropertiesEventArgs> OnNavigationPropertyLoading;
+    		protected virtual void RaiseNavigationPropertyLoading(string propertyName)
+            {
+                if (OnNavigationPropertyLoading != null)
+                    OnNavigationPropertyLoading(this, new LoadingNavigationPropertiesEventArgs(propertyName));
+            }
+    
+            protected virtual void RaiseNavigationPropertyLoading<T>(Expression<Func<T>> propertyExpression)
+            {
+                var body = propertyExpression.Body as MemberExpression;
+                if (body == null)
+                    throw new ArgumentException("'propertyExpression' should be a member expression");
+    
+                var expression = body.Expression as ConstantExpression;
+                if (expression == null)
+                    throw new ArgumentException("'propertyExpression' body should be a constant expression");
+    
+                object target = Expression.Lambda(expression).Compile().DynamicInvoke();
+    
+                RaiseNavigationPropertyLoading(body.Member.Name);
+            }
+    	    #region Simple Properties
     
         [DataMember]
-        public Nullable<bool> Party1Appear
+        public long PersonId
         {
-            get { return _party1Appear; }
+            get { return _personId; }
             set
             {
-                if (_party1Appear != value)
+                if (_personId != value)
                 {
-                    OnComplexPropertyChanging();
-    				OnPropertyChanging("Party1Appear");
-                    _party1Appear = value;
-                    OnPropertyChanged("Party1Appear");
+                    if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added)
+                    {
+                        throw new InvalidOperationException("The property 'PersonId' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
+                    }
+                    if (!IsDeserializing)
+                    {
+                        if (Person != null && Person.Id != value)
+                        {
+                            Person = null;
+                        }
+                    }
+    				OnPropertyChanging("PersonId");
+                    _personId = value;
+                    OnPropertyChanged("PersonId");
                 }
             }
         }
-        private Nullable<bool> _party1Appear;
+        private long _personId;
     
         [DataMember]
-        public Nullable<bool> Party1Sworn
+        public long HearingId
         {
-            get { return _party1Sworn; }
+            get { return _hearingId; }
             set
             {
-                if (_party1Sworn != value)
+                if (_hearingId != value)
                 {
-                    OnComplexPropertyChanging();
-    				OnPropertyChanging("Party1Sworn");
-                    _party1Sworn = value;
-                    OnPropertyChanged("Party1Sworn");
+                    if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added)
+                    {
+                        throw new InvalidOperationException("The property 'HearingId' is part of the object's key and cannot be changed. Changes to key properties can only be made when the object is not being tracked or is in the Added state.");
+                    }
+                    if (!IsDeserializing)
+                    {
+                        if (Hearings != null && Hearings.Id != value)
+                        {
+                            Hearings = null;
+                        }
+                    }
+    				OnPropertyChanging("HearingId");
+                    _hearingId = value;
+                    OnPropertyChanged("HearingId");
                 }
             }
         }
-        private Nullable<bool> _party1Sworn;
+        private long _hearingId;
+
+        #endregion
+
+        #region Navigation Properties
     
         [DataMember]
-        public Nullable<bool> Party1AttorneyPresent
+        public Hearings Hearings
         {
-            get { return _party1AttorneyPresent; }
+            get { return _hearings; }
             set
             {
-                if (_party1AttorneyPresent != value)
+                if (!ReferenceEquals(_hearings, value))
                 {
-                    OnComplexPropertyChanging();
-    				OnPropertyChanging("Party1AttorneyPresent");
-                    _party1AttorneyPresent = value;
-                    OnPropertyChanged("Party1AttorneyPresent");
+                    if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added && value != null)
+                    {
+                        // This the dependent end of an identifying relationship, so the principal end cannot be changed if it is already set,
+                        // otherwise it can only be set to an entity with a primary key that is the same value as the dependent's foreign key.
+                        if (HearingId != value.Id)
+                        {
+                            throw new InvalidOperationException("The principal end of an identifying relationship can only be changed when the dependent end is in the Added state.");
+                        }
+                    }
+                    var previousValue = _hearings;
+    				OnNavigationPropertyChanging("Hearings");
+                    _hearings = value;
+                    FixupHearings(previousValue);
+                    OnNavigationPropertyChanged("Hearings");
                 }
             }
         }
-        private Nullable<bool> _party1AttorneyPresent;
+        private Hearings _hearings;
     
         [DataMember]
-        public Nullable<bool> Party1Atty
+        public PersonBase Person
         {
-            get { return _party1Atty; }
+            get { return _person; }
             set
             {
-                if (_party1Atty != value)
+                if (!ReferenceEquals(_person, value))
                 {
-                    OnComplexPropertyChanging();
-    				OnPropertyChanging("Party1Atty");
-                    _party1Atty = value;
-                    OnPropertyChanged("Party1Atty");
+                    if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added && value != null)
+                    {
+                        // This the dependent end of an identifying relationship, so the principal end cannot be changed if it is already set,
+                        // otherwise it can only be set to an entity with a primary key that is the same value as the dependent's foreign key.
+                        if (PersonId != value.Id)
+                        {
+                            throw new InvalidOperationException("The principal end of an identifying relationship can only be changed when the dependent end is in the Added state.");
+                        }
+                    }
+                    var previousValue = _person;
+    				OnNavigationPropertyChanging("Person");
+                    _person = value;
+                    FixupPerson(previousValue);
+                    OnNavigationPropertyChanged("Person");
                 }
             }
         }
-        private Nullable<bool> _party1Atty;
-    
-        [DataMember]
-        public Nullable<bool> Party2Appear
-        {
-            get { return _party2Appear; }
-            set
-            {
-                if (_party2Appear != value)
-                {
-                    OnComplexPropertyChanging();
-    				OnPropertyChanging("Party2Appear");
-                    _party2Appear = value;
-                    OnPropertyChanged("Party2Appear");
-                }
-            }
-        }
-        private Nullable<bool> _party2Appear;
-    
-        [DataMember]
-        public Nullable<bool> Party2AttorneyPresent
-        {
-            get { return _party2AttorneyPresent; }
-            set
-            {
-                if (_party2AttorneyPresent != value)
-                {
-                    OnComplexPropertyChanging();
-    				OnPropertyChanging("Party2AttorneyPresent");
-                    _party2AttorneyPresent = value;
-                    OnPropertyChanged("Party2AttorneyPresent");
-                }
-            }
-        }
-        private Nullable<bool> _party2AttorneyPresent;
-    
-        [DataMember]
-        public Nullable<bool> Party2Atty
-        {
-            get { return _party2Atty; }
-            set
-            {
-                if (_party2Atty != value)
-                {
-                    OnComplexPropertyChanging();
-    				OnPropertyChanging("Party2Atty");
-                    _party2Atty = value;
-                    OnPropertyChanged("Party2Atty");
-                }
-            }
-        }
-        private Nullable<bool> _party2Atty;
-    
-        [DataMember]
-        public Nullable<bool> Party2Sworn
-        {
-            get { return _party2Sworn; }
-            set
-            {
-                if (_party2Sworn != value)
-                {
-                    OnComplexPropertyChanging();
-    				OnPropertyChanging("Party2Sworn");
-                    _party2Sworn = value;
-                    OnPropertyChanged("Party2Sworn");
-                }
-            }
-        }
-        private Nullable<bool> _party2Sworn;
+        private PersonBase _person;
 
         #endregion
 
         #region ChangeTracking
     
-        private void OnComplexPropertyChanging()
+        protected virtual void OnPropertyChanged(String propertyName)
         {
-            if (_complexPropertyChanging != null)
+            if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
             {
-                _complexPropertyChanging(this, new EventArgs());
+                ChangeTracker.State = ObjectState.Modified;
             }
-        }
-    
-        event EventHandler INotifyComplexPropertyChanging.ComplexPropertyChanging { add { _complexPropertyChanging += value; } remove { _complexPropertyChanging -= value; } }
-        private event EventHandler _complexPropertyChanging;
-    
-        private void OnPropertyChanged(String propertyName)
-        {
             if (_propertyChanged != null)
             {
                 _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
             }
         }
     
-    	private void OnPropertyChanging(String propertyName)
+    	protected virtual void OnPropertyChanging(String propertyName)
         {
             if (_propertyChanging != null)
             {
@@ -252,28 +273,167 @@ namespace Faccts.Model.Entities
             }
         }
     
-        event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged { add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
-        private event PropertyChangedEventHandler _propertyChanged;
-    
-        public static void RecordComplexOriginalValues(String parentPropertyName, Appearance complexObject, ObjectChangeTracker changeTracker)
+        protected virtual void OnNavigationPropertyChanged(String propertyName)
         {
-            if (String.IsNullOrEmpty(parentPropertyName))
+            if (_propertyChanged != null)
             {
-                throw new ArgumentException("String parameter cannot be null or empty.", "parentPropertyName");
+                _propertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    
+    	protected virtual void OnNavigationPropertyChanging(String propertyName)
+        {
+            if (_propertyChanging != null)
+            {
+                _propertyChanging(this, new PropertyChangingEventArgs(propertyName));
+            }
+        }
+    
+    	
+    
+        event PropertyChangedEventHandler INotifyPropertyChanged.PropertyChanged{ add { _propertyChanged += value; } remove { _propertyChanged -= value; } }
+        private event PropertyChangedEventHandler _propertyChanged;
+        private ObjectChangeTracker _changeTracker;
+    
+        [DataMember]
+        public ObjectChangeTracker ChangeTracker
+        {
+            get
+            {
+                if (_changeTracker == null)
+                {
+                    _changeTracker = new ObjectChangeTracker();
+                    _changeTracker.ObjectStateChanging += HandleObjectStateChanging;
+                }
+                return _changeTracker;
+            }
+            set
+            {
+                if(_changeTracker != null)
+                {
+                    _changeTracker.ObjectStateChanging -= HandleObjectStateChanging;
+                }
+                _changeTracker = value;
+                if(_changeTracker != null)
+                {
+                    _changeTracker.ObjectStateChanging += HandleObjectStateChanging;
+                }
+            }
+        }
+    
+        private void HandleObjectStateChanging(object sender, ObjectStateChangingEventArgs e)
+        {
+            if (e.NewState == ObjectState.Deleted)
+            {
+                ClearNavigationProperties();
+            }
+        }
+    
+        protected bool IsDeserializing { get; private set; }
+    
+        [OnDeserializing]
+        public void OnDeserializingMethod(StreamingContext context)
+        {
+            IsDeserializing = true;
+        }
+    
+        [OnDeserialized]
+        public void OnDeserializedMethod(StreamingContext context)
+        {
+            IsDeserializing = false;
+            ChangeTracker.ChangeTrackingEnabled = true;
+        }
+    
+        // This entity type is the dependent end in at least one association that performs cascade deletes.
+        // This event handler will process notifications that occur when the principal end is deleted.
+        internal void HandleCascadeDelete(object sender, ObjectStateChangingEventArgs e)
+        {
+            if (e.NewState == ObjectState.Deleted)
+            {
+                this.MarkAsDeleted();
+            }
+        }
+    
+        protected virtual void ClearNavigationProperties()
+        {
+            Hearings = null;
+            Person = null;
+        }
+
+        #endregion
+
+        #region Association Fixup
+    
+        private void FixupHearings(Hearings previousValue)
+        {
+            if (IsDeserializing)
+            {
+                return;
             }
     
-            if (changeTracker == null)
+            if (previousValue != null && previousValue.Appearances.Contains(this))
             {
-                throw new ArgumentNullException("changeTracker");
+                previousValue.Appearances.Remove(this);
             }
-            changeTracker.RecordOriginalValue(String.Format(CultureInfo.InvariantCulture, "{0}.Party1Appear", parentPropertyName), complexObject == null ? null : (object)complexObject.Party1Appear);
-            changeTracker.RecordOriginalValue(String.Format(CultureInfo.InvariantCulture, "{0}.Party1Sworn", parentPropertyName), complexObject == null ? null : (object)complexObject.Party1Sworn);
-            changeTracker.RecordOriginalValue(String.Format(CultureInfo.InvariantCulture, "{0}.Party1AttorneyPresent", parentPropertyName), complexObject == null ? null : (object)complexObject.Party1AttorneyPresent);
-            changeTracker.RecordOriginalValue(String.Format(CultureInfo.InvariantCulture, "{0}.Party1Atty", parentPropertyName), complexObject == null ? null : (object)complexObject.Party1Atty);
-            changeTracker.RecordOriginalValue(String.Format(CultureInfo.InvariantCulture, "{0}.Party2Appear", parentPropertyName), complexObject == null ? null : (object)complexObject.Party2Appear);
-            changeTracker.RecordOriginalValue(String.Format(CultureInfo.InvariantCulture, "{0}.Party2AttorneyPresent", parentPropertyName), complexObject == null ? null : (object)complexObject.Party2AttorneyPresent);
-            changeTracker.RecordOriginalValue(String.Format(CultureInfo.InvariantCulture, "{0}.Party2Atty", parentPropertyName), complexObject == null ? null : (object)complexObject.Party2Atty);
-            changeTracker.RecordOriginalValue(String.Format(CultureInfo.InvariantCulture, "{0}.Party2Sworn", parentPropertyName), complexObject == null ? null : (object)complexObject.Party2Sworn);
+    
+            if (Hearings != null)
+            {
+                Hearings.Appearances.Add(this);
+    
+                HearingId = Hearings.Id;
+            }
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("Hearings")
+                    && (ChangeTracker.OriginalValues["Hearings"] == Hearings))
+                {
+                    ChangeTracker.OriginalValues.Remove("Hearings");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("Hearings", previousValue);
+                }
+                if (Hearings != null && !Hearings.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    Hearings.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupPerson(PersonBase previousValue)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.Appearances.Contains(this))
+            {
+                previousValue.Appearances.Remove(this);
+            }
+    
+            if (Person != null)
+            {
+                Person.Appearances.Add(this);
+    
+                PersonId = Person.Id;
+            }
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("Person")
+                    && (ChangeTracker.OriginalValues["Person"] == Person))
+                {
+                    ChangeTracker.OriginalValues.Remove("Person");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("Person", previousValue);
+                }
+                if (Person != null && !Person.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    Person.StartTracking();
+                }
+            }
         }
 
         #endregion

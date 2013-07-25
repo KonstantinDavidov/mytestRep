@@ -21,14 +21,14 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(Attorneys))]
-    [KnownType(typeof(CourtParty))]
-    public partial class CourtPartyAttorneyData: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    [KnownType(typeof(CourtOrders))]
+    [KnownType(typeof(Hearings))]
+    public partial class CourtOrders: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
     		private MakeObjectReactiveHelper _reactiveHelper;
     
-    		public CourtPartyAttorneyData()
+    		public CourtOrders()
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
@@ -51,10 +51,14 @@ namespace Faccts.Model.Entities
     			);
     			Observable.Merge<Object>(
     				this.ObservableForProperty(x => x.Id)
-    				,this.ObservableForProperty(x => x.HasAttorney)
-    				,this.ObservableForProperty(x => x.Attorney_Id)
-    				,this.ObservableForProperty(x => x.Attorney.IsDirty)
-    				,this.ObservableForProperty(x => x.CourtParty.IsDirty)
+    				,this.ObservableForProperty(x => x.OrderType)
+    				,this.ObservableForProperty(x => x.ParentOrderId)
+    				,this.ObservableForProperty(x => x.XMLContent)
+    				,this.ObservableForProperty(x => x.IsSigned)
+    				,this.ObservableForProperty(x => x.ServerFileName)
+    				,this.ObservableForProperty(x => x.HearingId)
+    				,this.ObservableForProperty(x => x.CourtOrders2.IsDirty)
+    				,this.ObservableForProperty(x => x.Hearings.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -158,84 +162,192 @@ namespace Faccts.Model.Entities
         private long _id;
     
         [DataMember]
-        public Nullable<bool> HasAttorney
+        public int OrderType
         {
-            get { return _hasAttorney; }
+            get { return _orderType; }
             set
             {
-                if (_hasAttorney != value)
+                if (_orderType != value)
                 {
-    				OnPropertyChanging("HasAttorney");
-                    _hasAttorney = value;
-                    OnPropertyChanged("HasAttorney");
+    				OnPropertyChanging("OrderType");
+                    _orderType = value;
+                    OnPropertyChanged("OrderType");
                 }
             }
         }
-        private Nullable<bool> _hasAttorney;
+        private int _orderType;
     
         [DataMember]
-        public Nullable<long> Attorney_Id
+        public Nullable<long> ParentOrderId
         {
-            get { return _attorney_Id; }
+            get { return _parentOrderId; }
             set
             {
-                if (_attorney_Id != value)
+                if (_parentOrderId != value)
                 {
-                    ChangeTracker.RecordOriginalValue("Attorney_Id", _attorney_Id);
+                    ChangeTracker.RecordOriginalValue("ParentOrderId", _parentOrderId);
                     if (!IsDeserializing)
                     {
-                        if (Attorney != null && Attorney.Id != value)
+                        if (CourtOrders2 != null && CourtOrders2.Id != value)
                         {
-                            Attorney = null;
+                            CourtOrders2 = null;
                         }
                     }
-    				OnPropertyChanging("Attorney_Id");
-                    _attorney_Id = value;
-                    OnPropertyChanged("Attorney_Id");
+    				OnPropertyChanging("ParentOrderId");
+                    _parentOrderId = value;
+                    OnPropertyChanged("ParentOrderId");
                 }
             }
         }
-        private Nullable<long> _attorney_Id;
+        private Nullable<long> _parentOrderId;
+    
+        [DataMember]
+        public string XMLContent
+        {
+            get { return _xMLContent; }
+            set
+            {
+                if (_xMLContent != value)
+                {
+    				OnPropertyChanging("XMLContent");
+                    _xMLContent = value;
+                    OnPropertyChanged("XMLContent");
+                }
+            }
+        }
+        private string _xMLContent;
+    
+        [DataMember]
+        public bool IsSigned
+        {
+            get { return _isSigned; }
+            set
+            {
+                if (_isSigned != value)
+                {
+    				OnPropertyChanging("IsSigned");
+                    _isSigned = value;
+                    OnPropertyChanged("IsSigned");
+                }
+            }
+        }
+        private bool _isSigned;
+    
+        [DataMember]
+        public string ServerFileName
+        {
+            get { return _serverFileName; }
+            set
+            {
+                if (_serverFileName != value)
+                {
+    				OnPropertyChanging("ServerFileName");
+                    _serverFileName = value;
+                    OnPropertyChanged("ServerFileName");
+                }
+            }
+        }
+        private string _serverFileName;
+    
+        [DataMember]
+        public long HearingId
+        {
+            get { return _hearingId; }
+            set
+            {
+                if (_hearingId != value)
+                {
+                    ChangeTracker.RecordOriginalValue("HearingId", _hearingId);
+                    if (!IsDeserializing)
+                    {
+                        if (Hearings != null && Hearings.Id != value)
+                        {
+                            Hearings = null;
+                        }
+                    }
+    				OnPropertyChanging("HearingId");
+                    _hearingId = value;
+                    OnPropertyChanged("HearingId");
+                }
+            }
+        }
+        private long _hearingId;
 
         #endregion
 
         #region Navigation Properties
     
         [DataMember]
-        public Attorneys Attorney
+        public TrackableCollection<CourtOrders> CourtOrders1
         {
-            get { return _attorney; }
+            get
+            {
+                if (_courtOrders1 == null)
+                {
+                    _courtOrders1 = new TrackableCollection<CourtOrders>();
+                    _courtOrders1.CollectionChanged += FixupCourtOrders1;
+                }
+                return _courtOrders1;
+            }
             set
             {
-                if (!ReferenceEquals(_attorney, value))
+                if (!ReferenceEquals(_courtOrders1, value))
                 {
-                    var previousValue = _attorney;
-    				OnNavigationPropertyChanging("Attorney");
-                    _attorney = value;
-                    FixupAttorney(previousValue);
-                    OnNavigationPropertyChanged("Attorney");
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("CourtOrders1");
+                    if (_courtOrders1 != null)
+                    {
+                        _courtOrders1.CollectionChanged -= FixupCourtOrders1;
+                    }
+                    _courtOrders1 = value;
+                    if (_courtOrders1 != null)
+                    {
+                        _courtOrders1.CollectionChanged += FixupCourtOrders1;
+                    }
+                    OnNavigationPropertyChanged("CourtOrders1");
                 }
             }
         }
-        private Attorneys _attorney;
+        private TrackableCollection<CourtOrders> _courtOrders1;
     
         [DataMember]
-        public CourtParty CourtParty
+        public CourtOrders CourtOrders2
         {
-            get { return _courtParty; }
+            get { return _courtOrders2; }
             set
             {
-                if (!ReferenceEquals(_courtParty, value))
+                if (!ReferenceEquals(_courtOrders2, value))
                 {
-                    var previousValue = _courtParty;
-    				OnNavigationPropertyChanging("CourtParty");
-                    _courtParty = value;
-                    FixupCourtParty(previousValue);
-                    OnNavigationPropertyChanged("CourtParty");
+                    var previousValue = _courtOrders2;
+    				OnNavigationPropertyChanging("CourtOrders2");
+                    _courtOrders2 = value;
+                    FixupCourtOrders2(previousValue);
+                    OnNavigationPropertyChanged("CourtOrders2");
                 }
             }
         }
-        private CourtParty _courtParty;
+        private CourtOrders _courtOrders2;
+    
+        [DataMember]
+        public Hearings Hearings
+        {
+            get { return _hearings; }
+            set
+            {
+                if (!ReferenceEquals(_hearings, value))
+                {
+                    var previousValue = _hearings;
+    				OnNavigationPropertyChanging("Hearings");
+                    _hearings = value;
+                    FixupHearings(previousValue);
+                    OnNavigationPropertyChanged("Hearings");
+                }
+            }
+        }
+        private Hearings _hearings;
 
         #endregion
 
@@ -332,88 +444,139 @@ namespace Faccts.Model.Entities
             ChangeTracker.ChangeTrackingEnabled = true;
         }
     
+        // This entity type is the dependent end in at least one association that performs cascade deletes.
+        // This event handler will process notifications that occur when the principal end is deleted.
+        internal void HandleCascadeDelete(object sender, ObjectStateChangingEventArgs e)
+        {
+            if (e.NewState == ObjectState.Deleted)
+            {
+                this.MarkAsDeleted();
+            }
+        }
+    
         protected virtual void ClearNavigationProperties()
         {
-            Attorney = null;
-            CourtParty = null;
+            CourtOrders1.Clear();
+            CourtOrders2 = null;
+            Hearings = null;
         }
 
         #endregion
 
         #region Association Fixup
     
-        private void FixupAttorney(Attorneys previousValue, bool skipKeys = false)
+        private void FixupCourtOrders2(CourtOrders previousValue, bool skipKeys = false)
         {
             if (IsDeserializing)
             {
                 return;
             }
     
-            if (previousValue != null && previousValue.CourtPartyAttorneyData.Contains(this))
+            if (previousValue != null && previousValue.CourtOrders1.Contains(this))
             {
-                previousValue.CourtPartyAttorneyData.Remove(this);
+                previousValue.CourtOrders1.Remove(this);
             }
     
-            if (Attorney != null)
+            if (CourtOrders2 != null)
             {
-                Attorney.CourtPartyAttorneyData.Add(this);
+                CourtOrders2.CourtOrders1.Add(this);
     
-                Attorney_Id = Attorney.Id;
+                ParentOrderId = CourtOrders2.Id;
             }
             else if (!skipKeys)
             {
-                Attorney_Id = null;
+                ParentOrderId = null;
             }
     
             if (ChangeTracker.ChangeTrackingEnabled)
             {
-                if (ChangeTracker.OriginalValues.ContainsKey("Attorney")
-                    && (ChangeTracker.OriginalValues["Attorney"] == Attorney))
+                if (ChangeTracker.OriginalValues.ContainsKey("CourtOrders2")
+                    && (ChangeTracker.OriginalValues["CourtOrders2"] == CourtOrders2))
                 {
-                    ChangeTracker.OriginalValues.Remove("Attorney");
+                    ChangeTracker.OriginalValues.Remove("CourtOrders2");
                 }
                 else
                 {
-                    ChangeTracker.RecordOriginalValue("Attorney", previousValue);
+                    ChangeTracker.RecordOriginalValue("CourtOrders2", previousValue);
                 }
-                if (Attorney != null && !Attorney.ChangeTracker.ChangeTrackingEnabled)
+                if (CourtOrders2 != null && !CourtOrders2.ChangeTracker.ChangeTrackingEnabled)
                 {
-                    Attorney.StartTracking();
+                    CourtOrders2.StartTracking();
                 }
             }
         }
     
-        private void FixupCourtParty(CourtParty previousValue)
+        private void FixupHearings(Hearings previousValue)
         {
             if (IsDeserializing)
             {
                 return;
             }
     
-            if (previousValue != null && ReferenceEquals(previousValue.AttorneyData, this))
+            if (previousValue != null && previousValue.CourtOrders.Contains(this))
             {
-                previousValue.AttorneyData = null;
+                previousValue.CourtOrders.Remove(this);
             }
     
-            if (CourtParty != null)
+            if (Hearings != null)
             {
-                CourtParty.AttorneyData = this;
-            }
+                Hearings.CourtOrders.Add(this);
     
+                HearingId = Hearings.Id;
+            }
             if (ChangeTracker.ChangeTrackingEnabled)
             {
-                if (ChangeTracker.OriginalValues.ContainsKey("CourtParty")
-                    && (ChangeTracker.OriginalValues["CourtParty"] == CourtParty))
+                if (ChangeTracker.OriginalValues.ContainsKey("Hearings")
+                    && (ChangeTracker.OriginalValues["Hearings"] == Hearings))
                 {
-                    ChangeTracker.OriginalValues.Remove("CourtParty");
+                    ChangeTracker.OriginalValues.Remove("Hearings");
                 }
                 else
                 {
-                    ChangeTracker.RecordOriginalValue("CourtParty", previousValue);
+                    ChangeTracker.RecordOriginalValue("Hearings", previousValue);
                 }
-                if (CourtParty != null && !CourtParty.ChangeTracker.ChangeTrackingEnabled)
+                if (Hearings != null && !Hearings.ChangeTracker.ChangeTrackingEnabled)
                 {
-                    CourtParty.StartTracking();
+                    Hearings.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupCourtOrders1(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (CourtOrders item in e.NewItems)
+                {
+                    item.CourtOrders2 = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("CourtOrders1", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (CourtOrders item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.CourtOrders2, this))
+                    {
+                        item.CourtOrders2 = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtOrders1", item);
+                    }
                 }
             }
         }

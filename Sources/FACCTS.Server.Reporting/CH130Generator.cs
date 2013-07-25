@@ -47,13 +47,13 @@ namespace FACCTS.Server.Reporting
 
             //Protected party
             CourtParty protectedParty = isParty1Protected ? courtCase.Party1 : courtCase.Party2;
-            CourtPartyAttorneyData protectedPartyAttoney = isParty1Protected ? courtCase.Party1.AttorneyData : courtCase.Party2.AttorneyData;
-            bool isProtectedHasAttorney = protectedPartyAttoney != null && protectedPartyAttoney.HasAttorney.HasValue && protectedPartyAttoney.HasAttorney.Value && (protectedPartyAttoney.Attorney != null);
+            Attorney protectedPartyAttoney = isParty1Protected ? courtCase.Party1.Attorney : courtCase.Party2.Attorney;
+            bool isProtectedHasAttorney = !protectedParty.IsProPer && (protectedParty.Attorney != null);
 
             //Restrained party
             CourtParty restrainedParty = isParty1Protected ? courtCase.Party2 : courtCase.Party1;
-            CourtPartyAttorneyData restrainedPartyAttoney = isParty1Protected ? courtCase.Party2.AttorneyData : courtCase.Party1.AttorneyData;
-            bool isRestrainedHasAttorney = restrainedPartyAttoney != null && restrainedPartyAttoney.HasAttorney.HasValue && restrainedPartyAttoney.HasAttorney.Value && (restrainedPartyAttoney.Attorney != null);
+            Attorney restrainedPartyAttoney = isParty1Protected ? courtCase.Party2.Attorney : courtCase.Party1.Attorney;
+            bool isRestrainedHasAttorney = !restrainedParty.IsProPer && (restrainedParty.Attorney != null);
 
             Utils.SetPdfField(form, mapper, "caseNumber", courtCase.CaseNumber);
             Utils.SetPdfField(form, mapper, "courtName", "TODO"); 
@@ -61,17 +61,17 @@ namespace FACCTS.Server.Reporting
             //protected
             Utils.SetPdfField(form, mapper, "protectedName", protectedParty.FullName);
 
-            Utils.SetPdfField(form, mapper, "protectedAttorneyName", isProtectedHasAttorney ? protectedPartyAttoney.Attorney.FullName : null);
-            Utils.SetPdfField(form, mapper, "protectedAttorneyFirm", isProtectedHasAttorney ? protectedPartyAttoney.Attorney.FirmName : null);
-            Utils.SetPdfField(form, mapper, "protectedAttorneyBarID",isProtectedHasAttorney ? protectedPartyAttoney.Attorney.StateBarId : null);
+            Utils.SetPdfField(form, mapper, "protectedAttorneyName", isProtectedHasAttorney ? protectedParty.Attorney.FullName : null);
+            Utils.SetPdfField(form, mapper, "protectedAttorneyFirm", isProtectedHasAttorney ? protectedParty.Attorney.FirmName : null);
+            Utils.SetPdfField(form, mapper, "protectedAttorneyBarID",isProtectedHasAttorney ? protectedParty.Attorney.StateBarId : null);
 
-            Utils.SetPdfField(form, mapper, "protectedAddressStreet", isProtectedHasAttorney ? protectedPartyAttoney.Attorney.AddressInfo.StreetAddress : protectedParty.AddressInfo.StreetAddress);
-            Utils.SetPdfField(form, mapper, "protectedAddressCity", isProtectedHasAttorney ? protectedPartyAttoney.Attorney.AddressInfo.City : protectedParty.AddressInfo.City);
-            Utils.SetPdfField(form, mapper, "protectedAddressState", isProtectedHasAttorney ? protectedPartyAttoney.Attorney.AddressInfo.USAState.ToString() : protectedParty.AddressInfo.USAState.ToString());
-            Utils.SetPdfField(form, mapper, "protectedAddressPostal", isProtectedHasAttorney ? protectedPartyAttoney.Attorney.AddressInfo.ZipCode : protectedParty.AddressInfo.ZipCode);
-            Utils.SetPdfField(form, mapper, "protectedPhone", isProtectedHasAttorney ? protectedPartyAttoney.Attorney.AddressInfo.Phone : protectedParty.AddressInfo.Phone);
-            Utils.SetPdfField(form, mapper, "protectedFax", isProtectedHasAttorney ? protectedPartyAttoney.Attorney.AddressInfo.Fax : protectedParty.AddressInfo.Fax);
-            Utils.SetPdfField(form, mapper, "protectedEmail", isProtectedHasAttorney ? protectedPartyAttoney.Attorney.Email : protectedParty.Email);
+            Utils.SetPdfField(form, mapper, "protectedAddressStreet", isProtectedHasAttorney ? protectedParty.Attorney.AddressInfo.StreetAddress : protectedParty.AddressInfo.StreetAddress);
+            Utils.SetPdfField(form, mapper, "protectedAddressCity", isProtectedHasAttorney ? protectedParty.Attorney.AddressInfo.City : protectedParty.AddressInfo.City);
+            Utils.SetPdfField(form, mapper, "protectedAddressState", isProtectedHasAttorney ? protectedParty.Attorney.AddressInfo.USAState.ToString() : protectedParty.AddressInfo.USAState.ToString());
+            Utils.SetPdfField(form, mapper, "protectedAddressPostal", isProtectedHasAttorney ? protectedParty.Attorney.AddressInfo.ZipCode : protectedParty.AddressInfo.ZipCode);
+            Utils.SetPdfField(form, mapper, "protectedPhone", isProtectedHasAttorney ? protectedParty.Attorney.AddressInfo.Phone : protectedParty.AddressInfo.Phone);
+            Utils.SetPdfField(form, mapper, "protectedFax", isProtectedHasAttorney ? protectedParty.Attorney.AddressInfo.Fax : protectedParty.AddressInfo.Fax);
+            Utils.SetPdfField(form, mapper, "protectedEmail", isProtectedHasAttorney ? protectedParty.Attorney.Email : protectedParty.Email);
 
             //restrained person
             Utils.SetPdfField(form, mapper, "restrainedName", restrainedParty.FullName);
@@ -139,20 +139,24 @@ namespace FACCTS.Server.Reporting
             }
 
             //Hearing
-            bool isProtectedAppear = isParty1Protected ? caseHearing.Appearance.Party1Appear : caseHearing.Appearance.Party2Appear;
-            bool isRestrainedAppear = isParty1Protected ? caseHearing.Appearance.Party2Appear : caseHearing.Appearance.Party1Appear;
-            bool isProtectedAttotneyAppear = isParty1Protected ? caseHearing.Appearance.Party1AttorneyPresent : caseHearing.Appearance.Party2Appear;
-            bool isRestrainedAttotneyAppear = isParty1Protected ? caseHearing.Appearance.Party2AttorneyPresent : caseHearing.Appearance.Party1AttorneyPresent;
+            //bool isProtectedAppear = isParty1Protected ? caseHearing.Appearance.Party1Appear : caseHearing.Appearance.Party2Appear;
+            //bool isRestrainedAppear = isParty1Protected ? caseHearing.Appearance.Party2Appear : caseHearing.Appearance.Party1Appear;
+            //bool isProtectedAttotneyAppear = isParty1Protected ? caseHearing.Appearance.Party1AttorneyPresent : caseHearing.Appearance.Party2Appear;
+            //bool isRestrainedAttotneyAppear = isParty1Protected ? caseHearing.Appearance.Party2AttorneyPresent : caseHearing.Appearance.Party1AttorneyPresent;
+            bool isProtectedAppear = false;
+            bool isRestrainedAppear = false;
+            bool isProtectedAttotneyAppear = false;
+            bool isRestrainedAttotneyAppear = false;
 
             Utils.SetPdfField(form, mapper, "p1AttendYes", isProtectedAppear);
             Utils.SetPdfField(form, mapper, "p1AttorneyAttendYes", isProtectedAttotneyAppear);
             Utils.SetPdfField(form, mapper, "p1AttorneyName", 
-                isProtectedHasAttorney && isProtectedAttotneyAppear ? protectedPartyAttoney.Attorney.FullName : null);
+                isProtectedHasAttorney && isProtectedAttotneyAppear ? protectedParty.Attorney.FullName : null);
 
             Utils.SetPdfField(form, mapper, "p2AttendYes", isRestrainedAppear);
             Utils.SetPdfField(form, mapper, "p2AttorneyAttendYes", isRestrainedAttotneyAppear);
             Utils.SetPdfField(form, mapper, "p2AttorneyName", 
-                isRestrainedHasAttorney && isRestrainedAttotneyAppear ? restrainedPartyAttoney.Attorney.FullName : null);
+                isRestrainedHasAttorney && isRestrainedAttotneyAppear ? restrainedParty.Attorney.FullName : null);
 
             Utils.SetPdfField(form, mapper, "addPartiesAttend", "TODO");
 

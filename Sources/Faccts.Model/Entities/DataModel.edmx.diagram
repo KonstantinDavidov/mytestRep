@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="79dc3391d7254955a090adf5a102fd7f" Name="Diagram1" ZoomLevel="81">
+      <Diagram DiagramId="79dc3391d7254955a090adf5a102fd7f" Name="Diagram1" ZoomLevel="70">
         <EntityTypeShape EntityType="FACCTS_DBModel.AdfsIntegrationConfiguration" Width="1.5" PointX="12.125" PointY="0.5" />
         <EntityTypeShape EntityType="FACCTS_DBModel.Attorneys" Width="1.5" PointX="11.25" PointY="15.375" />
         <EntityTypeShape EntityType="FACCTS_DBModel.CaseHistory" Width="1.5" PointX="0.625" PointY="9" />
@@ -41,7 +41,6 @@
         <EntityTypeShape EntityType="FACCTS_DBModel.User" Width="1.5" PointX="3.25" PointY="15.875" />
         <EntityTypeShape EntityType="FACCTS_DBModel.WSFederationConfiguration" Width="1.5" PointX="13.75" PointY="3" />
         <EntityTypeShape EntityType="FACCTS_DBModel.WSTrustConfiguration" Width="1.5" PointX="12.125" PointY="4" />
-        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId" ManuallyRouted="false" >
         </AssociationConnector>
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_User_CourtClerk_UserId" />
@@ -61,7 +60,7 @@
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtCase_ParentCase_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtOrder_Id" ManuallyRouted="false" >
         </AssociationConnector>
-        <EntityTypeShape EntityType="FACCTS_DBModel.CourtDocketRecord" Width="1.5" PointX="3.125" PointY="10.125" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CourtDocketRecord" Width="1.5" PointX="3.25" PointY="11.125" />
         <EntityTypeShape EntityType="FACCTS_DBModel.ThirdPartyData" Width="1.5" PointX="11.375" PointY="20.5" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_ThirdPartyData_dbo_Attorneys_Attorney_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_User_CourtClerk_Id" />
@@ -77,8 +76,6 @@
         <AssociationConnector Association="FACCTS_DBModel.CourtPartyEyesColor" />
         <AssociationConnector Association="FACCTS_DBModel.CourtPartyCourtCase" />
         <AssociationConnector Association="FACCTS_DBModel.CourtPartyCourtCase1" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.CourtPartyAttorneyData" Width="1.5" PointX="5.6403679035791976" PointY="4.311595903854629" />
-        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtPartyAttorneyData_dbo_Attorneys_Attorney_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtParty_Party1_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtParty_Party2_Id" />
         <EntityTypeShape EntityType="FACCTS_DBModel.PersonBase" Width="1.5" PointX="6.5" PointY="23.125" />
@@ -89,21 +86,27 @@
         <InheritanceConnector EntityType="FACCTS_DBModel.OtherProtected" />
         <EntityTypeShape EntityType="FACCTS_DBModel.Interpreter" Width="1.5" PointX="7" PointY="26.5" />
         <InheritanceConnector EntityType="FACCTS_DBModel.Interpreter" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.AttachmentOrder" Width="1.5" PointX="21.5" PointY="9.125" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.MasterOrder" Width="1.5" PointX="19" PointY="9.125" />
-        <AssociationConnector Association="FACCTS_DBModel.MasterOrderAttachmentOrder" />
-        <AssociationConnector Association="FACCTS_DBModel.CaseHistoryMasterOrder" />
         <AssociationConnector Association="FACCTS_DBModel.CourtCaseCourtDocketRecord" />
         <AssociationConnector Association="FACCTS_DBModel.CourtDocketRecordHearings" />
-        <AssociationConnector Association="FACCTS_DBModel.CourtPartyCourtPartyAttorneyData" />
         <AssociationConnector Association="FACCTS_DBModel.CourtCaseThirdPartyData" />
         <AssociationConnector Association="FACCTS_DBModel.CourtCaseAttorneys" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id1" />
-        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_ThirdPartyData_ThirdPartyData_Id" />
         <InheritanceConnector EntityType="FACCTS_DBModel.Child" />
         <InheritanceConnector EntityType="FACCTS_DBModel.OtherProtected" />
         <InheritanceConnector EntityType="FACCTS_DBModel.Interpreter" />
         <InheritanceConnector EntityType="FACCTS_DBModel.Attorneys" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.Appearance" Width="1.5" PointX="9.25" PointY="68.125" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CourtOrders" Width="1.5" PointX="2.51297570882038" PointY="5.193557562862317" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_Appearances_dbo_Hearings_HearingId" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_Hearings_HearingId" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CaseHistory_dbo_User_CourtClerkId" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtOrders_dbo_CourtOrders_ParentOrderId" />
+        <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtOrders_dbo_Hearings_HearingId" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.AppearanceWithSworn" Width="1.5" PointX="11.25" PointY="68.875" />
+        <InheritanceConnector EntityType="FACCTS_DBModel.AppearanceWithSworn" />
+        <AssociationConnector Association="FACCTS_DBModel.AppearancesPersonBase" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.PaymentRecord" Width="1.5" PointX="7.375" PointY="5.75" />
+        <AssociationConnector Association="FACCTS_DBModel.CourtPartyAttorneys" />
       </Diagram>
       <Diagram DiagramId="d16b781b547641eeb332d8cb3d0f49f3" Name="CourtOrders" ZoomLevel="80" >
         <EntityTypeShape EntityType="FACCTS_DBModel.ConductROSection" Width="1.5" PointX="6.875" PointY="2" />

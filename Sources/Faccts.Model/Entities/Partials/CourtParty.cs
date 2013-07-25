@@ -16,7 +16,7 @@ namespace Faccts.Model.Entities
     {
         partial void Initialize()
         {
-            this.AttorneyData = new CourtPartyAttorneyData();
+            this.Attorney = new Attorneys();
             this.AddressInfo = new AddressInfo();
             this.WhenAny(x => x.FirstName, x => x.LastName, x => x.MiddleName, (x, y, z) => new { FirstName = x.Value, LastName = y.Value, MiddleName = z.Value })
                 .Subscribe(x =>
@@ -107,7 +107,7 @@ namespace Faccts.Model.Entities
                     DateOfBirth = this.DateOfBirth,
                     Age = this.Age,
                     State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
-                    AttorneyData = this.AttorneyData.ToDTO(),
+                    Attorney = this.Attorney.ToDTO(),
 
                 };
             return dto;
