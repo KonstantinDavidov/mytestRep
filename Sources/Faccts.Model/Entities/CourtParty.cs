@@ -73,6 +73,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.Email)
     				,this.ObservableForProperty(x => x.RelationToOtherParty)
     				,this.ObservableForProperty(x => x.Designation)
+    				,this.ObservableForProperty(x => x.IsProPer)
     				,this.ObservableForProperty(x => x.HairColor.IsDirty)
     				,this.ObservableForProperty(x => x.Race.IsDirty)
     				,this.ObservableForProperty(x => x.EyesColor.IsDirty)
@@ -506,6 +507,22 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<FACCTS.Server.Model.Enums.Designation> _designation;
+    
+        [DataMember]
+        public bool IsProPer
+        {
+            get { return _isProPer; }
+            set
+            {
+                if (_isProPer != value)
+                {
+    				OnPropertyChanging("IsProPer");
+                    _isProPer = value;
+                    OnPropertyChanged("IsProPer");
+                }
+            }
+        }
+        private bool _isProPer;
 
         #endregion
 

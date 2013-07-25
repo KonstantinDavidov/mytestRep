@@ -88,17 +88,15 @@
     <Property name="IsOtherOrdersAttached" type="bool"/>
     <Property name="OtherOrderDetail" type="string"/>
   </Model>
-  
-  <!--DV130-->
-  <Model name="DV130ConductChoice">
-    <Property name="IsEnabled" type="bool"/>
+  <!-- DV-->
+  <Model name="DVConductChoice">
     <Property name="IsNoAbuse" type="bool"/>
     <Property name="IsNoContact" type="bool"/>
     <Property name="IsDontTryToLocate" type="bool"/>
     <Property name="IsExceptionsExist" type="bool"/>
   </Model>
-  
-  <Model name="DV130StayAwayOrders">
+
+  <Model name="DVStayAwayOrders">
     <Property name="IsStayAwayFromPerson" type="bool"/>
     <Property name="IsStayAwayFromHome" type="bool"/>
     <Property name="IsStayAwayFromVehicle" type="bool"/>
@@ -111,41 +109,60 @@
     <Property name="OtherDescription" type="string"/>
     <Property name="StayAwayDistance" type="int"/>
   </Model>
-  <Model name="DV130Moveout">
-    <Property name="IsEnabled" type="bool"/>
-    <Property name="MoveoutAddress" type="string"/>
-  </Model>
-  <Model name="DV130Animals">
-    <Property name="IsEnabled" type="bool"/>
+  <Model name="DVAnimals">
     <Property name="StayAwayAnimalsDistance" type="int"/>
     <Property name="AnimalsDescription" type="string"/>
   </Model>
-  <Model name="DV130DebtPayment">
-    <Property name="IsEnabled" type="bool" />
-    <Property name="DebtPaymentItems" type="List" collectionType="DebtPaymentItem"/>
-  </Model>
-  <Model name="DV130PropertyControl">
-    <Property name="IsEnabled" type="bool" />
-    <Property name="PropertyControl" type="List" collectionType="DataItem"/>
-  </Model>
-  <Model name="DV130PropertyRestraint">
+  <Model name="DVPropertyRestraint">
     <Property name="IsProtectedHasPropertyRestraint" type="bool"/>
     <Property name="IsRestrainedHasPropertyRestraint" type="bool"/>
   </Model>
+  <!-- DV110-->
+  <Model name="DV110">
+    <Property name="ConductChoiceState" type="OrderRestrictionState"/>
+    <Property name="ConductChoice" type="DVConductChoice"/>
+    <Property name="StayAwayOrdersState" type="OrderRestrictionState"/>
+    <Property name="StayAwayOrders" type="DVStayAwayOrders"/>
+    <Property name="MoveoutState" type="OrderRestrictionState"/>
+    <Property name="MoveoutAddress" type="string"/>
+    <Property name="RecordUnlawfulCommunicationsAllowedState" type="OrderRestrictionState"/>
+    <Property name="AnimalsSectionState" type="OrderRestrictionState"/>
+    <Property name="AnimalsSection" type="DVAnimals"/>
+    <Property name="IsNoGuns" type="bool"/>
+    <Property name="OtherOrdersState" type="OrderRestrictionState"/>
+    <Property name="OtherOrdersDescription" type="string"/>
+    <Property name="IsOterordersAttached" type="bool" />
+    <Property name="PropertyControlState" type="OrderRestrictionState" />
+    <Property name="PropertyControlItems" type="List" collectionType="DataItem"/>
+    <Property name="IsDebtPaymentState" type="bool"/>
+    <Property name="DebtPaymentItems" type="List" collectionType="DebtPaymentItem"/>
+    <Property name="DVPropertyRestraintState" type="OrderRestrictionState"/>
+    <Property name="PropertyRestraint" type="DVPropertyRestraint"/>
+    <Property name="ChildCustodyAndVisitationState" type="OrderRestrictionState" />
+  </Model>
+  <!--DV130-->
   <Model name="DV130">
-    <Property name="DV130ConductChoiceSection" type="DV130ConductChoice"/>
-    <Property name="DV130StayAwayOrdersSection" type="DV130StayAwayOrders"/>
+    <Property name="IsConductChoiceEnabled" type="bool"/>
+    <Property name="ConductChoice" type="DVConductChoice"/>
+    <Property name="IsStayAwayOrdersEnabled" type="bool"/>
+    <Property name="StayAwayOrders" type="DVStayAwayOrders"/>
     <Property name="IsPOSProvidedToCourt" type="bool"/>
-    <Property name="DV130MoveoutSection" type="DV130Moveout"/>
+    <Property name="IsMoveoutEnabled" type="bool"/>
+    <Property name="MoveoutAddress" type="string"/>
     <Property name="IsRecordUnlawfulCommunicationsAllowed" type="bool"/>
-    <Property name="DV130AnimalsSection" type="DV130Animals"/>
-    <Property name="DV130OtherOrdersSection" type="OtherOrders"/>
+    <Property name="IsAnimalsEnabled" type="bool"/>
+    <Property name="Animals" type="DVAnimals"/>
+    <Property name="OtherOrders" type="OtherOrders"/>
     <Property name="IsBattererIntervention" type="bool"/>
     <Property name="IsNoGuns" type="bool"/>
-    <Property name="DV130PropertyControlSection" type="DV130PropertyControl"/>
-    <Property name="DV130DebtPaymentSection" type="DV130DebtPayment"/>
-    <Property name="DV130PropertyRestraintSection" type="DV130PropertyRestraint"/>
+    <Property name="IsPropertyControlEnabled" type="bool"/>
+    <Property name="PropertyControlItems" type="List" collectionType="DataItem"/>
+    <Property name="IsDebtPaymentEnabled" type="bool"/>
+    <Property name="DebtPaymentItems" type="List" collectionType="DebtPaymentItem"/>
+    <Property name="IsPropertyRestraintEnabled" type="bool"/>
+    <Property name="PropertyRestraint" type="DVPropertyRestraint"/>
     <Property name="Costs" type="List" collectionType="PaymentItem" />
+    <Property name="IsChildCustodyAndVisitationEnabled" type="bool" />
   </Model>
   <!--DV140-->
   <Model name="IsNoVisitationForParents">
