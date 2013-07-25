@@ -10,7 +10,7 @@ namespace FACCTS.Server.Model.DataModel
 {
     public class CourtOrder: IEntityWithId, IEntityWithState
     {
-        public virtual CaseHistory ParentHistoryNote { get; set; }
+        public long Id { get; set; }
 
         public CourtOrdersTypes OrderType { get; set; }
 
@@ -26,7 +26,9 @@ namespace FACCTS.Server.Model.DataModel
 
         public string ServerFileName { get; set; }
 
-        public long Id { get; set; }
+        public long HearingId { get; set; }
+
+        public virtual Hearing Hearing { get; set; }
 
         public ObjectState State { get; set; }
     }

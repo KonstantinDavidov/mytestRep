@@ -48,6 +48,10 @@ namespace FACCTS.Server.Data
                        m.MapRightKey("Id");
                        m.ToTable("RolePermission");
                    });
+            modelBuilder.Configurations.Add(new CourtCaseConfiguration());
+            modelBuilder.Configurations.Add(new HearingConfiguration());
+            modelBuilder.Configurations.Add(new CourtOrderConfiguration());
+            modelBuilder.Configurations.Add(new CaseHistoryConfiguration());
 
             modelBuilder.Configurations.Add(new PersonBaseConfiguration());
             modelBuilder.Configurations.Add(new ChildConfiguration());
@@ -60,7 +64,6 @@ namespace FACCTS.Server.Data
 
             modelBuilder.Configurations.Add(new ManualIntegrationTaskConfiguration());
             modelBuilder.Configurations.Add(new ScheduledIntegrationTaskConfiguration());
-            modelBuilder.Configurations.Add(new CourtOrderConfiguration());       
 
             base.OnModelCreating(modelBuilder);
         }

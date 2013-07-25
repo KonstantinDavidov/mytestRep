@@ -698,7 +698,7 @@ namespace FACCTS.Server.Data
             //        Sex = testSex
             //    }
             //};
-            testCourtCase.CourtCounty = context.CourtCounties.FirstOrDefault();
+            //testCourtCase.CourtCounty = context.CourtCounties.FirstOrDefault();
 
             testCourtCase.OtherProtected = new List<OtherProtected>(){
                 new OtherProtected(){

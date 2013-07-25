@@ -78,9 +78,12 @@
     <Compile Include="DropCreateFacctsModelChanged.cs" />
     <Compile Include="EntityConfigurations\AddressInfoConfiguration.cs" />
     <Compile Include="EntityConfigurations\AttorneyConfiguration.cs" />
+    <Compile Include="EntityConfigurations\CaseHistoryConfiguration.cs" />
     <Compile Include="EntityConfigurations\ChildConfiguration.cs" />
+    <Compile Include="EntityConfigurations\CourtCaseConfiguration.cs" />
     <Compile Include="EntityConfigurations\CourtPartyConfiguration.cs" />
     <Compile Include="EntityConfigurations\DbConsts.cs" />
+    <Compile Include="EntityConfigurations\HearingConfiguration.cs" />
     <Compile Include="EntityConfigurations\InterpreterConfiguration.cs" />
     <Compile Include="EntityConfigurations\ManualIntegrationTaskConfiguration.cs" />
     <Compile Include="EntityConfigurations\CourtOrderConfiguration.cs" />

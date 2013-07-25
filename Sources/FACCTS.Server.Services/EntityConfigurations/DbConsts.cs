@@ -12,6 +12,34 @@ namespace FACCTS.Server.Data.EntityConfigurations
 
         public const string ID_COLUMN_NAME = "Id";
 
+        public const string COURT_CASES_TABLE_NAME = "CourtCases";
+        public const string COURT_CASE_CASE_NUMBER_COLUMN_NAME = "CaseNumber";
+        public const string COURT_CASE_COURT_CLERK_ID_COLUMN_NAME = "CourtClerkId";
+        public const string COURT_CASE_CCPOR_STATUS_COLUMN_NAME = "CCPORStatus";
+        public const string COURT_CASE_CCPOR_ID_COLUMN_NAME = "CCPORId";
+        public const string COURT_CASE_PARENT_CASE_ID_COLUMN_NAME = "ParentCaseId";
+        public const string COURT_CASE_PARTY1_ID_COLUMN_NAME = "Party1Id";
+        public const string COURT_CASE_PARTY2_ID_COLUMN_NAME = "Party2Id";
+        public const string COURT_CASE_ATTORNEY_FOR_CHILD_ID_COLUMN_NAME = "AttorneyForChildId";
+        public const string COURT_CASE_THIRD_PARTY_DATA_ID_COLUMN_NAME = "ThirdPartyDataId";
+
+        public const string HEARINGS_TABLE_NAME = "Hearings";
+        public const string HEARING_HEARING_DATE_COLUMN_NAME = "HearingDate";
+        public const string HEARING_COURTROOM_ID_COLUMN_NAME = "CourtroomId";
+        public const string HEARING_COURT_DEPARTMENT_ID_COLUMN_NAME = "CourtDepartmentId";
+        public const string HEARING_JUDGE_COLUMN_NAME = "Judge";
+        public const string HEARING_SESSION_COLUMN_NAME = "Session";
+        public const string HEARING_COURT_CASE_ID_COLUMN_NAME = "CourtCaseId";
+
+        public const string CASE_HISTORY_TABLE_NAME = "CaseHistory";
+        public const string CASE_HISTORY_DATE_COLUMN_NAME = "Date";
+        public const string CASE_HISTORY_CASE_HISTORY_EVENT_COLUMN_NAME = "CaseHistoryEvent";
+        public const string CASE_HISTORY_COURT_CLERK_ID_COLUMN_NAME = "CourtClerkId";
+        public const string CASE_HISTORY_CCPOR_ID_COLUMN_NAME = "CCPORId";
+        public const string CASE_HISTORY_COURT_CASE_ID_COLUMN_NAME = "CourtCaseId";
+        public const string CASE_HISTORY_MERGE_CASE_ID_COLUMN_NAME = "MergeCaseId";
+        public const string CASE_HISTORY_HEARING_ID_COLUMN_NAME = "HearingId";
+
         public const string MANUAL_INTEGRATION_TASKS_TABLE_NAME = "ManualIntegrationTasks";
         public const string MANUAL_INTEGRATION_TASK_RECEIVE_TIME_COLUMN_NAME = "ReceiveTime";
         public const string MANUAL_INTEGRATION_TASK_START_TIME_COLUMN_NAME = "StartTime";
@@ -34,6 +62,7 @@ namespace FACCTS.Server.Data.EntityConfigurations
         public const string COURT_ORDER_IS_SIGNED_COLUMN_NAME = "IsSigned";
         public const string COURT_ORDER_SERVER_FILE_NAME_COLUMN_NAME = "ServerFileName";
         public const string COURT_ORDER_PARENT_ORDER_ID_COLUMN_NAME = "ParentOrderId";
+        public const string COURT_ORDER_HEARING_ID_COLUMN_NAME = "HearingId";
 
         public const string PERSONS_TABLE_NAME = "Persons";
         public const string PERSON_DISCRIMINATOR_COLUMN = "PersonType";

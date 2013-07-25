@@ -16,7 +16,6 @@ namespace FACCTS.Server.Data.EntityConfigurations
 
             HasKey(o => o.Id);
 
-            HasRequired(o => o.ParentHistoryNote).WithOptional(h => h.MasterOrder);
             HasMany(o => o.Attachments).WithOptional(a => a.ParentOrder).HasForeignKey(a => a.ParentOrderId);
 
             Property(o => o.Id).HasColumnName(DbConsts.ID_COLUMN_NAME);
@@ -25,6 +24,7 @@ namespace FACCTS.Server.Data.EntityConfigurations
             Property(o => o.IsSigned).HasColumnName(DbConsts.COURT_ORDER_IS_SIGNED_COLUMN_NAME);
             Property(o => o.ServerFileName).HasColumnName(DbConsts.COURT_ORDER_SERVER_FILE_NAME_COLUMN_NAME).HasMaxLength(255);
             Property(o => o.ParentOrderId).HasColumnName(DbConsts.COURT_ORDER_PARENT_ORDER_ID_COLUMN_NAME);
+            Property(o => o.HearingId).HasColumnName(DbConsts.COURT_ORDER_HEARING_ID_COLUMN_NAME);
 
             Ignore(o => o.State);
         }

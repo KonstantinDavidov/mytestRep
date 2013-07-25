@@ -9,12 +9,21 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    [Table("Hearings")]
     public class Hearing : IEntityWithId, IEntityWithState
     {
+        public long Id { get; set; }
+
         public DateTime HearingDate { get; set; }
 
+        public long CourtCaseId { get; set; }
+
+        public virtual CourtCase CourtCase { get; set; }
+
+        public long? CourtroomId { get; set; }
+
         public virtual Courtroom Courtroom { get; set; }
+
+        public long? CourtDepartmentId { get; set; }
 
         public virtual CourtDepartment Department { get; set; }
 
@@ -23,13 +32,12 @@ namespace FACCTS.Server.Model.DataModel
 
         public HearingIssue HearingIssues { get; set; }
 
-        public virtual Appearance Appearance { get; set; }
+        public Appearance Appearance { get; set; }
 
         public DocketSession Session { get; set; }
 
-        public long Id { get; set; }
+        public virtual ICollection<CourtOrder> CourtOrders { get; set; }
 
-        [NotMapped]
         public ObjectState State { get; set; }
     }
 }
