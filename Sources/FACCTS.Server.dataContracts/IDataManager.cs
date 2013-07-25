@@ -13,7 +13,6 @@ namespace FACCTS.Server.DataContracts
         //Dictionaries
         IFacctsDictionaryDataRepository<HairColor> HairColorRepository { get; }
         IFacctsDictionaryDataRepository<EyesColor> EyesColorRepository { get; }
-        IFacctsDictionaryDataRepository<Designation> DesignationRepository { get; }
 
         //Entities
         IFacctsDataRepository<CourtParty> CourtPartyRepository { get; }
@@ -25,6 +24,9 @@ namespace FACCTS.Server.DataContracts
         IFacctsDataRepository<CourtCounty> CourtCountyRepository { get; }
         IFacctsDataRepository<CourtDepartment> CourtDepartmentRepository { get; }
         IFacctsDataRepository<CaseHistory> CaseHistoryRepository { get; }
+
+        IFacctsDataRepository<CourtOrder> CourtOrdersRepository { get; }
+
         IFacctsDictionaryDataRepository<FACCTSConfiguration> FACCTSConfigurationRepository { get; }
         IFacctsDataRepository<Courtroom> CourtroomRepository { get; }
         IFacctsDictionaryDataRepository<Race> RaceRepository { get; }
@@ -32,7 +34,6 @@ namespace FACCTS.Server.DataContracts
 
         IFacctsDataRepository<ManualIntegrationTask> ManualIntegrationTaskRepository { get; }
         IFacctsDataRepository<ScheduledIntegrationTask> ScheduledIntegrationTaskRepository { get; }
-        IFacctsDataRepository<CourtPartyAttorneyData> CourtPartyAttorneyDataRepository { get; }
         IFacctsDataRepository<Attorney> AttorneyRepository { get; }
         IFacctsDataRepository<CaseNote> CaseNoteRepository { get; }
         IFacctsDataRepository<Witness> WitnessRepository { get; }

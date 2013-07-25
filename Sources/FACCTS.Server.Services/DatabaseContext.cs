@@ -48,11 +48,25 @@ namespace FACCTS.Server.Data
                        m.MapRightKey("Id");
                        m.ToTable("RolePermission");
                    });
+            modelBuilder.Configurations.Add(new CourtCaseConfiguration());
+            modelBuilder.Configurations.Add(new HearingConfiguration());
+            modelBuilder.Configurations.Add(new CourtOrderConfiguration());
+            modelBuilder.Configurations.Add(new CaseHistoryConfiguration());
+
+            modelBuilder.Configurations.Add(new PersonBaseConfiguration());
+            modelBuilder.Configurations.Add(new ChildConfiguration());
+            modelBuilder.Configurations.Add(new OtherProtectedConfiguration());
+            modelBuilder.Configurations.Add(new WitnessConfiguration());
+            modelBuilder.Configurations.Add(new InterpreterConfiguration());
+            modelBuilder.Configurations.Add(new AttorneyConfiguration());
+            modelBuilder.Configurations.Add(new AddressInfoConfiguration());
+            modelBuilder.Configurations.Add(new CourtPartyConfiguration());
+
+            modelBuilder.Configurations.Add(new AppearanceConfiguration());
+            modelBuilder.Configurations.Add(new AppearanceWithSwornConfiguration());
 
             modelBuilder.Configurations.Add(new ManualIntegrationTaskConfiguration());
             modelBuilder.Configurations.Add(new ScheduledIntegrationTaskConfiguration());
-            modelBuilder.Configurations.Add(new MasterOrderConfiguration());
-            modelBuilder.Configurations.Add(new AttachmentOrderConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
@@ -68,7 +82,6 @@ namespace FACCTS.Server.Data
 
         #region Dictionary tables
         
-        public DbSet<Designation> Designations { get; set; }
         public DbSet<EyesColor> EyesColor { get; set; }
         public DbSet<HairColor> HairColor { get; set; }
         public DbSet<Race> Races { get; set; }
@@ -121,9 +134,7 @@ namespace FACCTS.Server.Data
         public DbSet<FACCTSConfiguration> FACCTSConfiguration { get; set; }
         public DbSet<ManualIntegrationTask> ManualIntegrationTasks { get; set; }
         public DbSet<ScheduledIntegrationTask> ScheduledIntegrationTasks { get; set; }
-        public DbSet<MasterOrder> MasterOrders { get; set; }
-        public DbSet<AttachmentOrder> AttachmentOrders { get; set; }
-        public DbSet<CourtPartyAttorneyData> CourtPartyAttorneyData { get; set; }
+        public DbSet<CourtOrder> CourtOrders { get; set; }
         public DbSet<ThirdPartyData> ThirdPartyData { get; set; }
         #endregion
 

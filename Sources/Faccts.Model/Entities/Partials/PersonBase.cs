@@ -8,7 +8,7 @@ using Faccts.Model.Entities.Validation;
 
 namespace Faccts.Model.Entities
 {
-    public partial class AdditionalParty : IDataTransferConvertible<FACCTS.Server.Model.DataModel.Witness>, IValidatableObject
+    public partial class PersonBase : IDataTransferConvertible<FACCTS.Server.Model.DataModel.Witness>, IValidatableObject
     {
         partial void Initialize()
         {

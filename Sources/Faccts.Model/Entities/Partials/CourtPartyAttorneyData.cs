@@ -21,7 +21,7 @@ namespace Faccts.Model.Entities
             return new FACCTS.Server.Model.DataModel.CourtPartyAttorneyData()
             {
                 Id = this.Id,
-                Attorney = this.Attorney.ConvertToDTO(),
+                Attorney = this.Attorney.ConvertToDTO<FACCTS.Server.Model.DataModel.Attorney>(),
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
             };
         }

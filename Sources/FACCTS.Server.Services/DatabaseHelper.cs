@@ -505,7 +505,7 @@ namespace FACCTS.Server.Data
         private static void SeedFacctsDefaultData(DatabaseContext context)
         {
             SeedFacctsConfiguration(context);
-            SeedDesignations(context);
+            //SeedDesignations(context);
             SeedEyeColors(context);
             SeedHairColor(context);
             SeedRace(context);
@@ -597,16 +597,6 @@ namespace FACCTS.Server.Data
                 });
         }
 
-        private static void SeedDesignations(DatabaseContext context)
-        {
-            GetRecords<Designation>("Designation.csv")
-                .Aggregate(context.Designations, (dbset, record) =>
-                {
-                    dbset.Add(record);
-                    return dbset;
-                });
-        }
-
         private static void SeedPermissions(DatabaseContext context)
         {
             GetRecords<Permission>("Permissions.csv")
@@ -674,24 +664,27 @@ namespace FACCTS.Server.Data
             CourtCase testCourtCase = new CourtCase();
 
             Gender testSex = Gender.F;
-            Designation testDesignation = context.Designations.FirstOrDefault();
+            Designation testDesignation = Designation.None;
             EyesColor testEyesColor = context.EyesColor.FirstOrDefault();
             HairColor testHairColor = context.HairColor.FirstOrDefault();
             Race testRace = context.Races.FirstOrDefault();
 
-            Attorney testAttorney =  new Attorney()
+            Attorney testAttorney = new Attorney()
             {
-                City = "Saratov",
+                AddressInfo = new AddressInfo
+                {
+                    City = "Saratov",
+                    Fax = "12345",
+                    Phone = "89043434123",
+                    USAState = USAState.CA,
+                    StreetAddress = "MainStreet",
+                    ZipCode = "12345"
+                },
                 Email = "test@test.test",
-                Fax = "12345",
                 FirmName = "WornerBrothers",
                 FirstName = "Grigory",
                 LastName = "Rusputin",
-                Phone = "89043434123",
-                USAState = USAState.CA,
-                StateBarId = "Bar",
-                StreetAddress = "MainStreet",
-                ZipCode = "12345"
+                StateBarId = "Bar"
             };
             //testCaseRecord.AttorneyForChild = testAttorney;
             //testCaseRecord.Children = new List<Child>()
@@ -705,7 +698,7 @@ namespace FACCTS.Server.Data
             //        Sex = testSex
             //    }
             //};
-            testCourtCase.CourtCounty = context.CourtCounties.FirstOrDefault();
+            //testCourtCase.CourtCounty = context.CourtCounties.FirstOrDefault();
 
             testCourtCase.OtherProtected = new List<OtherProtected>(){
                 new OtherProtected(){
@@ -739,15 +732,21 @@ namespace FACCTS.Server.Data
 
             testCourtCase.Party1 = new CourtParty()
             {
-                Address = "Some address1",
+                AddressInfo = new AddressInfo
+                {
+                    StreetAddress = "Some address1",
+                    City = "NY",
+                    Fax = "12345",
+                    Phone = "12345",
+                    USAState = USAState.NJ,
+                    ZipCode = "410001",
+                },
                 Age = 45,
-                //Attorney = testAttorney,
-                City = "NY",
+                //Attorney = testAttorney,                
                 DateOfBirth = DateTime.Now,
                 Description = "Some description",
                 Designation = testDesignation,
                 EyesColor = testEyesColor,
-                Fax = "12345",
                 FirstName = "Sarah",
                 HairColor = testHairColor,
                 //HasAttorney = true,
@@ -756,25 +755,28 @@ namespace FACCTS.Server.Data
                 LastName = "Connor",
                 MiddleName = "J",
                 ParticipantRole = ParticipantRole.PPSC,
-                Phone = "12345",
                 Race = testRace,
                 Sex = testSex,
-                USAState = USAState.NJ,
                 Weight = 56,
-                ZipCode = "410001",
                 RelationToOtherParty = "Wife"
             };
             testCourtCase.Party2 = new CourtParty()
             {
-                Address = "Some address2",
+                AddressInfo = new AddressInfo
+                {
+                    StreetAddress = "Some address2",
+                    City = "NY",
+                    Fax = "12345",
+                    Phone = "12345",
+                    USAState = USAState.NJ,
+                    ZipCode = "410001",
+                },
                 Age = 15,
                 //Attorney = testAttorney,
-                City = "NY",
                 DateOfBirth = DateTime.Now,
                 Description = "Some description",
                 Designation = testDesignation,
                 EyesColor = testEyesColor,
-                Fax = "12345",
                 FirstName = "John",
                 HairColor = testHairColor,
                 //HasAttorney = true,
@@ -783,12 +785,9 @@ namespace FACCTS.Server.Data
                 LastName = "Connor",
                 MiddleName = "J",
                 ParticipantRole = ParticipantRole.RESPER,
-                Phone = "12345",
                 Race = testRace,
                 Sex = testSex,
-                USAState = USAState.NJ,
                 Weight = 56,
-                ZipCode = "410001",
                 RelationToOtherParty = "Allien"
             };
             //testCourtCase.Witnesses = new List<Witness>(){
@@ -810,19 +809,8 @@ namespace FACCTS.Server.Data
                 };
 
             testCourtCase.CaseHistory = new List<CaseHistory>();
-            testCourtCase.CaseHistory.Add(new CaseHistory()
-            {
-                Date = DateTime.Now,
-                CaseHistoryEvent = Model.Enums.CaseHistoryEvent.New,
-                
-                Hearing = new Hearing()
+            var hearing = new Hearing()
                 {
-                    Appearance = new Appearance()
-                    {
-                        Party1Appear = true,
-                        Party1AttorneyPresent = true,
-                        Party1Sworn = true
-                    },
                     HearingDate = DateTime.Now,
                     Judge = "Dredd",
                     HearingIssues = new HearingIssue()
@@ -834,15 +822,27 @@ namespace FACCTS.Server.Data
                         PermanentRO = true,
                         SpousalSupport = true
                     }
-                }
-            }
-            );
+                };
+            testCourtCase.CaseHistory.Add(new CaseHistory()
+            {
+                Date = DateTime.Now,
+                CaseHistoryEvent = Model.Enums.CaseHistoryEvent.New,
+                Hearing = hearing
+            });
+
+            var appearance = new AppearanceWithSworn
+            {
+                Person = testCourtCase.Party1,
+                Hearing = hearing,
+                Sworn = true
+            };
 
             testCourtCase.CaseNumber = "22-3456";
             testCourtCase.CCPORId = "ccporId";
             testCourtCase.CourtClerk = context.CourtMembers.FirstOrDefault();
 
             context.CourtCases.Add(testCourtCase);
+            context.Set<Appearance>().Add(appearance);
             context.SaveChanges();
         }
 

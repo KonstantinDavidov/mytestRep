@@ -113,18 +113,21 @@ namespace FACCTS.Server.Data
             }
         }
 
+
+        public IFacctsDataRepository<CourtOrder> CourtOrdersRepository
+        {
+            get
+            {
+                return GetStandardRepo<CourtOrder>();
+            }
+        }
+
+
         public IFacctsDataRepository<Courtroom> CourtroomRepository
         {
             get
             {
                 return GetStandardRepo<Courtroom>();
-            }
-        }
-        public IFacctsDictionaryDataRepository<Designation> DesignationRepository
-        {
-            get
-            {
-                return GetStandardDictionaryRepo<Designation>();
             }
         }
 
@@ -149,14 +152,6 @@ namespace FACCTS.Server.Data
         public IFacctsDataRepository<Hearing> HearingRepository
         {
             get { return GetStandardRepo<Hearing>(); }
-        }
-
-        public IFacctsDataRepository<CourtPartyAttorneyData> CourtPartyAttorneyDataRepository
-        {
-            get
-            {
-                return GetStandardRepo<CourtPartyAttorneyData>();
-            }
         }
 
         public IFacctsDataRepository<Attorney> AttorneyRepository

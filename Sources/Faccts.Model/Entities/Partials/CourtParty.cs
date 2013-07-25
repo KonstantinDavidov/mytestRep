@@ -8,6 +8,7 @@ using FACCTS.Server.Model.Enums;
 using System.Reactive.Linq;
 using System.ComponentModel;
 using Faccts.Model.Entities.Validation;
+using FACCTS.Server.Model.DataModel;
 
 namespace Faccts.Model.Entities
 {
@@ -15,6 +16,8 @@ namespace Faccts.Model.Entities
     {
         partial void Initialize()
         {
+            this.AttorneyData = new CourtPartyAttorneyData();
+            this.AddressInfo = new AddressInfo();
             this.WhenAny(x => x.FirstName, x => x.LastName, x => x.MiddleName, (x, y, z) => new { FirstName = x.Value, LastName = y.Value, MiddleName = z.Value })
                 .Subscribe(x =>
                 {
@@ -87,15 +90,9 @@ namespace Faccts.Model.Entities
                     FirstName = this.FirstName,
                     MiddleName = this.MiddleName,
                     LastName = this.LastName,
-                    Designation = this.Designation.ConvertToDTO(),
                     Description = this.Description,
                     ParticipantRole = this.ParticipantRole,
-                    Address = this.Address,
-                    City = this.City,
-                    USAState = (USAState)this.USAState,
-                    ZipCode = this.ZipCode,
-                    Phone = this.Phone,
-                    Fax = this.Fax,
+                    AddressInfo = this.AddressInfo.ToDTO(),                    
                     ParentRole = this.ParentRole,
                     EntityType = this.EntityType,
                     Email = this.Email,
@@ -110,6 +107,7 @@ namespace Faccts.Model.Entities
                     DateOfBirth = this.DateOfBirth,
                     Age = this.Age,
                     State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
+                    AttorneyData = this.AttorneyData.ToDTO(),
 
                 };
             return dto;
@@ -137,15 +135,16 @@ namespace Faccts.Model.Entities
             {"FirstName", "First Name"},
             {"LastName", "Last Name"},
             {"Designation", "Designation"},
-            {"Address", "Address"},
-            {"City", "City"},
-            {"USAState", "State"},
-            {"ZipCode", "Zip code"},
             {"Sex", "Sex"},
             {"Race", "Race"},
             {"EntityType", "Entity"},
             {"DateOfBirth", "Date of birth"},
-            {"ParentRole", "Parent Role"}
+            {"ParentRole", "Parent Role"},
+            {"AddressInfo", "Address Info"},
+            {"AddressInfo.StreetAddress", "Street Address"},
+            {"AddressInfo.City", "City"},
+            {"AddressInfo.USAState", "State"},
+            {"AddressInfo.ZipCode", "Zip Code"},
         };
 
 

@@ -28,14 +28,14 @@ namespace FACCTS.Controls.ViewModels
             TryClose(true);
         }
 
-        private List<EnumDescript<FACCTS.Server.Model.Enums.MasterOrders>> _masterOrdersList;
-        public List<EnumDescript<FACCTS.Server.Model.Enums.MasterOrders>> MasterOrdersList
+        private List<EnumDescript<FACCTS.Server.Model.Enums.CourtOrdersTypes>> _masterOrdersList;
+        public List<EnumDescript<FACCTS.Server.Model.Enums.CourtOrdersTypes>> MasterOrdersList
         {
             get
             {
                 if (_masterOrdersList == null)
                 {
-                    _masterOrdersList = EnumDescript<FACCTS.Server.Model.Enums.MasterOrders>.GetList<FACCTS.Server.Model.Enums.MasterOrders>();
+                    _masterOrdersList = EnumDescript<FACCTS.Server.Model.Enums.CourtOrdersTypes>.GetList<FACCTS.Server.Model.Enums.CourtOrdersTypes>();
                 }
                 return _masterOrdersList;
             }

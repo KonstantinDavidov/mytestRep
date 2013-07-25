@@ -584,17 +584,6 @@ namespace FACCTS.Controls.ViewModels
 				}
 			}
 		}
-		
-		private Faccts.Model.Entities.CaseHistory _currentHistoryRecord;
-		public Faccts.Model.Entities.CaseHistory CurrentHistoryRecord
-		{
-			get{return _currentHistoryRecord;}
-			set{
-				if(_currentHistoryRecord!=value){
-					this.RaiseAndSetIfChanged(ref _currentHistoryRecord, value);
-				}
-			}
-		}
 				
 	}
 	
@@ -650,8 +639,8 @@ namespace FACCTS.Controls.ViewModels
 			}
 		}
 		
-		private FACCTS.Server.Model.Enums.MasterOrders _masterOrder;
-		public FACCTS.Server.Model.Enums.MasterOrders MasterOrder
+		private FACCTS.Server.Model.Enums.CourtOrdersTypes _masterOrder;
+		public FACCTS.Server.Model.Enums.CourtOrdersTypes MasterOrder
 		{
 			get{return _masterOrder;}
 			set{

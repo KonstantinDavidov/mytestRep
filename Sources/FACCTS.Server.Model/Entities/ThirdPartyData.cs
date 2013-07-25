@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace FACCTS.Server.Model.DataModel
 {
     [Table("ThirdPartyData")]
-    public partial class ThirdPartyData : BaseEntity
+    public class ThirdPartyData : IEntityWithId, IEntityWithState
     {
         [Column("IsThirdpartyProPer")]
         public bool IsProPer { get; set; }
@@ -19,17 +19,9 @@ namespace FACCTS.Server.Model.DataModel
 
         public virtual Attorney Attorney { get; set; }
 
+        public long Id { get; set; }
+
         [NotMapped]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
+        public ObjectState State { get; set; }
     }
 }

@@ -9,10 +9,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace FACCTS.Server.Model.DataModel
 {
     [Table("User")]
-    public partial class User : BaseEntity
+    public class User : IEntityWithId, IEntityWithState
     {
-
-
         public String Username { get; set; }
 
         public String Email { get; set; }
@@ -42,19 +40,6 @@ namespace FACCTS.Server.Model.DataModel
 
         public virtual ICollection<Role> Roles { get; set; }
 
-        [NotMapped]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
-
         public override bool Equals(object obj)
         {
             // Check for null values and compare run-time types.
@@ -79,5 +64,10 @@ namespace FACCTS.Server.Model.DataModel
         {
             return base.GetHashCode() ^ this.Id.GetHashCode();
         }
+
+        public long Id { get; set; }
+
+        [NotMapped]
+        public ObjectState State { get; set; }
     }
 }

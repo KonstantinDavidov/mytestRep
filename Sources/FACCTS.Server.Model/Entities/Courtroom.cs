@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace FACCTS.Server.Model.DataModel
 {
     [Table("Courtrooms")]
-    public partial class Courtroom : BaseEntity
+    public partial class Courtroom : IEntityWithId, IEntityWithState
     {
 
         [StringLength(100)]
@@ -18,17 +18,9 @@ namespace FACCTS.Server.Model.DataModel
         [InverseProperty("Courtrooms")]
         public virtual CourtLocation CourtLocation { get; set; }
 
+        public long Id { get; set; }
+
         [NotMapped]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
+        public ObjectState State { get; set; }
     }
 }

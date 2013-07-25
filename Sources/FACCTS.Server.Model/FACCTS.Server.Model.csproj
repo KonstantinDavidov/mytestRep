@@ -70,8 +70,9 @@
   <ItemGroup>
     <Compile Include="Calculations\CourtCase.cs" />
     <Compile Include="CurrentUserResponse.cs" />
+    <Compile Include="Entities\AddressInfo.cs" />
     <Compile Include="Entities\Appearance.cs" />
-    <Compile Include="Entities\AttachmentOrder.cs" />
+    <Compile Include="Entities\AppearanceWithSworn.cs" />
     <Compile Include="Entities\Attorney.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\CaseHistory.cs" />
@@ -97,10 +98,8 @@
     <Compile Include="Entities\CourtMember.cs" />
     <Compile Include="Entities\CourtMemberBrief.cs" />
     <Compile Include="Entities\CourtParty.cs" />
-    <Compile Include="Entities\CourtPartyAttorneyData.cs" />
     <Compile Include="Entities\Courtroom.cs" />
     <Compile Include="Entities\Delegation.cs" />
-    <Compile Include="Entities\Designation.cs" />
     <Compile Include="Entities\EyesColor.cs" />
     <Compile Include="Entities\FormField.cs" />
     <Compile Include="Entities\HairColor.cs" />
@@ -109,9 +108,10 @@
     <Compile Include="Entities\IdentityProvider.cs" />
     <Compile Include="Entities\Interpreter.cs" />
     <Compile Include="Entities\ManualIntegrationTask.cs" />
-    <Compile Include="Entities\MasterOrder.cs" />
+    <Compile Include="Entities\CourtOrder.cs" />
     <Compile Include="Entities\OtherProtected.cs" />
     <Compile Include="Entities\Permission.cs" />
+    <Compile Include="Entities\PersonBase.cs" />
     <Compile Include="Entities\Race.cs" />
     <Compile Include="Entities\RelyingParties.cs">
       <SubType>Code</SubType>
@@ -123,7 +123,7 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Witness.cs" />
     <Compile Include="Enums\AddressType.cs" />
-    <Compile Include="Enums\AttachmentOrders.cs" />
+    <Compile Include="Enums\AppearanceType.cs" />
     <Compile Include="Enums\CARPOSEntryType.cs" />
     <Compile Include="Enums\CaseHistoryEvent.cs" />
     <Compile Include="Enums\CaseNoteStatus.cs" />
@@ -140,10 +140,11 @@
     <Compile Include="Enums\FACCTSEntity.cs" />
     <Compile Include="Enums\IdentificationIDType.cs" />
     <Compile Include="Enums\IssuingTerritory.cs" />
-    <Compile Include="Enums\MasterOrders.cs" />
+    <Compile Include="Enums\CourtOrderTypes.cs" />
     <Compile Include="Enums\OrderRestrictionState.cs" />
     <Compile Include="Enums\OverrunOrders.cs" />
     <Compile Include="Enums\ParticipantRole.cs" />
+    <Compile Include="Enums\PersonType.cs" />
     <Compile Include="Enums\Relationship.cs" />
     <Compile Include="Enums\ServiceReqState.cs" />
     <Compile Include="Enums\Gender.cs" />

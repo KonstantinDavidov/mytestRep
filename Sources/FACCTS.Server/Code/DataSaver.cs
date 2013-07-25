@@ -42,18 +42,18 @@ namespace FACCTS.Server.Code
             try
             {
                 DataManager.CourtCaseRepository.SaveData(cc);
-                DataManager.CourtPartyRepository.SaveData(cc.Party1);
-                DataManager.CourtPartyRepository.SaveData(cc.Party2);
-                DataManager.CaseHistoryRepository.SaveData(cc.CaseHistory);
-                DataManager.HearingRepository.SaveData(cc.CaseHistory.Select(x => x.Hearing));
-                DataManager.CourtPartyAttorneyDataRepository.SaveData(cc.CaseHistory.Select(x => x.Party1Attorney));
-                DataManager.AttorneyRepository.SaveData(cc.CaseHistory.Where(x => x.Party1Attorney != null).Select(x => x.Party1Attorney.Attorney));
-                DataManager.CourtPartyAttorneyDataRepository.SaveData(cc.CaseHistory.Select(x => x.Party2Attorney));
-                DataManager.AttorneyRepository.SaveData(cc.CaseHistory.Where(x => x.Party2Attorney != null).Select(x => x.Party2Attorney.Attorney));
-                DataManager.CaseNoteRepository.SaveData(cc.CaseNotes);
-                DataManager.WitnessRepository.SaveData(cc.Witnesses);
-                DataManager.InterpreterRepository.SaveData(cc.Interpreters);
-                DataManager.ChildrenRepository.SaveData(cc.Children);
+                //DataManager.CourtPartyRepository.SaveData(cc.Party1);
+                //DataManager.CourtPartyRepository.SaveData(cc.Party2);
+                //DataManager.CourtPartyAttorneyDataRepository.SaveData(cc.Party1.AttorneyData);
+                //DataManager.AttorneyRepository.SaveData(cc.Party1.AttorneyData.Attorney);
+                //DataManager.CourtPartyAttorneyDataRepository.SaveData(cc.Party2.AttorneyData);
+                //DataManager.AttorneyRepository.SaveData(cc.Party2.AttorneyData.Attorney);
+                //DataManager.CaseHistoryRepository.SaveData(cc.CaseHistory);
+                //DataManager.HearingRepository.SaveData(cc.CaseHistory.Select(x => x.Hearing));
+                //DataManager.CaseNoteRepository.SaveData(cc.CaseNotes);
+                //DataManager.WitnessRepository.SaveData(cc.Witnesses);
+                //DataManager.InterpreterRepository.SaveData(cc.Interpreters);
+                //DataManager.ChildrenRepository.SaveData(cc.Children);
                 DataManager.Commit();
             }
             catch (Exception ex)

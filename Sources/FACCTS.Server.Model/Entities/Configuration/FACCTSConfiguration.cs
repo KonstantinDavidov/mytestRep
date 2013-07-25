@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel.Configuration
 {
-    public partial class FACCTSConfiguration : BaseEntity
+    public partial class FACCTSConfiguration : IEntityWithId, IEntityWithState
     {
 
         public bool CaseNumberAutoGeneration { get; set; }
@@ -18,17 +18,9 @@ namespace FACCTS.Server.Model.DataModel.Configuration
 
         public long? CurrentCourtCountyId { get; set; }
 
+        public long Id { get; set; }
+
         [NotMapped]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
+        public ObjectState State { get; set; }
     }
 }

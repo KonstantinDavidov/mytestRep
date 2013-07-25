@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public partial class IdentityProvider : BaseEntity
+    public partial class IdentityProvider : IEntityWithId, IEntityWithState
     {
 
         [Required]
@@ -26,17 +26,9 @@ namespace FACCTS.Server.Model.DataModel
 
         public bool Enabled { get; set; }
 
+        public long Id { get; set; }
+
         [NotMapped]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
+        public ObjectState State { get; set; }
     }
 }

@@ -7,23 +7,16 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public class CourtMemberBrief : BaseEntity
+    public class CourtMemberBrief : IEntityWithId, IEntityWithState
     {
         public string FullName { get; set; }
         public string RoleName { get; set; }
         public long UserId { get; set; }
         public string Email { get; set; }
+
+        public long Id { get; set; }
+
         [NotMapped]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
+        public ObjectState State { get; set; }
     }
 }

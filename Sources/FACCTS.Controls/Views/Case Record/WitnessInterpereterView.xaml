@@ -120,6 +120,7 @@
                                                 Header="First Name"
                                                 Width="0.2*"/>
                             <DataGridTextColumn Binding="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+
                                                 Header="Last Name"
                                                 Width="0.2*" />
                            

@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations.Schema;
     
 namespace FACCTS.Server.Model.DataModel
 {
-    public partial class ClientCertificates : BaseEntity
+    public class ClientCertificates : IEntityWithId, IEntityWithState
     {
 
         public string UserName { get; set; }
@@ -17,17 +17,9 @@ namespace FACCTS.Server.Model.DataModel
         
         public string Description { get; set; }
 
+        public long Id { get; set; }
+
         [NotMapped]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
+        public ObjectState State { get; set; }
     }
 }

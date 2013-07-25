@@ -21,7 +21,6 @@ namespace FACCTS.Services.Data
         List<HairColor> HairColors { get; }
         List<EyesColor> EyesColors { get; }
         List<Race> Races { get; }
-        List<Designation> Designations { get; }
         List<EnumDescript<USAState>> StateList { get; }
         List<EnumDescript<FACCTSEntity>> EntityTypeList { get; }
         List<EnumDescript<ParticipantRole>> ParticipantRoles { get; }

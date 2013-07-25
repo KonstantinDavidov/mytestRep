@@ -191,7 +191,7 @@
                                        VerticalAlignment="Center" />
                             <TextBox Grid.ColumnSpan="3"
                                      TextWrapping="Wrap"
-                                     Text="{Binding Address, FallbackValue=Washington, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     Text="{Binding AddressInfo.StreetAddress, FallbackValue=Washington, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                      Grid.Column="1"
                                      VerticalAlignment="Center"
                                      Tag="Please type the address"
@@ -201,7 +201,7 @@
                                        VerticalAlignment="Center"
                                        Grid.Column="4"><Run Text="Phone" /></TextBlock>
                             <TextBox TextWrapping="Wrap"
-                                     Text="{Binding Phone, FallbackValue=9112345678, Mode=TwoWay}"
+                                     Text="{Binding AddressInfo.Phone, FallbackValue=9112345678, Mode=TwoWay}"
                                      Grid.Column="5"
                                      VerticalAlignment="Center"
                                      Tag="Phone Number"
@@ -212,20 +212,20 @@
                                        VerticalAlignment="Center"
                                        Grid.Row="1" />
                             <TextBox TextWrapping="Wrap"
-                                     Text="{Binding City, FallbackValue=New York, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     Text="{Binding AddressInfo.City, FallbackValue=New York, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                      Grid.Row="1"
                                      Grid.Column="1"
                                      VerticalAlignment="Center"
                                      Tag="City"
                                      Style="{DynamicResource TextBoxWithAdorner}" />
-                            <ComboBox SelectedValue="{Binding USAState, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                            <ComboBox SelectedValue="{Binding AddressInfo.USAState, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                       SelectedValuePath="Value"
                                       ItemsSource="{Binding Mode=OneWay, Source={StaticResource cvsStateList}}"
                                       Grid.Row="1"
                                       Grid.Column="2"
                                       VerticalAlignment="Center" />
                             <TextBox TextWrapping="Wrap"
-                                     Text="{Binding ZipCode, FallbackValue=10011, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                     Text="{Binding AddressInfo.ZipCode, FallbackValue=10011, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                      Grid.Row="1"
                                      Grid.Column="3"
                                      VerticalAlignment="Center"
@@ -238,7 +238,7 @@
                                        Grid.Row="1"
                                        Grid.Column="4" />
                             <TextBox TextWrapping="Wrap"
-                                     Text="{Binding Fax, FallbackValue=9012345678, Mode=TwoWay}"
+                                     Text="{Binding AddressInfo.Fax, FallbackValue=9012345678, Mode=TwoWay}"
                                      Grid.Row="1"
                                      Grid.Column="5"
                                      VerticalAlignment="Center"

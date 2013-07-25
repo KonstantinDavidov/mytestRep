@@ -27,6 +27,7 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(Race))]
     [KnownType(typeof(EyesColor))]
     [KnownType(typeof(CourtCase))]
+    [KnownType(typeof(CourtPartyAttorneyData))]
     public partial class CourtParty: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -59,17 +60,11 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.MiddleName)
     				,this.ObservableForProperty(x => x.LastName)
     				,this.ObservableForProperty(x => x.Description)
-    				,this.ObservableForProperty(x => x.Address)
-    				,this.ObservableForProperty(x => x.City)
-    				,this.ObservableForProperty(x => x.ZipCode)
-    				,this.ObservableForProperty(x => x.Phone)
-    				,this.ObservableForProperty(x => x.Fax)
     				,this.ObservableForProperty(x => x.Weight)
     				,this.ObservableForProperty(x => x.HeightFt)
     				,this.ObservableForProperty(x => x.HeightIns)
     				,this.ObservableForProperty(x => x.DateOfBirth)
     				,this.ObservableForProperty(x => x.Age)
-    				,this.ObservableForProperty(x => x.HasAttorney)
     				,this.ObservableForProperty(x => x.Designation_Id)
     				,this.ObservableForProperty(x => x.HairColor_Id)
     				,this.ObservableForProperty(x => x.EyesColor_Id)
@@ -81,12 +76,12 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.EntityType)
     				,this.ObservableForProperty(x => x.Email)
     				,this.ObservableForProperty(x => x.RelationToOtherParty)
-    				,this.ObservableForProperty(x => x.USAState)
     				,this.ObservableForProperty(x => x.Attorneys.IsDirty)
     				,this.ObservableForProperty(x => x.Designation.IsDirty)
     				,this.ObservableForProperty(x => x.HairColor.IsDirty)
     				,this.ObservableForProperty(x => x.Race.IsDirty)
     				,this.ObservableForProperty(x => x.EyesColor.IsDirty)
+    				,this.ObservableForProperty(x => x.AttorneyData.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -254,86 +249,6 @@ namespace Faccts.Model.Entities
         private string _description;
     
         [DataMember]
-        public string Address
-        {
-            get { return _address; }
-            set
-            {
-                if (_address != value)
-                {
-    				OnPropertyChanging("Address");
-                    _address = value;
-                    OnPropertyChanged("Address");
-                }
-            }
-        }
-        private string _address;
-    
-        [DataMember]
-        public string City
-        {
-            get { return _city; }
-            set
-            {
-                if (_city != value)
-                {
-    				OnPropertyChanging("City");
-                    _city = value;
-                    OnPropertyChanged("City");
-                }
-            }
-        }
-        private string _city;
-    
-        [DataMember]
-        public string ZipCode
-        {
-            get { return _zipCode; }
-            set
-            {
-                if (_zipCode != value)
-                {
-    				OnPropertyChanging("ZipCode");
-                    _zipCode = value;
-                    OnPropertyChanged("ZipCode");
-                }
-            }
-        }
-        private string _zipCode;
-    
-        [DataMember]
-        public string Phone
-        {
-            get { return _phone; }
-            set
-            {
-                if (_phone != value)
-                {
-    				OnPropertyChanging("Phone");
-                    _phone = value;
-                    OnPropertyChanged("Phone");
-                }
-            }
-        }
-        private string _phone;
-    
-        [DataMember]
-        public string Fax
-        {
-            get { return _fax; }
-            set
-            {
-                if (_fax != value)
-                {
-    				OnPropertyChanging("Fax");
-                    _fax = value;
-                    OnPropertyChanged("Fax");
-                }
-            }
-        }
-        private string _fax;
-    
-        [DataMember]
         public decimal Weight
         {
             get { return _weight; }
@@ -412,22 +327,6 @@ namespace Faccts.Model.Entities
             }
         }
         private int _age;
-    
-        [DataMember]
-        public Nullable<bool> HasAttorney
-        {
-            get { return _hasAttorney; }
-            set
-            {
-                if (_hasAttorney != value)
-                {
-    				OnPropertyChanging("HasAttorney");
-                    _hasAttorney = value;
-                    OnPropertyChanged("HasAttorney");
-                }
-            }
-        }
-        private Nullable<bool> _hasAttorney;
     
         [DataMember]
         public Nullable<long> Designation_Id
@@ -644,22 +543,48 @@ namespace Faccts.Model.Entities
             }
         }
         private string _relationToOtherParty;
+
+        #endregion
+
+        #region Complex Properties
     
         [DataMember]
-        public FACCTS.Server.Model.Enums.USAState USAState
+        public AddressInfo AddressInfo
         {
-            get { return _uSAState; }
+            get
+            {
+                if (!_addressInfoInitialized && _addressInfo == null)
+                {
+                    _addressInfo = new AddressInfo();
+                    ((INotifyComplexPropertyChanging)_addressInfo).ComplexPropertyChanging += HandleAddressInfoChanging;
+                }
+                _addressInfoInitialized = true;
+                return _addressInfo;
+            }
             set
             {
-                if (_uSAState != value)
+                _addressInfoInitialized = true;
+                if (!Equals(_addressInfo, value))
                 {
-    				OnPropertyChanging("USAState");
-                    _uSAState = value;
-                    OnPropertyChanged("USAState");
+                    if (_addressInfo != null)
+                    {
+                        ((INotifyComplexPropertyChanging)_addressInfo).ComplexPropertyChanging -= HandleAddressInfoChanging;
+                    }
+    
+                    HandleAddressInfoChanging(this, null);
+    				OnPropertyChanging("AddressInfo");
+                    _addressInfo = value;
+                    OnPropertyChanged("AddressInfo");
+    
+                    if (value != null)
+                    {
+                        ((INotifyComplexPropertyChanging)_addressInfo).ComplexPropertyChanging += HandleAddressInfoChanging;
+                    }
                 }
             }
         }
-        private FACCTS.Server.Model.Enums.USAState _uSAState;
+        private AddressInfo _addressInfo;
+        private bool _addressInfoInitialized;
 
         #endregion
 
@@ -790,6 +715,24 @@ namespace Faccts.Model.Entities
             }
         }
         private TrackableCollection<CourtCase> _courtCase;
+    
+        [DataMember]
+        public CourtPartyAttorneyData AttorneyData
+        {
+            get { return _attorneyData; }
+            set
+            {
+                if (!ReferenceEquals(_attorneyData, value))
+                {
+                    var previousValue = _attorneyData;
+    				OnNavigationPropertyChanging("AttorneyData");
+                    _attorneyData = value;
+                    FixupAttorneyData(previousValue);
+                    OnNavigationPropertyChanged("AttorneyData");
+                }
+            }
+        }
+        private CourtPartyAttorneyData _attorneyData;
 
         #endregion
 
@@ -895,6 +838,15 @@ namespace Faccts.Model.Entities
                 this.MarkAsDeleted();
             }
         }
+        // Records the original values for the complex property AddressInfo
+        private void HandleAddressInfoChanging(object sender, EventArgs args)
+        {
+            if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
+            {
+                ChangeTracker.State = ObjectState.Modified;
+            }
+        }
+    
     
         protected virtual void ClearNavigationProperties()
         {
@@ -904,6 +856,7 @@ namespace Faccts.Model.Entities
             Race = null;
             EyesColor = null;
             CourtCase.Clear();
+            AttorneyData = null;
         }
 
         #endregion
@@ -1093,6 +1046,41 @@ namespace Faccts.Model.Entities
                 if (EyesColor != null && !EyesColor.ChangeTracker.ChangeTrackingEnabled)
                 {
                     EyesColor.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupAttorneyData(CourtPartyAttorneyData previousValue)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && ReferenceEquals(previousValue.CourtParty, this))
+            {
+                previousValue.CourtParty = null;
+            }
+    
+            if (AttorneyData != null)
+            {
+                AttorneyData.CourtParty = this;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("AttorneyData")
+                    && (ChangeTracker.OriginalValues["AttorneyData"] == AttorneyData))
+                {
+                    ChangeTracker.OriginalValues.Remove("AttorneyData");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("AttorneyData", previousValue);
+                }
+                if (AttorneyData != null && !AttorneyData.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    AttorneyData.StartTracking();
                 }
             }
         }

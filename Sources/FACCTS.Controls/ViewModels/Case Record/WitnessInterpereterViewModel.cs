@@ -11,6 +11,7 @@ using ReactiveUI;
 using FACCTS.Services.Dialog;
 using System.Reactive.Linq;
 
+
 namespace FACCTS.Controls.ViewModels
 {
     [Export(typeof(WitnessInterpereterViewModel))]
@@ -18,6 +19,9 @@ namespace FACCTS.Controls.ViewModels
     {
         private IDialogService _dialogService;
         private IDisposable _observer1, _observer2;
+
+
+
         [ImportingConstructor]
         public WitnessInterpereterViewModel(
             IDialogService dialogService
@@ -29,6 +33,7 @@ namespace FACCTS.Controls.ViewModels
                 {
                     this.NotifyOfPropertyChange(() => WitnessesFor);
                     this.NotifyOfPropertyChange(() => InterpretersFor);
+
                     if (_observer1 != null)
                     {
                         _observer1.Dispose();
@@ -72,7 +77,7 @@ namespace FACCTS.Controls.ViewModels
             
         }
 
-        public void RemoveWitness(AdditionalParty witness)
+        public void RemoveWitness(PersonBase witness)
         {
             if (_dialogService.MessageBox("Do you really want to remove the witness?", "Witness removal", System.Windows.MessageBoxButton.YesNo) == System.Windows.MessageBoxResult.Yes)
             {

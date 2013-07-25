@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace FACCTS.Server.Model.DataModel
 {
     [Table("CaseNotes")]
-    public partial class CaseNote : BaseEntity
+    public class CaseNote : IEntityWithId, IEntityWithState
     {
 
         public virtual User Author { get; set; }
@@ -20,20 +20,13 @@ namespace FACCTS.Server.Model.DataModel
 
         public string Text { get; set; }
 
-        [InverseProperty("CaseNotes")]
+        public long CourtCaseId { get; set; }
+
         public virtual CourtCase CourtCase { get; set; }
 
+        public long Id { get; set; }
+
         [NotMapped]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
+        public ObjectState State { get; set; }
     }
 }

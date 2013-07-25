@@ -23,18 +23,5 @@ namespace FACCTS.Server.Model.DataModel
         [Column(TypeName = "image")]
         public byte[] Image { get; set; }
         public string Phone { get; set; }
-
-        [NotMapped]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
     }
 }

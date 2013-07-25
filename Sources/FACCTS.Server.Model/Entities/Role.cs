@@ -10,13 +10,13 @@ using System.Collections.ObjectModel;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    public partial class Role : BaseEntity
+    public partial class Role : IEntityWithState
     {
         [Key]
         [Column("Id")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [CsvField(Index = 0)]
-        public override long Id { get; set; }
+        public long Id { get; set; }
 
         [CsvField(Index = 1)]
         [StringLength(50)]
@@ -47,16 +47,6 @@ namespace FACCTS.Server.Model.DataModel
 
         [NotMapped]
         [CsvField(Ignore = true)]
-        public override ObjectState State
-        {
-            get
-            {
-                return base.State;
-            }
-            set
-            {
-                base.State = value;
-            }
-        }
+        public ObjectState State { get; set; }
     }
 }
