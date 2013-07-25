@@ -365,13 +365,8 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class DV130ConductChoice
+	public partial class DVConductChoice
 	{
-		public bool IsEnabled
-		{
-			get; set;
-		}
-		
 		public bool IsNoAbuse
 		{
 			get; set;
@@ -395,7 +390,7 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class DV130StayAwayOrders
+	public partial class DVStayAwayOrders
 	{
 		public bool IsStayAwayFromPerson
 		{
@@ -455,28 +450,8 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class DV130Moveout
+	public partial class DVAnimals
 	{
-		public bool IsEnabled
-		{
-			get; set;
-		}
-		
-		public string MoveoutAddress
-		{
-			get; set;
-		}
-				
-	}
-	
-			
-	public partial class DV130Animals
-	{
-		public bool IsEnabled
-		{
-			get; set;
-		}
-		
 		public int StayAwayAnimalsDistance
 		{
 			get; set;
@@ -490,37 +465,7 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class DV130DebtPayment
-	{
-		public bool IsEnabled
-		{
-			get; set;
-		}
-		
-		public List<DebtPaymentItem> DebtPaymentItems
-		{
-			get; set;
-		}
-				
-	}
-	
-			
-	public partial class DV130PropertyControl
-	{
-		public bool IsEnabled
-		{
-			get; set;
-		}
-		
-		public List<DataItem> PropertyControl
-		{
-			get; set;
-		}
-				
-	}
-	
-			
-	public partial class DV130PropertyRestraint
+	public partial class DVPropertyRestraint
 	{
 		public bool IsProtectedHasPropertyRestraint
 		{
@@ -535,14 +480,129 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class DV130
+	public partial class DV110
 	{
-		public DV130ConductChoice DV130ConductChoiceSection
+		public OrderRestrictionState ConductChoiceState
 		{
 			get; set;
 		}
 		
-		public DV130StayAwayOrders DV130StayAwayOrdersSection
+		public DVConductChoice ConductChoice
+		{
+			get; set;
+		}
+		
+		public OrderRestrictionState StayAwayOrdersState
+		{
+			get; set;
+		}
+		
+		public DVStayAwayOrders StayAwayOrders
+		{
+			get; set;
+		}
+		
+		public OrderRestrictionState MoveoutState
+		{
+			get; set;
+		}
+		
+		public string MoveoutAddress
+		{
+			get; set;
+		}
+		
+		public OrderRestrictionState RecordUnlawfulCommunicationsAllowedState
+		{
+			get; set;
+		}
+		
+		public OrderRestrictionState AnimalsSectionState
+		{
+			get; set;
+		}
+		
+		public DVAnimals AnimalsSection
+		{
+			get; set;
+		}
+		
+		public bool IsNoGuns
+		{
+			get; set;
+		}
+		
+		public OrderRestrictionState OtherOrdersState
+		{
+			get; set;
+		}
+		
+		public string OtherOrdersDescription
+		{
+			get; set;
+		}
+		
+		public bool IsOterordersAttached
+		{
+			get; set;
+		}
+		
+		public OrderRestrictionState PropertyControlState
+		{
+			get; set;
+		}
+		
+		public List<DataItem> PropertyControlItems
+		{
+			get; set;
+		}
+		
+		public bool IsDebtPaymentState
+		{
+			get; set;
+		}
+		
+		public List<DebtPaymentItem> DebtPaymentItems
+		{
+			get; set;
+		}
+		
+		public OrderRestrictionState DVPropertyRestraintState
+		{
+			get; set;
+		}
+		
+		public DVPropertyRestraint PropertyRestraint
+		{
+			get; set;
+		}
+		
+		public OrderRestrictionState ChildCustodyAndVisitationState
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class DV130
+	{
+		public bool IsConductChoiceEnabled
+		{
+			get; set;
+		}
+		
+		public DVConductChoice ConductChoice
+		{
+			get; set;
+		}
+		
+		public bool IsStayAwayOrdersEnabled
+		{
+			get; set;
+		}
+		
+		public DVStayAwayOrders StayAwayOrders
 		{
 			get; set;
 		}
@@ -552,7 +612,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public DV130Moveout DV130MoveoutSection
+		public bool IsMoveoutEnabled
+		{
+			get; set;
+		}
+		
+		public string MoveoutAddress
 		{
 			get; set;
 		}
@@ -562,12 +627,17 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public DV130Animals DV130AnimalsSection
+		public bool IsAnimalsEnabled
 		{
 			get; set;
 		}
 		
-		public OtherOrders DV130OtherOrdersSection
+		public DVAnimals Animals
+		{
+			get; set;
+		}
+		
+		public OtherOrders OtherOrders
 		{
 			get; set;
 		}
@@ -582,22 +652,42 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public DV130PropertyControl DV130PropertyControlSection
+		public bool IsPropertyControlEnabled
 		{
 			get; set;
 		}
 		
-		public DV130DebtPayment DV130DebtPaymentSection
+		public List<DataItem> PropertyControlItems
 		{
 			get; set;
 		}
 		
-		public DV130PropertyRestraint DV130PropertyRestraintSection
+		public bool IsDebtPaymentEnabled
+		{
+			get; set;
+		}
+		
+		public List<DebtPaymentItem> DebtPaymentItems
+		{
+			get; set;
+		}
+		
+		public bool IsPropertyRestraintEnabled
+		{
+			get; set;
+		}
+		
+		public DVPropertyRestraint PropertyRestraint
 		{
 			get; set;
 		}
 		
 		public List<PaymentItem> Costs
+		{
+			get; set;
+		}
+		
+		public bool IsChildCustodyAndVisitationEnabled
 		{
 			get; set;
 		}
@@ -1067,7 +1157,252 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public string OtherOrdersdescription
+		public string OtherOrdersDescription
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class SuspiciousDoneThings
+	{
+		public bool IsEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsJobQuited
+		{
+			get; set;
+		}
+		
+		public bool IsBankAccountClosed
+		{
+			get; set;
+		}
+		
+		public bool IsAssetsLost
+		{
+			get; set;
+		}
+		
+		public bool IsHomeSold
+		{
+			get; set;
+		}
+		
+		public bool IsLeaseEnded
+		{
+			get; set;
+		}
+		
+		public bool IsDocumentsLost
+		{
+			get; set;
+		}
+		
+		public bool IsAppliedForDocuments
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class NegativeHistory
+	{
+		public bool IsEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsDomesticViolence
+		{
+			get; set;
+		}
+		
+		public bool IsChildAbuse
+		{
+			get; set;
+		}
+		
+		public bool IsParentingMissing
+		{
+			get; set;
+		}
+		
+		public bool IsDeniedTalking
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class NecessaryTravelDocuments
+	{
+		public bool IsEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsTravelItineraryRequired
+		{
+			get; set;
+		}
+		
+		public bool IsCopiesOfAirlineTicketsRequired
+		{
+			get; set;
+		}
+		
+		public bool IsAddressesAndPhonesRequired
+		{
+			get; set;
+		}
+		
+		public bool IsOtherParentAirlineTicketRequired
+		{
+			get; set;
+		}
+		
+		public bool IsOtherExist
+		{
+			get; set;
+		}
+		
+		public string OtherDescription
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class DV145
+	{
+		public bool IsPastROViolations
+		{
+			get; set;
+		}
+		
+		public bool IsNoTiesWithCalifornia
+		{
+			get; set;
+		}
+		
+		public SuspiciousDoneThings SuspiciousDoneThingsSection
+		{
+			get; set;
+		}
+		
+		public NegativeHistory NegativeHistorySection
+		{
+			get; set;
+		}
+		
+		public bool HasCriminalRecord
+		{
+			get; set;
+		}
+		
+		public bool HasOtherLocationsTies
+		{
+			get; set;
+		}
+		
+		public bool IsPostBondRequered
+		{
+			get; set;
+		}
+		
+		public decimal BondAmount
+		{
+			get; set;
+		}
+		
+		public bool IsMoveWithoutPermissionDenied
+		{
+			get; set;
+		}
+		
+		public RestrainedLocations MoveDenaiedLocations
+		{
+			get; set;
+		}
+		
+		public string OtherMoveDenaiedLocationsDescription
+		{
+			get; set;
+		}
+		
+		public bool IsTravelWithoutPermissionDenied
+		{
+			get; set;
+		}
+		
+		public RestrainedLocations TravelDenaiedLocations
+		{
+			get; set;
+		}
+		
+		public string OtherTravelDenaiedLocationsDescription
+		{
+			get; set;
+		}
+		
+		public string OtherParentToGivePermission
+		{
+			get; set;
+		}
+		
+		public bool IsNotifyOtherStateRequired
+		{
+			get; set;
+		}
+		
+		public USAState OtherState
+		{
+			get; set;
+		}
+		
+		public bool TravelDocumentsApplyDenied
+		{
+			get; set;
+		}
+		
+		public string TurnedInDocuments
+		{
+			get; set;
+		}
+		
+		public NecessaryTravelDocuments NecessaryTravelDocumentsSection
+		{
+			get; set;
+		}
+		
+		public bool IsNotifyForeignEmbassyRequired
+		{
+			get; set;
+		}
+		
+		public bool IsForeignCustodyCourtOrderRequired
+		{
+			get; set;
+		}
+		
+		public bool IsEnforcingCourtOrderRequired
+		{
+			get; set;
+		}
+		
+		public string EnforcingAgencyName
+		{
+			get; set;
+		}
+		
+		public OtherOrders OtherPermissionsOrder
 		{
 			get; set;
 		}
