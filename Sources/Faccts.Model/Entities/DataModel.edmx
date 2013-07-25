@@ -5389,8 +5389,8 @@
           <Property Type="Boolean" Name="IsSigned" Nullable="false" />
           <Property Type="String" Name="ServerFileName" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="Int64" Name="HearingId" Nullable="false" />
-          <NavigationProperty Name="CourtOrders1" Relationship="FACCTS_DBModel.FK_dbo_CourtOrders_dbo_CourtOrders_ParentOrderId" FromRole="CourtOrders" ToRole="CourtOrders1" />
-          <NavigationProperty Name="CourtOrders2" Relationship="FACCTS_DBModel.FK_dbo_CourtOrders_dbo_CourtOrders_ParentOrderId" FromRole="CourtOrders1" ToRole="CourtOrders" />
+          <NavigationProperty Name="Attachments" Relationship="FACCTS_DBModel.FK_dbo_CourtOrders_dbo_CourtOrders_ParentOrderId" FromRole="CourtOrders" ToRole="CourtOrders1" />
+          <NavigationProperty Name="ParentOrder" Relationship="FACCTS_DBModel.FK_dbo_CourtOrders_dbo_CourtOrders_ParentOrderId" FromRole="CourtOrders1" ToRole="CourtOrders" />
           <NavigationProperty Name="Hearings" Relationship="FACCTS_DBModel.FK_dbo_CourtOrders_dbo_Hearings_HearingId" FromRole="CourtOrders" ToRole="Hearings" />
         </EntityType>
         <Association Name="FK_dbo_Appearances_dbo_Hearings_HearingId">

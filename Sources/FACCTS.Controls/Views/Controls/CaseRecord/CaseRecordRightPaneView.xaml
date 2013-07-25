@@ -56,7 +56,12 @@
 				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center"><Run Text="Party 1"/></TextBlock>
 				<TextBox Text="{Binding Party1.FullName, Mode=OneWay}" Grid.Column="1" Style="{DynamicResource TextBoxWithAdorner}" Tag="Name" VerticalAlignment="Center" IsReadOnly="True"/>
 				<TextBox TextWrapping="WrapWithOverflow" Text="{Binding Party1.Designation.DesignationName, Mode=OneWay}" VerticalAlignment="Center" Grid.Column="2" Style="{DynamicResource TextBoxWithAdorner}" Tag="Designation" IsReadOnly="True"/>
-				<CheckBox Content="Attorney" HorizontalAlignment="Left" Margin="0,0,-0.001,0" VerticalAlignment="Center" Grid.Column="3" IsChecked="{Binding Party1AttorneyData.HasAttorney}"/>
+                <CheckBox Content="Attorney"
+                          HorizontalAlignment="Left"
+                          Margin="0,0,-0.001,0"
+                          VerticalAlignment="Center"
+                          Grid.Column="3"
+                          IsChecked="{Binding Party1.IsProPer, Converter={StaticResource InvertedBooleanConverter}}"/>
 			</Grid>
 		</Border>
 		<Border BorderThickness="1" Grid.Column="2" VerticalAlignment="Top" Style="{DynamicResource OrdinalBorder}">
@@ -73,7 +78,12 @@
 				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Text="Party 2"/>
 				<TextBox Text="{Binding Party2.FullName, Mode=OneWay}" Grid.Column="1" Style="{DynamicResource TextBoxWithAdorner}" VerticalAlignment="Center" Tag="Name" IsReadOnly="True"/>
 				<TextBox Text="{Binding Party2.Designation.DesignationName, Mode=OneWay}" VerticalAlignment="Center" Grid.Column="2" Style="{DynamicResource TextBoxWithAdorner}" Tag="Designation" IsReadOnly="True"/>
-				<CheckBox HorizontalAlignment="Left" Margin="0,0,-0.001,0" VerticalAlignment="Center" Grid.Column="3" Content="Attroney" IsChecked="{Binding Party2AttorneyData.HasAttorney}"/>
+                <CheckBox HorizontalAlignment="Left"
+                          Margin="0,0,-0.001,0"
+                          VerticalAlignment="Center"
+                          Grid.Column="3"
+                          Content="Attroney"
+                          IsChecked="{Binding Party2.IsProPer, Converter={StaticResource InvertedBooleanConverter}}"/>
 			</Grid>
 		</Border>
 		<GroupBox Grid.Row="1" Grid.ColumnSpan="3" cal:View.Model="{Binding ActiveItem, Mode=OneWay}" Header="{Binding ActiveItem.DisplayName, Mode=OneWay}"/>

@@ -57,7 +57,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.IsSigned)
     				,this.ObservableForProperty(x => x.ServerFileName)
     				,this.ObservableForProperty(x => x.HearingId)
-    				,this.ObservableForProperty(x => x.CourtOrders2.IsDirty)
+    				,this.ObservableForProperty(x => x.ParentOrder.IsDirty)
     				,this.ObservableForProperty(x => x.Hearings.IsDirty)
     			).
     			Subscribe(_ =>
@@ -188,9 +188,9 @@ namespace Faccts.Model.Entities
                     ChangeTracker.RecordOriginalValue("ParentOrderId", _parentOrderId);
                     if (!IsDeserializing)
                     {
-                        if (CourtOrders2 != null && CourtOrders2.Id != value)
+                        if (ParentOrder != null && ParentOrder.Id != value)
                         {
-                            CourtOrders2 = null;
+                            ParentOrder = null;
                         }
                     }
     				OnPropertyChanging("ParentOrderId");
@@ -278,58 +278,58 @@ namespace Faccts.Model.Entities
         #region Navigation Properties
     
         [DataMember]
-        public TrackableCollection<CourtOrders> CourtOrders1
+        public TrackableCollection<CourtOrders> Attachments
         {
             get
             {
-                if (_courtOrders1 == null)
+                if (_attachments == null)
                 {
-                    _courtOrders1 = new TrackableCollection<CourtOrders>();
-                    _courtOrders1.CollectionChanged += FixupCourtOrders1;
+                    _attachments = new TrackableCollection<CourtOrders>();
+                    _attachments.CollectionChanged += FixupAttachments;
                 }
-                return _courtOrders1;
+                return _attachments;
             }
             set
             {
-                if (!ReferenceEquals(_courtOrders1, value))
+                if (!ReferenceEquals(_attachments, value))
                 {
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
-    				OnNavigationPropertyChanging("CourtOrders1");
-                    if (_courtOrders1 != null)
+    				OnNavigationPropertyChanging("Attachments");
+                    if (_attachments != null)
                     {
-                        _courtOrders1.CollectionChanged -= FixupCourtOrders1;
+                        _attachments.CollectionChanged -= FixupAttachments;
                     }
-                    _courtOrders1 = value;
-                    if (_courtOrders1 != null)
+                    _attachments = value;
+                    if (_attachments != null)
                     {
-                        _courtOrders1.CollectionChanged += FixupCourtOrders1;
+                        _attachments.CollectionChanged += FixupAttachments;
                     }
-                    OnNavigationPropertyChanged("CourtOrders1");
+                    OnNavigationPropertyChanged("Attachments");
                 }
             }
         }
-        private TrackableCollection<CourtOrders> _courtOrders1;
+        private TrackableCollection<CourtOrders> _attachments;
     
         [DataMember]
-        public CourtOrders CourtOrders2
+        public CourtOrders ParentOrder
         {
-            get { return _courtOrders2; }
+            get { return _parentOrder; }
             set
             {
-                if (!ReferenceEquals(_courtOrders2, value))
+                if (!ReferenceEquals(_parentOrder, value))
                 {
-                    var previousValue = _courtOrders2;
-    				OnNavigationPropertyChanging("CourtOrders2");
-                    _courtOrders2 = value;
-                    FixupCourtOrders2(previousValue);
-                    OnNavigationPropertyChanged("CourtOrders2");
+                    var previousValue = _parentOrder;
+    				OnNavigationPropertyChanging("ParentOrder");
+                    _parentOrder = value;
+                    FixupParentOrder(previousValue);
+                    OnNavigationPropertyChanged("ParentOrder");
                 }
             }
         }
-        private CourtOrders _courtOrders2;
+        private CourtOrders _parentOrder;
     
         [DataMember]
         public Hearings Hearings
@@ -456,8 +456,8 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
-            CourtOrders1.Clear();
-            CourtOrders2 = null;
+            Attachments.Clear();
+            ParentOrder = null;
             Hearings = null;
         }
 
@@ -465,23 +465,23 @@ namespace Faccts.Model.Entities
 
         #region Association Fixup
     
-        private void FixupCourtOrders2(CourtOrders previousValue, bool skipKeys = false)
+        private void FixupParentOrder(CourtOrders previousValue, bool skipKeys = false)
         {
             if (IsDeserializing)
             {
                 return;
             }
     
-            if (previousValue != null && previousValue.CourtOrders1.Contains(this))
+            if (previousValue != null && previousValue.Attachments.Contains(this))
             {
-                previousValue.CourtOrders1.Remove(this);
+                previousValue.Attachments.Remove(this);
             }
     
-            if (CourtOrders2 != null)
+            if (ParentOrder != null)
             {
-                CourtOrders2.CourtOrders1.Add(this);
+                ParentOrder.Attachments.Add(this);
     
-                ParentOrderId = CourtOrders2.Id;
+                ParentOrderId = ParentOrder.Id;
             }
             else if (!skipKeys)
             {
@@ -490,18 +490,18 @@ namespace Faccts.Model.Entities
     
             if (ChangeTracker.ChangeTrackingEnabled)
             {
-                if (ChangeTracker.OriginalValues.ContainsKey("CourtOrders2")
-                    && (ChangeTracker.OriginalValues["CourtOrders2"] == CourtOrders2))
+                if (ChangeTracker.OriginalValues.ContainsKey("ParentOrder")
+                    && (ChangeTracker.OriginalValues["ParentOrder"] == ParentOrder))
                 {
-                    ChangeTracker.OriginalValues.Remove("CourtOrders2");
+                    ChangeTracker.OriginalValues.Remove("ParentOrder");
                 }
                 else
                 {
-                    ChangeTracker.RecordOriginalValue("CourtOrders2", previousValue);
+                    ChangeTracker.RecordOriginalValue("ParentOrder", previousValue);
                 }
-                if (CourtOrders2 != null && !CourtOrders2.ChangeTracker.ChangeTrackingEnabled)
+                if (ParentOrder != null && !ParentOrder.ChangeTracker.ChangeTrackingEnabled)
                 {
-                    CourtOrders2.StartTracking();
+                    ParentOrder.StartTracking();
                 }
             }
         }
@@ -542,7 +542,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupCourtOrders1(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupAttachments(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
             {
@@ -553,14 +553,14 @@ namespace Faccts.Model.Entities
             {
                 foreach (CourtOrders item in e.NewItems)
                 {
-                    item.CourtOrders2 = this;
+                    item.ParentOrder = this;
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         if (!item.ChangeTracker.ChangeTrackingEnabled)
                         {
                             item.StartTracking();
                         }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CourtOrders1", item);
+                        ChangeTracker.RecordAdditionToCollectionProperties("Attachments", item);
                     }
                 }
             }
@@ -569,13 +569,13 @@ namespace Faccts.Model.Entities
             {
                 foreach (CourtOrders item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.CourtOrders2, this))
+                    if (ReferenceEquals(item.ParentOrder, this))
                     {
-                        item.CourtOrders2 = null;
+                        item.ParentOrder = null;
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtOrders1", item);
+                        ChangeTracker.RecordRemovalFromCollectionProperties("Attachments", item);
                     }
                 }
             }

@@ -78,7 +78,7 @@
         <AssociationConnector Association="FACCTS_DBModel.CourtPartyCourtCase1" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtParty_Party1_Id" />
         <AssociationConnector Association="FACCTS_DBModel.FK_dbo_CourtCase_dbo_CourtParty_Party2_Id" />
-        <EntityTypeShape EntityType="FACCTS_DBModel.PersonBase" Width="1.5" PointX="6.5" PointY="23.125" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.PersonBase" Width="1.5" PointX="6.125" PointY="23.25" />
         <AssociationConnector Association="FACCTS_DBModel.CourtCaseAdditionalParty" />
         <EntityTypeShape EntityType="FACCTS_DBModel.Child" Width="1.5" PointX="4.75" PointY="26.5" />
         <InheritanceConnector EntityType="FACCTS_DBModel.Child" />
