@@ -81,6 +81,7 @@
     <Compile Include="EntityConfigurations\AppearanceWithSwornConfiguration.cs" />
     <Compile Include="EntityConfigurations\AttorneyConfiguration.cs" />
     <Compile Include="EntityConfigurations\CaseHistoryConfiguration.cs" />
+    <Compile Include="EntityConfigurations\CaseNoteConfiguration.cs" />
     <Compile Include="EntityConfigurations\ChildConfiguration.cs" />
     <Compile Include="EntityConfigurations\CourtCaseConfiguration.cs" />
     <Compile Include="EntityConfigurations\CourtPartyConfiguration.cs" />
