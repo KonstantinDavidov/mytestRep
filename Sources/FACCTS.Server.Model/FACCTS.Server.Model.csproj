@@ -167,6 +167,7 @@
     <Compile Include="Reporting\Entities\PermanentOrder.cs" />
     <Compile Include="Reporting\Entities\SupervisionProviderType.cs" />
     <Compile Include="Reporting\Entities\TemporaryOrder.cs" />
+    <Compile Include="Reporting\Entities\RestrainedLocations.cs" />
     <Compile Include="Reporting\ModelTemplate.cs">
       <DependentUpon>ModelTemplate.tt</DependentUpon>
       <AutoGen>True</AutoGen>
