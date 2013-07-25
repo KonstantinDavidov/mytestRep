@@ -22,7 +22,7 @@ namespace FACCTS.Server.Model.DataModel
         [StringLength(30)]
         public string CCPOR_ID { get; set; }
 
-        public virtual MasterOrder MasterOrder { get; set; }
+        public virtual CourtOrder MasterOrder { get; set; }
 
         [InverseProperty("CaseHistory")]
         public virtual CourtCase CourtCase { get; set; }

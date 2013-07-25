@@ -60,8 +60,7 @@ namespace FACCTS.Server.Data
 
             modelBuilder.Configurations.Add(new ManualIntegrationTaskConfiguration());
             modelBuilder.Configurations.Add(new ScheduledIntegrationTaskConfiguration());
-            modelBuilder.Configurations.Add(new MasterOrderConfiguration());
-            modelBuilder.Configurations.Add(new AttachmentOrderConfiguration());            
+            modelBuilder.Configurations.Add(new CourtOrderConfiguration());       
 
             base.OnModelCreating(modelBuilder);
         }
@@ -129,8 +128,7 @@ namespace FACCTS.Server.Data
         public DbSet<FACCTSConfiguration> FACCTSConfiguration { get; set; }
         public DbSet<ManualIntegrationTask> ManualIntegrationTasks { get; set; }
         public DbSet<ScheduledIntegrationTask> ScheduledIntegrationTasks { get; set; }
-        public DbSet<MasterOrder> MasterOrders { get; set; }
-        public DbSet<AttachmentOrder> AttachmentOrders { get; set; }
+        public DbSet<CourtOrder> CourtOrders { get; set; }
         public DbSet<CourtPartyAttorneyData> CourtPartyAttorneyData { get; set; }
         public DbSet<ThirdPartyData> ThirdPartyData { get; set; }
         #endregion

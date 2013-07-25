@@ -214,7 +214,7 @@ namespace Faccts.Model.Entities
         private string _serverFileName;
     
         [DataMember]
-        public FACCTS.Server.Model.Enums.MasterOrders OrderType
+        public FACCTS.Server.Model.Enums.CourtOrdersTypes OrderType
         {
             get { return _orderType; }
             set
@@ -227,7 +227,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private FACCTS.Server.Model.Enums.MasterOrders _orderType;
+        private FACCTS.Server.Model.Enums.CourtOrdersTypes _orderType;
 
         #endregion
 

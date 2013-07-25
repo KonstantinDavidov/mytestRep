@@ -28,16 +28,12 @@ namespace FACCTS.Server.Data.EntityConfigurations
         public const string SCHELULED_INTEGRATION_TASK_TASK_STATE_COLUMN_NAME = "TaskState";
         public const string SCHELULED_INTEGRATION_TASK_ENABLED_COLUMN_NAME = "Enabled";
 
-        public const string MASTER_ORDERS_TABLE_NAME = "MasterOrders";
-        public const string MASTER_ORDERS_ORDER_TYPE_COLUMN_NAME = "OrderType";
-        public const string MASTER_ORDERS_XML_CONTENT_COLUMN_NAME = "XMLContent";
-        public const string MASTER_ORDERS_IS_SIGNED_COLUMN_NAME = "IsSigned";
-        public const string MASTER_ORDERS_SERVER_FILE_NAME_COLUMN_NAME = "ServerFileName";
-
-        public const string ATTACHMENT_ORDERS_TABLE_NAME = "AttachmentOrders";
-        public const string ATTACHMENT_ORDERS_ORDER_TYPE_COLUMN_NAME = "OrderType";
-        public const string ATTACHMENT_ORDERS_XML_CONTENT_COLUMN_NAME = "XMLContent";
-        public const string ATTACHMENT_ORDERS_SERVER_FILE_NAME_COLUMN_NAME = "ServerFileName";
+        public const string COURT_ORDERS_TABLE_NAME = "CourtOrders";
+        public const string COURT_ORDER_ORDER_TYPE_COLUMN_NAME = "OrderType";
+        public const string COURT_ORDER_XML_CONTENT_COLUMN_NAME = "XMLContent";
+        public const string COURT_ORDER_IS_SIGNED_COLUMN_NAME = "IsSigned";
+        public const string COURT_ORDER_SERVER_FILE_NAME_COLUMN_NAME = "ServerFileName";
+        public const string COURT_ORDER_PARENT_ORDER_ID_COLUMN_NAME = "ParentOrderId";
 
         public const string PERSONS_TABLE_NAME = "Persons";
         public const string PERSON_DISCRIMINATOR_COLUMN = "PersonType";
