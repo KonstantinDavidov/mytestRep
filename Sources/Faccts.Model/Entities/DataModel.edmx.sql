@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 07/25/2013 14:18:48
+-- Date Created: 07/25/2013 15:28:20
 -- Generated from EDMX file: D:\FACCTS\FACCTSNEW\faccts.net\Sources\Faccts.Model\Entities\DataModel.edmx
 -- --------------------------------------------------
 
@@ -17,9 +17,6 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CourtParty] DROP CONSTRAINT [FK_dbo_CourtParty_dbo_Attorneys_Attorney_Id];
-GO
 IF OBJECT_ID(N'[dbo].[FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CaseHistory] DROP CONSTRAINT [FK_dbo_CaseHistory_dbo_CourtCaseOrders_CourtCaseOrderId];
 GO
@@ -343,6 +340,9 @@ IF OBJECT_ID(N'[dbo].[FK_dbo_CourtOrders_dbo_Hearings_HearingId]', 'F') IS NOT N
 GO
 IF OBJECT_ID(N'[dbo].[FK_AppearancesPersonBase]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Appearance] DROP CONSTRAINT [FK_AppearancesPersonBase];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CourtPartyAttorneys]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CourtParty] DROP CONSTRAINT [FK_CourtPartyAttorneys];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Attorneys_inherits_PersonBase]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PersonBaseSet_Attorneys] DROP CONSTRAINT [FK_Attorneys_inherits_PersonBase];
@@ -881,6 +881,7 @@ CREATE TABLE [dbo].[CourtParty] (
     [AddressInfo_Phone] nvarchar(max)  NOT NULL,
     [AddressInfo_Fax] nvarchar(max)  NOT NULL,
     [Designation] int  NULL,
+    [IsProPer] bit  NOT NULL,
     [Attorney_Id] bigint  NOT NULL
 );
 GO

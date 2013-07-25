@@ -813,6 +813,7 @@
     <Property Name="AddressInfo_Phone" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AddressInfo_Fax" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Designation" Type="int" Nullable="true" />
+    <Property Name="IsProPer" Type="bit" Nullable="false" />
     <Property Name="Attorney_Id" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="Courtrooms">
@@ -3937,6 +3938,7 @@
           <Property Name="AddressInfo" Type="FACCTS_DBModel.AddressInfo" Nullable="false" />
           <Property Type="FACCTS_DBModel.Designation" Name="Designation" Nullable="true" />
           <NavigationProperty Name="Attorney" Relationship="FACCTS_DBModel.CourtPartyAttorneys" FromRole="CourtParty" ToRole="Attorneys" />
+          <Property Type="Boolean" Name="IsProPer" Nullable="false" />
         </EntityType>
         <EntityType Name="Courtrooms">
           <Key>
@@ -5693,6 +5695,7 @@
             <ScalarProperty Name="Fax" ColumnName="AddressInfo_Fax" />
           </ComplexProperty>
           <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="IsProPer" ColumnName="IsProPer" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
