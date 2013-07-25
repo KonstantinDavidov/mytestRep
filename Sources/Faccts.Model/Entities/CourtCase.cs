@@ -82,7 +82,6 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.CourtDocketRecord.IsDirty)
     				,this.ObservableForProperty(x => x.ThirdPartyAttorneyData.IsDirty)
     				,this.ObservableForProperty(x => x.AttorneyForChild.IsDirty)
-    				,this.ObservableForProperty(x => x.ThirdPartyData.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -473,14 +472,6 @@ namespace Faccts.Model.Entities
             {
                 if (_thirdPartyData_Id != value)
                 {
-                    ChangeTracker.RecordOriginalValue("ThirdPartyData_Id", _thirdPartyData_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (ThirdPartyData != null && ThirdPartyData.Id != value)
-                        {
-                            ThirdPartyData = null;
-                        }
-                    }
     				OnPropertyChanging("ThirdPartyData_Id");
                     _thirdPartyData_Id = value;
                     OnPropertyChanged("ThirdPartyData_Id");
@@ -822,24 +813,6 @@ namespace Faccts.Model.Entities
             }
         }
         private Attorneys _attorneyForChild;
-    
-        [DataMember]
-        public ThirdPartyData ThirdPartyData
-        {
-            get { return _thirdPartyData; }
-            set
-            {
-                if (!ReferenceEquals(_thirdPartyData, value))
-                {
-                    var previousValue = _thirdPartyData;
-    				OnNavigationPropertyChanging("ThirdPartyData");
-                    _thirdPartyData = value;
-                    FixupThirdPartyData(previousValue);
-                    OnNavigationPropertyChanged("ThirdPartyData");
-                }
-            }
-        }
-        private ThirdPartyData _thirdPartyData;
 
         #endregion
 
@@ -959,7 +932,6 @@ namespace Faccts.Model.Entities
             CourtDocketRecord = null;
             ThirdPartyAttorneyData = null;
             AttorneyForChild = null;
-            ThirdPartyData = null;
         }
 
         #endregion
@@ -1272,47 +1244,6 @@ namespace Faccts.Model.Entities
                 if (AttorneyForChild != null && !AttorneyForChild.ChangeTracker.ChangeTrackingEnabled)
                 {
                     AttorneyForChild.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupThirdPartyData(ThirdPartyData previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.CourtCase.Contains(this))
-            {
-                previousValue.CourtCase.Remove(this);
-            }
-    
-            if (ThirdPartyData != null)
-            {
-                ThirdPartyData.CourtCase.Add(this);
-    
-                ThirdPartyData_Id = ThirdPartyData.Id;
-            }
-            else if (!skipKeys)
-            {
-                ThirdPartyData_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("ThirdPartyData")
-                    && (ChangeTracker.OriginalValues["ThirdPartyData"] == ThirdPartyData))
-                {
-                    ChangeTracker.OriginalValues.Remove("ThirdPartyData");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("ThirdPartyData", previousValue);
-                }
-                if (ThirdPartyData != null && !ThirdPartyData.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    ThirdPartyData.StartTracking();
                 }
             }
         }

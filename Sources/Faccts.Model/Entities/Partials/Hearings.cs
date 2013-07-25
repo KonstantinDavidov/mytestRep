@@ -25,7 +25,6 @@ namespace Faccts.Model.Entities
                 Department = this.CourtDepartment.ConvertToDTO(),
                 Judge = this.Judge,
                 HearingIssues = this.HearingIssue.ConvertToDTO(),
-                Appearance = this.Appearance.ConvertToDTO(),
                 Session = this.Session,
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
             };

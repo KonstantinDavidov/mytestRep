@@ -21,13 +21,14 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(CourtParty))]
-    public partial class Designation: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    [KnownType(typeof(CourtOrders))]
+    [KnownType(typeof(Hearings))]
+    public partial class CourtOrders: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
     		private MakeObjectReactiveHelper _reactiveHelper;
     
-    		public Designation()
+    		public CourtOrders()
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
@@ -50,7 +51,14 @@ namespace Faccts.Model.Entities
     			);
     			Observable.Merge<Object>(
     				this.ObservableForProperty(x => x.Id)
-    				,this.ObservableForProperty(x => x.DesignationName)
+    				,this.ObservableForProperty(x => x.OrderType)
+    				,this.ObservableForProperty(x => x.ParentOrderId)
+    				,this.ObservableForProperty(x => x.XMLContent)
+    				,this.ObservableForProperty(x => x.IsSigned)
+    				,this.ObservableForProperty(x => x.ServerFileName)
+    				,this.ObservableForProperty(x => x.HearingId)
+    				,this.ObservableForProperty(x => x.ParentOrder.IsDirty)
+    				,this.ObservableForProperty(x => x.Hearings.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -154,72 +162,192 @@ namespace Faccts.Model.Entities
         private long _id;
     
         [DataMember]
-        public string DesignationName
+        public int OrderType
         {
-            get { return _designationName; }
+            get { return _orderType; }
             set
             {
-                if (_designationName != value)
+                if (_orderType != value)
                 {
-    				OnPropertyChanging("DesignationName");
-                    _designationName = value;
-                    OnPropertyChanged("DesignationName");
+    				OnPropertyChanging("OrderType");
+                    _orderType = value;
+                    OnPropertyChanged("OrderType");
                 }
             }
         }
-        private string _designationName;
+        private int _orderType;
+    
+        [DataMember]
+        public Nullable<long> ParentOrderId
+        {
+            get { return _parentOrderId; }
+            set
+            {
+                if (_parentOrderId != value)
+                {
+                    ChangeTracker.RecordOriginalValue("ParentOrderId", _parentOrderId);
+                    if (!IsDeserializing)
+                    {
+                        if (ParentOrder != null && ParentOrder.Id != value)
+                        {
+                            ParentOrder = null;
+                        }
+                    }
+    				OnPropertyChanging("ParentOrderId");
+                    _parentOrderId = value;
+                    OnPropertyChanged("ParentOrderId");
+                }
+            }
+        }
+        private Nullable<long> _parentOrderId;
+    
+        [DataMember]
+        public string XMLContent
+        {
+            get { return _xMLContent; }
+            set
+            {
+                if (_xMLContent != value)
+                {
+    				OnPropertyChanging("XMLContent");
+                    _xMLContent = value;
+                    OnPropertyChanged("XMLContent");
+                }
+            }
+        }
+        private string _xMLContent;
+    
+        [DataMember]
+        public bool IsSigned
+        {
+            get { return _isSigned; }
+            set
+            {
+                if (_isSigned != value)
+                {
+    				OnPropertyChanging("IsSigned");
+                    _isSigned = value;
+                    OnPropertyChanged("IsSigned");
+                }
+            }
+        }
+        private bool _isSigned;
+    
+        [DataMember]
+        public string ServerFileName
+        {
+            get { return _serverFileName; }
+            set
+            {
+                if (_serverFileName != value)
+                {
+    				OnPropertyChanging("ServerFileName");
+                    _serverFileName = value;
+                    OnPropertyChanged("ServerFileName");
+                }
+            }
+        }
+        private string _serverFileName;
+    
+        [DataMember]
+        public long HearingId
+        {
+            get { return _hearingId; }
+            set
+            {
+                if (_hearingId != value)
+                {
+                    ChangeTracker.RecordOriginalValue("HearingId", _hearingId);
+                    if (!IsDeserializing)
+                    {
+                        if (Hearings != null && Hearings.Id != value)
+                        {
+                            Hearings = null;
+                        }
+                    }
+    				OnPropertyChanging("HearingId");
+                    _hearingId = value;
+                    OnPropertyChanged("HearingId");
+                }
+            }
+        }
+        private long _hearingId;
 
         #endregion
 
         #region Navigation Properties
     
         [DataMember]
-        public TrackableCollection<CourtParty> CourtParty
+        public TrackableCollection<CourtOrders> Attachments
         {
             get
             {
-                if (_courtParty == null)
+                if (_attachments == null)
                 {
-                    _courtParty = new TrackableCollection<CourtParty>();
-                    _courtParty.CollectionChanged += FixupCourtParty;
+                    _attachments = new TrackableCollection<CourtOrders>();
+                    _attachments.CollectionChanged += FixupAttachments;
                 }
-                return _courtParty;
+                return _attachments;
             }
             set
             {
-                if (!ReferenceEquals(_courtParty, value))
+                if (!ReferenceEquals(_attachments, value))
                 {
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
-    				OnNavigationPropertyChanging("CourtParty");
-                    if (_courtParty != null)
+    				OnNavigationPropertyChanging("Attachments");
+                    if (_attachments != null)
                     {
-                        _courtParty.CollectionChanged -= FixupCourtParty;
-                        // This is the principal end in an association that performs cascade deletes.
-                        // Remove the cascade delete event handler for any entities in the current collection.
-                        foreach (CourtParty item in _courtParty)
-                        {
-                            ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
-                        }
+                        _attachments.CollectionChanged -= FixupAttachments;
                     }
-                    _courtParty = value;
-                    if (_courtParty != null)
+                    _attachments = value;
+                    if (_attachments != null)
                     {
-                        _courtParty.CollectionChanged += FixupCourtParty;
-                        // This is the principal end in an association that performs cascade deletes.
-                        // Add the cascade delete event handler for any entities that are already in the new collection.
-                        foreach (CourtParty item in _courtParty)
-                        {
-                            ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
-                        }
+                        _attachments.CollectionChanged += FixupAttachments;
                     }
-                    OnNavigationPropertyChanged("CourtParty");
+                    OnNavigationPropertyChanged("Attachments");
                 }
             }
         }
-        private TrackableCollection<CourtParty> _courtParty;
+        private TrackableCollection<CourtOrders> _attachments;
+    
+        [DataMember]
+        public CourtOrders ParentOrder
+        {
+            get { return _parentOrder; }
+            set
+            {
+                if (!ReferenceEquals(_parentOrder, value))
+                {
+                    var previousValue = _parentOrder;
+    				OnNavigationPropertyChanging("ParentOrder");
+                    _parentOrder = value;
+                    FixupParentOrder(previousValue);
+                    OnNavigationPropertyChanged("ParentOrder");
+                }
+            }
+        }
+        private CourtOrders _parentOrder;
+    
+        [DataMember]
+        public Hearings Hearings
+        {
+            get { return _hearings; }
+            set
+            {
+                if (!ReferenceEquals(_hearings, value))
+                {
+                    var previousValue = _hearings;
+    				OnNavigationPropertyChanging("Hearings");
+                    _hearings = value;
+                    FixupHearings(previousValue);
+                    OnNavigationPropertyChanged("Hearings");
+                }
+            }
+        }
+        private Hearings _hearings;
 
         #endregion
 
@@ -316,16 +444,105 @@ namespace Faccts.Model.Entities
             ChangeTracker.ChangeTrackingEnabled = true;
         }
     
+        // This entity type is the dependent end in at least one association that performs cascade deletes.
+        // This event handler will process notifications that occur when the principal end is deleted.
+        internal void HandleCascadeDelete(object sender, ObjectStateChangingEventArgs e)
+        {
+            if (e.NewState == ObjectState.Deleted)
+            {
+                this.MarkAsDeleted();
+            }
+        }
+    
         protected virtual void ClearNavigationProperties()
         {
-            CourtParty.Clear();
+            Attachments.Clear();
+            ParentOrder = null;
+            Hearings = null;
         }
 
         #endregion
 
         #region Association Fixup
     
-        private void FixupCourtParty(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupParentOrder(CourtOrders previousValue, bool skipKeys = false)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.Attachments.Contains(this))
+            {
+                previousValue.Attachments.Remove(this);
+            }
+    
+            if (ParentOrder != null)
+            {
+                ParentOrder.Attachments.Add(this);
+    
+                ParentOrderId = ParentOrder.Id;
+            }
+            else if (!skipKeys)
+            {
+                ParentOrderId = null;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("ParentOrder")
+                    && (ChangeTracker.OriginalValues["ParentOrder"] == ParentOrder))
+                {
+                    ChangeTracker.OriginalValues.Remove("ParentOrder");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("ParentOrder", previousValue);
+                }
+                if (ParentOrder != null && !ParentOrder.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    ParentOrder.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupHearings(Hearings previousValue)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && previousValue.CourtOrders.Contains(this))
+            {
+                previousValue.CourtOrders.Remove(this);
+            }
+    
+            if (Hearings != null)
+            {
+                Hearings.CourtOrders.Add(this);
+    
+                HearingId = Hearings.Id;
+            }
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("Hearings")
+                    && (ChangeTracker.OriginalValues["Hearings"] == Hearings))
+                {
+                    ChangeTracker.OriginalValues.Remove("Hearings");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("Hearings", previousValue);
+                }
+                if (Hearings != null && !Hearings.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    Hearings.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupAttachments(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
             {
@@ -334,38 +551,32 @@ namespace Faccts.Model.Entities
     
             if (e.NewItems != null)
             {
-                foreach (CourtParty item in e.NewItems)
+                foreach (CourtOrders item in e.NewItems)
                 {
-                    item.Designation = this;
+                    item.ParentOrder = this;
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         if (!item.ChangeTracker.ChangeTrackingEnabled)
                         {
                             item.StartTracking();
                         }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CourtParty", item);
+                        ChangeTracker.RecordAdditionToCollectionProperties("Attachments", item);
                     }
-                    // This is the principal end in an association that performs cascade deletes.
-                    // Update the event listener to refer to the new dependent.
-                    ChangeTracker.ObjectStateChanging += item.HandleCascadeDelete;
                 }
             }
     
             if (e.OldItems != null)
             {
-                foreach (CourtParty item in e.OldItems)
+                foreach (CourtOrders item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.Designation, this))
+                    if (ReferenceEquals(item.ParentOrder, this))
                     {
-                        item.Designation = null;
+                        item.ParentOrder = null;
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtParty", item);
+                        ChangeTracker.RecordRemovalFromCollectionProperties("Attachments", item);
                     }
-                    // This is the principal end in an association that performs cascade deletes.
-                    // Remove the previous dependent from the event listener.
-                    ChangeTracker.ObjectStateChanging -= item.HandleCascadeDelete;
                 }
             }
         }

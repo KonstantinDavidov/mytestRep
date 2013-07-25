@@ -21,13 +21,11 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(Attorneys))]
-    [KnownType(typeof(Designation))]
     [KnownType(typeof(HairColor))]
     [KnownType(typeof(Race))]
     [KnownType(typeof(EyesColor))]
     [KnownType(typeof(CourtCase))]
-    [KnownType(typeof(CourtPartyAttorneyData))]
+    [KnownType(typeof(Attorneys))]
     public partial class CourtParty: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -65,23 +63,20 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.HeightIns)
     				,this.ObservableForProperty(x => x.DateOfBirth)
     				,this.ObservableForProperty(x => x.Age)
-    				,this.ObservableForProperty(x => x.Designation_Id)
     				,this.ObservableForProperty(x => x.HairColor_Id)
     				,this.ObservableForProperty(x => x.EyesColor_Id)
     				,this.ObservableForProperty(x => x.Race_Id)
-    				,this.ObservableForProperty(x => x.Attorney_Id)
     				,this.ObservableForProperty(x => x.ParticipantRole)
     				,this.ObservableForProperty(x => x.Sex)
     				,this.ObservableForProperty(x => x.ParentRole)
     				,this.ObservableForProperty(x => x.EntityType)
     				,this.ObservableForProperty(x => x.Email)
     				,this.ObservableForProperty(x => x.RelationToOtherParty)
-    				,this.ObservableForProperty(x => x.Attorneys.IsDirty)
-    				,this.ObservableForProperty(x => x.Designation.IsDirty)
+    				,this.ObservableForProperty(x => x.Designation)
     				,this.ObservableForProperty(x => x.HairColor.IsDirty)
     				,this.ObservableForProperty(x => x.Race.IsDirty)
     				,this.ObservableForProperty(x => x.EyesColor.IsDirty)
-    				,this.ObservableForProperty(x => x.AttorneyData.IsDirty)
+    				,this.ObservableForProperty(x => x.Attorney.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -329,30 +324,6 @@ namespace Faccts.Model.Entities
         private int _age;
     
         [DataMember]
-        public Nullable<long> Designation_Id
-        {
-            get { return _designation_Id; }
-            set
-            {
-                if (_designation_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("Designation_Id", _designation_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (Designation != null && Designation.Id != value)
-                        {
-                            Designation = null;
-                        }
-                    }
-    				OnPropertyChanging("Designation_Id");
-                    _designation_Id = value;
-                    OnPropertyChanged("Designation_Id");
-                }
-            }
-        }
-        private Nullable<long> _designation_Id;
-    
-        [DataMember]
         public Nullable<long> HairColor_Id
         {
             get { return _hairColor_Id; }
@@ -423,30 +394,6 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<long> _race_Id;
-    
-        [DataMember]
-        public Nullable<long> Attorney_Id
-        {
-            get { return _attorney_Id; }
-            set
-            {
-                if (_attorney_Id != value)
-                {
-                    ChangeTracker.RecordOriginalValue("Attorney_Id", _attorney_Id);
-                    if (!IsDeserializing)
-                    {
-                        if (Attorneys != null && Attorneys.Id != value)
-                        {
-                            Attorneys = null;
-                        }
-                    }
-    				OnPropertyChanging("Attorney_Id");
-                    _attorney_Id = value;
-                    OnPropertyChanged("Attorney_Id");
-                }
-            }
-        }
-        private Nullable<long> _attorney_Id;
     
         [DataMember]
         public FACCTS.Server.Model.Enums.ParticipantRole ParticipantRole
@@ -543,6 +490,22 @@ namespace Faccts.Model.Entities
             }
         }
         private string _relationToOtherParty;
+    
+        [DataMember]
+        public Nullable<FACCTS.Server.Model.Enums.Designation> Designation
+        {
+            get { return _designation; }
+            set
+            {
+                if (_designation != value)
+                {
+    				OnPropertyChanging("Designation");
+                    _designation = value;
+                    OnPropertyChanged("Designation");
+                }
+            }
+        }
+        private Nullable<FACCTS.Server.Model.Enums.Designation> _designation;
 
         #endregion
 
@@ -589,42 +552,6 @@ namespace Faccts.Model.Entities
         #endregion
 
         #region Navigation Properties
-    
-        [DataMember]
-        public Attorneys Attorneys
-        {
-            get { return _attorneys; }
-            set
-            {
-                if (!ReferenceEquals(_attorneys, value))
-                {
-                    var previousValue = _attorneys;
-    				OnNavigationPropertyChanging("Attorneys");
-                    _attorneys = value;
-                    FixupAttorneys(previousValue);
-                    OnNavigationPropertyChanged("Attorneys");
-                }
-            }
-        }
-        private Attorneys _attorneys;
-    
-        [DataMember]
-        public Designation Designation
-        {
-            get { return _designation; }
-            set
-            {
-                if (!ReferenceEquals(_designation, value))
-                {
-                    var previousValue = _designation;
-    				OnNavigationPropertyChanging("Designation");
-                    _designation = value;
-                    FixupDesignation(previousValue);
-                    OnNavigationPropertyChanged("Designation");
-                }
-            }
-        }
-        private Designation _designation;
     
         [DataMember]
         public HairColor HairColor
@@ -717,22 +644,22 @@ namespace Faccts.Model.Entities
         private TrackableCollection<CourtCase> _courtCase;
     
         [DataMember]
-        public CourtPartyAttorneyData AttorneyData
+        public Attorneys Attorney
         {
-            get { return _attorneyData; }
+            get { return _attorney; }
             set
             {
-                if (!ReferenceEquals(_attorneyData, value))
+                if (!ReferenceEquals(_attorney, value))
                 {
-                    var previousValue = _attorneyData;
-    				OnNavigationPropertyChanging("AttorneyData");
-                    _attorneyData = value;
-                    FixupAttorneyData(previousValue);
-                    OnNavigationPropertyChanged("AttorneyData");
+                    var previousValue = _attorney;
+    				OnNavigationPropertyChanging("Attorney");
+                    _attorney = value;
+                    FixupAttorney(previousValue);
+                    OnNavigationPropertyChanged("Attorney");
                 }
             }
         }
-        private CourtPartyAttorneyData _attorneyData;
+        private Attorneys _attorney;
 
         #endregion
 
@@ -828,16 +755,6 @@ namespace Faccts.Model.Entities
             IsDeserializing = false;
             ChangeTracker.ChangeTrackingEnabled = true;
         }
-    
-        // This entity type is the dependent end in at least one association that performs cascade deletes.
-        // This event handler will process notifications that occur when the principal end is deleted.
-        internal void HandleCascadeDelete(object sender, ObjectStateChangingEventArgs e)
-        {
-            if (e.NewState == ObjectState.Deleted)
-            {
-                this.MarkAsDeleted();
-            }
-        }
         // Records the original values for the complex property AddressInfo
         private void HandleAddressInfoChanging(object sender, EventArgs args)
         {
@@ -850,100 +767,16 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
-            Attorneys = null;
-            Designation = null;
             HairColor = null;
             Race = null;
             EyesColor = null;
             CourtCase.Clear();
-            AttorneyData = null;
+            Attorney = null;
         }
 
         #endregion
 
         #region Association Fixup
-    
-        private void FixupAttorneys(Attorneys previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.CourtParty.Contains(this))
-            {
-                previousValue.CourtParty.Remove(this);
-            }
-    
-            if (Attorneys != null)
-            {
-                Attorneys.CourtParty.Add(this);
-    
-                Attorney_Id = Attorneys.Id;
-            }
-            else if (!skipKeys)
-            {
-                Attorney_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("Attorneys")
-                    && (ChangeTracker.OriginalValues["Attorneys"] == Attorneys))
-                {
-                    ChangeTracker.OriginalValues.Remove("Attorneys");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("Attorneys", previousValue);
-                }
-                if (Attorneys != null && !Attorneys.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    Attorneys.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupDesignation(Designation previousValue, bool skipKeys = false)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && previousValue.CourtParty.Contains(this))
-            {
-                previousValue.CourtParty.Remove(this);
-            }
-    
-            if (Designation != null)
-            {
-                Designation.CourtParty.Add(this);
-    
-                Designation_Id = Designation.Id;
-            }
-            else if (!skipKeys)
-            {
-                Designation_Id = null;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("Designation")
-                    && (ChangeTracker.OriginalValues["Designation"] == Designation))
-                {
-                    ChangeTracker.OriginalValues.Remove("Designation");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("Designation", previousValue);
-                }
-                if (Designation != null && !Designation.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    Designation.StartTracking();
-                }
-            }
-        }
     
         private void FixupHairColor(HairColor previousValue, bool skipKeys = false)
         {
@@ -1050,7 +883,7 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupAttorneyData(CourtPartyAttorneyData previousValue)
+        private void FixupAttorney(Attorneys previousValue)
         {
             if (IsDeserializing)
             {
@@ -1062,25 +895,25 @@ namespace Faccts.Model.Entities
                 previousValue.CourtParty = null;
             }
     
-            if (AttorneyData != null)
+            if (Attorney != null)
             {
-                AttorneyData.CourtParty = this;
+                Attorney.CourtParty = this;
             }
     
             if (ChangeTracker.ChangeTrackingEnabled)
             {
-                if (ChangeTracker.OriginalValues.ContainsKey("AttorneyData")
-                    && (ChangeTracker.OriginalValues["AttorneyData"] == AttorneyData))
+                if (ChangeTracker.OriginalValues.ContainsKey("Attorney")
+                    && (ChangeTracker.OriginalValues["Attorney"] == Attorney))
                 {
-                    ChangeTracker.OriginalValues.Remove("AttorneyData");
+                    ChangeTracker.OriginalValues.Remove("Attorney");
                 }
                 else
                 {
-                    ChangeTracker.RecordOriginalValue("AttorneyData", previousValue);
+                    ChangeTracker.RecordOriginalValue("Attorney", previousValue);
                 }
-                if (AttorneyData != null && !AttorneyData.ChangeTracker.ChangeTrackingEnabled)
+                if (Attorney != null && !Attorney.ChangeTracker.ChangeTrackingEnabled)
                 {
-                    AttorneyData.StartTracking();
+                    Attorney.StartTracking();
                 }
             }
         }

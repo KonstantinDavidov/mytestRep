@@ -20,11 +20,11 @@
         </Grid.RowDefinitions>
         <localcontrols:AttorneysPartyView Grid.Row="0"
                                           DisplayName="Attorney for Party 1"
-                                          DataContext="{Binding Path=CurrentCourtCase.Party1.AttorneyData, Mode=OneWay}">
+                                          DataContext="{Binding Path=CurrentCourtCase.Party1, Mode=OneWay}">
         </localcontrols:AttorneysPartyView>
         <localcontrols:AttorneysPartyView Grid.Row="1"
                                           DisplayName="Attorney for Party 2"
-                                          DataContext="{Binding Path=CurrentCourtCase.Party2.AttorneyData, Mode=OneWay}">
+                                          DataContext="{Binding Path=CurrentCourtCase.Party2, Mode=OneWay}">
             
         </localcontrols:AttorneysPartyView>
         <this:AttorneyChildrenView Grid.Row="2"/>

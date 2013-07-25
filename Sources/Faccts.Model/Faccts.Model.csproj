@@ -104,7 +104,7 @@
     <Compile Include="Entities\Appearance.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\AttachmentOrder.cs">
+    <Compile Include="Entities\AppearanceWithSworn.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Attorneys.cs">
@@ -188,10 +188,10 @@
     <Compile Include="Entities\CourtMember.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\CourtParty.cs">
+    <Compile Include="Entities\CourtOrders.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\CourtPartyAttorneyData.cs">
+    <Compile Include="Entities\CourtParty.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Courtrooms.cs">
@@ -204,9 +204,6 @@
     </Compile>
     <Compile Include="Entities\DataTransferConvertibleExtensions.cs" />
     <Compile Include="Entities\Delegation.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Designation.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\DiagnosticsConfiguration.cs">
@@ -273,9 +270,6 @@
     <Compile Include="Entities\ManualIntegrationTasks.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\MasterOrder.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\Model1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -308,7 +302,6 @@
     <Compile Include="Entities\Partials\PersonBase.cs" />
     <Compile Include="Entities\Partials\AddressInfo.cs" />
     <Compile Include="Entities\Partials\Appearance.cs" />
-    <Compile Include="Entities\Partials\AttachmentOrder.cs" />
     <Compile Include="Entities\Partials\Attorneys.cs" />
     <Compile Include="Entities\Partials\CaseHistory.cs" />
     <Compile Include="Entities\Partials\CaseNotes.cs" />
@@ -318,16 +311,13 @@
     <Compile Include="Entities\Partials\CourtDepartment.cs" />
     <Compile Include="Entities\Partials\CourtLocations.cs" />
     <Compile Include="Entities\Partials\CourtParty.cs" />
-    <Compile Include="Entities\Partials\CourtPartyAttorneyData.cs" />
     <Compile Include="Entities\Partials\Courtrooms.cs" />
-    <Compile Include="Entities\Partials\Designation.cs" />
     <Compile Include="Entities\Partials\EntityExtensions.cs" />
     <Compile Include="Entities\Partials\EyesColor.cs" />
     <Compile Include="Entities\Partials\HairColor.cs" />
     <Compile Include="Entities\Partials\HearingIssue.cs" />
     <Compile Include="Entities\Partials\Hearings.cs" />
     <Compile Include="Entities\Partials\Interpreter.cs" />
-    <Compile Include="Entities\Partials\MasterOrder.cs" />
     <Compile Include="Entities\Partials\Permission.cs" />
     <Compile Include="Entities\Partials\Race.cs" />
     <Compile Include="Entities\Partials\RestrainingPartyIDInfo.cs" />

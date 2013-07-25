@@ -8,6 +8,12 @@ namespace Faccts.Model.Entities
 {
     public partial class Race : IDataTransferConvertible<FACCTS.Server.Model.DataModel.Race>
     {
+        partial void Initialize()
+        {
+            this.MarkAsUnchanged();
+            this.ChangeTracker.ChangeTrackingEnabled = false;
+        }
+
         public Race(FACCTS.Server.Model.DataModel.Race dto) : this()
         {
             this.Id = dto.Id;
