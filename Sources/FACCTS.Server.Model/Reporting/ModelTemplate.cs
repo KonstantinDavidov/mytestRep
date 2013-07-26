@@ -1409,5 +1409,310 @@ namespace FACCTS.Server.Model.OrderModels
 				
 	}
 	
+			
+	public partial class IncomeAndDeductions
+	{
+		public Designation Designation
+		{
+			get; set;
+		}
+		
+		public decimal TotalGrossMonthlyIncome
+		{
+			get; set;
+		}
+		
+		public decimal TotalMonthlyDeductions
+		{
+			get; set;
+		}
+		
+		public decimal TotalHardshipDeductions
+		{
+			get; set;
+		}
+		
+		public decimal NetMonthlyDisposableIncome
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class JudgmentForSpousalSupport
+	{
+		public bool IsModifiesJudgmentOrder
+		{
+			get; set;
+		}
+		
+		public DateTime ModifingJudgmentOrderDate
+		{
+			get; set;
+		}
+		
+		public bool WerePartiesMarried
+		{
+			get; set;
+		}
+		
+		public int MarriedLifeYears
+		{
+			get; set;
+		}
+		
+		public int MarriedLifeMonths
+		{
+			get; set;
+		}
+		
+		public bool WerePartiesPartners
+		{
+			get; set;
+		}
+		
+		public int PartnershipLifeYears
+		{
+			get; set;
+		}
+		
+		public int PartnershipLifeMonths
+		{
+			get; set;
+		}
+		
+		public bool ArePartiesBothSelfSupported
+		{
+			get; set;
+		}
+		
+		public bool IsMaritalStandardOfLivingEnabled
+		{
+			get; set;
+		}
+		
+		public string MaritalStandardOfLivingDescription
+		{
+			get; set;
+		}
+		
+		public bool IsStandartOfLivingAttached
+		{
+			get; set;
+		}
+		
+		public bool IsSupportReserved
+		{
+			get; set;
+		}
+		
+		public bool IsSupportReservedForPetitioner
+		{
+			get; set;
+		}
+		
+		public bool IsSupportReservedForRespondent
+		{
+			get; set;
+		}
+		
+		public bool IsSupportTerminated
+		{
+			get; set;
+		}
+		
+		public bool IsSupportTerminatedForPetitioner
+		{
+			get; set;
+		}
+		
+		public bool IsSupportTerminatedForRespondent
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class CourtOrders
+	{
+		public Designation SupportToBePaidFrom
+		{
+			get; set;
+		}
+		
+		public Designation SupportToBePaidTo
+		{
+			get; set;
+		}
+		
+		public decimal SupportAmount
+		{
+			get; set;
+		}
+		
+		public DateTime SupportFromDate
+		{
+			get; set;
+		}
+		
+		public bool IsPayOnTheDayOfMonth
+		{
+			get; set;
+		}
+		
+		public byte DayOfMonth
+		{
+			get; set;
+		}
+		
+		public bool IsOtherPaymentScheme
+		{
+			get; set;
+		}
+		
+		public string OtherPaymentSchemeDescription
+		{
+			get; set;
+		}
+		
+		public DateTime SupportUntilDate
+		{
+			get; set;
+		}
+		
+		public bool IsTemporarySupportEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsSpousalSupportEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsFamilySupportEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsPartnerSupportEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsSupportConditionsEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsMustInformAboutEmploymentChanges
+		{
+			get; set;
+		}
+		
+		public string IsOrderForFamilySupport
+		{
+			get; set;
+		}
+		
+		public string IsSelfSupportEffortsEnabled
+		{
+			get; set;
+		}
+		
+		public Designation SelfSupportEffortedPerson
+		{
+			get; set;
+		}
+		
+		public bool IsEarningAssignmentStatementEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsServiceStayedPeriodProvided
+		{
+			get; set;
+		}
+		
+		public int ServiceStayedPeriod
+		{
+			get; set;
+		}
+		
+		public bool IsNoticeAboutDurationEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsOtherOrdersEnabled
+		{
+			get; set;
+		}
+		
+		public string OtherOrdersDescription
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class FL343
+	{
+		public bool IsAttachedToFOAH
+		{
+			get; set;
+		}
+		
+		public bool IsAttachedToDVRO
+		{
+			get; set;
+		}
+		
+		public bool IsAttachedToJudgment
+		{
+			get; set;
+		}
+		
+		public bool IsAttachedToStipulation
+		{
+			get; set;
+		}
+		
+		public bool IsAttachedToOther
+		{
+			get; set;
+		}
+		
+		public string OtherAttachedToDescription
+		{
+			get; set;
+		}
+		
+		public string IncomeAndDeductions
+		{
+			get; set;
+		}
+		
+		public string IsComputerPrintOutAttach
+		{
+			get; set;
+		}
+		
+		public JudgmentForSpousalSupport JudgmentForSpousalSupport
+		{
+			get; set;
+		}
+		
+		public CourtOrders CourtOrders
+		{
+			get; set;
+		}
+				
+	}
+	
 }
 
