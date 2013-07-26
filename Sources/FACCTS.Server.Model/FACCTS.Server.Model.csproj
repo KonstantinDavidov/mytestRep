@@ -161,6 +161,7 @@
     <Compile Include="Reporting\Entities\ChildCustodyItem.cs" />
     <Compile Include="Reporting\Entities\DataItem.cs" />
     <Compile Include="Reporting\Entities\DebtPaymentItem.cs" />
+    <Compile Include="Reporting\Entities\DV110.cs" />
     <Compile Include="Reporting\Entities\DV130.cs" />
     <Compile Include="Reporting\Entities\LawersFeeAndCourtCosts.cs" />
     <Compile Include="Reporting\Entities\NoServiceFee.cs" />
