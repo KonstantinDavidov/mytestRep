@@ -149,7 +149,7 @@ namespace FACCTS.Controls.ViewModels
                 this.CurrentHistoryRecord = null;
                 return;
             }
-            this.CurrentHistoryRecord = message.Hearing.CaseHistory;
+            //this.CurrentHistoryRecord = message.Hearing.CaseHistory;
         }
     }
 }

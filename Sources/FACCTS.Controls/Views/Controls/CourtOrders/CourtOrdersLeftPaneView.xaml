@@ -10,31 +10,26 @@
     xmlns:ei="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
     xmlns:local="clr-namespace:Faccts.Model.Entities;assembly=FACCTS.Model"
     mc:Ignorable="d"
-    d:DesignHeight="480" d:DesignWidth="300" Background="{DynamicResource ControlBackgroundBrush}">
-    <UserControl.Resources>
-        <HierarchicalDataTemplate DataType="{x:Type local:CourtCase}"
-                                  ItemsSource="{Binding Path=CaseHistory}">
-            <TextBlock Text="{Binding Path=CaseNumber}"/>
-        </HierarchicalDataTemplate>
-        <HierarchicalDataTemplate DataType="{x:Type local:CaseHistory}">
-            <TextBlock>
-                <TextBlock.Text>
-                    <MultiBinding StringFormat="{}{0} {1}">
-                        <Binding Path="CaseHistoryEvent"/>
-                        <Binding Path="Date"/>
-                    </MultiBinding>
-                </TextBlock.Text>
-            </TextBlock>
-        </HierarchicalDataTemplate>
-    </UserControl.Resources>
+    d:DesignHeight="480" d:DesignWidth="300" Background="{DynamicResource ControlBackgroundBrush}">    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <GroupBox Header="Case Docket - Completed">
-            <TreeView ItemsSource="{Binding Path=CourtCases}">
-            </TreeView>
+            <ListBox ItemsSource="{Binding Path=CurrentHearings}" SelectedItem="{Binding Path=SelectedHearing, Mode=TwoWay}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock>
+                            <TextBlock.Text>
+                                <MultiBinding StringFormat="{}{0}">
+                                    <Binding Path="CourtCase.CaseNumber"/>
+                                </MultiBinding>
+                            </TextBlock.Text>
+                        </TextBlock>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </GroupBox>
         <GroupBox Header="Court Orders" Grid.Row="1">
             <TreeView ScrollViewer.HorizontalScrollBarVisibility="Auto" x:Name="TreeView">

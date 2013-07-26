@@ -25,7 +25,6 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(CourtMember))]
     [KnownType(typeof(ManualIntegrationTasks))]
     [KnownType(typeof(ScheduledIntegrationTasks))]
-    [KnownType(typeof(CaseHistory))]
     [KnownType(typeof(CaseNotes))]
     [KnownType(typeof(Role))]
     public partial class User: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
@@ -613,42 +612,6 @@ namespace Faccts.Model.Entities
         private TrackableCollection<ScheduledIntegrationTasks> _scheduledIntegrationTasks;
     
         [DataMember]
-        public TrackableCollection<CaseHistory> CaseHistory1
-        {
-            get
-            {
-                if (_caseHistory1 == null)
-                {
-                    _caseHistory1 = new TrackableCollection<CaseHistory>();
-                    _caseHistory1.CollectionChanged += FixupCaseHistory1;
-                }
-                return _caseHistory1;
-            }
-            set
-            {
-                if (!ReferenceEquals(_caseHistory1, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("CaseHistory1");
-                    if (_caseHistory1 != null)
-                    {
-                        _caseHistory1.CollectionChanged -= FixupCaseHistory1;
-                    }
-                    _caseHistory1 = value;
-                    if (_caseHistory1 != null)
-                    {
-                        _caseHistory1.CollectionChanged += FixupCaseHistory1;
-                    }
-                    OnNavigationPropertyChanged("CaseHistory1");
-                }
-            }
-        }
-        private TrackableCollection<CaseHistory> _caseHistory1;
-    
-        [DataMember]
         public TrackableCollection<CaseNotes> CaseNotes
         {
             get
@@ -697,42 +660,6 @@ namespace Faccts.Model.Entities
         private TrackableCollection<CaseNotes> _caseNotes;
     
         [DataMember]
-        public TrackableCollection<CourtCase> CourtCase1
-        {
-            get
-            {
-                if (_courtCase1 == null)
-                {
-                    _courtCase1 = new TrackableCollection<CourtCase>();
-                    _courtCase1.CollectionChanged += FixupCourtCase1;
-                }
-                return _courtCase1;
-            }
-            set
-            {
-                if (!ReferenceEquals(_courtCase1, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("CourtCase1");
-                    if (_courtCase1 != null)
-                    {
-                        _courtCase1.CollectionChanged -= FixupCourtCase1;
-                    }
-                    _courtCase1 = value;
-                    if (_courtCase1 != null)
-                    {
-                        _courtCase1.CollectionChanged += FixupCourtCase1;
-                    }
-                    OnNavigationPropertyChanged("CourtCase1");
-                }
-            }
-        }
-        private TrackableCollection<CourtCase> _courtCase1;
-    
-        [DataMember]
         public TrackableCollection<Role> Role
         {
             get
@@ -767,42 +694,6 @@ namespace Faccts.Model.Entities
             }
         }
         private TrackableCollection<Role> _role;
-    
-        [DataMember]
-        public TrackableCollection<CaseHistory> CaseHistory
-        {
-            get
-            {
-                if (_caseHistory == null)
-                {
-                    _caseHistory = new TrackableCollection<CaseHistory>();
-                    _caseHistory.CollectionChanged += FixupCaseHistory;
-                }
-                return _caseHistory;
-            }
-            set
-            {
-                if (!ReferenceEquals(_caseHistory, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("CaseHistory");
-                    if (_caseHistory != null)
-                    {
-                        _caseHistory.CollectionChanged -= FixupCaseHistory;
-                    }
-                    _caseHistory = value;
-                    if (_caseHistory != null)
-                    {
-                        _caseHistory.CollectionChanged += FixupCaseHistory;
-                    }
-                    OnNavigationPropertyChanged("CaseHistory");
-                }
-            }
-        }
-        private TrackableCollection<CaseHistory> _caseHistory;
 
         #endregion
 
@@ -905,11 +796,8 @@ namespace Faccts.Model.Entities
             CourtMember = null;
             ManualIntegrationTasks.Clear();
             ScheduledIntegrationTasks.Clear();
-            CaseHistory1.Clear();
             CaseNotes.Clear();
-            CourtCase1.Clear();
             Role.Clear();
-            CaseHistory.Clear();
         }
 
         #endregion
@@ -980,7 +868,7 @@ namespace Faccts.Model.Entities
             {
                 foreach (CourtCase item in e.NewItems)
                 {
-                    item.User = this;
+                    item.CourtClerk = this;
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         if (!item.ChangeTracker.ChangeTrackingEnabled)
@@ -996,9 +884,9 @@ namespace Faccts.Model.Entities
             {
                 foreach (CourtCase item in e.OldItems)
                 {
-                    if (ReferenceEquals(item.User, this))
+                    if (ReferenceEquals(item.CourtClerk, this))
                     {
-                        item.User = null;
+                        item.CourtClerk = null;
                     }
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
@@ -1086,45 +974,6 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupCaseHistory1(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (CaseHistory item in e.NewItems)
-                {
-                    item.User = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CaseHistory1", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (CaseHistory item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.User, this))
-                    {
-                        item.User = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CaseHistory1", item);
-                    }
-                }
-            }
-        }
-    
         private void FixupCaseNotes(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
@@ -1170,42 +1019,6 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupCourtCase1(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (CourtCase item in e.NewItems)
-                {
-                    item.CourtClerk_Id = Id;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CourtCase1", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (CourtCase item in e.OldItems)
-                {
-                    item.CourtClerk_Id = null;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtCase1", item);
-                    }
-                }
-            }
-        }
-    
         private void FixupRole(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsDeserializing)
@@ -1240,45 +1053,6 @@ namespace Faccts.Model.Entities
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         ChangeTracker.RecordRemovalFromCollectionProperties("Role", item);
-                    }
-                }
-            }
-        }
-    
-        private void FixupCaseHistory(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (CaseHistory item in e.NewItems)
-                {
-                    item.User1 = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CaseHistory", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (CaseHistory item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.User1, this))
-                    {
-                        item.User1 = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CaseHistory", item);
                     }
                 }
             }

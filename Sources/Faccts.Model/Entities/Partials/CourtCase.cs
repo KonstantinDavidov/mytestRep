@@ -88,7 +88,7 @@ namespace Faccts.Model.Entities
                 this.CaseHistory = new TrackableCollection<Entities.CaseHistory>(dto.CaseHistory.Select(x => new CaseHistory(x)));
                 this.CaseNotes = new TrackableCollection<Entities.CaseNotes>(dto.CaseNotes.Select(x => new CaseNotes(x)));
                 this.RestrainingPartyIdentificationInformation = new RestrainingPartyIDInfo(dto.RestrainingPartyIdentificationInformation);
-                RaiseNavigationPropertyLoading(() => User);
+                RaiseNavigationPropertyLoading(() => CourtClerk);
             }
             
             
@@ -189,21 +189,6 @@ namespace Faccts.Model.Entities
                 //CourtClerk = this.User1.ToDTO(),
             };
         }
-
-
-        public List<Hearings> Hearings
-        {
-            get
-            {
-                return this
-                    .CaseHistory
-                    .Where(x => x.CaseHistoryEvent == FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing && x.Date.HasValue)
-                    .Select(x => x.Hearing)
-                    .OrderBy(x => x.HearingDate)
-                    .ToList();
-            }
-        }
-
 
         private ReactiveCollection<PersonBase> _witnesses;
         public ReactiveCollection<PersonBase> Witnesses
@@ -384,9 +369,7 @@ namespace Faccts.Model.Entities
         {
             get
             {
-                if (this.CourtDocketRecord == null)
-                    return false;
-                return this.CourtDocketRecord.Hearing != null && this.CourtDocketRecord.Hearing.CaseHistory.CaseHistoryEvent == CaseHistoryEvent.Hearing;
+                return Hearings.Count > 0;
             }
         }
     }
