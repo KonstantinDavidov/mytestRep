@@ -7,29 +7,8 @@ using System.Threading.Tasks;
 
 namespace Faccts.Model.Entities
 {
-    public partial class Child : IDataTransferConvertible<FACCTS.Server.Model.DataModel.Child>
+    public partial class OtherProtected
     {
-        public Child() : base()
-        {
-            this.RelationToProtected = FACCTS.Server.Model.Enums.Relationship.C;
-        }
-
-        FACCTS.Server.Model.DataModel.Child IDataTransferConvertible<FACCTS.Server.Model.DataModel.Child>.ToDTO()
-        {
-            if (!this.IsDirty)
-                return null;
-            return new FACCTS.Server.Model.DataModel.Child()
-            {
-                Id = this.Id,
-                EntityType = this.EntityType,
-                FirstName = this.FirstName,
-                LastName = this.LastName,
-                RelationshipToProtected = this.RelationToProtected,
-                Sex = this.Sex,
-                DateOfBirth = this.DateOfBirth.GetValueOrDefault(),
-                State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
-            };
-        }
 
         public override string this[string propertyName]
         {
@@ -58,6 +37,5 @@ namespace Faccts.Model.Entities
             {"RelationshipToProtected", "Relationship To Protected"},
             {"DateOfBirth", "Date Of Birth"},
         };
-
     }
 }

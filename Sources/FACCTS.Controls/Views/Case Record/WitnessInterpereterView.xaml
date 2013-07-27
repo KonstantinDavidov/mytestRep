@@ -42,7 +42,7 @@
 				</Grid.RowDefinitions>
                 <Border Grid.ColumnSpan="2"
                         DataContext="{Binding CurrentCourtCase, Mode=OneWay}">
-                    <validation:ErrorProvider>
+                    <validation:ErrorProvider x:Name="ErrorProvider">
                         <DataGrid ItemsSource="{Binding Witnesses, Mode=OneWay}"
                               x:Name="dgWitness"
                               AutoGenerateColumns="False"
@@ -100,35 +100,48 @@
 				</Grid.RowDefinitions>
                 <Border Grid.ColumnSpan="2"
                         DataContext="{Binding CurrentCourtCase, Mode=OneWay}">
-                    <DataGrid x:Name="dataGrid"
-                              ItemsSource="{Binding Interpreters,Mode=OneWay}"
-                              AutoGenerateColumns="False"
-                              CanUserAddRows="False"
-                              HorizontalAlignment="Stretch"
-                              VerticalAlignment="Stretch">
-					    <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding EntityType, Mode=OneWay}"
-                                                Header="Entity Type"
-                                                IsReadOnly="True"
-                                                Width="0.1*" />
-                            <DataGridComboBoxColumn ItemsSource="{Binding Source={StaticResource cvsInterpretersFor}, Mode=OneWay}"
-                                                    SelectedValuePath="PartyFor"
-                                                    SelectedValueBinding="{Binding PartyFor, Mode=TwoWay}"
-                                                    Header="Interpreter For"
-                                                    Width="0.3*" />
-                            <DataGridTextColumn Binding="{Binding FirstName, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" 
-                                                Header="First Name"
-                                                Width="0.2*"/>
-                            <DataGridTextColumn Binding="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                    <validation:ErrorProvider x:Name="ErrorProvider2">
+                        <DataGrid x:Name="dataGrid"
+                                  ItemsSource="{Binding Interpreters,Mode=OneWay}"
+                                  AutoGenerateColumns="False"
+                                  CanUserAddRows="False"
+                                  HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Stretch">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding EntityType, Mode=OneWay}"
+                                                    Header="Entity Type"
+                                                    IsReadOnly="True"
+                                                    Width="0.1*" />
+                                <DataGridComboBoxColumn ItemsSource="{Binding Source={StaticResource cvsInterpretersFor}, Mode=OneWay}"
+                                                        SelectedValuePath="PartyFor"
+                                                        SelectedValueBinding="{Binding PartyFor, Mode=TwoWay}"
+                                                        Header="Interpreter For"
+                                                        Width="0.3*" />
+                                <DataGridTextColumn Binding="{Binding FirstName, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                                                    Header="First Name"
+                                                    Width="0.2*" />
+                                <DataGridTextColumn Binding="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                                                    Header="Last Name"
+                                                    Width="0.2*" />
 
-                                                Header="Last Name"
-                                                Width="0.2*" />
-                           
-                            <DataGridTextColumn Binding="{Binding Language, Mode=TwoWay}"
-                                                Header="Language"
-                                                Width="0.2*" />
-					    </DataGrid.Columns>
-				    </DataGrid>
+                                <DataGridTemplateColumn
+                                                        Header="Language"
+                                                        Width="0.2*">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Language, Mode=OneWay, ValidatesOnDataErrors=True}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                    <DataGridTemplateColumn.CellEditingTemplate>
+                                        <DataTemplate>
+                                            <ComboBox ItemsSource="{Binding ElementName=LayoutRoot, Path=DataContext.PredefinedLanguages, Mode=OneWay}"
+                                                      Text="{Binding Language, Mode=TwoWay, ValidatesOnDataErrors=True}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellEditingTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </validation:ErrorProvider>
                 </Border>
                 <UniformGrid HorizontalAlignment="Right" Grid.Row="1" Rows="1" Columns="2">
 					<Button Content="Add" Width="75" cal:Message.Attach="AddInterpreter"/>

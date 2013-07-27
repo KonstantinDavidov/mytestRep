@@ -151,5 +151,33 @@ namespace FACCTS.Controls.ViewModels
             }
             //this.CurrentHistoryRecord = message.Hearing.CaseHistory;
         }
+
+        private static List<string> predefinedLanguages = new List<string>()
+        {
+                "English", 
+                "French",
+                "Italian",
+                "Polish",
+                "Portuguese",
+                "Spanish",
+                "Romanian",
+                "German",
+                "Dutch",
+                "Greek",
+                "Albanian",
+                "Swedish",
+                "Danish",
+                "Norwegian",
+                "Icelandic",
+                "Russian",
+        };
+
+        public List<string> PredefinedLanguages
+        {
+            get
+            {
+                return predefinedLanguages;
+            }
+        }
     }
 }
