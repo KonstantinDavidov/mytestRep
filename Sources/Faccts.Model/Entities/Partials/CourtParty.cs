@@ -49,10 +49,11 @@ namespace Faccts.Model.Entities
                 this.Attorney = new Attorneys(dto.Attorney);
                 this.IsProPer = dto.IsProPer;
                 this.AddressInfo = new AddressInfo(dto.AddressInfo);
-            }
-            
 
-            this.MarkAsUnchanged();
+                this.MarkAsUnchanged();
+            }
+
+            
         }
 
         private IObservable<IObservedChange<CourtParty, string>> _fullNameChanged;

@@ -27,10 +27,12 @@ namespace Faccts.Model.Entities
                 this.Session = dto.Session;
                 //this.CourtOrders = dto.CourtOrders.Select(x => new CourtOrders(x));
                 //this.Appearances = dto.Appearances.Select(x => new Appearance(x));
+
+                this.MarkAsUnchanged();
             }
            
 
-            this.MarkAsUnchanged();
+            
         }
         
         public FACCTS.Server.Model.DataModel.Hearing ToDTO()

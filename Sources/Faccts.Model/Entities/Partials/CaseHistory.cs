@@ -32,9 +32,10 @@ namespace Faccts.Model.Entities
                 this.CCPOR_ID = dto.CCPOR_ID;
                 this.MergeCase = new CourtCase(dto.MergeCase);
                 this.Hearing = new Hearings(dto.Hearing);
+
+                this.MarkAsUnchanged();
             }
             
-            this.MarkAsUnchanged();
         }
 
         public string CaseEventName

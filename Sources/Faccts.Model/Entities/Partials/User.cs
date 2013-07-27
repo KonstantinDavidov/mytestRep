@@ -40,10 +40,11 @@ namespace Faccts.Model.Entities
                 this.LastPasswordChangedDate = dto.LastPasswordChangedDate;
                 this.PasswordVerificationToken = dto.PasswordVerificationToken;
                 this.PasswordVerificationTokenExpirationDate = dto.PasswordVerificationTokenExpirationDate;
-            }
-           
 
-            this.MarkAsUnchanged();
+                this.MarkAsUnchanged();
+            }
+
+            
         }
 
         public FACCTS.Server.Model.DataModel.User ToDTO()

@@ -26,7 +26,7 @@ namespace FACCTS.Server.Model.DataModel
         public Gender Sex { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string Contact { get; set; }

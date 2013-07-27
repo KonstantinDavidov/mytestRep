@@ -88,11 +88,15 @@ namespace Faccts.Model.Entities
                 this.CaseHistory = new TrackableCollection<Entities.CaseHistory>(dto.CaseHistory.Select(x => new CaseHistory(x)));
                 this.CaseNotes = new TrackableCollection<Entities.CaseNotes>(dto.CaseNotes.Select(x => new CaseNotes(x)));
                 this.RestrainingPartyIdentificationInformation = new RestrainingPartyIDInfo(dto.RestrainingPartyIdentificationInformation);
+                this.AttorneyForChild = new Attorneys(dto.AttorneyForChild);
+                this.ThirdPartyAttorneyData = new ThirdPartyData(dto.ThirdPartyData);
                 RaiseNavigationPropertyLoading(() => CourtClerk);
+
+                this.MarkAsUnchanged();
             }
             
             
-            this.MarkAsUnchanged();
+            
         }
 
         public FACCTS.Server.Model.Enums.CaseStatus CaseStatus

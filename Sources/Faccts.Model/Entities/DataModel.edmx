@@ -130,10 +130,6 @@
       <End Role="User" EntitySet="User" />
       <End Role="ScheduledIntegrationTasks" EntitySet="ScheduledIntegrationTasks" />
     </AssociationSet>
-    <AssociationSet Name="FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id" Association="FACCTS_DBModel.Store.FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id">
-      <End Role="Hearings" EntitySet="Hearings" />
-      <End Role="CaseHistory" EntitySet="CaseHistory" />
-    </AssociationSet>
     <AssociationSet Name="FK_dbo_Hearings_dbo_Courtrooms_Courtroom_Id" Association="FACCTS_DBModel.Store.FK_dbo_Hearings_dbo_Courtrooms_Courtroom_Id">
       <End Role="Courtrooms" EntitySet="Courtrooms" />
       <End Role="Hearings" EntitySet="Hearings" />
@@ -153,10 +149,6 @@
     <AssociationSet Name="FK_dbo_ThirdPartyData_dbo_Attorneys_Attorney_Id" Association="FACCTS_DBModel.Store.FK_dbo_ThirdPartyData_dbo_Attorneys_Attorney_Id">
       <End Role="Attorneys" EntitySet="PersonBaseSet_Attorneys" />
       <End Role="ThirdPartyData" EntitySet="ThirdPartyData" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_CaseHistory_dbo_User_CourtClerk_Id" Association="FACCTS_DBModel.Store.FK_dbo_CaseHistory_dbo_User_CourtClerk_Id">
-      <End Role="User" EntitySet="User" />
-      <End Role="CaseHistory" EntitySet="CaseHistory" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_CaseNotes_dbo_User_Author_Id" Association="FACCTS_DBModel.Store.FK_dbo_CaseNotes_dbo_User_Author_Id">
       <End Role="User" EntitySet="User" />
@@ -481,10 +473,6 @@
     <AssociationSet Name="CourtCaseAttorneys" Association="FACCTS_DBModel.Store.CourtCaseAttorneys">
       <End Role="CourtCase" EntitySet="CourtCase" />
       <End Role="Attorneys" EntitySet="PersonBaseSet_Attorneys" />
-    </AssociationSet>
-    <AssociationSet Name="FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id1" Association="FACCTS_DBModel.Store.FK_dbo_CaseHistory_dbo_Hearings_Hearing_Id1">
-      <End Role="Hearings" EntitySet="Hearings" />
-      <End Role="CaseHistory" EntitySet="CaseHistory" />
     </AssociationSet>
     <AssociationSet Name="FK_dbo_Appearances_dbo_Hearings_HearingId" Association="FACCTS_DBModel.Store.FK_dbo_Appearances_dbo_Hearings_HearingId">
       <End Role="Hearings" EntitySet="Hearings" />

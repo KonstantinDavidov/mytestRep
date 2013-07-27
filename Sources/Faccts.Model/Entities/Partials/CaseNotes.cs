@@ -27,9 +27,10 @@ namespace Faccts.Model.Entities
                 this.Id = dto.Id;
                 this.User = new User(dto.Author);
                 this.Status = dto.Status;
-            }
 
-            this.MarkAsUnchanged();
+                this.MarkAsUnchanged();
+            }
+            
         }
 
         public bool IsPublic

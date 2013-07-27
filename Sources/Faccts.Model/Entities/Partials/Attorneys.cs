@@ -27,8 +27,10 @@ namespace Faccts.Model.Entities
                 this.FirmName = dto.FirmName;
                 this.StateBarId = dto.StateBarId;
                 this.Email = dto.Email;
+                
+                this.MarkAsUnchanged();
             }
-            this.MarkAsUnchanged();
+            
         }
 
         public FACCTS.Server.Model.DataModel.Attorney ToDTO()
@@ -52,7 +54,7 @@ namespace Faccts.Model.Entities
         {
             get 
             {
-                if (this.CourtParty == null || this.CourtParty.IsProPer)
+                if ((this.CourtParty == null || this.CourtParty.IsProPer)  && !this.ThirdPartyData.Any() && !this.CourtCases.Any())
                 {
                     return null;
                 }
