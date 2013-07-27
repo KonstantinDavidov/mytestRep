@@ -10,6 +10,34 @@ namespace Faccts.Model.Entities
     public partial class OtherProtected
     {
 
+        public OtherProtected()
+        {
+
+        }
+
+        public OtherProtected(FACCTS.Server.Model.DataModel.OtherProtected dto)
+            : this()
+        {
+            if (dto == null)
+                return;
+
+            Id = dto.Id;
+            FirstName = dto.FirstName;
+            LastName = dto.LastName;
+            EntityType = dto.EntityType;
+            Sex = dto.Sex;
+            DateOfBirth = dto.DateOfBirth;
+            Contact = dto.Contact;
+            Age = dto.Age;
+            AddressInfo = new AddressInfo(dto.AddressInfo);
+            Email = dto.Email;
+            //Appearances = 
+            RelationToProtected = dto.RelationshipToPlaintiff;
+            IsHouseHold = dto.IsHouseHold;
+
+            this.MarkAsUnchanged();
+        }
+
         public override string this[string propertyName]
         {
             get

@@ -39,7 +39,17 @@ namespace Faccts.Model.Entities
                     this.OnPropertyChanged("IsPersonalInformationDirty");
                 }
                 );
+            PersonsChanged = Observable.FromEvent<NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventArgs>(handler =>
+                {
+                    NotifyCollectionChangedEventHandler eh = (s, e) => handler(e);
+                    return eh;
+                },
+                handler => this.Persons.CollectionChanged += handler,
+                handler => this.Persons.CollectionChanged -= handler
+                );
         }
+
+        private IObservable<NotifyCollectionChangedEventArgs> PersonsChanged;
 
         private void CaseHistoryChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
@@ -90,6 +100,25 @@ namespace Faccts.Model.Entities
                 this.RestrainingPartyIdentificationInformation = new RestrainingPartyIDInfo(dto.RestrainingPartyIdentificationInformation);
                 this.AttorneyForChild = new Attorneys(dto.AttorneyForChild);
                 this.ThirdPartyAttorneyData = new ThirdPartyData(dto.ThirdPartyData);
+                dto.OtherProtected.Aggregate(this.Persons, (persons, item) => 
+                {
+                    persons.Add(new OtherProtected(item)
+                        {
+                            PersonType = PersonType.OtherProtected,
+                        }
+                        );
+                    return persons;
+                });
+                dto.Children.Aggregate(this.Persons, (persons, item) =>
+                    {
+                       persons.Add(new Child(item)
+                            {
+                                PersonType = PersonType.Child,
+                            }
+                            );
+                        return persons;
+                    }
+                    );
                 RaiseNavigationPropertyLoading(() => CourtClerk);
 
                 this.MarkAsUnchanged();
@@ -245,7 +274,10 @@ namespace Faccts.Model.Entities
             {
                 if (_children == null)
                 {
-                    _children = this.Persons.CreateDerivedCollection<PersonBase, Child>(x => (Child)x, x => x is Child && x.PersonType == PersonType.Child);
+                    _children = this.Persons
+                        .Where(x => x.PersonType == PersonType.Child)
+                        .Select(x => (Child)x)
+                        .CreateDerivedCollection(x => x, signalReset: PersonsChanged);
                 }
                 return _children;
             }
@@ -258,7 +290,10 @@ namespace Faccts.Model.Entities
             {
                 if (_otherProtected == null)
                 {
-                    _otherProtected = this.Persons.CreateDerivedCollection<PersonBase, OtherProtected>(x => (OtherProtected)x, x => x is OtherProtected && x.PersonType == PersonType.OtherProtected);
+                    _otherProtected = this.Persons
+                        .Where(x => x.PersonType == PersonType.OtherProtected)
+                        .Select(x => (OtherProtected)x)
+                        .CreateDerivedCollection(x => x, signalReset: PersonsChanged);
                 }
                 return _otherProtected;
             }

@@ -17,6 +17,7 @@ namespace FACCTS.Controls.ViewModels
     public partial class ChildrenOtherProtectedViewModel : CaseRecordItemViewModel
     {
         private IDialogService _dialogService;
+        private IDisposable _sub1, _sub2;
 
         [ImportingConstructor]
         public ChildrenOtherProtectedViewModel(
@@ -25,6 +26,45 @@ namespace FACCTS.Controls.ViewModels
         {
             _dialogService = dialogService;
             this.DisplayName = "Children - Other Protected";
+
+            this.WhenAny(x => x.CurrentCourtCase, x => x.IsActive, (x1, x2) => new { CourtCase = x1.Value, IsActive = x2.Value})
+                .Subscribe(x =>
+                {
+                    if (_sub1 != null)
+                    {
+                        _sub1.Dispose();
+                        _sub1 = null;
+                    }
+                    if (_sub2 != null)
+                    {
+                        _sub2.Dispose();
+                        _sub2 = null;
+                    }
+
+                    if (x == null || x.CourtCase == null)
+                        return;
+                    if (!x.CourtCase.IsDirty)
+                        return;
+
+                    x.CourtCase.Children.ChangeTrackingEnabled = x.IsActive;
+                    x.CourtCase.Interpreters.ChangeTrackingEnabled = x.IsActive;
+                    if (x.IsActive)
+                    {
+                        _sub2 = x.CourtCase.Interpreters.ItemChanged.Subscribe(_ =>
+                        {
+                            this.HasUIErrors = x.CourtCase.Children.Any(y => !y.IsValid) || x.CourtCase.Interpreters.Any(y => !y.IsValid);
+                        }
+                        );
+                           
+
+                        _sub1 = x.CourtCase.Children.ItemChanged.Subscribe(_ =>
+                            {
+                                this.HasUIErrors = x.CourtCase.Children.Any(y => !y.IsValid) || x.CourtCase.Interpreters.Any(y => !y.IsValid);
+                            }
+                            );
+                    }
+                }
+                ); 
         }
 
 
@@ -71,6 +111,7 @@ namespace FACCTS.Controls.ViewModels
             }
             
         }
+
 
         
     }

@@ -55,6 +55,7 @@ namespace FACCTS.Server.Controllers
                 x => x.Interpreters,
                 x => x.Witnesses,
                 x => x.Children,
+                x => x.OtherProtected,
                 x => x.AttorneyForChild,
                 x => x.ThirdPartyData,
                 x => x.ThirdPartyData.Attorney

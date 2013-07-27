@@ -4461,6 +4461,7 @@
         </EntityType>
         <EntityType Name="OtherProtected" BaseType="FACCTS_DBModel.PersonBase" >
           <Property Type="FACCTS_DBModel.Relationship" Name="RelationToProtected" Nullable="false" />
+          <Property Type="Boolean" Name="IsHouseHold" Nullable="false" />
         </EntityType>
         <EnumType Name="Relationship" a:ExternalTypeName="FACCTS.Server.Model.Enums.Relationship" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         <EntityType Name="Interpreter" BaseType="FACCTS_DBModel.PersonBase" >

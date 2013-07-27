@@ -14,6 +14,26 @@ namespace Faccts.Model.Entities
             this.RelationToProtected = FACCTS.Server.Model.Enums.Relationship.C;
         }
 
+        public Child(FACCTS.Server.Model.DataModel.Child dto)
+            : this()
+        {
+            if (dto == null)
+                return;
+
+            Id = dto.Id;
+            FirstName = dto.FirstName;
+            LastName = dto.LastName;
+            EntityType = dto.EntityType;
+            Sex = dto.Sex;
+            DateOfBirth = dto.DateOfBirth;
+            Contact = dto.Contact;
+            Age = dto.Age;
+            AddressInfo = new AddressInfo(dto.AddressInfo);
+            Email = dto.Email;
+            this.RelationToProtected = dto.RelationshipToProtected;
+            this.MarkAsUnchanged();
+        }
+
         FACCTS.Server.Model.DataModel.Child IDataTransferConvertible<FACCTS.Server.Model.DataModel.Child>.ToDTO()
         {
             if (!this.IsDirty)
@@ -58,6 +78,7 @@ namespace Faccts.Model.Entities
             {"RelationshipToProtected", "Relationship To Protected"},
             {"DateOfBirth", "Date Of Birth"},
         };
+
 
     }
 }

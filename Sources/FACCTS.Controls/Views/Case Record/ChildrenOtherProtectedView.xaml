@@ -10,12 +10,188 @@
              xmlns:validation="clr-namespace:FACCTS.Controls.Validation"
              xmlns:cal="http://www.caliburnproject.org"
 			 xmlns:utils="clr-namespace:FACCTS.Controls.Utils"
+             xmlns:controls="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+             xmlns:primitives="clr-namespace:System.Windows.Controls.Primitives;assembly=PresentationFramework"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="416" Background="{DynamicResource ControlBackgroundBrush}">
     <UserControl.Resources>
     	<Converters:ObjectToBooleanConverter x:Key="ObjectToBooleanConverter"/>
         <ext:MefPart InstanceType="{x:Type fs:IDataContainer}" x:Key="DataContainer"/>
         <CollectionViewSource x:Key="cvsSex" Source="{Binding Sexes, Mode=OneWay, Source={StaticResource DataContainer}}"/>
+
+        <!-- DataGridRow -->
+        <Style x:Key='VaildationRowStyle'
+               TargetType="{x:Type controls:DataGridRow}">
+            <Setter Property="Background"
+                    Value="Transparent" />
+            <Setter Property="SnapsToDevicePixels"
+                    Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type controls:DataGridRow}">
+                        <Border x:Name="DGR_Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                SnapsToDevicePixels="True">
+                            <primitives:SelectiveScrollingGrid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height='Auto' />
+                                </Grid.RowDefinitions>
+                                <Rectangle x:Name="Selected"
+                                           Margin="0"
+                                           Grid.RowSpan="2"
+                                           Grid.ColumnSpan="2"
+                                           Fill="{StaticResource BtnOverFill}"
+                                           Stroke="{StaticResource selectedStroke}"
+                                           Opacity="0" />
+                                <Rectangle x:Name="SelectedHighlight"
+                                           Margin="1"
+                                           Grid.RowSpan="2"
+                                           Grid.ColumnSpan="2"
+                                           Stroke="#A0FFFFFF"
+                                           Opacity="0" />
+                                <primitives:DataGridRowHeader Grid.RowSpan="2"
+                                                              primitives:SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                                              Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type controls:DataGrid}}, 
+                                Path=HeadersVisibility, 
+                                Converter={x:Static controls:DataGrid.HeadersVisibilityConverter},
+                                ConverterParameter={x:Static controls:DataGridHeadersVisibility.Row}}" />
+                                <Rectangle x:Name="Over"
+                                           Margin="0"
+                                           Grid.RowSpan="2"
+                                           Grid.ColumnSpan="2"
+                                           Fill="{StaticResource hoverGradient}"
+                                           Stroke="{StaticResource hoverStroke}"
+                                           Opacity="0" />
+                                <primitives:DataGridCellsPresenter Grid.Column="1"
+                                                                   ItemsPanel="{TemplateBinding ItemsPanel}"
+                                                                   SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                                <validation:ErrorProvider>
+                                    <primitives:DataGridDetailsPresenter Grid.Column="1"
+                                                                         Grid.Row="1"
+                                                                         x:Name='DetailsPresenter'
+                                                                         primitives:SelectiveScrollingGrid.SelectiveScrollingOrientation="{Binding RelativeSource={RelativeSource AncestorType={x:Type controls:DataGrid}}, Path=AreRowDetailsFrozen, Converter={x:Static controls:DataGrid.RowDetailsScrollingConverter}, ConverterParameter={x:Static controls:SelectiveScrollingOrientation.Vertical}}"
+                                                                         Visibility="{TemplateBinding DetailsVisibility}" />
+                                </validation:ErrorProvider>
+                                <Rectangle Height="1"
+                                           HorizontalAlignment="Stretch"
+                                           x:Name="BottomGridLine"
+                                           Fill="{StaticResource HorizontalVerticalGridLinesBrush}"
+                                           Grid.Column="1"
+                                           Grid.Row="2" />
+                            </primitives:SelectiveScrollingGrid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property='IsSelected'
+                                     Value='True'>
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0"
+                                                             Storyboard.TargetName="Selected"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0.84" />
+                                            <DoubleAnimation Duration="0"
+                                                             Storyboard.TargetName="SelectedHighlight"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0"
+                                                             Storyboard.TargetName="Selected"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0" />
+                                            <DoubleAnimation Duration="0"
+                                                             Storyboard.TargetName="SelectedHighlight"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                                <!--<Setter Property="DetailsVisibility" Value="Visible" />-->
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver"
+                                               Value="True" />
+                                    <Condition Property="IsSelected"
+                                               Value="False" />
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0"
+                                                             Storyboard.TargetName="Over"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0.73" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </MultiTrigger.EnterActions>
+                                <MultiTrigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0"
+                                                             Storyboard.TargetName="Over"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </MultiTrigger.ExitActions>
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected"
+                                               Value="True" />
+                                    <Condition Property="IsFocused"
+                                               Value="False" />
+                                </MultiTrigger.Conditions>
+                                <MultiTrigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0"
+                                                             Storyboard.TargetName="Selected"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0.84" />
+                                            <DoubleAnimation Duration="0"
+                                                             Storyboard.TargetName="SelectedHighlight"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="1" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </MultiTrigger.EnterActions>
+                                <MultiTrigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0"
+                                                             Storyboard.TargetName="Selected"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0" />
+                                            <DoubleAnimation Duration="0"
+                                                             Storyboard.TargetName="SelectedHighlight"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             To="0" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </MultiTrigger.ExitActions>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </UserControl.Resources>
 	<Grid x:Name="LayoutRoot">
 		<Grid.RowDefinitions>
@@ -34,14 +210,14 @@
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
                 <Border DataContext="{Binding CurrentCourtCase, Mode=OneWay}" Grid.ColumnSpan="2">
-                    <validation:ErrorProvider>
                         <DataGrid x:Name="dataGrid"
                                   ItemsSource="{Binding Children, Mode=OneWay}"
                                   CanUserAddRows="False"
                                   AutoGenerateColumns="False"
                                   HorizontalAlignment="Stretch"
                                   VerticalAlignment="Stretch"
-                                  CanUserDeleteRows="False">
+                                  CanUserDeleteRows="False"
+                                  RowStyle="{StaticResource VaildationRowStyle}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding EntityType, Mode=OneWay}"
                                                     Header="Entity Type"
@@ -80,7 +256,6 @@
                                 </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                    </validation:ErrorProvider>
                 </Border>
                 <UniformGrid HorizontalAlignment="Right" Grid.Row="1" Grid.Column="1" Rows="1" Columns="2">
 					<Button Content="Add" Width="75" cal:Message.Attach="AddChild"/>
@@ -108,13 +283,14 @@
 				</Grid.RowDefinitions>
                 <Border Grid.ColumnSpan="2"
                         DataContext="{Binding CurrentCourtCase, Mode=OneWay}">
-                    <validation:ErrorProvider>
                         <DataGrid ItemsSource="{Binding OtherProtected, Mode=OneWay}"
                                   CanUserAddRows="False"
                                   x:Name="dgOtherProtected"
                                   AutoGenerateColumns="False"
                                   HorizontalAlignment="Stretch"
-                                  VerticalAlignment="Stretch">
+                                  VerticalAlignment="Stretch"
+                                  CanUserDeleteRows="False"
+                                  RowStyle="{StaticResource VaildationRowStyle}">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Binding="{Binding EntityType, Mode=OneWay}"
                                                     Header="Entity Type"
@@ -164,7 +340,6 @@
                                 </DataGridTemplateColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                    </validation:ErrorProvider>
                 </Border>
 				
 				<UniformGrid HorizontalAlignment="Right" Grid.Row="1" Grid.Column="1" Rows="1" Columns="2">
