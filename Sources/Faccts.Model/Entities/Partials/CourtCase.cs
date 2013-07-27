@@ -230,7 +230,9 @@ namespace Faccts.Model.Entities
             {
                 if (_witnesses == null)
                 {
-                    _witnesses = this.Persons.CreateDerivedCollection(x => x, x => x.PersonType == PersonType.Witness);
+                    _witnesses = this.Persons
+                        .Where(x => x.PersonType == PersonType.Witness)
+                        .CreateDerivedCollection(x => x, signalReset: PersonsChanged);
                     _witnesses.ChangeTrackingEnabled = true;
                     _witnesses.ItemChanged.Subscribe(x =>
                     {
@@ -252,7 +254,10 @@ namespace Faccts.Model.Entities
             {
                 if (_interpreters == null)
                 {
-                    _interpreters = this.Persons.CreateDerivedCollection<PersonBase, Interpreter>(x => (Interpreter)x, x => x is Interpreter && x.PersonType == PersonType.Interpreter);
+                    _interpreters = this.Persons
+                        .Where(x => x.PersonType == PersonType.Interpreter)
+                        .Select(x => (Interpreter)x)
+                        .CreateDerivedCollection(x => x, signalReset: PersonsChanged);
                     _interpreters.ChangeTrackingEnabled = true;
                     _interpreters.ItemChanged.Subscribe(x =>
                         {

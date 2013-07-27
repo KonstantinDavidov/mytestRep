@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using ReactiveUI;
 using FACCTS.Services;
 using FACCTS.Services.Dialog;
+using System.Reactive.Linq;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -47,19 +48,19 @@ namespace FACCTS.Controls.ViewModels
                         return;
 
                     x.CourtCase.Children.ChangeTrackingEnabled = x.IsActive;
-                    x.CourtCase.Interpreters.ChangeTrackingEnabled = x.IsActive;
+                    x.CourtCase.OtherProtected.ChangeTrackingEnabled = x.IsActive;
                     if (x.IsActive)
                     {
-                        _sub2 = x.CourtCase.Interpreters.ItemChanged.Subscribe(_ =>
+                        _sub2 = x.CourtCase.OtherProtected.ItemChanged.Subscribe(_ =>
                         {
-                            this.HasUIErrors = x.CourtCase.Children.Any(y => !y.IsValid) || x.CourtCase.Interpreters.Any(y => !y.IsValid);
+                            this.HasUIErrors = x.CourtCase.Children.Any(y => !y.IsValid) || x.CourtCase.OtherProtected.Any(y => !y.IsValid);
                         }
                         );
                            
 
                         _sub1 = x.CourtCase.Children.ItemChanged.Subscribe(_ =>
                             {
-                                this.HasUIErrors = x.CourtCase.Children.Any(y => !y.IsValid) || x.CourtCase.Interpreters.Any(y => !y.IsValid);
+                                this.HasUIErrors = x.CourtCase.Children.Any(y => !y.IsValid) || x.CourtCase.OtherProtected.Any(y => !y.IsValid);
                             }
                             );
                     }
