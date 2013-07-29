@@ -39,7 +39,8 @@ namespace FACCTS.Controls.ViewModels
                                 };
                             this.CurrentCourtCase.CaseNotes.Add(newCN);
                             SelectedUser = authService.CurrentUser;
-                            newCN.MarkAsUnchanged();
+                            newCN.IsDirty = false;
+                            //newCN.MarkAsUnchanged();
                         }
                     }
                     this.NotifyOfPropertyChange(() => AvailableUsers);

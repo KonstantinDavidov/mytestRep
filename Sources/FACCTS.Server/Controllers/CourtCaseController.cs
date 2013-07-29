@@ -52,6 +52,7 @@ namespace FACCTS.Server.Controllers
                 x => x.Party2.Attorney,
                 x => x.CaseHistory,
                 x => x.CaseNotes,
+                x => x.CaseNotes.Select(y => y.Author),
                 x => x.Interpreters,
                 x => x.Witnesses,
                 x => x.Children,

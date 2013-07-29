@@ -17,6 +17,19 @@ namespace Faccts.Model.Entities
                     this.OnPropertyChanged("IsPublic");
                 }
                 );
+            this.WhenAny(x => x.User,
+                x => x.Status,
+                x => x.Text,
+                (x1, x2, x3) => new { User = x1.Value, Status = x2.Value, Text = x3.Value }
+                ).Subscribe(_ =>
+                {
+                    if (this.CourtCase != null)
+                    {
+                        this.CourtCase.IsDirty = true;
+                    }
+                    
+                }
+                );
         }
 
         public CaseNotes(FACCTS.Server.Model.DataModel.CaseNote dto)
@@ -27,6 +40,7 @@ namespace Faccts.Model.Entities
                 this.Id = dto.Id;
                 this.User = new User(dto.Author);
                 this.Status = dto.Status;
+                this.Text = dto.Text;
 
                 this.MarkAsUnchanged();
             }
@@ -53,6 +67,7 @@ namespace Faccts.Model.Entities
             {
                 Id = this.Id,
                 Author = this.User.ConvertToDTO(),
+                AuthorId = this.Author_Id.GetValueOrDefault(0),
                 Status = this.Status,
                 Text = this.Text,
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,

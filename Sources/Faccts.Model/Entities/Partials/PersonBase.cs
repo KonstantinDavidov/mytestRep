@@ -15,7 +15,7 @@ namespace Faccts.Model.Entities
             this.WhenAny(x => x.PartyFor, x => x.Value)
                 .Subscribe(_ =>
                 {
-                    this.OnPropertyChanged("PartyToName");
+                    this.OnPropertyChanged("PartyToName", false);
                 }
                 );
         }

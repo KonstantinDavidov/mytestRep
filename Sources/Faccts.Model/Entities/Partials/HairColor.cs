@@ -50,9 +50,9 @@ namespace Faccts.Model.Entities
             if (this.GetType() != obj.GetType()) return false;
 
             // Cast as Employee
-            HairColor employee = (HairColor)obj;
+            HairColor hairColor = (HairColor)obj;
 
-            return (this == employee);
+            return (this == hairColor);
         }
 
         public static bool operator ==(HairColor left, HairColor right)

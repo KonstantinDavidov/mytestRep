@@ -25,6 +25,7 @@ namespace Faccts.Model.Entities
             this.CaseHistory = new TrackableCollection<CaseHistory>();
             this.CaseHistory.CollectionChanged += CaseHistoryChanged;
             this.CaseNotes = new TrackableCollection<CaseNotes>();
+            UpdateCaseNotesChanged();
             this.Party1 = new CourtParty();
             this.Party2 = new CourtParty();
             this.RestrainingPartyIdentificationInformation = new RestrainingPartyIDInfo();
@@ -49,16 +50,41 @@ namespace Faccts.Model.Entities
                 );
             PersonsChanged.Subscribe(_ =>
                 {
-                    this.IsDirty = true;
-                    if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
-                    {
-                        ChangeTracker.State = ObjectState.Modified;
-                    }
+                    UpdateDirtyState();
                 }
-                );
+            );
+            
+           
+        }
+
+        private void UpdateCaseNotesChanged()
+        {
+            CaseNotesChanged = Observable.FromEvent<NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventArgs>(handler =>
+            {
+                NotifyCollectionChangedEventHandler eh = (s, e) => handler(e);
+                return eh;
+            },
+                     handler => this.CaseNotes.CollectionChanged += handler,
+                     handler => this.CaseNotes.CollectionChanged -= handler
+                    );
+            CaseNotesChanged.Subscribe(_ =>
+            {
+                UpdateDirtyState();
+            }
+            );
+        }
+
+        private void UpdateDirtyState()
+        {
+            this.IsDirty = true;
+            if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
+            {
+                ChangeTracker.State = ObjectState.Modified;
+            }
         }
 
         private IObservable<NotifyCollectionChangedEventArgs> PersonsChanged;
+        private IObservable<NotifyCollectionChangedEventArgs> CaseNotesChanged;
 
         private void CaseHistoryChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
@@ -107,6 +133,15 @@ namespace Faccts.Model.Entities
                 this.Party2 = new CourtParty(dto.Party2);
                 this.CaseHistory = new TrackableCollection<Entities.CaseHistory>(dto.CaseHistory.Select(x => new CaseHistory(x)));
                 this.CaseNotes = new TrackableCollection<Entities.CaseNotes>(dto.CaseNotes.Select(x => new CaseNotes(x)));
+                dto.CaseNotes.Aggregate(this.CaseNotes, (notes, item) =>
+                    {
+                        CaseNotes cn = new CaseNotes(item);
+                        notes.Add(cn);
+                        cn.MarkAsUnchanged();
+                        return notes;
+                    }
+                    );
+
                 this.RestrainingPartyIdentificationInformation = new RestrainingPartyIDInfo(dto.RestrainingPartyIdentificationInformation);
                 this.AttorneyForChild = new Attorneys(dto.AttorneyForChild);
                 this.ThirdPartyAttorneyData = new ThirdPartyData(dto.ThirdPartyData);
@@ -114,12 +149,14 @@ namespace Faccts.Model.Entities
                 {
                     OtherProtected op = new OtherProtected(item);
                     persons.Add(op);
+                    op.MarkAsUnchanged();
                     return persons;
                 });
                 dto.Children.Aggregate(this.Persons, (persons, item) =>
                     {
                         Child c = new Child(item);
                         persons.Add(c);
+                        c.MarkAsUnchanged();
                         return persons;
                     }
                     );
@@ -127,6 +164,7 @@ namespace Faccts.Model.Entities
                     {
                         PersonBase p = new PersonBase(item);
                         persons.Add(p);
+                        p.MarkAsUnchanged();
                         return persons;
                     }
                     );
@@ -134,6 +172,7 @@ namespace Faccts.Model.Entities
                     {
                         Interpreter ip = new Interpreter(item);
                         persons.Add(ip);
+                        ip.MarkAsUnchanged();
                         return persons;
                     }
                     );
