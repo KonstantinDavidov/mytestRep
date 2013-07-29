@@ -28,9 +28,9 @@ namespace Faccts.Model.Entities
     [KnownType(typeof(CourtCounty))]
     [KnownType(typeof(CourtParty))]
     [KnownType(typeof(PersonBase))]
-    [KnownType(typeof(CourtDocketRecord))]
     [KnownType(typeof(ThirdPartyData))]
     [KnownType(typeof(Attorneys))]
+    [KnownType(typeof(Hearings))]
     public partial class CourtCase: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -63,7 +63,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.CCPORStatus)
     				,this.ObservableForProperty(x => x.CCPORId)
     				,this.ObservableForProperty(x => x.ParentCase_Id)
-    				,this.ObservableForProperty(x => x.CourtClerk_Id)
+    				,this.ObservableForProperty(x => x.CourtClerkId)
     				,this.ObservableForProperty(x => x.Party1_Id)
     				,this.ObservableForProperty(x => x.Party2_Id)
     				,this.ObservableForProperty(x => x.CourtCounty_Id)
@@ -74,12 +74,11 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.RP_IssuedDate)
     				,this.ObservableForProperty(x => x.AttorneyForChild_Id)
     				,this.ObservableForProperty(x => x.ThirdPartyData_Id)
-    				,this.ObservableForProperty(x => x.User.IsDirty)
+    				,this.ObservableForProperty(x => x.CourtClerk.IsDirty)
     				,this.ObservableForProperty(x => x.ParentCase.IsDirty)
     				,this.ObservableForProperty(x => x.CourtCounty.IsDirty)
     				,this.ObservableForProperty(x => x.Party1.IsDirty)
     				,this.ObservableForProperty(x => x.Party2.IsDirty)
-    				,this.ObservableForProperty(x => x.CourtDocketRecord.IsDirty)
     				,this.ObservableForProperty(x => x.ThirdPartyAttorneyData.IsDirty)
     				,this.ObservableForProperty(x => x.AttorneyForChild.IsDirty)
     			).
@@ -110,7 +109,7 @@ namespace Faccts.Model.Entities
     					return;
     				OnPropertyChanging("IsDirty");
     				_isDirty = value;
-    				OnPropertyChanged("IsDirty");
+    				OnPropertyChanged("IsDirty", false);
     			}
     		}
     				
@@ -257,28 +256,28 @@ namespace Faccts.Model.Entities
         private Nullable<long> _parentCase_Id;
     
         [DataMember]
-        public Nullable<long> CourtClerk_Id
+        public Nullable<long> CourtClerkId
         {
-            get { return _courtClerk_Id; }
+            get { return _courtClerkId; }
             set
             {
-                if (_courtClerk_Id != value)
+                if (_courtClerkId != value)
                 {
-                    ChangeTracker.RecordOriginalValue("CourtClerk_Id", _courtClerk_Id);
+                    ChangeTracker.RecordOriginalValue("CourtClerkId", _courtClerkId);
                     if (!IsDeserializing)
                     {
-                        if (User != null && User.Id != value)
+                        if (CourtClerk != null && CourtClerk.Id != value)
                         {
-                            User = null;
+                            CourtClerk = null;
                         }
                     }
-    				OnPropertyChanging("CourtClerk_Id");
-                    _courtClerk_Id = value;
-                    OnPropertyChanged("CourtClerk_Id");
+    				OnPropertyChanging("CourtClerkId");
+                    _courtClerkId = value;
+                    OnPropertyChanged("CourtClerkId");
                 }
             }
         }
-        private Nullable<long> _courtClerk_Id;
+        private Nullable<long> _courtClerkId;
     
         [DataMember]
         public Nullable<long> Party1_Id
@@ -527,22 +526,22 @@ namespace Faccts.Model.Entities
         #region Navigation Properties
     
         [DataMember]
-        public User User
+        public User CourtClerk
         {
-            get { return _user; }
+            get { return _courtClerk; }
             set
             {
-                if (!ReferenceEquals(_user, value))
+                if (!ReferenceEquals(_courtClerk, value))
                 {
-                    var previousValue = _user;
-    				OnNavigationPropertyChanging("User");
-                    _user = value;
-                    FixupUser(previousValue);
-                    OnNavigationPropertyChanged("User");
+                    var previousValue = _courtClerk;
+    				OnNavigationPropertyChanging("CourtClerk");
+                    _courtClerk = value;
+                    FixupCourtClerk(previousValue);
+                    OnNavigationPropertyChanged("CourtClerk");
                 }
             }
         }
-        private User _user;
+        private User _courtClerk;
     
         [DataMember]
         public TrackableCollection<CourtCase> ChildCases
@@ -761,24 +760,6 @@ namespace Faccts.Model.Entities
         private TrackableCollection<PersonBase> _persons;
     
         [DataMember]
-        public CourtDocketRecord CourtDocketRecord
-        {
-            get { return _courtDocketRecord; }
-            set
-            {
-                if (!ReferenceEquals(_courtDocketRecord, value))
-                {
-                    var previousValue = _courtDocketRecord;
-    				OnNavigationPropertyChanging("CourtDocketRecord");
-                    _courtDocketRecord = value;
-                    FixupCourtDocketRecord(previousValue);
-                    OnNavigationPropertyChanged("CourtDocketRecord");
-                }
-            }
-        }
-        private CourtDocketRecord _courtDocketRecord;
-    
-        [DataMember]
         public ThirdPartyData ThirdPartyAttorneyData
         {
             get { return _thirdPartyAttorneyData; }
@@ -813,14 +794,50 @@ namespace Faccts.Model.Entities
             }
         }
         private Attorneys _attorneyForChild;
+    
+        [DataMember]
+        public TrackableCollection<Hearings> Hearings
+        {
+            get
+            {
+                if (_hearings == null)
+                {
+                    _hearings = new TrackableCollection<Hearings>();
+                    _hearings.CollectionChanged += FixupHearings;
+                }
+                return _hearings;
+            }
+            set
+            {
+                if (!ReferenceEquals(_hearings, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("Hearings");
+                    if (_hearings != null)
+                    {
+                        _hearings.CollectionChanged -= FixupHearings;
+                    }
+                    _hearings = value;
+                    if (_hearings != null)
+                    {
+                        _hearings.CollectionChanged += FixupHearings;
+                    }
+                    OnNavigationPropertyChanged("Hearings");
+                }
+            }
+        }
+        private TrackableCollection<Hearings> _hearings;
 
         #endregion
 
         #region ChangeTracking
     
-        protected virtual void OnPropertyChanged(String propertyName)
+        protected virtual void OnPropertyChanged(String propertyName, bool changeState = true)
         {
-            if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
+            if (changeState && ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
             {
                 ChangeTracker.State = ObjectState.Modified;
             }
@@ -920,7 +937,7 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
-            User = null;
+            CourtClerk = null;
             ChildCases.Clear();
             ParentCase = null;
             CaseHistory.Clear();
@@ -929,16 +946,16 @@ namespace Faccts.Model.Entities
             Party1 = null;
             Party2 = null;
             Persons.Clear();
-            CourtDocketRecord = null;
             ThirdPartyAttorneyData = null;
             AttorneyForChild = null;
+            Hearings.Clear();
         }
 
         #endregion
 
         #region Association Fixup
     
-        private void FixupUser(User previousValue, bool skipKeys = false)
+        private void FixupCourtClerk(User previousValue, bool skipKeys = false)
         {
             if (IsDeserializing)
             {
@@ -950,31 +967,31 @@ namespace Faccts.Model.Entities
                 previousValue.CourtCase.Remove(this);
             }
     
-            if (User != null)
+            if (CourtClerk != null)
             {
-                User.CourtCase.Add(this);
+                CourtClerk.CourtCase.Add(this);
     
-                CourtClerk_Id = User.Id;
+                CourtClerkId = CourtClerk.Id;
             }
             else if (!skipKeys)
             {
-                CourtClerk_Id = null;
+                CourtClerkId = null;
             }
     
             if (ChangeTracker.ChangeTrackingEnabled)
             {
-                if (ChangeTracker.OriginalValues.ContainsKey("User")
-                    && (ChangeTracker.OriginalValues["User"] == User))
+                if (ChangeTracker.OriginalValues.ContainsKey("CourtClerk")
+                    && (ChangeTracker.OriginalValues["CourtClerk"] == CourtClerk))
                 {
-                    ChangeTracker.OriginalValues.Remove("User");
+                    ChangeTracker.OriginalValues.Remove("CourtClerk");
                 }
                 else
                 {
-                    ChangeTracker.RecordOriginalValue("User", previousValue);
+                    ChangeTracker.RecordOriginalValue("CourtClerk", previousValue);
                 }
-                if (User != null && !User.ChangeTracker.ChangeTrackingEnabled)
+                if (CourtClerk != null && !CourtClerk.ChangeTracker.ChangeTrackingEnabled)
                 {
-                    User.StartTracking();
+                    CourtClerk.StartTracking();
                 }
             }
         }
@@ -1127,41 +1144,6 @@ namespace Faccts.Model.Entities
                 if (Party2 != null && !Party2.ChangeTracker.ChangeTrackingEnabled)
                 {
                     Party2.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupCourtDocketRecord(CourtDocketRecord previousValue)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && ReferenceEquals(previousValue.CourtCase, this))
-            {
-                previousValue.CourtCase = null;
-            }
-    
-            if (CourtDocketRecord != null)
-            {
-                CourtDocketRecord.CourtCase = this;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("CourtDocketRecord")
-                    && (ChangeTracker.OriginalValues["CourtDocketRecord"] == CourtDocketRecord))
-                {
-                    ChangeTracker.OriginalValues.Remove("CourtDocketRecord");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("CourtDocketRecord", previousValue);
-                }
-                if (CourtDocketRecord != null && !CourtDocketRecord.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    CourtDocketRecord.StartTracking();
                 }
             }
         }
@@ -1399,6 +1381,45 @@ namespace Faccts.Model.Entities
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         ChangeTracker.RecordRemovalFromCollectionProperties("Persons", item);
+                    }
+                }
+            }
+        }
+    
+        private void FixupHearings(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (Hearings item in e.NewItems)
+                {
+                    item.CourtCase = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("Hearings", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (Hearings item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.CourtCase, this))
+                    {
+                        item.CourtCase = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("Hearings", item);
                     }
                 }
             }

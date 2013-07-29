@@ -46,7 +46,10 @@ namespace FACCTS.Server.Data.Repositiries
         public virtual IQueryable<TEntity> GetAll(params Expression<Func<TEntity, object>>[] includePaths)
         {
             IQueryable<TEntity> query = Entities;
-            query = includePaths.Aggregate(query, (current, expression) => current.Include(expression));
+            query = includePaths.Aggregate(query, (current, expression) => 
+            {
+                return current.Include(expression);
+            });
             return query;
         }
 

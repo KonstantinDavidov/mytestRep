@@ -21,6 +21,17 @@ namespace Faccts.Model.Entities
                 );
         }
 
+        public RestrainingPartyIDInfo(FACCTS.Server.Model.DataModel.RestrainingPartyIdentificationInformation dto)
+            : this()
+        {
+            if (dto != null)
+            {
+                this.IDType = dto.IDType;
+                this.IDNumber = dto.IDNumber;
+                this.IDIssuedDate = dto.IssuedDate;
+            }
+        }
+
 
         public FACCTS.Server.Model.DataModel.RestrainingPartyIdentificationInformation ToDTO()
         {
@@ -65,6 +76,57 @@ namespace Faccts.Model.Entities
         public bool IsValid
         {
             get { return !Errors.Any(); }
+        }
+
+        public override bool Equals(object obj)
+        {
+            // Check for null
+            if (obj == null) return false;
+
+            // Check for type
+            if (this.GetType() != obj.GetType()) return false;
+
+            // Cast as Employee
+            RestrainingPartyIDInfo info = (RestrainingPartyIDInfo)obj;
+
+            return (this == info);
+        }
+
+        public static bool operator !=(RestrainingPartyIDInfo left, RestrainingPartyIDInfo right)
+        {
+            return !(left == right);
+        }
+
+        public static bool operator ==(RestrainingPartyIDInfo left, RestrainingPartyIDInfo right)
+        {
+            // If both are null, or both are same instance, return true.
+            if (System.Object.ReferenceEquals(left, right))
+            {
+                return true;
+            }
+
+            // If one is null, but not both, return false.
+            if (((object)left == null) || ((object)right == null))
+            {
+                return false;
+            }
+
+            if (left.IDType != right.IDType)
+                return false;
+            if (left.IDNumber != right.IDNumber)
+                return false;
+            if (left.IDIssuedDate != right.IDIssuedDate)
+                return false;
+
+            return true;
+        }
+
+        public override int GetHashCode()
+        {
+            return
+                this.IDType.GetHashCode() ^
+                (this.IDNumber ?? string.Empty).GetHashCode() ^
+                this.IDIssuedDate.GetValueOrDefault().GetHashCode();
         }
     }
 }

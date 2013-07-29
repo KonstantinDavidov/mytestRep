@@ -19,5 +19,7 @@ namespace FACCTS.Server.Model.DataModel
         public long? CourtCaseForInterpreterId { get; set; }
 
         public CourtCase CourtCaseForInterpreter { get; set; }
+
+        public PartyFor InterpreterFor { get; set; }
     }
 }

@@ -27,5 +27,18 @@ namespace Faccts.Model.Entities
             };
         }
 
+        public ThirdPartyData(FACCTS.Server.Model.DataModel.ThirdPartyData dto)
+            : this()
+        {
+            if (dto == null)
+                return;
+
+            this.Id = dto.Id;
+            this.IsThirdpartyProPer = dto.IsProPer;
+            this.IsThirdPartyRequestorInEACase = dto.IsRequestorInEACase;
+            this.Attorney = new Attorneys(dto.Attorney);
+
+        }
+
     }
 }

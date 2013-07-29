@@ -1280,6 +1280,26 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
+	public partial class NotifyEmbancyInfo
+	{
+		public bool IsEnabled
+		{
+			get; set;
+		}
+		
+		public string CountryName
+		{
+			get; set;
+		}
+		
+		public int ProvideProofDays
+		{
+			get; set;
+		}
+				
+	}
+	
+			
 	public partial class DV145
 	{
 		public bool IsPastROViolations
@@ -1403,6 +1423,556 @@ namespace FACCTS.Server.Model.OrderModels
 		}
 		
 		public OtherOrders OtherPermissionsOrder
+		{
+			get; set;
+		}
+		
+		public NotifyEmbancyInfo NotifyEmbancyInfo
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class IncomeAndDeductions
+	{
+		public Designation Designation
+		{
+			get; set;
+		}
+		
+		public decimal TotalGrossMonthlyIncome
+		{
+			get; set;
+		}
+		
+		public decimal TotalMonthlyDeductions
+		{
+			get; set;
+		}
+		
+		public decimal TotalHardshipDeductions
+		{
+			get; set;
+		}
+		
+		public decimal NetMonthlyDisposableIncome
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class JudgmentForSpousalSupport
+	{
+		public bool IsModifiesJudgmentOrder
+		{
+			get; set;
+		}
+		
+		public DateTime ModifingJudgmentOrderDate
+		{
+			get; set;
+		}
+		
+		public bool WerePartiesMarried
+		{
+			get; set;
+		}
+		
+		public int MarriedLifeYears
+		{
+			get; set;
+		}
+		
+		public int MarriedLifeMonths
+		{
+			get; set;
+		}
+		
+		public bool WerePartiesPartners
+		{
+			get; set;
+		}
+		
+		public int PartnershipLifeYears
+		{
+			get; set;
+		}
+		
+		public int PartnershipLifeMonths
+		{
+			get; set;
+		}
+		
+		public bool ArePartiesBothSelfSupported
+		{
+			get; set;
+		}
+		
+		public bool IsMaritalStandardOfLivingEnabled
+		{
+			get; set;
+		}
+		
+		public string MaritalStandardOfLivingDescription
+		{
+			get; set;
+		}
+		
+		public bool IsStandartOfLivingAttached
+		{
+			get; set;
+		}
+		
+		public bool IsSupportReserved
+		{
+			get; set;
+		}
+		
+		public bool IsSupportReservedForPetitioner
+		{
+			get; set;
+		}
+		
+		public bool IsSupportReservedForRespondent
+		{
+			get; set;
+		}
+		
+		public bool IsSupportTerminated
+		{
+			get; set;
+		}
+		
+		public bool IsSupportTerminatedForPetitioner
+		{
+			get; set;
+		}
+		
+		public bool IsSupportTerminatedForRespondent
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class CourtOrders
+	{
+		public Designation SupportToBePaidFrom
+		{
+			get; set;
+		}
+		
+		public Designation SupportToBePaidTo
+		{
+			get; set;
+		}
+		
+		public decimal SupportAmount
+		{
+			get; set;
+		}
+		
+		public DateTime SupportFromDate
+		{
+			get; set;
+		}
+		
+		public bool IsPayOnTheDayOfMonth
+		{
+			get; set;
+		}
+		
+		public byte DayOfMonth
+		{
+			get; set;
+		}
+		
+		public bool IsOtherPaymentScheme
+		{
+			get; set;
+		}
+		
+		public string OtherPaymentSchemeDescription
+		{
+			get; set;
+		}
+		
+		public DateTime SupportUntilDate
+		{
+			get; set;
+		}
+		
+		public bool IsTemporarySupportEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsSpousalSupportEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsFamilySupportEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsPartnerSupportEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsSupportConditionsEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsMustInformAboutEmploymentChanges
+		{
+			get; set;
+		}
+		
+		public string IsOrderForFamilySupport
+		{
+			get; set;
+		}
+		
+		public string IsSelfSupportEffortsEnabled
+		{
+			get; set;
+		}
+		
+		public Designation SelfSupportEffortedPerson
+		{
+			get; set;
+		}
+		
+		public bool IsEarningAssignmentStatementEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsServiceStayedPeriodProvided
+		{
+			get; set;
+		}
+		
+		public int ServiceStayedPeriod
+		{
+			get; set;
+		}
+		
+		public bool IsNoticeAboutDurationEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsOtherOrdersEnabled
+		{
+			get; set;
+		}
+		
+		public string OtherOrdersDescription
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class FL343
+	{
+		public bool IsAttachedToFOAH
+		{
+			get; set;
+		}
+		
+		public bool IsAttachedToDVRO
+		{
+			get; set;
+		}
+		
+		public bool IsAttachedToJudgment
+		{
+			get; set;
+		}
+		
+		public bool IsAttachedToStipulation
+		{
+			get; set;
+		}
+		
+		public bool IsAttachedToOther
+		{
+			get; set;
+		}
+		
+		public string OtherAttachedToDescription
+		{
+			get; set;
+		}
+		
+		public string IncomeAndDeductions
+		{
+			get; set;
+		}
+		
+		public string IsComputerPrintOutAttach
+		{
+			get; set;
+		}
+		
+		public JudgmentForSpousalSupport JudgmentForSpousalSupport
+		{
+			get; set;
+		}
+		
+		public CourtOrders CourtOrders
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class EAConductChoice
+	{
+		public bool IsNoAbuse
+		{
+			get; set;
+		}
+		
+		public bool IsNoContact
+		{
+			get; set;
+		}
+		
+		public bool IsDontTryToLocate
+		{
+			get; set;
+		}
+		
+		public bool IsInvolveOtherProtected
+		{
+			get; set;
+		}
+		
+		public bool IsInvolveOther
+		{
+			get; set;
+		}
+		
+		public string OtherDescription
+		{
+			get; set;
+		}
+		
+		public bool IsOtherAttached
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class EAStayAwayOrders
+	{
+		public bool IsStayAwayFromPerson
+		{
+			get; set;
+		}
+		
+		public bool IsStayAwayFromHome
+		{
+			get; set;
+		}
+		
+		public bool IsStayAwayFromVehicle
+		{
+			get; set;
+		}
+		
+		public bool IsStayAwayFromWork
+		{
+			get; set;
+		}
+		
+		public bool IsStayAwayFromOtherProtected
+		{
+			get; set;
+		}
+		
+		public bool IsStayAwayFromOther
+		{
+			get; set;
+		}
+		
+		public string OtherDescription
+		{
+			get; set;
+		}
+		
+		public int StayAwayDistance
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class Firearms
+	{
+		public bool IsNoGuns
+		{
+			get; set;
+		}
+		
+		public bool IsCourtHasFirearmsInformation
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class EA110
+	{
+		public OrderRestrictionState EAConductChoiceState
+		{
+			get; set;
+		}
+		
+		public EAConductChoice EAConductChoice
+		{
+			get; set;
+		}
+		
+		public OrderRestrictionState EAStayAwayOrdersState
+		{
+			get; set;
+		}
+		
+		public EAStayAwayOrders EAStayAwayOrders
+		{
+			get; set;
+		}
+		
+		public OrderRestrictionState MoveoutState
+		{
+			get; set;
+		}
+		
+		public string MoveoutAddress
+		{
+			get; set;
+		}
+		
+		public CAPROSEntry CAPROSEntrySection
+		{
+			get; set;
+		}
+		
+		public NoServiceFee NoServiceFeeSection
+		{
+			get; set;
+		}
+		
+		public bool IsOtherOrdersAttached
+		{
+			get; set;
+		}
+		
+		public string OtherOrderDetail
+		{
+			get; set;
+		}
+		
+		public bool IsFirearmsGranted
+		{
+			get; set;
+		}
+		
+		public Firearms Firearms
+		{
+			get; set;
+		}
+		
+		public bool IsFinancialAbuseInvolved
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class EA130
+	{
+		public bool IsEAConductChoiceEnabled
+		{
+			get; set;
+		}
+		
+		public EAConductChoice EAConductChoice
+		{
+			get; set;
+		}
+		
+		public bool EAStayAwayOrdersEnabled
+		{
+			get; set;
+		}
+		
+		public EAStayAwayOrders EAStayAwayOrders
+		{
+			get; set;
+		}
+		
+		public bool IsMoveoutEnabled
+		{
+			get; set;
+		}
+		
+		public string MoveoutAddress
+		{
+			get; set;
+		}
+		
+		public CAPROSEntry CAPROSEntrySection
+		{
+			get; set;
+		}
+		
+		public NoServiceFee NoServiceFeeSection
+		{
+			get; set;
+		}
+		
+		public bool IsOtherOrdersAttached
+		{
+			get; set;
+		}
+		
+		public string OtherOrderDetail
+		{
+			get; set;
+		}
+		
+		public bool IsNoGuns
+		{
+			get; set;
+		}
+		
+		public Firearms Firearms
+		{
+			get; set;
+		}
+		
+		public bool IsFinancialAbuseInvolved
 		{
 			get; set;
 		}

@@ -22,6 +22,80 @@ namespace Faccts.Model.Entities
             };
         }
 
+        public AddressInfo(FACCTS.Server.Model.DataModel.AddressInfo dto)
+            : this()
+        {
+            if (dto != null)
+            {
+                StreetAddress = dto.StreetAddress;
+                City = dto.City;
+                USAState = dto.USAState;
+                ZipCode = dto.ZipCode;
+                Phone = dto.Phone;
+                Fax = dto.Fax;
+            }
+        }
+
+        public override bool Equals(object obj)
+        {
+            // Check for null
+            if (obj == null) return false;
+
+            // Check for type
+            if (this.GetType() != obj.GetType()) return false;
+
+            // Cast as Employee
+            AddressInfo addressInfo = (AddressInfo)obj;
+
+            return (this == addressInfo);
+        }
+
+        public override int GetHashCode()
+        {
+            return
+                (this.StreetAddress ?? string.Empty).GetHashCode() ^
+                (this.City ?? string.Empty).GetHashCode() ^
+                this.USAState.GetHashCode() ^
+                (this.ZipCode ?? string.Empty).GetHashCode() ^
+                (this.Phone ?? string.Empty).GetHashCode() ^
+                (this.Fax ?? string.Empty).GetHashCode();
+        }
+
+        public static bool operator !=(AddressInfo left, AddressInfo right)
+        {
+            return !(left == right);
+        }
+
+        public static bool operator ==(AddressInfo left, AddressInfo right)
+        {
+            // If both are null, or both are same instance, return true.
+            if (System.Object.ReferenceEquals(left, right))
+            {
+                return true;
+            }
+
+            // If one is null, but not both, return false.
+            if (((object)left == null) || ((object)right == null))
+            {
+                return false;
+            }
+
+            if (left.StreetAddress != right.StreetAddress)
+                return false;
+            if (left.City != right.City)
+                return false;
+            if (left.USAState != right.USAState)
+                return false;
+            if (left.ZipCode != right.ZipCode)
+                return false;
+            if (left.Phone != right.Phone)
+                return false;
+            if (left.Fax != right.Fax)
+                return false;
+
+            return true;
+        }
+
         private Dictionary<string, string> _errors = new Dictionary<string, string>();
         public IList<string> Errors
         {

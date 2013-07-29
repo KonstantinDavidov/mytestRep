@@ -19,6 +19,20 @@ namespace Faccts.Model.Entities
                 );
         }
 
+        public CaseNotes(FACCTS.Server.Model.DataModel.CaseNote dto)
+            : this()
+        {
+            if (dto != null)
+            {
+                this.Id = dto.Id;
+                this.User = new User(dto.Author);
+                this.Status = dto.Status;
+
+                this.MarkAsUnchanged();
+            }
+            
+        }
+
         public bool IsPublic
         {
             get

@@ -44,6 +44,7 @@ namespace FACCTS.Controls.ViewModels
                 });
             this.DisplayName = "Court Orders";
 
+            SelectedHearing = CurrentHearings.FirstOrDefault();
         }
 
         private void Authorized()
@@ -157,6 +158,29 @@ namespace FACCTS.Controls.ViewModels
             get 
             { 
                 return DataContainer.CourtCases; 
+            }
+        }
+
+        public TrackableCollection<Hearings> CurrentHearings
+        {
+            get
+            {
+                return DataContainer.Hearings;
+            }
+        }
+
+        private Hearings _selectedHearing;
+
+        public Hearings SelectedHearing
+        {
+            get
+            {
+                return _selectedHearing;
+            }
+
+            set
+            {
+                _selectedHearing = value;
             }
         }
     }

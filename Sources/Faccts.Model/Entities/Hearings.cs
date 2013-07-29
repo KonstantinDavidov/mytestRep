@@ -21,12 +21,11 @@ using System.Reactive.Linq;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(CaseHistory))]
     [KnownType(typeof(Courtrooms))]
     [KnownType(typeof(CourtDepartment))]
-    [KnownType(typeof(CourtDocketRecord))]
     [KnownType(typeof(Appearance))]
     [KnownType(typeof(CourtOrders))]
+    [KnownType(typeof(CourtCase))]
     public partial class Hearings: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -60,12 +59,11 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.Courtroom_Id)
     				,this.ObservableForProperty(x => x.Department_Id)
     				,this.ObservableForProperty(x => x.Session)
-    				,this.ObservableForProperty(x => x.CourtCaseId)
     				,this.ObservableForProperty(x => x.CourtDepartmentId)
-    				,this.ObservableForProperty(x => x.CaseHistory.IsDirty)
+    				,this.ObservableForProperty(x => x.CourtCaseId)
     				,this.ObservableForProperty(x => x.Courtrooms.IsDirty)
     				,this.ObservableForProperty(x => x.CourtDepartment.IsDirty)
-    				,this.ObservableForProperty(x => x.CourtDocketRecord.IsDirty)
+    				,this.ObservableForProperty(x => x.CourtCase.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -94,7 +92,7 @@ namespace Faccts.Model.Entities
     					return;
     				OnPropertyChanging("IsDirty");
     				_isDirty = value;
-    				OnPropertyChanged("IsDirty");
+    				OnPropertyChanged("IsDirty", false);
     			}
     		}
     				
@@ -265,22 +263,6 @@ namespace Faccts.Model.Entities
         private FACCTS.Server.Model.Enums.DocketSession _session;
     
         [DataMember]
-        public long CourtCaseId
-        {
-            get { return _courtCaseId; }
-            set
-            {
-                if (_courtCaseId != value)
-                {
-    				OnPropertyChanging("CourtCaseId");
-                    _courtCaseId = value;
-                    OnPropertyChanged("CourtCaseId");
-                }
-            }
-        }
-        private long _courtCaseId;
-    
-        [DataMember]
         public Nullable<long> CourtDepartmentId
         {
             get { return _courtDepartmentId; }
@@ -295,6 +277,30 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<long> _courtDepartmentId;
+    
+        [DataMember]
+        public long CourtCaseId
+        {
+            get { return _courtCaseId; }
+            set
+            {
+                if (_courtCaseId != value)
+                {
+                    ChangeTracker.RecordOriginalValue("CourtCaseId", _courtCaseId);
+                    if (!IsDeserializing)
+                    {
+                        if (CourtCase != null && CourtCase.Id != value)
+                        {
+                            CourtCase = null;
+                        }
+                    }
+    				OnPropertyChanging("CourtCaseId");
+                    _courtCaseId = value;
+                    OnPropertyChanged("CourtCaseId");
+                }
+            }
+        }
+        private long _courtCaseId;
 
         #endregion
 
@@ -343,24 +349,6 @@ namespace Faccts.Model.Entities
         #region Navigation Properties
     
         [DataMember]
-        public CaseHistory CaseHistory
-        {
-            get { return _caseHistory; }
-            set
-            {
-                if (!ReferenceEquals(_caseHistory, value))
-                {
-                    var previousValue = _caseHistory;
-    				OnNavigationPropertyChanging("CaseHistory");
-                    _caseHistory = value;
-                    FixupCaseHistory(previousValue);
-                    OnNavigationPropertyChanged("CaseHistory");
-                }
-            }
-        }
-        private CaseHistory _caseHistory;
-    
-        [DataMember]
         public Courtrooms Courtrooms
         {
             get { return _courtrooms; }
@@ -395,24 +383,6 @@ namespace Faccts.Model.Entities
             }
         }
         private CourtDepartment _courtDepartment;
-    
-        [DataMember]
-        public CourtDocketRecord CourtDocketRecord
-        {
-            get { return _courtDocketRecord; }
-            set
-            {
-                if (!ReferenceEquals(_courtDocketRecord, value))
-                {
-                    var previousValue = _courtDocketRecord;
-    				OnNavigationPropertyChanging("CourtDocketRecord");
-                    _courtDocketRecord = value;
-                    FixupCourtDocketRecord(previousValue);
-                    OnNavigationPropertyChanged("CourtDocketRecord");
-                }
-            }
-        }
-        private CourtDocketRecord _courtDocketRecord;
     
         [DataMember]
         public TrackableCollection<Appearance> Appearances
@@ -509,14 +479,32 @@ namespace Faccts.Model.Entities
             }
         }
         private TrackableCollection<CourtOrders> _courtOrders;
+    
+        [DataMember]
+        public CourtCase CourtCase
+        {
+            get { return _courtCase; }
+            set
+            {
+                if (!ReferenceEquals(_courtCase, value))
+                {
+                    var previousValue = _courtCase;
+    				OnNavigationPropertyChanging("CourtCase");
+                    _courtCase = value;
+                    FixupCourtCase(previousValue);
+                    OnNavigationPropertyChanged("CourtCase");
+                }
+            }
+        }
+        private CourtCase _courtCase;
 
         #endregion
 
         #region ChangeTracking
     
-        protected virtual void OnPropertyChanged(String propertyName)
+        protected virtual void OnPropertyChanged(String propertyName, bool changeState = true)
         {
-            if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
+            if (changeState && ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
             {
                 ChangeTracker.State = ObjectState.Modified;
             }
@@ -616,70 +604,16 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
-            CaseHistory = null;
             Courtrooms = null;
             CourtDepartment = null;
-            CourtDocketRecord = null;
             Appearances.Clear();
             CourtOrders.Clear();
+            CourtCase = null;
         }
 
         #endregion
 
         #region Association Fixup
-    
-        private void FixupCaseHistory(CaseHistory previousValue)
-        {
-            // This is the principal end in an association that performs cascade deletes.
-            // Update the event listener to refer to the new dependent.
-            if (previousValue != null)
-            {
-                ChangeTracker.ObjectStateChanging -= previousValue.HandleCascadeDelete;
-            }
-    
-            if (CaseHistory != null)
-            {
-                ChangeTracker.ObjectStateChanging += CaseHistory.HandleCascadeDelete;
-            }
-    
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && ReferenceEquals(previousValue.Hearing, this))
-            {
-                previousValue.Hearing = null;
-            }
-    
-            if (CaseHistory != null)
-            {
-                CaseHistory.Hearing = this;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("CaseHistory")
-                    && (ChangeTracker.OriginalValues["CaseHistory"] == CaseHistory))
-                {
-                    ChangeTracker.OriginalValues.Remove("CaseHistory");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("CaseHistory", previousValue);
-                    // This is the principal end of an identifying association, so the dependent must be deleted when the relationship is removed.
-                    // If the current state of the dependent is Added, the relationship can be changed without causing the dependent to be deleted.
-                    if (previousValue != null && previousValue.ChangeTracker.State != ObjectState.Added)
-                    {
-                        previousValue.MarkAsDeleted();
-                    }
-                }
-                if (CaseHistory != null && !CaseHistory.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    CaseHistory.StartTracking();
-                }
-            }
-        }
     
         private void FixupCourtrooms(Courtrooms previousValue, bool skipKeys = false)
         {
@@ -763,37 +697,38 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupCourtDocketRecord(CourtDocketRecord previousValue)
+        private void FixupCourtCase(CourtCase previousValue)
         {
             if (IsDeserializing)
             {
                 return;
             }
     
-            if (previousValue != null && ReferenceEquals(previousValue.Hearing, this))
+            if (previousValue != null && previousValue.Hearings.Contains(this))
             {
-                previousValue.Hearing = null;
+                previousValue.Hearings.Remove(this);
             }
     
-            if (CourtDocketRecord != null)
+            if (CourtCase != null)
             {
-                CourtDocketRecord.Hearing = this;
-            }
+                CourtCase.Hearings.Add(this);
     
+                CourtCaseId = CourtCase.Id;
+            }
             if (ChangeTracker.ChangeTrackingEnabled)
             {
-                if (ChangeTracker.OriginalValues.ContainsKey("CourtDocketRecord")
-                    && (ChangeTracker.OriginalValues["CourtDocketRecord"] == CourtDocketRecord))
+                if (ChangeTracker.OriginalValues.ContainsKey("CourtCase")
+                    && (ChangeTracker.OriginalValues["CourtCase"] == CourtCase))
                 {
-                    ChangeTracker.OriginalValues.Remove("CourtDocketRecord");
+                    ChangeTracker.OriginalValues.Remove("CourtCase");
                 }
                 else
                 {
-                    ChangeTracker.RecordOriginalValue("CourtDocketRecord", previousValue);
+                    ChangeTracker.RecordOriginalValue("CourtCase", previousValue);
                 }
-                if (CourtDocketRecord != null && !CourtDocketRecord.ChangeTracker.ChangeTrackingEnabled)
+                if (CourtCase != null && !CourtCase.ChangeTracker.ChangeTrackingEnabled)
                 {
-                    CourtDocketRecord.StartTracking();
+                    CourtCase.StartTracking();
                 }
             }
         }

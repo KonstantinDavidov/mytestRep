@@ -296,6 +296,11 @@
     <Property name="IsOtherExist" type="bool"/>
     <Property name="OtherDescription" type="string"/>
   </Model>
+  <Model name="NotifyEmbancyInfo">
+    <Property name="IsEnabled" type="bool" />
+    <Property name="CountryName" type="string"/>
+    <Property name="ProvideProofDays" type="int"/>
+  </Model>
   <Model name="DV145">
     <Property name="IsPastROViolations" type="bool"/>
     <Property name="IsNoTiesWithCalifornia" type="bool"/>
@@ -322,6 +327,130 @@
     <Property name="IsEnforcingCourtOrderRequired" type="bool"/>
     <Property name="EnforcingAgencyName" type="string"/>
     <Property name="OtherPermissionsOrder" type="OtherOrders"/>
+    <Property name="NotifyEmbancyInfo" type="NotifyEmbancyInfo"/>
+  </Model>
+  
+  <!-- FL343-->
+  <Model name="IncomeAndDeductions">
+    <Property name="Designation" type="Designation"/>
+    <Property name="TotalGrossMonthlyIncome" type="decimal"/>
+    <Property name="TotalMonthlyDeductions" type="decimal"/>
+    <Property name="TotalHardshipDeductions" type="decimal"/>
+    <Property name="NetMonthlyDisposableIncome" type="decimal"/>
+  </Model>
+  <Model name="JudgmentForSpousalSupport">
+    <Property name="IsModifiesJudgmentOrder" type="bool"/>
+    <Property name="ModifingJudgmentOrderDate" type="DateTime"/>
+    <Property name="WerePartiesMarried" type="bool"/>
+    <Property name="MarriedLifeYears" type="int"/>
+    <Property name="MarriedLifeMonths" type="int"/>
+    <Property name="WerePartiesPartners" type="bool"/>
+    <Property name="PartnershipLifeYears" type="int"/>
+    <Property name="PartnershipLifeMonths" type="int"/>
+    <Property name="ArePartiesBothSelfSupported" type="bool"/>
+    <Property name="IsMaritalStandardOfLivingEnabled" type="bool"/>
+    <Property name="MaritalStandardOfLivingDescription" type="string"/>
+    <Property name="IsStandartOfLivingAttached" type="bool"/>
+    <Property name="IsSupportReserved" type="bool"/>
+    <Property name="IsSupportReservedForPetitioner" type="bool"/>
+    <Property name="IsSupportReservedForRespondent" type="bool"/>
+    <Property name="IsSupportTerminated" type="bool"/>
+    <Property name="IsSupportTerminatedForPetitioner" type="bool"/>
+    <Property name="IsSupportTerminatedForRespondent" type="bool"/>
+  </Model>
+  <Model name="CourtOrders">
+    <Property name="SupportToBePaidFrom" type="Designation"/>
+    <Property name="SupportToBePaidTo" type="Designation"/>
+    <Property name="SupportAmount" type="decimal"/>
+    <Property name="SupportFromDate" type="DateTime"/>
+    <Property name="IsPayOnTheDayOfMonth" type="bool"/>
+    <Property name="DayOfMonth" type="byte"/>
+    <Property name="IsOtherPaymentScheme" type="bool"/>
+    <Property name="OtherPaymentSchemeDescription" type="string"/>
+    <Property name="SupportUntilDate" type="DateTime"/>
+    <Property name="IsTemporarySupportEnabled" type="bool"/>
+    <Property name="IsSpousalSupportEnabled" type="bool"/>
+    <Property name="IsFamilySupportEnabled" type="bool"/>
+    <Property name="IsPartnerSupportEnabled" type="bool"/>
+
+    <Property name="IsSupportConditionsEnabled" type="bool"/>
+    <Property name="IsMustInformAboutEmploymentChanges" type="bool"/>
+    <Property name="IsOrderForFamilySupport"/>
+    <Property name="IsSelfSupportEffortsEnabled"/>
+    <Property name="SelfSupportEffortedPerson" type="Designation"/>
+    <Property name="IsEarningAssignmentStatementEnabled" type="bool"/>
+    <Property name="IsServiceStayedPeriodProvided" type="bool"/>
+    <Property name="ServiceStayedPeriod" type="int"/>
+    <Property name="IsNoticeAboutDurationEnabled" type="bool"/>
+    <Property name="IsOtherOrdersEnabled" type="bool"/>
+    <Property name="OtherOrdersDescription" type="string"/>
+  </Model>
+  <Model name="FL343">
+    <Property name="IsAttachedToFOAH" type="bool"/>
+    <Property name="IsAttachedToDVRO" type="bool"/>
+    <Property name="IsAttachedToJudgment" type="bool"/>
+    <Property name="IsAttachedToStipulation" type="bool"/>
+    <Property name="IsAttachedToOther" type="bool"/>
+    <Property name="OtherAttachedToDescription" type="string"/>
+    <Property name="IncomeAndDeductions" collectionType="IncomeAndDeductions"/>
+    <Property name="IsComputerPrintOutAttach"/>
+    <Property name="JudgmentForSpousalSupport" type="JudgmentForSpousalSupport"/>
+    <Property name="CourtOrders" type="CourtOrders"/>
+  </Model>
+  <!-- EA -->
+  <Model name="EAConductChoice">
+    <Property name="IsNoAbuse" type="bool"/>
+    <Property name="IsNoContact" type="bool"/>
+    <Property name="IsDontTryToLocate" type="bool"/>
+    <Property name="IsInvolveOtherProtected" type="bool"/>
+    <Property name="IsInvolveOther" type="bool"/>
+    <Property name="OtherDescription" type="string"/>
+    <Property name ="IsOtherAttached" type="bool"/>
+  </Model>
+
+  <Model name="EAStayAwayOrders">
+    <Property name="IsStayAwayFromPerson" type="bool"/>
+    <Property name="IsStayAwayFromHome" type="bool"/>
+    <Property name="IsStayAwayFromVehicle" type="bool"/>
+    <Property name="IsStayAwayFromWork" type="bool"/>
+    <Property name="IsStayAwayFromOtherProtected" type="bool"/>
+    <Property name="IsStayAwayFromOther" type="bool"/>
+    <Property name="OtherDescription" type="string"/>
+    <Property name="StayAwayDistance" type="int"/>
+  </Model>
+  <Model name="Firearms">
+    <Property name="IsNoGuns" type="bool"/>
+    <Property name="IsCourtHasFirearmsInformation" type="bool"/>
+  </Model>
+  <Model name="EA110">
+    <Property name="EAConductChoiceState" type="OrderRestrictionState"/>
+    <Property name="EAConductChoice" type="EAConductChoice"/>
+    <Property name="EAStayAwayOrdersState" type="OrderRestrictionState"/>
+    <Property name="EAStayAwayOrders" type="EAStayAwayOrders"/>
+    <Property name="MoveoutState" type="OrderRestrictionState"/>
+    <Property name="MoveoutAddress" type="string"/>
+    <Property name="CAPROSEntrySection" type="CAPROSEntry"/>
+    <Property name="NoServiceFeeSection" type="NoServiceFee"/>
+    <Property name="IsOtherOrdersAttached" type="bool"/>
+    <Property name="OtherOrderDetail" type="string"/>
+    <Property name="IsFirearmsGranted" type="bool"/>
+    <Property name="Firearms" type="Firearms"/>
+    <Property name="IsFinancialAbuseInvolved" type="bool"/>
+  </Model>
+  <Model name="EA130">
+    <Property name="IsEAConductChoiceEnabled" type="bool"/>
+    <Property name="EAConductChoice" type="EAConductChoice"/>
+    <Property name="EAStayAwayOrdersEnabled" type="bool"/>
+    <Property name="EAStayAwayOrders" type="EAStayAwayOrders"/>
+    <Property name="IsMoveoutEnabled" type="bool"/>
+    <Property name="MoveoutAddress" type="string"/>
+    <Property name="CAPROSEntrySection" type="CAPROSEntry"/>
+    <Property name="NoServiceFeeSection" type="NoServiceFee"/>
+    <Property name="IsOtherOrdersAttached" type="bool"/>
+    <Property name="OtherOrderDetail" type="string"/>
+    <Property name="IsNoGuns" type="bool"/>
+    <Property name="Firearms" type="Firearms"/>
+    <Property name="IsFinancialAbuseInvolved" type="bool"/>
   </Model>
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">

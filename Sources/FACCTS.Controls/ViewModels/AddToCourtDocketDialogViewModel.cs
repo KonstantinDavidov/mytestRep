@@ -117,27 +117,24 @@ namespace FACCTS.Controls.ViewModels
         private void ProceedAddition()
         {
             var totalTime = CourtDocketViewModel.CalendarDate.GetValueOrDefault();
-            CourtDocketRecord cr = new CourtDocketRecord()
+            Hearings cr = new Hearings()
             {
-                Hearing = new Hearings()
-                        {
-                            HearingDate = totalTime,
-                            Session = this.Session,
-                            Courtrooms = this.Courtroom,
-                            CourtDepartment = this.Department,
-                            HearingIssue = new HearingIssue()
-                            {
-                                PermanentRO = this.IsPermanentRO,
-                                ChildCustodyOrChildVisitation = this.IsCCorCV,
-                                ChildSupport = this.IsCS,
-                                SpousalSupport = this.IsSS,
-                                IsOtherIssue = this.IsOtherHearingIssue,
-                                OtheIssueText = this.OtherHearingIssueText,
-                            }
-                        }
+                HearingDate = totalTime,
+                Session = this.Session,
+                Courtrooms = this.Courtroom,
+                CourtDepartment = this.Department,
+                HearingIssue = new HearingIssue()
+                {
+                    PermanentRO = this.IsPermanentRO,
+                    ChildCustodyOrChildVisitation = this.IsCCorCV,
+                    ChildSupport = this.IsCS,
+                    SpousalSupport = this.IsSS,
+                    IsOtherIssue = this.IsOtherHearingIssue,
+                    OtheIssueText = this.OtherHearingIssueText,
+                }
             };
 
-            Execute.OnUIThread(() => DataContainer.CourtDocketRecords.Add(cr));
+            Execute.OnUIThread(() => DataContainer.Hearings.Add(cr));
         }
 
         private Faccts.Model.Entities.CourtCase _currentCourtCase;

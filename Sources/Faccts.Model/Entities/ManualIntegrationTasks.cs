@@ -85,7 +85,7 @@ namespace Faccts.Model.Entities
     					return;
     				OnPropertyChanging("IsDirty");
     				_isDirty = value;
-    				OnPropertyChanged("IsDirty");
+    				OnPropertyChanged("IsDirty", false);
     			}
     		}
     				
@@ -289,9 +289,9 @@ namespace Faccts.Model.Entities
 
         #region ChangeTracking
     
-        protected virtual void OnPropertyChanged(String propertyName)
+        protected virtual void OnPropertyChanged(String propertyName, bool changeState = true)
         {
-            if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
+            if (changeState && ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
             {
                 ChangeTracker.State = ObjectState.Modified;
             }

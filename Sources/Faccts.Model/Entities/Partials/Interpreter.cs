@@ -9,6 +9,33 @@ namespace Faccts.Model.Entities
     public partial class Interpreter : IDataTransferConvertible<FACCTS.Server.Model.DataModel.Interpreter>
     {
 
+        public Interpreter() : base()
+        {
+
+        }
+
+        public Interpreter(FACCTS.Server.Model.DataModel.Interpreter dto) : this()
+        {
+            if (dto == null)
+                return;
+
+            this.Id = dto.Id;
+            this.PartyFor = dto.InterpreterFor;
+            this.EntityType = dto.EntityType;
+            this.FirstName = dto.FirstName;
+            this.LastName = dto.LastName;
+            this.Sex = dto.Sex;
+            this.DateOfBirth = dto.DateOfBirth;
+            this.Contact = dto.Contact;
+            this.Age = dto.Age;
+            this.AddressInfo = new AddressInfo(dto.AddressInfo);
+            this.Email = dto.Email;
+            this.PersonType = FACCTS.Server.Model.Enums.PersonType.Interpreter;
+            this.Language = dto.Language;
+            //this.Appearances = 
+            this.MarkAsUnchanged();
+        }
+
         FACCTS.Server.Model.DataModel.Interpreter IDataTransferConvertible<FACCTS.Server.Model.DataModel.Interpreter>.ToDTO()
         {
             if (!this.IsDirty)
@@ -21,6 +48,7 @@ namespace Faccts.Model.Entities
                 FirstName = this.FirstName,
                 LastName = this.LastName,
                 Language = this.Language,
+                InterpreterFor = this.PartyFor,
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
             };
         }

@@ -170,16 +170,10 @@
     <Compile Include="Entities\CourtCase.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\CourtCaseOrders.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\CourtCounty.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\CourtDepartment.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\CourtDocketRecord.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\CourtLocations.cs">
@@ -299,6 +293,7 @@
     <Compile Include="Entities\OtherProtected.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Partials\OtherProtected.cs" />
     <Compile Include="Entities\Partials\PersonBase.cs" />
     <Compile Include="Entities\Partials\AddressInfo.cs" />
     <Compile Include="Entities\Partials\Appearance.cs" />
@@ -325,9 +320,6 @@
     <Compile Include="Entities\Partials\ThirdPartyData.cs" />
     <Compile Include="Entities\Partials\User.cs" />
     <Compile Include="Entities\Parties.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\PartyFor.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\PaymentRecord.cs">

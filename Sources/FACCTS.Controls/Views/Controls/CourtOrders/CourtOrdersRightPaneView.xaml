@@ -14,12 +14,27 @@
     		<RowDefinition/>
     		<RowDefinition Height="Auto"/>
     	</Grid.RowDefinitions>
-    	<Grid>
+    	<Grid>            
     		<Grid.ColumnDefinitions>
     			<ColumnDefinition/>
     			<ColumnDefinition/>
     		</Grid.ColumnDefinitions>
-    		<Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Orientation="Horizontal" Grid.Column="0">
+                        <TextBlock Text="Current Case Number" FontWeight="Bold"/>
+                        <TextBox Text="{Binding Path=SelectedHearing.CourtCase.CaseNumber, Mode=OneWay}" IsReadOnly="True"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+            <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Column="0" Grid.Row="1">
     			<Grid Margin="5,0">
     				<Grid.ColumnDefinitions>
     					<ColumnDefinition Width="Auto"/>
@@ -33,7 +48,7 @@
     					<RowDefinition Height="Auto"/>
     					<RowDefinition Height="Auto"/>
     				</Grid.RowDefinitions>
-    				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Party" VerticalAlignment="Center"/>
+    				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Party1" VerticalAlignment="Center"/>
     				<TextBox Height="21.933" TextWrapping="Wrap" Text="TextBox" Grid.Column="1"/>
     				<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="2"/>
     				<CheckBox Content="Present" Margin="0,0,-0.001,0" Grid.Column="3" VerticalAlignment="Center"/>
@@ -45,7 +60,7 @@
     				<TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Parent" VerticalAlignment="Center" Grid.Row="1" Grid.Column="5" FontStyle="Italic" FontSize="10.667"/>
     			</Grid>
     		</Border>
-    		<Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Column="1">
+    		<Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Column="1" Grid.Row="1">
     			<Grid Margin="5,0">
     				<Grid.ColumnDefinitions>
     					<ColumnDefinition Width="Auto"/>

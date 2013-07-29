@@ -84,6 +84,7 @@
     <Compile Include="IDateTime.cs" />
     <Compile Include="LoggerExtension.cs" />
     <Compile Include="LoggerTraceListener.cs" />
+    <Compile Include="ObjectQueryExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceLocator.cs" />
   </ItemGroup>

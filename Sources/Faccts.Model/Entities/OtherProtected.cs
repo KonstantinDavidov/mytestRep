@@ -40,6 +40,22 @@ namespace Faccts.Model.Entities
             }
         }
         private FACCTS.Server.Model.Enums.Relationship _relationToProtected;
+    
+        [DataMember]
+        public bool IsHouseHold
+        {
+            get { return _isHouseHold; }
+            set
+            {
+                if (_isHouseHold != value)
+                {
+    				OnPropertyChanging("IsHouseHold");
+                    _isHouseHold = value;
+                    OnPropertyChanged("IsHouseHold");
+                }
+            }
+        }
+        private bool _isHouseHold;
 
         #endregion
 

@@ -12,6 +12,28 @@ namespace Faccts.Model.Entities
         {
             this.HearingIssue = new HearingIssue();
         }
+
+        public Hearings(FACCTS.Server.Model.DataModel.Hearing dto)
+            : this()
+        {
+            if (dto != null)
+            {
+                this.Id = dto.Id;
+                this.HearingDate = dto.HearingDate;
+                this.Courtrooms = new Courtrooms(dto.Courtroom);
+                this.CourtDepartment = new CourtDepartment(dto.Department);
+                this.Judge = dto.Judge;
+                this.HearingIssue = new HearingIssue(dto.HearingIssues);
+                this.Session = dto.Session;
+                //this.CourtOrders = dto.CourtOrders.Select(x => new CourtOrders(x));
+                //this.Appearances = dto.Appearances.Select(x => new Appearance(x));
+
+                this.MarkAsUnchanged();
+            }
+           
+
+            
+        }
         
         public FACCTS.Server.Model.DataModel.Hearing ToDTO()
         {

@@ -16,9 +16,7 @@ namespace FACCTS.Server.Model.DataModel
             EntityType = FACCTSEntity.PERSON;
         }
 
-        public long? CourtPartyId {get; set;}
-
-        public virtual CourtParty WitnessFor { get; set; }
+        public PartyFor WitnessFor { get; set; }
 
         public long? CourtCaseForWitnessId { get; set; }
 

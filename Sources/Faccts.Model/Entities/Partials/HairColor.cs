@@ -16,8 +16,12 @@ namespace Faccts.Model.Entities
 
         public HairColor(FACCTS.Server.Model.DataModel.HairColor dto) : this()
         {
-            this.Id = dto.Id;
-            this.Color = dto.Color;
+            if (dto != null)
+            {
+                this.Id = dto.Id;
+                this.Color = dto.Color;
+            }
+            
         }
 
         public FACCTS.Server.Model.DataModel.HairColor ToDTO()
@@ -30,6 +34,52 @@ namespace Faccts.Model.Entities
                 Color = this.Color,
                 State = (FACCTS.Server.Model.DataModel.ObjectState)this.ChangeTracker.State,
             };
+        }
+
+        public override int GetHashCode()
+        {
+            return this.Id.GetHashCode() ^ (this.Color ?? string.Empty).GetHashCode();
+        }
+
+        public override bool Equals(object obj)
+        {
+            // Check for null
+            if (obj == null) return false;
+
+            // Check for type
+            if (this.GetType() != obj.GetType()) return false;
+
+            // Cast as Employee
+            HairColor employee = (HairColor)obj;
+
+            return (this == employee);
+        }
+
+        public static bool operator ==(HairColor left, HairColor right)
+        {
+            // If both are null, or both are same instance, return true.
+            if (System.Object.ReferenceEquals(left, right))
+            {
+                return true;
+            }
+
+            // If one is null, but not both, return false.
+            if (((object)left == null) || ((object)right == null))
+            {
+                return false;
+            }
+
+            if (left.Id != right.Id)
+                return false;
+            if (left.Color != right.Color)
+                return false;
+
+            return true;
+        }
+
+        public static bool operator !=(HairColor left, HairColor right)
+        {
+            return !(left == right);
         }
 
     }

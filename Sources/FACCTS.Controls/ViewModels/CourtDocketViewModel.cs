@@ -93,12 +93,12 @@ namespace FACCTS.Controls.ViewModels
             _windowManager.ShowDialog(vm);
         }
 
-        private TrackableCollection<CourtDocketRecord> _courtDocketRecords;
-        public TrackableCollection<CourtDocketRecord> CourtDocketRecords
+        private TrackableCollection<Hearings> _hearings;
+        public TrackableCollection<Hearings> Hearings
         {
             get
             {
-                if (_courtDocketRecords == null)
+                if (_hearings == null)
                 {
                     var subs = Observable.FromEvent<System.Collections.Specialized.NotifyCollectionChangedEventHandler, System.Collections.Specialized.NotifyCollectionChangedEventArgs>(handler =>
                     {
@@ -108,7 +108,7 @@ namespace FACCTS.Controls.ViewModels
                             };
                         return eh;
                     }
-                    , a => DataContainer.CourtDocketRecords.CollectionChanged += a, a => DataContainer.CourtDocketRecords.CollectionChanged -= a);
+                    , a => DataContainer.Hearings.CollectionChanged += a, a => DataContainer.Hearings.CollectionChanged -= a);
                     subs.Subscribe(x =>
                         {
                             if (IsRefreshing)
@@ -121,19 +121,19 @@ namespace FACCTS.Controls.ViewModels
                                 return;
                             if (x.NewItems != null)
                             {
-                                x.NewItems.Cast<CourtDocketRecord>().Aggregate(0, (index, item) =>
+                                x.NewItems.Cast<Hearings>().Aggregate(0, (index, item) =>
                                     {
                                         item.CourtCase = CurrentCourtCase;
-                                        CurrentCourtCase.AssignNewHearing(item.Hearing);
+                                        CurrentCourtCase.AssignNewHearing(item);
                                         return ++index;
                                     }
                                     );
                             }
                         }
                         );
-                    _courtDocketRecords = DataContainer.CourtDocketRecords;
+                    _hearings = DataContainer.Hearings;
                 }
-                return _courtDocketRecords;
+                return _hearings;
             }
         }
 

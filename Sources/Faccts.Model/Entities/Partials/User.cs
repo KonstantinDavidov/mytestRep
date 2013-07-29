@@ -15,30 +15,36 @@ namespace Faccts.Model.Entities
             this.ChangeTracker.ChangeTrackingEnabled = false;
         }
 
-        public User(FACCTS.Server.Model.DataModel.User dtoUser) : this()
+        public User(FACCTS.Server.Model.DataModel.User dto) : this()
         {
-            this.Id = dtoUser.Id;
-            this.Username = dtoUser.Username;
-            this.Email = dtoUser.Email;
-            this.Password = dtoUser.Password;
-            this.FirstName = dtoUser.FirstName;
-            this.MiddleName = dtoUser.MiddleName;
-            this.LastName = dtoUser.LastName;
-            this.Comment = dtoUser.Comment;
+            if (dto != null)
+            {
+                this.Id = dto.Id;
+                this.Username = dto.Username;
+                this.Email = dto.Email;
+                this.Password = dto.Password;
+                this.FirstName = dto.FirstName;
+                this.MiddleName = dto.MiddleName;
+                this.LastName = dto.LastName;
+                this.Comment = dto.Comment;
 
-            this.IsApproved = dtoUser.IsApproved;
-            this.PasswordFailuresSinceLastSuccess = dtoUser.PasswordFailuresSinceLastSuccess;
-            this.LastPasswordFailureDate = dtoUser.LastPasswordFailureDate;
-            this.LastActivityDate = dtoUser.LastActivityDate;
-            this.LastLockoutDate = dtoUser.LastLockoutDate;
-            this.LastLoginDate = dtoUser.LastLoginDate;
-            this.ConfirmationToken = dtoUser.ConfirmationToken;
-            this.CreateDate = dtoUser.CreateDate;
-            this.IsLockedOut = dtoUser.IsLockedOut;
-            this.LastPasswordChangedDate = dtoUser.LastPasswordChangedDate;
-            this.PasswordVerificationToken = dtoUser.PasswordVerificationToken;
-            this.PasswordVerificationTokenExpirationDate = dtoUser.PasswordVerificationTokenExpirationDate;
+                this.IsApproved = dto.IsApproved;
+                this.PasswordFailuresSinceLastSuccess = dto.PasswordFailuresSinceLastSuccess;
+                this.LastPasswordFailureDate = dto.LastPasswordFailureDate;
+                this.LastActivityDate = dto.LastActivityDate;
+                this.LastLockoutDate = dto.LastLockoutDate;
+                this.LastLoginDate = dto.LastLoginDate;
+                this.ConfirmationToken = dto.ConfirmationToken;
+                this.CreateDate = dto.CreateDate;
+                this.IsLockedOut = dto.IsLockedOut;
+                this.LastPasswordChangedDate = dto.LastPasswordChangedDate;
+                this.PasswordVerificationToken = dto.PasswordVerificationToken;
+                this.PasswordVerificationTokenExpirationDate = dto.PasswordVerificationTokenExpirationDate;
 
+                this.MarkAsUnchanged();
+            }
+
+            
         }
 
         public FACCTS.Server.Model.DataModel.User ToDTO()

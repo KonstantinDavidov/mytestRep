@@ -38,7 +38,28 @@ namespace FACCTS.Server.Controllers
 
         public List<CourtCase> Get()
         {
-            return DataManager.CourtCaseRepository.GetAll()
+            return DataManager.CourtCaseRepository
+                .GetAll(
+                x => x.Party1,
+                x => x.Party1.HairColor,
+                x => x.Party1.EyesColor,
+                x => x.Party1.Race,
+                x => x.Party1.Attorney,
+                x => x.Party2,
+                x => x.Party2.HairColor,
+                x => x.Party2.EyesColor,
+                x => x.Party2.Race,
+                x => x.Party2.Attorney,
+                x => x.CaseHistory,
+                x => x.CaseNotes,
+                x => x.Interpreters,
+                x => x.Witnesses,
+                x => x.Children,
+                x => x.OtherProtected,
+                x => x.AttorneyForChild,
+                x => x.ThirdPartyData,
+                x => x.ThirdPartyData.Attorney
+                )
                 .ToList();
         }
 

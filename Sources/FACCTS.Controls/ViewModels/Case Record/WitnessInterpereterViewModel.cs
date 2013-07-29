@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using ReactiveUI;
 using FACCTS.Services.Dialog;
 using System.Reactive.Linq;
+using FACCTS.Server.Model.Enums;
 
 
 namespace FACCTS.Controls.ViewModels
@@ -18,7 +19,7 @@ namespace FACCTS.Controls.ViewModels
     public partial class WitnessInterpereterViewModel : CaseRecordItemViewModel, IHandle<CurrentHearingChanged>
     {
         private IDialogService _dialogService;
-        private IDisposable _observer1, _observer2;
+        private IDisposable _observer1, _observer2, _observer3;
 
 
 
@@ -28,7 +29,7 @@ namespace FACCTS.Controls.ViewModels
             ) : base()
         {
             _dialogService = dialogService;
-            this.WhenAny(x => x.CurrentCourtCase, x => x.Value)
+            this.WhenAny(x => x.CurrentCourtCase, x => x.IsActive, (x1, x2) => new { CourtCase = x1.Value, IsActive = x2.Value })
                 .Subscribe(x =>
                 {
                     this.NotifyOfPropertyChange(() => WitnessesFor);
@@ -44,25 +45,42 @@ namespace FACCTS.Controls.ViewModels
                         _observer2.Dispose();
                         _observer2 = null;
                     }
-                    if (this.CurrentCourtCase != null)
+                    if (_observer3 != null)
                     {
-                        _observer1 = this.CurrentCourtCase.Witnesses.ItemChanged.Subscribe(z => 
-                        {
-                            this.HasUIErrors = this.CurrentCourtCase.IsDirty && 
+                        _observer3.Dispose();
+                        _observer3 = null;
+                    }
+                    System.Action updater = () => this.HasUIErrors = x.CourtCase.IsDirty &&
                                 (
-                                this.CurrentCourtCase.Witnesses.Any(z1 => !z1.IsValid)
-                                || this.CurrentCourtCase.IsDirty && this.CurrentCourtCase.Interpreters.Any(z1 => !z1.IsValid)
+                                x.CourtCase.Witnesses.Any(z1 => !z1.IsValid)
+                                || x.CourtCase.IsDirty && x.CourtCase.Interpreters.Any(z1 => !z1.IsValid)
                                 );
-                        }
-                        );
-                        _observer2 = this.CurrentCourtCase.Interpreters.ItemChanged.Subscribe(z =>
+                    if (x.CourtCase != null)
+                    {
+                        x.CourtCase.Witnesses.ChangeTrackingEnabled = x.IsActive;
+                        x.CourtCase.Interpreters.ChangeTrackingEnabled = x.IsActive;
+                        if (x.IsActive)
                         {
-                            this.HasUIErrors = this.CurrentCourtCase.IsDirty &&  (
-                                this.CurrentCourtCase.Witnesses.Any(z1 => !z1.IsValid)
-                                || this.CurrentCourtCase.IsDirty && this.CurrentCourtCase.Interpreters.Any(z1 => !z1.IsValid)
+                            _observer1 = x.CourtCase.Witnesses.ItemChanged.Subscribe(z =>
+                            {
+                                updater.Invoke();
+                            }
+                            );
+                            _observer2 = x.CourtCase.Interpreters.ItemChanged.Subscribe(z =>
+                            {
+                                updater.Invoke();
+                            }
+                            );
+                            _observer3 = Observable.Merge(
+                                x.CourtCase.Witnesses.CollectionCountChanged,
+                                x.CourtCase.Interpreters.CollectionCountChanged
+                                ).Subscribe(_ =>
+                                {
+                                    updater.Invoke();
+                                }
                                 );
                         }
-                        );
+                       
                     }
                 }
                 );
@@ -149,7 +167,35 @@ namespace FACCTS.Controls.ViewModels
                 this.CurrentHistoryRecord = null;
                 return;
             }
-            this.CurrentHistoryRecord = message.Hearing.CaseHistory;
+            //this.CurrentHistoryRecord = message.Hearing.CaseHistory;
+        }
+
+        private static List<string> predefinedLanguages = new List<string>()
+        {
+                "English", 
+                "French",
+                "Italian",
+                "Polish",
+                "Portuguese",
+                "Spanish",
+                "Romanian",
+                "German",
+                "Dutch",
+                "Greek",
+                "Albanian",
+                "Swedish",
+                "Danish",
+                "Norwegian",
+                "Icelandic",
+                "Russian",
+        };
+
+        public List<string> PredefinedLanguages
+        {
+            get
+            {
+                return predefinedLanguages;
+            }
         }
     }
 }

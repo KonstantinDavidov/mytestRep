@@ -36,10 +36,29 @@ namespace Faccts.Model.Entities
                 .Subscribe(x =>
                 {
                     this.OnPropertyChanging("IsPersonalInformationDirty");
-                    this.OnPropertyChanged("IsPersonalInformationDirty");
+                    this.OnPropertyChanged("IsPersonalInformationDirty", false);
+                }
+                );
+            PersonsChanged = Observable.FromEvent<NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventArgs>(handler =>
+                {
+                    NotifyCollectionChangedEventHandler eh = (s, e) => handler(e);
+                    return eh;
+                },
+                handler => this.Persons.CollectionChanged += handler,
+                handler => this.Persons.CollectionChanged -= handler
+                );
+            PersonsChanged.Subscribe(_ =>
+                {
+                    this.IsDirty = true;
+                    if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
+                    {
+                        ChangeTracker.State = ObjectState.Modified;
+                    }
                 }
                 );
         }
+
+        private IObservable<NotifyCollectionChangedEventArgs> PersonsChanged;
 
         private void CaseHistoryChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
@@ -74,15 +93,58 @@ namespace Faccts.Model.Entities
             return result;
         }
 
-        public CourtCase(FACCTS.Server.Model.DataModel.CourtCase courtCaseDto) : this()
+        public CourtCase(FACCTS.Server.Model.DataModel.CourtCase dto) : this()
         {
-            this.CaseNumber = courtCaseDto.CaseNumber;
-            this.Id = courtCaseDto.Id;
+            if (dto != null)
+            {
+                this.ChangeTracker.ChangeTrackingEnabled = false;
+                this.CaseNumber = dto.CaseNumber;
+                this.Id = dto.Id;
 
-            this.CCPORId = courtCaseDto.CCPORId;
-            this.CCPORStatus = (int?)courtCaseDto.CCPORStatus;
-            //this.Party1 = new CourtParty(courtCaseDto.Party1);
-            RaiseNavigationPropertyLoading(() => User);
+                this.CCPORId = dto.CCPORId;
+                this.CCPORStatus = (int?)dto.CCPORStatus;
+                this.Party1 = new CourtParty(dto.Party1);
+                this.Party2 = new CourtParty(dto.Party2);
+                this.CaseHistory = new TrackableCollection<Entities.CaseHistory>(dto.CaseHistory.Select(x => new CaseHistory(x)));
+                this.CaseNotes = new TrackableCollection<Entities.CaseNotes>(dto.CaseNotes.Select(x => new CaseNotes(x)));
+                this.RestrainingPartyIdentificationInformation = new RestrainingPartyIDInfo(dto.RestrainingPartyIdentificationInformation);
+                this.AttorneyForChild = new Attorneys(dto.AttorneyForChild);
+                this.ThirdPartyAttorneyData = new ThirdPartyData(dto.ThirdPartyData);
+                dto.OtherProtected.Aggregate(this.Persons, (persons, item) => 
+                {
+                    OtherProtected op = new OtherProtected(item);
+                    persons.Add(op);
+                    return persons;
+                });
+                dto.Children.Aggregate(this.Persons, (persons, item) =>
+                    {
+                        Child c = new Child(item);
+                        persons.Add(c);
+                        return persons;
+                    }
+                    );
+                dto.Witnesses.Aggregate(this.Persons, (persons, item) =>
+                    {
+                        PersonBase p = new PersonBase(item);
+                        persons.Add(p);
+                        return persons;
+                    }
+                    );
+                dto.Interpreters.Aggregate(this.Persons, (persons, item) =>
+                    {
+                        Interpreter ip = new Interpreter(item);
+                        persons.Add(ip);
+                        return persons;
+                    }
+                    );
+                RaiseNavigationPropertyLoading(() => CourtClerk);
+
+                this.MarkAsUnchanged();
+                this.ChangeTracker.ChangeTrackingEnabled = true;
+            }
+            
+            
+            
         }
 
         public FACCTS.Server.Model.Enums.CaseStatus CaseStatus
@@ -172,6 +234,7 @@ namespace Faccts.Model.Entities
                 CaseHistory = this.CaseHistory.Where(x => x.IsDirty).Select(x =>x.ConvertToDTO()).ToArray(),
                 CaseNotes = this.CaseNotes.Where(x => x.IsDirty).Select(x => x.ConvertToDTO()).ToArray(),
                 Children = this.Children.Where(x => x.IsDirty).Select(x => ((IDataTransferConvertible<FACCTS.Server.Model.DataModel.Child>)x).ConvertToDTO()).ToArray(),
+                OtherProtected = this.OtherProtected.Where(x => x.IsDirty).Select(x => ((IDataTransferConvertible<FACCTS.Server.Model.DataModel.OtherProtected>)x).ConvertToDTO()).ToArray(),
                 Witnesses = this.Witnesses.Where(x => x.IsDirty).Select(x => x.ConvertToDTO()).ToArray(),
                 Interpreters = this.Interpreters.Where(x => x.IsDirty).Select(x => ((IDataTransferConvertible<FACCTS.Server.Model.DataModel.Interpreter>)x).ConvertToDTO()).ToArray(),
                 ThirdPartyData = this.ThirdPartyAttorneyData.ToDTO(),
@@ -180,21 +243,6 @@ namespace Faccts.Model.Entities
             };
         }
 
-
-        public List<Hearings> Hearings
-        {
-            get
-            {
-                return this
-                    .CaseHistory
-                    .Where(x => x.CaseHistoryEvent == FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing && x.Date.HasValue)
-                    .Select(x => x.Hearing)
-                    .OrderBy(x => x.HearingDate)
-                    .ToList();
-            }
-        }
-
-
         private ReactiveCollection<PersonBase> _witnesses;
         public ReactiveCollection<PersonBase> Witnesses
         {
@@ -202,8 +250,9 @@ namespace Faccts.Model.Entities
             {
                 if (_witnesses == null)
                 {
-                    _witnesses = this.Persons.CreateDerivedCollection(x => x, x => x.PersonType == PersonType.Witness);
-                    _witnesses.ChangeTrackingEnabled = true;
+                    _witnesses = this.Persons
+                        .Where(x => x.PersonType == PersonType.Witness)
+                        .CreateDerivedCollection(x => x, signalReset: PersonsChanged);
                     _witnesses.ItemChanged.Subscribe(x =>
                     {
                         if (x.PropertyName == "IsDirty" && (bool)x.GetValue())
@@ -224,8 +273,10 @@ namespace Faccts.Model.Entities
             {
                 if (_interpreters == null)
                 {
-                    _interpreters = this.Persons.CreateDerivedCollection<PersonBase, Interpreter>(x => (Interpreter)x, x => x is Interpreter && x.PersonType == PersonType.Interpreter);
-                    _interpreters.ChangeTrackingEnabled = true;
+                    _interpreters = this.Persons
+                        .Where(x => x.PersonType == PersonType.Interpreter)
+                        .Select(x => (Interpreter)x)
+                        .CreateDerivedCollection(x => x, signalReset: PersonsChanged);
                     _interpreters.ItemChanged.Subscribe(x =>
                         {
                             if (x.PropertyName == "IsDirty" && (bool)x.GetValue())
@@ -246,7 +297,10 @@ namespace Faccts.Model.Entities
             {
                 if (_children == null)
                 {
-                    _children = this.Persons.CreateDerivedCollection<PersonBase, Child>(x => (Child)x, x => x is Child && x.PersonType == PersonType.Child);
+                    _children = this.Persons
+                        .Where(x => x.PersonType == PersonType.Child)
+                        .Select(x => (Child)x)
+                        .CreateDerivedCollection(x => x, signalReset: PersonsChanged);
                 }
                 return _children;
             }
@@ -259,7 +313,10 @@ namespace Faccts.Model.Entities
             {
                 if (_otherProtected == null)
                 {
-                    _otherProtected = this.Persons.CreateDerivedCollection<PersonBase, OtherProtected>(x => (OtherProtected)x, x => x is OtherProtected && x.PersonType == PersonType.OtherProtected);
+                    _otherProtected = this.Persons
+                        .Where(x => x.PersonType == PersonType.OtherProtected)
+                        .Select(x => (OtherProtected)x)
+                        .CreateDerivedCollection(x => x, signalReset: PersonsChanged);
                 }
                 return _otherProtected;
             }
@@ -374,9 +431,7 @@ namespace Faccts.Model.Entities
         {
             get
             {
-                if (this.CourtDocketRecord == null)
-                    return false;
-                return this.CourtDocketRecord.Hearing != null && this.CourtDocketRecord.Hearing.CaseHistory.CaseHistoryEvent == CaseHistoryEvent.Hearing;
+                return Hearings.Count > 0;
             }
         }
     }

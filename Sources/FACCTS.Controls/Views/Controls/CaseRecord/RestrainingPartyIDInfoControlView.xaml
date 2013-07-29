@@ -3,12 +3,16 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:validation="clr-namespace:FACCTS.Controls.Validation"
+             xmlns:Converters="clr-namespace:FACCTS.Controls.Converters"
              mc:Ignorable="d"
              x:Class="FACCTS.Controls.RestrainingPartyIDInfoControlView"
              x:Name="UserControl"
              d:DesignWidth="640"
              d:DesignHeight="106.24"
              Background="{DynamicResource ControlBackgroundBrush}">
+    <UserControl.Resources>
+        <Converters:DateTimeToDateConverter x:Key="DateTimeToDateConverter" />
+    </UserControl.Resources>
 
     <Grid x:Name="LayoutRoot">
 		<GroupBox Header="Restraining Party Identification Information">
@@ -49,7 +53,7 @@
                                        VerticalAlignment="Center" />
                             <DatePicker DockPanel.Dock="Right"
                                         Margin="10,0"
-                                        SelectedDate="{Binding IDIssuedDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                        SelectedDate="{Binding IDIssuedDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource DateTimeToDateConverter}}" />
                         </DockPanel>
                     </Grid>
                 </validation:ErrorProvider>

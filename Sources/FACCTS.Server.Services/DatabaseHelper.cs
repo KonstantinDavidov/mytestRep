@@ -710,23 +710,26 @@ namespace FACCTS.Server.Data
                     Age = 10,
                     IsHouseHold = true
                 },
-                new OtherProtected(){
+               
+            };
+
+            testCourtCase.Children = new List<Child>()
+            {
+                 new Child(){
                     DateOfBirth = DateTime.Now,
                     FirstName = "Marta",
                     LastName="Dallas",
                     Sex = testSex,
-                    RelationshipToPlaintiff = Model.Enums.Relationship.C,
+                    RelationshipToProtected = Model.Enums.Relationship.C,
                     Age = 1,
-                    IsHouseHold = false
                 },
-                new OtherProtected(){
+                new Child(){
                     DateOfBirth = DateTime.Now,
                     FirstName = "Den",
                     LastName="Dallas",
                     Sex = testSex,
-                    RelationshipToPlaintiff = Model.Enums.Relationship.C,
+                    RelationshipToProtected = Model.Enums.Relationship.C,
                     Age = 7,
-                    IsHouseHold = true
                 }
             };
 

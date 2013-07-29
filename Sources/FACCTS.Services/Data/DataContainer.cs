@@ -306,35 +306,35 @@ namespace FACCTS.Services.Data
             } 
         }
 
-        public TrackableCollection<CourtDocketRecord> CourtDocketRecords
+        public TrackableCollection<Hearings> Hearings
         {
             get
             {
-                if (_courtDocketRecords == null)
+                if (_hearings == null)
                 {
-                    _courtDocketRecords = new TrackableCollection<CourtDocketRecord>();
-                    _courtDocketRecords.CollectionChanged += FixupCourtDocketRecords;
+                    _hearings = new TrackableCollection<Hearings>();
+                    _hearings.CollectionChanged += FixupCourtDocketRecords;
                 }
-                return _courtDocketRecords;
+                return _hearings;
             }
             set
             {
-                if (!ReferenceEquals(_courtDocketRecords, value))
+                if (!ReferenceEquals(_hearings, value))
                 {
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
                     }
-                    if (_courtDocketRecords != null)
+                    if (_hearings != null)
                     {
-                        _courtDocketRecords.CollectionChanged -= FixupCourtDocketRecords;
+                        _hearings.CollectionChanged -= FixupCourtDocketRecords;
                     }
-                    _courtDocketRecords = value;
-                    if (_courtDocketRecords != null)
+                    _hearings = value;
+                    if (_hearings != null)
                     {
-                        _courtDocketRecords.CollectionChanged += FixupCourtDocketRecords;
+                        _hearings.CollectionChanged += FixupCourtDocketRecords;
                     }
-                    RaisePropertyChanged(() => CourtDocketRecords);
+                    RaisePropertyChanged(() => Hearings);
                 }
             }
         }
@@ -353,7 +353,7 @@ namespace FACCTS.Services.Data
 
             if (e.NewItems != null)
             {
-                foreach (CourtDocketRecord item in e.NewItems)
+                foreach (Hearings item in e.NewItems)
                 {
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
@@ -368,7 +368,7 @@ namespace FACCTS.Services.Data
 
             if (e.OldItems != null)
             {
-                foreach (CourtDocketRecord item in e.OldItems)
+                foreach (Hearings item in e.OldItems)
                 {
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
@@ -377,7 +377,7 @@ namespace FACCTS.Services.Data
                 }
             }
         }
-        private TrackableCollection<CourtDocketRecord> _courtDocketRecords;
+        private TrackableCollection<Hearings> _hearings;
 
         protected void RaisePropertyChanged(string propertyName)
         {

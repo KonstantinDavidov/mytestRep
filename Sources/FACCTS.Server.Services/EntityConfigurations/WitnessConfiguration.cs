@@ -15,7 +15,7 @@ namespace FACCTS.Server.Data.EntityConfigurations
         {
             //Map(m => m.Requires(DbConsts.PERSON_DISCRIMINATOR_COLUMN).HasValue((int)PersonType.Witness));
 
-            Property(w => w.CourtPartyId).HasColumnName(DbConsts.PERSON_COURT_PARTY_ID_COLUMN_NAME);
+            Property(w => w.WitnessFor).HasColumnName(DbConsts.PERSON_COURT_PARTY_FOR_COLUMN_NAME);
         }
     }
 }
