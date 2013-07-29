@@ -322,9 +322,6 @@
     <Compile Include="Entities\Parties.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\PartyFor.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\PaymentRecord.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

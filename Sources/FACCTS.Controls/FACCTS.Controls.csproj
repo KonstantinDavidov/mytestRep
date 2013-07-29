@@ -1,0 +1,712 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DC7BAC51-E892-43EB-A29B-8B1BF9AE0AAE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FACCTS.Controls</RootNamespace>
+    <AssemblyName>FACCTS.Controls</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ExpressionBlendVersion>5.0.40218.0</ExpressionBlendVersion>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Accessibility" />
+    <Reference Include="Caliburn.Micro, Version=1.5.2.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Caliburn.Micro.1.5.2\lib\net45\Caliburn.Micro.dll</HintPath>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Logging">
+      <HintPath>..\packages\Caliburn.Micro.Logging.1.5.0.0\lib\net40\Caliburn.Micro.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Caliburn.Micro.Logging.log4net">
+      <HintPath>..\packages\Caliburn.Micro.Logging.log4net.1.5.0.0\lib\net40\Caliburn.Micro.Logging.log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Expression.Drawing" />
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.2.0.1.2\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="PresentationUI, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="ReactiveUI.Blend_Net45">
+      <HintPath>..\packages\reactiveui-xaml.4.6.1\lib\net45\ReactiveUI.Blend_Net45.dll</HintPath>
+    </Reference>
+    <Reference Include="ReactiveUI.NLog_Net45">
+      <HintPath>..\packages\reactiveui-nlog.4.6.1\lib\net45\ReactiveUI.NLog_Net45.dll</HintPath>
+    </Reference>
+    <Reference Include="ReactiveUI.Routing_Net45">
+      <HintPath>..\packages\reactiveui-xaml.4.6.1\lib\net45\ReactiveUI.Routing_Net45.dll</HintPath>
+    </Reference>
+    <Reference Include="ReactiveUI.Xaml_Net45">
+      <HintPath>..\packages\reactiveui-xaml.4.6.1\lib\net45\ReactiveUI.Xaml_Net45.dll</HintPath>
+    </Reference>
+    <Reference Include="ReactiveUI_Net45">
+      <HintPath>..\packages\reactiveui-core.4.6.1\lib\net45\ReactiveUI_Net45.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.Composition.Registration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Printing" />
+    <Reference Include="System.Reactive.Core">
+      <HintPath>..\packages\Rx-Core.2.1.30214.0\lib\Net45\System.Reactive.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Interfaces">
+      <HintPath>..\packages\Rx-Interfaces.2.1.30214.0\lib\Net45\System.Reactive.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Linq">
+      <HintPath>..\packages\Rx-Linq.2.1.30214.0\lib\Net45\System.Reactive.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.PlatformServices">
+      <HintPath>..\packages\Rx-PlatformServices.2.1.30214.0\lib\Net45\System.Reactive.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive.Windows.Threading">
+      <HintPath>..\packages\Rx-Xaml.2.1.30214.0\lib\Net45\System.Reactive.Windows.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Caliburn.Micro.1.5.2\lib\net45\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WpfRichText">
+      <HintPath>..\packages\WpfRichText.1.0.16.2\lib\net45\WpfRichText.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.0.0\lib\net40\Xceed.Wpf.AvalonDock.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.0.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.0.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010">
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.0.0\lib\net40\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.0.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.0.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Extended.Wpf.Toolkit.2.0.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Caliburn\Micro\Logging\DebugLogger.cs" />
+    <Compile Include="Converters\AndConverter.cs" />
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\DataContextMultiValueConverter.cs" />
+    <Compile Include="Converters\FirstMiddleLastNameToFullNameConverter.cs" />
+    <Compile Include="Converters\Int32ToBooleanConverter.cs" />
+    <Compile Include="Converters\InvertedBooleanConverter.cs" />
+    <Compile Include="Converters\InvertedInt32ToBooleanConverter.cs" />
+    <Compile Include="Converters\NullableBoolleanToBooleanConverter.cs" />
+    <Compile Include="Converters\ObjectToBooleanConverter.cs" />
+    <Compile Include="Events\CurrentCourtCaseChangedEvent.cs" />
+    <Compile Include="Events\CurrentHearingChanged.cs" />
+    <Compile Include="Events\SaveDataEvent.cs" />
+    <Compile Include="Events\SelectedCourtCasesChangedEvent.cs" />
+    <Compile Include="ExtendedDatePicker.cs" />
+    <Compile Include="Interfaces\IPasswordSupplier.cs" />
+    <Compile Include="IShell.cs" />
+    <Compile Include="MarkupExtension\MefPartExtension.cs" />
+    <Compile Include="NameValueWrapper.cs" />
+    <Compile Include="Utils\StringToBoolean.cs" />
+    <Compile Include="Utils\StringToDateTime.cs" />
+    <Compile Include="Validation\ErrorProvider.cs" />
+    <Compile Include="ViewModels\Case Record\CaseHistoryViewModel.cs" />
+    <Compile Include="ViewModels\Case Record\CaseNotesViewModel.cs" />
+    <Compile Include="ViewModels\Case Record\CaseRecordItemViewModel.cs" />
+    <Compile Include="ViewModels\Case Record\SeparateCaseDialogViewModel.cs" />
+    <Compile Include="ViewModels\Case Record\CourtPartyAdapter.cs" />
+    <Compile Include="ViewModels\ConsolidateCasesDialogViewModel.cs" />
+    <Compile Include="ViewModels\DropDismissDialogViewModel.cs" />
+    <Compile Include="ViewModels\GenerateCourtOrdersDialogViewModel.cs" />
+    <Compile Include="ViewModels\ModelTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModelTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextBoxClearButton.cs" />
+    <Compile Include="Utils\BusinessLogicHelper.cs" />
+    <Compile Include="Utils\WatermarkAdorner.cs" />
+    <Compile Include="Utils\WatermarkService.cs" />
+    <Compile Include="ViewModels\AddToCourtDocketDialogViewModel.cs" />
+    <Compile Include="ViewModels\Case Record\AttorneysViewModel.cs" />
+    <Compile Include="ViewModels\Case Record\CaseRecordViewModel.cs" />
+    <Compile Include="ViewModels\NewCourtCaseDialogViewModel.cs" />
+    <Compile Include="ViewModels\OneActiveViewModelBase.cs" />
+    <Compile Include="ViewModels\OutputForms\CH110CivilHarassmentViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\CH130CivilHarassmentViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV110AttachDV145ViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV110ChildCustodyViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV110PropertyAndAttorneysFeeViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV110SupervisionViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV110TemporaryRestrainingOrderViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV130AttachDV145ViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV130AttachFL343ViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV130ChildCustodyViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV130FL342ChildSupportViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV130PropertyAndAttorneysFeesViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV130RestrainingOrderViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV130SupervisionViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\EA110ElderlyAbuseViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\EA130ElderlyAbuseViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\FL344DebtAndPropertyControlViewModel.cs" />
+    <Compile Include="ViewModels\ReissueCaseDialogViewModel.cs" />
+    <Compile Include="ViewModels\UserLoginDialogViewModel.cs" />
+    <Compile Include="Views\Controls\CaseRecord\AttorneyThirdPartyView.xaml.cs">
+      <DependentUpon>AttorneyThirdPartyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ModalDialogViews\GenerateCourtOrdersControlView.xaml.cs">
+      <DependentUpon>GenerateCourtOrdersControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModalWindows\AddToCourtDocketDialogView.xaml.cs">
+      <DependentUpon>AddToCourtDocketDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Case Record\CaseHistoryView.xaml.cs">
+      <DependentUpon>CaseHistoryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Case Record\CaseNotesView.xaml.cs">
+      <DependentUpon>CaseNotesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Case Record\RelatedCasesView.xaml.cs">
+      <DependentUpon>RelatedCasesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\Case Record\RelatedCasesViewModel.cs" />
+    <Compile Include="ViewModels\Case Record\WitnessInterpereterViewModel.cs" />
+    <Compile Include="ViewModels\CaseStatusViewModel.cs" />
+    <Compile Include="ViewModels\Case Record\ChildrenOtherProtectedViewModel.cs" />
+    <Compile Include="ViewModels\CourtDocketViewModel.cs" />
+    <Compile Include="ViewModels\CourtOrdersViewModel.cs" />
+    <Compile Include="ViewModels\Case Record\PersonalInformationViewModel.cs" />
+    <Compile Include="ViewModels\ShellViewModel.cs" />
+    <Compile Include="ViewModels\ShowExceptionDialogViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\Case Record\AttorneysView.xaml.cs">
+      <DependentUpon>AttorneysView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Case Record\CaseRecordView.xaml.cs">
+      <DependentUpon>CaseRecordView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Case Record\SeparateCaseDialogView.xaml.cs">
+      <DependentUpon>SeparateCaseDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CaseStatusView.xaml.cs">
+      <DependentUpon>CaseStatusView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Case Record\ChildrenOtherProtectedView.xaml.cs">
+      <DependentUpon>ChildrenOtherProtectedView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CaseRecord\AttorneyChildrenView.xaml.cs">
+      <DependentUpon>AttorneyChildrenView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CaseRecord\AttorneyView.xaml.cs">
+      <DependentUpon>AttorneyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CaseRecord\RestrainingPartyIDInfoControlView.xaml.cs">
+      <DependentUpon>RestrainingPartyIDInfoControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CourtDocket\CourtDocketRightPaneView.xaml.cs">
+      <DependentUpon>CourtDocketRightPaneView.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\Controls\ModalDialogViews\AddToCourtDocketControlView.xaml.cs">
+      <DependentUpon>AddToCourtDocketControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CaseRecord\AttorneysPartyView.xaml.cs">
+      <DependentUpon>AttorneysPartyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CaseRecord\CaseRecordLeftPaneView.xaml.cs">
+      <DependentUpon>CaseRecordLeftPaneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CaseRecord\CaseRecordRightPaneView.xaml.cs">
+      <DependentUpon>CaseRecordRightPaneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CaseStatus\CaseStatusLeftPaneView.xaml.cs">
+      <DependentUpon>CaseStatusLeftPaneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CaseStatus\CaseStatusRightPaneView.xaml.cs">
+      <DependentUpon>CaseStatusRightPaneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CourtDocket\CourtDocketLeftPaneView.xaml.cs">
+      <DependentUpon>CourtDocketLeftPaneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CourtOrders\CourtOrdersLeftPaneView.xaml.cs">
+      <DependentUpon>CourtOrdersLeftPaneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CourtOrders\CourtOrdersRightPaneView.xaml.cs">
+      <DependentUpon>CourtOrdersRightPaneView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ModalDialogViews\ConsolidateCasesControlView.xaml.cs">
+      <DependentUpon>ConsolidateCasesControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ModalDialogViews\DropDismissCaseControlView.xaml.cs">
+      <DependentUpon>DropDismissCaseControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ModalDialogViews\NewCourtCaseControlView.xaml.cs">
+      <DependentUpon>NewCourtCaseControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ModalDialogViews\NewCourtDateControlView.xaml.cs">
+      <DependentUpon>NewCourtDateControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ModalDialogViews\ReissueCaseControlView.xaml.cs">
+      <DependentUpon>ReissueCaseControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\CaseRecord\PartyControlView.xaml.cs">
+      <DependentUpon>PartyControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ReissuanceControlView.xaml.cs">
+      <DependentUpon>ReissuanceControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Case Record\WitnessInterpereterView.xaml.cs">
+      <DependentUpon>WitnessInterpereterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ModalDialogViews\SeparateCaseControlView.xaml.cs">
+      <DependentUpon>SeparateCaseControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CourtDocketView.xaml.cs">
+      <DependentUpon>CourtDocketView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CourtOrdersView.xaml.cs">
+      <DependentUpon>CourtOrdersView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModalWindows\ConsolidateCasesDialogView.xaml.cs">
+      <DependentUpon>ConsolidateCasesDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModalWindows\DropDismissDialogView.xaml.cs">
+      <DependentUpon>DropDismissDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModalWindows\GenerateCourtOrdersDialogView.xaml.cs">
+      <DependentUpon>GenerateCourtOrdersDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModalWindows\NewCourtCaseDialogView.xaml.cs">
+      <DependentUpon>NewCourtCaseDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Case Record\PersonalInformationView.xaml.cs">
+      <DependentUpon>PersonalInformationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ModalDialogViews\ShowExceptionControlView.xaml.cs">
+      <DependentUpon>ShowExceptionControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModalWindows\ReissueCaseDialogView.xaml.cs">
+      <DependentUpon>ReissueCaseDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModalWindows\ShowExceptionDialogView.xaml.cs">
+      <DependentUpon>ShowExceptionDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ModalWindows\UserLoginDialogView.xaml.cs">
+      <DependentUpon>UserLoginDialogView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\ModalDialogViews\UserLoginControlView.xaml.cs">
+      <DependentUpon>UserLoginControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\CH110CivilHarassmentView.xaml.cs">
+      <DependentUpon>CH110CivilHarassmentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\CH130CivilHarassmentView.xaml.cs" />
+    <Compile Include="Views\OutputForms\DV110AttachDV145View.xaml.cs" />
+    <Compile Include="Views\OutputForms\DV110ChildCustodyView.xaml.cs" />
+    <Compile Include="Views\OutputForms\DV110PropertyAndAttorneysFeeView.xaml.cs" />
+    <Compile Include="Views\OutputForms\DV110SupervisionView.xaml.cs" />
+    <Compile Include="Views\OutputForms\DV110TemporaryRestrainingOrderView.xaml.cs" />
+    <Compile Include="Views\OutputForms\DV130AttachDV145View.xaml.cs" />
+    <Compile Include="Views\OutputForms\DV130AttachFL343View.xaml.cs">
+      <DependentUpon>DV130AttachFL343View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\DV130ChildCustodyView.xaml.cs" />
+    <Compile Include="Views\OutputForms\DV130FL342ChildSupportView.xaml.cs" />
+    <Compile Include="Views\OutputForms\DV130PropertyAndAttorneysFeesView.xaml.cs" />
+    <Compile Include="Views\OutputForms\DV130RestrainingOrderView.xaml.cs" />
+    <Compile Include="Views\OutputForms\DV130SupervisionView.xaml.cs" />
+    <Compile Include="Views\OutputForms\EA110ElderlyAbuseView.xaml.cs">
+      <DependentUpon>EA110ElderlyAbuseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\EA130ElderlyAbuseView.xaml.cs">
+      <DependentUpon>EA130ElderlyAbuseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\FL344DebtAndPropertyControlView.xaml.cs">
+      <DependentUpon>FL344DebtAndPropertyControlView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ShellView.xaml.cs">
+      <DependentUpon>ShellView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Resources\Borders.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Buttons.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\ComboBoxes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Grids.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\CaseRecord\AttorneyThirdPartyView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\ModalDialogViews\GenerateCourtOrdersControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ModalWindows\AddToCourtDocketDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Case Record\CaseHistoryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Case Record\CaseNotesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Case Record\RelatedCasesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Case Record\AttorneysView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Case Record\CaseRecordView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Case Record\SeparateCaseDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CaseStatusView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Case Record\ChildrenOtherProtectedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\CaseRecord\AttorneyChildrenView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\CaseRecord\AttorneyView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\CaseRecord\RestrainingPartyIDInfoControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\CourtDocket\CourtDocketRightPaneView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\ModalDialogViews\AddToCourtDocketControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\CaseRecord\AttorneysPartyView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\CaseRecord\CaseRecordLeftPaneView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\CaseRecord\CaseRecordRightPaneView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\CaseStatus\CaseStatusLeftPaneView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\CaseStatus\CaseStatusRightPaneView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\CourtDocket\CourtDocketLeftPaneView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\CourtOrders\CourtOrdersLeftPaneView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\CourtOrders\CourtOrdersRightPaneView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\ModalDialogViews\ConsolidateCasesControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\ModalDialogViews\DropDismissCaseControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\ModalDialogViews\NewCourtCaseControlView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\ModalDialogViews\NewCourtDateControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\ModalDialogViews\ReissueCaseControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\CaseRecord\PartyControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\ReissuanceControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Case Record\WitnessInterpereterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\ModalDialogViews\SeparateCaseControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\CourtDocketView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CourtOrdersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ModalWindows\ConsolidateCasesDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ModalWindows\DropDismissDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ModalWindows\GenerateCourtOrdersDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ModalWindows\NewCourtCaseDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Case Record\PersonalInformationView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\ModalDialogViews\ShowExceptionControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ModalWindows\ReissueCaseDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ModalWindows\ShowExceptionDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ModalWindows\UserLoginDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\ModalDialogViews\UserLoginControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutputForms\CH110CivilHarassmentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutputForms\CH130CivilHarassmentView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutputForms\DV110AttachDV145View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutputForms\DV110ChildCustodyView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutputForms\DV110PropertyAndAttorneysFeeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutputForms\DV110SupervisionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutputForms\DV110TemporaryRestrainingOrderView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutputForms\DV130AttachDV145View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutputForms\DV130AttachFL343View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutputForms\DV130ChildCustodyView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutputForms\DV130FL342ChildSupportView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutputForms\DV130PropertyAndAttorneysFeesView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutputForms\DV130RestrainingOrderView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutputForms\DV130SupervisionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutputForms\EA110ElderlyAbuseView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutputForms\EA130ElderlyAbuseView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutputForms\FL344DebtAndPropertyControlView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\ShellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ViewModels\ModelTemplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>ModelTemplate.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Faccts.Model\Faccts.Model.csproj">
+      <Project>{90761585-4755-4e44-b9d2-739ada889311}</Project>
+      <Name>Faccts.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FACCTS.Server.Model\FACCTS.Server.Model.csproj">
+      <Project>{5a675cbb-2774-4fde-a8c6-40aa46f4fa3f}</Project>
+      <Name>FACCTS.Server.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FACCTS.Services\FACCTS.Services.csproj">
+      <Project>{9fe3a083-8eed-43a9-a234-3a28eceebe16}</Project>
+      <Name>FACCTS.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ReactiveUI\Caliburn.Micro.ReactiveUI.csproj">
+      <Project>{39e149c2-0de8-4e53-b0c3-a48cce826584}</Project>
+      <Name>Caliburn.Micro.ReactiveUI</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Resources\TextBlocks.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\clear.png" />
+    <Resource Include="Resources\Images\Merge.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\alert.png" />
+    <Content Include="ViewModels\ModelsDef.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Fonts\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.7\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.7\tools\Microsoft.Bcl.Build.targets')" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+ <!-- <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.5\Microsoft.Expression.Blend.WPF.targets" />-->
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

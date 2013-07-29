@@ -55,7 +55,7 @@
 				</Grid.RowDefinitions>
 				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center"><Run Text="Party 1"/></TextBlock>
 				<TextBox Text="{Binding Party1.FullName, Mode=OneWay}" Grid.Column="1" Style="{DynamicResource TextBoxWithAdorner}" Tag="Name" VerticalAlignment="Center" IsReadOnly="True"/>
-				<TextBox TextWrapping="WrapWithOverflow" Text="{Binding Party1.Designation.DesignationName, Mode=OneWay}" VerticalAlignment="Center" Grid.Column="2" Style="{DynamicResource TextBoxWithAdorner}" Tag="Designation" IsReadOnly="True"/>
+				<TextBox TextWrapping="WrapWithOverflow" Text="{Binding Party1.Designation, Mode=OneWay}" VerticalAlignment="Center" Grid.Column="2" Style="{DynamicResource TextBoxWithAdorner}" Tag="Designation" IsReadOnly="True"/>
                 <CheckBox Content="Attorney"
                           HorizontalAlignment="Left"
                           Margin="0,0,-0.001,0"
@@ -77,7 +77,7 @@
 				</Grid.RowDefinitions>
 				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Text="Party 2"/>
 				<TextBox Text="{Binding Party2.FullName, Mode=OneWay}" Grid.Column="1" Style="{DynamicResource TextBoxWithAdorner}" VerticalAlignment="Center" Tag="Name" IsReadOnly="True"/>
-				<TextBox Text="{Binding Party2.Designation.DesignationName, Mode=OneWay}" VerticalAlignment="Center" Grid.Column="2" Style="{DynamicResource TextBoxWithAdorner}" Tag="Designation" IsReadOnly="True"/>
+				<TextBox Text="{Binding Party2.Designation, Mode=OneWay}" VerticalAlignment="Center" Grid.Column="2" Style="{DynamicResource TextBoxWithAdorner}" Tag="Designation" IsReadOnly="True"/>
                 <CheckBox HorizontalAlignment="Left"
                           Margin="0,0,-0.001,0"
                           VerticalAlignment="Center"

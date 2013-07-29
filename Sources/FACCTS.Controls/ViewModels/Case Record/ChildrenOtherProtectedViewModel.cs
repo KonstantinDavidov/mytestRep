@@ -18,7 +18,7 @@ namespace FACCTS.Controls.ViewModels
     public partial class ChildrenOtherProtectedViewModel : CaseRecordItemViewModel
     {
         private IDialogService _dialogService;
-        private IDisposable _sub1, _sub2;
+        private IDisposable _sub1, _sub2, _sub3;
 
         [ImportingConstructor]
         public ChildrenOtherProtectedViewModel(
@@ -42,27 +42,39 @@ namespace FACCTS.Controls.ViewModels
                         _sub2 = null;
                     }
 
+                    if (_sub3 != null)
+                    {
+                        _sub3.Dispose();
+                        _sub3 = null;
+                    }
+
                     if (x == null || x.CourtCase == null)
                         return;
-                    if (!x.CourtCase.IsDirty)
-                        return;
+
 
                     x.CourtCase.Children.ChangeTrackingEnabled = x.IsActive;
                     x.CourtCase.OtherProtected.ChangeTrackingEnabled = x.IsActive;
+                    System.Action updateAction = () => this.HasUIErrors = x.CourtCase.Children.Any(y => !y.IsValid) || x.CourtCase.OtherProtected.Any(y => !y.IsValid);
                     if (x.IsActive)
                     {
                         _sub2 = x.CourtCase.OtherProtected.ItemChanged.Subscribe(_ =>
                         {
-                            this.HasUIErrors = x.CourtCase.Children.Any(y => !y.IsValid) || x.CourtCase.OtherProtected.Any(y => !y.IsValid);
+                            updateAction.Invoke();
                         }
                         );
                            
 
                         _sub1 = x.CourtCase.Children.ItemChanged.Subscribe(_ =>
                             {
-                                this.HasUIErrors = x.CourtCase.Children.Any(y => !y.IsValid) || x.CourtCase.OtherProtected.Any(y => !y.IsValid);
+                                updateAction.Invoke();
                             }
                             );
+
+                        _sub3 = Observable.Merge(
+                            x.CourtCase.OtherProtected.CollectionCountChanged,
+                            x.CourtCase.Children.CollectionCountChanged
+                            ).Subscribe(_ => updateAction.Invoke());
+                        
                     }
                 }
                 ); 

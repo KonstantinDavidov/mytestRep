@@ -21,7 +21,7 @@ namespace Faccts.Model.Entities
             this.WhenAny(x => x.FirstName, x => x.LastName, x => x.MiddleName, (x, y, z) => new { FirstName = x.Value, LastName = y.Value, MiddleName = z.Value })
                 .Subscribe(x =>
                 {
-                    this.OnPropertyChanged("FullName");
+                    this.OnPropertyChanged("FullName", false);
                 }
                 );
         }
