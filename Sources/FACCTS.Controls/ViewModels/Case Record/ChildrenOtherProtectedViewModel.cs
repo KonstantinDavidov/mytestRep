@@ -50,8 +50,7 @@ namespace FACCTS.Controls.ViewModels
 
                     if (x == null || x.CourtCase == null)
                         return;
-                    if (!x.CourtCase.IsDirty)
-                        return;
+
 
                     x.CourtCase.Children.ChangeTrackingEnabled = x.IsActive;
                     x.CourtCase.OtherProtected.ChangeTrackingEnabled = x.IsActive;
