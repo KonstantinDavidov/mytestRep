@@ -164,6 +164,8 @@
     <Compile Include="Reporting\Entities\DebtPaymentItem.cs" />
     <Compile Include="Reporting\Entities\DV110.cs" />
     <Compile Include="Reporting\Entities\DV130.cs" />
+    <Compile Include="Reporting\Entities\EA110.cs" />
+    <Compile Include="Reporting\Entities\EA130.cs" />
     <Compile Include="Reporting\Entities\LawersFeeAndCourtCosts.cs" />
     <Compile Include="Reporting\Entities\NoServiceFee.cs" />
     <Compile Include="Reporting\Entities\PartyEnum.cs" />

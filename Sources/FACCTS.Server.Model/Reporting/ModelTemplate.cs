@@ -1426,6 +1426,11 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
+		
+		public NotifyEmbancyInfo NotifyEmbancyInfo
+		{
+			get; set;
+		}
 				
 	}
 	
@@ -1728,6 +1733,246 @@ namespace FACCTS.Server.Model.OrderModels
 		}
 		
 		public CourtOrders CourtOrders
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class EAConductChoice
+	{
+		public bool IsNoAbuse
+		{
+			get; set;
+		}
+		
+		public bool IsNoContact
+		{
+			get; set;
+		}
+		
+		public bool IsDontTryToLocate
+		{
+			get; set;
+		}
+		
+		public bool IsInvolveOtherProtected
+		{
+			get; set;
+		}
+		
+		public bool IsInvolveOther
+		{
+			get; set;
+		}
+		
+		public string OtherDescription
+		{
+			get; set;
+		}
+		
+		public bool IsOtherAttached
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class EAStayAwayOrders
+	{
+		public bool IsStayAwayFromPerson
+		{
+			get; set;
+		}
+		
+		public bool IsStayAwayFromHome
+		{
+			get; set;
+		}
+		
+		public bool IsStayAwayFromVehicle
+		{
+			get; set;
+		}
+		
+		public bool IsStayAwayFromWork
+		{
+			get; set;
+		}
+		
+		public bool IsStayAwayFromOtherProtected
+		{
+			get; set;
+		}
+		
+		public bool IsStayAwayFromOther
+		{
+			get; set;
+		}
+		
+		public string OtherDescription
+		{
+			get; set;
+		}
+		
+		public int StayAwayDistance
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class Firearms
+	{
+		public bool IsNoGuns
+		{
+			get; set;
+		}
+		
+		public bool IsCourtHasFirearmsInformation
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class EA110
+	{
+		public OrderRestrictionState EAConductChoiceState
+		{
+			get; set;
+		}
+		
+		public EAConductChoice EAConductChoice
+		{
+			get; set;
+		}
+		
+		public OrderRestrictionState EAStayAwayOrdersState
+		{
+			get; set;
+		}
+		
+		public EAStayAwayOrders EAStayAwayOrders
+		{
+			get; set;
+		}
+		
+		public OrderRestrictionState MoveoutState
+		{
+			get; set;
+		}
+		
+		public string MoveoutAddress
+		{
+			get; set;
+		}
+		
+		public CAPROSEntry CAPROSEntrySection
+		{
+			get; set;
+		}
+		
+		public NoServiceFee NoServiceFeeSection
+		{
+			get; set;
+		}
+		
+		public bool IsOtherOrdersAttached
+		{
+			get; set;
+		}
+		
+		public string OtherOrderDetail
+		{
+			get; set;
+		}
+		
+		public bool IsFirearmsGranted
+		{
+			get; set;
+		}
+		
+		public Firearms Firearms
+		{
+			get; set;
+		}
+		
+		public bool IsFinancialAbuseInvolved
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class EA130
+	{
+		public bool IsEAConductChoiceEnabled
+		{
+			get; set;
+		}
+		
+		public EAConductChoice EAConductChoice
+		{
+			get; set;
+		}
+		
+		public bool EAStayAwayOrdersEnabled
+		{
+			get; set;
+		}
+		
+		public EAStayAwayOrders EAStayAwayOrders
+		{
+			get; set;
+		}
+		
+		public bool IsMoveoutEnabled
+		{
+			get; set;
+		}
+		
+		public string MoveoutAddress
+		{
+			get; set;
+		}
+		
+		public CAPROSEntry CAPROSEntrySection
+		{
+			get; set;
+		}
+		
+		public NoServiceFee NoServiceFeeSection
+		{
+			get; set;
+		}
+		
+		public bool IsOtherOrdersAttached
+		{
+			get; set;
+		}
+		
+		public string OtherOrderDetail
+		{
+			get; set;
+		}
+		
+		public bool IsNoGuns
+		{
+			get; set;
+		}
+		
+		public Firearms Firearms
+		{
+			get; set;
+		}
+		
+		public bool IsFinancialAbuseInvolved
 		{
 			get; set;
 		}
