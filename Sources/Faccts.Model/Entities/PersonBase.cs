@@ -218,7 +218,7 @@ namespace Faccts.Model.Entities
         private string _lastName;
     
         [DataMember]
-        public PartyFor PartyFor
+        public FACCTS.Server.Model.Enums.PartyFor PartyFor
         {
             get { return _partyFor; }
             set
@@ -231,7 +231,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private PartyFor _partyFor;
+        private FACCTS.Server.Model.Enums.PartyFor _partyFor;
     
         [DataMember]
         public string Contact

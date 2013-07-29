@@ -4440,7 +4440,7 @@
           <Property Type="FACCTS_DBModel.PersonType" Name="PersonType" Nullable="false" />
           <NavigationProperty Name="Appearances" Relationship="FACCTS_DBModel.AppearancesPersonBase" FromRole="PersonBase" ToRole="Appearances" />
         </EntityType>
-        <EnumType Name="PartyFor">
+        <EnumType Name="PartyFor" a:ExternalTypeName="FACCTS.Server.Model.Enums.PartyFor" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration">
           <Member Name="Party1" Value="1" />
           <Member Name="Party2" Value="2" />
         </EnumType>

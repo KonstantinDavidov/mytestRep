@@ -16,6 +16,7 @@ namespace FACCTS.Server.Data.EntityConfigurations
             //Map(m => m.Requires(DbConsts.PERSON_DISCRIMINATOR_COLUMN).HasValue((int)PersonType.Interpreter));
 
             Property(i => i.Language).HasColumnName(DbConsts.INTERPRETER_LANGUAGE_COLUMN_NAME).HasMaxLength(150);
+            Property(i => i.InterpreterFor).HasColumnName(DbConsts.INTERPRETER_FOR_COLUMN_NAME);
         }
     }
 }

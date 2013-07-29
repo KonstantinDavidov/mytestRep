@@ -123,6 +123,20 @@ namespace Faccts.Model.Entities
                         return persons;
                     }
                     );
+                dto.Witnesses.Aggregate(this.Persons, (persons, item) =>
+                    {
+                        PersonBase p = new PersonBase(item);
+                        persons.Add(p);
+                        return persons;
+                    }
+                    );
+                dto.Interpreters.Aggregate(this.Persons, (persons, item) =>
+                    {
+                        Interpreter ip = new Interpreter(item);
+                        persons.Add(ip);
+                        return persons;
+                    }
+                    );
                 RaiseNavigationPropertyLoading(() => CourtClerk);
 
                 this.MarkAsUnchanged();
@@ -239,7 +253,6 @@ namespace Faccts.Model.Entities
                     _witnesses = this.Persons
                         .Where(x => x.PersonType == PersonType.Witness)
                         .CreateDerivedCollection(x => x, signalReset: PersonsChanged);
-                    _witnesses.ChangeTrackingEnabled = true;
                     _witnesses.ItemChanged.Subscribe(x =>
                     {
                         if (x.PropertyName == "IsDirty" && (bool)x.GetValue())
@@ -264,7 +277,6 @@ namespace Faccts.Model.Entities
                         .Where(x => x.PersonType == PersonType.Interpreter)
                         .Select(x => (Interpreter)x)
                         .CreateDerivedCollection(x => x, signalReset: PersonsChanged);
-                    _interpreters.ChangeTrackingEnabled = true;
                     _interpreters.ItemChanged.Subscribe(x =>
                         {
                             if (x.PropertyName == "IsDirty" && (bool)x.GetValue())

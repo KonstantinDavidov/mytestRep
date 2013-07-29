@@ -20,6 +20,27 @@ namespace Faccts.Model.Entities
                 );
         }
 
+        public PersonBase(FACCTS.Server.Model.DataModel.Witness dto) : this()
+        {
+            if (dto == null)
+                return;
+
+            this.Id = dto.Id;
+            this.PartyFor = dto.WitnessFor;
+            this.EntityType = dto.EntityType;
+            this.FirstName = dto.FirstName;
+            this.LastName = dto.LastName;
+            this.Sex = dto.Sex;
+            this.DateOfBirth = dto.DateOfBirth;
+            this.Contact = dto.Contact;
+            this.Age = dto.Age;
+            this.AddressInfo = new AddressInfo(dto.AddressInfo);
+            this.Email = dto.Email;
+            this.PersonType = FACCTS.Server.Model.Enums.PersonType.Witness;
+            //this.Appearances = 
+            this.MarkAsUnchanged();
+        }
+
         public string PartyToName
         {
             get
@@ -27,11 +48,11 @@ namespace Faccts.Model.Entities
                 string result = null;
                 switch(this.PartyFor)
                 {
-                    case Entities.PartyFor.Party1:
-                        result = !string.IsNullOrWhiteSpace(CourtCase.Party1.FullName) ? CourtCase.Party1.FullName : Entities.PartyFor.Party1.ToString();
+                    case FACCTS.Server.Model.Enums.PartyFor.Party1:
+                        result = !string.IsNullOrWhiteSpace(CourtCase.Party1.FullName) ? CourtCase.Party1.FullName : FACCTS.Server.Model.Enums.PartyFor.Party1.ToString();
                         break;
-                    case Entities.PartyFor.Party2:
-                        result = !string.IsNullOrWhiteSpace(CourtCase.Party2.FullName) ? CourtCase.Party2.FullName : Entities.PartyFor.Party2.ToString();
+                    case FACCTS.Server.Model.Enums.PartyFor.Party2:
+                        result = !string.IsNullOrWhiteSpace(CourtCase.Party2.FullName) ? CourtCase.Party2.FullName : FACCTS.Server.Model.Enums.PartyFor.Party2.ToString();
                         break;
                 }
 
@@ -47,7 +68,7 @@ namespace Faccts.Model.Entities
             {
                 Id = this.Id,
                 EntityType = this.EntityType,
-                WitnessFor = this.PartyFor == Entities.PartyFor.Party1 ? this.CourtCase.Party1.ConvertToDTO() : this.CourtCase.Party2.ConvertToDTO(),
+                WitnessFor = this.PartyFor,
                 FirstName = this.FirstName,
                 LastName = this.LastName,
                 Contact = this.Contact,
