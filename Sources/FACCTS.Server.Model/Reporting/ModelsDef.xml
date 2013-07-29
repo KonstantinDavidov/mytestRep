@@ -397,6 +397,61 @@
     <Property name="JudgmentForSpousalSupport" type="JudgmentForSpousalSupport"/>
     <Property name="CourtOrders" type="CourtOrders"/>
   </Model>
+  <!-- EA -->
+  <Model name="EAConductChoice">
+    <Property name="IsNoAbuse" type="bool"/>
+    <Property name="IsNoContact" type="bool"/>
+    <Property name="IsDontTryToLocate" type="bool"/>
+    <Property name="IsInvolveOtherProtected" type="bool"/>
+    <Property name="IsInvolveOther" type="bool"/>
+    <Property name="OtherDescription" type="string"/>
+    <Property name ="IsOtherAttached" type="bool"/>
+  </Model>
+
+  <Model name="EAStayAwayOrders">
+    <Property name="IsStayAwayFromPerson" type="bool"/>
+    <Property name="IsStayAwayFromHome" type="bool"/>
+    <Property name="IsStayAwayFromVehicle" type="bool"/>
+    <Property name="IsStayAwayFromWork" type="bool"/>
+    <Property name="IsStayAwayFromOtherProtected" type="bool"/>
+    <Property name="IsStayAwayFromOther" type="bool"/>
+    <Property name="OtherDescription" type="string"/>
+    <Property name="StayAwayDistance" type="int"/>
+  </Model>
+  <Model name="Firearms">
+    <Property name="IsNoGuns" type="bool"/>
+    <Property name="IsCourtHasFirearmsInformation" type="bool"/>
+  </Model>
+  <Model name="EA110">
+    <Property name="EAConductChoiceState" type="OrderRestrictionState"/>
+    <Property name="EAConductChoice" type="EAConductChoice"/>
+    <Property name="EAStayAwayOrdersState" type="OrderRestrictionState"/>
+    <Property name="EAStayAwayOrders" type="EAStayAwayOrders"/>
+    <Property name="MoveoutState" type="OrderRestrictionState"/>
+    <Property name="MoveoutAddress" type="string"/>
+    <Property name="CAPROSEntrySection" type="CAPROSEntry"/>
+    <Property name="NoServiceFeeSection" type="NoServiceFee"/>
+    <Property name="IsOtherOrdersAttached" type="bool"/>
+    <Property name="OtherOrderDetail" type="string"/>
+    <Property name="IsFirearmsGranted" type="bool"/>
+    <Property name="Firearms" type="Firearms"/>
+    <Property name="IsFinancialAbuseInvolved" type="bool"/>
+  </Model>
+  <Model name="EA130">
+    <Property name="IsEAConductChoiceEnabled" type="bool"/>
+    <Property name="EAConductChoice" type="EAConductChoice"/>
+    <Property name="EAStayAwayOrdersEnabled" type="bool"/>
+    <Property name="EAStayAwayOrders" type="EAStayAwayOrders"/>
+    <Property name="IsMoveoutEnabled" type="bool"/>
+    <Property name="MoveoutAddress" type="string"/>
+    <Property name="CAPROSEntrySection" type="CAPROSEntry"/>
+    <Property name="NoServiceFeeSection" type="NoServiceFee"/>
+    <Property name="IsOtherOrdersAttached" type="bool"/>
+    <Property name="OtherOrderDetail" type="string"/>
+    <Property name="IsNoGuns" type="bool"/>
+    <Property name="Firearms" type="Firearms"/>
+    <Property name="IsFinancialAbuseInvolved" type="bool"/>
+  </Model>
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="ModelsDef">
