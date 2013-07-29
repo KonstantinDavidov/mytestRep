@@ -36,7 +36,7 @@ namespace Faccts.Model.Entities
                 .Subscribe(x =>
                 {
                     this.OnPropertyChanging("IsPersonalInformationDirty");
-                    this.OnPropertyChanged("IsPersonalInformationDirty");
+                    this.OnPropertyChanged("IsPersonalInformationDirty", false);
                 }
                 );
             PersonsChanged = Observable.FromEvent<NotifyCollectionChangedEventHandler, NotifyCollectionChangedEventArgs>(handler =>
@@ -46,6 +46,15 @@ namespace Faccts.Model.Entities
                 },
                 handler => this.Persons.CollectionChanged += handler,
                 handler => this.Persons.CollectionChanged -= handler
+                );
+            PersonsChanged.Subscribe(_ =>
+                {
+                    this.IsDirty = true;
+                    if (ChangeTracker.ChangeTrackingEnabled && ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
+                    {
+                        ChangeTracker.State = ObjectState.Modified;
+                    }
+                }
                 );
         }
 
@@ -88,6 +97,7 @@ namespace Faccts.Model.Entities
         {
             if (dto != null)
             {
+                this.ChangeTracker.ChangeTrackingEnabled = false;
                 this.CaseNumber = dto.CaseNumber;
                 this.Id = dto.Id;
 
@@ -102,26 +112,21 @@ namespace Faccts.Model.Entities
                 this.ThirdPartyAttorneyData = new ThirdPartyData(dto.ThirdPartyData);
                 dto.OtherProtected.Aggregate(this.Persons, (persons, item) => 
                 {
-                    persons.Add(new OtherProtected(item)
-                        {
-                            PersonType = PersonType.OtherProtected,
-                        }
-                        );
+                    OtherProtected op = new OtherProtected(item);
+                    persons.Add(op);
                     return persons;
                 });
                 dto.Children.Aggregate(this.Persons, (persons, item) =>
                     {
-                       persons.Add(new Child(item)
-                            {
-                                PersonType = PersonType.Child,
-                            }
-                            );
+                        Child c = new Child(item);
+                        persons.Add(c);
                         return persons;
                     }
                     );
                 RaiseNavigationPropertyLoading(() => CourtClerk);
 
                 this.MarkAsUnchanged();
+                this.ChangeTracker.ChangeTrackingEnabled = true;
             }
             
             
@@ -215,6 +220,7 @@ namespace Faccts.Model.Entities
                 CaseHistory = this.CaseHistory.Where(x => x.IsDirty).Select(x =>x.ConvertToDTO()).ToArray(),
                 CaseNotes = this.CaseNotes.Where(x => x.IsDirty).Select(x => x.ConvertToDTO()).ToArray(),
                 Children = this.Children.Where(x => x.IsDirty).Select(x => ((IDataTransferConvertible<FACCTS.Server.Model.DataModel.Child>)x).ConvertToDTO()).ToArray(),
+                OtherProtected = this.OtherProtected.Where(x => x.IsDirty).Select(x => ((IDataTransferConvertible<FACCTS.Server.Model.DataModel.OtherProtected>)x).ConvertToDTO()).ToArray(),
                 Witnesses = this.Witnesses.Where(x => x.IsDirty).Select(x => x.ConvertToDTO()).ToArray(),
                 Interpreters = this.Interpreters.Where(x => x.IsDirty).Select(x => ((IDataTransferConvertible<FACCTS.Server.Model.DataModel.Interpreter>)x).ConvertToDTO()).ToArray(),
                 ThirdPartyData = this.ThirdPartyAttorneyData.ToDTO(),

@@ -20,6 +20,7 @@ namespace Faccts.Model.Entities
             if (dto == null)
                 return;
 
+            this.PersonType = FACCTS.Server.Model.Enums.PersonType.Child;
             Id = dto.Id;
             FirstName = dto.FirstName;
             LastName = dto.LastName;

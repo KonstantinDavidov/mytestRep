@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Faccts.Model.Entities
 {
-    public partial class OtherProtected
+    public partial class OtherProtected : IDataTransferConvertible<FACCTS.Server.Model.DataModel.OtherProtected>
     {
 
         public OtherProtected()
@@ -21,6 +21,7 @@ namespace Faccts.Model.Entities
             if (dto == null)
                 return;
 
+            this.PersonType = FACCTS.Server.Model.Enums.PersonType.OtherProtected;
             Id = dto.Id;
             FirstName = dto.FirstName;
             LastName = dto.LastName;
@@ -65,5 +66,24 @@ namespace Faccts.Model.Entities
             {"RelationshipToProtected", "Relationship To Protected"},
             {"DateOfBirth", "Date Of Birth"},
         };
+
+        FACCTS.Server.Model.DataModel.OtherProtected IDataTransferConvertible<FACCTS.Server.Model.DataModel.OtherProtected>.ToDTO()
+        {
+            if (!this.IsDirty)
+                return null;
+
+            return new FACCTS.Server.Model.DataModel.OtherProtected()
+            {
+                Id = this.Id,
+                EntityType = this.EntityType,
+                FirstName = this.FirstName,
+                LastName = this.LastName,
+                RelationshipToPlaintiff = this.RelationToProtected,
+                Sex = this.Sex,
+                DateOfBirth = this.DateOfBirth.GetValueOrDefault(),
+                State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
+                IsHouseHold = this.IsHouseHold,
+            };
+        }
     }
 }
