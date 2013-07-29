@@ -166,3 +166,12 @@ Sources/FACCTS.Server/Logs/Log
 Sources/FACCTS.Server/Web.config
 packages
 /Sources/Configuration/connectionStrings.config
+/Sources/Configuration/connectionStrings.config
+/Sources/DatabaseDeploy/DatabaseDeploy.csproj
+
+/Sources/FACCTS/App.config
+/Sources/FACCTS.Controls/FACCTS.Controls.csproj
+/Sources/FACCTS.Server.Tests/App.config
+/Sources/FACCTS.Services/FACCTS.Services.csproj
+/Sources/FACCTS.WCFService/App.config
+/Sources/FACCTS.WindowsService/App.config

@@ -136,10 +136,19 @@ namespace FACCTS.Server.Tests
         /// <returns>Data for deserialization</returns>
         private string getData()
         {
-            //IDataManager dm = new DataManager(new RepositoryProvider(new RepositoryFactories()));
-            //CourtCaseOrder cc = dm.CourtCaseOrdersRepository.GetById(43); //Need input params as ID
-            //return cc.XMLContent;
-            return string.Empty;
+            IDataManager dm = new DataManager(new RepositoryProvider(new RepositoryFactories()));
+
+            CourtOrder order = null;
+            try
+            {
+                order = dm.CourtOrdersRepository.GetById(2);//Need input parameter. It is "2" now, for testing.
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return order.XMLContent;
         }
 
         /// <summary>
@@ -152,7 +161,10 @@ namespace FACCTS.Server.Tests
             XmlSerializer serializer = new XmlSerializer(typeof(CH130));
 
             string result = getData();//need parameter ID
+
+            //Deserialize object. Function is "void", but u can return deserialized object, if it need.
             CH130 myTestObject = (CH130)serializer.Deserialize(new MemoryStream(Encoding.UTF8.GetBytes(result)));
+            //return myTestObject;
         }
 
         /// <summary>
@@ -161,23 +173,30 @@ namespace FACCTS.Server.Tests
         [TestMethod]
         public void TestInsert()
         {
-            //XDocument document = XDocument.Load("c:\\FACTS\\faccts.net\\Sources\\bin\\Debug\\myFileName.xml");
+            XDocument document = null;
+            try
+            {
+                document = XDocument.Load("myFileName.xml");
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
 
-            //CourtCaseOrder courtOrder = new CourtCaseOrder
+            //Test initializing of test object
+            CourtOrder order = new CourtOrder
+            {
+                OrderType = CourtOrdersTypes.CH130,
+                IsSigned = true,
+                HearingId = 1,
+                XMLContent = document.ToString()
+            };
 
-            //{
-            //    AvailableCourtOrderId = 45,
-            //    OrderType = MasterOrders.CH130,
-            //    XMLContent = document.ToString(),
-            //    IsSigned = false,
-            //    ServerFileName = "myFileName.xml"
-            //};
-
-            //IDataManager dm = new DataManager(new RepositoryProvider(new RepositoryFactories()));
-            //dm.CourtCaseOrdersRepository.Insert(courtOrder);
-            //dm.Commit();
-            //dm.CourtCaseOrdersRepository.SaveData<CourtCaseOrder>(courtOrder);
-            //var s = dm.CourtCaseOrdersRepository.GetAll();
+            IDataManager dm = new DataManager(new RepositoryProvider(new RepositoryFactories()));
+            dm.CourtOrdersRepository.Insert(order);
+            dm.Commit();
+            dm.CourtOrdersRepository.SaveData<CourtOrder>(order);
+            //var s = dm.CourtOrdersRepository.GetAll(); Variable to testing the result
         }
     }
 }
