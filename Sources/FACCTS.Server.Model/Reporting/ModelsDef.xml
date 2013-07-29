@@ -296,6 +296,11 @@
     <Property name="IsOtherExist" type="bool"/>
     <Property name="OtherDescription" type="string"/>
   </Model>
+  <Model name="NotifyEmbancyInfo">
+    <Property name="IsEnabled" type="bool" />
+    <Property name="CountryName" type="string"/>
+    <Property name="ProvideProofDays" type="int"/>
+  </Model>
   <Model name="DV145">
     <Property name="IsPastROViolations" type="bool"/>
     <Property name="IsNoTiesWithCalifornia" type="bool"/>
@@ -322,6 +327,7 @@
     <Property name="IsEnforcingCourtOrderRequired" type="bool"/>
     <Property name="EnforcingAgencyName" type="string"/>
     <Property name="OtherPermissionsOrder" type="OtherOrders"/>
+    <Property name="NotifyEmbancyInfo" type="NotifyEmbancyInfo"/>
   </Model>
   
   <!-- FL343-->

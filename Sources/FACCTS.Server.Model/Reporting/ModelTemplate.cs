@@ -1280,6 +1280,26 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
+	public partial class NotifyEmbancyInfo
+	{
+		public bool IsEnabled
+		{
+			get; set;
+		}
+		
+		public string CountryName
+		{
+			get; set;
+		}
+		
+		public int ProvideProofDays
+		{
+			get; set;
+		}
+				
+	}
+	
+			
 	public partial class DV145
 	{
 		public bool IsPastROViolations
