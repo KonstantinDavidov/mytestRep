@@ -230,6 +230,8 @@ namespace Faccts.Model.Entities
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
                 Party1 = this.Party1.ConvertToDTO(),
                 Party2 = this.Party2.ConvertToDTO(),
+                Party1Id = this.Party1_Id > 0 ? this.Party1_Id: (long?)null,
+                Party2Id = this.Party2_Id > 0 ? this.Party2_Id : (long?)null,
                 RestrainingPartyIdentificationInformation = this.RestrainingPartyIdentificationInformation.ConvertToDTO(),
                 CaseHistory = this.CaseHistory.Where(x => x.IsDirty).Select(x =>x.ConvertToDTO()).ToArray(),
                 CaseNotes = this.CaseNotes.Where(x => x.IsDirty).Select(x => x.ConvertToDTO()).ToArray(),
