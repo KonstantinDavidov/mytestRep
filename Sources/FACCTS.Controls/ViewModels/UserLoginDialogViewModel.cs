@@ -35,9 +35,7 @@ namespace FACCTS.Controls.ViewModels
 
         public void Login(string userName)
         {
-            TryClose(true);
             Execute.OnUIThreadAsync(() => _authenticationService.Authenticate(userName, _passwordSupplier.GetPassword()));
-            
         }
     }
 }

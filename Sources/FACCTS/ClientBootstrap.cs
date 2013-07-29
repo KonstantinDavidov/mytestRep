@@ -109,12 +109,10 @@ namespace FACCTS
 
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            base.OnStartup(sender, e);
-            IWindowManager wm = ServiceLocatorContainer.Locator.GetInstance<IWindowManager>();
             UserLoginDialogView ul = ServiceLocatorContainer.Locator.GetInstance<IPasswordSupplier>() as UserLoginDialogView;
-            //ul.DataContext = ServiceLocatorContainer.Locator.GetInstance<UserLoginDialogViewModel>();
-            //wm.ShowDialog()
             ul.ShowDialog();
+            base.OnStartup(sender, e);
+            IWindowManager wm = ServiceLocatorContainer.Locator.GetInstance<IWindowManager>();   
         }
     }
 }
