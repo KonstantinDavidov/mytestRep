@@ -134,7 +134,7 @@
     <Property name="IsOterordersAttached" type="bool" />
     <Property name="PropertyControlState" type="OrderRestrictionState" />
     <Property name="PropertyControlItems" type="List" collectionType="DataItem"/>
-    <Property name="IsDebtPaymentState" type="bool"/>
+    <Property name="DebtPaymentState" type="OrderRestrictionState"/>
     <Property name="DebtPaymentItems" type="List" collectionType="DebtPaymentItem"/>
     <Property name="DVPropertyRestraintState" type="OrderRestrictionState"/>
     <Property name="PropertyRestraint" type="DVPropertyRestraint"/>
@@ -407,7 +407,6 @@
     <Property name="OtherDescription" type="string"/>
     <Property name ="IsOtherAttached" type="bool"/>
   </Model>
-
   <Model name="EAStayAwayOrders">
     <Property name="IsStayAwayFromPerson" type="bool"/>
     <Property name="IsStayAwayFromHome" type="bool"/>
@@ -451,6 +450,21 @@
     <Property name="IsNoGuns" type="bool"/>
     <Property name="Firearms" type="Firearms"/>
     <Property name="IsFinancialAbuseInvolved" type="bool"/>
+  </Model>
+  <Model name="FL344">
+    <Property name="IsRestrainedOrdersEnabled" type="bool" />
+    <Property name ="RestrainedPerson" type="Designation" />
+    <Property name="IsNoDisposing" type="bool"/>
+    <Property name="IsMustNotify" type="bool"/>
+    <Property name="IsNoChangeCoverages" type="bool"/>
+    <Property name="IsNoDebt" type="bool"/>
+    <Property name ="IsPropertyAndPossesionEnabled" type="bool"/>
+    <Property name="PropertyAndPossetion" type="List" collectionType="DataItem"/>
+    <Property name="IsDebtOrdersEnabled" type="bool"/>
+    <Property name="Debts" type="List" collectionType="DebtItem"/>
+    <Property name="IsOtherPropertyAttached" type="bool"/>
+    <Property name="AreThisTemporaryOrders" type="bool" />
+    <Property name="OtherOrders" type="OtherOrders"/>
   </Model>
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
