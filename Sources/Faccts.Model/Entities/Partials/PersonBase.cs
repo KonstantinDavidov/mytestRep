@@ -18,6 +18,15 @@ namespace Faccts.Model.Entities
                     this.OnPropertyChanged("PartyToName", false);
                 }
                 );
+            this.WhenAny(x => x.IsValidationEnabled, x => x.Value)
+                .Subscribe(x =>
+                {
+                    if (!x)
+                    {
+                        this._errors.Clear();
+                    }
+                }
+                );
         }
 
         public PersonBase(FACCTS.Server.Model.DataModel.Witness dto) : this()
@@ -72,6 +81,7 @@ namespace Faccts.Model.Entities
                 FirstName = this.FirstName,
                 LastName = this.LastName,
                 Contact = this.Contact,
+                CourtCaseForWitnessId = this.CourtCaseId > 0 ? (long?)this.CourtCaseId : null,
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
             };
         }
@@ -97,8 +107,28 @@ namespace Faccts.Model.Entities
         {
             get 
             {
+                if (!this.IsValidationEnabled)
+                    return null;
                 propertyName = propertyName ?? string.Empty;
                 return this.ValidateByPropertyName(_requierdFields, _errors, propertyName);
+            }
+        }
+
+        private bool _isValidationEnabled = true;
+        public virtual bool IsValidationEnabled
+        {
+            get
+            {
+                return _isValidationEnabled;
+            }
+            set
+            {
+                if (_isValidationEnabled == value)
+                    return;
+
+                this.OnPropertyChanging("IsValidationInabled");
+                _isValidationEnabled = value;
+                this.OnPropertyChanged("IsValidationInabled", false);
             }
         }
 

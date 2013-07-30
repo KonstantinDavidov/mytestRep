@@ -49,6 +49,7 @@ namespace Faccts.Model.Entities
                 LastName = this.LastName,
                 Language = this.Language,
                 InterpreterFor = this.PartyFor,
+                CourtCaseForInterpreterId = this.CourtCaseId > 0 ? (long?)this.CourtCaseId : null,
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
             };
         }

@@ -23,6 +23,7 @@ namespace Faccts.Model.Entities
                 IsProPer = this.IsThirdPartyProPer,
                 IsRequestorInEACase = this.IsThirdPartyRequestorInEACase,
                 Attorney = this.Attorney.ConvertToDTO<FACCTS.Server.Model.DataModel.Attorney>(),
+                AttorneyId = this.Attorney_Id,
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
             };
         }

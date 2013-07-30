@@ -132,7 +132,6 @@ namespace Faccts.Model.Entities
                 this.Party1 = new CourtParty(dto.Party1);
                 this.Party2 = new CourtParty(dto.Party2);
                 this.CaseHistory = new TrackableCollection<Entities.CaseHistory>(dto.CaseHistory.Select(x => new CaseHistory(x)));
-                this.CaseNotes = new TrackableCollection<Entities.CaseNotes>(dto.CaseNotes.Select(x => new CaseNotes(x)));
                 dto.CaseNotes.Aggregate(this.CaseNotes, (notes, item) =>
                     {
                         CaseNotes cn = new CaseNotes(item);
@@ -278,8 +277,10 @@ namespace Faccts.Model.Entities
                 OtherProtected = this.OtherProtected.Where(x => x.IsDirty).Select(x => ((IDataTransferConvertible<FACCTS.Server.Model.DataModel.OtherProtected>)x).ConvertToDTO()).ToArray(),
                 Witnesses = this.Witnesses.Where(x => x.IsDirty).Select(x => x.ConvertToDTO()).ToArray(),
                 Interpreters = this.Interpreters.Where(x => x.IsDirty).Select(x => ((IDataTransferConvertible<FACCTS.Server.Model.DataModel.Interpreter>)x).ConvertToDTO()).ToArray(),
-                ThirdPartyData = this.ThirdPartyAttorneyData.ToDTO(),
-                AttorneyForChild = this.AttorneyForChild.ToDTO(),
+                ThirdPartyData = this.ThirdPartyAttorneyData.ConvertToDTO(),
+                ThirdPartyDataId = this.ThirdPartyDataId,
+                AttorneyForChild = ((IDataTransferConvertible<FACCTS.Server.Model.DataModel.Attorney>)this.AttorneyForChild).ConvertToDTO(),
+                AttorneyForChildId = this.AttorneyForChild_Id.GetValueOrDefault(0) > 0 ? this.AttorneyForChild_Id : null,
                 //CourtClerk = this.User1.ToDTO(),
             };
         }

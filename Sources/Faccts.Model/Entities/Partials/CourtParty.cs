@@ -24,6 +24,22 @@ namespace Faccts.Model.Entities
                     this.OnPropertyChanged("FullName", false);
                 }
                 );
+            this.WhenAny(x => x.IsValidationEnabled, x => x.Value)
+                .Subscribe(x =>
+                {
+                    if (!x)
+                    {
+                        this._errors.Clear();
+                    }
+                }
+                );
+            this.WhenAny(x => x.IsProPer, x => x.Value)
+                .Subscribe(
+                x =>
+                {
+                    this.IsValidationEnabled = !x;
+                }
+                );
         }
 
         public CourtParty(FACCTS.Server.Model.DataModel.CourtParty dto)
@@ -31,24 +47,30 @@ namespace Faccts.Model.Entities
         {
             if (dto != null)
             {
-                this.Id = dto.Id;
-                this.FirstName = dto.FirstName;
-                this.MiddleName = dto.MiddleName;
-                this.LastName = dto.LastName;
-                this.Description = dto.Description;
-                this.ParticipantRole = dto.ParticipantRole;
-                this.Designation = dto.Designation;
-                this.ParentRole = dto.ParentRole;
-                this.HairColor = new HairColor(dto.HairColor);
-                this.EyesColor = new EyesColor(dto.EyesColor);
-                this.Race = new Race(dto.Race);
-                this.RelationToOtherParty = dto.RelationToOtherParty;
-                this.Weight = dto.Weight;
-                this.HeightFt = dto.HeightFt;
-                this.HeightIns = dto.HeightIns;
-                this.Attorney = new Attorneys(dto.Attorney);
-                this.IsProPer = dto.IsProPer;
-                this.AddressInfo = new AddressInfo(dto.AddressInfo);
+                using (this.SuppressChangeNotifications())
+                {
+                    this.Id = dto.Id;
+                    this.FirstName = dto.FirstName;
+                    this.MiddleName = dto.MiddleName;
+                    this.LastName = dto.LastName;
+                    this.Description = dto.Description;
+                    this.ParticipantRole = dto.ParticipantRole;
+                    this.Designation = dto.Designation;
+                    this.ParentRole = dto.ParentRole;
+                    this.IsProPer = dto.IsProPer;
+                    this.RelationToOtherParty = dto.RelationToOtherParty;
+                    this.Weight = dto.Weight;
+                    this.HeightFt = dto.HeightFt;
+                    this.HeightIns = dto.HeightIns;
+                    this.DateOfBirthNullable = dto.DateOfBirth;
+                    this.HairColor = new HairColor(dto.HairColor);
+                    this.EyesColor = new EyesColor(dto.EyesColor);
+                    this.Race = new Race(dto.Race);
+                    this.Attorney = new Attorneys(dto.Attorney);
+                    this.AddressInfo = new AddressInfo(dto.AddressInfo);
+                    
+                }
+                
 
                 this.MarkAsUnchanged();
             }
@@ -122,7 +144,7 @@ namespace Faccts.Model.Entities
                     LastName = this.LastName,
                     Description = this.Description,
                     ParticipantRole = this.ParticipantRole,
-                    AddressInfo = this.AddressInfo.ToDTO(),                    
+                    AddressInfo = this.AddressInfo.ConvertToDTO(),                    
                     ParentRole = this.ParentRole,
                     EntityType = this.EntityType,
                     Email = this.Email,
@@ -134,11 +156,12 @@ namespace Faccts.Model.Entities
                     Weight = this.Weight,
                     HeightFt = this.HeightFt,
                     HeightIns = this.HeightIns,
-                    DateOfBirth = this.DateOfBirth,
+                    DateOfBirth = this.DateOfBirthNullable,
                     Age = this.Age,
+                    IsProPer = this.IsProPer,
                     State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
-                    Attorney = this.Attorney.ToDTO(),
-
+                    Attorney = this.IsProPer ? null : ((IDataTransferConvertible<FACCTS.Server.Model.DataModel.Attorney>)this.Attorney).ConvertToDTO(),
+                    AttorneyId = this.IsProPer ? null : this.AttorneysId,
                 };
             return dto;
         }
@@ -154,8 +177,28 @@ namespace Faccts.Model.Entities
         {
             get
             {
+                if (!this.IsValidationEnabled)
+                    return null;
                 propertyName = propertyName ?? string.Empty;
                 return this.ValidateByPropertyName(_requiredFields, _errors, propertyName);
+            }
+        }
+
+        private bool _isValidationEnabled = true;
+        public virtual bool IsValidationEnabled
+        {
+            get
+            {
+                return _isValidationEnabled;
+            }
+            set
+            {
+                if (_isValidationEnabled == value)
+                    return;
+
+                this.OnPropertyChanging("IsValidationInabled");
+                _isValidationEnabled = value;
+                this.OnPropertyChanged("IsValidationInabled", false);
             }
         }
 
@@ -188,7 +231,7 @@ namespace Faccts.Model.Entities
         {
             get
             {
-                return !this.Error.Any();
+                return !this.Errors.Any();
             }
         }
     }

@@ -29,6 +29,17 @@ namespace FACCTS.Controls.ViewModels
                 {
                     if (x != null)
                     {
+                        CaseNotesReactive = x.CaseNotes.CreateDerivedCollection(x1 => x1);
+                        CaseNotesReactive.ChangeTrackingEnabled = true;
+                        CaseNotesReactive.ItemChanged.Subscribe(_ =>
+                            {
+                                if (x.ChangeTracker.State != ObjectState.Added && x.ChangeTracker.State != ObjectState.Deleted)
+                                {
+                                    x.MarkAsModified();
+                                    x.IsDirty = true;
+                                }
+                            }
+                            );
                         SelectedUser = null;
                         var caseNoteForCurrentUser = x.CaseNotes.FirstOrDefault(y => y.User == authService.CurrentUser);
                         if (caseNoteForCurrentUser == null)
@@ -45,6 +56,7 @@ namespace FACCTS.Controls.ViewModels
                     }
                     this.NotifyOfPropertyChange(() => AvailableUsers);
                 });
+
             this.WhenAny(x => x.SelectedUser, x => x.Value)
                 .Subscribe(x =>
                 {
@@ -85,7 +97,7 @@ namespace FACCTS.Controls.ViewModels
             {
                 if (CurrentCourtCase == null || CurrentCourtCase.CaseNotes == null)
                     return null;
-                var r = CurrentCourtCase.CaseNotes.Select(x => x.User).ToList();
+                var r = CurrentCourtCase.CaseNotes.Select(x => x.User).Distinct().ToList();
                 if (SelectedUser == null)
                 {
                     SelectedUser = r.FirstOrDefault();
@@ -107,6 +119,8 @@ namespace FACCTS.Controls.ViewModels
                 return;
             CaseNoteForSelectedUser.IsPublic = false;
         }
+
+        protected ReactiveCollection<CaseNotes> CaseNotesReactive { get; set; }
         
     }
 }

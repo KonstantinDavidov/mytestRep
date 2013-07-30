@@ -17,6 +17,7 @@ using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using ReactiveUI;
 using System.Reactive.Linq;
+using System.Reflection;
 
 namespace Faccts.Model.Entities
 {
@@ -353,6 +354,7 @@ namespace Faccts.Model.Entities
     
             trackingItem.ChangeTracker.AcceptChanges();
         }
+    
     }
     
     

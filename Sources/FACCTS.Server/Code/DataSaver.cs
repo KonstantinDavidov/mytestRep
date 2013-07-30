@@ -33,11 +33,6 @@ namespace FACCTS.Server.Code
         public CourtCase SaveData(CourtCase cc)
         {
             Logger.Info("DataSaver: trying to save the Court Case...");
-            if (cc.State == ObjectState.Unchanged)
-            {
-                Logger.Info("The Court Case was not modified");
-                return cc;
-            }
                 
             try
             {

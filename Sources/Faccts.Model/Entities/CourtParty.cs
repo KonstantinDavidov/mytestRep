@@ -17,6 +17,7 @@ using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using ReactiveUI;
 using System.Reactive.Linq;
+using System.Reflection;
 
 namespace Faccts.Model.Entities
 {
@@ -74,6 +75,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.RelationToOtherParty)
     				,this.ObservableForProperty(x => x.Designation)
     				,this.ObservableForProperty(x => x.IsProPer)
+    				,this.ObservableForProperty(x => x.AttorneysId)
     				,this.ObservableForProperty(x => x.HairColor.IsDirty)
     				,this.ObservableForProperty(x => x.Race.IsDirty)
     				,this.ObservableForProperty(x => x.EyesColor.IsDirty)
@@ -523,6 +525,30 @@ namespace Faccts.Model.Entities
             }
         }
         private bool _isProPer;
+    
+        [DataMember]
+        public Nullable<long> AttorneysId
+        {
+            get { return _attorneysId; }
+            set
+            {
+                if (_attorneysId != value)
+                {
+                    ChangeTracker.RecordOriginalValue("AttorneysId", _attorneysId);
+                    if (!IsDeserializing)
+                    {
+                        if (Attorney != null && Attorney.Id != value)
+                        {
+                            Attorney = null;
+                        }
+                    }
+    				OnPropertyChanging("AttorneysId");
+                    _attorneysId = value;
+                    OnPropertyChanged("AttorneysId");
+                }
+            }
+        }
+        private Nullable<long> _attorneysId;
 
         #endregion
 
@@ -900,21 +926,27 @@ namespace Faccts.Model.Entities
             }
         }
     
-        private void FixupAttorney(Attorneys previousValue)
+        private void FixupAttorney(Attorneys previousValue, bool skipKeys = false)
         {
             if (IsDeserializing)
             {
                 return;
             }
     
-            if (previousValue != null && ReferenceEquals(previousValue.CourtParty, this))
+            if (previousValue != null && previousValue.CourtParties.Contains(this))
             {
-                previousValue.CourtParty = null;
+                previousValue.CourtParties.Remove(this);
             }
     
             if (Attorney != null)
             {
-                Attorney.CourtParty = this;
+                Attorney.CourtParties.Add(this);
+    
+                AttorneysId = Attorney.Id;
+            }
+            else if (!skipKeys)
+            {
+                AttorneysId = null;
             }
     
             if (ChangeTracker.ChangeTrackingEnabled)

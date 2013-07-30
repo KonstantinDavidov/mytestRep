@@ -54,8 +54,9 @@ namespace Faccts.Model.Entities
         {
             get 
             {
-                if ((this.CourtParty == null || this.CourtParty.IsProPer)  && !this.ThirdPartyData.Any() && !this.CourtCases.Any())
+                if ((!this.CourtParties.Any() || this.CourtParties.First().IsProPer)  && !this.ThirdPartyData.Any() && !this.CourtCases.Any())
                 {
+                    _errors.Clear();
                     return null;
                 }
                 propertyName = propertyName ?? string.Empty;
@@ -76,14 +77,10 @@ namespace Faccts.Model.Entities
         };
 
         private Dictionary<string, string> _errors = new Dictionary<string, string>();
-        public IList<string> Errors
+        public override IList<string> Errors
         {
             get { return _errors.Values.ToList().AsReadOnly(); }
         }
-
-        public bool IsValid
-        {
-            get { return !Errors.Any(); }
-        }
+        
     }
 }

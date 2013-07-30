@@ -11,5 +11,6 @@ namespace Faccts.Model.Entities.Validation
     {
         IList<string> Errors { get; }
         bool IsValid { get; }
+        bool IsValidationEnabled { get; set; }
     }
 }

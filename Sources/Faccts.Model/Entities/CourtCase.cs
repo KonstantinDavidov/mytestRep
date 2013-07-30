@@ -17,6 +17,7 @@ using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using ReactiveUI;
 using System.Reactive.Linq;
+using System.Reflection;
 
 namespace Faccts.Model.Entities
 {
@@ -68,12 +69,10 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.Party2_Id)
     				,this.ObservableForProperty(x => x.CourtCounty_Id)
     				,this.ObservableForProperty(x => x.ThirdPartyDataId)
-    				,this.ObservableForProperty(x => x.AttorneysId)
     				,this.ObservableForProperty(x => x.RP_IDType)
     				,this.ObservableForProperty(x => x.RP_IDNumber)
     				,this.ObservableForProperty(x => x.RP_IssuedDate)
     				,this.ObservableForProperty(x => x.AttorneyForChild_Id)
-    				,this.ObservableForProperty(x => x.ThirdPartyData_Id)
     				,this.ObservableForProperty(x => x.CourtClerk.IsDirty)
     				,this.ObservableForProperty(x => x.ParentCase.IsDirty)
     				,this.ObservableForProperty(x => x.CourtCounty.IsDirty)
@@ -376,30 +375,6 @@ namespace Faccts.Model.Entities
         private Nullable<long> _thirdPartyDataId;
     
         [DataMember]
-        public Nullable<long> AttorneysId
-        {
-            get { return _attorneysId; }
-            set
-            {
-                if (_attorneysId != value)
-                {
-                    ChangeTracker.RecordOriginalValue("AttorneysId", _attorneysId);
-                    if (!IsDeserializing)
-                    {
-                        if (AttorneyForChild != null && AttorneyForChild.Id != value)
-                        {
-                            AttorneyForChild = null;
-                        }
-                    }
-    				OnPropertyChanging("AttorneysId");
-                    _attorneysId = value;
-                    OnPropertyChanged("AttorneysId");
-                }
-            }
-        }
-        private Nullable<long> _attorneysId;
-    
-        [DataMember]
         public int RP_IDType
         {
             get { return _rP_IDType; }
@@ -455,6 +430,14 @@ namespace Faccts.Model.Entities
             {
                 if (_attorneyForChild_Id != value)
                 {
+                    ChangeTracker.RecordOriginalValue("AttorneyForChild_Id", _attorneyForChild_Id);
+                    if (!IsDeserializing)
+                    {
+                        if (AttorneyForChild != null && AttorneyForChild.Id != value)
+                        {
+                            AttorneyForChild = null;
+                        }
+                    }
     				OnPropertyChanging("AttorneyForChild_Id");
                     _attorneyForChild_Id = value;
                     OnPropertyChanged("AttorneyForChild_Id");
@@ -462,22 +445,6 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<long> _attorneyForChild_Id;
-    
-        [DataMember]
-        public Nullable<long> ThirdPartyData_Id
-        {
-            get { return _thirdPartyData_Id; }
-            set
-            {
-                if (_thirdPartyData_Id != value)
-                {
-    				OnPropertyChanging("ThirdPartyData_Id");
-                    _thirdPartyData_Id = value;
-                    OnPropertyChanged("ThirdPartyData_Id");
-                }
-            }
-        }
-        private Nullable<long> _thirdPartyData_Id;
 
         #endregion
 
@@ -1205,11 +1172,11 @@ namespace Faccts.Model.Entities
             {
                 AttorneyForChild.CourtCases.Add(this);
     
-                AttorneysId = AttorneyForChild.Id;
+                AttorneyForChild_Id = AttorneyForChild.Id;
             }
             else if (!skipKeys)
             {
-                AttorneysId = null;
+                AttorneyForChild_Id = null;
             }
     
             if (ChangeTracker.ChangeTrackingEnabled)
