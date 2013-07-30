@@ -128,15 +128,11 @@
     <Compile Include="UnitTestSerialization.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App.config">
-      <SubType>Designer</SubType>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="..\Configuration\connectionStrings.config">
       <Link>Configuration\connectionStrings.config</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

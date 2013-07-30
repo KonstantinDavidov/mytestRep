@@ -182,6 +182,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
@@ -206,9 +207,6 @@
     <None Include="Resources\PDFForms\fl343.pdf" />
     <None Include="Resources\PDFForms\fl344.pdf" />
     <None Include="Resources\PDFForms\mc020.pdf" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FACCTS.Controls\FACCTS.Controls.csproj">
