@@ -152,19 +152,3 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
-/Sources/Configuration/connectionStrings.config
-Sources/FACCTS.Server/Logs/Log
-Sources/FACCTS.Server/Web.config
-Sources/DatabaseDeploy/Configuration/connectionStrings.config
-Sources/Configuration/connectionStrings.config
-Sources/Configuration/connectionStrings.config
-Sources/Configuration/connectionStrings.config
-Sources/DatabaseDeploy/Configuration/connectionStrings.config
-Sources/FACCTS.Server/Logs/Log
-Sources/FACCTS.Server/Web.config
-Sources/FACCTS.Server/Logs/Log
-Sources/FACCTS.Server/Web.config
-packages
-/Sources/Configuration/connectionStrings.config
-/Sources/Configuration/connectionStrings.config
-
