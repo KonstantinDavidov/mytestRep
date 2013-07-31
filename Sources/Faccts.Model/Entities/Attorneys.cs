@@ -17,6 +17,7 @@ using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using ReactiveUI;
 using System.Reactive.Linq;
+using System.Reflection;
 
 namespace Faccts.Model.Entities
 {
@@ -137,22 +138,40 @@ namespace Faccts.Model.Entities
         private TrackableCollection<CourtCase> _courtCases;
     
         [DataMember]
-        public CourtParty CourtParty
+        public TrackableCollection<CourtParty> CourtParties
         {
-            get { return _courtParty; }
+            get
+            {
+                if (_courtParties == null)
+                {
+                    _courtParties = new TrackableCollection<CourtParty>();
+                    _courtParties.CollectionChanged += FixupCourtParties;
+                }
+                return _courtParties;
+            }
             set
             {
-                if (!ReferenceEquals(_courtParty, value))
+                if (!ReferenceEquals(_courtParties, value))
                 {
-                    var previousValue = _courtParty;
-    				OnNavigationPropertyChanging("CourtParty");
-                    _courtParty = value;
-                    FixupCourtParty(previousValue);
-                    OnNavigationPropertyChanged("CourtParty");
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("CourtParties");
+                    if (_courtParties != null)
+                    {
+                        _courtParties.CollectionChanged -= FixupCourtParties;
+                    }
+                    _courtParties = value;
+                    if (_courtParties != null)
+                    {
+                        _courtParties.CollectionChanged += FixupCourtParties;
+                    }
+                    OnNavigationPropertyChanged("CourtParties");
                 }
             }
         }
-        private CourtParty _courtParty;
+        private TrackableCollection<CourtParty> _courtParties;
 
         #endregion
 
@@ -163,47 +182,12 @@ namespace Faccts.Model.Entities
             base.ClearNavigationProperties();
             ThirdPartyData.Clear();
             CourtCases.Clear();
-            CourtParty = null;
+            CourtParties.Clear();
         }
 
         #endregion
 
         #region Association Fixup
-    
-        private void FixupCourtParty(CourtParty previousValue)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (previousValue != null && ReferenceEquals(previousValue.Attorney, this))
-            {
-                previousValue.Attorney = null;
-            }
-    
-            if (CourtParty != null)
-            {
-                CourtParty.Attorney = this;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("CourtParty")
-                    && (ChangeTracker.OriginalValues["CourtParty"] == CourtParty))
-                {
-                    ChangeTracker.OriginalValues.Remove("CourtParty");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("CourtParty", previousValue);
-                }
-                if (CourtParty != null && !CourtParty.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    CourtParty.StartTracking();
-                }
-            }
-        }
     
         private void FixupThirdPartyData(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -278,6 +262,45 @@ namespace Faccts.Model.Entities
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
                         ChangeTracker.RecordRemovalFromCollectionProperties("CourtCases", item);
+                    }
+                }
+            }
+        }
+    
+        private void FixupCourtParties(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (CourtParty item in e.NewItems)
+                {
+                    item.Attorney = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("CourtParties", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (CourtParty item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.Attorney, this))
+                    {
+                        item.Attorney = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtParties", item);
                     }
                 }
             }

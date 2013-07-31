@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
+using FACCTS;
 using System.Threading.Tasks;
 
 namespace FACCTS.Controls.ViewModels
@@ -36,6 +37,11 @@ namespace FACCTS.Controls.ViewModels
         public void Login(string userName)
         {
             Execute.OnUIThreadAsync(() => _authenticationService.Authenticate(userName, _passwordSupplier.GetPassword()));
+          
+            if (_authenticationService.IsAuthenticated)
+            {
+                TryClose(true);
+            }
         }
     }
 }

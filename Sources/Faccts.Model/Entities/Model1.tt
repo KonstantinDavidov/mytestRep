@@ -1530,6 +1530,7 @@ using System.Linq.Expressions;
 using System.Runtime.Serialization;
 using ReactiveUI;
 using System.Reactive.Linq;
+using System.Reflection;
 <#=String.Join(String.Empty, extraUsings.Select(u => "using " + u + ";" + Environment.NewLine).ToArray())#>
 <#+
     fileManager.EndBlock();
@@ -2081,6 +2082,7 @@ public static class ObjectWithChangeTrackerExtensions
 
         trackingItem.ChangeTracker.AcceptChanges();
     }
+
 }
 
 <#+

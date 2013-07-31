@@ -17,7 +17,10 @@ namespace FACCTS.Server.Model.DataModel
         [Column("IsThirdPartyRequestorInEACase")]
         public bool IsRequestorInEACase { get; set; }
 
+        [ForeignKey("AttorneyId")]
         public virtual Attorney Attorney { get; set; }
+
+        public long? AttorneyId { get; set; }
 
         public long Id { get; set; }
 

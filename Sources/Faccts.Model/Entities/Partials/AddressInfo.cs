@@ -4,11 +4,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
     public partial class AddressInfo : IDataTransferConvertible<FACCTS.Server.Model.DataModel.AddressInfo>, IValidatableObject
     {
+        partial void Initialize()
+        {
+            this.WhenAny(x => x.IsValidationEnabled, x => x.Value)
+                .Subscribe(x =>
+                {
+                    if (!x)
+                    {
+                        this._errors.Clear();
+                    }
+                }
+                );
+        }
+
         public FACCTS.Server.Model.DataModel.AddressInfo ToDTO()
         {
             return new FACCTS.Server.Model.DataModel.AddressInfo()
@@ -116,8 +130,28 @@ namespace Faccts.Model.Entities
         {
             get 
             {
+                if (!this.IsValidationEnabled)
+                    return null;
                 propertyName = propertyName ?? string.Empty;
                 return this.ValidateByPropertyName(_requiredFields, _errors, propertyName);
+            }
+        }
+
+        private bool _isValidationEnabled = true;
+        public virtual bool IsValidationEnabled
+        {
+            get
+            {
+                return _isValidationEnabled;
+            }
+            set
+            {
+                if (_isValidationEnabled == value)
+                    return;
+
+                this.OnPropertyChanging("IsValidationInabled");
+                _isValidationEnabled = value;
+                this.OnPropertyChanged("IsValidationInabled");
             }
         }
 
