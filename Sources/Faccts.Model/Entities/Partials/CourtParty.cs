@@ -161,7 +161,7 @@ namespace Faccts.Model.Entities
                     IsProPer = this.IsProPer,
                     State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
                     Attorney = this.IsProPer ? null : ((IDataTransferConvertible<FACCTS.Server.Model.DataModel.Attorney>)this.Attorney).ConvertToDTO(),
-                    AttorneyId = this.IsProPer ? null : this.AttorneysId,
+                    AttorneyId = (this.IsProPer || this.AttorneysId.GetValueOrDefault(0) == 0) ? null : this.AttorneysId,
                 };
             return dto;
         }

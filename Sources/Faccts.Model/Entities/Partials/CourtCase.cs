@@ -278,7 +278,7 @@ namespace Faccts.Model.Entities
                 Witnesses = this.Witnesses.Where(x => x.IsDirty).Select(x => x.ConvertToDTO()).ToArray(),
                 Interpreters = this.Interpreters.Where(x => x.IsDirty).Select(x => ((IDataTransferConvertible<FACCTS.Server.Model.DataModel.Interpreter>)x).ConvertToDTO()).ToArray(),
                 ThirdPartyData = this.ThirdPartyAttorneyData.ConvertToDTO(),
-                ThirdPartyDataId = this.ThirdPartyDataId,
+                ThirdPartyDataId = this.ThirdPartyDataId.GetValueOrDefault(0) > 0 ? this.ThirdPartyDataId : null,
                 AttorneyForChild = ((IDataTransferConvertible<FACCTS.Server.Model.DataModel.Attorney>)this.AttorneyForChild).ConvertToDTO(),
                 AttorneyForChildId = this.AttorneyForChild_Id.GetValueOrDefault(0) > 0 ? this.AttorneyForChild_Id : null,
                 //CourtClerk = this.User1.ToDTO(),

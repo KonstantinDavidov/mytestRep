@@ -170,7 +170,7 @@ namespace FACCTS.Services.Data
             {
                 if (_participantRoles == null)
                 {
-                    _participantRoles = EnumDescript<ParticipantRole>.GetList<ParticipantRole>();
+                    _participantRoles = EnumDescript<ParticipantRole>.GetList();
                 }
                 return _participantRoles;
             }
@@ -183,7 +183,7 @@ namespace FACCTS.Services.Data
             {
                 if (_relationships == null)
                 {
-                    _relationships = EnumDescript<FACCTS.Server.Model.Enums.Relationship>.GetList<FACCTS.Server.Model.Enums.Relationship>();
+                    _relationships = EnumDescript<FACCTS.Server.Model.Enums.Relationship>.GetList();
                 }
                 return _relationships;
             }
@@ -235,7 +235,7 @@ namespace FACCTS.Services.Data
             {
                 if (_stateList == null)
                 {
-                    _stateList = EnumDescript<USAState>.GetList<USAState>();
+                    _stateList = EnumDescript<USAState>.GetList();
                 }
                 return _stateList;
             }
@@ -248,7 +248,7 @@ namespace FACCTS.Services.Data
             {
                 if (_entityTypeList == null)
                 {
-                    _entityTypeList = EnumDescript<FACCTSEntity>.GetList<FACCTSEntity>();
+                    _entityTypeList = EnumDescript<FACCTSEntity>.GetList();
                 }
                 return _entityTypeList;
             }
@@ -293,6 +293,19 @@ namespace FACCTS.Services.Data
             }
         }
 
+        private List<EnumDescript<AddressType>> _addressTypes;
+        public List<EnumDescript<AddressType>> AddressTypes
+        {
+            get
+            {
+                if (_addressTypes == null)
+                {
+                    _addressTypes = EnumDescript<AddressType>.GetList();
+                }
+                return _addressTypes;
+            }
+        }
+
         private List<EnumDescript<FACCTS.Server.Model.Enums.Designation>> _designations;
         public List<EnumDescript<FACCTS.Server.Model.Enums.Designation>> Designations 
         {
@@ -300,7 +313,7 @@ namespace FACCTS.Services.Data
             {
                 if (_designations == null)
                 {
-                    _designations = EnumDescript<FACCTS.Server.Model.Enums.Designation>.GetList<FACCTS.Server.Model.Enums.Designation>();
+                    _designations = EnumDescript<FACCTS.Server.Model.Enums.Designation>.GetList();
                 }
                 return _designations;
             } 

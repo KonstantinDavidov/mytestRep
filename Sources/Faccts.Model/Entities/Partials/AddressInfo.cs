@@ -33,6 +33,7 @@ namespace Faccts.Model.Entities
                 ZipCode = this.ZipCode,
                 Phone = this.Phone,
                 Fax = this.Fax,
+                AddressType = this.AddressType,
             };
         }
 
@@ -44,9 +45,10 @@ namespace Faccts.Model.Entities
                 StreetAddress = dto.StreetAddress;
                 City = dto.City;
                 USAState = dto.USAState;
-                ZipCode = dto.ZipCode;
                 Phone = dto.Phone;
+                ZipCode = dto.ZipCode;
                 Fax = dto.Fax;
+                AddressType = dto.AddressType;
             }
         }
 

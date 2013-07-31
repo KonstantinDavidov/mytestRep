@@ -102,8 +102,7 @@ namespace FACCTS.Services
             return this._enumValue.GetHashCode();
         }
 
-        public static List<EnumDescript<T>> GetList<T>()
-            where T : struct
+        public static List<EnumDescript<T>> GetList()
         {
             return Enum.GetValues(typeof(T))
                 .Cast<T>()
