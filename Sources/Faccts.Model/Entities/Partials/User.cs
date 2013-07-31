@@ -149,27 +149,9 @@ namespace Faccts.Model.Entities
                 return false;
             if (left.IsApproved != right.IsApproved)
                 return false;
-            if (left.PasswordFailuresSinceLastSuccess != right.PasswordFailuresSinceLastSuccess)
-                return false;
-            if (left.LastPasswordFailureDate != right.LastPasswordFailureDate)
-                return false;
-            if (left.LastActivityDate != right.LastActivityDate)
-                return false;
-            if (left.LastLockoutDate != right.LastLockoutDate)
-                return false;
-            if (left.LastLoginDate != right.LastLoginDate)
-                return false;
-            if (left.ConfirmationToken != right.ConfirmationToken)
-                return false;
             if (left.CreateDate != right.CreateDate)
                 return false;
             if (left.IsLockedOut != right.IsLockedOut)
-                return false;
-            if (left.LastPasswordChangedDate != right.LastPasswordChangedDate)
-                return false;
-            if (left.PasswordVerificationToken != right.PasswordVerificationToken)
-                return false;
-            if (left.PasswordVerificationTokenExpirationDate != right.PasswordVerificationTokenExpirationDate)
                 return false;
 
             return true;

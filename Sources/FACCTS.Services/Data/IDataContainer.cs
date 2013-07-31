@@ -26,6 +26,7 @@ namespace FACCTS.Services.Data
         List<EnumDescript<ParticipantRole>> ParticipantRoles { get; }
         List<EnumDescript<FACCTS.Server.Model.Enums.Relationship>> Relationships { get; }
         List<EnumDescript<FACCTS.Server.Model.Enums.Designation>> Designations { get; }
+        List<EnumDescript<AddressType>> AddressTypes { get; }
 
         void SearchCourtCases(bool reset = false);
         void UpdateDictionaries();

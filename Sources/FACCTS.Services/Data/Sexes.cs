@@ -11,7 +11,7 @@ namespace FACCTS.Services.Data
     {
         protected List<EnumDescript<Gender>> GetSexes()
         {
-            return EnumDescript<Gender>.GetList<Gender>();
+            return EnumDescript<Gender>.GetList();
         }
 
         public static List<EnumDescript<Gender>> GetAll()

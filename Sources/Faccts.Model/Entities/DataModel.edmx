@@ -5125,6 +5125,7 @@
           <Property Type="String" Name="ZipCode" Nullable="false" />
           <Property Type="String" Name="Phone" Nullable="false" />
           <Property Type="String" Name="Fax" Nullable="false" />
+          <Property Type="FACCTS_DBModel.AddressType" Name="AddressType" Nullable="true" />
         </ComplexType>
         <EnumType Name="Designation" a:ExternalTypeName="FACCTS.Server.Model.Enums.Designation" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         <EntityType Name="Appearance">
@@ -5255,6 +5256,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EnumType Name="AddressType" a:ExternalTypeName="FACCTS.Server.Model.Enums.AddressType" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

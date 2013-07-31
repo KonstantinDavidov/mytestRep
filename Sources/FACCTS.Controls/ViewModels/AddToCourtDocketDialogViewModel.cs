@@ -83,7 +83,7 @@ namespace FACCTS.Controls.ViewModels
             {
                 if (_sessionList == null)
                 {
-                    _sessionList = EnumDescript<FACCTS.Server.Model.Enums.DocketSession>.GetList<FACCTS.Server.Model.Enums.DocketSession>();
+                    _sessionList = EnumDescript<FACCTS.Server.Model.Enums.DocketSession>.GetList();
                 }
                 return _sessionList;
             }
