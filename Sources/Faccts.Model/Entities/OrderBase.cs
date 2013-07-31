@@ -22,13 +22,18 @@ using System.Reflection;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(CommunicationsRecordingTROSection))]
-    public partial class CommunicationsRecordingROSection: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    [KnownType(typeof(CH130ROOrder))]
+    [KnownType(typeof(CH110TROOrder))]
+    [KnownType(typeof(DV110TROOrder))]
+    [KnownType(typeof(DV130ROOrder))]
+    [KnownType(typeof(EA110TROOrder))]
+    [KnownType(typeof(EA130ROOrder))]
+    public partial class OrderBase: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
     		private MakeObjectReactiveHelper _reactiveHelper;
     
-    		public CommunicationsRecordingROSection()
+    		public OrderBase()
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
@@ -51,7 +56,6 @@ namespace Faccts.Model.Entities
     			);
     			Observable.Merge<Object>(
     				this.ObservableForProperty(x => x.Id)
-    				,this.ObservableForProperty(x => x.Requested)
     			).
     			Subscribe(_ =>
     			{
@@ -153,22 +157,6 @@ namespace Faccts.Model.Entities
             }
         }
         private long _id;
-    
-        [DataMember]
-        public string Requested
-        {
-            get { return _requested; }
-            set
-            {
-                if (_requested != value)
-                {
-    				OnPropertyChanging("Requested");
-                    _requested = value;
-                    OnPropertyChanged("Requested");
-                }
-            }
-        }
-        private string _requested;
 
         #endregion
 

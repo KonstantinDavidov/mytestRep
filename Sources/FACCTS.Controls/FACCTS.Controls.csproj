@@ -356,21 +356,46 @@
     <Compile Include="Views\OutputForms\CH110CivilHarassmentView.xaml.cs">
       <DependentUpon>CH110CivilHarassmentView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OutputForms\CH130CivilHarassmentView.xaml.cs" />
-    <Compile Include="Views\OutputForms\DV110AttachDV145View.xaml.cs" />
-    <Compile Include="Views\OutputForms\DV110ChildCustodyView.xaml.cs" />
-    <Compile Include="Views\OutputForms\DV110PropertyAndAttorneysFeeView.xaml.cs" />
-    <Compile Include="Views\OutputForms\DV110SupervisionView.xaml.cs" />
-    <Compile Include="Views\OutputForms\DV110TemporaryRestrainingOrderView.xaml.cs" />
-    <Compile Include="Views\OutputForms\DV130AttachDV145View.xaml.cs" />
+    <Compile Include="Views\OutputForms\CH130CivilHarassmentView.xaml.cs">
+      <DependentUpon>CH130CivilHarassmentView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\OutputForms\CourtOrderBase.cs" />
+    <Compile Include="Views\OutputForms\DV110AttachDV145View.xaml.cs">
+      <DependentUpon>DV110AttachDV145View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\DV110ChildCustodyView.xaml.cs">
+      <DependentUpon>DV110ChildCustodyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\DV110PropertyAndAttorneysFeeView.xaml.cs">
+      <DependentUpon>DV110PropertyAndAttorneysFeeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\DV110SupervisionView.xaml.cs">
+      <DependentUpon>DV110SupervisionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\DV110TemporaryRestrainingOrderView.xaml.cs">
+      <DependentUpon>DV110TemporaryRestrainingOrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\DV130AttachDV145View.xaml.cs">
+      <DependentUpon>DV130AttachDV145View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OutputForms\DV130AttachFL343View.xaml.cs">
       <DependentUpon>DV130AttachFL343View.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OutputForms\DV130ChildCustodyView.xaml.cs" />
-    <Compile Include="Views\OutputForms\DV130FL342ChildSupportView.xaml.cs" />
-    <Compile Include="Views\OutputForms\DV130PropertyAndAttorneysFeesView.xaml.cs" />
-    <Compile Include="Views\OutputForms\DV130RestrainingOrderView.xaml.cs" />
-    <Compile Include="Views\OutputForms\DV130SupervisionView.xaml.cs" />
+    <Compile Include="Views\OutputForms\DV130ChildCustodyView.xaml.cs">
+      <DependentUpon>DV130ChildCustodyView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\DV130FL342ChildSupportView.xaml.cs">
+      <DependentUpon>DV130FL342ChildSupportView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\DV130PropertyAndAttorneysFeesView.xaml.cs">
+      <DependentUpon>DV130PropertyAndAttorneysFeesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\DV130RestrainingOrderView.xaml.cs">
+      <DependentUpon>DV130RestrainingOrderView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\DV130SupervisionView.xaml.cs">
+      <DependentUpon>DV130SupervisionView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OutputForms\EA110ElderlyAbuseView.xaml.cs">
       <DependentUpon>EA110ElderlyAbuseView.xaml</DependentUpon>
     </Compile>
@@ -702,7 +727,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Microsoft.Bcl.Build.1.0.7\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.7\tools\Microsoft.Bcl.Build.targets')" />
   <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
- <!-- <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.5\Microsoft.Expression.Blend.WPF.targets" />-->
+  <!-- <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.5\Microsoft.Expression.Blend.WPF.targets" />-->
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

@@ -17,6 +17,8 @@ using System.Runtime.CompilerServices;
 using System.Reactive.Concurrency;
 using System.Windows;
 using FACCTS.Services;
+using FACCTS.Server.Model.Enums;
+using Faccts.Model.Entities;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -43,8 +45,6 @@ namespace FACCTS.Controls.ViewModels
                     }
                 });
             this.DisplayName = "Court Orders";
-
-            SelectedHearing = CurrentHearings.FirstOrDefault();
         }
 
         private void Authorized()
@@ -90,10 +90,11 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-        public void Activate(ViewModelBase viewModel)
+        public void Activate(CourtOrderBase viewModel)
         {
             if (viewModel != null)
             {
+                PopulateOrderIfNotExists(viewModel);
                 this.ActivateItem(viewModel);
             }
         }
@@ -175,13 +176,63 @@ namespace FACCTS.Controls.ViewModels
         {
             get
             {
+                if (_selectedHearing == null)
+                    SelectedHearing = CurrentHearings.FirstOrDefault();
                 return _selectedHearing;
             }
 
             set
             {
                 _selectedHearing = value;
+                NotifyOfPropertyChange(() => SelectedHearing);
             }
+        }
+
+        private void PopulateOrderIfNotExists(CourtOrderBase orderViewModel)
+        {
+            if (SelectedHearing == null)
+                return;
+            CourtOrders courtOrder = SelectedHearing.CourtOrders.FirstOrDefault(o => o.OrderType == orderViewModel.OrderType);
+            if (courtOrder == null)
+            {
+                courtOrder = new CourtOrders 
+                {
+                    Hearings = SelectedHearing,
+                    OrderType = orderViewModel.OrderType                    
+                };
+            }
+            if (courtOrder.InnerOrder == null)
+            {
+                courtOrder.InnerOrder = CreateOrder(courtOrder.OrderType);
+            }
+            orderViewModel.Order = courtOrder.InnerOrder;
+        }
+
+        private OrderBase CreateOrder(CourtOrdersTypes courtOrdersType)
+        {
+            OrderBase result = null;
+            switch (courtOrdersType)
+            {
+                case CourtOrdersTypes.DV110:
+                    result = new DV110TROOrder();
+                    break;
+                case CourtOrdersTypes.DV130:
+                    result = new DV130ROOrder();
+                    break;
+                case CourtOrdersTypes.CH110:
+                    result = new CH110TROOrder();
+                    break;
+                case CourtOrdersTypes.CH130:
+                    result = new CH130ROOrder();
+                    break;
+                case CourtOrdersTypes.EA110:
+                    result = new EA110TROOrder();
+                    break;
+                case CourtOrdersTypes.EA130:
+                    result = new EA110TROOrder();
+                    break;
+            }
+            return result;
         }
     }
 }
