@@ -466,6 +466,65 @@
     <Property name="AreThisTemporaryOrders" type="bool" />
     <Property name="OtherOrders" type="OtherOrders"/>
   </Model>
+  <Model name="TimeShare">
+    <Property name="ChildrenNumber" type="byte"/>
+    <Property name="TimeSpentWithPetitioner" type="byte"/>
+    <Property name="TimeSpentWithRespondent" type="byte"/>
+    <Property name="TimeSpentWithOther" type="byte"/>
+  </Model>
+  <Model name="LowIncomeAdjustment">
+    <Property name="IsLowIncomeAdjustmentApplies" type="bool"/>
+    <Property name="DoesNotApplyReasonDescription" type="string"/>
+  </Model>
+  <Model name="AdditionalPayment">
+    <Property name="IsPetitionerMustPay" type="bool"/>
+    <Property name="PetitionerMustPay" type="AdditionalChildSupportItem"/>
+    <Property name="IsRespondentMustPay" type="bool" />
+    <Property name="RespondentMustPay" type="AdditionalChildSupportItem"/>
+    <Property name="IsOtherMustPay" type="bool" />
+    <Property name="OtherMustPay" type="AdditionalChildSupportItem"/>
+    <Property name="IsCostsToBePaidEnabled" type="string"/>
+    <Property name="CostsToBePaid" type="string"/>
+  </Model>
+  <Model name="ChildSupport">
+    <Property name="ChildSupportItems" type="List" collectionType="ChildSupportItem"/>
+    <Property name="PayableSchedule" type="PayableSchedule"/>
+    <Property name="OtherPayableScheduleDescription" type="string"/>
+    <Property name="CommencingDate" type="DateTime"/>
+    <Property name="PaidByPerson" type="Designation"/>
+    <Property name="PaidToPerson" type="Designation"/>
+    <Property name="IsMandatoryAdditionalChildSupportEnabled"/>
+    <Property name="IsChildCareRelatedToEmploymentEnabled" type="bool"/>
+    <Property name="ChildCareRelatedToEmployment" type="AdditionalPayment"/>
+    <Property name="IsReasonableUninsuredHealthCareEnabled" type="true"/>
+    <Property name="ReasonableUninsuredHealthCare" type="AdditionalPayment"/>
+    <Property name="IsAdditionalChildSupportEnabled" type="bool"/>
+    <Property name="IsEducationalCostsEnabled" type="bool"/>
+    <Property name="EducationalCosts" type="AdditionalPayment"/>
+    <Property name="IsTravelExpensesEnabled" type="bool"/>
+    <Property name="TravelExpenses" type="AdditionalPayment"/>
+    <Property name="IsNonGuidlineOrder" type="bool"/>
+    <Property name="TotalChildSupportPerMonth" type="decimal"/>
+    <Property name="TotalBaseChildPerMonth" type="decimal"/>
+    <Property name="AdditionalChildPerMonth" type="decimal"/>
+  </Model>
+  <Model name="FL342">
+    <Property name="IsAttachedToFOAH" type="bool"/>
+    <Property name="IsAttachedToDVRO" type="bool"/>
+    <Property name="IsAttachedToJudjement" type="bool"/>
+    <Property name="IsAttachedToOther" type="bool"/>
+    <Property name="OtherDescription" type="string"/>
+    <Property name="IsPrintoutAttached" type="bool"/>
+    <Property name="IsIncomeEnabled" type="bool"/>
+    <Property name="Incomes" type="List" collectionType="IncomeItem"/>
+    <Property name="IsTimeShareEnabled" type="bool"/>
+    <Property name="TimeShare" type="TimeShare"/>
+    <Property name="IsHardshipsEnabled" type="bool"/>
+    <Property name="HardshipItems" type="List" collectionType="HardshipItem"/>
+    <Property name="IsLowIncomeAdjustmentEnabled" type="bool"/>
+    <Property name="LowIncomeAdjustment" type="LowIncomeAdjustment"/>
+    <Property name="IsChildSupportEnabled" type="bool"/>
+  </Model>
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="ModelsDef">
