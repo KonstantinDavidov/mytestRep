@@ -49,8 +49,7 @@
     					<RowDefinition Height="Auto"/>
     				</Grid.RowDefinitions>
     				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Party1" VerticalAlignment="Center"/>
-    				<TextBox Height="21.933" TextWrapping="Wrap" Text="TextBox" Grid.Column="1"/>
-    				<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="2"/>
+                    <TextBox TextWrapping="Wrap" Text="{Binding Path=SelectedHearing.CourtCase.Party1.FullName, Mode=OneWay}" Grid.Column="1" Grid.ColumnSpan="2"/>
     				<CheckBox Content="Present" Margin="0,0,-0.001,0" Grid.Column="3" VerticalAlignment="Center"/>
     				<CheckBox Content="Sworn" Margin="0,0,-0.001,0" VerticalAlignment="Center" Grid.Column="4"/>
     				<TextBox Grid.ColumnSpan="3" Height="21.933" TextWrapping="Wrap" Text="TextBox" Grid.Column="5"/>
@@ -74,9 +73,8 @@
     					<RowDefinition Height="Auto"/>
     					<RowDefinition Height="Auto"/>
     				</Grid.RowDefinitions>
-    				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Party" VerticalAlignment="Center"/>
-    				<TextBox Height="21.933" TextWrapping="Wrap" Text="TextBox" Grid.Column="1"/>
-    				<TextBox TextWrapping="Wrap" Text="TextBox" Grid.Column="2"/>
+    				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Party2" VerticalAlignment="Center"/>
+                    <TextBox TextWrapping="Wrap" Text="{Binding Path=SelectedHearing.CourtCase.Party2.FullName, Mode=OneWay}" Grid.Column="1" Grid.ColumnSpan="2"/>
     				<CheckBox Content="Present" Margin="0,0,-0.001,0" Grid.Column="3" VerticalAlignment="Center"/>
     				<CheckBox Content="Sworn" Margin="0,0,-0.001,0" VerticalAlignment="Center" Grid.Column="4"/>
     				<TextBox Grid.ColumnSpan="3" Height="21.933" TextWrapping="Wrap" Text="TextBox" Grid.Column="5"/>

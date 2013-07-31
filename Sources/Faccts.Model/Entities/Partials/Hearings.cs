@@ -22,7 +22,6 @@ namespace Faccts.Model.Entities
                 this.HearingDate = dto.HearingDate;
                 this.Courtrooms = new Courtrooms(dto.Courtroom);
                 this.CourtDepartment = new CourtDepartment(dto.Department);
-                this.Judge = dto.Judge;
                 this.HearingIssue = new HearingIssue(dto.HearingIssues);
                 this.Session = dto.Session;
                 //this.CourtOrders = dto.CourtOrders.Select(x => new CourtOrders(x));
@@ -45,11 +44,22 @@ namespace Faccts.Model.Entities
                 HearingDate = this.HearingDate,
                 Courtroom = this.Courtrooms.ConvertToDTO(),
                 Department = this.CourtDepartment.ConvertToDTO(),
-                Judge = this.Judge,
                 HearingIssues = this.HearingIssue.ConvertToDTO(),
                 Session = this.Session,
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
             };
+        }
+
+        public string Judge
+        {
+            get
+            {
+                if (this.Courtroom_Id.HasValue && this.Courtrooms != null)
+                {
+                    return this.Courtrooms.JudgeName;
+                }
+                return string.Empty;
+            }
         }
 
     }

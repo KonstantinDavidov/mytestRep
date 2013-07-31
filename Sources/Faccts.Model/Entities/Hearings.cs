@@ -56,7 +56,6 @@ namespace Faccts.Model.Entities
     			Observable.Merge<Object>(
     				this.ObservableForProperty(x => x.Id)
     				,this.ObservableForProperty(x => x.HearingDate)
-    				,this.ObservableForProperty(x => x.Judge)
     				,this.ObservableForProperty(x => x.Courtroom_Id)
     				,this.ObservableForProperty(x => x.Department_Id)
     				,this.ObservableForProperty(x => x.Session)
@@ -182,22 +181,6 @@ namespace Faccts.Model.Entities
             }
         }
         private System.DateTime _hearingDate;
-    
-        [DataMember]
-        public string Judge
-        {
-            get { return _judge; }
-            set
-            {
-                if (_judge != value)
-                {
-    				OnPropertyChanging("Judge");
-                    _judge = value;
-                    OnPropertyChanged("Judge");
-                }
-            }
-        }
-        private string _judge;
     
         [DataMember]
         public Nullable<long> Courtroom_Id

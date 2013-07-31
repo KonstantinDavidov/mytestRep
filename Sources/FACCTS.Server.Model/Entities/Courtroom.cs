@@ -20,6 +20,9 @@ namespace FACCTS.Server.Model.DataModel
 
         public long Id { get; set; }
 
+        [StringLength(250)]
+        public string JudgeName { get; set; }
+
         [NotMapped]
         public ObjectState State { get; set; }
     }

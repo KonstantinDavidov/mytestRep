@@ -27,9 +27,6 @@ namespace FACCTS.Server.Model.DataModel
 
         public virtual CourtDepartment Department { get; set; }
 
-        [StringLength(250)]
-        public string Judge { get; set; }
-
         public HearingIssue HearingIssues { get; set; }
 
         public DocketSession Session { get; set; }

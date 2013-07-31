@@ -47,6 +47,8 @@ namespace FACCTS.Server.Model.Enums
 
         FL342 = 13,
 
-        FL343 = 14
+        FL343 = 14,
+
+        FL344 = 15
     }
 }

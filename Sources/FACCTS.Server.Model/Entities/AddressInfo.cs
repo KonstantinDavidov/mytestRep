@@ -24,5 +24,7 @@ namespace FACCTS.Server.Model.DataModel
 
         [DataType(DataType.PhoneNumber)]
         public string Fax { get; set; }
+
+        public AddressType? AddressType { get; set; }
     }
 }

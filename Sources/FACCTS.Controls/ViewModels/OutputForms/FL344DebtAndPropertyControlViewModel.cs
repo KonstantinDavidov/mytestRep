@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Controls.ViewModels
 {
-    public class FL344DebtAndPropertyControlViewModel:ViewModelBase
+    public class FL344DebtAndPropertyControlViewModel:CourtOrderBase
     {
         public FL344DebtAndPropertyControlViewModel()
         {
             DisplayName = "FL344 Debt Property Control";
+            OrderType = Server.Model.Enums.CourtOrdersTypes.FL344;
         }
     }
 }

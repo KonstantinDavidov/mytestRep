@@ -35,7 +35,7 @@ namespace FACCTS.Controls.ViewModels
             {
                 if (_masterOrdersList == null)
                 {
-                    _masterOrdersList = EnumDescript<FACCTS.Server.Model.Enums.CourtOrdersTypes>.GetList<FACCTS.Server.Model.Enums.CourtOrdersTypes>();
+                    _masterOrdersList = EnumDescript<FACCTS.Server.Model.Enums.CourtOrdersTypes>.GetList();
                 }
                 return _masterOrdersList;
             }

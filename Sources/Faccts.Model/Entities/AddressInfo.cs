@@ -36,6 +36,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.ZipCode)
     				,this.ObservableForProperty(x => x.Phone)
     				,this.ObservableForProperty(x => x.Fax)
+    				,this.ObservableForProperty(x => x.AddressType)
     			).
     			Subscribe(_ =>
     			{
@@ -185,6 +186,23 @@ namespace Faccts.Model.Entities
             }
         }
         private string _fax;
+    
+        [DataMember]
+        public Nullable<FACCTS.Server.Model.Enums.AddressType> AddressType
+        {
+            get { return _addressType; }
+            set
+            {
+                if (_addressType != value)
+                {
+                    OnComplexPropertyChanging();
+    				OnPropertyChanging("AddressType");
+                    _addressType = value;
+                    OnPropertyChanged("AddressType");
+                }
+            }
+        }
+        private Nullable<FACCTS.Server.Model.Enums.AddressType> _addressType;
 
         #endregion
 
@@ -237,6 +255,7 @@ namespace Faccts.Model.Entities
             changeTracker.RecordOriginalValue(String.Format(CultureInfo.InvariantCulture, "{0}.ZipCode", parentPropertyName), complexObject == null ? null : (object)complexObject.ZipCode);
             changeTracker.RecordOriginalValue(String.Format(CultureInfo.InvariantCulture, "{0}.Phone", parentPropertyName), complexObject == null ? null : (object)complexObject.Phone);
             changeTracker.RecordOriginalValue(String.Format(CultureInfo.InvariantCulture, "{0}.Fax", parentPropertyName), complexObject == null ? null : (object)complexObject.Fax);
+            changeTracker.RecordOriginalValue(String.Format(CultureInfo.InvariantCulture, "{0}.AddressType", parentPropertyName), complexObject == null ? null : (object)complexObject.AddressType);
         }
 
         #endregion

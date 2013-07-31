@@ -96,6 +96,8 @@
         <AssociationConnector Association="FACCTS_DBModel.HearingsCaseHistory" />
         <AssociationConnector Association="FACCTS_DBModel.CaseHistoryUser" />
         <AssociationConnector Association="FACCTS_DBModel.CourtPartyAttorneys" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.OrderBase" Width="1.5" PointX="7.5" PointY="10.25" />
+        <AssociationConnector Association="FACCTS_DBModel.CourtOrdersOrderBase" />
       </Diagram>
       <Diagram DiagramId="d16b781b547641eeb332d8cb3d0f49f3" Name="CourtOrders" ZoomLevel="80" >
         <EntityTypeShape EntityType="FACCTS_DBModel.ConductROSection" Width="1.5" PointX="6.875" PointY="2" />
@@ -219,6 +221,14 @@
         <AssociationConnector Association="FACCTS_DBModel.EA130ROOrderServiceFeesEA130Section" />
         <AssociationConnector Association="FACCTS_DBModel.EA130ROOrderOtherOrdersROSection" />
         <AssociationConnector Association="FACCTS_DBModel.EA130ROOrderExpirationSection" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.OrderBase" Width="1.5" PointX="15.625" PointY="4.25" />
+        <InheritanceConnector EntityType="FACCTS_DBModel.CH110TROOrder" />
+        <InheritanceConnector EntityType="FACCTS_DBModel.DV110TROOrder" />
+        <InheritanceConnector EntityType="FACCTS_DBModel.EA110TROOrder" />
+        <InheritanceConnector EntityType="FACCTS_DBModel.EA130ROOrder" />
+        <InheritanceConnector EntityType="FACCTS_DBModel.DV130ROOrder" />
+        <InheritanceConnector EntityType="FACCTS_DBModel.CH130ROOrder" />
+        <InheritanceConnector EntityType="FACCTS_DBModel.CH130ROOrder" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

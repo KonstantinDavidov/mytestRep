@@ -815,7 +815,6 @@ namespace FACCTS.Server.Data
             var hearing = new Hearing()
                 {
                     HearingDate = DateTime.Now,
-                    Judge = "Dredd",
                     HearingIssues = new HearingIssue()
                     {
                         ChildCustodyOrChildVisitation = true,
@@ -865,11 +864,13 @@ namespace FACCTS.Server.Data
                     {
                         new Courtroom()
                         {
-                            RoomName = "Courtroom A"
+                            RoomName = "Courtroom A",
+                            JudgeName = "Thomas Jefferson",
                         },
                         new Courtroom()
                         {
-                            RoomName = "Courtroom B"
+                            RoomName = "Courtroom B",
+                            JudgeName = "George Harrison",
                         }
                     }
                 },
@@ -884,7 +885,8 @@ namespace FACCTS.Server.Data
                     {
                         new Courtroom()
                         {
-                            RoomName = "Courtroom 1"
+                            RoomName = "Courtroom 1",
+                            JudgeName = "Clara Zetkin",
                         }
                     }
                 }

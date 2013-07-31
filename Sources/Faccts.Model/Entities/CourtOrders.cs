@@ -24,6 +24,7 @@ namespace Faccts.Model.Entities
     [DataContract(IsReference = true)]
     [KnownType(typeof(CourtOrders))]
     [KnownType(typeof(Hearings))]
+    [KnownType(typeof(OrderBase))]
     public partial class CourtOrders: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -60,6 +61,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.HearingId)
     				,this.ObservableForProperty(x => x.ParentOrder.IsDirty)
     				,this.ObservableForProperty(x => x.Hearings.IsDirty)
+    				,this.ObservableForProperty(x => x.InnerOrder.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -163,7 +165,7 @@ namespace Faccts.Model.Entities
         private long _id;
     
         [DataMember]
-        public int OrderType
+        public FACCTS.Server.Model.Enums.CourtOrdersTypes OrderType
         {
             get { return _orderType; }
             set
@@ -176,7 +178,7 @@ namespace Faccts.Model.Entities
                 }
             }
         }
-        private int _orderType;
+        private FACCTS.Server.Model.Enums.CourtOrdersTypes _orderType;
     
         [DataMember]
         public Nullable<long> ParentOrderId
@@ -349,6 +351,24 @@ namespace Faccts.Model.Entities
             }
         }
         private Hearings _hearings;
+    
+        [DataMember]
+        public OrderBase InnerOrder
+        {
+            get { return _innerOrder; }
+            set
+            {
+                if (!ReferenceEquals(_innerOrder, value))
+                {
+                    var previousValue = _innerOrder;
+    				OnNavigationPropertyChanging("InnerOrder");
+                    _innerOrder = value;
+                    FixupInnerOrder(previousValue);
+                    OnNavigationPropertyChanged("InnerOrder");
+                }
+            }
+        }
+        private OrderBase _innerOrder;
 
         #endregion
 
@@ -460,6 +480,7 @@ namespace Faccts.Model.Entities
             Attachments.Clear();
             ParentOrder = null;
             Hearings = null;
+            InnerOrder = null;
         }
 
         #endregion
@@ -539,6 +560,31 @@ namespace Faccts.Model.Entities
                 if (Hearings != null && !Hearings.ChangeTracker.ChangeTrackingEnabled)
                 {
                     Hearings.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupInnerOrder(OrderBase previousValue)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("InnerOrder")
+                    && (ChangeTracker.OriginalValues["InnerOrder"] == InnerOrder))
+                {
+                    ChangeTracker.OriginalValues.Remove("InnerOrder");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("InnerOrder", previousValue);
+                }
+                if (InnerOrder != null && !InnerOrder.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    InnerOrder.StartTracking();
                 }
             }
         }

@@ -155,3 +155,6 @@ $RECYCLE.BIN/
 
 # NuGet Packages Directory
 packages
+
+# Logs folders
+Sources/FACCTS.Server/Logs
