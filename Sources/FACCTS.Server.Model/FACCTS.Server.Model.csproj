@@ -132,6 +132,8 @@
     <Compile Include="Enums\CCPORStatus.cs" />
     <Compile Include="Enums\Custody.cs" />
     <Compile Include="Enums\PartyFor.cs" />
+    <Compile Include="Reporting\Entities\AdditionalChildSupportItem.cs" />
+    <Compile Include="Reporting\Entities\ChildSupportItem.cs" />
     <Compile Include="Reporting\Entities\CustodyParent.cs" />
     <Compile Include="Enums\Designation.cs" />
     <Compile Include="Enums\Firearm.cs" />
@@ -167,9 +169,13 @@
     <Compile Include="Reporting\Entities\DV130.cs" />
     <Compile Include="Reporting\Entities\EA110.cs" />
     <Compile Include="Reporting\Entities\EA130.cs" />
+    <Compile Include="Reporting\Entities\HardshipItem.cs" />
+    <Compile Include="Reporting\Entities\Hardship.cs" />
+    <Compile Include="Reporting\Entities\IncomeItem.cs" />
     <Compile Include="Reporting\Entities\LawersFeeAndCourtCosts.cs" />
     <Compile Include="Reporting\Entities\NoServiceFee.cs" />
     <Compile Include="Reporting\Entities\PartyEnum.cs" />
+    <Compile Include="Reporting\Entities\PayableSchedule.cs" />
     <Compile Include="Reporting\Entities\PermanentOrder.cs" />
     <Compile Include="Reporting\Entities\SupervisionProviderType.cs" />
     <Compile Include="Reporting\Entities\TemporaryOrder.cs" />

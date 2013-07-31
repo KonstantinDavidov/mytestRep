@@ -557,7 +557,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public bool IsDebtPaymentState
+		public OrderRestrictionState DebtPaymentState
 		{
 			get; set;
 		}
@@ -1973,6 +1973,281 @@ namespace FACCTS.Server.Model.OrderModels
 		}
 		
 		public bool IsFinancialAbuseInvolved
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class FL344
+	{
+		public bool IsRestrainedOrdersEnabled
+		{
+			get; set;
+		}
+		
+		public Designation RestrainedPerson
+		{
+			get; set;
+		}
+		
+		public bool IsNoDisposing
+		{
+			get; set;
+		}
+		
+		public bool IsMustNotify
+		{
+			get; set;
+		}
+		
+		public bool IsNoChangeCoverages
+		{
+			get; set;
+		}
+		
+		public bool IsNoDebt
+		{
+			get; set;
+		}
+		
+		public bool IsPropertyAndPossesionEnabled
+		{
+			get; set;
+		}
+		
+		public List<DataItem> PropertyAndPossetion
+		{
+			get; set;
+		}
+		
+		public bool IsDebtOrdersEnabled
+		{
+			get; set;
+		}
+		
+		public List<DebtItem> Debts
+		{
+			get; set;
+		}
+		
+		public bool IsOtherPropertyAttached
+		{
+			get; set;
+		}
+		
+		public bool AreThisTemporaryOrders
+		{
+			get; set;
+		}
+		
+		public OtherOrders OtherOrders
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class TimeShare
+	{
+		public byte ChildrenNumber
+		{
+			get; set;
+		}
+		
+		public byte TimeSpentWithPetitioner
+		{
+			get; set;
+		}
+		
+		public byte TimeSpentWithRespondent
+		{
+			get; set;
+		}
+		
+		public byte TimeSpentWithOther
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class LowIncomeAdjustment
+	{
+		public bool IsLowIncomeAdjustmentApplies
+		{
+			get; set;
+		}
+		
+		public string DoesNotApplyReasonDescription
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class AdditionalPayment
+	{
+		public bool IsPetitionerMustPay
+		{
+			get; set;
+		}
+		
+		public AdditionalChildSupportItem PetitionerMustPay
+		{
+			get; set;
+		}
+		
+		public bool IsRespondentMustPay
+		{
+			get; set;
+		}
+		
+		public AdditionalChildSupportItem RespondentMustPay
+		{
+			get; set;
+		}
+		
+		public bool IsOtherMustPay
+		{
+			get; set;
+		}
+		
+		public AdditionalChildSupportItem OtherMustPay
+		{
+			get; set;
+		}
+		
+		public string IsCostsToBePaidEnabled
+		{
+			get; set;
+		}
+		
+		public string CostsToBePaid
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class ChildSupport
+	{
+		public List<ChildSupportItem> ChildSupportItems
+		{
+			get; set;
+		}
+		
+		public PayableSchedule PayableSchedule
+		{
+			get; set;
+		}
+		
+		public string OtherPayableScheduleDescription
+		{
+			get; set;
+		}
+		
+		public DateTime CommencingDate
+		{
+			get; set;
+		}
+		
+		public Designation PaidByPerson
+		{
+			get; set;
+		}
+		
+		public Designation PaidToPerson
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class FL342
+	{
+		public bool IsAttachedToFOAH
+		{
+			get; set;
+		}
+		
+		public bool IsAttachedToDVRO
+		{
+			get; set;
+		}
+		
+		public bool IsAttachedToJudjement
+		{
+			get; set;
+		}
+		
+		public bool IsAttachedToOther
+		{
+			get; set;
+		}
+		
+		public string OtherDescription
+		{
+			get; set;
+		}
+		
+		public bool IsPrintoutAttached
+		{
+			get; set;
+		}
+		
+		public bool IsNonGuidlineOrder
+		{
+			get; set;
+		}
+		
+		public bool IsIncomeEnabled
+		{
+			get; set;
+		}
+		
+		public List<IncomeItem> Incomes
+		{
+			get; set;
+		}
+		
+		public bool IsTimeShareEnabled
+		{
+			get; set;
+		}
+		
+		public TimeShare TimeShare
+		{
+			get; set;
+		}
+		
+		public bool IsHardshipsEnabled
+		{
+			get; set;
+		}
+		
+		public List<HardshipItem> HardshipItems
+		{
+			get; set;
+		}
+		
+		public bool IsLowIncomeAdjustmentEnabled
+		{
+			get; set;
+		}
+		
+		public LowIncomeAdjustment LowIncomeAdjustment
+		{
+			get; set;
+		}
+		
+		public bool IsChildSupportEnabled
 		{
 			get; set;
 		}
