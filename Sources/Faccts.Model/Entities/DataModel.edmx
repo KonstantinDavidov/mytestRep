@@ -503,6 +503,10 @@
       <End Role="CourtParty" EntitySet="CourtParty" />
       <End Role="Attorneys" EntitySet="PersonBaseSet_Attorneys" />
     </AssociationSet>
+    <AssociationSet Name="CourtOrdersOrderBase" Association="FACCTS_DBModel.Store.CourtOrdersOrderBase">
+      <End Role="CourtOrders" EntitySet="CourtOrders" />
+      <End Role="OrderBase" EntitySet="OrderBaseSet" />
+    </AssociationSet>
     <AssociationSet Name="FK_Attorneys_inherits_PersonBase" Association="FACCTS_DBModel.Store.FK_Attorneys_inherits_PersonBase">
       <End Role="PersonBase" EntitySet="PersonBaseSet" />
       <End Role="Attorneys" EntitySet="PersonBaseSet_Attorneys" />
@@ -788,6 +792,7 @@
     <Property Name="AddressInfo_ZipCode" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AddressInfo_Phone" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AddressInfo_Fax" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AddressInfo_AddressType" Type="int" Nullable="true" />
     <Property Name="Designation" Type="int" Nullable="true" />
     <Property Name="IsProPer" Type="bit" Nullable="false" />
     <Property Name="AttorneysId" Type="bigint" Nullable="true" />
@@ -799,6 +804,7 @@
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RoomName" Type="nvarchar" Nullable="true" MaxLength="100" />
     <Property Name="CourtLocation_Id" Type="bigint" Nullable="true" />
+    <Property Name="JudgeName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Delegation">
     <Key>
@@ -1045,7 +1051,6 @@
     </Key>
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="HearingDate" Type="datetime" Nullable="false" />
-    <Property Name="Judge" Type="nvarchar" Nullable="true" MaxLength="250" />
     <Property Name="Courtroom_Id" Type="bigint" Nullable="true" />
     <Property Name="HearingIssue_PermanentRO" Type="bit" Nullable="false" />
     <Property Name="HearingIssue_ChildCustodyOrChildVisitation" Type="bit" Nullable="false" />
@@ -1088,6 +1093,7 @@
     <Property Name="AddressInfo_ZipCode" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AddressInfo_Phone" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AddressInfo_Fax" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AddressInfo_AddressType" Type="int" Nullable="true" />
     <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
     <Property Name="PersonType" Type="int" Nullable="false" />
   </EntityType>
@@ -2744,6 +2750,18 @@
       </Principal>
       <Dependent Role="CourtParty">
         <PropertyRef Name="AttorneysId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CourtOrdersOrderBase">
+    <End Role="CourtOrders" Type="FACCTS_DBModel.Store.CourtOrders" Multiplicity="1" />
+    <End Role="OrderBase" Type="FACCTS_DBModel.Store.OrderBaseSet" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CourtOrders">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="OrderBase">
+        <PropertyRef Name="Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -5315,6 +5333,14 @@
         <Association Name="CourtOrdersOrderBase">
           <End Type="FACCTS_DBModel.CourtOrders" Role="CourtOrders" Multiplicity="1" />
           <End Type="FACCTS_DBModel.OrderBase" Role="OrderBase" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="CourtOrders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrderBase">
+              <PropertyRef Name="Id" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -5511,6 +5537,7 @@
             <ScalarProperty Name="ZipCode" ColumnName="AddressInfo_ZipCode" />
             <ScalarProperty Name="Phone" ColumnName="AddressInfo_Phone" />
             <ScalarProperty Name="Fax" ColumnName="AddressInfo_Fax" />
+            <ScalarProperty Name="AddressType" ColumnName="AddressInfo_AddressType" />
           </ComplexProperty>
           <ScalarProperty Name="Designation" ColumnName="Designation" />
           <ScalarProperty Name="IsProPer" ColumnName="IsProPer" />
@@ -5524,6 +5551,7 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="RoomName" ColumnName="RoomName" />
           <ScalarProperty Name="CourtLocation_Id" ColumnName="CourtLocation_Id" />
+          <ScalarProperty Name="JudgeName" ColumnName="JudgeName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -5839,6 +5867,7 @@
             <ScalarProperty Name="ZipCode" ColumnName="AddressInfo_ZipCode" />
             <ScalarProperty Name="Phone" ColumnName="AddressInfo_Phone" />
             <ScalarProperty Name="Fax" ColumnName="AddressInfo_Fax" />
+            <ScalarProperty Name="AddressType" ColumnName="AddressInfo_AddressType" />
           </ComplexProperty>
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="PersonType" ColumnName="PersonType" />

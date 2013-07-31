@@ -39,6 +39,15 @@ namespace FACCTS.Controls.ViewModels
                     this.NotifyOfPropertyChange(() => CanDrop);
                     this.NotifyOfPropertyChange(() => CanDismiss);
                 });
+            HearingsChanged = Observable.FromEvent<System.Collections.Specialized.NotifyCollectionChangedEventHandler, System.Collections.Specialized.NotifyCollectionChangedEventArgs>(handler =>
+            {
+                System.Collections.Specialized.NotifyCollectionChangedEventHandler eh = (sender, e) =>
+                {
+                    handler(e);
+                };
+                return eh;
+            }
+            , a => DataContainer.Hearings.CollectionChanged += a, a => DataContainer.Hearings.CollectionChanged -= a);
                 
         }
 
@@ -48,14 +57,14 @@ namespace FACCTS.Controls.ViewModels
             this.NotifyOfPropertyChange(() => CourtCases);
         }
 
-        private TrackableCollection<CourtCase> _courtCases;
-        public TrackableCollection<CourtCase> CourtCases
+        private ReactiveCollection<CourtCase> _courtCases;
+        public ReactiveCollection<CourtCase> CourtCases
         {
             get
             {
                 if (this.IsAuthenticated && _courtCases == null)
                 {
-                    _courtCases = DataContainer.CourtCases;
+                    _courtCases = DataContainer.CourtCases.CreateDerivedCollection(x => x, filter: x => !x.HasDocket, signalReset: this.WhenAny(y => y.CollectionChangedNotifier, y => y));
                 }
                 return _courtCases;
             }
@@ -93,6 +102,8 @@ namespace FACCTS.Controls.ViewModels
             _windowManager.ShowDialog(vm);
         }
 
+        protected IObservable<System.Collections.Specialized.NotifyCollectionChangedEventArgs> HearingsChanged;
+
         private TrackableCollection<Hearings> _hearings;
         public TrackableCollection<Hearings> Hearings
         {
@@ -100,16 +111,8 @@ namespace FACCTS.Controls.ViewModels
             {
                 if (_hearings == null)
                 {
-                    var subs = Observable.FromEvent<System.Collections.Specialized.NotifyCollectionChangedEventHandler, System.Collections.Specialized.NotifyCollectionChangedEventArgs>(handler =>
-                    {
-                        System.Collections.Specialized.NotifyCollectionChangedEventHandler eh = (sender, e) =>
-                            {
-                                handler(e);
-                            };
-                        return eh;
-                    }
-                    , a => DataContainer.Hearings.CollectionChanged += a, a => DataContainer.Hearings.CollectionChanged -= a);
-                    subs.Subscribe(x =>
+                    
+                    HearingsChanged.Subscribe(x =>
                         {
                             if (IsRefreshing)
                                 return;
@@ -125,6 +128,7 @@ namespace FACCTS.Controls.ViewModels
                                     {
                                         item.CourtCase = CurrentCourtCase;
                                         CurrentCourtCase.AssignNewHearing(item);
+                                        RefreshDocket();
                                         return ++index;
                                     }
                                     );
