@@ -54,6 +54,7 @@ namespace Faccts.Model.Entities
     				this.ObservableForProperty(x => x.Id)
     				,this.ObservableForProperty(x => x.RoomName)
     				,this.ObservableForProperty(x => x.CourtLocation_Id)
+    				,this.ObservableForProperty(x => x.JudgeName)
     				,this.ObservableForProperty(x => x.CourtLocations.IsDirty)
     			).
     			Subscribe(_ =>
@@ -196,6 +197,22 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<long> _courtLocation_Id;
+    
+        [DataMember]
+        public string JudgeName
+        {
+            get { return _judgeName; }
+            set
+            {
+                if (_judgeName != value)
+                {
+    				OnPropertyChanging("JudgeName");
+                    _judgeName = value;
+                    OnPropertyChanged("JudgeName");
+                }
+            }
+        }
+        private string _judgeName;
 
         #endregion
 

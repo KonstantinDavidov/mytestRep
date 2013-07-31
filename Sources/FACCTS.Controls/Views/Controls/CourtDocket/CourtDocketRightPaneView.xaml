@@ -81,7 +81,7 @@
 				<DataGridTextColumn Binding="{Binding CourtCase.Party1.FullName}" ClipboardContentBinding="{x:Null}" Header="Party 1" CanUserResize="False" Width="0.2*" IsReadOnly="True"/>
 				<DataGridTextColumn Binding="{Binding CourtCase.Party2.FullName}" ClipboardContentBinding="{x:Null}" Header="Party 2" CanUserResize="False" Width="0.2*" IsReadOnly="True"/>
 				<DataGridCheckBoxColumn Binding="{Binding CourtCase.Children.Count, ConverterParameter=0, Converter={StaticResource InvertedInt32ToBooleanConverter}, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Children" CanUserResize="False" Width="0.08*" IsReadOnly="True"/>
-				<DataGridTextColumn Binding="{Binding Judge, Mode=TwoWay}" ClipboardContentBinding="{x:Null}" Header="Judge" CanUserResize="False" Width="0.12*"/>
+				<DataGridTextColumn Binding="{Binding Judge, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Judge" CanUserResize="False" Width="0.12*" IsReadOnly="True"/>
 			</DataGrid.Columns>
 		</DataGrid>
 		<Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.RowSpan="2" Grid.Row="2" CornerRadius="2" Style="{DynamicResource OrdinalBorder}">

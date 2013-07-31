@@ -3797,6 +3797,7 @@
           <Property Type="Int64" Name="CourtLocation_Id" />
           <NavigationProperty Name="CourtLocations" Relationship="FACCTS_DBModel.FK_dbo_Courtrooms_dbo_CourtLocations_CourtLocation_Id" FromRole="Courtrooms" ToRole="CourtLocations" />
           <NavigationProperty Name="Hearings" Relationship="FACCTS_DBModel.FK_dbo_Hearings_dbo_Courtrooms_Courtroom_Id" FromRole="Courtrooms" ToRole="Hearings" />
+          <Property Type="String" Name="JudgeName" Nullable="false" />
         </EntityType>
         <EntityType Name="Delegation">
           <Key>
@@ -4170,7 +4171,6 @@
           </Key>
           <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="DateTime" Name="HearingDate" Nullable="false" Precision="3" />
-          <Property Type="String" Name="Judge" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Type="Int64" Name="Courtroom_Id" />
           <NavigationProperty Name="Courtrooms" Relationship="FACCTS_DBModel.FK_dbo_Hearings_dbo_Courtrooms_Courtroom_Id" FromRole="Hearings" ToRole="Courtrooms" />
           <Property Name="HearingIssue" Type="FACCTS_DBModel.HearingIssue" Nullable="false" />
@@ -5735,7 +5735,6 @@
           <ScalarProperty Name="CourtCaseId" ColumnName="CourtCaseId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="HearingDate" ColumnName="HearingDate" />
-          <ScalarProperty Name="Judge" ColumnName="Judge" />
           <ScalarProperty Name="Courtroom_Id" ColumnName="Courtroom_Id" />
           <ComplexProperty Name="HearingIssue" TypeName="FACCTS_DBModel.HearingIssue">
             <ScalarProperty Name="PermanentRO" ColumnName="HearingIssue_PermanentRO" />

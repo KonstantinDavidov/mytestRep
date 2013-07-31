@@ -20,7 +20,6 @@ namespace FACCTS.Server.Data.EntityConfigurations
 
             Property(h => h.Id).HasColumnName(DbConsts.ID_COLUMN_NAME);
             Property(h => h.HearingDate).HasColumnName(DbConsts.HEARING_HEARING_DATE_COLUMN_NAME);
-            Property(h => h.Judge).HasColumnName(DbConsts.HEARING_JUDGE_COLUMN_NAME);
             Property(h => h.CourtroomId).HasColumnName(DbConsts.HEARING_COURTROOM_ID_COLUMN_NAME);
             Property(h => h.CourtDepartmentId).HasColumnName(DbConsts.HEARING_COURT_DEPARTMENT_ID_COLUMN_NAME);
             Property(h => h.Session).HasColumnName(DbConsts.HEARING_SESSION_COLUMN_NAME);

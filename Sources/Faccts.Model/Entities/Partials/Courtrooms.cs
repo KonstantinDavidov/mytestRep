@@ -16,6 +16,7 @@ namespace Faccts.Model.Entities
             }
             this.Id = dto.Id;
             this.RoomName = dto.RoomName;
+            this.JudgeName = dto.JudgeName;
             if (dto.CourtLocation != null)
             {
                 this.CourtLocation_Id = dto.CourtLocation.Id;
@@ -33,6 +34,7 @@ namespace Faccts.Model.Entities
                 RoomName = this.RoomName,
                 CourtLocation = this.CourtLocations.ConvertToDTO(),
                 State = (FACCTS.Server.Model.DataModel.ObjectState)(int)this.ChangeTracker.State,
+                JudgeName = this.JudgeName,
             };
         }
 
