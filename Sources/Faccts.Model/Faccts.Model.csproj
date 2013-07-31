@@ -284,6 +284,9 @@
     <Compile Include="Entities\OAuth2Configuration.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\OrderBase.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\OtherOrdersROSection.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
