@@ -177,7 +177,7 @@ namespace FACCTS.Controls.ViewModels
             get
             {
                 if (_selectedHearing == null)
-                    SelectedHearing = CurrentHearings.FirstOrDefault();
+                    _selectedHearing = CurrentHearings.FirstOrDefault();
                 return _selectedHearing;
             }
 
