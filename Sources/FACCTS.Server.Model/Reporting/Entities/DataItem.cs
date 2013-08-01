@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 
 namespace FACCTS.Server.Model.Reporting.Entities
 {
-    public class DataItem
+    public class DataItem : IDataItem
     {
         [XmlAttribute]
         public string Name;

@@ -171,6 +171,8 @@
     <Compile Include="Reporting\Entities\EA130.cs" />
     <Compile Include="Reporting\Entities\HardshipItem.cs" />
     <Compile Include="Reporting\Entities\Hardship.cs" />
+    <Compile Include="Reporting\Entities\IDataItem.cs" />
+    <Compile Include="Reporting\Entities\IDebtPaymentItem.cs" />
     <Compile Include="Reporting\Entities\IncomeItem.cs" />
     <Compile Include="Reporting\Entities\LawersFeeAndCourtCosts.cs" />
     <Compile Include="Reporting\Entities\NoServiceFee.cs" />

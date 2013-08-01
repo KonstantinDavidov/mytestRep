@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.Reporting.Entities
 {
-    public class DebtPaymentItem
+    public class DebtPaymentItem : FACCTS.Server.Model.Reporting.Entities.IDebtPaymentItem
     {
         public string Name { get; set; }
         public ParticipantRole PaymentFor { get; set; }

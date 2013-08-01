@@ -45,7 +45,22 @@ foreach (var item in doc.Root.Elements("Model"))
 	modelType = string.IsNullOrEmpty(modelType) ? "class" : modelType;
 	if(string.IsNullOrEmpty(modelName))continue;#>
 			
-	public partial <#= modelType #> <#= modelName #>
+	public interface I<#= modelName #>
+	{
+		<#
+		foreach (var property in item.Elements("Property"))
+		{
+			string propName =this.GetAttributeValue(property,"name",string.Empty);
+			string type =this.GetPropertyTypeString(property);
+			if(string.IsNullOrEmpty(propName))continue;#>
+
+		<#= type #> <#= propName #>
+		{
+			get; set;
+		}
+		<#}#>
+	}
+	public partial <#= modelType #> <#= modelName #> : I<#= modelName #>
 	{<#
 	
 		foreach (var property in item.Elements("Property"))
@@ -83,10 +98,6 @@ catch(Exception ex){
 	public string GetPropertyTypeString(XElement element){
 		var type = this.GetAttributeValue(element,"type","string");
 		var collectionType = this.GetAttributeValue(element,"collectionType",string.Empty);
-		
-		if(type=="Collection"){
-			return string.Format("ObservableCollection<{0}>",collectionType);
-		}
 		if(type=="List"){
 			return string.Format("List<{0}>",collectionType);
 		}

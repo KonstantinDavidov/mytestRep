@@ -10,7 +10,20 @@ using FACCTS.Server.Model.Reporting;
 namespace FACCTS.Server.Model.OrderModels
 {
 			
-	public partial class OtherOrders
+	public interface IOtherOrders
+	{
+		
+		bool IsEnabled
+		{
+			get; set;
+		}
+		
+		string OtherOrdersDescription
+		{
+			get; set;
+		}
+			}
+	public partial class OtherOrders : IOtherOrders
 	{
 		public bool IsEnabled
 		{
@@ -25,7 +38,45 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class CHConductChoice
+	public interface ICHConductChoice
+	{
+		
+		bool IsNoAbuse
+		{
+			get; set;
+		}
+		
+		bool IsNoContact
+		{
+			get; set;
+		}
+		
+		bool IsDontTryToLocate
+		{
+			get; set;
+		}
+		
+		bool IsInvolveOtherProtected
+		{
+			get; set;
+		}
+		
+		bool IsInvolveOther
+		{
+			get; set;
+		}
+		
+		string OtherDescription
+		{
+			get; set;
+		}
+		
+		bool IsOtherAttached
+		{
+			get; set;
+		}
+			}
+	public partial class CHConductChoice : ICHConductChoice
 	{
 		public bool IsNoAbuse
 		{
@@ -65,7 +116,65 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class CHStayAwayOrders
+	public interface ICHStayAwayOrders
+	{
+		
+		bool IsStayAwayFromPerson
+		{
+			get; set;
+		}
+		
+		bool IsStayAwayFromHome
+		{
+			get; set;
+		}
+		
+		bool IsStayAwayFromVehicle
+		{
+			get; set;
+		}
+		
+		bool IsStayAwayFromChildCare
+		{
+			get; set;
+		}
+		
+		bool IsStayAwayFromChildSchool
+		{
+			get; set;
+		}
+		
+		bool IsStayAwayFromWork
+		{
+			get; set;
+		}
+		
+		bool IsStayAwayFromOtherProtected
+		{
+			get; set;
+		}
+		
+		bool IsStayAwayFromOther
+		{
+			get; set;
+		}
+		
+		bool IsAttachOther
+		{
+			get; set;
+		}
+		
+		string OtherDescription
+		{
+			get; set;
+		}
+		
+		int StayAwayDistance
+		{
+			get; set;
+		}
+			}
+	public partial class CHStayAwayOrders : ICHStayAwayOrders
 	{
 		public bool IsStayAwayFromPerson
 		{
@@ -125,7 +234,65 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class CH130
+	public interface ICH130
+	{
+		
+		bool IsConductChoiceEnabled
+		{
+			get; set;
+		}
+		
+		CHConductChoice ConductChoice
+		{
+			get; set;
+		}
+		
+		bool IsStayAwayOrdersEnabled
+		{
+			get; set;
+		}
+		
+		CHStayAwayOrders StayAwayOrders
+		{
+			get; set;
+		}
+		
+		bool IsNoGuns
+		{
+			get; set;
+		}
+		
+		CAPROSEntry CAPROSEntrySection
+		{
+			get; set;
+		}
+		
+		NoServiceFee NoServiceFeeSection
+		{
+			get; set;
+		}
+		
+		bool? IsPOSGeneral
+		{
+			get; set;
+		}
+		
+		LawersFeeAndCourtCosts LawersFeeAndCourtCostsSection
+		{
+			get; set;
+		}
+		
+		bool IsOtherOrdersAttached
+		{
+			get; set;
+		}
+		
+		string OtherOrderDetail
+		{
+			get; set;
+		}
+			}
+	public partial class CH130 : ICH130
 	{
 		public bool IsConductChoiceEnabled
 		{
@@ -185,7 +352,55 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class CH110
+	public interface ICH110
+	{
+		
+		OrderRestrictionState ConductSectionState
+		{
+			get; set;
+		}
+		
+		CHConductChoice ConductSection
+		{
+			get; set;
+		}
+		
+		OrderRestrictionState StayAwayOrdersState
+		{
+			get; set;
+		}
+		
+		CHStayAwayOrders StayAwayOrders
+		{
+			get; set;
+		}
+		
+		bool IsNoGuns
+		{
+			get; set;
+		}
+		
+		CAPROSEntry CAPROSEntrySection
+		{
+			get; set;
+		}
+		
+		NoServiceFee NoServiceFeeSection
+		{
+			get; set;
+		}
+		
+		bool IsOtherOrdersAttached
+		{
+			get; set;
+		}
+		
+		string OtherOrderDetail
+		{
+			get; set;
+		}
+			}
+	public partial class CH110 : ICH110
 	{
 		public OrderRestrictionState ConductSectionState
 		{
@@ -235,7 +450,30 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class DVConductChoice
+	public interface IDVConductChoice
+	{
+		
+		bool IsNoAbuse
+		{
+			get; set;
+		}
+		
+		bool IsNoContact
+		{
+			get; set;
+		}
+		
+		bool IsDontTryToLocate
+		{
+			get; set;
+		}
+		
+		bool IsExceptionsExist
+		{
+			get; set;
+		}
+			}
+	public partial class DVConductChoice : IDVConductChoice
 	{
 		public bool IsNoAbuse
 		{
@@ -260,7 +498,65 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class DVStayAwayOrders
+	public interface IDVStayAwayOrders
+	{
+		
+		bool IsStayAwayFromPerson
+		{
+			get; set;
+		}
+		
+		bool IsStayAwayFromHome
+		{
+			get; set;
+		}
+		
+		bool IsStayAwayFromVehicle
+		{
+			get; set;
+		}
+		
+		bool IsStayAwayFromChildCareOrSchool
+		{
+			get; set;
+		}
+		
+		bool IsStayAwayFromPersonSchool
+		{
+			get; set;
+		}
+		
+		bool IsStayAwayFromWork
+		{
+			get; set;
+		}
+		
+		bool IsStayAwayFromOtherProtected
+		{
+			get; set;
+		}
+		
+		bool IsStayAwayFromOther
+		{
+			get; set;
+		}
+		
+		bool IsAttachOther
+		{
+			get; set;
+		}
+		
+		string OtherDescription
+		{
+			get; set;
+		}
+		
+		int StayAwayDistance
+		{
+			get; set;
+		}
+			}
+	public partial class DVStayAwayOrders : IDVStayAwayOrders
 	{
 		public bool IsStayAwayFromPerson
 		{
@@ -320,7 +616,20 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class DVAnimals
+	public interface IDVAnimals
+	{
+		
+		int StayAwayAnimalsDistance
+		{
+			get; set;
+		}
+		
+		string AnimalsDescription
+		{
+			get; set;
+		}
+			}
+	public partial class DVAnimals : IDVAnimals
 	{
 		public int StayAwayAnimalsDistance
 		{
@@ -335,7 +644,20 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class DVPropertyRestraint
+	public interface IDVPropertyRestraint
+	{
+		
+		bool IsProtectedHasPropertyRestraint
+		{
+			get; set;
+		}
+		
+		bool IsRestrainedHasPropertyRestraint
+		{
+			get; set;
+		}
+			}
+	public partial class DVPropertyRestraint : IDVPropertyRestraint
 	{
 		public bool IsProtectedHasPropertyRestraint
 		{
@@ -350,14 +672,117 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class DV110
+	public interface IDV110
+	{
+		
+		OrderRestrictionState ConductChoiceState
+		{
+			get; set;
+		}
+		
+		IDVConductChoice ConductChoice
+		{
+			get; set;
+		}
+		
+		OrderRestrictionState StayAwayOrdersState
+		{
+			get; set;
+		}
+		
+		IDVStayAwayOrders StayAwayOrders
+		{
+			get; set;
+		}
+		
+		OrderRestrictionState MoveoutState
+		{
+			get; set;
+		}
+		
+		string MoveoutAddress
+		{
+			get; set;
+		}
+		
+		OrderRestrictionState RecordUnlawfulCommunicationsAllowedState
+		{
+			get; set;
+		}
+		
+		OrderRestrictionState AnimalsSectionState
+		{
+			get; set;
+		}
+		
+		IDVAnimals AnimalsSection
+		{
+			get; set;
+		}
+		
+		bool IsNoGuns
+		{
+			get; set;
+		}
+		
+		OrderRestrictionState OtherOrdersState
+		{
+			get; set;
+		}
+		
+		string OtherOrdersDescription
+		{
+			get; set;
+		}
+		
+		bool IsOterordersAttached
+		{
+			get; set;
+		}
+		
+		OrderRestrictionState PropertyControlState
+		{
+			get; set;
+		}
+		
+		List<IDataItem> PropertyControlItems
+		{
+			get; set;
+		}
+		
+		OrderRestrictionState DebtPaymentState
+		{
+			get; set;
+		}
+		
+		List<IDebtPaymentItem> DebtPaymentItems
+		{
+			get; set;
+		}
+		
+		OrderRestrictionState DVPropertyRestraintState
+		{
+			get; set;
+		}
+		
+		IDVPropertyRestraint PropertyRestraint
+		{
+			get; set;
+		}
+		
+		OrderRestrictionState ChildCustodyAndVisitationState
+		{
+			get; set;
+		}
+			}
+	public partial class DV110 : IDV110
 	{
 		public OrderRestrictionState ConductChoiceState
 		{
 			get; set;
 		}
 		
-		public DVConductChoice ConductChoice
+		public IDVConductChoice ConductChoice
 		{
 			get; set;
 		}
@@ -367,7 +792,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public DVStayAwayOrders StayAwayOrders
+		public IDVStayAwayOrders StayAwayOrders
 		{
 			get; set;
 		}
@@ -392,7 +817,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public DVAnimals AnimalsSection
+		public IDVAnimals AnimalsSection
 		{
 			get; set;
 		}
@@ -422,7 +847,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public List<DataItem> PropertyControlItems
+		public List<IDataItem> PropertyControlItems
 		{
 			get; set;
 		}
@@ -432,7 +857,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public List<DebtPaymentItem> DebtPaymentItems
+		public List<IDebtPaymentItem> DebtPaymentItems
 		{
 			get; set;
 		}
@@ -442,7 +867,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public DVPropertyRestraint PropertyRestraint
+		public IDVPropertyRestraint PropertyRestraint
 		{
 			get; set;
 		}
@@ -455,7 +880,115 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class DV130
+	public interface IDV130
+	{
+		
+		bool IsConductChoiceEnabled
+		{
+			get; set;
+		}
+		
+		DVConductChoice ConductChoice
+		{
+			get; set;
+		}
+		
+		bool IsStayAwayOrdersEnabled
+		{
+			get; set;
+		}
+		
+		DVStayAwayOrders StayAwayOrders
+		{
+			get; set;
+		}
+		
+		bool IsPOSProvidedToCourt
+		{
+			get; set;
+		}
+		
+		bool IsMoveoutEnabled
+		{
+			get; set;
+		}
+		
+		string MoveoutAddress
+		{
+			get; set;
+		}
+		
+		bool IsRecordUnlawfulCommunicationsAllowed
+		{
+			get; set;
+		}
+		
+		bool IsAnimalsEnabled
+		{
+			get; set;
+		}
+		
+		DVAnimals Animals
+		{
+			get; set;
+		}
+		
+		OtherOrders OtherOrders
+		{
+			get; set;
+		}
+		
+		bool IsBattererIntervention
+		{
+			get; set;
+		}
+		
+		bool IsNoGuns
+		{
+			get; set;
+		}
+		
+		bool IsPropertyControlEnabled
+		{
+			get; set;
+		}
+		
+		List<DataItem> PropertyControlItems
+		{
+			get; set;
+		}
+		
+		bool IsDebtPaymentEnabled
+		{
+			get; set;
+		}
+		
+		List<DebtPaymentItem> DebtPaymentItems
+		{
+			get; set;
+		}
+		
+		bool IsPropertyRestraintEnabled
+		{
+			get; set;
+		}
+		
+		DVPropertyRestraint PropertyRestraint
+		{
+			get; set;
+		}
+		
+		List<PaymentItem> Costs
+		{
+			get; set;
+		}
+		
+		bool IsChildCustodyAndVisitationEnabled
+		{
+			get; set;
+		}
+			}
+	public partial class DV130 : IDV130
 	{
 		public bool IsConductChoiceEnabled
 		{
@@ -565,7 +1098,25 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class IsNoVisitationForParents
+	public interface IIsNoVisitationForParents
+	{
+		
+		string IsEnabled
+		{
+			get; set;
+		}
+		
+		CustodyParent IsNoVisitationParent
+		{
+			get; set;
+		}
+		
+		string OtherDescription
+		{
+			get; set;
+		}
+			}
+	public partial class IsNoVisitationForParents : IIsNoVisitationForParents
 	{
 		public string IsEnabled
 		{
@@ -585,7 +1136,105 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class VisitationSchedule
+	public interface IVisitationSchedule
+	{
+		
+		bool IsEnabled
+		{
+			get; set;
+		}
+		
+		bool IsWeekendsAvailableForVisitation
+		{
+			get; set;
+		}
+		
+		DateTime WeekendsStartingDate
+		{
+			get; set;
+		}
+		
+		bool IsFirstWeekendAvailableForVisitation
+		{
+			get; set;
+		}
+		
+		bool IsSecondWeekendAvailableForVisitation
+		{
+			get; set;
+		}
+		
+		bool IsThirdWeekendAvailableForVisitation
+		{
+			get; set;
+		}
+		
+		bool IsFourthWeekendAvailableForVisitation
+		{
+			get; set;
+		}
+		
+		bool IsFifthWeekendAvailableForVisitation
+		{
+			get; set;
+		}
+		
+		DayOfWeek FirstAvailableWeekendDay
+		{
+			get; set;
+		}
+		
+		DateTime FirstAvailableWeekendTime
+		{
+			get; set;
+		}
+		
+		DayOfWeek LastAvailableWeekendDay
+		{
+			get; set;
+		}
+		
+		DateTime LastAvailableWeekendTime
+		{
+			get; set;
+		}
+		
+		bool IsWeekdaysAvailableForVisitation
+		{
+			get; set;
+		}
+		
+		DateTime WeekdaysStartingDate
+		{
+			get; set;
+		}
+		
+		DayOfWeek FirstAvailableWeekdayDay
+		{
+			get; set;
+		}
+		
+		DateTime FirstAvailableWeekdayTime
+		{
+			get; set;
+		}
+		
+		DayOfWeek LastAvailableWeekdayDay
+		{
+			get; set;
+		}
+		
+		DateTime LastAvailableWeekdayTime
+		{
+			get; set;
+		}
+		
+		bool IsOtherVisitationAvilable
+		{
+			get; set;
+		}
+			}
+	public partial class VisitationSchedule : IVisitationSchedule
 	{
 		public bool IsEnabled
 		{
@@ -685,7 +1334,60 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class ChildVisitation
+	public interface IChildVisitation
+	{
+		
+		string IsEnabled
+		{
+			get; set;
+		}
+		
+		string IsNoVisitationForParents
+		{
+			get; set;
+		}
+		
+		bool IsAttachedDocumentAvilable
+		{
+			get; set;
+		}
+		
+		int AttachedDocumentPagesCount
+		{
+			get; set;
+		}
+		
+		DateTime AttachedDocumentDate
+		{
+			get; set;
+		}
+		
+		bool IsPartiesMustGoToMediation
+		{
+			get; set;
+		}
+		
+		string MediationDescription
+		{
+			get; set;
+		}
+		
+		CustodyParent VisitationGrantedParent
+		{
+			get; set;
+		}
+		
+		string VisitationGrantedOtherParentDescription
+		{
+			get; set;
+		}
+		
+		VisitationSchedule VisitationScheduleSection
+		{
+			get; set;
+		}
+			}
+	public partial class ChildVisitation : IChildVisitation
 	{
 		public string IsEnabled
 		{
@@ -740,7 +1442,45 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class Transportation
+	public interface ITransportation
+	{
+		
+		string IsEnabled
+		{
+			get; set;
+		}
+		
+		CustodyParent TransportationPickUpPerson
+		{
+			get; set;
+		}
+		
+		string TransportationPickUpPersonOtherDescription
+		{
+			get; set;
+		}
+		
+		string TransportationPickUpLocation
+		{
+			get; set;
+		}
+		
+		CustodyParent TransportationDropOffPerson
+		{
+			get; set;
+		}
+		
+		string TransportationDropOffPersonOtherDescription
+		{
+			get; set;
+		}
+		
+		string TransportationDropOffLocation
+		{
+			get; set;
+		}
+			}
+	public partial class Transportation : ITransportation
 	{
 		public string IsEnabled
 		{
@@ -780,7 +1520,55 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class TravelRestrict
+	public interface ITravelRestrict
+	{
+		
+		string IsEnabled
+		{
+			get; set;
+		}
+		
+		bool IsMomRestrained
+		{
+			get; set;
+		}
+		
+		bool IsDadRestrained
+		{
+			get; set;
+		}
+		
+		bool IsOtherRestrained
+		{
+			get; set;
+		}
+		
+		string OtherRestrainedDescription
+		{
+			get; set;
+		}
+		
+		bool IsUSEscapeDenied
+		{
+			get; set;
+		}
+		
+		bool IsCAEscapeDenied
+		{
+			get; set;
+		}
+		
+		bool IsOtherLocationsEscapeDenied
+		{
+			get; set;
+		}
+		
+		string OtherLocationsDescription
+		{
+			get; set;
+		}
+			}
+	public partial class TravelRestrict : ITravelRestrict
 	{
 		public string IsEnabled
 		{
@@ -830,7 +1618,50 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class ExchangeAndRemoval
+	public interface IExchangeAndRemoval
+	{
+		
+		string IsEnabled
+		{
+			get; set;
+		}
+		
+		Transportation TransportationSection
+		{
+			get; set;
+		}
+		
+		TravelRestrict TravelRestrictSection
+		{
+			get; set;
+		}
+		
+		bool IsChildAbductionRiskExist
+		{
+			get; set;
+		}
+		
+		bool IsDV145Attached
+		{
+			get; set;
+		}
+		
+		bool IsUSCountryOfHabitualResidence
+		{
+			get; set;
+		}
+		
+		bool IsOtherCountryOfHabitualResidence
+		{
+			get; set;
+		}
+		
+		string OtherCountryAsHabitualResidenceDescription
+		{
+			get; set;
+		}
+			}
+	public partial class ExchangeAndRemoval : IExchangeAndRemoval
 	{
 		public string IsEnabled
 		{
@@ -875,7 +1706,30 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class DV140
+	public interface IDV140
+	{
+		
+		List<ChildCustodyItem> ChildCustodyItems
+		{
+			get; set;
+		}
+		
+		ChildVisitation ChildVisitationSection
+		{
+			get; set;
+		}
+		
+		ExchangeAndRemoval ExchangeAndRemovalSection
+		{
+			get; set;
+		}
+		
+		OtherOrders DV140OtherOrders
+		{
+			get; set;
+		}
+			}
+	public partial class DV140 : IDV140
 	{
 		public List<ChildCustodyItem> ChildCustodyItems
 		{
@@ -900,7 +1754,140 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class DV150
+	public interface IDV150
+	{
+		
+		bool IsPartiesMustGoToMediation
+		{
+			get; set;
+		}
+		
+		string MediationPlaceDescription
+		{
+			get; set;
+		}
+		
+		bool IsVisitsSupervised
+		{
+			get; set;
+		}
+		
+		CustodyParent SupervisedPerson
+		{
+			get; set;
+		}
+		
+		string OtherVisitationPersonDescription
+		{
+			get; set;
+		}
+		
+		bool IsExchangesOfChildrenAreSupervised
+		{
+			get; set;
+		}
+		
+		bool IsAllDV140VisitSupervised
+		{
+			get; set;
+		}
+		
+		byte SupervisedVisitsPerWeek
+		{
+			get; set;
+		}
+		
+		byte SupervisedVisitsHours
+		{
+			get; set;
+		}
+		
+		string SupervisedScheduleDescription
+		{
+			get; set;
+		}
+		
+		bool OtherScheduleAttached
+		{
+			get; set;
+		}
+		
+		string ProviderName
+		{
+			get; set;
+		}
+		
+		string ProviderAddress
+		{
+			get; set;
+		}
+		
+		string ProviderPhone
+		{
+			get; set;
+		}
+		
+		SupervisionProviderType ProviderType
+		{
+			get; set;
+		}
+		
+		bool IsMomPay
+		{
+			get; set;
+		}
+		
+		decimal MomPayment
+		{
+			get; set;
+		}
+		
+		bool IsDadPay
+		{
+			get; set;
+		}
+		
+		decimal DadPayment
+		{
+			get; set;
+		}
+		
+		bool IsOtherPay
+		{
+			get; set;
+		}
+		
+		decimal OtherPayment
+		{
+			get; set;
+		}
+		
+		string OtherDescription
+		{
+			get; set;
+		}
+		
+		DateTime? MomContactProviderDate
+		{
+			get; set;
+		}
+		
+		DateTime? DadContactProviderDate
+		{
+			get; set;
+		}
+		
+		string OtherContactProviderDescription
+		{
+			get; set;
+		}
+		
+		string OtherOrdersDescription
+		{
+			get; set;
+		}
+			}
+	public partial class DV150 : IDV150
 	{
 		public bool IsPartiesMustGoToMediation
 		{
@@ -1035,7 +2022,50 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class SuspiciousDoneThings
+	public interface ISuspiciousDoneThings
+	{
+		
+		bool IsEnabled
+		{
+			get; set;
+		}
+		
+		bool IsJobQuited
+		{
+			get; set;
+		}
+		
+		bool IsBankAccountClosed
+		{
+			get; set;
+		}
+		
+		bool IsAssetsLost
+		{
+			get; set;
+		}
+		
+		bool IsHomeSold
+		{
+			get; set;
+		}
+		
+		bool IsLeaseEnded
+		{
+			get; set;
+		}
+		
+		bool IsDocumentsLost
+		{
+			get; set;
+		}
+		
+		bool IsAppliedForDocuments
+		{
+			get; set;
+		}
+			}
+	public partial class SuspiciousDoneThings : ISuspiciousDoneThings
 	{
 		public bool IsEnabled
 		{
@@ -1080,7 +2110,35 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class NegativeHistory
+	public interface INegativeHistory
+	{
+		
+		bool IsEnabled
+		{
+			get; set;
+		}
+		
+		bool IsDomesticViolence
+		{
+			get; set;
+		}
+		
+		bool IsChildAbuse
+		{
+			get; set;
+		}
+		
+		bool IsParentingMissing
+		{
+			get; set;
+		}
+		
+		bool IsDeniedTalking
+		{
+			get; set;
+		}
+			}
+	public partial class NegativeHistory : INegativeHistory
 	{
 		public bool IsEnabled
 		{
@@ -1110,7 +2168,45 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class NecessaryTravelDocuments
+	public interface INecessaryTravelDocuments
+	{
+		
+		bool IsEnabled
+		{
+			get; set;
+		}
+		
+		bool IsTravelItineraryRequired
+		{
+			get; set;
+		}
+		
+		bool IsCopiesOfAirlineTicketsRequired
+		{
+			get; set;
+		}
+		
+		bool IsAddressesAndPhonesRequired
+		{
+			get; set;
+		}
+		
+		bool IsOtherParentAirlineTicketRequired
+		{
+			get; set;
+		}
+		
+		bool IsOtherExist
+		{
+			get; set;
+		}
+		
+		string OtherDescription
+		{
+			get; set;
+		}
+			}
+	public partial class NecessaryTravelDocuments : INecessaryTravelDocuments
 	{
 		public bool IsEnabled
 		{
@@ -1150,7 +2246,25 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class NotifyEmbancyInfo
+	public interface INotifyEmbancyInfo
+	{
+		
+		bool IsEnabled
+		{
+			get; set;
+		}
+		
+		string CountryName
+		{
+			get; set;
+		}
+		
+		int ProvideProofDays
+		{
+			get; set;
+		}
+			}
+	public partial class NotifyEmbancyInfo : INotifyEmbancyInfo
 	{
 		public bool IsEnabled
 		{
@@ -1170,7 +2284,140 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class DV145
+	public interface IDV145
+	{
+		
+		bool IsPastROViolations
+		{
+			get; set;
+		}
+		
+		bool IsNoTiesWithCalifornia
+		{
+			get; set;
+		}
+		
+		SuspiciousDoneThings SuspiciousDoneThingsSection
+		{
+			get; set;
+		}
+		
+		NegativeHistory NegativeHistorySection
+		{
+			get; set;
+		}
+		
+		bool HasCriminalRecord
+		{
+			get; set;
+		}
+		
+		bool HasOtherLocationsTies
+		{
+			get; set;
+		}
+		
+		bool IsPostBondRequered
+		{
+			get; set;
+		}
+		
+		decimal BondAmount
+		{
+			get; set;
+		}
+		
+		bool IsMoveWithoutPermissionDenied
+		{
+			get; set;
+		}
+		
+		RestrainedLocations MoveDenaiedLocations
+		{
+			get; set;
+		}
+		
+		string OtherMoveDenaiedLocationsDescription
+		{
+			get; set;
+		}
+		
+		bool IsTravelWithoutPermissionDenied
+		{
+			get; set;
+		}
+		
+		RestrainedLocations TravelDenaiedLocations
+		{
+			get; set;
+		}
+		
+		string OtherTravelDenaiedLocationsDescription
+		{
+			get; set;
+		}
+		
+		string OtherParentToGivePermission
+		{
+			get; set;
+		}
+		
+		bool IsNotifyOtherStateRequired
+		{
+			get; set;
+		}
+		
+		USAState OtherState
+		{
+			get; set;
+		}
+		
+		bool TravelDocumentsApplyDenied
+		{
+			get; set;
+		}
+		
+		string TurnedInDocuments
+		{
+			get; set;
+		}
+		
+		NecessaryTravelDocuments NecessaryTravelDocumentsSection
+		{
+			get; set;
+		}
+		
+		bool IsNotifyForeignEmbassyRequired
+		{
+			get; set;
+		}
+		
+		bool IsForeignCustodyCourtOrderRequired
+		{
+			get; set;
+		}
+		
+		bool IsEnforcingCourtOrderRequired
+		{
+			get; set;
+		}
+		
+		string EnforcingAgencyName
+		{
+			get; set;
+		}
+		
+		OtherOrders OtherPermissionsOrder
+		{
+			get; set;
+		}
+		
+		NotifyEmbancyInfo NotifyEmbancyInfo
+		{
+			get; set;
+		}
+			}
+	public partial class DV145 : IDV145
 	{
 		public bool IsPastROViolations
 		{
@@ -1305,7 +2552,35 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class IncomeAndDeductions
+	public interface IIncomeAndDeductions
+	{
+		
+		Designation Designation
+		{
+			get; set;
+		}
+		
+		decimal TotalGrossMonthlyIncome
+		{
+			get; set;
+		}
+		
+		decimal TotalMonthlyDeductions
+		{
+			get; set;
+		}
+		
+		decimal TotalHardshipDeductions
+		{
+			get; set;
+		}
+		
+		decimal NetMonthlyDisposableIncome
+		{
+			get; set;
+		}
+			}
+	public partial class IncomeAndDeductions : IIncomeAndDeductions
 	{
 		public Designation Designation
 		{
@@ -1335,7 +2610,100 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class JudgmentForSpousalSupport
+	public interface IJudgmentForSpousalSupport
+	{
+		
+		bool IsModifiesJudgmentOrder
+		{
+			get; set;
+		}
+		
+		DateTime ModifingJudgmentOrderDate
+		{
+			get; set;
+		}
+		
+		bool WerePartiesMarried
+		{
+			get; set;
+		}
+		
+		int MarriedLifeYears
+		{
+			get; set;
+		}
+		
+		int MarriedLifeMonths
+		{
+			get; set;
+		}
+		
+		bool WerePartiesPartners
+		{
+			get; set;
+		}
+		
+		int PartnershipLifeYears
+		{
+			get; set;
+		}
+		
+		int PartnershipLifeMonths
+		{
+			get; set;
+		}
+		
+		bool ArePartiesBothSelfSupported
+		{
+			get; set;
+		}
+		
+		bool IsMaritalStandardOfLivingEnabled
+		{
+			get; set;
+		}
+		
+		string MaritalStandardOfLivingDescription
+		{
+			get; set;
+		}
+		
+		bool IsStandartOfLivingAttached
+		{
+			get; set;
+		}
+		
+		bool IsSupportReserved
+		{
+			get; set;
+		}
+		
+		bool IsSupportReservedForPetitioner
+		{
+			get; set;
+		}
+		
+		bool IsSupportReservedForRespondent
+		{
+			get; set;
+		}
+		
+		bool IsSupportTerminated
+		{
+			get; set;
+		}
+		
+		bool IsSupportTerminatedForPetitioner
+		{
+			get; set;
+		}
+		
+		bool IsSupportTerminatedForRespondent
+		{
+			get; set;
+		}
+			}
+	public partial class JudgmentForSpousalSupport : IJudgmentForSpousalSupport
 	{
 		public bool IsModifiesJudgmentOrder
 		{
@@ -1430,7 +2798,130 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class CourtOrders
+	public interface ICourtOrders
+	{
+		
+		Designation SupportToBePaidFrom
+		{
+			get; set;
+		}
+		
+		Designation SupportToBePaidTo
+		{
+			get; set;
+		}
+		
+		decimal SupportAmount
+		{
+			get; set;
+		}
+		
+		DateTime SupportFromDate
+		{
+			get; set;
+		}
+		
+		bool IsPayOnTheDayOfMonth
+		{
+			get; set;
+		}
+		
+		byte DayOfMonth
+		{
+			get; set;
+		}
+		
+		bool IsOtherPaymentScheme
+		{
+			get; set;
+		}
+		
+		string OtherPaymentSchemeDescription
+		{
+			get; set;
+		}
+		
+		DateTime SupportUntilDate
+		{
+			get; set;
+		}
+		
+		bool IsTemporarySupportEnabled
+		{
+			get; set;
+		}
+		
+		bool IsSpousalSupportEnabled
+		{
+			get; set;
+		}
+		
+		bool IsFamilySupportEnabled
+		{
+			get; set;
+		}
+		
+		bool IsPartnerSupportEnabled
+		{
+			get; set;
+		}
+		
+		bool IsSupportConditionsEnabled
+		{
+			get; set;
+		}
+		
+		bool IsMustInformAboutEmploymentChanges
+		{
+			get; set;
+		}
+		
+		string IsOrderForFamilySupport
+		{
+			get; set;
+		}
+		
+		string IsSelfSupportEffortsEnabled
+		{
+			get; set;
+		}
+		
+		Designation SelfSupportEffortedPerson
+		{
+			get; set;
+		}
+		
+		bool IsEarningAssignmentStatementEnabled
+		{
+			get; set;
+		}
+		
+		bool IsServiceStayedPeriodProvided
+		{
+			get; set;
+		}
+		
+		int ServiceStayedPeriod
+		{
+			get; set;
+		}
+		
+		bool IsNoticeAboutDurationEnabled
+		{
+			get; set;
+		}
+		
+		bool IsOtherOrdersEnabled
+		{
+			get; set;
+		}
+		
+		string OtherOrdersDescription
+		{
+			get; set;
+		}
+			}
+	public partial class CourtOrders : ICourtOrders
 	{
 		public Designation SupportToBePaidFrom
 		{
@@ -1555,7 +3046,60 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class FL343
+	public interface IFL343
+	{
+		
+		bool IsAttachedToFOAH
+		{
+			get; set;
+		}
+		
+		bool IsAttachedToDVRO
+		{
+			get; set;
+		}
+		
+		bool IsAttachedToJudgment
+		{
+			get; set;
+		}
+		
+		bool IsAttachedToStipulation
+		{
+			get; set;
+		}
+		
+		bool IsAttachedToOther
+		{
+			get; set;
+		}
+		
+		string OtherAttachedToDescription
+		{
+			get; set;
+		}
+		
+		string IncomeAndDeductions
+		{
+			get; set;
+		}
+		
+		string IsComputerPrintOutAttach
+		{
+			get; set;
+		}
+		
+		JudgmentForSpousalSupport JudgmentForSpousalSupport
+		{
+			get; set;
+		}
+		
+		CourtOrders CourtOrders
+		{
+			get; set;
+		}
+			}
+	public partial class FL343 : IFL343
 	{
 		public bool IsAttachedToFOAH
 		{
@@ -1610,7 +3154,45 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class EAConductChoice
+	public interface IEAConductChoice
+	{
+		
+		bool IsNoAbuse
+		{
+			get; set;
+		}
+		
+		bool IsNoContact
+		{
+			get; set;
+		}
+		
+		bool IsDontTryToLocate
+		{
+			get; set;
+		}
+		
+		bool IsInvolveOtherProtected
+		{
+			get; set;
+		}
+		
+		bool IsInvolveOther
+		{
+			get; set;
+		}
+		
+		string OtherDescription
+		{
+			get; set;
+		}
+		
+		bool IsOtherAttached
+		{
+			get; set;
+		}
+			}
+	public partial class EAConductChoice : IEAConductChoice
 	{
 		public bool IsNoAbuse
 		{
@@ -1650,7 +3232,50 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class EAStayAwayOrders
+	public interface IEAStayAwayOrders
+	{
+		
+		bool IsStayAwayFromPerson
+		{
+			get; set;
+		}
+		
+		bool IsStayAwayFromHome
+		{
+			get; set;
+		}
+		
+		bool IsStayAwayFromVehicle
+		{
+			get; set;
+		}
+		
+		bool IsStayAwayFromWork
+		{
+			get; set;
+		}
+		
+		bool IsStayAwayFromOtherProtected
+		{
+			get; set;
+		}
+		
+		bool IsStayAwayFromOther
+		{
+			get; set;
+		}
+		
+		string OtherDescription
+		{
+			get; set;
+		}
+		
+		int StayAwayDistance
+		{
+			get; set;
+		}
+			}
+	public partial class EAStayAwayOrders : IEAStayAwayOrders
 	{
 		public bool IsStayAwayFromPerson
 		{
@@ -1695,7 +3320,20 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class Firearms
+	public interface IFirearms
+	{
+		
+		bool IsNoGuns
+		{
+			get; set;
+		}
+		
+		bool IsCourtHasFirearmsInformation
+		{
+			get; set;
+		}
+			}
+	public partial class Firearms : IFirearms
 	{
 		public bool IsNoGuns
 		{
@@ -1710,7 +3348,75 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class EA110
+	public interface IEA110
+	{
+		
+		OrderRestrictionState EAConductChoiceState
+		{
+			get; set;
+		}
+		
+		EAConductChoice EAConductChoice
+		{
+			get; set;
+		}
+		
+		OrderRestrictionState EAStayAwayOrdersState
+		{
+			get; set;
+		}
+		
+		EAStayAwayOrders EAStayAwayOrders
+		{
+			get; set;
+		}
+		
+		OrderRestrictionState MoveoutState
+		{
+			get; set;
+		}
+		
+		string MoveoutAddress
+		{
+			get; set;
+		}
+		
+		CAPROSEntry CAPROSEntrySection
+		{
+			get; set;
+		}
+		
+		NoServiceFee NoServiceFeeSection
+		{
+			get; set;
+		}
+		
+		bool IsOtherOrdersAttached
+		{
+			get; set;
+		}
+		
+		string OtherOrderDetail
+		{
+			get; set;
+		}
+		
+		bool IsFirearmsGranted
+		{
+			get; set;
+		}
+		
+		Firearms Firearms
+		{
+			get; set;
+		}
+		
+		bool IsFinancialAbuseInvolved
+		{
+			get; set;
+		}
+			}
+	public partial class EA110 : IEA110
 	{
 		public OrderRestrictionState EAConductChoiceState
 		{
@@ -1780,7 +3486,75 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class EA130
+	public interface IEA130
+	{
+		
+		bool IsEAConductChoiceEnabled
+		{
+			get; set;
+		}
+		
+		EAConductChoice EAConductChoice
+		{
+			get; set;
+		}
+		
+		bool EAStayAwayOrdersEnabled
+		{
+			get; set;
+		}
+		
+		EAStayAwayOrders EAStayAwayOrders
+		{
+			get; set;
+		}
+		
+		bool IsMoveoutEnabled
+		{
+			get; set;
+		}
+		
+		string MoveoutAddress
+		{
+			get; set;
+		}
+		
+		CAPROSEntry CAPROSEntrySection
+		{
+			get; set;
+		}
+		
+		NoServiceFee NoServiceFeeSection
+		{
+			get; set;
+		}
+		
+		bool IsOtherOrdersAttached
+		{
+			get; set;
+		}
+		
+		string OtherOrderDetail
+		{
+			get; set;
+		}
+		
+		bool IsNoGuns
+		{
+			get; set;
+		}
+		
+		Firearms Firearms
+		{
+			get; set;
+		}
+		
+		bool IsFinancialAbuseInvolved
+		{
+			get; set;
+		}
+			}
+	public partial class EA130 : IEA130
 	{
 		public bool IsEAConductChoiceEnabled
 		{
@@ -1850,7 +3624,75 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class FL344
+	public interface IFL344
+	{
+		
+		bool IsRestrainedOrdersEnabled
+		{
+			get; set;
+		}
+		
+		Designation RestrainedPerson
+		{
+			get; set;
+		}
+		
+		bool IsNoDisposing
+		{
+			get; set;
+		}
+		
+		bool IsMustNotify
+		{
+			get; set;
+		}
+		
+		bool IsNoChangeCoverages
+		{
+			get; set;
+		}
+		
+		bool IsNoDebt
+		{
+			get; set;
+		}
+		
+		bool IsPropertyAndPossesionEnabled
+		{
+			get; set;
+		}
+		
+		List<DataItem> PropertyAndPossetion
+		{
+			get; set;
+		}
+		
+		bool IsDebtOrdersEnabled
+		{
+			get; set;
+		}
+		
+		List<DebtItem> Debts
+		{
+			get; set;
+		}
+		
+		bool IsOtherPropertyAttached
+		{
+			get; set;
+		}
+		
+		bool AreThisTemporaryOrders
+		{
+			get; set;
+		}
+		
+		OtherOrders OtherOrders
+		{
+			get; set;
+		}
+			}
+	public partial class FL344 : IFL344
 	{
 		public bool IsRestrainedOrdersEnabled
 		{
@@ -1920,7 +3762,30 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class TimeShare
+	public interface ITimeShare
+	{
+		
+		byte ChildrenNumber
+		{
+			get; set;
+		}
+		
+		byte TimeSpentWithPetitioner
+		{
+			get; set;
+		}
+		
+		byte TimeSpentWithRespondent
+		{
+			get; set;
+		}
+		
+		byte TimeSpentWithOther
+		{
+			get; set;
+		}
+			}
+	public partial class TimeShare : ITimeShare
 	{
 		public byte ChildrenNumber
 		{
@@ -1945,7 +3810,20 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class LowIncomeAdjustment
+	public interface ILowIncomeAdjustment
+	{
+		
+		bool IsLowIncomeAdjustmentApplies
+		{
+			get; set;
+		}
+		
+		string DoesNotApplyReasonDescription
+		{
+			get; set;
+		}
+			}
+	public partial class LowIncomeAdjustment : ILowIncomeAdjustment
 	{
 		public bool IsLowIncomeAdjustmentApplies
 		{
@@ -1960,7 +3838,50 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class AdditionalPayment
+	public interface IAdditionalPayment
+	{
+		
+		bool IsPetitionerMustPay
+		{
+			get; set;
+		}
+		
+		AdditionalChildSupportItem PetitionerMustPay
+		{
+			get; set;
+		}
+		
+		bool IsRespondentMustPay
+		{
+			get; set;
+		}
+		
+		AdditionalChildSupportItem RespondentMustPay
+		{
+			get; set;
+		}
+		
+		bool IsOtherMustPay
+		{
+			get; set;
+		}
+		
+		AdditionalChildSupportItem OtherMustPay
+		{
+			get; set;
+		}
+		
+		string IsCostsToBePaidEnabled
+		{
+			get; set;
+		}
+		
+		string CostsToBePaid
+		{
+			get; set;
+		}
+			}
+	public partial class AdditionalPayment : IAdditionalPayment
 	{
 		public bool IsPetitionerMustPay
 		{
@@ -2005,7 +3926,110 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class ChildSupport
+	public interface IChildSupport
+	{
+		
+		List<ChildSupportItem> ChildSupportItems
+		{
+			get; set;
+		}
+		
+		PayableSchedule PayableSchedule
+		{
+			get; set;
+		}
+		
+		string OtherPayableScheduleDescription
+		{
+			get; set;
+		}
+		
+		DateTime CommencingDate
+		{
+			get; set;
+		}
+		
+		Designation PaidByPerson
+		{
+			get; set;
+		}
+		
+		Designation PaidToPerson
+		{
+			get; set;
+		}
+		
+		string IsMandatoryAdditionalChildSupportEnabled
+		{
+			get; set;
+		}
+		
+		bool IsChildCareRelatedToEmploymentEnabled
+		{
+			get; set;
+		}
+		
+		AdditionalPayment ChildCareRelatedToEmployment
+		{
+			get; set;
+		}
+		
+		bool IsReasonableUninsuredHealthCareEnabled
+		{
+			get; set;
+		}
+		
+		AdditionalPayment ReasonableUninsuredHealthCare
+		{
+			get; set;
+		}
+		
+		bool IsAdditionalChildSupportEnabled
+		{
+			get; set;
+		}
+		
+		bool IsEducationalCostsEnabled
+		{
+			get; set;
+		}
+		
+		AdditionalPayment EducationalCosts
+		{
+			get; set;
+		}
+		
+		bool IsTravelExpensesEnabled
+		{
+			get; set;
+		}
+		
+		AdditionalPayment TravelExpenses
+		{
+			get; set;
+		}
+		
+		bool IsNonGuidlineOrder
+		{
+			get; set;
+		}
+		
+		decimal TotalChildSupportPerMonth
+		{
+			get; set;
+		}
+		
+		decimal TotalBaseChildPerMonth
+		{
+			get; set;
+		}
+		
+		decimal AdditionalChildPerMonth
+		{
+			get; set;
+		}
+			}
+	public partial class ChildSupport : IChildSupport
 	{
 		public List<ChildSupportItem> ChildSupportItems
 		{
@@ -2110,7 +4134,25 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class MultyChoice
+	public interface IMultyChoice
+	{
+		
+		bool IsPetitonerSelected
+		{
+			get; set;
+		}
+		
+		bool IsRespondentSelected
+		{
+			get; set;
+		}
+		
+		bool IsOtherSelected
+		{
+			get; set;
+		}
+			}
+	public partial class MultyChoice : IMultyChoice
 	{
 		public bool IsPetitonerSelected
 		{
@@ -2130,7 +4172,30 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class HealthCare
+	public interface IHealthCare
+	{
+		
+		MultyChoice HealthInsuranceMaintained
+		{
+			get; set;
+		}
+		
+		bool IsHealthInsuranceIsNotAvailableEnabled
+		{
+			get; set;
+		}
+		
+		MultyChoice HealthInsuranceIsNotAvailable
+		{
+			get; set;
+		}
+		
+		bool IsReimbursementCanBeAssigned
+		{
+			get; set;
+		}
+			}
+	public partial class HealthCare : IHealthCare
 	{
 		public MultyChoice HealthInsuranceMaintained
 		{
@@ -2155,7 +4220,110 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class FL342
+	public interface IFL342
+	{
+		
+		bool IsAttachedToFOAH
+		{
+			get; set;
+		}
+		
+		bool IsAttachedToDVRO
+		{
+			get; set;
+		}
+		
+		bool IsAttachedToJudjement
+		{
+			get; set;
+		}
+		
+		bool IsAttachedToOther
+		{
+			get; set;
+		}
+		
+		string OtherDescription
+		{
+			get; set;
+		}
+		
+		bool IsPrintoutAttached
+		{
+			get; set;
+		}
+		
+		bool IsIncomeEnabled
+		{
+			get; set;
+		}
+		
+		List<IncomeItem> Incomes
+		{
+			get; set;
+		}
+		
+		bool IsTimeShareEnabled
+		{
+			get; set;
+		}
+		
+		TimeShare TimeShare
+		{
+			get; set;
+		}
+		
+		bool IsHardshipsEnabled
+		{
+			get; set;
+		}
+		
+		List<HardshipItem> HardshipItems
+		{
+			get; set;
+		}
+		
+		bool IsLowIncomeAdjustmentEnabled
+		{
+			get; set;
+		}
+		
+		LowIncomeAdjustment LowIncomeAdjustment
+		{
+			get; set;
+		}
+		
+		bool IsChildSupportEnabled
+		{
+			get; set;
+		}
+		
+		ChildSupport ChildSupport
+		{
+			get; set;
+		}
+		
+		bool IsEmploymentSearchEnabled
+		{
+			get; set;
+		}
+		
+		MultyChoice EmploymentSearch
+		{
+			get; set;
+		}
+		
+		HealthCare HealthCare
+		{
+			get; set;
+		}
+		
+		string OthersDescription
+		{
+			get; set;
+		}
+			}
+	public partial class FL342 : IFL342
 	{
 		public bool IsAttachedToFOAH
 		{
@@ -2257,6 +4425,14 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 				
+	}
+	
+			
+	public interface IFL341
+	{
+			}
+	public partial class FL341 : IFL341
+	{		
 	}
 	
 }

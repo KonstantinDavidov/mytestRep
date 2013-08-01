@@ -90,24 +90,24 @@
   <!-- DV110-->
   <Model name="DV110">
     <Property name="ConductChoiceState" type="OrderRestrictionState"/>
-    <Property name="ConductChoice" type="DVConductChoice"/>
+    <Property name="ConductChoice" type="IDVConductChoice"/>
     <Property name="StayAwayOrdersState" type="OrderRestrictionState"/>
-    <Property name="StayAwayOrders" type="DVStayAwayOrders"/>
+    <Property name="StayAwayOrders" type="IDVStayAwayOrders"/>
     <Property name="MoveoutState" type="OrderRestrictionState"/>
     <Property name="MoveoutAddress" type="string"/>
     <Property name="RecordUnlawfulCommunicationsAllowedState" type="OrderRestrictionState"/>
     <Property name="AnimalsSectionState" type="OrderRestrictionState"/>
-    <Property name="AnimalsSection" type="DVAnimals"/>
+    <Property name="AnimalsSection" type="IDVAnimals"/>
     <Property name="IsNoGuns" type="bool"/>
     <Property name="OtherOrdersState" type="OrderRestrictionState"/>
     <Property name="OtherOrdersDescription" type="string"/>
     <Property name="IsOterordersAttached" type="bool" />
     <Property name="PropertyControlState" type="OrderRestrictionState" />
-    <Property name="PropertyControlItems" type="List" collectionType="DataItem"/>
+    <Property name="PropertyControlItems" type="List" collectionType="IDataItem"/>
     <Property name="DebtPaymentState" type="OrderRestrictionState"/>
-    <Property name="DebtPaymentItems" type="List" collectionType="DebtPaymentItem"/>
+    <Property name="DebtPaymentItems" type="List" collectionType="IDebtPaymentItem"/>
     <Property name="DVPropertyRestraintState" type="OrderRestrictionState"/>
-    <Property name="PropertyRestraint" type="DVPropertyRestraint"/>
+    <Property name="PropertyRestraint" type="IDVPropertyRestraint"/>
     <Property name="ChildCustodyAndVisitationState" type="OrderRestrictionState" />
   </Model>
   <!--DV130-->
@@ -510,6 +510,9 @@
     <Property name="EmploymentSearch" type="MultyChoice"/>
     <Property name="HealthCare" type="HealthCare"/>
     <Property name="OthersDescription" type="string"/>
+  </Model>
+  <Model name="FL341">
+    <Property />
   </Model>
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
