@@ -566,9 +566,26 @@ namespace Faccts.Model.Entities
     
         private void FixupInnerOrder(OrderBase previousValue)
         {
+            // This is the principal end in an association that performs cascade deletes.
+            // Update the event listener to refer to the new dependent.
+            if (previousValue != null)
+            {
+                ChangeTracker.ObjectStateChanging -= previousValue.HandleCascadeDelete;
+            }
+    
+            if (InnerOrder != null)
+            {
+                ChangeTracker.ObjectStateChanging += InnerOrder.HandleCascadeDelete;
+            }
+    
             if (IsDeserializing)
             {
                 return;
+            }
+    
+            if (InnerOrder != null)
+            {
+                InnerOrder.Id = Id;
             }
     
             if (ChangeTracker.ChangeTrackingEnabled)
@@ -581,6 +598,12 @@ namespace Faccts.Model.Entities
                 else
                 {
                     ChangeTracker.RecordOriginalValue("InnerOrder", previousValue);
+                    // This is the principal end of an identifying association, so the dependent must be deleted when the relationship is removed.
+                    // If the current state of the dependent is Added, the relationship can be changed without causing the dependent to be deleted.
+                    if (previousValue != null && previousValue.ChangeTracker.State != ObjectState.Added)
+                    {
+                        previousValue.MarkAsDeleted();
+                    }
                 }
                 if (InnerOrder != null && !InnerOrder.ChangeTracker.ChangeTrackingEnabled)
                 {

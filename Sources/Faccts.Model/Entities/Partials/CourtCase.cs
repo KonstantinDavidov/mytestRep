@@ -88,8 +88,9 @@ namespace Faccts.Model.Entities
 
         private void CaseHistoryChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            this.OnPropertyChanged("CaseStatus");
-            this.OnPropertyChanged("Hearings");
+            this.OnPropertyChanged("CaseStatus", false);
+            this.OnPropertyChanged("Hearings", false);
+            this.OnPropertyChanged("HasDocket", false);
         }
 
         private static FACCTS.Server.Model.Enums.CaseStatus CaseHistoryEventToStatus(FACCTS.Server.Model.Enums.CaseHistoryEvent chEvent)
@@ -132,6 +133,7 @@ namespace Faccts.Model.Entities
                 this.Party1 = new CourtParty(dto.Party1);
                 this.Party2 = new CourtParty(dto.Party2);
                 this.CaseHistory = new TrackableCollection<Entities.CaseHistory>(dto.CaseHistory.Select(x => new CaseHistory(x)));
+                this.CaseHistory.CollectionChanged += CaseHistoryChanged;
                 dto.CaseNotes.Aggregate(this.CaseNotes, (notes, item) =>
                     {
                         CaseNotes cn = new CaseNotes(item);
@@ -196,6 +198,7 @@ namespace Faccts.Model.Entities
                 var latestHistoryRecord = this.CaseHistory.OrderByDescending(x => x.Date).FirstOrDefault(x => x.Date <= DateTime.Now);
                 if (latestHistoryRecord != null)
                 {
+                    this.OnPropertyChanged("HasDocket", false);
                     return CaseHistoryEventToStatus((FACCTS.Server.Model.Enums.CaseHistoryEvent)latestHistoryRecord.CaseHistoryEvent);
                 }
                 return FACCTS.Server.Model.Enums.CaseStatus.New;
@@ -473,7 +476,7 @@ namespace Faccts.Model.Entities
         {
             get
             {
-                return Hearings.Count > 0;
+                return this.CaseStatus == FACCTS.Server.Model.Enums.CaseStatus.Active;
             }
         }
     }
