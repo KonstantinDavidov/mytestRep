@@ -25,13 +25,8 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class CH130ConductChoice
+	public partial class CHConductChoice
 	{
-		public bool IsEnabled
-		{
-			get; set;
-		}
-		
 		public bool IsNoAbuse
 		{
 			get; set;
@@ -70,13 +65,8 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class CH130StayAwayOrders
+	public partial class CHStayAwayOrders
 	{
-		public bool IsEnabled
-		{
-			get; set;
-		}
-		
 		public bool IsStayAwayFromPerson
 		{
 			get; set;
@@ -137,12 +127,22 @@ namespace FACCTS.Server.Model.OrderModels
 			
 	public partial class CH130
 	{
-		public CH130ConductChoice ConductSection
+		public bool IsConductChoiceEnabled
 		{
 			get; set;
 		}
 		
-		public CH130StayAwayOrders StayAwayOrdersSection
+		public CHConductChoice ConductChoice
+		{
+			get; set;
+		}
+		
+		public bool IsStayAwayOrdersEnabled
+		{
+			get; set;
+		}
+		
+		public CHStayAwayOrders StayAwayOrders
 		{
 			get; set;
 		}
@@ -185,154 +185,24 @@ namespace FACCTS.Server.Model.OrderModels
 	}
 	
 			
-	public partial class CH110ConductChoice
-	{
-		public bool IsEnabled
-		{
-			get; set;
-		}
-		
-		public bool IsNoAbuse
-		{
-			get; set;
-		}
-		
-		public bool IsNoContact
-		{
-			get; set;
-		}
-		
-		public bool IsDontTryToLocate
-		{
-			get; set;
-		}
-		
-		public bool IsInvolveOtherProtected
-		{
-			get; set;
-		}
-		
-		public bool IsInvolveOther
-		{
-			get; set;
-		}
-		
-		public string OtherDescription
-		{
-			get; set;
-		}
-		
-		public OrderRestrictionState ConductState
-		{
-			get; set;
-		}
-				
-	}
-	
-			
-	public partial class CH110RestrainedPersonPayment
-	{
-		public bool IsEnabled
-		{
-			get; set;
-		}
-		
-		public bool IsAttonrneyFees
-		{
-			get; set;
-		}
-		
-		public string OtherDescription
-		{
-			get; set;
-		}
-		
-		public List<OtherProtected> OtherProtectedPersons
-		{
-			get; set;
-		}
-				
-	}
-	
-			
-	public partial class CH110StayAwayOrders
-	{
-		public bool IsEnabled
-		{
-			get; set;
-		}
-		
-		public bool IsStayAwayFromPerson
-		{
-			get; set;
-		}
-		
-		public bool IsStayAwayFromHome
-		{
-			get; set;
-		}
-		
-		public bool IsStayAwayFromVehicle
-		{
-			get; set;
-		}
-		
-		public bool IsStayAwayFromChildCare
-		{
-			get; set;
-		}
-		
-		public bool IsStayAwayFromChildSchool
-		{
-			get; set;
-		}
-		
-		public bool IsStayAwayFromWork
-		{
-			get; set;
-		}
-		
-		public bool IsStayAwayFromOtherProtected
-		{
-			get; set;
-		}
-		
-		public bool IsStayAwayFromOther
-		{
-			get; set;
-		}
-		
-		public bool IsAttachOther
-		{
-			get; set;
-		}
-		
-		public string OtherDescription
-		{
-			get; set;
-		}
-		
-		public int StayAwayDistance
-		{
-			get; set;
-		}
-		
-		public OrderRestrictionState StayAwayState
-		{
-			get; set;
-		}
-				
-	}
-	
-			
 	public partial class CH110
 	{
-		public CH110ConductChoice ConductSection
+		public OrderRestrictionState ConductSectionState
 		{
 			get; set;
 		}
 		
-		public CH110StayAwayOrders StayAwayOrdersSection
+		public CHConductChoice ConductSection
+		{
+			get; set;
+		}
+		
+		public OrderRestrictionState StayAwayOrdersState
+		{
+			get; set;
+		}
+		
+		public CHStayAwayOrders StayAwayOrders
 		{
 			get; set;
 		}

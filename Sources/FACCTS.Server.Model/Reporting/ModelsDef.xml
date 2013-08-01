@@ -5,9 +5,8 @@
     <Property name="IsEnabled" type="bool"/>
     <Property name="OtherOrdersDescription" type="string"/>
   </Model>
-  <!--CH130-->
- <Model name="CH130ConductChoice">
-   <Property name="IsEnabled" type="bool"/>
+  <!--CH-->
+ <Model name="CHConductChoice">
    <Property name="IsNoAbuse" type="bool"/>
    <Property name="IsNoContact" type="bool"/>
    <Property name="IsDontTryToLocate" type="bool"/>
@@ -17,8 +16,7 @@
    <Property name ="IsOtherAttached" type="bool"/>
  </Model>
   
-  <Model name="CH130StayAwayOrders">
-    <Property name="IsEnabled" type="bool"/>
+  <Model name="CHStayAwayOrders">
     <Property name="IsStayAwayFromPerson" type="bool"/>
     <Property name="IsStayAwayFromHome" type="bool"/>
     <Property name="IsStayAwayFromVehicle" type="bool"/>
@@ -33,8 +31,10 @@
   </Model>
 
   <Model name="CH130">
-    <Property name="ConductSection" type="CH130ConductChoice"/>
-    <Property name="StayAwayOrdersSection" type="CH130StayAwayOrders"/>
+    <Property name="IsConductChoiceEnabled" type="bool"/>
+    <Property name="ConductChoice" type="CHConductChoice"/>
+    <Property name="IsStayAwayOrdersEnabled" type="bool"/>
+    <Property name="StayAwayOrders" type="CHStayAwayOrders"/>
     <Property name="IsNoGuns" type="bool"/>
     <Property name="CAPROSEntrySection" type="CAPROSEntry"/>
     <Property name="NoServiceFeeSection" type="NoServiceFee"/>
@@ -44,50 +44,18 @@
     <Property name="OtherOrderDetail" type="string"/>
   </Model>
   
-<!--CH110-->
-  <Model name="CH110ConductChoice">
-    <Property name="IsEnabled" type="bool"/>
-    <Property name="IsNoAbuse" type="bool"/>
-    <Property name="IsNoContact" type="bool"/>
-    <Property name="IsDontTryToLocate" type="bool"/>
-    <Property name="IsInvolveOtherProtected" type="bool"/>
-    <Property name="IsInvolveOther" type="bool"/>
-    <Property name="OtherDescription" type="string"/>
-    <Property name="ConductState" type="OrderRestrictionState"/>
-  </Model>
-  
-  <Model name="CH110RestrainedPersonPayment">
-    <Property name="IsEnabled" type="bool"/>
-    <Property name="IsAttonrneyFees" type="bool"/>
-    <Property name="OtherDescription" type="string"/>
-    <Property name="OtherProtectedPersons" type="List" collectionType="OtherProtected"/>
-  </Model>
-  
-  <Model name="CH110StayAwayOrders">
-    <Property name="IsEnabled" type="bool"/>
-    <Property name="IsStayAwayFromPerson" type="bool"/>
-    <Property name="IsStayAwayFromHome" type="bool"/>
-    <Property name="IsStayAwayFromVehicle" type="bool"/>
-    <Property name="IsStayAwayFromChildCare" type="bool"/>
-    <Property name="IsStayAwayFromChildSchool" type="bool"/>
-    <Property name="IsStayAwayFromWork" type="bool"/>
-    <Property name="IsStayAwayFromOtherProtected" type="bool"/>
-    <Property name="IsStayAwayFromOther" type="bool"/>
-    <Property name="IsAttachOther" type="bool"/>
-    <Property name="OtherDescription" type="string"/>
-    <Property name="StayAwayDistance" type="int"/>
-    <Property name="StayAwayState" type="OrderRestrictionState"/>
-  </Model>
-  
   <Model name="CH110">
-    <Property name="ConductSection" type="CH110ConductChoice"/>
-    <Property name="StayAwayOrdersSection" type="CH110StayAwayOrders"/>
+    <Property name="ConductSectionState" type="OrderRestrictionState"/>
+    <Property name="ConductSection" type="CHConductChoice"/>
+    <Property name="StayAwayOrdersState" type="OrderRestrictionState"/>
+    <Property name="StayAwayOrders" type="CHStayAwayOrders"/>
     <Property name="IsNoGuns" type="bool"/>
     <Property name="CAPROSEntrySection" type="CAPROSEntry"/>
     <Property name="NoServiceFeeSection" type="NoServiceFee"/>
     <Property name="IsOtherOrdersAttached" type="bool"/>
     <Property name="OtherOrderDetail" type="string"/>
   </Model>
+  
   <!-- DV-->
   <Model name="DVConductChoice">
     <Property name="IsNoAbuse" type="bool"/>
@@ -109,10 +77,12 @@
     <Property name="OtherDescription" type="string"/>
     <Property name="StayAwayDistance" type="int"/>
   </Model>
+  
   <Model name="DVAnimals">
     <Property name="StayAwayAnimalsDistance" type="int"/>
     <Property name="AnimalsDescription" type="string"/>
   </Model>
+  
   <Model name="DVPropertyRestraint">
     <Property name="IsProtectedHasPropertyRestraint" type="bool"/>
     <Property name="IsRestrainedHasPropertyRestraint" type="bool"/>
