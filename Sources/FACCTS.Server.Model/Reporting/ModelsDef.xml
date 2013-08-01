@@ -519,6 +519,12 @@
     <Property name="IsDomesticViolenceEnabled" type="bool"/>
     <Property name="IsDrugAbuseEnabled" type="bool"/>
     <Property name="IsAlcoholAbuseEnabled" type="bool"/>
+    <Property name="IsNeglectEnebled" type="bool"/>
+    <Property name="IsOtherEnabled" type="bool"/>
+    <Property name="OtherDescription1" type="string"/>
+    <Property name="OtherDescription2" type="string"/>
+    <Property name="IsPetitionerSupervised" type="bool"/>
+    <Property name="IsRespondentSupervised" type="bool"/>
   </Model>
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">

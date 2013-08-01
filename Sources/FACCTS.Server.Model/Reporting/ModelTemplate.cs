@@ -4465,6 +4465,36 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
+		
+		bool IsNeglectEnebled
+		{
+			get; set;
+		}
+		
+		bool IsOtherEnabled
+		{
+			get; set;
+		}
+		
+		string OtherDescription1
+		{
+			get; set;
+		}
+		
+		string OtherDescription2
+		{
+			get; set;
+		}
+		
+		bool IsPetitionerSupervised
+		{
+			get; set;
+		}
+		
+		bool IsRespondentSupervised
+		{
+			get; set;
+		}
 			}
 	public partial class FL341 : IFL341
 	{
@@ -4499,6 +4529,36 @@ namespace FACCTS.Server.Model.OrderModels
 		}
 		
 		public bool IsAlcoholAbuseEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsNeglectEnebled
+		{
+			get; set;
+		}
+		
+		public bool IsOtherEnabled
+		{
+			get; set;
+		}
+		
+		public string OtherDescription1
+		{
+			get; set;
+		}
+		
+		public string OtherDescription2
+		{
+			get; set;
+		}
+		
+		public bool IsPetitionerSupervised
+		{
+			get; set;
+		}
+		
+		public bool IsRespondentSupervised
 		{
 			get; set;
 		}
