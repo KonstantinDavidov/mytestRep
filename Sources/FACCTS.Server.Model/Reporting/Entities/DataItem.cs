@@ -10,8 +10,8 @@ namespace FACCTS.Server.Model.Reporting.Entities
     public class DataItem : IDataItem
     {
         [XmlAttribute]
-        public string Name;
+        public string Name { get; set; }
         [XmlAttribute]
-        public string Description;
+        public string Description { get; set; }
     }
 }

@@ -423,6 +423,7 @@
     </EntityDeploy>
     <None Include="Entities\DataModel.edmx.diagram">
       <DependentUpon>DataModel.edmx</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Entities\Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

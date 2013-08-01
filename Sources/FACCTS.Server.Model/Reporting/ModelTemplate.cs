@@ -4430,9 +4430,79 @@ namespace FACCTS.Server.Model.OrderModels
 			
 	public interface IFL341
 	{
+		
+		Designation RestrictedPerson
+		{
+			get; set;
+		}
+		
+		bool IsAbductionEnabled
+		{
+			get; set;
+		}
+		
+		bool IsSexualAbuseEnabled
+		{
+			get; set;
+		}
+		
+		bool IsPhysicalAbuseEnabled
+		{
+			get; set;
+		}
+		
+		bool IsDomesticViolenceEnabled
+		{
+			get; set;
+		}
+		
+		bool IsDrugAbuseEnabled
+		{
+			get; set;
+		}
+		
+		bool IsAlcoholAbuseEnabled
+		{
+			get; set;
+		}
 			}
 	public partial class FL341 : IFL341
-	{		
+	{
+		public Designation RestrictedPerson
+		{
+			get; set;
+		}
+		
+		public bool IsAbductionEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsSexualAbuseEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsPhysicalAbuseEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsDomesticViolenceEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsDrugAbuseEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsAlcoholAbuseEnabled
+		{
+			get; set;
+		}
+				
 	}
 	
 }

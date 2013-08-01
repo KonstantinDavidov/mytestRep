@@ -7,7 +7,7 @@ namespace FACCTS.Server.Model.Reporting.Entities
 {
     public interface IDataItem
     {
-        string Name;
-        string Description;
+        string Name {get; set;}
+        string Description { get; set; }
     }
 }

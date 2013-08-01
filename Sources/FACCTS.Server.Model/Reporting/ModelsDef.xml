@@ -512,7 +512,13 @@
     <Property name="OthersDescription" type="string"/>
   </Model>
   <Model name="FL341">
-    <Property />
+    <Property name="RestrictedPerson" type="Designation" />
+    <Property name="IsAbductionEnabled" type="bool"/>
+    <Property name="IsSexualAbuseEnabled" type="bool"/>
+    <Property name="IsPhysicalAbuseEnabled" type="bool"/>
+    <Property name="IsDomesticViolenceEnabled" type="bool"/>
+    <Property name="IsDrugAbuseEnabled" type="bool"/>
+    <Property name="IsAlcoholAbuseEnabled" type="bool"/>
   </Model>
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
