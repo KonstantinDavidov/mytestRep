@@ -56,15 +56,14 @@ namespace FACCTS.Server.Tests
             //testObject.CaseHistoryId = cc.Id;
             testObject.CaseHistoryId = 160;
 
-            testObject.ConductSection = new CH130ConductChoice();
-            testObject.ConductSection.IsEnabled = true;
-            testObject.ConductSection.IsNoAbuse = true;
-            testObject.ConductSection.IsNoContact = true;
-            testObject.ConductSection.IsDontTryToLocate = true;
-            testObject.ConductSection.IsOtherAttached = true;
-            testObject.ConductSection.IsInvolveOther = true;
-            testObject.ConductSection.IsInvolveOtherProtected = true;
-            testObject.ConductSection.OtherDescription = "Some Description";
+            testObject.ConductChoice = new CHConductChoice();
+            testObject.ConductChoice.IsNoAbuse = true;
+            testObject.ConductChoice.IsNoContact = true;
+            testObject.ConductChoice.IsDontTryToLocate = true;
+            testObject.ConductChoice.IsOtherAttached = true;
+            testObject.ConductChoice.IsInvolveOther = true;
+            testObject.ConductChoice.IsInvolveOtherProtected = true;
+            testObject.ConductChoice.OtherDescription = "Some Description";
 
             testObject.IsExpire = true;
 
@@ -95,19 +94,19 @@ namespace FACCTS.Server.Tests
 
             testObject.OtherOrderDetail = "Some Details ttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt";
 
-            testObject.StayAwayOrdersSection = new CH130StayAwayOrders();
-            testObject.StayAwayOrdersSection.IsEnabled = true;
-            testObject.StayAwayOrdersSection.IsStayAwayFromChildCare = true;
-            testObject.StayAwayOrdersSection.IsStayAwayFromChildSchool = true;
-            testObject.StayAwayOrdersSection.IsStayAwayFromHome = true;
-            testObject.StayAwayOrdersSection.IsStayAwayFromWork = true;
-            testObject.StayAwayOrdersSection.IsStayAwayFromPerson = true;
-            testObject.StayAwayOrdersSection.IsStayAwayFromVehicle = true;
-            testObject.StayAwayOrdersSection.IsAttachOther = true;
-            testObject.StayAwayOrdersSection.IsStayAwayFromOther = true;
-            testObject.StayAwayOrdersSection.OtherDescription = "Some description";
-            testObject.StayAwayOrdersSection.IsStayAwayFromOtherProtected = true;
-            testObject.StayAwayOrdersSection.StayAwayDistance = 20;
+            testObject.StayAwayOrders = new CHStayAwayOrders();
+            //testObject.StayAwayOrders.IsEnabled = true;
+            testObject.StayAwayOrders.IsStayAwayFromChildCare = true;
+            testObject.StayAwayOrders.IsStayAwayFromChildSchool = true;
+            testObject.StayAwayOrders.IsStayAwayFromHome = true;
+            testObject.StayAwayOrders.IsStayAwayFromWork = true;
+            testObject.StayAwayOrders.IsStayAwayFromPerson = true;
+            testObject.StayAwayOrders.IsStayAwayFromVehicle = true;
+            testObject.StayAwayOrders.IsAttachOther = true;
+            testObject.StayAwayOrders.IsStayAwayFromOther = true;
+            testObject.StayAwayOrders.OtherDescription = "Some description";
+            testObject.StayAwayOrders.IsStayAwayFromOtherProtected = true;
+            testObject.StayAwayOrders.StayAwayDistance = 20;
 
             return testObject;
         }
