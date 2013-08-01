@@ -496,7 +496,7 @@
     <Property name="IsMandatoryAdditionalChildSupportEnabled"/>
     <Property name="IsChildCareRelatedToEmploymentEnabled" type="bool"/>
     <Property name="ChildCareRelatedToEmployment" type="AdditionalPayment"/>
-    <Property name="IsReasonableUninsuredHealthCareEnabled" type="true"/>
+    <Property name="IsReasonableUninsuredHealthCareEnabled" type="bool"/>
     <Property name="ReasonableUninsuredHealthCare" type="AdditionalPayment"/>
     <Property name="IsAdditionalChildSupportEnabled" type="bool"/>
     <Property name="IsEducationalCostsEnabled" type="bool"/>
@@ -507,6 +507,17 @@
     <Property name="TotalChildSupportPerMonth" type="decimal"/>
     <Property name="TotalBaseChildPerMonth" type="decimal"/>
     <Property name="AdditionalChildPerMonth" type="decimal"/>
+  </Model>
+  <Model name="MultyChoice">
+    <Property name="IsPetitonerSelected" type="bool"/>
+    <Property name="IsRespondentSelected" type="bool"/>
+    <Property name="IsOtherSelected" type="bool"/>
+  </Model>
+  <Model name="HealthCare">
+    <Property name="HealthInsuranceMaintained" type="MultyChoice"/>
+    <Property name="IsHealthInsuranceIsNotAvailableEnabled" type="bool"/>
+    <Property name="HealthInsuranceIsNotAvailable" type="MultyChoice"/>
+    <Property name="IsReimbursementCanBeAssigned" type="bool"/>
   </Model>
   <Model name="FL342">
     <Property name="IsAttachedToFOAH" type="bool"/>
@@ -524,6 +535,11 @@
     <Property name="IsLowIncomeAdjustmentEnabled" type="bool"/>
     <Property name="LowIncomeAdjustment" type="LowIncomeAdjustment"/>
     <Property name="IsChildSupportEnabled" type="bool"/>
+    <Property name="ChildSupport" type="ChildSupport"/>
+    <Property name="IsEmploymentSearchEnabled" type="bool"/>
+    <Property name="EmploymentSearch" type="MultyChoice"/>
+    <Property name="HealthCare" type="HealthCare"/>
+    <Property name="OthersDescription" type="string"/>
   </Model>
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">

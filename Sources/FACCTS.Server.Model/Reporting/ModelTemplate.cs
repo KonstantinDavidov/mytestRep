@@ -2166,6 +2166,121 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
+		
+		public string IsMandatoryAdditionalChildSupportEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsChildCareRelatedToEmploymentEnabled
+		{
+			get; set;
+		}
+		
+		public AdditionalPayment ChildCareRelatedToEmployment
+		{
+			get; set;
+		}
+		
+		public bool IsReasonableUninsuredHealthCareEnabled
+		{
+			get; set;
+		}
+		
+		public AdditionalPayment ReasonableUninsuredHealthCare
+		{
+			get; set;
+		}
+		
+		public bool IsAdditionalChildSupportEnabled
+		{
+			get; set;
+		}
+		
+		public bool IsEducationalCostsEnabled
+		{
+			get; set;
+		}
+		
+		public AdditionalPayment EducationalCosts
+		{
+			get; set;
+		}
+		
+		public bool IsTravelExpensesEnabled
+		{
+			get; set;
+		}
+		
+		public AdditionalPayment TravelExpenses
+		{
+			get; set;
+		}
+		
+		public bool IsNonGuidlineOrder
+		{
+			get; set;
+		}
+		
+		public decimal TotalChildSupportPerMonth
+		{
+			get; set;
+		}
+		
+		public decimal TotalBaseChildPerMonth
+		{
+			get; set;
+		}
+		
+		public decimal AdditionalChildPerMonth
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class MultyChoice
+	{
+		public bool IsPetitonerSelected
+		{
+			get; set;
+		}
+		
+		public bool IsRespondentSelected
+		{
+			get; set;
+		}
+		
+		public bool IsOtherSelected
+		{
+			get; set;
+		}
+				
+	}
+	
+			
+	public partial class HealthCare
+	{
+		public MultyChoice HealthInsuranceMaintained
+		{
+			get; set;
+		}
+		
+		public bool IsHealthInsuranceIsNotAvailableEnabled
+		{
+			get; set;
+		}
+		
+		public MultyChoice HealthInsuranceIsNotAvailable
+		{
+			get; set;
+		}
+		
+		public bool IsReimbursementCanBeAssigned
+		{
+			get; set;
+		}
 				
 	}
 	
@@ -2198,11 +2313,6 @@ namespace FACCTS.Server.Model.OrderModels
 		}
 		
 		public bool IsPrintoutAttached
-		{
-			get; set;
-		}
-		
-		public bool IsNonGuidlineOrder
 		{
 			get; set;
 		}
@@ -2248,6 +2358,31 @@ namespace FACCTS.Server.Model.OrderModels
 		}
 		
 		public bool IsChildSupportEnabled
+		{
+			get; set;
+		}
+		
+		public ChildSupport ChildSupport
+		{
+			get; set;
+		}
+		
+		public bool IsEmploymentSearchEnabled
+		{
+			get; set;
+		}
+		
+		public MultyChoice EmploymentSearch
+		{
+			get; set;
+		}
+		
+		public HealthCare HealthCare
+		{
+			get; set;
+		}
+		
+		public string OthersDescription
 		{
 			get; set;
 		}
