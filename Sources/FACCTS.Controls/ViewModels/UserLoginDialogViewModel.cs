@@ -34,10 +34,21 @@ namespace FACCTS.Controls.ViewModels
             _passwordSupplier = passwordSupplier;
         }
 
+        /// <summary>
+        /// Event on login user
+        /// </summary>
+        /// <param name="userName">username</param>
         public void Login(string userName)
         {
             Execute.OnUIThreadAsync(() => _authenticationService.Authenticate(userName, _passwordSupplier.GetPassword()));
-          
+            Execute.OnUIThreadAsync(() => Validate());
+        }
+
+        /// <summary>
+        /// check user's autenticated status
+        /// </summary>
+        private void Validate()
+        {
             if (_authenticationService.IsAuthenticated)
             {
                 TryClose(true);
