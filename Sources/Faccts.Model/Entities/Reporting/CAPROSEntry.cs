@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using FACCTS.Server.Model.Enums;
 using FACCTS.Server.Model.OrderModels;
-using FACCTS.Server.Model.Reporting.Entities;
 
 namespace Faccts.Model.Entities.Reporting
 {

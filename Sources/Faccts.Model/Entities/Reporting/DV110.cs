@@ -2,8 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using FACCTS.Server.Model;
+using FACCTS.Server.Model.Enums;
 using FACCTS.Server.Model.OrderModels;
-using FACCTS.Server.Model.Reporting.Entities;
 
 namespace Faccts.Model.Entities.Reporting
 {
@@ -38,6 +38,7 @@ namespace Faccts.Model.Entities.Reporting
             PropertyControlItems = new ObservableCollection<IDataItem>();
             DebtPaymentItems = new ObservableCollection<IDebtPaymentItem>();
             PropertyRestraint = new DVPropertyRestraint();
+            OrdersType = CourtOrdersTypes.DV110;
         }
 
         public DV110(IDV110 order) : base(order)
@@ -64,6 +65,7 @@ namespace Faccts.Model.Entities.Reporting
             DVPropertyRestraintState = order.DVPropertyRestraintState;
             PropertyRestraint = new DVPropertyRestraint(order.PropertyRestraint);
             ChildCustodyAndVisitationState = order.ChildCustodyAndVisitationState;
+            OrdersType = CourtOrdersTypes.DV110;
         }
 
         public OrderRestrictionState ConductChoiceState

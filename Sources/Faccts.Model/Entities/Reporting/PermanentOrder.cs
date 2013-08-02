@@ -3,7 +3,7 @@ using FACCTS.Server.Model.Reporting.Entities;
 
 namespace Faccts.Model.Entities.Reporting
 {
-    public class PermanentOrder : ReactiveBase, IPermanentOrder
+    public class PermanentOrder : OrderBase, IPermanentOrder
     {
         private bool _isExpire;
         private DateTime? _ordersEndDate;

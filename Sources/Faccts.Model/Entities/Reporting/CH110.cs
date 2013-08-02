@@ -1,4 +1,5 @@
 ﻿using FACCTS.Server.Model;
+using FACCTS.Server.Model.Enums;
 using FACCTS.Server.Model.OrderModels;
 
 namespace Faccts.Model.Entities.Reporting
@@ -21,6 +22,7 @@ namespace Faccts.Model.Entities.Reporting
             StayAwayOrders = new CHStayAwayOrders();
             CAPROSEntrySection = new CAPROSEntry();
             NoServiceFeeSection = new NoServiceFee();
+            OrdersType = CourtOrdersTypes.CH110;
         }
 
         public CH110(ICH110 order)
@@ -35,6 +37,7 @@ namespace Faccts.Model.Entities.Reporting
             NoServiceFeeSection = new NoServiceFee(order.NoServiceFeeSection);
             IsOtherOrdersAttached = order.IsOtherOrdersAttached;
             OtherOrderDetail = order.OtherOrderDetail;
+            OrdersType = CourtOrdersTypes.CH110;
         }
 
         public OrderRestrictionState ConductSectionState
