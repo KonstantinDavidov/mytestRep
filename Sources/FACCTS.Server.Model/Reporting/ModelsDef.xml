@@ -197,8 +197,8 @@
     <Property name="IsPartiesMustGoToMediation" type="bool"/>
     <Property name="MediationDescription" type="string"/>
     <Property name="VisitationGrantedParent" type="CustodyParent"/>
-    <Property name="VisitationGrantedOtherParentDescription"/>
-    <Property name="VisitationScheduleSection" type="VisitationSchedule"/>
+    <Property name="VisitationGrantedOtherParentDescription" type="string"/>
+    <Property name="VisitationSchedule" type="IVisitationSchedule"/>
   </Model>
   <Model name="Transportation">
     <Property name="IsEnabled"/>
@@ -222,19 +222,24 @@
   </Model>
   <Model name="ExchangeAndRemoval">
     <Property name="IsEnabled"/>
-    <Property name="TransportationSection" type="Transportation"/>
-    <Property name="TravelRestrictSection" type="TravelRestrict"/>
+    <Property name="Transportation" type="ITransportation"/>
+    <Property name="TravelRestrict" type="ITravelRestrict"/>
     <Property name="IsChildAbductionRiskExist" type="bool"/>
     <Property name="IsDV145Attached" type="bool"/>
     <Property name="IsUSCountryOfHabitualResidence" type="bool"/>
     <Property name="IsOtherCountryOfHabitualResidence" type="bool"/>
     <Property name="OtherCountryAsHabitualResidenceDescription" type="string"/>
   </Model>
+  <Model name="ChildCustodyItem">
+    <Property name="ChildId" type="long"/>
+    <Property name="LegalCustodyParent" type="CustodyParent"/>
+    <Property name="PhysicalCustodyParent" type="CustodyParent"/>
+  </Model>
   <Model name="DV140">
-    <Property name="ChildCustodyItems" type="ICollection" collectionType="ChildCustodyItem"/>
-    <Property name="ChildVisitationSection" type="ChildVisitation"/>
-    <Property name="ExchangeAndRemovalSection" type="ExchangeAndRemoval"/>
-    <Property name="DV140OtherOrders" type="OtherOrders"/>
+    <Property name="ChildCustodyItems" type="ICollection" collectionType="IChildCustodyItem"/>
+    <Property name="ChildVisitation" type="IChildVisitation"/>
+    <Property name="ExchangeAndRemoval" type="IExchangeAndRemoval"/>
+    <Property name="OtherOrders" type="IOtherOrders"/>
   </Model>
   
   <!-- DV150 Supervision-->
