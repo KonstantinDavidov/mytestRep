@@ -152,7 +152,7 @@
   </Model>
   <!--DV140-->
   <Model name="IsNoVisitationForParents">
-    <Property name="IsEnabled"/>
+    <Property name="IsEnabled" type="bool"/>
     <Property name="IsNoVisitationParent" type="CustodyParent"/>
     <Property name="OtherDescription" type="string"/>
   </Model>

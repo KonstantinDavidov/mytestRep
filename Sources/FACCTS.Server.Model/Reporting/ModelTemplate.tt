@@ -45,7 +45,7 @@ foreach (var item in doc.Root.Elements("Model"))
 	modelType = string.IsNullOrEmpty(modelType) ? "class" : modelType;
 	if(string.IsNullOrEmpty(modelName))continue;#>
 			
-	public interface I<#= modelName #>
+	public partial interface I<#= modelName #>
 	{
 		<#
 		foreach (var property in item.Elements("Property"))

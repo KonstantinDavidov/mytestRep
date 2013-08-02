@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.Reporting.Entities
 {
-    public class PermanentOrder : BaseOrder
+    public class PermanentOrder : BaseOrder, FACCTS.Server.Model.Reporting.Entities.IPermanentOrder
     {
         public bool IsExpire {get; set;}
 

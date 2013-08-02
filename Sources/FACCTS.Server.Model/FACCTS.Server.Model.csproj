@@ -132,6 +132,10 @@
     <Compile Include="Enums\CCPORStatus.cs" />
     <Compile Include="Enums\Custody.cs" />
     <Compile Include="Enums\PartyFor.cs" />
+    <Compile Include="Reporting\Contracts\ICH110.cs" />
+    <Compile Include="Reporting\Contracts\ICH130.cs" />
+    <Compile Include="Reporting\Contracts\IDV110.cs" />
+    <Compile Include="Reporting\Contracts\IDV130.cs" />
     <Compile Include="Reporting\Entities\AdditionalChildSupportItem.cs" />
     <Compile Include="Reporting\Entities\AvailableReportType.cs" />
     <Compile Include="Reporting\Entities\ChildSupportItem.cs" />
@@ -173,6 +177,8 @@
     <Compile Include="Reporting\Entities\IDataItem.cs" />
     <Compile Include="Reporting\Entities\IDebtPaymentItem.cs" />
     <Compile Include="Reporting\Entities\IncomeItem.cs" />
+    <Compile Include="Reporting\Entities\IPermanentOrder.cs" />
+    <Compile Include="Reporting\Entities\ITemporaryOrder.cs" />
     <Compile Include="Reporting\Entities\PartyEnum.cs" />
     <Compile Include="Reporting\Entities\PayableSchedule.cs" />
     <Compile Include="Reporting\Entities\PermanentOrder.cs" />
