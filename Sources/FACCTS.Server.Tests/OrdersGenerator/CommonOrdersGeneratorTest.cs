@@ -9,7 +9,6 @@ using System.Reflection;
 using FACCTS.Server.DataContracts;
 using FACCTS.Server.Data;
 using FACCTS.Server.Data.Repositiries.Helpers;
-using FACCTS.Server.Model.Reporting.Entities;
 using FACCTS.Server.Model.Enums;
 using FACCTS.Server.Model.DataModel;
 using System.Linq;

@@ -4,7 +4,6 @@ using FACCTS.Server.DataContracts;
 using FACCTS.Server.Model.DataModel;
 using FACCTS.Server.Model.Enums;
 using FACCTS.Server.Model.OrderModels;
-using FACCTS.Server.Model.Reporting.Entities;
 using FACCTS.Server.Models;
 using FACCTS.Server.Reporting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
