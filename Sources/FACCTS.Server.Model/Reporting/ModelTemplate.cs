@@ -1574,7 +1574,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		VisitationSchedule VisitationScheduleSection
+		IVisitationSchedule VisitationSchedule
 		{
 			get; set;
 		}
@@ -1626,7 +1626,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public VisitationSchedule VisitationScheduleSection
+		public IVisitationSchedule VisitationSchedule
 		{
 			get; set;
 		}
@@ -1815,12 +1815,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		Transportation TransportationSection
+		ITransportation Transportation
 		{
 			get; set;
 		}
 		
-		TravelRestrict TravelRestrictSection
+		ITravelRestrict TravelRestrict
 		{
 			get; set;
 		}
@@ -1857,12 +1857,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public Transportation TransportationSection
+		public ITransportation Transportation
 		{
 			get; set;
 		}
 		
-		public TravelRestrict TravelRestrictSection
+		public ITravelRestrict TravelRestrict
 		{
 			get; set;
 		}
@@ -1894,47 +1894,84 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 	
 			
+	public partial interface IChildCustodyItem
+	{
+		
+		long ChildId
+		{
+			get; set;
+		}
+		
+		CustodyParent LegalCustodyParent
+		{
+			get; set;
+		}
+		
+		CustodyParent PhysicalCustodyParent
+		{
+			get; set;
+		}
+			}
+	public partial class ChildCustodyItem : IChildCustodyItem
+	{
+		public long ChildId
+		{
+			get; set;
+		}
+		
+		public CustodyParent LegalCustodyParent
+		{
+			get; set;
+		}
+		
+		public CustodyParent PhysicalCustodyParent
+		{
+			get; set;
+		}
+			}
+	
+			
 	public partial interface IDV140
 	{
 		
-		ICollection<ChildCustodyItem> ChildCustodyItems
+		ICollection<IChildCustodyItem> ChildCustodyItems
 		{
 			get; set;
 		}
 		
-		ChildVisitation ChildVisitationSection
+		IChildVisitation ChildVisitation
 		{
 			get; set;
 		}
 		
-		ExchangeAndRemoval ExchangeAndRemovalSection
+		IExchangeAndRemoval ExchangeAndRemoval
 		{
 			get; set;
 		}
 		
-		OtherOrders DV140OtherOrders
+		IOtherOrders OtherOrders
 		{
 			get; set;
 		}
 			}
 	public partial class DV140 : IDV140
 	{
-		public ICollection<ChildCustodyItem> ChildCustodyItems
+		public ICollection<IChildCustodyItem> ChildCustodyItems
 		{
 			get; set;
 		}
 		
-		public ChildVisitation ChildVisitationSection
+		public IChildVisitation ChildVisitation
 		{
 			get; set;
 		}
 		
-		public ExchangeAndRemoval ExchangeAndRemovalSection
+		public IExchangeAndRemoval ExchangeAndRemoval
 		{
 			get; set;
 		}
 		
-		public OtherOrders DV140OtherOrders
+		public IOtherOrders OtherOrders
 		{
 			get; set;
 		}

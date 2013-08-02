@@ -165,7 +165,6 @@
     <Compile Include="Reporting\Entities\BaseOrder.cs" />
     <Compile Include="Reporting\Entities\CH110.cs" />
     <Compile Include="Reporting\Entities\CH130.cs" />
-    <Compile Include="Reporting\Entities\ChildCustodyItem.cs" />
     <Compile Include="Reporting\Entities\DataItem.cs" />
     <Compile Include="Reporting\Entities\DebtItem.cs" />
     <Compile Include="Reporting\Entities\DV110.cs" />
