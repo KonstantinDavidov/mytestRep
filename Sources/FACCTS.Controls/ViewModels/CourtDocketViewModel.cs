@@ -27,18 +27,6 @@ namespace FACCTS.Controls.ViewModels
             _windowManager = windowManager;
             this.DisplayName = "Court Docket";
             this.CalendarDate = DateTime.Today;
-            this.WhenAny(x => x.CurrentCourtCase, x => x.Value)
-                .Subscribe(x =>
-                {
-                    this.CanDropDismiss = x != null;
-                    this.CanReissue = x != null;
-                });
-            this.WhenAny(x => x.CollectionChangedNotifier, x => 0)
-                .Subscribe(_ =>
-                {
-                    this.NotifyOfPropertyChange(() => CanDrop);
-                    this.NotifyOfPropertyChange(() => CanDismiss);
-                });
             HearingsChanged = Observable.FromEvent<System.Collections.Specialized.NotifyCollectionChangedEventHandler, System.Collections.Specialized.NotifyCollectionChangedEventArgs>(handler =>
             {
                 System.Collections.Specialized.NotifyCollectionChangedEventHandler eh = (sender, e) =>
@@ -208,22 +196,6 @@ namespace FACCTS.Controls.ViewModels
         private void NotifyCollectionUpdated()
         {
             this.CollectionChangedNotifier = rnd.NextDouble();
-        }
-
-        public bool CanDrop
-        {
-            get
-            {
-                return CanDropDismiss && CurrentCourtCase.CaseStatus != Server.Model.Enums.CaseStatus.Dropped;
-            }
-        }
-
-        public bool CanDismiss
-        {
-            get
-            {
-                return CanDropDismiss && CurrentCourtCase.CaseStatus != Server.Model.Enums.CaseStatus.Dismissed;
-            }
         }
 
         private List<NameValueWrapper<Courtrooms>> _courtrooms;

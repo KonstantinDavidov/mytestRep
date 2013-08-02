@@ -39,12 +39,11 @@
   </Model>
   
   <Model name="CourtDocketViewModel">
-    <Property name="CanDropDismiss" type="bool"/>
     <Property name="IsRefreshing" type="bool"/>
-    <Property name="CanReissue" type="bool"/>
     <Property name="CalendarDate" type="DateTime?"/>
     <Property name="Courtroom" type="Faccts.Model.Entities.Courtrooms"/>
     <Property name="SessionIndex" type="int"/>
+    <Property name="DocketItem" type="Faccts.Model.Entities.Hearings"/>
   </Model>
   
   <Model name="ReissueCaseDialogViewModel">
@@ -82,7 +81,6 @@
   
   <Model name="GenerateCourtOrdersDialogViewModel">
     <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
-    <Property name="MasterOrder" type="FACCTS.Server.Model.Enums.MasterOrders"/>
     <!--Properties for attachments-->
     <Property name="HasDV140CC_CV" type="bool"/>
     <Property name="HasDV145TravelRestriction" type="bool"/>

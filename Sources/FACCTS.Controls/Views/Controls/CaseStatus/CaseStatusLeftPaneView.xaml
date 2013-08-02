@@ -64,7 +64,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <HeaderedContentControl Header="First Activity" Margin="0,0,0,-0.001" Padding="0,8" UseLayoutRounding="True" FontWeight="Bold">
+                        <HeaderedContentControl Header="First Hearing" Margin="0,0,0,-0.001" Padding="0,8" UseLayoutRounding="True" FontWeight="Bold">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" MinWidth="100"/>
@@ -74,13 +74,13 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock HorizontalAlignment="Left" Margin="0,5" TextWrapping="Wrap" VerticalAlignment="Top" Text="Start" FontWeight="Normal"/>
-                                <TextBlock TextWrapping="Wrap" Text="End" Margin="0,5" Grid.Row="1" FontWeight="Normal"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="15,5,0,5" TextWrapping="Wrap" VerticalAlignment="Top" Text="Start" FontWeight="Normal"/>
+                                <TextBlock TextWrapping="Wrap" Text="End" Margin="15,5,0,5" Grid.Row="1" FontWeight="Normal"/>
                                 <DatePicker VerticalAlignment="Center" Grid.Column="1" SelectedDate="{Binding FirstActivityStartDate, Mode=TwoWay}" FontWeight="Normal"/>
                                 <DatePicker VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" SelectedDate="{Binding FirstActivityEndDate, Mode=TwoWay}" FontWeight="Normal"/>
                             </Grid>
                         </HeaderedContentControl>
-                        <HeaderedContentControl Header="Last Activity" Grid.Row="1" Padding="0,8" FontWeight="Bold">
+                        <HeaderedContentControl Header="Last Hearing" Grid.Row="1" Padding="0,8" FontWeight="Bold">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" MinWidth="100"/>
@@ -90,8 +90,8 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <TextBlock HorizontalAlignment="Left" Margin="0,5" TextWrapping="Wrap" VerticalAlignment="Top" Text="Start" FontWeight="Normal"/>
-                                <TextBlock TextWrapping="Wrap" Text="End" Margin="0,0,0,-0.001" Grid.Row="1" Padding="0,5" FontWeight="Normal"/>
+                                <TextBlock HorizontalAlignment="Left" Margin="15,5,0,5" TextWrapping="Wrap" VerticalAlignment="Top" Text="Start" FontWeight="Normal"/>
+                                <TextBlock TextWrapping="Wrap" Text="End" Margin="15,0,0,-0.001" Grid.Row="1" Padding="0,5" FontWeight="Normal"/>
                                 <DatePicker VerticalAlignment="Center" Grid.Column="1" SelectedDate="{Binding LastActivityStartDate, Mode=TwoWay}" FontWeight="Normal"/>
                                 <DatePicker VerticalAlignment="Center" Grid.Row="1" Grid.Column="1" SelectedDate="{Binding LastActivityEndDate, Mode=TwoWay}" FontWeight="Normal"/>
                             </Grid>
@@ -143,7 +143,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Center"><Run Text="Party 1"/></TextBlock>
-                        <AdornerDecorator Grid.Column="1">
+                        <AdornerDecorator Grid.Column="1" Tag="">
                             <this:TextBoxClearButton TextWrapping="Wrap" VerticalAlignment="Top" Margin="0" Text="{Binding Party1FirstName, Mode=TwoWay}">
                         		<utils:WatermarkService.Watermark>
                                     <TextBlock Text="First Name" HorizontalAlignment="Center" FontSize="10.667"/>
