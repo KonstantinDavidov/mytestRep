@@ -289,17 +289,6 @@ namespace FACCTS.Controls.ViewModels
 			
 	public partial class CourtDocketViewModel
 	{
-		private bool _canDropDismiss;
-		public bool CanDropDismiss
-		{
-			get{return _canDropDismiss;}
-			set{
-				if(_canDropDismiss!=value){
-					this.RaiseAndSetIfChanged(ref _canDropDismiss, value);
-				}
-			}
-		}
-		
 		private bool _isRefreshing;
 		public bool IsRefreshing
 		{
@@ -307,17 +296,6 @@ namespace FACCTS.Controls.ViewModels
 			set{
 				if(_isRefreshing!=value){
 					this.RaiseAndSetIfChanged(ref _isRefreshing, value);
-				}
-			}
-		}
-		
-		private bool _canReissue;
-		public bool CanReissue
-		{
-			get{return _canReissue;}
-			set{
-				if(_canReissue!=value){
-					this.RaiseAndSetIfChanged(ref _canReissue, value);
 				}
 			}
 		}
@@ -351,6 +329,17 @@ namespace FACCTS.Controls.ViewModels
 			set{
 				if(_sessionIndex!=value){
 					this.RaiseAndSetIfChanged(ref _sessionIndex, value);
+				}
+			}
+		}
+		
+		private Faccts.Model.Entities.Hearings _docketItem;
+		public Faccts.Model.Entities.Hearings DocketItem
+		{
+			get{return _docketItem;}
+			set{
+				if(_docketItem!=value){
+					this.RaiseAndSetIfChanged(ref _docketItem, value);
 				}
 			}
 		}
@@ -635,17 +624,6 @@ namespace FACCTS.Controls.ViewModels
 			set{
 				if(_currentCourtCase!=value){
 					this.RaiseAndSetIfChanged(ref _currentCourtCase, value);
-				}
-			}
-		}
-		
-		private FACCTS.Server.Model.Enums.CourtOrdersTypes _masterOrder;
-		public FACCTS.Server.Model.Enums.CourtOrdersTypes MasterOrder
-		{
-			get{return _masterOrder;}
-			set{
-				if(_masterOrder!=value){
-					this.RaiseAndSetIfChanged(ref _masterOrder, value);
 				}
 			}
 		}

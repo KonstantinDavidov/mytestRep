@@ -64,6 +64,31 @@ namespace FACCTS.Server.Controllers
                 .ToList();
         }
 
+        public HttpResponseMessage Get(CourtCaseSearchCriteria searchCriteria)
+        {
+            if (searchCriteria == null)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, new ArgumentNullException("searchCriteria"));
+            }
+            try
+            {
+                var data = DataManager.CourtCaseRepository
+                .GetAll(
+                x => x.Party1,
+                x => x.Party2,
+                x => x.CaseHistory,
+                x => x.CourtClerk
+                )
+                .Where(searchCriteria.GetLINQCriteria());
+                return Request.CreateResponse(HttpStatusCode.OK, data);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
+            
+        }
+
 
         public CourtCase Post([FromBody] CourtCaseCreationRequest courtCase)
         {
