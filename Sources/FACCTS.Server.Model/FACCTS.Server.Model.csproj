@@ -133,6 +133,7 @@
     <Compile Include="Enums\CCPORStatus.cs" />
     <Compile Include="Enums\Custody.cs" />
     <Compile Include="Enums\PartyFor.cs" />
+    <Compile Include="Interfaces\ICourtCaseSearchCriteria.cs" />
     <Compile Include="Reporting\Contracts\ICH110.cs" />
     <Compile Include="Reporting\Contracts\ICH130.cs" />
     <Compile Include="Reporting\Contracts\IDV110.cs" />

@@ -9,6 +9,7 @@ namespace FACCTS.Server.Model.Calculations
 {
     public class CourtCaseHeading
     {
+        public long CourtCaseId { get; set; }
         public string CaseNumber { get; set; }
         public CaseStatus CaseStatus { get; set; }
         public DateTime? Date { get; set; }

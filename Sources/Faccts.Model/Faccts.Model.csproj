@@ -170,6 +170,9 @@
     <Compile Include="Entities\CourtCase.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\CourtCaseHeading.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\CourtCounty.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -296,6 +299,7 @@
     <Compile Include="Entities\OtherProtected.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\Partials\CourtCaseHeading.cs" />
     <Compile Include="Entities\Partials\OtherProtected.cs" />
     <Compile Include="Entities\Partials\PersonBase.cs" />
     <Compile Include="Entities\Partials\AddressInfo.cs" />

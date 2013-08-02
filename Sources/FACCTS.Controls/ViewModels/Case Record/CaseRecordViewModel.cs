@@ -126,20 +126,41 @@ namespace FACCTS.Controls.ViewModels
             this.NotifyOfPropertyChange(() => CourtCases);
         }
 
-        private TrackableCollection<CourtCase> _courtCases;
-        public TrackableCollection<CourtCase> CourtCases
+        private TrackableCollection<CourtCaseHeading> _courtCases;
+        public TrackableCollection<CourtCaseHeading> CourtCases
         {
             get
             {
                 if (IsAuthenticated && _courtCases == null)
                 {
-                    _courtCases = DataContainer.CourtCases;
-                    if (CurrentCourtCase == null)
+                    _courtCases = DataContainer.CourtCaseHeadings;
+                    if (CurrentCourtCase == null && _courtCases.Any())
                     {
-                        CurrentCourtCase = _courtCases.FirstOrDefault();
+                        DataContainer.UpdateBySelection(_courtCases.First());
                     }
                 }
                 return _courtCases;
+            }
+        }
+
+        private CourtCaseHeading _selectedHeading;
+        public CourtCaseHeading SelectedHeading
+        {
+            get
+            {
+                return _selectedHeading;
+            }
+            set
+            {
+                if (_selectedHeading == value)
+                    return;
+
+                this.NotifyOfPropertyChanging();
+                _selectedHeading = value;
+                DataContainer.UpdateBySelection(_selectedHeading);
+                _eventAggregator.Publish(new CurrentCourtCaseChangedEvent(DataContainer.CurrentCourtCase));
+                this.NotifyOfPropertyChange();
+
             }
         }
 
@@ -201,17 +222,7 @@ namespace FACCTS.Controls.ViewModels
         {
             get
             {
-                return _currentCourtCase;
-            }
-            set
-            {
-                if (_currentCourtCase == value)
-                    return;
-
-                this.NotifyOfPropertyChanging();
-                _currentCourtCase = value;
-                _eventAggregator.Publish(new CurrentCourtCaseChangedEvent(_currentCourtCase));
-                this.NotifyOfPropertyChange();
+                return DataContainer.CurrentCourtCase;
             }
         }
 

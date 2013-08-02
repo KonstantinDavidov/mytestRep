@@ -154,11 +154,11 @@ namespace FACCTS.Controls.ViewModels
             _windowManager.ShowDialog(vm);
         }
 
-        public ObservableCollection<CourtCase> CourtCases
+        public ObservableCollection<CourtCaseHeading> CourtCases
         {
             get 
             { 
-                return DataContainer.CourtCases; 
+                return DataContainer.CourtCaseHeadings; 
             }
         }
 

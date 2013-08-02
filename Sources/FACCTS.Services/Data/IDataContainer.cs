@@ -12,7 +12,7 @@ namespace FACCTS.Services.Data
 {
     public interface IDataContainer : INotifyPropertyChanged
     {
-        TrackableCollection<CourtCase> CourtCases { get; }
+        TrackableCollection<CourtCaseHeading> CourtCaseHeadings { get; }
         SearchCriteria SearchCriteria { get; }
         FACCTSConfiguration FacctsConfiguration { get; }
         List<CourtDepartment> AvailableDepartments { get; }
@@ -27,6 +27,8 @@ namespace FACCTS.Services.Data
         List<EnumDescript<FACCTS.Server.Model.Enums.Relationship>> Relationships { get; }
         List<EnumDescript<FACCTS.Server.Model.Enums.Designation>> Designations { get; }
         List<EnumDescript<AddressType>> AddressTypes { get; }
+        CourtCase CurrentCourtCase { get; }
+        void UpdateBySelection(Faccts.Model.Entities.CourtCaseHeading selectedItem);
 
         void SearchCourtCases(bool reset = false);
         void UpdateDictionaries();

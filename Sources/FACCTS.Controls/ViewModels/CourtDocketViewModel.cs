@@ -42,21 +42,21 @@ namespace FACCTS.Controls.ViewModels
         protected override void Authorized()
         {
             base.Authorized();
-            this.NotifyOfPropertyChange(() => CourtCases);
+            //this.NotifyOfPropertyChange(() => CourtCases);
         }
 
-        private ReactiveCollection<CourtCase> _courtCases;
-        public ReactiveCollection<CourtCase> CourtCases
-        {
-            get
-            {
-                if (this.IsAuthenticated && _courtCases == null)
-                {
-                    _courtCases = DataContainer.CourtCases.CreateDerivedCollection(x => x, filter: x => !x.HasDocket, signalReset: this.WhenAny(y => y.CollectionChangedNotifier, y => y));
-                }
-                return _courtCases;
-            }
-        }
+        //private ReactiveCollection<CourtCase> _courtCases;
+        //public ReactiveCollection<CourtCase> CourtCases
+        //{
+        //    get
+        //    {
+        //        if (this.IsAuthenticated && _courtCases == null)
+        //        {
+        //            _courtCases = DataContainer.CourtCases.CreateDerivedCollection(x => x, filter: x => !x.HasDocket, signalReset: this.WhenAny(y => y.CollectionChangedNotifier, y => y));
+        //        }
+        //        return _courtCases;
+        //    }
+        //}
 
         public void AddCase()
         {

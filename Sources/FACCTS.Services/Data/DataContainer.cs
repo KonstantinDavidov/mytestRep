@@ -1,5 +1,8 @@
 ﻿using Faccts.Model.Entities;
+using FACCTS.Server.Model.Calculations;
 using FACCTS.Server.Model.Enums;
+using FACCTS.Server.Model.Interfaces;
+using FACCTS.Services.Dialog;
 using FACCTS.Services.Logger;
 using ReactiveUI;
 using System;
@@ -36,62 +39,21 @@ namespace FACCTS.Services.Data
             }
         }
 
-        private TrackableCollection<CourtCase> _courtCases;
-        public TrackableCollection<CourtCase> CourtCases
+        private TrackableCollection<Faccts.Model.Entities.CourtCaseHeading> _courtCaseheadings;
+        public TrackableCollection<Faccts.Model.Entities.CourtCaseHeading> CourtCaseHeadings
         {
             get
             {
-                return _courtCases;
+                return _courtCaseheadings;
             }
             private set
             {
-                if (_courtCases != null)
-                {
-                    _courtCases.CollectionChanged -= FixupCourtCases;
-                }
-                _courtCases = value;
-                if (_courtCases != null)
-                {
-                    _courtCases.CollectionChanged += FixupCourtCases;
-                }
-                RaisePropertyChanged(() => CourtCases);
+                _courtCaseheadings = value;
+                RaisePropertyChanged(() => CourtCaseHeadings);
             }
         }
 
-        private void FixupCourtCases(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsSearching)
-            {
-                return;
-            }
-            if (e.NewItems != null)
-            {
-                foreach (CourtCase item in e.NewItems)
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CourtCases", item);
-                    }
-                }
-                RaisePropertyChanged(() => CourtCases);
-            }
 
-            if (e.OldItems != null)
-            {
-                foreach (CourtCase item in e.OldItems)
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtCases", item);
-                    }
-                }
-            }
-            RaisePropertyChanged(() => CourtCases);
-        }
 
         private ObjectChangeTracker _changeTracker;
         public ObjectChangeTracker ChangeTracker
@@ -128,17 +90,12 @@ namespace FACCTS.Services.Data
 
         public void SearchCourtCases(bool reset = false)
         {
-            if (!reset && CourtCases != null)
+            if (!reset && CourtCaseHeadings != null)
                 return;
             IsSearching = true;
             try
             {
-                CourtCases = new TrackableCollection<CourtCase>(FACCTS.Services.Data.CourtCases.GetAll());
-                CourtCases.Aggregate(0, (index, cc) => 
-                {
-                    cc.AcceptChanges();
-                    return ++ index;
-                });
+                CourtCaseHeadings = new TrackableCollection<Faccts.Model.Entities.CourtCaseHeading>(FACCTS.Services.Data.CourtCases.GetAll(this.SearchCriteria));
             }
             finally
             {
@@ -254,6 +211,23 @@ namespace FACCTS.Services.Data
             }
         }
 
+        private CourtCase _currentCourtCase;
+        public CourtCase CurrentCourtCase
+        {
+            get
+            {
+                return _currentCourtCase;
+            }
+            private set
+            {
+                if (value == _currentCourtCase)
+                    return;
+
+                _currentCourtCase = value;
+                RaisePropertyChanged(() => CurrentCourtCase);
+            }
+        }
+
         private List<HairColor> _hairColors;
         public List<HairColor> HairColors
         {
@@ -352,6 +326,23 @@ namespace FACCTS.Services.Data
             }
         }
 
+        public void UpdateBySelection(Faccts.Model.Entities.CourtCaseHeading selectedItem)
+        {
+            if (selectedItem == null)
+            {
+                throw new ArgumentNullException("selectedItem");
+            }
+            if (this.CurrentCourtCase != null && this.CurrentCourtCase.IsDirty)
+            {
+                IDialogService dialogService = ServiceLocatorContainer.Locator.GetInstance<IDialogService>();
+                if (dialogService.MessageBox("Do you really want do discard all the changes?", "Please confirm", System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Question) == System.Windows.MessageBoxResult.No)
+                {
+                    return;
+                }
+            }
+            this.CurrentCourtCase = CourtCases.GetById(selectedItem.CourtCaseId);
+        }
+
         public CourtCase SaveData(CourtCase courtCaseToSave)
         {
             return FACCTS.Services.Data.CourtCases.SaveData(courtCaseToSave);
@@ -415,7 +406,7 @@ namespace FACCTS.Services.Data
         public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
     }
 
-    public class SearchCriteria
+    public class SearchCriteria : ICourtCaseSearchCriteria
     {
         public SearchCriteria()
         {
@@ -424,21 +415,60 @@ namespace FACCTS.Services.Data
 
         public string CaseNumber { get; set; }
         public string CCPOR_ID { get; set; }
-        public DateTime? FirstActivityEndDate { get; set; }
-        public DateTime? FirstActivityStartDate { get; set; }
-        public DateTime? LastActivityEndDate { get; set; }
-        public DateTime? LastActivityStartDate { get; set; }
         public string Party1FirstName { get; set; }
         public string Party1LastName { get; set; }
         public string Party1MiddleName { get; set; }
         public string Party2FirstName { get; set; }
         public string Party2LastName { get; set; }
         public string Party2MiddleName { get; set; }
-        public FACCTS.Server.Model.Enums.CaseStatus CaseStatus { get; set; }
-        public Faccts.Model.Entities.User CourtClerk { get; set; }
-
         public Server.Model.Enums.CCPORStatus CCPORStatus { get; set; }
-    }
+        public CaseStatus? CaseStatus
+        {
+            get;
+            set;
+        }
+        public long? CourtClerkId
+        {
+            get;
+            set;
+        }
+        public DateTime? FirstHearingEnd
+        {
+            get;
+            set;
+        }
+        public DateTime? FirstHearingStart
+        {
+            get;
+            set;
+        }
+        public DateTime? LastHearingEnd
+        {
+            get;
+            set;
+        }
+        public DateTime? LastHearingStart
+        {
+            get;
+            set;
+        }
 
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            var propInfos = this.GetType().GetProperties(System.Reflection.BindingFlags.GetProperty | System.Reflection.BindingFlags.Public);
+            sb = propInfos.Aggregate(sb, (builder, item) =>
+                {
+                    var value = item.GetValue(this);
+                    if (value != null)
+                    {
+                        builder.AppendFormat("{0}={1}", item.Name, value);
+                    }
+                    return builder;
+                }
+                );
+            return sb.ToString();
+        }
+    }
    
 }

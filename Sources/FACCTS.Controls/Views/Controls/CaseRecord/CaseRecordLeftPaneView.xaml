@@ -39,9 +39,8 @@
                 </Grid.RowDefinitions>
                 <ListBox VerticalAlignment="Stretch"
                          DisplayMemberPath="CaseNumber"
-                         SelectedItem="{Binding CurrentCourtCase, Mode=TwoWay}"
                          SelectionMode="Extended"
-                         cal:Message.Attach="[Event SelectionChanged] = [Action SelectionCourtCasesChanged($eventArgs)]"
+                         SelectedItem="{Binding SelectedHeading, Mode=TwoWay}"
                          ItemsSource="{Binding CourtCases, Mode=OneWay}" />
             </Grid>
 		</GroupBox>

@@ -66,6 +66,7 @@
     <EntitySet Name="Appearance" EntityType="FACCTS_DBModel.Store.Appearance" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="CourtOrders" EntityType="FACCTS_DBModel.Store.CourtOrders" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="OrderBaseSet" EntityType="FACCTS_DBModel.Store.OrderBaseSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CourtCaseHeadingSet" EntityType="FACCTS_DBModel.Store.CourtCaseHeadingSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PersonBaseSet_Attorneys" EntityType="FACCTS_DBModel.Store.PersonBaseSet_Attorneys" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="OrderBaseSet_CH130ROOrder" EntityType="FACCTS_DBModel.Store.OrderBaseSet_CH130ROOrder" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ConductBaseSet_ConductROSection" EntityType="FACCTS_DBModel.Store.ConductBaseSet_ConductROSection" store:Type="Tables" Schema="dbo" />
@@ -1295,6 +1296,20 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CourtCaseHeadingSet">
+    <Key>
+      <PropertyRef Name="CourtCaseId" />
+    </Key>
+    <Property Name="CourtCaseId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CaseNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CaseStatus" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="true" />
+    <Property Name="Order" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Party1Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Party2Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CourtClerkId" Type="bigint" Nullable="true" />
+    <Property Name="CCPOR_ID" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="PersonBaseSet_Attorneys">
     <Key>
@@ -3662,6 +3677,7 @@
             <End Role="CourtOrders" EntitySet="CourtOrders" />
             <End Role="OrderBase" EntitySet="OrderBaseSet" />
           </AssociationSet>
+          <EntitySet Name="CourtCaseHeadingSet" EntityType="FACCTS_DBModel.CourtCaseHeading" />
           </EntityContainer>
         <EntityType Name="AdfsIntegrationConfiguration">
           <Key>
@@ -5342,6 +5358,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="CourtCaseHeading">
+          <Key>
+            <PropertyRef Name="CourtCaseId" />
+          </Key>
+          <Property Type="Int64" Name="CourtCaseId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CaseNumber" Nullable="false" />
+          <Property Type="FACCTS_DBModel.CaseStatus" Name="CaseStatus" Nullable="false" />
+          <Property Type="DateTime" Name="Date" Nullable="true" />
+          <Property Type="String" Name="Order" Nullable="false" />
+          <Property Type="String" Name="Party1Name" Nullable="false" />
+          <Property Type="String" Name="Party2Name" Nullable="false" />
+          <Property Type="Int64" Name="CourtClerkId" Nullable="true" />
+          <Property Type="String" Name="CCPOR_ID" Nullable="false" />
+        </EntityType>
+        <EnumType Name="CaseStatus" a:ExternalTypeName="FACCTS.Server.Model.Enums.CaseStatus" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6262,6 +6293,21 @@
       <EntityTypeMapping TypeName="IsTypeOf(FACCTS_DBModel.EA130ROOrder)">
         <MappingFragment StoreEntitySet="OrderBaseSet_EA130ROOrder">
           <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CourtCaseHeadingSet">
+      <EntityTypeMapping TypeName="IsTypeOf(FACCTS_DBModel.CourtCaseHeading)">
+        <MappingFragment StoreEntitySet="CourtCaseHeadingSet">
+          <ScalarProperty Name="CourtCaseId" ColumnName="CourtCaseId" />
+          <ScalarProperty Name="CaseNumber" ColumnName="CaseNumber" />
+          <ScalarProperty Name="CaseStatus" ColumnName="CaseStatus" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Order" ColumnName="Order" />
+          <ScalarProperty Name="Party1Name" ColumnName="Party1Name" />
+          <ScalarProperty Name="Party2Name" ColumnName="Party2Name" />
+          <ScalarProperty Name="CourtClerkId" ColumnName="CourtClerkId" />
+          <ScalarProperty Name="CCPOR_ID" ColumnName="CCPOR_ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

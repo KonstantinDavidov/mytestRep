@@ -1,6 +1,7 @@
 ﻿using FACCTS.Server.Code;
 using FACCTS.Server.DataContracts;
 using FACCTS.Server.Filters;
+using FACCTS.Server.Model.Calculations;
 using FACCTS.Server.Model.DataModel;
 using FACCTS.Server.Models;
 using log4net;
@@ -36,7 +37,7 @@ namespace FACCTS.Server.Controllers
 
         private ILog _logger;
 
-        public List<CourtCase> Get()
+        public CourtCase Get(long courtCaseId)
         {
             return DataManager.CourtCaseRepository
                 .GetAll(
@@ -61,10 +62,11 @@ namespace FACCTS.Server.Controllers
                 x => x.ThirdPartyData,
                 x => x.ThirdPartyData.Attorney
                 )
-                .ToList();
+                .Where(x => x.Id == courtCaseId)
+                .FirstOrDefault();
         }
 
-        public HttpResponseMessage Get(CourtCaseSearchCriteria searchCriteria)
+        public HttpResponseMessage Get([FromUri]CourtCaseSearchCriteria searchCriteria)
         {
             if (searchCriteria == null)
             {
@@ -79,7 +81,22 @@ namespace FACCTS.Server.Controllers
                 x => x.CaseHistory,
                 x => x.CourtClerk
                 )
-                .Where(searchCriteria.GetLINQCriteria());
+                .Where(searchCriteria.GetLINQCriteria())
+                .Select(
+                x => new CourtCaseHeading()
+                {
+                    CourtCaseId = x.Id,
+                    CaseNumber = x.CaseNumber,
+                    CaseStatus = x.CaseStatus,
+                    Date = null,
+                    Order = null,
+                    Party1Name = x.Party1.FullName,
+                    Party2Name = x.Party2.FullName,
+                    CourtClerkId = x.CourtClerkId,
+                    CCPOR_ID = x.CCPORId,
+                }
+                )
+                .ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, data);
             }
             catch (Exception ex)

@@ -1,4 +1,6 @@
 ﻿using FACCTS.Server.Model.DataModel;
+using FACCTS.Server.Model.Interfaces;
+using FACCTS.Server.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +9,7 @@ using System.Web;
 
 namespace FACCTS.Server.Models
 {
-    public class CourtCaseSearchCriteria
+    public class CourtCaseSearchCriteria : ICourtCaseSearchCriteria
     {
         public DateTime? FirstHearingStart { get; set; }
         public DateTime? FirstHearingEnd { get; set; }

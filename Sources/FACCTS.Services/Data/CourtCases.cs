@@ -1,4 +1,4 @@
-﻿using FACCTS.Server.Model.DataModel;
+﻿using Faccts.Model.Entities;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,17 +12,18 @@ namespace FACCTS.Services.Data
 {
     public class CourtCases : WebApiClientBase
     {
-        protected IEnumerable<Faccts.Model.Entities.CourtCase> GetAllCourtCases()
+        protected IEnumerable<CourtCaseHeading> GetAllCourtCases(SearchCriteria criteria)
         {
-            List<Faccts.Model.Entities.CourtCase> output = this.CallServiceGet<List<CourtCase>>(Routes.GetCourtCases.CourtCaseController)
-                .Select(x => new Faccts.Model.Entities.CourtCase(x))
+            List<CourtCaseHeading> output = 
+                this.CallServiceGet<List<FACCTS.Server.Model.Calculations.CourtCaseHeading>>(string.Format("{0}?{1}", Routes.GetCourtCases.CourtCaseController, criteria.ToString()))
+                .Select(x => new CourtCaseHeading(x))
                 .ToList();
             return output;
         }
 
-        public static IEnumerable<Faccts.Model.Entities.CourtCase> GetAll()
+        public static IEnumerable<CourtCaseHeading> GetAll(SearchCriteria criteria)
         {
-            return new CourtCases().GetAllCourtCases();
+            return new CourtCases().GetAllCourtCases(criteria);
         }
 
         protected CourtCase CreateNewCase(CourtCase courtCase)
@@ -43,16 +44,26 @@ namespace FACCTS.Services.Data
             return new CourtCases().CreateNewCase(cc);
         }
 
-        private CourtCase Save(CourtCase dto)
+        private FACCTS.Server.Model.DataModel.CourtCase Save(FACCTS.Server.Model.DataModel.CourtCase dto)
         {
-            return this.CallServicePut<CourtCase, CourtCase>("CourtCase", dto);
+            return this.CallServicePut<FACCTS.Server.Model.DataModel.CourtCase, FACCTS.Server.Model.DataModel.CourtCase>("CourtCase", dto);
         }
 
         public static Faccts.Model.Entities.CourtCase SaveData(Faccts.Model.Entities.CourtCase courtCaseToSave)
         {
-            CourtCase dto = courtCaseToSave.ToDTO();
+            FACCTS.Server.Model.DataModel.CourtCase dto = courtCaseToSave.ToDTO();
             var updated = new CourtCases().Save(dto);
             return new Faccts.Model.Entities.CourtCase(dto);
+        }
+
+        internal static CourtCase GetById(long courtCaseId)
+        {
+            return new CourtCase(new CourtCases().GetByCourtCaseId(courtCaseId));
+        }
+
+        private FACCTS.Server.Model.DataModel.CourtCase GetByCourtCaseId(long courtCaseId)
+        {
+            return this.CallServiceGet<FACCTS.Server.Model.DataModel.CourtCase>(string.Format("{0}?{1}", Routes.GetCourtCases.CourtCaseController, courtCaseId));
         }
     }
 }

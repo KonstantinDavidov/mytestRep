@@ -59,10 +59,10 @@ namespace FACCTS.Controls.ViewModels
                 ).Subscribe(_ =>
                 {
                     DataContainer.SearchCriteria.CaseNumber = CaseNumber;
-                    DataContainer.SearchCriteria.FirstActivityStartDate = FirstActivityStartDate;
-                    DataContainer.SearchCriteria.FirstActivityEndDate = FirstActivityEndDate;
-                    DataContainer.SearchCriteria.LastActivityStartDate = LastActivityStartDate;
-                    DataContainer.SearchCriteria.LastActivityEndDate = LastActivityEndDate;
+                    DataContainer.SearchCriteria.FirstHearingStart = FirstActivityStartDate;
+                    DataContainer.SearchCriteria.FirstHearingEnd = FirstActivityEndDate;
+                    DataContainer.SearchCriteria.LastHearingStart = LastActivityStartDate;
+                    DataContainer.SearchCriteria.LastHearingEnd = LastActivityEndDate;
                     DataContainer.SearchCriteria.CCPOR_ID = CCPOR_ID;
                     DataContainer.SearchCriteria.Party1FirstName = Party1FirstName;
                     DataContainer.SearchCriteria.Party1MiddleName = Party1MiddleName;
@@ -278,14 +278,14 @@ namespace FACCTS.Controls.ViewModels
             //TODO implement Find()
         }
 
-        private TrackableCollection<CourtCase> _courtCases;
-        public TrackableCollection<CourtCase> CourtCases
+        private TrackableCollection<CourtCaseHeading> _courtCases;
+        public TrackableCollection<CourtCaseHeading> CourtCases
         {
             get
             {
                 if (this.IsAuthenticated && _courtCases == null)
                 {
-                    _courtCases = DataContainer.CourtCases;
+                    _courtCases = DataContainer.CourtCaseHeadings;
                 }
                 return _courtCases;
             }

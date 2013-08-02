@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 07/31/2013 17:48:58
+-- Date Created: 08/02/2013 18:37:51
 -- Generated from EDMX file: D:\FACCTS\FACCTSNEW\faccts.net\Sources\Faccts.Model\Entities\DataModel.edmx
 -- --------------------------------------------------
 
@@ -322,6 +322,9 @@ IF OBJECT_ID(N'[dbo].[FK_CaseHistoryUser]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_CourtPartyAttorneys]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CourtParty] DROP CONSTRAINT [FK_CourtPartyAttorneys];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CourtOrdersOrderBase]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[OrderBaseSet] DROP CONSTRAINT [FK_CourtOrdersOrderBase];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Attorneys_inherits_PersonBase]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[PersonBaseSet_Attorneys] DROP CONSTRAINT [FK_Attorneys_inherits_PersonBase];
@@ -1360,6 +1363,20 @@ CREATE TABLE [dbo].[OrderBaseSet] (
 );
 GO
 
+-- Creating table 'CourtCaseHeadingSet'
+CREATE TABLE [dbo].[CourtCaseHeadingSet] (
+    [CourtCaseId] bigint IDENTITY(1,1) NOT NULL,
+    [CaseNumber] nvarchar(max)  NOT NULL,
+    [CaseStatus] int  NOT NULL,
+    [Date] datetime  NULL,
+    [Order] nvarchar(max)  NOT NULL,
+    [Party1Name] nvarchar(max)  NOT NULL,
+    [Party2Name] nvarchar(max)  NOT NULL,
+    [CourtClerkId] bigint  NULL,
+    [CCPOR_ID] nvarchar(max)  NOT NULL
+);
+GO
+
 -- Creating table 'PersonBaseSet_Attorneys'
 CREATE TABLE [dbo].[PersonBaseSet_Attorneys] (
     [FirmName] nvarchar(100)  NULL,
@@ -1992,6 +2009,12 @@ GO
 ALTER TABLE [dbo].[OrderBaseSet]
 ADD CONSTRAINT [PK_OrderBaseSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [CourtCaseId] in table 'CourtCaseHeadingSet'
+ALTER TABLE [dbo].[CourtCaseHeadingSet]
+ADD CONSTRAINT [PK_CourtCaseHeadingSet]
+    PRIMARY KEY CLUSTERED ([CourtCaseId] ASC);
 GO
 
 -- Creating primary key on [Id] in table 'PersonBaseSet_Attorneys'
