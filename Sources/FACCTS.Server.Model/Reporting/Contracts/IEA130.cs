@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.OrderModels
 {
-    public partial class CH110 : TemporaryOrder
+    public partial interface IEA130 : IPermanentOrder
     {
     }
 }

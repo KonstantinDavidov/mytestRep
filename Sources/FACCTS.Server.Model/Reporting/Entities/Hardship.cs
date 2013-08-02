@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FACCTS.Server.Model.Reporting.Entities
+namespace FACCTS.Server.Model.OrderModels
 {
     public enum Hardship
     {

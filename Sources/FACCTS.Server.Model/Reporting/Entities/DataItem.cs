@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace FACCTS.Server.Model.Reporting.Entities
+namespace FACCTS.Server.Model.OrderModels
 {
     public class DataItem : IDataItem
     {

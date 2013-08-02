@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using FACCTS.Server.Model.Reporting.Entities;
 
 namespace FACCTS.Server.Model.OrderModels
 {

@@ -125,7 +125,9 @@
     <Compile Include="Entities\Witness.cs" />
     <Compile Include="Enums\AddressType.cs" />
     <Compile Include="Enums\AppearanceType.cs" />
-    <Compile Include="Enums\CARPOSEntryType.cs" />
+    <Compile Include="Reporting\Contracts\IEA110.cs" />
+    <Compile Include="Reporting\Contracts\IEA130.cs" />
+    <Compile Include="Reporting\Entities\CARPOSEntryType.cs" />
     <Compile Include="Enums\CaseHistoryEvent.cs" />
     <Compile Include="Enums\CaseNoteStatus.cs" />
     <Compile Include="Enums\CaseStatus.cs" />
@@ -138,9 +140,7 @@
     <Compile Include="Reporting\Contracts\ICH130.cs" />
     <Compile Include="Reporting\Contracts\IDV110.cs" />
     <Compile Include="Reporting\Contracts\IDV130.cs" />
-    <Compile Include="Reporting\Entities\AdditionalChildSupportItem.cs" />
     <Compile Include="Reporting\Entities\AvailableReportType.cs" />
-    <Compile Include="Reporting\Entities\ChildSupportItem.cs" />
     <Compile Include="Reporting\Entities\CustodyParent.cs" />
     <Compile Include="Enums\Designation.cs" />
     <Compile Include="Enums\Firearm.cs" />
@@ -166,21 +166,15 @@
     <Compile Include="Reporting\Entities\BaseOrder.cs" />
     <Compile Include="Reporting\Entities\CH110.cs" />
     <Compile Include="Reporting\Entities\CH130.cs" />
-    <Compile Include="Reporting\Entities\ChildCustodyItem.cs" />
     <Compile Include="Reporting\Entities\DataItem.cs" />
-    <Compile Include="Reporting\Entities\DebtItem.cs" />
-    <Compile Include="Reporting\Entities\DebtPaymentItem.cs" />
     <Compile Include="Reporting\Entities\DV110.cs" />
     <Compile Include="Reporting\Entities\DV130.cs" />
     <Compile Include="Reporting\Entities\EA110.cs" />
     <Compile Include="Reporting\Entities\EA130.cs" />
-    <Compile Include="Reporting\Entities\HardshipItem.cs" />
     <Compile Include="Reporting\Entities\Hardship.cs" />
-    <Compile Include="Reporting\Entities\IDataItem.cs" />
-    <Compile Include="Reporting\Entities\IDebtPaymentItem.cs" />
-    <Compile Include="Reporting\Entities\IncomeItem.cs" />
-    <Compile Include="Reporting\Entities\IPermanentOrder.cs" />
-    <Compile Include="Reporting\Entities\ITemporaryOrder.cs" />
+    <Compile Include="Reporting\Contracts\IDataItem.cs" />
+    <Compile Include="Reporting\Contracts\IPermanentOrder.cs" />
+    <Compile Include="Reporting\Contracts\ITemporaryOrder.cs" />
     <Compile Include="Reporting\Entities\PartyEnum.cs" />
     <Compile Include="Reporting\Entities\PayableSchedule.cs" />
     <Compile Include="Reporting\Entities\PermanentOrder.cs" />
@@ -192,7 +186,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reporting\Entities\PaymentItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

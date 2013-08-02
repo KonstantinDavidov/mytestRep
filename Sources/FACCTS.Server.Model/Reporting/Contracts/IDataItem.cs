@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace FACCTS.Server.Model.Reporting.Entities
+namespace FACCTS.Server.Model.OrderModels
 {
     public interface IDataItem
     {
