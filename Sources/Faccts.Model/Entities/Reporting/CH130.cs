@@ -1,4 +1,5 @@
-﻿using FACCTS.Server.Model.OrderModels;
+﻿using FACCTS.Server.Model.Enums;
+using FACCTS.Server.Model.OrderModels;
 
 namespace Faccts.Model.Entities.Reporting
 {
@@ -23,6 +24,7 @@ namespace Faccts.Model.Entities.Reporting
             CAPROSEntry = new CAPROSEntry();
             NoServiceFee = new NoServiceFee();
             LawersFeeAndCourtCosts = new LawersFeeAndCourtCosts();
+            OrdersType = CourtOrdersTypes.CH130;
         }
 
         public CH130(ICH130 order)
@@ -39,6 +41,7 @@ namespace Faccts.Model.Entities.Reporting
             LawersFeeAndCourtCosts = new LawersFeeAndCourtCosts(order.LawersFeeAndCourtCosts);
             IsOtherOrdersAttached = order.IsOtherOrdersAttached;
             OtherOrderDetail = order.OtherOrderDetail;
+            OrdersType = CourtOrdersTypes.CH130;
         }
 
         public bool IsConductChoiceEnabled

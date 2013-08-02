@@ -1,4 +1,4 @@
-﻿using FACCTS.Server.Model.Reporting.Entities;
+﻿using FACCTS.Server.Model.OrderModels;
 
 namespace Faccts.Model.Entities.Reporting
 {

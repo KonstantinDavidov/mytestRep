@@ -372,12 +372,16 @@
     <Compile Include="Entities\Reporting\DataItem.cs" />
     <Compile Include="Entities\Reporting\DebtPaymentItem.cs" />
     <Compile Include="Entities\Reporting\DV110.cs" />
+    <Compile Include="Entities\Reporting\DV130.cs" />
     <Compile Include="Entities\Reporting\DVAnimals.cs" />
     <Compile Include="Entities\Reporting\DVConductChoice.cs" />
     <Compile Include="Entities\Reporting\DVPropertyRestraint.cs" />
     <Compile Include="Entities\Reporting\DVStayAwayOrders.cs" />
     <Compile Include="Entities\Reporting\LawersFeeAndCourtCosts.cs" />
     <Compile Include="Entities\Reporting\NoServiceFee.cs" />
+    <Compile Include="Entities\Reporting\OrderBase.cs" />
+    <Compile Include="Entities\Reporting\OtherOrders.cs" />
+    <Compile Include="Entities\Reporting\PaymentItem.cs" />
     <Compile Include="Entities\Reporting\PermanentOrder.cs" />
     <Compile Include="Entities\Reporting\ReactiveBase.cs" />
     <Compile Include="Entities\Reporting\TemporaryOrder.cs" />

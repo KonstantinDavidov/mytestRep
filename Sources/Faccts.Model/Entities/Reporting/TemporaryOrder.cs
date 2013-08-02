@@ -3,7 +3,7 @@ using FACCTS.Server.Model.Reporting.Entities;
 
 namespace Faccts.Model.Entities.Reporting
 {
-    public class TemporaryOrder : ReactiveBase, ITemporaryOrder
+    public class TemporaryOrder : OrderBase, ITemporaryOrder
     {
         private DateTime _ordersEndDate;
         private DateTime? _ordersEndTime;
