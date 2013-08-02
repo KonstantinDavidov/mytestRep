@@ -298,7 +298,7 @@
     <Property name="IsOtherExist" type="bool"/>
     <Property name="OtherDescription" type="string"/>
   </Model>
-  <Model name="NotifyEmbancyInfo">
+  <Model name="NotifyEmbassyInfo">
     <Property name="IsEnabled" type="bool" />
     <Property name="CountryName" type="string"/>
     <Property name="ProvideProofDays" type="int"/>
@@ -306,8 +306,8 @@
   <Model name="DV145">
     <Property name="IsPastROViolations" type="bool"/>
     <Property name="IsNoTiesWithCalifornia" type="bool"/>
-    <Property name="SuspiciousDoneThingsSection" type="SuspiciousDoneThings"/>
-    <Property name="NegativeHistorySection" type="NegativeHistory"/>
+    <Property name="SuspiciousDoneThings" type="ISuspiciousDoneThings"/>
+    <Property name="NegativeHistory" type="INegativeHistory"/>
     <Property name="HasCriminalRecord" type="bool"/>
     <Property name="HasOtherLocationsTies" type="bool"/>
     <Property name="IsPostBondRequered" type="bool"/>
@@ -323,13 +323,13 @@
     <Property name="OtherState" type="USAState"/>
     <Property name="TravelDocumentsApplyDenied" type="bool"/>
     <Property name="TurnedInDocuments" type="string"/>
-    <Property name="NecessaryTravelDocumentsSection" type="NecessaryTravelDocuments"/>
+    <Property name="NecessaryTravelDocuments" type="INecessaryTravelDocuments"/>
     <Property name="IsNotifyForeignEmbassyRequired" type="bool"/>
     <Property name="IsForeignCustodyCourtOrderRequired" type="bool"/>
     <Property name="IsEnforcingCourtOrderRequired" type="bool"/>
     <Property name="EnforcingAgencyName" type="string"/>
-    <Property name="OtherPermissionsOrder" type="OtherOrders"/>
-    <Property name="NotifyEmbancyInfo" type="NotifyEmbancyInfo"/>
+    <Property name="OtherPermissionsOrder" type="IOtherOrders"/>
+    <Property name="NotifyEmbassyInfo" type="INotifyEmbassyInfo"/>
   </Model>
   
   <!-- FL343-->
@@ -377,7 +377,7 @@
 
     <Property name="IsSupportConditionsEnabled" type="bool"/>
     <Property name="IsMustInformAboutEmploymentChanges" type="bool"/>
-    <Property name="IsOrderForFamilySupport"/>
+    <Property name="IsOrderForFamilySupport" type="bool"/>
     <Property name="IsSelfSupportEffortsEnabled"/>
     <Property name="SelfSupportEffortedPerson" type="Designation"/>
     <Property name="IsEarningAssignmentStatementEnabled" type="bool"/>
@@ -394,10 +394,10 @@
     <Property name="IsAttachedToStipulation" type="bool"/>
     <Property name="IsAttachedToOther" type="bool"/>
     <Property name="OtherAttachedToDescription" type="string"/>
-    <Property name="IncomeAndDeductions" type="ICollection" collectionType="IncomeAndDeductions"/>
-    <Property name="IsComputerPrintOutAttach"/>
-    <Property name="JudgmentForSpousalSupport" type="JudgmentForSpousalSupport"/>
-    <Property name="CourtOrders" type="CourtOrders"/>
+    <Property name="IncomeAndDeductions" type="ICollection" collectionType="IIncomeAndDeductions"/>
+    <Property name="IsComputerPrintOutAttach" type="bool"/>
+    <Property name="JudgmentForSpousalSupport" type="IJudgmentForSpousalSupport"/>
+    <Property name="CourtOrders" type="ICourtOrders"/>
   </Model>
   <!-- EA -->
   <Model name="EAConductChoice">
@@ -425,33 +425,39 @@
   </Model>
   <Model name="EA110">
     <Property name="EAConductChoiceState" type="OrderRestrictionState"/>
-    <Property name="EAConductChoice" type="EAConductChoice"/>
+    <Property name="EAConductChoice" type="IEAConductChoice"/>
     <Property name="EAStayAwayOrdersState" type="OrderRestrictionState"/>
-    <Property name="EAStayAwayOrders" type="EAStayAwayOrders"/>
+    <Property name="EAStayAwayOrders" type="IEAStayAwayOrders"/>
     <Property name="MoveoutState" type="OrderRestrictionState"/>
     <Property name="MoveoutAddress" type="string"/>
-    <Property name="CAPROSEntrySection" type="CAPROSEntry"/>
-    <Property name="NoServiceFeeSection" type="NoServiceFee"/>
+    <Property name="CAPROSEntry" type="ICAPROSEntry"/>
+    <Property name="NoServiceFee" type="INoServiceFee"/>
     <Property name="IsOtherOrdersAttached" type="bool"/>
     <Property name="OtherOrderDetail" type="string"/>
     <Property name="IsFirearmsGranted" type="bool"/>
-    <Property name="Firearms" type="Firearms"/>
+    <Property name="Firearms" type="IFirearms"/>
     <Property name="IsFinancialAbuseInvolved" type="bool"/>
   </Model>
   <Model name="EA130">
     <Property name="IsEAConductChoiceEnabled" type="bool"/>
-    <Property name="EAConductChoice" type="EAConductChoice"/>
+    <Property name="EAConductChoice" type="IEAConductChoice"/>
     <Property name="EAStayAwayOrdersEnabled" type="bool"/>
-    <Property name="EAStayAwayOrders" type="EAStayAwayOrders"/>
+    <Property name="EAStayAwayOrders" type="IEAStayAwayOrders"/>
     <Property name="IsMoveoutEnabled" type="bool"/>
     <Property name="MoveoutAddress" type="string"/>
-    <Property name="CAPROSEntrySection" type="CAPROSEntry"/>
-    <Property name="NoServiceFeeSection" type="NoServiceFee"/>
+    <Property name="CAPROSEntrySection" type="ICAPROSEntry"/>
+    <Property name="NoServiceFeeSection" type="INoServiceFee"/>
     <Property name="IsOtherOrdersAttached" type="bool"/>
     <Property name="OtherOrderDetail" type="string"/>
     <Property name="IsNoGuns" type="bool"/>
-    <Property name="Firearms" type="Firearms"/>
+    <Property name="Firearms" type="IFirearms"/>
     <Property name="IsFinancialAbuseInvolved" type="bool"/>
+  </Model>
+  <Model name="DebtItem">
+    <Property name="TotalDebt" type="decimal"/>
+    <Property name="AmountOfPayments" type="decimal"/>
+    <Property name="PayTo" type="Designation"/>
+    <Property name="PaidBy" type="Designation"/>
   </Model>
   <Model name="FL344">
     <Property name="IsRestrainedOrdersEnabled" type="bool" />
@@ -461,12 +467,12 @@
     <Property name="IsNoChangeCoverages" type="bool"/>
     <Property name="IsNoDebt" type="bool"/>
     <Property name ="IsPropertyAndPossesionEnabled" type="bool"/>
-    <Property name="PropertyAndPossetion" type="ICollection" collectionType="DataItem"/>
+    <Property name="PropertyAndPossetion" type="ICollection" collectionType="IDataItem"/>
     <Property name="IsDebtOrdersEnabled" type="bool"/>
-    <Property name="Debts" type="ICollection" collectionType="DebtItem"/>
+    <Property name="Debts" type="ICollection" collectionType="IDebtItem"/>
     <Property name="IsOtherPropertyAttached" type="bool"/>
     <Property name="AreThisTemporaryOrders" type="bool" />
-    <Property name="OtherOrders" type="OtherOrders"/>
+    <Property name="OtherOrders" type="IOtherOrders"/>
   </Model>
   <Model name="TimeShare">
     <Property name="ChildrenNumber" type="byte"/>
@@ -478,33 +484,42 @@
     <Property name="IsLowIncomeAdjustmentApplies" type="bool"/>
     <Property name="DoesNotApplyReasonDescription" type="string"/>
   </Model>
+  <Model name="AdditionalChildSupportItem">
+    <Property name="Percents" type="int"/>
+    <Property name="Amount" type="decimal"/>
+  </Model>
   <Model name="AdditionalPayment">
     <Property name="IsPetitionerMustPay" type="bool"/>
-    <Property name="PetitionerMustPay" type="AdditionalChildSupportItem"/>
+    <Property name="PetitionerMustPay" type="IAdditionalChildSupportItem"/>
     <Property name="IsRespondentMustPay" type="bool" />
-    <Property name="RespondentMustPay" type="AdditionalChildSupportItem"/>
+    <Property name="RespondentMustPay" type="IAdditionalChildSupportItem"/>
     <Property name="IsOtherMustPay" type="bool" />
-    <Property name="OtherMustPay" type="AdditionalChildSupportItem"/>
+    <Property name="OtherMustPay" type="IAdditionalChildSupportItem"/>
     <Property name="IsCostsToBePaidEnabled" type="string"/>
     <Property name="CostsToBePaid" type="string"/>
   </Model>
+  <Model name="ChildSupportItem">
+    <Property name="ChildId" type="long"/>
+    <Property name="PaidToPersonName" type="string"/>
+    <Property name="MonthlyAmount" type="decimal"/>
+  </Model>
   <Model name="ChildSupport">
-    <Property name="ChildSupportItems" type="ICollection" collectionType="ChildSupportItem"/>
+    <Property name="ChildSupportItems" type="ICollection" collectionType="IChildSupportItem"/>
     <Property name="PayableSchedule" type="PayableSchedule"/>
     <Property name="OtherPayableScheduleDescription" type="string"/>
     <Property name="CommencingDate" type="DateTime"/>
     <Property name="PaidByPerson" type="Designation"/>
     <Property name="PaidToPerson" type="Designation"/>
-    <Property name="IsMandatoryAdditionalChildSupportEnabled"/>
+    <Property name="IsMandatoryAdditionalChildSupportEnabled" type="bool"/>
     <Property name="IsChildCareRelatedToEmploymentEnabled" type="bool"/>
-    <Property name="ChildCareRelatedToEmployment" type="AdditionalPayment"/>
+    <Property name="ChildCareRelatedToEmployment" type="IAdditionalPayment"/>
     <Property name="IsReasonableUninsuredHealthCareEnabled" type="bool"/>
-    <Property name="ReasonableUninsuredHealthCare" type="AdditionalPayment"/>
+    <Property name="ReasonableUninsuredHealthCare" type="IAdditionalPayment"/>
     <Property name="IsAdditionalChildSupportEnabled" type="bool"/>
     <Property name="IsEducationalCostsEnabled" type="bool"/>
-    <Property name="EducationalCosts" type="AdditionalPayment"/>
+    <Property name="EducationalCosts" type="IAdditionalPayment"/>
     <Property name="IsTravelExpensesEnabled" type="bool"/>
-    <Property name="TravelExpenses" type="AdditionalPayment"/>
+    <Property name="TravelExpenses" type="IAdditionalPayment"/>
     <Property name="IsNonGuidlineOrder" type="bool"/>
     <Property name="TotalChildSupportPerMonth" type="decimal"/>
     <Property name="TotalBaseChildPerMonth" type="decimal"/>
@@ -516,10 +531,25 @@
     <Property name="IsOtherSelected" type="bool"/>
   </Model>
   <Model name="HealthCare">
-    <Property name="HealthInsuranceMaintained" type="MultyChoice"/>
+    <Property name="HealthInsuranceMaintained" type="IMultyChoice"/>
     <Property name="IsHealthInsuranceIsNotAvailableEnabled" type="bool"/>
-    <Property name="HealthInsuranceIsNotAvailable" type="MultyChoice"/>
+    <Property name="HealthInsuranceIsNotAvailable" type="IMultyChoice"/>
     <Property name="IsReimbursementCanBeAssigned" type="bool"/>
+  </Model>
+  <Model name="HardshipItem">
+    <Property name="Hardship" type="Hardship"/>
+    <Property name="PlantiffPaymentAmount" type="decimal"/>
+    <Property name="RespondentPaymentAmount" type="decimal"/>
+    <Property name="OtherPaymentAmount" type="decimal"/>
+    <Property name="PaymentEndDate" type="DateTime"/>
+  </Model>
+  <Model name="IncomeItem">
+    <Property name="ParentRole" type="Designation"/>
+    <Property name="GrossMonthlyIncome" type="decimal"/>
+    <Property name="NetMonthlyIncome" type="decimal"/>
+    <Property name="ImputedMonthlyIncome" type="decimal"/>
+    <Property name="ImputedYearIncome" type="decimal"/>
+    <Property name="IsRecievedByTANF" type="bool"/>
   </Model>
   <Model name="FL342">
     <Property name="IsAttachedToFOAH" type="bool"/>
@@ -529,18 +559,18 @@
     <Property name="OtherDescription" type="string"/>
     <Property name="IsPrintoutAttached" type="bool"/>
     <Property name="IsIncomeEnabled" type="bool"/>
-    <Property name="Incomes" type="ICollection" collectionType="IncomeItem"/>
+    <Property name="Incomes" type="ICollection" collectionType="IIncomeItem"/>
     <Property name="IsTimeShareEnabled" type="bool"/>
     <Property name="TimeShare" type="TimeShare"/>
     <Property name="IsHardshipsEnabled" type="bool"/>
-    <Property name="HardshipItems" type="ICollection" collectionType="HardshipItem"/>
+    <Property name="HardshipItems" type="ICollection" collectionType="IHardshipItem"/>
     <Property name="IsLowIncomeAdjustmentEnabled" type="bool"/>
-    <Property name="LowIncomeAdjustment" type="LowIncomeAdjustment"/>
+    <Property name="LowIncomeAdjustment" type="ILowIncomeAdjustment"/>
     <Property name="IsChildSupportEnabled" type="bool"/>
-    <Property name="ChildSupport" type="ChildSupport"/>
+    <Property name="ChildSupport" type="IChildSupport"/>
     <Property name="IsEmploymentSearchEnabled" type="bool"/>
-    <Property name="EmploymentSearch" type="MultyChoice"/>
-    <Property name="HealthCare" type="HealthCare"/>
+    <Property name="EmploymentSearch" type="IMultyChoice"/>
+    <Property name="HealthCare" type="IHealthCare"/>
     <Property name="OthersDescription" type="string"/>
   </Model>
   <Model name="FL341">

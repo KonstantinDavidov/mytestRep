@@ -2466,7 +2466,7 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 	
 			
-	public partial interface INotifyEmbancyInfo
+	public partial interface INotifyEmbassyInfo
 	{
 		
 		bool IsEnabled
@@ -2484,7 +2484,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 			}
-	public partial class NotifyEmbancyInfo : INotifyEmbancyInfo
+	public partial class NotifyEmbassyInfo : INotifyEmbassyInfo
 	{
 		public bool IsEnabled
 		{
@@ -2516,12 +2516,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		SuspiciousDoneThings SuspiciousDoneThingsSection
+		ISuspiciousDoneThings SuspiciousDoneThings
 		{
 			get; set;
 		}
 		
-		NegativeHistory NegativeHistorySection
+		INegativeHistory NegativeHistory
 		{
 			get; set;
 		}
@@ -2601,7 +2601,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		NecessaryTravelDocuments NecessaryTravelDocumentsSection
+		INecessaryTravelDocuments NecessaryTravelDocuments
 		{
 			get; set;
 		}
@@ -2626,12 +2626,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		OtherOrders OtherPermissionsOrder
+		IOtherOrders OtherPermissionsOrder
 		{
 			get; set;
 		}
 		
-		NotifyEmbancyInfo NotifyEmbancyInfo
+		INotifyEmbassyInfo NotifyEmbassyInfo
 		{
 			get; set;
 		}
@@ -2648,12 +2648,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public SuspiciousDoneThings SuspiciousDoneThingsSection
+		public ISuspiciousDoneThings SuspiciousDoneThings
 		{
 			get; set;
 		}
 		
-		public NegativeHistory NegativeHistorySection
+		public INegativeHistory NegativeHistory
 		{
 			get; set;
 		}
@@ -2733,7 +2733,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public NecessaryTravelDocuments NecessaryTravelDocumentsSection
+		public INecessaryTravelDocuments NecessaryTravelDocuments
 		{
 			get; set;
 		}
@@ -2758,12 +2758,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public OtherOrders OtherPermissionsOrder
+		public IOtherOrders OtherPermissionsOrder
 		{
 			get; set;
 		}
 		
-		public NotifyEmbancyInfo NotifyEmbancyInfo
+		public INotifyEmbassyInfo NotifyEmbassyInfo
 		{
 			get; set;
 		}
@@ -3092,7 +3092,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		string IsOrderForFamilySupport
+		bool IsOrderForFamilySupport
 		{
 			get; set;
 		}
@@ -3214,7 +3214,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public string IsOrderForFamilySupport
+		public bool IsOrderForFamilySupport
 		{
 			get; set;
 		}
@@ -3294,22 +3294,22 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		ICollection<IncomeAndDeductions> IncomeAndDeductions
+		ICollection<IIncomeAndDeductions> IncomeAndDeductions
 		{
 			get; set;
 		}
 		
-		string IsComputerPrintOutAttach
+		bool IsComputerPrintOutAttach
 		{
 			get; set;
 		}
 		
-		JudgmentForSpousalSupport JudgmentForSpousalSupport
+		IJudgmentForSpousalSupport JudgmentForSpousalSupport
 		{
 			get; set;
 		}
 		
-		CourtOrders CourtOrders
+		ICourtOrders CourtOrders
 		{
 			get; set;
 		}
@@ -3346,22 +3346,22 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public ICollection<IncomeAndDeductions> IncomeAndDeductions
+		public ICollection<IIncomeAndDeductions> IncomeAndDeductions
 		{
 			get; set;
 		}
 		
-		public string IsComputerPrintOutAttach
+		public bool IsComputerPrintOutAttach
 		{
 			get; set;
 		}
 		
-		public JudgmentForSpousalSupport JudgmentForSpousalSupport
+		public IJudgmentForSpousalSupport JudgmentForSpousalSupport
 		{
 			get; set;
 		}
 		
-		public CourtOrders CourtOrders
+		public ICourtOrders CourtOrders
 		{
 			get; set;
 		}
@@ -3567,7 +3567,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		EAConductChoice EAConductChoice
+		IEAConductChoice EAConductChoice
 		{
 			get; set;
 		}
@@ -3577,7 +3577,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		EAStayAwayOrders EAStayAwayOrders
+		IEAStayAwayOrders EAStayAwayOrders
 		{
 			get; set;
 		}
@@ -3592,12 +3592,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		CAPROSEntry CAPROSEntrySection
+		ICAPROSEntry CAPROSEntry
 		{
 			get; set;
 		}
 		
-		NoServiceFee NoServiceFeeSection
+		INoServiceFee NoServiceFee
 		{
 			get; set;
 		}
@@ -3617,7 +3617,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		Firearms Firearms
+		IFirearms Firearms
 		{
 			get; set;
 		}
@@ -3634,7 +3634,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public EAConductChoice EAConductChoice
+		public IEAConductChoice EAConductChoice
 		{
 			get; set;
 		}
@@ -3644,7 +3644,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public EAStayAwayOrders EAStayAwayOrders
+		public IEAStayAwayOrders EAStayAwayOrders
 		{
 			get; set;
 		}
@@ -3659,12 +3659,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public CAPROSEntry CAPROSEntrySection
+		public ICAPROSEntry CAPROSEntry
 		{
 			get; set;
 		}
 		
-		public NoServiceFee NoServiceFeeSection
+		public INoServiceFee NoServiceFee
 		{
 			get; set;
 		}
@@ -3684,7 +3684,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public Firearms Firearms
+		public IFirearms Firearms
 		{
 			get; set;
 		}
@@ -3704,7 +3704,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		EAConductChoice EAConductChoice
+		IEAConductChoice EAConductChoice
 		{
 			get; set;
 		}
@@ -3714,7 +3714,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		EAStayAwayOrders EAStayAwayOrders
+		IEAStayAwayOrders EAStayAwayOrders
 		{
 			get; set;
 		}
@@ -3729,12 +3729,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		CAPROSEntry CAPROSEntrySection
+		ICAPROSEntry CAPROSEntrySection
 		{
 			get; set;
 		}
 		
-		NoServiceFee NoServiceFeeSection
+		INoServiceFee NoServiceFeeSection
 		{
 			get; set;
 		}
@@ -3754,7 +3754,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		Firearms Firearms
+		IFirearms Firearms
 		{
 			get; set;
 		}
@@ -3771,7 +3771,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public EAConductChoice EAConductChoice
+		public IEAConductChoice EAConductChoice
 		{
 			get; set;
 		}
@@ -3781,7 +3781,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public EAStayAwayOrders EAStayAwayOrders
+		public IEAStayAwayOrders EAStayAwayOrders
 		{
 			get; set;
 		}
@@ -3796,12 +3796,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public CAPROSEntry CAPROSEntrySection
+		public ICAPROSEntry CAPROSEntrySection
 		{
 			get; set;
 		}
 		
-		public NoServiceFee NoServiceFeeSection
+		public INoServiceFee NoServiceFeeSection
 		{
 			get; set;
 		}
@@ -3821,12 +3821,59 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public Firearms Firearms
+		public IFirearms Firearms
 		{
 			get; set;
 		}
 		
 		public bool IsFinancialAbuseInvolved
+		{
+			get; set;
+		}
+			}
+	
+			
+	public partial interface IDebtItem
+	{
+		
+		decimal TotalDebt
+		{
+			get; set;
+		}
+		
+		decimal AmountOfPayments
+		{
+			get; set;
+		}
+		
+		Designation PayTo
+		{
+			get; set;
+		}
+		
+		Designation PaidBy
+		{
+			get; set;
+		}
+			}
+	public partial class DebtItem : IDebtItem
+	{
+		public decimal TotalDebt
+		{
+			get; set;
+		}
+		
+		public decimal AmountOfPayments
+		{
+			get; set;
+		}
+		
+		public Designation PayTo
+		{
+			get; set;
+		}
+		
+		public Designation PaidBy
 		{
 			get; set;
 		}
@@ -3871,7 +3918,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		ICollection<DataItem> PropertyAndPossetion
+		ICollection<IDataItem> PropertyAndPossetion
 		{
 			get; set;
 		}
@@ -3881,7 +3928,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		ICollection<DebtItem> Debts
+		ICollection<IDebtItem> Debts
 		{
 			get; set;
 		}
@@ -3896,7 +3943,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		OtherOrders OtherOrders
+		IOtherOrders OtherOrders
 		{
 			get; set;
 		}
@@ -3938,7 +3985,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public ICollection<DataItem> PropertyAndPossetion
+		public ICollection<IDataItem> PropertyAndPossetion
 		{
 			get; set;
 		}
@@ -3948,7 +3995,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public ICollection<DebtItem> Debts
+		public ICollection<IDebtItem> Debts
 		{
 			get; set;
 		}
@@ -3963,7 +4010,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public OtherOrders OtherOrders
+		public IOtherOrders OtherOrders
 		{
 			get; set;
 		}
@@ -4044,6 +4091,33 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 	
 			
+	public partial interface IAdditionalChildSupportItem
+	{
+		
+		int Percents
+		{
+			get; set;
+		}
+		
+		decimal Amount
+		{
+			get; set;
+		}
+			}
+	public partial class AdditionalChildSupportItem : IAdditionalChildSupportItem
+	{
+		public int Percents
+		{
+			get; set;
+		}
+		
+		public decimal Amount
+		{
+			get; set;
+		}
+			}
+	
+			
 	public partial interface IAdditionalPayment
 	{
 		
@@ -4052,7 +4126,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		AdditionalChildSupportItem PetitionerMustPay
+		IAdditionalChildSupportItem PetitionerMustPay
 		{
 			get; set;
 		}
@@ -4062,7 +4136,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		AdditionalChildSupportItem RespondentMustPay
+		IAdditionalChildSupportItem RespondentMustPay
 		{
 			get; set;
 		}
@@ -4072,7 +4146,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		AdditionalChildSupportItem OtherMustPay
+		IAdditionalChildSupportItem OtherMustPay
 		{
 			get; set;
 		}
@@ -4094,7 +4168,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public AdditionalChildSupportItem PetitionerMustPay
+		public IAdditionalChildSupportItem PetitionerMustPay
 		{
 			get; set;
 		}
@@ -4104,7 +4178,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public AdditionalChildSupportItem RespondentMustPay
+		public IAdditionalChildSupportItem RespondentMustPay
 		{
 			get; set;
 		}
@@ -4114,7 +4188,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public AdditionalChildSupportItem OtherMustPay
+		public IAdditionalChildSupportItem OtherMustPay
 		{
 			get; set;
 		}
@@ -4131,10 +4205,47 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 	
 			
+	public partial interface IChildSupportItem
+	{
+		
+		long ChildId
+		{
+			get; set;
+		}
+		
+		string PaidToPersonName
+		{
+			get; set;
+		}
+		
+		decimal MonthlyAmount
+		{
+			get; set;
+		}
+			}
+	public partial class ChildSupportItem : IChildSupportItem
+	{
+		public long ChildId
+		{
+			get; set;
+		}
+		
+		public string PaidToPersonName
+		{
+			get; set;
+		}
+		
+		public decimal MonthlyAmount
+		{
+			get; set;
+		}
+			}
+	
+			
 	public partial interface IChildSupport
 	{
 		
-		ICollection<ChildSupportItem> ChildSupportItems
+		ICollection<IChildSupportItem> ChildSupportItems
 		{
 			get; set;
 		}
@@ -4164,7 +4275,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		string IsMandatoryAdditionalChildSupportEnabled
+		bool IsMandatoryAdditionalChildSupportEnabled
 		{
 			get; set;
 		}
@@ -4174,7 +4285,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		AdditionalPayment ChildCareRelatedToEmployment
+		IAdditionalPayment ChildCareRelatedToEmployment
 		{
 			get; set;
 		}
@@ -4184,7 +4295,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		AdditionalPayment ReasonableUninsuredHealthCare
+		IAdditionalPayment ReasonableUninsuredHealthCare
 		{
 			get; set;
 		}
@@ -4199,7 +4310,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		AdditionalPayment EducationalCosts
+		IAdditionalPayment EducationalCosts
 		{
 			get; set;
 		}
@@ -4209,7 +4320,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		AdditionalPayment TravelExpenses
+		IAdditionalPayment TravelExpenses
 		{
 			get; set;
 		}
@@ -4236,7 +4347,7 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 	public partial class ChildSupport : IChildSupport
 	{
-		public ICollection<ChildSupportItem> ChildSupportItems
+		public ICollection<IChildSupportItem> ChildSupportItems
 		{
 			get; set;
 		}
@@ -4266,7 +4377,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public string IsMandatoryAdditionalChildSupportEnabled
+		public bool IsMandatoryAdditionalChildSupportEnabled
 		{
 			get; set;
 		}
@@ -4276,7 +4387,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public AdditionalPayment ChildCareRelatedToEmployment
+		public IAdditionalPayment ChildCareRelatedToEmployment
 		{
 			get; set;
 		}
@@ -4286,7 +4397,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public AdditionalPayment ReasonableUninsuredHealthCare
+		public IAdditionalPayment ReasonableUninsuredHealthCare
 		{
 			get; set;
 		}
@@ -4301,7 +4412,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public AdditionalPayment EducationalCosts
+		public IAdditionalPayment EducationalCosts
 		{
 			get; set;
 		}
@@ -4311,7 +4422,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public AdditionalPayment TravelExpenses
+		public IAdditionalPayment TravelExpenses
 		{
 			get; set;
 		}
@@ -4378,7 +4489,7 @@ namespace FACCTS.Server.Model.OrderModels
 	public partial interface IHealthCare
 	{
 		
-		MultyChoice HealthInsuranceMaintained
+		IMultyChoice HealthInsuranceMaintained
 		{
 			get; set;
 		}
@@ -4388,7 +4499,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		MultyChoice HealthInsuranceIsNotAvailable
+		IMultyChoice HealthInsuranceIsNotAvailable
 		{
 			get; set;
 		}
@@ -4400,7 +4511,7 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 	public partial class HealthCare : IHealthCare
 	{
-		public MultyChoice HealthInsuranceMaintained
+		public IMultyChoice HealthInsuranceMaintained
 		{
 			get; set;
 		}
@@ -4410,12 +4521,136 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public MultyChoice HealthInsuranceIsNotAvailable
+		public IMultyChoice HealthInsuranceIsNotAvailable
 		{
 			get; set;
 		}
 		
 		public bool IsReimbursementCanBeAssigned
+		{
+			get; set;
+		}
+			}
+	
+			
+	public partial interface IHardshipItem
+	{
+		
+		Hardship Hardship
+		{
+			get; set;
+		}
+		
+		decimal PlantiffPaymentAmount
+		{
+			get; set;
+		}
+		
+		decimal RespondentPaymentAmount
+		{
+			get; set;
+		}
+		
+		decimal OtherPaymentAmount
+		{
+			get; set;
+		}
+		
+		DateTime PaymentEndDate
+		{
+			get; set;
+		}
+			}
+	public partial class HardshipItem : IHardshipItem
+	{
+		public Hardship Hardship
+		{
+			get; set;
+		}
+		
+		public decimal PlantiffPaymentAmount
+		{
+			get; set;
+		}
+		
+		public decimal RespondentPaymentAmount
+		{
+			get; set;
+		}
+		
+		public decimal OtherPaymentAmount
+		{
+			get; set;
+		}
+		
+		public DateTime PaymentEndDate
+		{
+			get; set;
+		}
+			}
+	
+			
+	public partial interface IIncomeItem
+	{
+		
+		Designation ParentRole
+		{
+			get; set;
+		}
+		
+		decimal GrossMonthlyIncome
+		{
+			get; set;
+		}
+		
+		decimal NetMonthlyIncome
+		{
+			get; set;
+		}
+		
+		decimal ImputedMonthlyIncome
+		{
+			get; set;
+		}
+		
+		decimal ImputedYearIncome
+		{
+			get; set;
+		}
+		
+		bool IsRecievedByTANF
+		{
+			get; set;
+		}
+			}
+	public partial class IncomeItem : IIncomeItem
+	{
+		public Designation ParentRole
+		{
+			get; set;
+		}
+		
+		public decimal GrossMonthlyIncome
+		{
+			get; set;
+		}
+		
+		public decimal NetMonthlyIncome
+		{
+			get; set;
+		}
+		
+		public decimal ImputedMonthlyIncome
+		{
+			get; set;
+		}
+		
+		public decimal ImputedYearIncome
+		{
+			get; set;
+		}
+		
+		public bool IsRecievedByTANF
 		{
 			get; set;
 		}
@@ -4460,7 +4695,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		ICollection<IncomeItem> Incomes
+		ICollection<IIncomeItem> Incomes
 		{
 			get; set;
 		}
@@ -4480,7 +4715,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		ICollection<HardshipItem> HardshipItems
+		ICollection<IHardshipItem> HardshipItems
 		{
 			get; set;
 		}
@@ -4490,7 +4725,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		LowIncomeAdjustment LowIncomeAdjustment
+		ILowIncomeAdjustment LowIncomeAdjustment
 		{
 			get; set;
 		}
@@ -4500,7 +4735,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		ChildSupport ChildSupport
+		IChildSupport ChildSupport
 		{
 			get; set;
 		}
@@ -4510,12 +4745,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		MultyChoice EmploymentSearch
+		IMultyChoice EmploymentSearch
 		{
 			get; set;
 		}
 		
-		HealthCare HealthCare
+		IHealthCare HealthCare
 		{
 			get; set;
 		}
@@ -4562,7 +4797,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public ICollection<IncomeItem> Incomes
+		public ICollection<IIncomeItem> Incomes
 		{
 			get; set;
 		}
@@ -4582,7 +4817,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public ICollection<HardshipItem> HardshipItems
+		public ICollection<IHardshipItem> HardshipItems
 		{
 			get; set;
 		}
@@ -4592,7 +4827,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public LowIncomeAdjustment LowIncomeAdjustment
+		public ILowIncomeAdjustment LowIncomeAdjustment
 		{
 			get; set;
 		}
@@ -4602,7 +4837,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public ChildSupport ChildSupport
+		public IChildSupport ChildSupport
 		{
 			get; set;
 		}
@@ -4612,12 +4847,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public MultyChoice EmploymentSearch
+		public IMultyChoice EmploymentSearch
 		{
 			get; set;
 		}
 		
-		public HealthCare HealthCare
+		public IHealthCare HealthCare
 		{
 			get; set;
 		}

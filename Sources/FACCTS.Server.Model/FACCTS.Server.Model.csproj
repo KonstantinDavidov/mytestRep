@@ -137,9 +137,7 @@
     <Compile Include="Reporting\Contracts\ICH130.cs" />
     <Compile Include="Reporting\Contracts\IDV110.cs" />
     <Compile Include="Reporting\Contracts\IDV130.cs" />
-    <Compile Include="Reporting\Entities\AdditionalChildSupportItem.cs" />
     <Compile Include="Reporting\Entities\AvailableReportType.cs" />
-    <Compile Include="Reporting\Entities\ChildSupportItem.cs" />
     <Compile Include="Reporting\Entities\CustodyParent.cs" />
     <Compile Include="Enums\Designation.cs" />
     <Compile Include="Enums\Firearm.cs" />
@@ -166,15 +164,12 @@
     <Compile Include="Reporting\Entities\CH110.cs" />
     <Compile Include="Reporting\Entities\CH130.cs" />
     <Compile Include="Reporting\Entities\DataItem.cs" />
-    <Compile Include="Reporting\Entities\DebtItem.cs" />
     <Compile Include="Reporting\Entities\DV110.cs" />
     <Compile Include="Reporting\Entities\DV130.cs" />
     <Compile Include="Reporting\Entities\EA110.cs" />
     <Compile Include="Reporting\Entities\EA130.cs" />
-    <Compile Include="Reporting\Entities\HardshipItem.cs" />
     <Compile Include="Reporting\Entities\Hardship.cs" />
     <Compile Include="Reporting\Contracts\IDataItem.cs" />
-    <Compile Include="Reporting\Entities\IncomeItem.cs" />
     <Compile Include="Reporting\Contracts\IPermanentOrder.cs" />
     <Compile Include="Reporting\Contracts\ITemporaryOrder.cs" />
     <Compile Include="Reporting\Entities\PartyEnum.cs" />
