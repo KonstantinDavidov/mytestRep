@@ -34,8 +34,118 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
+	
+			
+	public interface ICAPROSEntry
+	{
+		
+		CARPOSEntryType CARPOSEntryType
+		{
+			get; set;
+		}
+		
+		IList<IDataItem> LawEnforcementAgencies
+		{
+			get; set;
+		}
+			}
+	public partial class CAPROSEntry : ICAPROSEntry
+	{
+		public CARPOSEntryType CARPOSEntryType
+		{
+			get; set;
+		}
+		
+		public IList<IDataItem> LawEnforcementAgencies
+		{
+			get; set;
+		}
+			}
+	
+			
+	public interface INoServiceFee
+	{
+		
+		bool IsOrdered
+		{
+			get; set;
+		}
+		
+		bool IsFeeWaiver
+		{
+			get; set;
+		}
+		
+		bool IsBasedOnViolence
+		{
+			get; set;
+		}
+			}
+	public partial class NoServiceFee : INoServiceFee
+	{
+		public bool IsOrdered
+		{
+			get; set;
+		}
+		
+		public bool IsFeeWaiver
+		{
+			get; set;
+		}
+		
+		public bool IsBasedOnViolence
+		{
+			get; set;
+		}
+			}
+	
+			
+	public interface ILawersFeeAndCourtCosts
+	{
+		
+		bool IsLawyerFee
+		{
+			get; set;
+		}
+		
+		bool IsCourtCosts
+		{
+			get; set;
+		}
+		
+		ParticipantRole Payer
+		{
+			get; set;
+		}
+		
+		IList<IDataItem> LawyersFees
+		{
+			get; set;
+		}
+			}
+	public partial class LawersFeeAndCourtCosts : ILawersFeeAndCourtCosts
+	{
+		public bool IsLawyerFee
+		{
+			get; set;
+		}
+		
+		public bool IsCourtCosts
+		{
+			get; set;
+		}
+		
+		public ParticipantRole Payer
+		{
+			get; set;
+		}
+		
+		public IList<IDataItem> LawyersFees
+		{
+			get; set;
+		}
+			}
 	
 			
 	public interface ICHConductChoice
@@ -112,8 +222,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface ICHStayAwayOrders
@@ -230,8 +339,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface ICH130
@@ -242,7 +350,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		CHConductChoice ConductChoice
+		ICHConductChoice ConductChoice
 		{
 			get; set;
 		}
@@ -252,7 +360,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		CHStayAwayOrders StayAwayOrders
+		ICHStayAwayOrders StayAwayOrders
 		{
 			get; set;
 		}
@@ -262,12 +370,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		CAPROSEntry CAPROSEntrySection
+		ICAPROSEntry CAPROSEntry
 		{
 			get; set;
 		}
 		
-		NoServiceFee NoServiceFeeSection
+		INoServiceFee NoServiceFee
 		{
 			get; set;
 		}
@@ -277,7 +385,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		LawersFeeAndCourtCosts LawersFeeAndCourtCostsSection
+		ILawersFeeAndCourtCosts LawersFeeAndCourtCosts
 		{
 			get; set;
 		}
@@ -299,7 +407,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public CHConductChoice ConductChoice
+		public ICHConductChoice ConductChoice
 		{
 			get; set;
 		}
@@ -309,7 +417,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public CHStayAwayOrders StayAwayOrders
+		public ICHStayAwayOrders StayAwayOrders
 		{
 			get; set;
 		}
@@ -319,12 +427,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public CAPROSEntry CAPROSEntrySection
+		public ICAPROSEntry CAPROSEntry
 		{
 			get; set;
 		}
 		
-		public NoServiceFee NoServiceFeeSection
+		public INoServiceFee NoServiceFee
 		{
 			get; set;
 		}
@@ -334,7 +442,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public LawersFeeAndCourtCosts LawersFeeAndCourtCostsSection
+		public ILawersFeeAndCourtCosts LawersFeeAndCourtCosts
 		{
 			get; set;
 		}
@@ -348,8 +456,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface ICH110
@@ -360,7 +467,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		CHConductChoice ConductSection
+		ICHConductChoice ConductSection
 		{
 			get; set;
 		}
@@ -370,7 +477,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		CHStayAwayOrders StayAwayOrders
+		ICHStayAwayOrders StayAwayOrders
 		{
 			get; set;
 		}
@@ -380,12 +487,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		CAPROSEntry CAPROSEntrySection
+		ICAPROSEntry CAPROSEntrySection
 		{
 			get; set;
 		}
 		
-		NoServiceFee NoServiceFeeSection
+		INoServiceFee NoServiceFeeSection
 		{
 			get; set;
 		}
@@ -407,7 +514,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public CHConductChoice ConductSection
+		public ICHConductChoice ConductSection
 		{
 			get; set;
 		}
@@ -417,7 +524,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public CHStayAwayOrders StayAwayOrders
+		public ICHStayAwayOrders StayAwayOrders
 		{
 			get; set;
 		}
@@ -427,12 +534,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public CAPROSEntry CAPROSEntrySection
+		public ICAPROSEntry CAPROSEntrySection
 		{
 			get; set;
 		}
 		
-		public NoServiceFee NoServiceFeeSection
+		public INoServiceFee NoServiceFeeSection
 		{
 			get; set;
 		}
@@ -446,8 +553,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IDVConductChoice
@@ -494,8 +600,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IDVStayAwayOrders
@@ -612,8 +717,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IDVAnimals
@@ -640,8 +744,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IDVPropertyRestraint
@@ -668,8 +771,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IDV110
@@ -745,7 +847,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		List<IDataItem> PropertyControlItems
+		IList<IDataItem> PropertyControlItems
 		{
 			get; set;
 		}
@@ -755,7 +857,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		List<IDebtPaymentItem> DebtPaymentItems
+		IList<IDebtPaymentItem> DebtPaymentItems
 		{
 			get; set;
 		}
@@ -847,7 +949,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public List<IDataItem> PropertyControlItems
+		public IList<IDataItem> PropertyControlItems
 		{
 			get; set;
 		}
@@ -857,7 +959,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public List<IDebtPaymentItem> DebtPaymentItems
+		public IList<IDebtPaymentItem> DebtPaymentItems
 		{
 			get; set;
 		}
@@ -876,8 +978,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IDV130
@@ -953,7 +1054,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		List<DataItem> PropertyControlItems
+		IList<DataItem> PropertyControlItems
 		{
 			get; set;
 		}
@@ -963,7 +1064,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		List<DebtPaymentItem> DebtPaymentItems
+		IList<DebtPaymentItem> DebtPaymentItems
 		{
 			get; set;
 		}
@@ -978,7 +1079,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		List<PaymentItem> Costs
+		IList<PaymentItem> Costs
 		{
 			get; set;
 		}
@@ -1060,7 +1161,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public List<DataItem> PropertyControlItems
+		public IList<DataItem> PropertyControlItems
 		{
 			get; set;
 		}
@@ -1070,7 +1171,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public List<DebtPaymentItem> DebtPaymentItems
+		public IList<DebtPaymentItem> DebtPaymentItems
 		{
 			get; set;
 		}
@@ -1085,7 +1186,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public List<PaymentItem> Costs
+		public IList<PaymentItem> Costs
 		{
 			get; set;
 		}
@@ -1094,8 +1195,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IIsNoVisitationForParents
@@ -1132,8 +1232,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IVisitationSchedule
@@ -1330,8 +1429,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IChildVisitation
@@ -1438,8 +1536,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface ITransportation
@@ -1516,8 +1613,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface ITravelRestrict
@@ -1614,8 +1710,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IExchangeAndRemoval
@@ -1702,14 +1797,13 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IDV140
 	{
 		
-		List<ChildCustodyItem> ChildCustodyItems
+		IList<ChildCustodyItem> ChildCustodyItems
 		{
 			get; set;
 		}
@@ -1731,7 +1825,7 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 	public partial class DV140 : IDV140
 	{
-		public List<ChildCustodyItem> ChildCustodyItems
+		public IList<ChildCustodyItem> ChildCustodyItems
 		{
 			get; set;
 		}
@@ -1750,8 +1844,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IDV150
@@ -2018,8 +2111,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface ISuspiciousDoneThings
@@ -2106,8 +2198,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface INegativeHistory
@@ -2164,8 +2255,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface INecessaryTravelDocuments
@@ -2242,8 +2332,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface INotifyEmbancyInfo
@@ -2280,8 +2369,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IDV145
@@ -2548,8 +2636,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IIncomeAndDeductions
@@ -2606,8 +2693,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IJudgmentForSpousalSupport
@@ -2794,8 +2880,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface ICourtOrders
@@ -3042,8 +3127,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IFL343
@@ -3079,7 +3163,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		string IncomeAndDeductions
+		IList<IncomeAndDeductions> IncomeAndDeductions
 		{
 			get; set;
 		}
@@ -3131,7 +3215,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public string IncomeAndDeductions
+		public IList<IncomeAndDeductions> IncomeAndDeductions
 		{
 			get; set;
 		}
@@ -3150,8 +3234,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IEAConductChoice
@@ -3228,8 +3311,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IEAStayAwayOrders
@@ -3316,8 +3398,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IFirearms
@@ -3344,8 +3425,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IEA110
@@ -3482,8 +3562,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IEA130
@@ -3620,8 +3699,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IFL344
@@ -3662,7 +3740,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		List<DataItem> PropertyAndPossetion
+		IList<DataItem> PropertyAndPossetion
 		{
 			get; set;
 		}
@@ -3672,7 +3750,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		List<DebtItem> Debts
+		IList<DebtItem> Debts
 		{
 			get; set;
 		}
@@ -3729,7 +3807,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public List<DataItem> PropertyAndPossetion
+		public IList<DataItem> PropertyAndPossetion
 		{
 			get; set;
 		}
@@ -3739,7 +3817,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public List<DebtItem> Debts
+		public IList<DebtItem> Debts
 		{
 			get; set;
 		}
@@ -3758,8 +3836,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface ITimeShare
@@ -3806,8 +3883,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface ILowIncomeAdjustment
@@ -3834,8 +3910,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IAdditionalPayment
@@ -3922,14 +3997,13 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IChildSupport
 	{
 		
-		List<ChildSupportItem> ChildSupportItems
+		IList<ChildSupportItem> ChildSupportItems
 		{
 			get; set;
 		}
@@ -4031,7 +4105,7 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 	public partial class ChildSupport : IChildSupport
 	{
-		public List<ChildSupportItem> ChildSupportItems
+		public IList<ChildSupportItem> ChildSupportItems
 		{
 			get; set;
 		}
@@ -4130,8 +4204,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IMultyChoice
@@ -4168,8 +4241,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IHealthCare
@@ -4216,8 +4288,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IFL342
@@ -4258,7 +4329,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		List<IncomeItem> Incomes
+		IList<IncomeItem> Incomes
 		{
 			get; set;
 		}
@@ -4278,7 +4349,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		List<HardshipItem> HardshipItems
+		IList<HardshipItem> HardshipItems
 		{
 			get; set;
 		}
@@ -4360,7 +4431,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public List<IncomeItem> Incomes
+		public IList<IncomeItem> Incomes
 		{
 			get; set;
 		}
@@ -4380,7 +4451,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public List<HardshipItem> HardshipItems
+		public IList<HardshipItem> HardshipItems
 		{
 			get; set;
 		}
@@ -4424,8 +4495,7 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
 	public interface IFL341
@@ -4562,8 +4632,14 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
+	
+			
+	public interface IFL340
+	{
+			}
+	public partial class FL340 : IFL340
+	{	}
 	
 }
 

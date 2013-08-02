@@ -11,11 +11,11 @@ namespace FACCTS.Server.Model.OrderModels
     {
         public CH130()
         {
-            CAPROSEntrySection = new CAPROSEntry();
+            CAPROSEntry = new CAPROSEntry();
             ConductChoice = new CHConductChoice();
             IsPOSGeneral = null;
-            LawersFeeAndCourtCostsSection = new LawersFeeAndCourtCosts();
-            NoServiceFeeSection = new NoServiceFee();
+            LawersFeeAndCourtCosts = new LawersFeeAndCourtCosts();
+            NoServiceFee = new NoServiceFee();
             StayAwayOrders = new CHStayAwayOrders();
         }
     }

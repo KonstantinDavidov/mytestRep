@@ -74,7 +74,6 @@ foreach (var item in doc.Root.Elements("Model"))
 			get; set;
 		}
 		<#}#>
-		
 	}
 	
 <#
@@ -98,8 +97,8 @@ catch(Exception ex){
 	public string GetPropertyTypeString(XElement element){
 		var type = this.GetAttributeValue(element,"type","string");
 		var collectionType = this.GetAttributeValue(element,"collectionType",string.Empty);
-		if(type=="List"){
-			return string.Format("List<{0}>",collectionType);
+		if(!string.IsNullOrEmpty(collectionType)){
+			return string.Format("{0}<{1}>",type,collectionType);
 		}
 		else
 			return type;
