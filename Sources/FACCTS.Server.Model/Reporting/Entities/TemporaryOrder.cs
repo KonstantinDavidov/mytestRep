@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.Reporting.Entities
 {
-    public class TemporaryOrder : BaseOrder
+    public class TemporaryOrder : BaseOrder, FACCTS.Server.Model.Reporting.Entities.ITemporaryOrder
     {
         public DateTime OrdersEndDate{ get; set; }
         

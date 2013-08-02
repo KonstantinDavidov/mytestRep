@@ -42,14 +42,14 @@ namespace FACCTS.Server.Tests
         /// <returns></returns>
         private CH130 Initialization(CH130 testObject)
         {
-            testObject.CAPROSEntrySection = new CAPROSEntry();
-            testObject.CAPROSEntrySection.CARPOSEntryType = CARPOSEntryType.ByProtected;
-            testObject.CAPROSEntrySection.LawEnforcementAgencies = new List<DataItem>();
-            testObject.CAPROSEntrySection.LawEnforcementAgencies.Add(new DataItem { Name = "Agency1", Description = "Address1" });
-            testObject.CAPROSEntrySection.LawEnforcementAgencies.Add(new DataItem { Name = "Agency2", Description = "Address2" });
-            testObject.CAPROSEntrySection.LawEnforcementAgencies.Add(new DataItem { Name = "Agency3", Description = "Address3" });
-            testObject.CAPROSEntrySection.LawEnforcementAgencies.Add(new DataItem { Name = "Agency4", Description = "Address4" });
-            testObject.CAPROSEntrySection.LawEnforcementAgencies.Add(new DataItem { Name = "Agency5", Description = "Address5" });
+            testObject.CAPROSEntry = new CAPROSEntry();
+            testObject.CAPROSEntry.CARPOSEntryType = CARPOSEntryType.ByProtected;
+            testObject.CAPROSEntry.LawEnforcementAgencies = new List<IDataItem>();
+            testObject.CAPROSEntry.LawEnforcementAgencies.Add(new DataItem { Name = "Agency1", Description = "Address1" });
+            testObject.CAPROSEntry.LawEnforcementAgencies.Add(new DataItem { Name = "Agency2", Description = "Address2" });
+            testObject.CAPROSEntry.LawEnforcementAgencies.Add(new DataItem { Name = "Agency3", Description = "Address3" });
+            testObject.CAPROSEntry.LawEnforcementAgencies.Add(new DataItem { Name = "Agency4", Description = "Address4" });
+            testObject.CAPROSEntry.LawEnforcementAgencies.Add(new DataItem { Name = "Agency5", Description = "Address5" });
 
             //IDataManager dm = new DataManager( new RepositoryProvider(new RepositoryFactories()));
             //CaseHistory cc = dm.CaseHistoryRepository.GetAll().FirstOrDefault();
@@ -73,20 +73,19 @@ namespace FACCTS.Server.Tests
 
             testObject.IsPOSGeneral = true;
 
-            testObject.LawersFeeAndCourtCostsSection.IsEnabled = true;
-            testObject.LawersFeeAndCourtCostsSection.IsCourtCosts = true;
-            testObject.LawersFeeAndCourtCostsSection.IsLawyerFee = true;
+            testObject.LawersFeeAndCourtCosts.IsCourtCosts = true;
+            testObject.LawersFeeAndCourtCosts.IsLawyerFee = true;
 
-            testObject.LawersFeeAndCourtCostsSection.LawyersFees.Add(new DataItem { Name = "Agency1", Description = "Cost1" });
-            testObject.LawersFeeAndCourtCostsSection.LawyersFees.Add(new DataItem { Name = "Agency2", Description = "Cost2" });
-            testObject.LawersFeeAndCourtCostsSection.LawyersFees.Add(new DataItem { Name = "Agency3", Description = "Cost3" });
-            testObject.LawersFeeAndCourtCostsSection.LawyersFees.Add(new DataItem { Name = "Agency4", Description = "Cost4" });
-            testObject.LawersFeeAndCourtCostsSection.LawyersFees.Add(new DataItem { Name = "Agency5", Description = "Cost5" });
+            testObject.LawersFeeAndCourtCosts.LawyersFees.Add(new DataItem { Name = "Agency1", Description = "Cost1" });
+            testObject.LawersFeeAndCourtCosts.LawyersFees.Add(new DataItem { Name = "Agency2", Description = "Cost2" });
+            testObject.LawersFeeAndCourtCosts.LawyersFees.Add(new DataItem { Name = "Agency3", Description = "Cost3" });
+            testObject.LawersFeeAndCourtCosts.LawyersFees.Add(new DataItem { Name = "Agency4", Description = "Cost4" });
+            testObject.LawersFeeAndCourtCosts.LawyersFees.Add(new DataItem { Name = "Agency5", Description = "Cost5" });
 
-            testObject.NoServiceFeeSection = new NoServiceFee();
-            testObject.NoServiceFeeSection.IsOrdered = true;
-            testObject.NoServiceFeeSection.IsBasedOnViolence = true;
-            testObject.NoServiceFeeSection.IsFeeWaiver = true;
+            testObject.NoServiceFee = new NoServiceFee();
+            testObject.NoServiceFee.IsOrdered = true;
+            testObject.NoServiceFee.IsBasedOnViolence = true;
+            testObject.NoServiceFee.IsFeeWaiver = true;
 
             testObject.OrdersEndDate = new Nullable<DateTime>(DateTime.Now.Date.Add(new TimeSpan(2, 5, 15)));
 

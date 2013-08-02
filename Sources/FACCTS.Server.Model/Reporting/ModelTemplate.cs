@@ -10,7 +10,7 @@ using FACCTS.Server.Model.Reporting;
 namespace FACCTS.Server.Model.OrderModels
 {
 			
-	public interface IOtherOrders
+	public partial interface IOtherOrders
 	{
 		
 		bool IsEnabled
@@ -34,11 +34,121 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface ICHConductChoice
+	public partial interface ICAPROSEntry
+	{
+		
+		CARPOSEntryType CARPOSEntryType
+		{
+			get; set;
+		}
+		
+		ICollection<IDataItem> LawEnforcementAgencies
+		{
+			get; set;
+		}
+			}
+	public partial class CAPROSEntry : ICAPROSEntry
+	{
+		public CARPOSEntryType CARPOSEntryType
+		{
+			get; set;
+		}
+		
+		public ICollection<IDataItem> LawEnforcementAgencies
+		{
+			get; set;
+		}
+			}
+	
+			
+	public partial interface INoServiceFee
+	{
+		
+		bool IsOrdered
+		{
+			get; set;
+		}
+		
+		bool IsFeeWaiver
+		{
+			get; set;
+		}
+		
+		bool IsBasedOnViolence
+		{
+			get; set;
+		}
+			}
+	public partial class NoServiceFee : INoServiceFee
+	{
+		public bool IsOrdered
+		{
+			get; set;
+		}
+		
+		public bool IsFeeWaiver
+		{
+			get; set;
+		}
+		
+		public bool IsBasedOnViolence
+		{
+			get; set;
+		}
+			}
+	
+			
+	public partial interface ILawersFeeAndCourtCosts
+	{
+		
+		bool IsLawyerFee
+		{
+			get; set;
+		}
+		
+		bool IsCourtCosts
+		{
+			get; set;
+		}
+		
+		ParticipantRole Payer
+		{
+			get; set;
+		}
+		
+		ICollection<IDataItem> LawyersFees
+		{
+			get; set;
+		}
+			}
+	public partial class LawersFeeAndCourtCosts : ILawersFeeAndCourtCosts
+	{
+		public bool IsLawyerFee
+		{
+			get; set;
+		}
+		
+		public bool IsCourtCosts
+		{
+			get; set;
+		}
+		
+		public ParticipantRole Payer
+		{
+			get; set;
+		}
+		
+		public ICollection<IDataItem> LawyersFees
+		{
+			get; set;
+		}
+			}
+	
+			
+	public partial interface ICHConductChoice
 	{
 		
 		bool IsNoAbuse
@@ -112,11 +222,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface ICHStayAwayOrders
+	public partial interface ICHStayAwayOrders
 	{
 		
 		bool IsStayAwayFromPerson
@@ -230,11 +339,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface ICH130
+	public partial interface ICH130
 	{
 		
 		bool IsConductChoiceEnabled
@@ -242,7 +350,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		CHConductChoice ConductChoice
+		ICHConductChoice ConductChoice
 		{
 			get; set;
 		}
@@ -252,7 +360,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		CHStayAwayOrders StayAwayOrders
+		ICHStayAwayOrders StayAwayOrders
 		{
 			get; set;
 		}
@@ -262,12 +370,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		CAPROSEntry CAPROSEntrySection
+		ICAPROSEntry CAPROSEntry
 		{
 			get; set;
 		}
 		
-		NoServiceFee NoServiceFeeSection
+		INoServiceFee NoServiceFee
 		{
 			get; set;
 		}
@@ -277,7 +385,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		LawersFeeAndCourtCosts LawersFeeAndCourtCostsSection
+		ILawersFeeAndCourtCosts LawersFeeAndCourtCosts
 		{
 			get; set;
 		}
@@ -299,7 +407,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public CHConductChoice ConductChoice
+		public ICHConductChoice ConductChoice
 		{
 			get; set;
 		}
@@ -309,7 +417,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public CHStayAwayOrders StayAwayOrders
+		public ICHStayAwayOrders StayAwayOrders
 		{
 			get; set;
 		}
@@ -319,12 +427,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public CAPROSEntry CAPROSEntrySection
+		public ICAPROSEntry CAPROSEntry
 		{
 			get; set;
 		}
 		
-		public NoServiceFee NoServiceFeeSection
+		public INoServiceFee NoServiceFee
 		{
 			get; set;
 		}
@@ -334,7 +442,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public LawersFeeAndCourtCosts LawersFeeAndCourtCostsSection
+		public ILawersFeeAndCourtCosts LawersFeeAndCourtCosts
 		{
 			get; set;
 		}
@@ -348,11 +456,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface ICH110
+	public partial interface ICH110
 	{
 		
 		OrderRestrictionState ConductSectionState
@@ -360,7 +467,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		CHConductChoice ConductSection
+		ICHConductChoice ConductSection
 		{
 			get; set;
 		}
@@ -370,7 +477,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		CHStayAwayOrders StayAwayOrders
+		ICHStayAwayOrders StayAwayOrders
 		{
 			get; set;
 		}
@@ -380,12 +487,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		CAPROSEntry CAPROSEntrySection
+		ICAPROSEntry CAPROSEntrySection
 		{
 			get; set;
 		}
 		
-		NoServiceFee NoServiceFeeSection
+		INoServiceFee NoServiceFeeSection
 		{
 			get; set;
 		}
@@ -407,7 +514,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public CHConductChoice ConductSection
+		public ICHConductChoice ConductSection
 		{
 			get; set;
 		}
@@ -417,7 +524,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public CHStayAwayOrders StayAwayOrders
+		public ICHStayAwayOrders StayAwayOrders
 		{
 			get; set;
 		}
@@ -427,12 +534,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public CAPROSEntry CAPROSEntrySection
+		public ICAPROSEntry CAPROSEntrySection
 		{
 			get; set;
 		}
 		
-		public NoServiceFee NoServiceFeeSection
+		public INoServiceFee NoServiceFeeSection
 		{
 			get; set;
 		}
@@ -446,11 +553,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IDVConductChoice
+	public partial interface IDVConductChoice
 	{
 		
 		bool IsNoAbuse
@@ -494,11 +600,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IDVStayAwayOrders
+	public partial interface IDVStayAwayOrders
 	{
 		
 		bool IsStayAwayFromPerson
@@ -612,11 +717,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IDVAnimals
+	public partial interface IDVAnimals
 	{
 		
 		int StayAwayAnimalsDistance
@@ -640,11 +744,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IDVPropertyRestraint
+	public partial interface IDVPropertyRestraint
 	{
 		
 		bool IsProtectedHasPropertyRestraint
@@ -668,11 +771,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IDV110
+	public partial interface IDV110
 	{
 		
 		OrderRestrictionState ConductChoiceState
@@ -745,7 +847,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		List<IDataItem> PropertyControlItems
+		ICollection<IDataItem> PropertyControlItems
 		{
 			get; set;
 		}
@@ -755,7 +857,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		List<IDebtPaymentItem> DebtPaymentItems
+		ICollection<IDebtPaymentItem> DebtPaymentItems
 		{
 			get; set;
 		}
@@ -847,7 +949,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public List<IDataItem> PropertyControlItems
+		public ICollection<IDataItem> PropertyControlItems
 		{
 			get; set;
 		}
@@ -857,7 +959,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public List<IDebtPaymentItem> DebtPaymentItems
+		public ICollection<IDebtPaymentItem> DebtPaymentItems
 		{
 			get; set;
 		}
@@ -876,11 +978,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IDV130
+	public partial interface IDV130
 	{
 		
 		bool IsConductChoiceEnabled
@@ -953,7 +1054,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		List<DataItem> PropertyControlItems
+		ICollection<DataItem> PropertyControlItems
 		{
 			get; set;
 		}
@@ -963,7 +1064,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		List<DebtPaymentItem> DebtPaymentItems
+		ICollection<DebtPaymentItem> DebtPaymentItems
 		{
 			get; set;
 		}
@@ -978,7 +1079,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		List<PaymentItem> Costs
+		ICollection<PaymentItem> Costs
 		{
 			get; set;
 		}
@@ -1060,7 +1161,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public List<DataItem> PropertyControlItems
+		public ICollection<DataItem> PropertyControlItems
 		{
 			get; set;
 		}
@@ -1070,7 +1171,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public List<DebtPaymentItem> DebtPaymentItems
+		public ICollection<DebtPaymentItem> DebtPaymentItems
 		{
 			get; set;
 		}
@@ -1085,7 +1186,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public List<PaymentItem> Costs
+		public ICollection<PaymentItem> Costs
 		{
 			get; set;
 		}
@@ -1094,14 +1195,13 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IIsNoVisitationForParents
+	public partial interface IIsNoVisitationForParents
 	{
 		
-		string IsEnabled
+		bool IsEnabled
 		{
 			get; set;
 		}
@@ -1118,7 +1218,7 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 	public partial class IsNoVisitationForParents : IIsNoVisitationForParents
 	{
-		public string IsEnabled
+		public bool IsEnabled
 		{
 			get; set;
 		}
@@ -1132,11 +1232,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IVisitationSchedule
+	public partial interface IVisitationSchedule
 	{
 		
 		bool IsEnabled
@@ -1330,11 +1429,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IChildVisitation
+	public partial interface IChildVisitation
 	{
 		
 		string IsEnabled
@@ -1438,11 +1536,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface ITransportation
+	public partial interface ITransportation
 	{
 		
 		string IsEnabled
@@ -1516,11 +1613,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface ITravelRestrict
+	public partial interface ITravelRestrict
 	{
 		
 		string IsEnabled
@@ -1614,11 +1710,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IExchangeAndRemoval
+	public partial interface IExchangeAndRemoval
 	{
 		
 		string IsEnabled
@@ -1702,14 +1797,13 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IDV140
+	public partial interface IDV140
 	{
 		
-		List<ChildCustodyItem> ChildCustodyItems
+		ICollection<ChildCustodyItem> ChildCustodyItems
 		{
 			get; set;
 		}
@@ -1731,7 +1825,7 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 	public partial class DV140 : IDV140
 	{
-		public List<ChildCustodyItem> ChildCustodyItems
+		public ICollection<ChildCustodyItem> ChildCustodyItems
 		{
 			get; set;
 		}
@@ -1750,11 +1844,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IDV150
+	public partial interface IDV150
 	{
 		
 		bool IsPartiesMustGoToMediation
@@ -2018,11 +2111,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface ISuspiciousDoneThings
+	public partial interface ISuspiciousDoneThings
 	{
 		
 		bool IsEnabled
@@ -2106,11 +2198,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface INegativeHistory
+	public partial interface INegativeHistory
 	{
 		
 		bool IsEnabled
@@ -2164,11 +2255,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface INecessaryTravelDocuments
+	public partial interface INecessaryTravelDocuments
 	{
 		
 		bool IsEnabled
@@ -2242,11 +2332,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface INotifyEmbancyInfo
+	public partial interface INotifyEmbancyInfo
 	{
 		
 		bool IsEnabled
@@ -2280,11 +2369,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IDV145
+	public partial interface IDV145
 	{
 		
 		bool IsPastROViolations
@@ -2548,11 +2636,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IIncomeAndDeductions
+	public partial interface IIncomeAndDeductions
 	{
 		
 		Designation Designation
@@ -2606,11 +2693,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IJudgmentForSpousalSupport
+	public partial interface IJudgmentForSpousalSupport
 	{
 		
 		bool IsModifiesJudgmentOrder
@@ -2794,11 +2880,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface ICourtOrders
+	public partial interface ICourtOrders
 	{
 		
 		Designation SupportToBePaidFrom
@@ -3042,11 +3127,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IFL343
+	public partial interface IFL343
 	{
 		
 		bool IsAttachedToFOAH
@@ -3079,7 +3163,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		string IncomeAndDeductions
+		ICollection<IncomeAndDeductions> IncomeAndDeductions
 		{
 			get; set;
 		}
@@ -3131,7 +3215,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public string IncomeAndDeductions
+		public ICollection<IncomeAndDeductions> IncomeAndDeductions
 		{
 			get; set;
 		}
@@ -3150,11 +3234,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IEAConductChoice
+	public partial interface IEAConductChoice
 	{
 		
 		bool IsNoAbuse
@@ -3228,11 +3311,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IEAStayAwayOrders
+	public partial interface IEAStayAwayOrders
 	{
 		
 		bool IsStayAwayFromPerson
@@ -3316,11 +3398,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IFirearms
+	public partial interface IFirearms
 	{
 		
 		bool IsNoGuns
@@ -3344,11 +3425,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IEA110
+	public partial interface IEA110
 	{
 		
 		OrderRestrictionState EAConductChoiceState
@@ -3482,11 +3562,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IEA130
+	public partial interface IEA130
 	{
 		
 		bool IsEAConductChoiceEnabled
@@ -3620,11 +3699,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IFL344
+	public partial interface IFL344
 	{
 		
 		bool IsRestrainedOrdersEnabled
@@ -3662,7 +3740,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		List<DataItem> PropertyAndPossetion
+		ICollection<DataItem> PropertyAndPossetion
 		{
 			get; set;
 		}
@@ -3672,7 +3750,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		List<DebtItem> Debts
+		ICollection<DebtItem> Debts
 		{
 			get; set;
 		}
@@ -3729,7 +3807,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public List<DataItem> PropertyAndPossetion
+		public ICollection<DataItem> PropertyAndPossetion
 		{
 			get; set;
 		}
@@ -3739,7 +3817,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public List<DebtItem> Debts
+		public ICollection<DebtItem> Debts
 		{
 			get; set;
 		}
@@ -3758,11 +3836,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface ITimeShare
+	public partial interface ITimeShare
 	{
 		
 		byte ChildrenNumber
@@ -3806,11 +3883,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface ILowIncomeAdjustment
+	public partial interface ILowIncomeAdjustment
 	{
 		
 		bool IsLowIncomeAdjustmentApplies
@@ -3834,11 +3910,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IAdditionalPayment
+	public partial interface IAdditionalPayment
 	{
 		
 		bool IsPetitionerMustPay
@@ -3922,14 +3997,13 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IChildSupport
+	public partial interface IChildSupport
 	{
 		
-		List<ChildSupportItem> ChildSupportItems
+		ICollection<ChildSupportItem> ChildSupportItems
 		{
 			get; set;
 		}
@@ -4031,7 +4105,7 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 	public partial class ChildSupport : IChildSupport
 	{
-		public List<ChildSupportItem> ChildSupportItems
+		public ICollection<ChildSupportItem> ChildSupportItems
 		{
 			get; set;
 		}
@@ -4130,11 +4204,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IMultyChoice
+	public partial interface IMultyChoice
 	{
 		
 		bool IsPetitonerSelected
@@ -4168,11 +4241,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IHealthCare
+	public partial interface IHealthCare
 	{
 		
 		MultyChoice HealthInsuranceMaintained
@@ -4216,11 +4288,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IFL342
+	public partial interface IFL342
 	{
 		
 		bool IsAttachedToFOAH
@@ -4258,7 +4329,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		List<IncomeItem> Incomes
+		ICollection<IncomeItem> Incomes
 		{
 			get; set;
 		}
@@ -4278,7 +4349,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		List<HardshipItem> HardshipItems
+		ICollection<HardshipItem> HardshipItems
 		{
 			get; set;
 		}
@@ -4360,7 +4431,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public List<IncomeItem> Incomes
+		public ICollection<IncomeItem> Incomes
 		{
 			get; set;
 		}
@@ -4380,7 +4451,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public List<HardshipItem> HardshipItems
+		public ICollection<HardshipItem> HardshipItems
 		{
 			get; set;
 		}
@@ -4424,11 +4495,10 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
 	
 			
-	public interface IFL341
+	public partial interface IFL341
 	{
 		
 		Designation RestrictedPerson
@@ -4562,8 +4632,14 @@ namespace FACCTS.Server.Model.OrderModels
 		{
 			get; set;
 		}
-				
-	}
+			}
+	
+			
+	public partial interface IFL340
+	{
+			}
+	public partial class FL340 : IFL340
+	{	}
 	
 }
 
