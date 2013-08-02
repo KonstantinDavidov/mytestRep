@@ -20,7 +20,18 @@
     <Property name="Payer" type="ParticipantRole"/>
     <Property name="LawyersFees" type="ICollection" collectionType="IDataItem"/>
   </Model>
-  
+  <Model name="DebtPaymentItem">
+    <Property name="Name" type="string"/>
+    <Property name="PaymentFor" type="ParticipantRole"/>
+    <Property name="PaymentDate" type="DateTime"/>
+  </Model>
+  <Model name="PaymentItem">
+    <Property name="PaymentDescription" type="string"/>
+    <Property name="IsAttorneyFee" type="bool"/>
+    <Property name="PaymentFor" type="string"/>
+    <Property name="Amount" type="decimal"/>
+    <Property name="PaymentDueDate" type="DateTime"/>
+  </Model>
   <!--CH-->
  <Model name="CHConductChoice">
    <Property name="IsNoAbuse" type="bool"/>
@@ -129,25 +140,25 @@
   <!--DV130-->
   <Model name="DV130">
     <Property name="IsConductChoiceEnabled" type="bool"/>
-    <Property name="ConductChoice" type="DVConductChoice"/>
+    <Property name="ConductChoice" type="IDVConductChoice"/>
     <Property name="IsStayAwayOrdersEnabled" type="bool"/>
-    <Property name="StayAwayOrders" type="DVStayAwayOrders"/>
+    <Property name="StayAwayOrders" type="IDVStayAwayOrders"/>
     <Property name="IsPOSProvidedToCourt" type="bool"/>
     <Property name="IsMoveoutEnabled" type="bool"/>
     <Property name="MoveoutAddress" type="string"/>
     <Property name="IsRecordUnlawfulCommunicationsAllowed" type="bool"/>
     <Property name="IsAnimalsEnabled" type="bool"/>
-    <Property name="Animals" type="DVAnimals"/>
-    <Property name="OtherOrders" type="OtherOrders"/>
+    <Property name="Animals" type="IDVAnimals"/>
+    <Property name="OtherOrders" type="IOtherOrders"/>
     <Property name="IsBattererIntervention" type="bool"/>
     <Property name="IsNoGuns" type="bool"/>
     <Property name="IsPropertyControlEnabled" type="bool"/>
-    <Property name="PropertyControlItems" type="ICollection" collectionType="DataItem"/>
+    <Property name="PropertyControlItems" type="ICollection" collectionType="IDataItem"/>
     <Property name="IsDebtPaymentEnabled" type="bool"/>
-    <Property name="DebtPaymentItems" type="ICollection" collectionType="DebtPaymentItem"/>
+    <Property name="DebtPaymentItems" type="ICollection" collectionType="IDebtPaymentItem"/>
     <Property name="IsPropertyRestraintEnabled" type="bool"/>
-    <Property name="PropertyRestraint" type="DVPropertyRestraint"/>
-    <Property name="Costs" type="ICollection" collectionType="PaymentItem" />
+    <Property name="PropertyRestraint" type="IDVPropertyRestraint"/>
+    <Property name="Costs" type="ICollection" collectionType="IPaymentItem" />
     <Property name="IsChildCustodyAndVisitationEnabled" type="bool" />
   </Model>
   <!--DV140-->

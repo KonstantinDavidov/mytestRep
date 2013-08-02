@@ -148,6 +148,100 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 	
 			
+	public partial interface IDebtPaymentItem
+	{
+		
+		string Name
+		{
+			get; set;
+		}
+		
+		ParticipantRole PaymentFor
+		{
+			get; set;
+		}
+		
+		DateTime PaymentDate
+		{
+			get; set;
+		}
+			}
+	public partial class DebtPaymentItem : IDebtPaymentItem
+	{
+		public string Name
+		{
+			get; set;
+		}
+		
+		public ParticipantRole PaymentFor
+		{
+			get; set;
+		}
+		
+		public DateTime PaymentDate
+		{
+			get; set;
+		}
+			}
+	
+			
+	public partial interface IPaymentItem
+	{
+		
+		string PaymentDescription
+		{
+			get; set;
+		}
+		
+		bool IsAttorneyFee
+		{
+			get; set;
+		}
+		
+		string PaymentFor
+		{
+			get; set;
+		}
+		
+		decimal Amount
+		{
+			get; set;
+		}
+		
+		DateTime PaymentDueDate
+		{
+			get; set;
+		}
+			}
+	public partial class PaymentItem : IPaymentItem
+	{
+		public string PaymentDescription
+		{
+			get; set;
+		}
+		
+		public bool IsAttorneyFee
+		{
+			get; set;
+		}
+		
+		public string PaymentFor
+		{
+			get; set;
+		}
+		
+		public decimal Amount
+		{
+			get; set;
+		}
+		
+		public DateTime PaymentDueDate
+		{
+			get; set;
+		}
+			}
+	
+			
 	public partial interface ICHConductChoice
 	{
 		
@@ -989,7 +1083,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		DVConductChoice ConductChoice
+		IDVConductChoice ConductChoice
 		{
 			get; set;
 		}
@@ -999,7 +1093,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		DVStayAwayOrders StayAwayOrders
+		IDVStayAwayOrders StayAwayOrders
 		{
 			get; set;
 		}
@@ -1029,12 +1123,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		DVAnimals Animals
+		IDVAnimals Animals
 		{
 			get; set;
 		}
 		
-		OtherOrders OtherOrders
+		IOtherOrders OtherOrders
 		{
 			get; set;
 		}
@@ -1054,7 +1148,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		ICollection<DataItem> PropertyControlItems
+		ICollection<IDataItem> PropertyControlItems
 		{
 			get; set;
 		}
@@ -1064,7 +1158,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		ICollection<DebtPaymentItem> DebtPaymentItems
+		ICollection<IDebtPaymentItem> DebtPaymentItems
 		{
 			get; set;
 		}
@@ -1074,12 +1168,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		DVPropertyRestraint PropertyRestraint
+		IDVPropertyRestraint PropertyRestraint
 		{
 			get; set;
 		}
 		
-		ICollection<PaymentItem> Costs
+		ICollection<IPaymentItem> Costs
 		{
 			get; set;
 		}
@@ -1096,7 +1190,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public DVConductChoice ConductChoice
+		public IDVConductChoice ConductChoice
 		{
 			get; set;
 		}
@@ -1106,7 +1200,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public DVStayAwayOrders StayAwayOrders
+		public IDVStayAwayOrders StayAwayOrders
 		{
 			get; set;
 		}
@@ -1136,12 +1230,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public DVAnimals Animals
+		public IDVAnimals Animals
 		{
 			get; set;
 		}
 		
-		public OtherOrders OtherOrders
+		public IOtherOrders OtherOrders
 		{
 			get; set;
 		}
@@ -1161,7 +1255,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public ICollection<DataItem> PropertyControlItems
+		public ICollection<IDataItem> PropertyControlItems
 		{
 			get; set;
 		}
@@ -1171,7 +1265,7 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public ICollection<DebtPaymentItem> DebtPaymentItems
+		public ICollection<IDebtPaymentItem> DebtPaymentItems
 		{
 			get; set;
 		}
@@ -1181,12 +1275,12 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		public DVPropertyRestraint PropertyRestraint
+		public IDVPropertyRestraint PropertyRestraint
 		{
 			get; set;
 		}
 		
-		public ICollection<PaymentItem> Costs
+		public ICollection<IPaymentItem> Costs
 		{
 			get; set;
 		}

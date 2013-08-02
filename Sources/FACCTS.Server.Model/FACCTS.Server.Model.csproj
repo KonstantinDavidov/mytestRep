@@ -167,18 +167,16 @@
     <Compile Include="Reporting\Entities\ChildCustodyItem.cs" />
     <Compile Include="Reporting\Entities\DataItem.cs" />
     <Compile Include="Reporting\Entities\DebtItem.cs" />
-    <Compile Include="Reporting\Entities\DebtPaymentItem.cs" />
     <Compile Include="Reporting\Entities\DV110.cs" />
     <Compile Include="Reporting\Entities\DV130.cs" />
     <Compile Include="Reporting\Entities\EA110.cs" />
     <Compile Include="Reporting\Entities\EA130.cs" />
     <Compile Include="Reporting\Entities\HardshipItem.cs" />
     <Compile Include="Reporting\Entities\Hardship.cs" />
-    <Compile Include="Reporting\Entities\IDataItem.cs" />
-    <Compile Include="Reporting\Entities\IDebtPaymentItem.cs" />
+    <Compile Include="Reporting\Contracts\IDataItem.cs" />
     <Compile Include="Reporting\Entities\IncomeItem.cs" />
-    <Compile Include="Reporting\Entities\IPermanentOrder.cs" />
-    <Compile Include="Reporting\Entities\ITemporaryOrder.cs" />
+    <Compile Include="Reporting\Contracts\IPermanentOrder.cs" />
+    <Compile Include="Reporting\Contracts\ITemporaryOrder.cs" />
     <Compile Include="Reporting\Entities\PartyEnum.cs" />
     <Compile Include="Reporting\Entities\PayableSchedule.cs" />
     <Compile Include="Reporting\Entities\PermanentOrder.cs" />
@@ -190,7 +188,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Reporting\Entities\PaymentItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">
