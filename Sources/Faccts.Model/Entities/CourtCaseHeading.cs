@@ -56,8 +56,8 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.Order)
     				,this.ObservableForProperty(x => x.Party1Name)
     				,this.ObservableForProperty(x => x.Party2Name)
-    				,this.ObservableForProperty(x => x.CourtClerkId)
     				,this.ObservableForProperty(x => x.CCPOR_ID)
+    				,this.ObservableForProperty(x => x.CourtClerkName)
     			).
     			Subscribe(_ =>
     			{
@@ -257,22 +257,6 @@ namespace Faccts.Model.Entities
         private string _party2Name;
     
         [DataMember]
-        public Nullable<long> CourtClerkId
-        {
-            get { return _courtClerkId; }
-            set
-            {
-                if (_courtClerkId != value)
-                {
-    				OnPropertyChanging("CourtClerkId");
-                    _courtClerkId = value;
-                    OnPropertyChanged("CourtClerkId");
-                }
-            }
-        }
-        private Nullable<long> _courtClerkId;
-    
-        [DataMember]
         public string CCPOR_ID
         {
             get { return _cCPOR_ID; }
@@ -287,6 +271,22 @@ namespace Faccts.Model.Entities
             }
         }
         private string _cCPOR_ID;
+    
+        [DataMember]
+        public string CourtClerkName
+        {
+            get { return _courtClerkName; }
+            set
+            {
+                if (_courtClerkName != value)
+                {
+    				OnPropertyChanging("CourtClerkName");
+                    _courtClerkName = value;
+                    OnPropertyChanged("CourtClerkName");
+                }
+            }
+        }
+        private string _courtClerkName;
 
         #endregion
 

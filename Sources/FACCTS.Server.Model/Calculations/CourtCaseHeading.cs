@@ -16,7 +16,7 @@ namespace FACCTS.Server.Model.Calculations
         public string Order { get; set; }
         public string Party1Name { get; set; }
         public string Party2Name { get; set; }
-        public long? CourtClerkId { get; set; }
+        public string CourtClerkName { get; set; }
         public string CCPOR_ID { get; set; }
     }
 }

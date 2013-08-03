@@ -21,7 +21,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <GroupBox Header="Court Cases" VerticalAlignment="Top">
-            <ListBox ItemsSource="{Binding CourtCaseStatuses}" SelectedValue="{Binding SelectedCaseStatus, Mode=TwoWay}"/>
+            <ListBox ItemsSource="{Binding CourtCaseStatuses}" SelectedValue="{Binding SelectedCaseStatus, Mode=TwoWay}" SelectedValuePath="Value"/>
         </GroupBox>
         <GroupBox Header="Find Court Cases" Grid.Row="1">
             <Grid>
@@ -105,7 +105,11 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <TextBlock HorizontalAlignment="Left" Margin="0,0,0,-0.001" TextWrapping="Wrap" VerticalAlignment="Top" Text="Court Clerk"/>
-                        <ComboBox Margin="0,0,0,-0.001" Grid.Column="1" ItemsSource="{Binding CourtClerks, Mode=OneWay}" SelectedItem="{Binding SelectedClerk, Mode=TwoWay}"/>
+                        <ComboBox Margin="0,0,0,-0.001"
+                                  Grid.Column="1"
+                                  ItemsSource="{Binding CourtClerks, Mode=OneWay}"
+                                  SelectedItem="{Binding SelectedClerk, Mode=TwoWay}"
+                                  DisplayMemberPath="FullName"/>
                     </Grid>
                 </Border>
                 <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.Row="3" Style="{DynamicResource OrdinalBorder}">

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 08/02/2013 18:37:51
+-- Date Created: 08/03/2013 18:46:18
 -- Generated from EDMX file: D:\FACCTS\FACCTSNEW\faccts.net\Sources\Faccts.Model\Entities\DataModel.edmx
 -- --------------------------------------------------
 
@@ -591,6 +591,9 @@ IF OBJECT_ID(N'[dbo].[CourtOrders]', 'U') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[OrderBaseSet]', 'U') IS NOT NULL
     DROP TABLE [dbo].[OrderBaseSet];
+GO
+IF OBJECT_ID(N'[dbo].[CourtCaseHeadingSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CourtCaseHeadingSet];
 GO
 IF OBJECT_ID(N'[dbo].[PersonBaseSet_Attorneys]', 'U') IS NOT NULL
     DROP TABLE [dbo].[PersonBaseSet_Attorneys];
@@ -1372,8 +1375,8 @@ CREATE TABLE [dbo].[CourtCaseHeadingSet] (
     [Order] nvarchar(max)  NOT NULL,
     [Party1Name] nvarchar(max)  NOT NULL,
     [Party2Name] nvarchar(max)  NOT NULL,
-    [CourtClerkId] bigint  NULL,
-    [CCPOR_ID] nvarchar(max)  NOT NULL
+    [CCPOR_ID] nvarchar(max)  NOT NULL,
+    [CourtClerkName] nvarchar(max)  NOT NULL
 );
 GO
 

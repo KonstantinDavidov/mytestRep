@@ -24,7 +24,7 @@ namespace Faccts.Model.Entities
             this.Order = dto.Order;
             this.Party1Name = dto.Party1Name;
             this.Party2Name = dto.Party2Name;
-            this.CourtClerkId = dto.CourtClerkId;
+            this.CourtClerkName = dto.CourtClerkName;
             this.CCPOR_ID = dto.CCPOR_ID;
 
             this.MarkAsUnchanged();

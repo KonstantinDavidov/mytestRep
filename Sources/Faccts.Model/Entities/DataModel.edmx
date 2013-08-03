@@ -1308,8 +1308,8 @@
     <Property Name="Order" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Party1Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Party2Name" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="CourtClerkId" Type="bigint" Nullable="true" />
     <Property Name="CCPOR_ID" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CourtClerkName" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="PersonBaseSet_Attorneys">
     <Key>
@@ -5369,8 +5369,8 @@
           <Property Type="String" Name="Order" Nullable="false" />
           <Property Type="String" Name="Party1Name" Nullable="false" />
           <Property Type="String" Name="Party2Name" Nullable="false" />
-          <Property Type="Int64" Name="CourtClerkId" Nullable="true" />
           <Property Type="String" Name="CCPOR_ID" Nullable="false" />
+          <Property Type="String" Name="CourtClerkName" Nullable="false" />
         </EntityType>
         <EnumType Name="CaseStatus" a:ExternalTypeName="FACCTS.Server.Model.Enums.CaseStatus" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </Schema>
@@ -6306,8 +6306,8 @@
           <ScalarProperty Name="Order" ColumnName="Order" />
           <ScalarProperty Name="Party1Name" ColumnName="Party1Name" />
           <ScalarProperty Name="Party2Name" ColumnName="Party2Name" />
-          <ScalarProperty Name="CourtClerkId" ColumnName="CourtClerkId" />
           <ScalarProperty Name="CCPOR_ID" ColumnName="CCPOR_ID" />
+          <ScalarProperty Name="CourtClerkName" ColumnName="CourtClerkName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

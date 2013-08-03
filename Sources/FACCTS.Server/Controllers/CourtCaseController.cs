@@ -92,7 +92,7 @@ namespace FACCTS.Server.Controllers
                         Order = (string)null,
                         Party1Name = x.Party1.FirstName + " " +x.Party1.MiddleName + " " + x.Party1.LastName,
                         Party2Name = x.Party2.FirstName + " " + x.Party2.MiddleName + " " + x.Party2.LastName,
-                        CourtClerkId = x.CourtClerkId,
+                        CourtClerkName = x.CourtClerk.FirstName + " " + x.CourtClerk.MiddleName + " " + x.CourtClerk.LastName,
                         CCPOR_ID = x.CCPORId,
                     }
                     )
@@ -107,7 +107,7 @@ namespace FACCTS.Server.Controllers
                     Order = null,
                     Party1Name = x.Party1Name,
                     Party2Name = x.Party2Name,
-                    CourtClerkId = x.CourtClerkId,
+                    CourtClerkName = x.CourtClerkName,
                     CCPOR_ID = x.CCPOR_ID,
                 }
                 )

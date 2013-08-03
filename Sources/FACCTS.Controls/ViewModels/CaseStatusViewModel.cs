@@ -271,6 +271,8 @@ namespace FACCTS.Controls.ViewModels
             Party2FirstName = string.Empty;
             Party2MiddleName = string.Empty;
             Party2LastName = string.Empty;
+            SelectedClerk = null;
+            SelectedCaseStatus = CaseStatus.New;
         }
 
         public void Find()

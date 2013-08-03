@@ -19,7 +19,7 @@
                     <DataGridTextColumn Binding="{Binding CaseStatus, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="Status" Width="0.1*"/>
                     <DataGridTextColumn Binding="{Binding Party1Name, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="Party 1" Width="0.2*"/>
                     <DataGridTextColumn Binding="{Binding Party2Name, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="Party 2" Width="0.2*"/>
-                    <DataGridTextColumn Binding="{Binding CourtClerk, Mode=OneWay}"
+                    <DataGridTextColumn Binding="{Binding CourtClerkName, Mode=OneWay}"
                                         ClipboardContentBinding="{Binding Mode=OneWay}"
                                         Header="Court Clerk" 
                                         Width="0.2*"/>

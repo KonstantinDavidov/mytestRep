@@ -4,6 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
@@ -13,6 +14,17 @@ namespace Faccts.Model.Entities
         {
             this.MarkAsUnchanged();
             this.ChangeTracker.ChangeTrackingEnabled = false;
+            this.WhenAny(
+                x => x.FirstName,
+                x => x.MiddleName,
+                x => x.LastName,
+                (x1, x2, x3) => string.Empty
+                )
+                .Subscribe(_ =>
+                {
+                    this.OnPropertyChanged("FullName", false);
+                }
+                );
         }
 
         public User(FACCTS.Server.Model.DataModel.User dto) : this()
@@ -45,6 +57,14 @@ namespace Faccts.Model.Entities
             }
 
             
+        }
+
+        public string FullName
+        {
+            get
+            {
+                return string.Format("{0} {1} {1}", this.FirstName, this.MiddleName, this.LastName);
+            }
         }
 
         public FACCTS.Server.Model.DataModel.User ToDTO()

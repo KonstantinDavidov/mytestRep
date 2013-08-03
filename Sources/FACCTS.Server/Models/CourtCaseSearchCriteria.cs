@@ -45,7 +45,7 @@ namespace FACCTS.Server.Models
                     (string.IsNullOrEmpty(Party2FirstName) || x.Party2.FirstName.Contains(Party2FirstName)) &&
                     (string.IsNullOrEmpty(Party2MiddleName) || x.Party2.MiddleName.Contains(Party2MiddleName)) &&
                     (string.IsNullOrEmpty(Party2LastName) || x.Party2.LastName.Contains(Party2LastName)) &&
-                    (string.IsNullOrEmpty(CaseNumber) || x.CaseNumber == CaseNumber) &&
+                    (string.IsNullOrEmpty(CaseNumber) || x.CaseNumber.Contains(CaseNumber)) &&
                     (!FirstHearingStart.HasValue ||
                         x.CaseHistory
                         .OrderBy(y => y.Date)
