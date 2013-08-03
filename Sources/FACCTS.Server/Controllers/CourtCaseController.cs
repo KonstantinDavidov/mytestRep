@@ -71,6 +71,7 @@ namespace FACCTS.Server.Controllers
         {
             if (searchCriteria == null)
             {
+                _logger.Error("CourtCaseController.Get: searchCriteria is null");
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, new ArgumentNullException("searchCriteria"));
             }
             try
@@ -116,6 +117,7 @@ namespace FACCTS.Server.Controllers
             }
             catch (Exception ex)
             {
+                _logger.Error("CourtCaseController.Get: an exception thrown while querying the database: ", ex);
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
             

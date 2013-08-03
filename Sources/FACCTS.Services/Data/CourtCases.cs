@@ -65,5 +65,18 @@ namespace FACCTS.Services.Data
         {
             return this.CallServiceGet<FACCTS.Server.Model.DataModel.CourtCase>(string.Format("{0}?courtCaseId={1}", Routes.GetCourtCases.CourtCaseController, courtCaseId));
         }
+
+        private IEnumerable<CourtCaseHeading> GetHistoryHeadingsInternal(long courtCaseId)
+        {
+            return this.CallServiceGet<List<FACCTS.Server.Model.Calculations.CourtCaseHeading>>(string.Format("{0}?courtCaseId={1}", Routes.GetCaseHistory.CaseHistoryController, courtCaseId))
+                .Select(x => new CourtCaseHeading(x))
+                .ToList()
+                ;
+        }
+
+        public static IEnumerable<CourtCaseHeading> GetHistoryHeadings(long courtCaseId)
+        {
+            return new CourtCases().GetHistoryHeadingsInternal(courtCaseId);
+        }
     }
 }

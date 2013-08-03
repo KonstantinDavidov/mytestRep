@@ -177,6 +177,7 @@
     <Compile Include="ViewModels\Case Record\CaseRecordItemViewModel.cs" />
     <Compile Include="ViewModels\Case Record\SeparateCaseDialogViewModel.cs" />
     <Compile Include="ViewModels\Case Record\CourtPartyAdapter.cs" />
+    <Compile Include="ViewModels\CaseStatus\HistoryHeadingViewModel.cs" />
     <Compile Include="ViewModels\ConsolidateCasesDialogViewModel.cs" />
     <Compile Include="ViewModels\DropDismissDialogViewModel.cs" />
     <Compile Include="ViewModels\GenerateCourtOrdersDialogViewModel.cs" />
@@ -234,7 +235,7 @@
     </Compile>
     <Compile Include="ViewModels\Case Record\RelatedCasesViewModel.cs" />
     <Compile Include="ViewModels\Case Record\WitnessInterpereterViewModel.cs" />
-    <Compile Include="ViewModels\CaseStatusViewModel.cs" />
+    <Compile Include="ViewModels\CaseStatus\CaseStatusViewModel.cs" />
     <Compile Include="ViewModels\Case Record\ChildrenOtherProtectedViewModel.cs" />
     <Compile Include="ViewModels\CourtDocketViewModel.cs" />
     <Compile Include="ViewModels\CourtOrdersViewModel.cs" />

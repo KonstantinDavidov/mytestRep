@@ -25,22 +25,49 @@ namespace FACCTS.Controls.TreeListView
             private set;
         }
 
+        #region Model
 
-        private ITreeModel _model;
+        /// <summary>
+        /// Model Dependency Property
+        /// </summary>
+        public static readonly DependencyProperty ModelProperty =
+            DependencyProperty.Register("Model", typeof(ITreeModel), typeof(TreeList),
+                new FrameworkPropertyMetadata(null,
+                    new PropertyChangedCallback(OnModelChanged)));
+
+        /// <summary>
+        /// Gets or sets the Model property. This dependency property 
+        /// indicates ....
+        /// </summary>
         public ITreeModel Model
         {
-            get { return _model; }
-            set
-            {
-                if (_model != value)
-                {
-                    _model = value;
-                    _root.Children.Clear();
-                    Rows.Clear();
-                    CreateChildrenNodes(_root);
-                }
-            }
+            get { return (ITreeModel)GetValue(ModelProperty); }
+            set { SetValue(ModelProperty, value); }
         }
+
+        /// <summary>
+        /// Handles changes to the Model property.
+        /// </summary>
+        private static void OnModelChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            TreeList target = (TreeList)d;
+            ITreeModel oldModel = (ITreeModel)e.OldValue;
+            ITreeModel newModel = target.Model;
+            target.OnModelChanged(oldModel, newModel);
+        }
+
+        /// <summary>
+        /// Provides derived classes an opportunity to handle changes to the Model property.
+        /// </summary>
+        protected virtual void OnModelChanged(ITreeModel oldModel, ITreeModel newModel)
+        {
+            _root.Children.Clear();
+            Rows.Clear();
+            CreateChildrenNodes(_root);
+        }
+
+        #endregion
+
 
         private TreeNode _root;
         internal TreeNode Root

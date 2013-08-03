@@ -290,6 +290,7 @@
     <Compile Include="Code\HttpHeaderAttribute.cs" />
     <Compile Include="Code\Utilities.cs" />
     <Compile Include="Controllers\ApiControllerBase.cs" />
+    <Compile Include="Controllers\CaseHistoryController.cs" />
     <Compile Include="Controllers\CourtCaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\CourtMembersController.cs" />
     <Compile Include="Areas\Admin\Controllers\CourtMemberBriefController.cs" />
