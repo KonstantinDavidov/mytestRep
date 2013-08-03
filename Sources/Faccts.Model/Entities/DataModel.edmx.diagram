@@ -99,6 +99,9 @@
         <EntityTypeShape EntityType="FACCTS_DBModel.OrderBase" Width="1.5" PointX="7.5" PointY="10.25" />
         <AssociationConnector Association="FACCTS_DBModel.CourtOrdersOrderBase" />
         <EntityTypeShape EntityType="FACCTS_DBModel.CourtCaseHeading" Width="1.5" PointX="0.625" PointY="28.25" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.CourtCaseHistoryHeading" Width="1.5" PointX="3.5" PointY="31.5" />
+        <InheritanceConnector EntityType="FACCTS_DBModel.CourtCaseHistoryHeading" />
+        <AssociationConnector Association="FACCTS_DBModel.CourtCaseHeadingCourtCaseHistoryHeading" />
       </Diagram>
       <Diagram DiagramId="d16b781b547641eeb332d8cb3d0f49f3" Name="CourtOrders" ZoomLevel="80" >
         <EntityTypeShape EntityType="FACCTS_DBModel.ConductROSection" Width="1.5" PointX="6.875" PointY="2" />

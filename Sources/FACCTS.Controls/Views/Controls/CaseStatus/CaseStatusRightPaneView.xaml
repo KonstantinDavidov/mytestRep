@@ -5,30 +5,30 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
              xmlns:cal="http://www.caliburnproject.org"
+             xmlns:treeList="clr-namespace:FACCTS.Controls.TreeListView"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="631.6" Background="{DynamicResource ControlBackgroundBrush}">
+             d:DesignHeight="300" d:DesignWidth="631.6" Background="{DynamicResource ControlBackgroundBrush}"
+             >
     <Grid>
     	<Grid.RowDefinitions>
     		<RowDefinition/>
     		<RowDefinition Height="Auto"/>
     	</Grid.RowDefinitions>
     	<GroupBox Header="Case Status">
-            <DataGrid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False" IsReadOnly="True" ItemsSource="{Binding CourtCases, Mode=OneWay}" Style="{StaticResource {x:Type DataGrid}}">
-    			<DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding CaseNumber, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="Case Number" Width="0.2*"/>
-                    <DataGridTextColumn Binding="{Binding CaseStatus, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="Status" Width="0.1*"/>
-                    <DataGridTextColumn Binding="{Binding Party1Name, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="Party 1" Width="0.2*"/>
-                    <DataGridTextColumn Binding="{Binding Party2Name, Mode=OneWay}" ClipboardContentBinding="{Binding Mode=OneWay}" Header="Party 2" Width="0.2*"/>
-                    <DataGridTextColumn Binding="{Binding CourtClerkName, Mode=OneWay}"
-                                        ClipboardContentBinding="{Binding Mode=OneWay}"
-                                        Header="Court Clerk" 
-                                        Width="0.2*"/>
-                    <DataGridTextColumn Binding="{Binding CCPORId, Mode=OneWay}"
-                                        ClipboardContentBinding="{Binding Mode=OneWay}"
-                                        Header="CCPOR ID" 
-                                        Width="0.1*"/>
-                </DataGrid.Columns>
-    		</DataGrid>
+            <treeList:TreeList Model="{Binding}" SelectedItem="{Binding SelectedHeading, Mode=TwoWay}">
+                <treeList:TreeList.View>
+    				<GridView>
+    					<GridViewColumn Header="Case Number"/>
+    					<GridViewColumn Header="Status"/>
+    					<GridViewColumn Header="Date"/>
+    					<GridViewColumn Header="Orders"/>
+    					<GridViewColumn Header="Party 1 Name"/>
+    					<GridViewColumn Header="Party 2 Name"/>
+    					<GridViewColumn Header="Court Clerk"/>
+    					<GridViewColumn Header="CCPOR ID"/>
+    				</GridView>
+                </treeList:TreeList.View>
+            </treeList:TreeList>
     	</GroupBox>
     	<Border BorderBrush="Black" BorderThickness="1" Grid.Row="1">
     		<Grid VerticalAlignment="Top">

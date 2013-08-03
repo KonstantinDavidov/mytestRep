@@ -90,6 +90,7 @@
     <EntitySet Name="NoGunsSectionSet_NoGunsEASection" EntityType="FACCTS_DBModel.Store.NoGunsSectionSet_NoGunsEASection" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="OrderBaseSet_EA130ROOrder" EntityType="FACCTS_DBModel.Store.OrderBaseSet_EA130ROOrder" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="ServiceFeesSectionSet_ServiceFeesEA130Section" EntityType="FACCTS_DBModel.Store.ServiceFeesSectionSet_ServiceFeesEA130Section" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CourtCaseHeadingSet_CourtCaseHistoryHeading" EntityType="FACCTS_DBModel.Store.CourtCaseHeadingSet_CourtCaseHistoryHeading" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PersonBaseSet_Child" EntityType="FACCTS_DBModel.Store.PersonBaseSet_Child" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PersonBaseSet_OtherProtected" EntityType="FACCTS_DBModel.Store.PersonBaseSet_OtherProtected" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PersonBaseSet_Interpreter" EntityType="FACCTS_DBModel.Store.PersonBaseSet_Interpreter" store:Type="Tables" Schema="dbo" />
@@ -508,6 +509,10 @@
       <End Role="CourtOrders" EntitySet="CourtOrders" />
       <End Role="OrderBase" EntitySet="OrderBaseSet" />
     </AssociationSet>
+    <AssociationSet Name="CourtCaseHeadingCourtCaseHistoryHeading" Association="FACCTS_DBModel.Store.CourtCaseHeadingCourtCaseHistoryHeading">
+      <End Role="CourtCaseHeading" EntitySet="CourtCaseHeadingSet" />
+      <End Role="CourtCaseHistoryHeading" EntitySet="CourtCaseHeadingSet_CourtCaseHistoryHeading" />
+    </AssociationSet>
     <AssociationSet Name="FK_Attorneys_inherits_PersonBase" Association="FACCTS_DBModel.Store.FK_Attorneys_inherits_PersonBase">
       <End Role="PersonBase" EntitySet="PersonBaseSet" />
       <End Role="Attorneys" EntitySet="PersonBaseSet_Attorneys" />
@@ -599,6 +604,10 @@
     <AssociationSet Name="FK_ServiceFeesEA130Section_inherits_ServiceFeesSection" Association="FACCTS_DBModel.Store.FK_ServiceFeesEA130Section_inherits_ServiceFeesSection">
       <End Role="ServiceFeesSection" EntitySet="ServiceFeesSectionSet" />
       <End Role="ServiceFeesEA130Section" EntitySet="ServiceFeesSectionSet_ServiceFeesEA130Section" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CourtCaseHistoryHeading_inherits_CourtCaseHeading" Association="FACCTS_DBModel.Store.FK_CourtCaseHistoryHeading_inherits_CourtCaseHeading">
+      <End Role="CourtCaseHeading" EntitySet="CourtCaseHeadingSet" />
+      <End Role="CourtCaseHistoryHeading" EntitySet="CourtCaseHeadingSet_CourtCaseHistoryHeading" />
     </AssociationSet>
     <AssociationSet Name="FK_Child_inherits_PersonBase" Association="FACCTS_DBModel.Store.FK_Child_inherits_PersonBase">
       <End Role="PersonBase" EntitySet="PersonBaseSet" />
@@ -1536,6 +1545,13 @@
     </Key>
     <Property Name="NoServiceFee" Type="bit" Nullable="false" />
     <Property Name="Id" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CourtCaseHeadingSet_CourtCaseHistoryHeading">
+    <Key>
+      <PropertyRef Name="CourtCaseId" />
+    </Key>
+    <Property Name="CourtCaseHeadingCourtCaseId" Type="bigint" Nullable="false" />
+    <Property Name="CourtCaseId" Type="bigint" Nullable="false" />
   </EntityType>
   <EntityType Name="PersonBaseSet_Child">
     <Key>
@@ -2780,6 +2796,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="CourtCaseHeadingCourtCaseHistoryHeading">
+    <End Role="CourtCaseHeading" Type="FACCTS_DBModel.Store.CourtCaseHeadingSet" Multiplicity="1" />
+    <End Role="CourtCaseHistoryHeading" Type="FACCTS_DBModel.Store.CourtCaseHeadingSet_CourtCaseHistoryHeading" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CourtCaseHeading">
+        <PropertyRef Name="CourtCaseId" />
+      </Principal>
+      <Dependent Role="CourtCaseHistoryHeading">
+        <PropertyRef Name="CourtCaseHeadingCourtCaseId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_RoleUser_Role">
     <End Role="Role" Type="FACCTS_DBModel.Store.Role" Multiplicity="1" />
     <End Role="RoleUser" Type="FACCTS_DBModel.Store.RoleUser" Multiplicity="*" />
@@ -3147,6 +3175,20 @@
       </Principal>
       <Dependent Role="ServiceFeesEA130Section">
         <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CourtCaseHistoryHeading_inherits_CourtCaseHeading">
+    <End Role="CourtCaseHeading" Type="FACCTS_DBModel.Store.CourtCaseHeadingSet" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CourtCaseHistoryHeading" Type="FACCTS_DBModel.Store.CourtCaseHeadingSet_CourtCaseHistoryHeading" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="CourtCaseHeading">
+        <PropertyRef Name="CourtCaseId" />
+      </Principal>
+      <Dependent Role="CourtCaseHistoryHeading">
+        <PropertyRef Name="CourtCaseId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -3678,6 +3720,10 @@
             <End Role="OrderBase" EntitySet="OrderBaseSet" />
           </AssociationSet>
           <EntitySet Name="CourtCaseHeadingSet" EntityType="FACCTS_DBModel.CourtCaseHeading" />
+          <AssociationSet Name="CourtCaseHeadingCourtCaseHistoryHeading" Association="FACCTS_DBModel.CourtCaseHeadingCourtCaseHistoryHeading">
+            <End Role="CourtCaseHeading" EntitySet="CourtCaseHeadingSet" />
+            <End Role="CourtCaseHistoryHeading" EntitySet="CourtCaseHeadingSet" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AdfsIntegrationConfiguration">
           <Key>
@@ -5371,8 +5417,25 @@
           <Property Type="String" Name="Party2Name" Nullable="false" />
           <Property Type="String" Name="CCPOR_ID" Nullable="false" />
           <Property Type="String" Name="CourtClerkName" Nullable="false" />
+          <NavigationProperty Name="CourtCaseHistoryHeadings" Relationship="FACCTS_DBModel.CourtCaseHeadingCourtCaseHistoryHeading" FromRole="CourtCaseHeading" ToRole="CourtCaseHistoryHeading" />
         </EntityType>
         <EnumType Name="CaseStatus" a:ExternalTypeName="FACCTS.Server.Model.Enums.CaseStatus" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EntityType Name="CourtCaseHistoryHeading" BaseType="FACCTS_DBModel.CourtCaseHeading" >
+          <NavigationProperty Name="ParentCourtCaseHeading" Relationship="FACCTS_DBModel.CourtCaseHeadingCourtCaseHistoryHeading" FromRole="CourtCaseHistoryHeading" ToRole="CourtCaseHeading" />
+          <Property Type="Int64" Name="CourtCaseHeadingCourtCaseId" Nullable="false" />
+        </EntityType>
+        <Association Name="CourtCaseHeadingCourtCaseHistoryHeading">
+          <End Type="FACCTS_DBModel.CourtCaseHeading" Role="CourtCaseHeading" Multiplicity="1" />
+          <End Type="FACCTS_DBModel.CourtCaseHistoryHeading" Role="CourtCaseHistoryHeading" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CourtCaseHeading">
+              <PropertyRef Name="CourtCaseId" />
+            </Principal>
+            <Dependent Role="CourtCaseHistoryHeading">
+              <PropertyRef Name="CourtCaseHeadingCourtCaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -6308,6 +6371,12 @@
           <ScalarProperty Name="Party2Name" ColumnName="Party2Name" />
           <ScalarProperty Name="CCPOR_ID" ColumnName="CCPOR_ID" />
           <ScalarProperty Name="CourtClerkName" ColumnName="CourtClerkName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(FACCTS_DBModel.CourtCaseHistoryHeading)">
+        <MappingFragment StoreEntitySet="CourtCaseHeadingSet_CourtCaseHistoryHeading">
+          <ScalarProperty Name="CourtCaseId" ColumnName="CourtCaseId" />
+          <ScalarProperty Name="CourtCaseHeadingCourtCaseId" ColumnName="CourtCaseHeadingCourtCaseId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

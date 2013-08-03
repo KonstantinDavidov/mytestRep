@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, and Azure
 -- --------------------------------------------------
--- Date Created: 08/03/2013 18:46:18
+-- Date Created: 08/03/2013 20:40:57
 -- Generated from EDMX file: D:\FACCTS\FACCTSNEW\faccts.net\Sources\Faccts.Model\Entities\DataModel.edmx
 -- --------------------------------------------------
 
@@ -1606,6 +1606,13 @@ CREATE TABLE [dbo].[ServiceFeesSectionSet_ServiceFeesEA130Section] (
 );
 GO
 
+-- Creating table 'CourtCaseHeadingSet_CourtCaseHistoryHeading'
+CREATE TABLE [dbo].[CourtCaseHeadingSet_CourtCaseHistoryHeading] (
+    [CourtCaseHeadingCourtCaseId] bigint  NOT NULL,
+    [CourtCaseId] bigint  NOT NULL
+);
+GO
+
 -- Creating table 'PersonBaseSet_Child'
 CREATE TABLE [dbo].[PersonBaseSet_Child] (
     [RelationToProtected] int  NOT NULL,
@@ -2156,6 +2163,12 @@ GO
 ALTER TABLE [dbo].[ServiceFeesSectionSet_ServiceFeesEA130Section]
 ADD CONSTRAINT [PK_ServiceFeesSectionSet_ServiceFeesEA130Section]
     PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [CourtCaseId] in table 'CourtCaseHeadingSet_CourtCaseHistoryHeading'
+ALTER TABLE [dbo].[CourtCaseHeadingSet_CourtCaseHistoryHeading]
+ADD CONSTRAINT [PK_CourtCaseHeadingSet_CourtCaseHistoryHeading]
+    PRIMARY KEY CLUSTERED ([CourtCaseId] ASC);
 GO
 
 -- Creating primary key on [Id] in table 'PersonBaseSet_Child'
@@ -3615,6 +3628,20 @@ ADD CONSTRAINT [FK_CourtOrdersOrderBase]
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
+-- Creating foreign key on [CourtCaseHeadingCourtCaseId] in table 'CourtCaseHeadingSet_CourtCaseHistoryHeading'
+ALTER TABLE [dbo].[CourtCaseHeadingSet_CourtCaseHistoryHeading]
+ADD CONSTRAINT [FK_CourtCaseHeadingCourtCaseHistoryHeading]
+    FOREIGN KEY ([CourtCaseHeadingCourtCaseId])
+    REFERENCES [dbo].[CourtCaseHeadingSet]
+        ([CourtCaseId])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CourtCaseHeadingCourtCaseHistoryHeading'
+CREATE INDEX [IX_FK_CourtCaseHeadingCourtCaseHistoryHeading]
+ON [dbo].[CourtCaseHeadingSet_CourtCaseHistoryHeading]
+    ([CourtCaseHeadingCourtCaseId]);
+GO
+
 -- Creating foreign key on [Id] in table 'PersonBaseSet_Attorneys'
 ALTER TABLE [dbo].[PersonBaseSet_Attorneys]
 ADD CONSTRAINT [FK_Attorneys_inherits_PersonBase]
@@ -3819,6 +3846,15 @@ ADD CONSTRAINT [FK_ServiceFeesEA130Section_inherits_ServiceFeesSection]
     FOREIGN KEY ([Id])
     REFERENCES [dbo].[ServiceFeesSectionSet]
         ([Id])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+GO
+
+-- Creating foreign key on [CourtCaseId] in table 'CourtCaseHeadingSet_CourtCaseHistoryHeading'
+ALTER TABLE [dbo].[CourtCaseHeadingSet_CourtCaseHistoryHeading]
+ADD CONSTRAINT [FK_CourtCaseHistoryHeading_inherits_CourtCaseHeading]
+    FOREIGN KEY ([CourtCaseId])
+    REFERENCES [dbo].[CourtCaseHeadingSet]
+        ([CourtCaseId])
     ON DELETE CASCADE ON UPDATE NO ACTION;
 GO
 

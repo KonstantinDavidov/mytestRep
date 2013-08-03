@@ -15,11 +15,12 @@ using Caliburn.Micro;
 using FACCTS.Controls.Utils;
 using Faccts.Model.Entities;
 using System.Reactive.Linq;
+using FACCTS.Controls.TreeListView;
 
 namespace FACCTS.Controls.ViewModels
 {
     [Export(typeof(CaseStatusViewModel))]
-    public class CaseStatusViewModel : ViewModelBase
+    public class CaseStatusViewModel : ViewModelBase, ITreeModel
     {
         [ImportingConstructor]
         public CaseStatusViewModel(ILogger logger, IWindowManager windowManager) : base()
@@ -358,6 +359,37 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-        
+        private CourtCaseHeading _selectedHeading;
+        public CourtCaseHeading SelectedHeading
+        {
+            get
+            {
+                return _selectedHeading;
+            }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _selectedHeading, value);
+            }
+        }
+
+
+
+        public System.Collections.IEnumerable GetChildren(object parent)
+        {
+            if (parent == SelectedHeading)
+            {
+
+            }
+            return null;
+        }
+
+        public bool HasChildren(object parent)
+        {
+            if (parent == SelectedHeading)
+            {
+
+            }
+            return false;
+        }
     }
 }

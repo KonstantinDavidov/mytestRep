@@ -22,6 +22,8 @@ using System.Reflection;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
+    [KnownType(typeof(CourtCaseHistoryHeading))]
+    [KnownType(typeof(CourtCaseHistoryHeading))]
     public partial class CourtCaseHeading: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -290,6 +292,46 @@ namespace Faccts.Model.Entities
 
         #endregion
 
+        #region Navigation Properties
+    
+        [DataMember]
+        public TrackableCollection<CourtCaseHistoryHeading> CourtCaseHistoryHeadings
+        {
+            get
+            {
+                if (_courtCaseHistoryHeadings == null)
+                {
+                    _courtCaseHistoryHeadings = new TrackableCollection<CourtCaseHistoryHeading>();
+                    _courtCaseHistoryHeadings.CollectionChanged += FixupCourtCaseHistoryHeadings;
+                }
+                return _courtCaseHistoryHeadings;
+            }
+            set
+            {
+                if (!ReferenceEquals(_courtCaseHistoryHeadings, value))
+                {
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
+                    }
+    				OnNavigationPropertyChanging("CourtCaseHistoryHeadings");
+                    if (_courtCaseHistoryHeadings != null)
+                    {
+                        _courtCaseHistoryHeadings.CollectionChanged -= FixupCourtCaseHistoryHeadings;
+                    }
+                    _courtCaseHistoryHeadings = value;
+                    if (_courtCaseHistoryHeadings != null)
+                    {
+                        _courtCaseHistoryHeadings.CollectionChanged += FixupCourtCaseHistoryHeadings;
+                    }
+                    OnNavigationPropertyChanged("CourtCaseHistoryHeadings");
+                }
+            }
+        }
+        private TrackableCollection<CourtCaseHistoryHeading> _courtCaseHistoryHeadings;
+
+        #endregion
+
         #region ChangeTracking
     
         protected virtual void OnPropertyChanged(String propertyName, bool changeState = true)
@@ -385,6 +427,50 @@ namespace Faccts.Model.Entities
     
         protected virtual void ClearNavigationProperties()
         {
+            CourtCaseHistoryHeadings.Clear();
+        }
+
+        #endregion
+
+        #region Association Fixup
+    
+        private void FixupCourtCaseHistoryHeadings(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (e.NewItems != null)
+            {
+                foreach (CourtCaseHistoryHeading item in e.NewItems)
+                {
+                    item.ParentCourtCaseHeading = this;
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        if (!item.ChangeTracker.ChangeTrackingEnabled)
+                        {
+                            item.StartTracking();
+                        }
+                        ChangeTracker.RecordAdditionToCollectionProperties("CourtCaseHistoryHeadings", item);
+                    }
+                }
+            }
+    
+            if (e.OldItems != null)
+            {
+                foreach (CourtCaseHistoryHeading item in e.OldItems)
+                {
+                    if (ReferenceEquals(item.ParentCourtCaseHeading, this))
+                    {
+                        item.ParentCourtCaseHeading = null;
+                    }
+                    if (ChangeTracker.ChangeTrackingEnabled)
+                    {
+                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtCaseHistoryHeadings", item);
+                    }
+                }
+            }
         }
 
         #endregion
