@@ -1,4 +1,6 @@
-﻿using FACCTS.Server.Model.DataModel;
+﻿using FACCTS.Server.Model;
+using FACCTS.Server.Model.DataModel;
+using FACCTS.Server.Model.Enums;
 using FACCTS.Server.Model.Interfaces;
 using FACCTS.Server.Models;
 using System;
@@ -35,6 +37,7 @@ namespace FACCTS.Server.Models
 
         public Expression<Func<CourtCase, bool>> GetLINQCriteria()
         {
+            CaseHistoryEvent? eventForCaseStatus = CaseStatus.HasValue ? (CaseHistoryEvent?)CaseHistoryEventToCaseStatusConverter.ConvertBack(CaseStatus.Value) : null;
             return
                 x => (string.IsNullOrEmpty(Party1FirstName) || x.Party1.FirstName.Contains(Party1FirstName)) &&
                     (string.IsNullOrEmpty(Party1MiddleName) || x.Party1.MiddleName.Contains(Party1MiddleName)) &&
@@ -62,7 +65,7 @@ namespace FACCTS.Server.Models
                         .FirstOrDefault(y => y.CaseHistoryEvent == Model.Enums.CaseHistoryEvent.Hearing && y.Date >= LastHearingStart.Value) != null
                     ) &&
                     (
-                        LastHearingEnd.HasValue ||
+                        !LastHearingEnd.HasValue ||
                         x.CaseHistory
                         .OrderByDescending(y => y.Date)
                         .FirstOrDefault(y => y.CaseHistoryEvent == Model.Enums.CaseHistoryEvent.Hearing && y.Date <= LastHearingEnd.Value) != null
@@ -71,7 +74,7 @@ namespace FACCTS.Server.Models
                         !CourtClerkId.HasValue || x.CourtClerkId == CourtClerkId.Value
                     ) &&
                     (
-                        !CaseStatus.HasValue || x.CaseStatus == CaseStatus.Value
+                        !eventForCaseStatus.HasValue || x.CaseHistory.OrderByDescending(y => y.Date).Select(y => y.CaseHistoryEvent).FirstOrDefault() == eventForCaseStatus
                     ) &&
                     (
                         string.IsNullOrEmpty(CCPOR_ID) || x.CCPORId == CCPOR_ID

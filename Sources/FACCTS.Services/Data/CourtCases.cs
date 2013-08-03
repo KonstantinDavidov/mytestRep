@@ -63,7 +63,7 @@ namespace FACCTS.Services.Data
 
         private FACCTS.Server.Model.DataModel.CourtCase GetByCourtCaseId(long courtCaseId)
         {
-            return this.CallServiceGet<FACCTS.Server.Model.DataModel.CourtCase>(string.Format("{0}?{1}", Routes.GetCourtCases.CourtCaseController, courtCaseId));
+            return this.CallServiceGet<FACCTS.Server.Model.DataModel.CourtCase>(string.Format("{0}?courtCaseId={1}", Routes.GetCourtCases.CourtCaseController, courtCaseId));
         }
     }
 }

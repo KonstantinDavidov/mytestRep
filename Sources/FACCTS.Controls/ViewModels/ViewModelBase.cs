@@ -70,10 +70,16 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
+        private bool _authorizedDone = false;
         protected virtual void Authorized()
         {
-            DataContainer.SearchCourtCases();
-            DataContainer.UpdateDictionaries();
+            if (!_authorizedDone)
+            {
+                DataContainer.SearchCourtCases();
+                DataContainer.UpdateDictionaries();
+                _authorizedDone = true;
+            }
+            
         }
 
         [ImportingConstructor]

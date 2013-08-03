@@ -19,7 +19,7 @@ namespace FACCTS.Server.Model.DataModel
                 {
                     return Enums.CaseStatus.New;
                 }
-                return CaseHistoryEventToStatus(CaseHistory.Where(x => x.Date.GetValueOrDefault(DateTime.Now) <= DateTime.Now).First().CaseHistoryEvent);
+                return CaseHistoryEventToCaseStatusConverter.Convert(CaseHistory.Where(x => x.Date.GetValueOrDefault(DateTime.Now) <= DateTime.Now).First().CaseHistoryEvent);
             }
         }
 
@@ -47,10 +47,6 @@ namespace FACCTS.Server.Model.DataModel
                 return CaseHistory.Select(X => X.Date).Max();
             } 
         }
-
-        private static CaseStatus CaseHistoryEventToStatus(CaseHistoryEvent chEvent)
-        {
-            return (CaseStatus)(int)chEvent;
-        }
+        
     }
 }

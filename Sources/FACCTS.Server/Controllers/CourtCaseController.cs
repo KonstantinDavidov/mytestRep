@@ -1,6 +1,7 @@
 ﻿using FACCTS.Server.Code;
 using FACCTS.Server.DataContracts;
 using FACCTS.Server.Filters;
+using FACCTS.Server.Model;
 using FACCTS.Server.Model.Calculations;
 using FACCTS.Server.Model.DataModel;
 using FACCTS.Server.Models;
@@ -82,18 +83,32 @@ namespace FACCTS.Server.Controllers
                 x => x.CourtClerk
                 )
                 .Where(searchCriteria.GetLINQCriteria())
+                .Select(x =>
+                    new {
+                        CourtCaseId = x.Id,
+                        CaseNumber = x.CaseNumber,
+                        CasehistoryEvent = x.CaseHistory.OrderByDescending(y => y.Date).Select(y => y.CaseHistoryEvent).FirstOrDefault(),
+                        Date = (DateTime?)null,
+                        Order = (string)null,
+                        Party1Name = x.Party1.FirstName + " " +x.Party1.MiddleName + " " + x.Party1.LastName,
+                        Party2Name = x.Party2.FirstName + " " + x.Party2.MiddleName + " " + x.Party2.LastName,
+                        CourtClerkId = x.CourtClerkId,
+                        CCPOR_ID = x.CCPORId,
+                    }
+                    )
+                    .ToArray()
                 .Select(
                 x => new CourtCaseHeading()
                 {
-                    CourtCaseId = x.Id,
+                    CourtCaseId = x.CourtCaseId,
                     CaseNumber = x.CaseNumber,
-                    CaseStatus = x.CaseStatus,
+                    CaseStatus = CaseHistoryEventToCaseStatusConverter.Convert(x.CasehistoryEvent),
                     Date = null,
                     Order = null,
-                    Party1Name = x.Party1.FullName,
-                    Party2Name = x.Party2.FullName,
+                    Party1Name = x.Party1Name,
+                    Party2Name = x.Party2Name,
                     CourtClerkId = x.CourtClerkId,
-                    CCPOR_ID = x.CCPORId,
+                    CCPOR_ID = x.CCPOR_ID,
                 }
                 )
                 .ToList();

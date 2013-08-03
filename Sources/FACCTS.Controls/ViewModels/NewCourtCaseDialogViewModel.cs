@@ -65,7 +65,7 @@ namespace FACCTS.Controls.ViewModels
                 CaseNumber = this.CaseNumber,
                 CaseHistory = Faccts.Model.Entities.CaseHistory.GetHistoryCollectionForNewCase(),
             };
-            Execute.OnUIThread(() => DataContainer.CourtCases.Add(newCase));
+            //Execute.OnUIThread(() => DataContainer.CourtCases.Add(newCase));
         }
 
         public string Error

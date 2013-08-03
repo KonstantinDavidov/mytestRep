@@ -222,6 +222,10 @@ namespace FACCTS.Controls.ViewModels
         {
             get
             {
+                if (DataContainer == null)
+                {
+                    return null;
+                }
                 return DataContainer.CurrentCourtCase;
             }
         }
