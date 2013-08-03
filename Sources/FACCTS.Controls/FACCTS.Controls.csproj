@@ -162,6 +162,13 @@
     <Compile Include="IShell.cs" />
     <Compile Include="MarkupExtension\MefPartExtension.cs" />
     <Compile Include="NameValueWrapper.cs" />
+    <Compile Include="TreeListView\Converters.cs" />
+    <Compile Include="TreeListView\ITreeModel.cs" />
+    <Compile Include="TreeListView\ObservableCollectionAdv.cs" />
+    <Compile Include="TreeListView\RowExpander.cs" />
+    <Compile Include="TreeListView\TreeList.cs" />
+    <Compile Include="TreeListView\TreeListItem.cs" />
+    <Compile Include="TreeListView\TreeNode.cs" />
     <Compile Include="Utils\StringToBoolean.cs" />
     <Compile Include="Utils\StringToDateTime.cs" />
     <Compile Include="Validation\ErrorProvider.cs" />
