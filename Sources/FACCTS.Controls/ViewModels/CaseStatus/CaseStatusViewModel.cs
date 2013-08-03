@@ -369,6 +369,11 @@ namespace FACCTS.Controls.ViewModels
             set
             {
                 this.RaiseAndSetIfChanged(ref _selectedHeading, value);
+                if (_selectedHeading != null && _selectedHeading.ChangeTracker.State == ObjectState.Unchanged)
+                {
+                    _selectedHeading.CourtCaseHistoryHeadings = new TrackableCollection<CourtCaseHistoryHeading>(FACCTS.Services.Data.CourtCases.GetHistoryHeadings(_selectedHeading.CourtCaseId));
+                    _selectedHeading.MarkAsModified();
+                }
             }
         }
 
@@ -376,18 +381,22 @@ namespace FACCTS.Controls.ViewModels
 
         public System.Collections.IEnumerable GetChildren(object parent)
         {
-            if (parent == SelectedHeading)
+            if (SelectedHeading != null && parent == SelectedHeading)
             {
-
+                return SelectedHeading.CourtCaseHistoryHeadings;
             }
             return null;
         }
 
         public bool HasChildren(object parent)
         {
+            if (parent == null && this.CourtCases != null)
+            {
+                return this.CourtCases.Any();
+            }
             if (parent == SelectedHeading)
             {
-
+                SelectedHeading.CourtCaseHistoryHeadings.Any();
             }
             return false;
         }
