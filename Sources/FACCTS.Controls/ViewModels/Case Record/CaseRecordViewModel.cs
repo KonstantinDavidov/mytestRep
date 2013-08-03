@@ -116,7 +116,6 @@ namespace FACCTS.Controls.ViewModels
         {
                 if (e.PropertyName == "CourtCases")
                 {
-                    _courtCases = null;
                     this.NotifyOfPropertyChange(() => CourtCases);
                 }
         }
@@ -126,20 +125,20 @@ namespace FACCTS.Controls.ViewModels
             this.NotifyOfPropertyChange(() => CourtCases);
         }
 
-        private TrackableCollection<CourtCaseHeading> _courtCases;
         public TrackableCollection<CourtCaseHeading> CourtCases
         {
             get
             {
-                if (IsAuthenticated && _courtCases == null)
+                if (IsAuthenticated)
                 {
-                    _courtCases = DataContainer.CourtCaseHeadings;
+                    var _courtCases = DataContainer.CourtCaseHeadings;
                     if (CurrentCourtCase == null && _courtCases.Any())
                     {
-                        DataContainer.UpdateBySelection(_courtCases.First());
+                        this.SelectedHeading = _courtCases.First();
                     }
+                    return _courtCases;
                 }
-                return _courtCases;
+                return null;
             }
         }
 

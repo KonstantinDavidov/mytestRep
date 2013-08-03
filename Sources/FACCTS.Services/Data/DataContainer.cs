@@ -12,8 +12,11 @@ using System.Collections.Specialized;
 using System.ComponentModel.Composition;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Threading;
 
 namespace FACCTS.Services.Data
@@ -456,18 +459,25 @@ namespace FACCTS.Services.Data
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            var propInfos = this.GetType().GetProperties(System.Reflection.BindingFlags.GetProperty | System.Reflection.BindingFlags.Public);
+            var propInfos = this.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
             sb = propInfos.Aggregate(sb, (builder, item) =>
                 {
-                    var value = item.GetValue(this);
-                    if (value != null)
+                    if (item.CanRead)
                     {
-                        builder.AppendFormat("{0}={1}", item.Name, value);
+                        MethodInfo mget = item.GetGetMethod(false);
+                        if (mget != null)
+                        {
+                            var value = item.GetValue(this);
+                            if (value != null)
+                            {
+                                builder.AppendFormat("{0}={1}&", WebUtility.UrlEncode(item.Name), WebUtility.UrlEncode(value.ToString()));
+                            }
+                        }
                     }
                     return builder;
                 }
                 );
-            return sb.ToString();
+            return sb.ToString().TrimEnd('&');
         }
     }
    

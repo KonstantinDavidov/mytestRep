@@ -275,7 +275,8 @@ namespace FACCTS.Controls.ViewModels
 
         public void Find()
         {
-            //TODO implement Find()
+            DataContainer.SearchCourtCases(true);
+            this.NotifyOfPropertyChange(() => CourtCases);
         }
 
         private TrackableCollection<CourtCaseHeading> _courtCases;
@@ -283,15 +284,11 @@ namespace FACCTS.Controls.ViewModels
         {
             get
             {
-                if (this.IsAuthenticated && _courtCases == null)
+                if (this.IsAuthenticated)
                 {
-                    _courtCases = DataContainer.CourtCaseHeadings;
+                    return DataContainer.CourtCaseHeadings;
                 }
-                return _courtCases;
-            }
-            set
-            {
-                this.RaiseAndSetIfChanged(ref _courtCases, value);
+                return null;
             }
         }
 
