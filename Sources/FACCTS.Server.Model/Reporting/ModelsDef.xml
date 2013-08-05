@@ -32,6 +32,11 @@
     <Property name="Amount" type="decimal"/>
     <Property name="PaymentDueDate" type="DateTime"/>
   </Model>
+  <Model name="Attendence">
+    <Property name="IsPesent" type="bool"/>
+    <Property name="IsSworn" type="bool"/>
+    <Property name="IsAttorneyPresent" type="bool"/>
+  </Model>
   <!--CH-->
  <Model name="CHConductChoice">
    <Property name="IsNoAbuse" type="bool"/>
@@ -74,11 +79,12 @@
   <Model name="CH110">
     <Property name="ConductSectionState" type="OrderRestrictionState"/>
     <Property name="ConductSection" type="ICHConductChoice"/>
-    <Property name="StayAwayOrdersState" type="OrderRestrictionState"/>
     <Property name="StayAwayOrders" type="ICHStayAwayOrders"/>
     <Property name="IsNoGuns" type="bool"/>
     <Property name="CAPROSEntrySection" type="ICAPROSEntry"/>
     <Property name="NoServiceFeeSection" type="INoServiceFee"/>
+    <Property name="StayAwayOrdersState" type="OrderRestrictionState"/>
+    <Property name="OtherOrdersState" type="OrderRestrictionState"/>
     <Property name="IsOtherOrdersAttached" type="bool"/>
     <Property name="OtherOrderDetail" type="string"/>
   </Model>
@@ -589,7 +595,19 @@
     <Property name="IsRespondentSupervised" type="bool"/>
   </Model>
   <Model name="FL340">
-    <Property name="" type="AvailableReportType"/>
+    <Property name="CustodyAndVisitation" type="AvailableReportType"/>
+    <Property name="ChildSupport" type="AvailableReportType"/>
+    <Property name="SpousalSupport" type="AvailableReportType"/>
+    <Property name="PropertyOrders" type="AvailableReportType"/>
+    <Property name="AttorneyFees" type="AvailableReportType"/>
+    <Property name="AreOtherOrdersAttached" type="bool"/>
+    <Property name="AreOtherOrdersNotApplicable" type="bool"/>
+    <Property name="OtherOrdersDescription" type="string"/>
+    <Property name="MotionFileDate" type="DateTime"/>
+    <Property name="MotionByPerson" type="Designation"/>
+    <Property name="OtherPartyName" type="string"/>
+    <Property name="OtherPartyDescription" type="string"/>
+    <Property name="OtherPartyAttendence" type="IAttendence"/>
   </Model>
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">

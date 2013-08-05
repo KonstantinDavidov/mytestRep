@@ -15,6 +15,7 @@ namespace Faccts.Model.Entities.Reporting
         private string _otherOrderDetail;
         private ICHStayAwayOrders _stayAwayOrders;
         private OrderRestrictionState _stayAwayOrdersState;
+        private OrderRestrictionState _otherOrdersState;
 
         public CH110()
         {
@@ -69,6 +70,17 @@ namespace Faccts.Model.Entities.Reporting
             {
                 if (value == _stayAwayOrdersState) return;
                 _stayAwayOrdersState = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public OrderRestrictionState OtherOrdersState
+        {
+            get { return _otherOrdersState; }
+            set
+            {
+                if (value == _otherOrdersState) return;
+                _otherOrdersState = value;
                 OnPropertyChanged();
             }
         }

@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Faccts.Model.Entities.Reporting;
 
 namespace FACCTS.Controls.ViewModels
 {
-    public class EA110ElderlyAbuseViewModel : CourtOrderViewModelBase
+    public class EA110ElderlyAbuseViewModel : CourtOrderBaseViewModel<EA110>
     {
         public EA110ElderlyAbuseViewModel()
         {

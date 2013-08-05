@@ -5,11 +5,12 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Faccts.Model.Entities.Reporting;
 
 namespace FACCTS.Controls.ViewModels
 {
     [Export]
-    public partial class CH130CivilHarassmentViewModel : CourtOrderViewModelBase
+    public partial class CH130CivilHarassmentViewModel : CourtOrderBaseViewModel<CH130>
     {
         public CH130CivilHarassmentViewModel() : base()
         {

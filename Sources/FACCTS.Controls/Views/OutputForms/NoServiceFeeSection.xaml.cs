@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace FACCTS.Controls.Views
 {
     /// <summary>
-    /// Interaction logic for CH110CivilHarassmentView.xaml
+    /// Interaction logic for NoServiceFeeSection.xaml
     /// </summary>
-    public partial class CH110CivilHarassmentView : UserControl
+    public partial class NoServiceFeeSection : UserControl
     {
-        public CH110CivilHarassmentView()
+        public NoServiceFeeSection()
         {
             InitializeComponent();
         }

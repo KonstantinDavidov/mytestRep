@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="FACCTS.Controls.Views.CARPOSEntrySection"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:reporting="clr-namespace:Faccts.Model.Entities.Reporting;assembly=Faccts.Model"
+             xmlns:converters="clr-namespace:FACCTS.Controls.Converters"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance reporting:CAPROSEntry}">
+    <UserControl.Resources>
+        <converters:EnumToBooleanConverter x:Key="EnumToBooleanConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <RadioButton Margin="10 5 10 5" Grid.Row="0" Grid.Column="0" Content="By Clerk" IsChecked="{Binding Path=CARPOSEntryType, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=ByClerk}"/>
+        <RadioButton Margin="10 5 10 5" Grid.Column="0" Grid.Row="1" Content="By Clerk to Law Enforcement" IsChecked="{Binding Path=CARPOSEntryType, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=ByClerkToLawEnforcement}"/>
+        <RadioButton Margin="10 5 10 5" Grid.Column="0" Grid.Row="2" Content="By Protected To:" IsChecked="{Binding Path=CARPOSEntryType, Converter={StaticResource EnumToBooleanConverter}, ConverterParameter=ByProtected}"/>
+        <DataGrid Margin="10 5 10 5" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" VerticalAlignment="Stretch" ItemsSource="{Binding Path=LawEnforcementAgencies, Mode=TwoWay}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Law Enforcement Agency" Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn Header="Address" Binding="{Binding Path=Description}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

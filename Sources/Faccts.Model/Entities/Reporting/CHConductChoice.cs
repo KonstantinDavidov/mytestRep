@@ -10,6 +10,7 @@ namespace Faccts.Model.Entities.Reporting
         private bool _isNoContact;
         private bool _isOtherAttached;
         private string _otherDescription;
+        private bool _isInvolveOtherProtected;
 
         public CHConductChoice(ICHConductChoice choice)
         {
@@ -58,7 +59,16 @@ namespace Faccts.Model.Entities.Reporting
             }
         }
 
-        public bool IsInvolveOtherProtected { get; set; }
+        public bool IsInvolveOtherProtected
+        {
+            get { return _isInvolveOtherProtected; }
+            set
+            {
+                if (value.Equals(_isInvolveOtherProtected)) return;
+                _isInvolveOtherProtected = value;
+                OnPropertyChanged();
+            }
+        }
 
         public bool IsInvolveOther
         {

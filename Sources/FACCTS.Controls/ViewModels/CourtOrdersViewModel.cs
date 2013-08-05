@@ -141,10 +141,24 @@ namespace FACCTS.Controls.ViewModels
             IsAuthenticated = e.AuthenticationStatus == AuthenticationStatus.Authenticated;
         }
 
-        public void Activate(CourtOrderViewModelBase viewModel)
+        public void Activate(CourtOrderWithTypeViewModel viewModel)
         {
             if (viewModel == null) return;
-            PopulateOrderIfNotExists(viewModel);
+            switch (viewModel.OrderType)
+            {
+                case CourtOrdersTypes.CH110:
+                    PopulateOrderIfNotExists((CourtOrderBaseViewModel<CH110>) viewModel);
+                    break;
+                case CourtOrdersTypes.CH130:
+                    PopulateOrderIfNotExists((CourtOrderBaseViewModel<CH130>)viewModel);
+                    break;
+                case CourtOrdersTypes.DV110:
+                    PopulateOrderIfNotExists((CourtOrderBaseViewModel<DV110>)viewModel);
+                    break;
+                case CourtOrdersTypes.DV130:
+                    PopulateOrderIfNotExists((CourtOrderBaseViewModel<DV130>)viewModel);
+                    break;
+            }
             ActivateItem(viewModel);
         }
 
@@ -172,7 +186,7 @@ namespace FACCTS.Controls.ViewModels
             _windowManager.ShowDialog(vm);
         }
 
-        private void PopulateOrderIfNotExists(CourtOrderViewModelBase orderViewModel)
+        private void PopulateOrderIfNotExists<T>(CourtOrderBaseViewModel<T> orderViewModel) where T: OrderBase
         {
             if (SelectedHearing == null)
                 return;
@@ -190,7 +204,7 @@ namespace FACCTS.Controls.ViewModels
             {
                 courtOrder.InnerOrder = CreateOrder(courtOrder.OrderType);
             }
-            orderViewModel.Order = courtOrder.InnerOrder;
+            orderViewModel.Order = (T) courtOrder.InnerOrder;
         }
 
         private OrderBase CreateOrder(CourtOrdersTypes courtOrdersType)
