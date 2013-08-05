@@ -1,5 +1,6 @@
 ﻿using FACCTS.Server.Model;
 using FACCTS.Server.Model.Calculations;
+using FACCTS.Server.Model.DataModel;
 using log4net;
 using System;
 using System.Collections.Generic;
@@ -45,7 +46,7 @@ namespace FACCTS.Server.Controllers
                         CaseNumber = (string)null,
                         CasehistoryEvent = x.CaseHistoryEvent,
                         Date = x.Date,
-                        Order = x.Hearing != null ? x.Hearing.CourtOrders.Select(y => y.OrderType.ToString()) : null,
+                        Order = x.Hearing.CourtOrders.Select(y => y.OrderType),
                         Party1Name = (string)null,
                         Party2Name = (string)null,
                         CourtClerkName = x.CourtClerk.FirstName + " " + x.CourtClerk.MiddleName + " " + x.CourtClerk.LastName,
@@ -58,8 +59,8 @@ namespace FACCTS.Server.Controllers
                         CourtCaseId = x.CourtCaseId,
                         CaseNumber = x.CaseNumber,
                         CaseStatus = CaseHistoryEventToCaseStatusConverter.Convert(x.CasehistoryEvent),
-                        Date = null,
-                        Order = null,
+                        Date = x.Date,
+                        Order = string.Concat(x.Order.Select(y => y.ToString()+"|")).TrimEnd('|'),
                         Party1Name = x.Party1Name,
                         Party2Name = x.Party2Name,
                         CourtClerkName = x.CourtClerkName,

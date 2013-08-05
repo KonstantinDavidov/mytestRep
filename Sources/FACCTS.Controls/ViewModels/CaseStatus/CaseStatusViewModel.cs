@@ -15,12 +15,11 @@ using Caliburn.Micro;
 using FACCTS.Controls.Utils;
 using Faccts.Model.Entities;
 using System.Reactive.Linq;
-using FACCTS.Controls.TreeListView;
 
 namespace FACCTS.Controls.ViewModels
 {
     [Export(typeof(CaseStatusViewModel))]
-    public class CaseStatusViewModel : ViewModelBase, ITreeModel
+    public class CaseStatusViewModel : ViewModelBase
     {
         [ImportingConstructor]
         public CaseStatusViewModel(ILogger logger, IWindowManager windowManager) : base()
@@ -282,16 +281,32 @@ namespace FACCTS.Controls.ViewModels
             this.NotifyOfPropertyChange(() => CourtCases);
         }
 
-        private TrackableCollection<CourtCaseHeading> _courtCases;
-        public TrackableCollection<CourtCaseHeading> CourtCases
+        private List<CourtCaseHeadingViewModel> _courtCaseModels;
+        protected List<CourtCaseHeadingViewModel> CourtCaseModels
         {
             get
             {
-                if (this.IsAuthenticated)
+                if (_courtCaseModels == null)
                 {
-                    return DataContainer.CourtCaseHeadings;
+                    _courtCaseModels = DataContainer.CourtCaseHeadings.Select(x => new CourtCaseHeadingViewModel(x)).ToList();
                 }
-                return null;
+                return _courtCaseModels;
+            }
+        }
+
+        private ReactiveCollection<CourtCaseHeadingViewModel> _courtCases;
+        public ReactiveCollection<CourtCaseHeadingViewModel> CourtCases
+        {
+            get
+            {
+                if (this.IsAuthenticated && _courtCases == null)
+                {
+                    _courtCases = CourtCaseModels.SelectMany(x => x.GetAll()).CreateDerivedCollection(x => x, 
+                        filter: x => x.IsVisible,
+                        signalReset: Observable.Merge(CourtCaseModels.Select(y => y.ObservableForProperty(y1 => y1.IsExpanded)))
+                        );
+                }
+                return _courtCases;
             }
         }
 
@@ -359,8 +374,8 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-        private CourtCaseHeading _selectedHeading;
-        public CourtCaseHeading SelectedHeading
+        private CourtCaseHeadingViewModel _selectedHeading;
+        public CourtCaseHeadingViewModel SelectedHeading
         {
             get
             {
@@ -369,36 +384,23 @@ namespace FACCTS.Controls.ViewModels
             set
             {
                 this.RaiseAndSetIfChanged(ref _selectedHeading, value);
-                if (_selectedHeading != null && _selectedHeading.ChangeTracker.State == ObjectState.Unchanged)
+                if (_selectedHeading != null && _selectedHeading.Heading is CourtCaseHeading && 
+                    _selectedHeading.Heading.ChangeTracker.State == ObjectState.Unchanged)
                 {
-                    _selectedHeading.CourtCaseHistoryHeadings = new TrackableCollection<CourtCaseHistoryHeading>(FACCTS.Services.Data.CourtCases.GetHistoryHeadings(_selectedHeading.CourtCaseId));
-                    _selectedHeading.MarkAsModified();
+                    _selectedHeading.Heading.CourtCaseHistoryHeadings.Clear();
+                    var data = FACCTS.Services.Data.CourtCases.GetHistoryHeadings(_selectedHeading.Heading.CourtCaseId);
+                    data.Aggregate(_selectedHeading.Heading.CourtCaseHistoryHeadings, (headings, item) =>
+                        {
+                            headings.Add(item);
+                            return headings;
+                        }
+                        );
+                    _selectedHeading.Heading.MarkAsModified();
+                    _courtCases = null;
+                    this.NotifyOfPropertyChange(() => CourtCases);
                 }
             }
         }
 
-
-
-        public System.Collections.IEnumerable GetChildren(object parent)
-        {
-            if (SelectedHeading != null && parent == SelectedHeading)
-            {
-                return SelectedHeading.CourtCaseHistoryHeadings;
-            }
-            return null;
-        }
-
-        public bool HasChildren(object parent)
-        {
-            if (parent == null && this.CourtCases != null)
-            {
-                return this.CourtCases.Any();
-            }
-            if (parent == SelectedHeading)
-            {
-                SelectedHeading.CourtCaseHistoryHeadings.Any();
-            }
-            return false;
-        }
     }
 }

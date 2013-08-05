@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Controls.ViewModels
 {
-    public class CH110CivilHarassmentViewModel: CourtOrderBase
+    public class CH110CivilHarassmentViewModel: CourtOrderViewModelBase
     {
         public CH110CivilHarassmentViewModel()
         {

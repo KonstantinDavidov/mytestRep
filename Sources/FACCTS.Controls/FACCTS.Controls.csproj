@@ -151,6 +151,7 @@
     <Compile Include="Converters\Int32ToBooleanConverter.cs" />
     <Compile Include="Converters\InvertedBooleanConverter.cs" />
     <Compile Include="Converters\InvertedInt32ToBooleanConverter.cs" />
+    <Compile Include="Converters\LevelToIndentConverter.cs" />
     <Compile Include="Converters\NullableBoolleanToBooleanConverter.cs" />
     <Compile Include="Converters\ObjectToBooleanConverter.cs" />
     <Compile Include="Events\CurrentCourtCaseChangedEvent.cs" />
@@ -162,13 +163,6 @@
     <Compile Include="IShell.cs" />
     <Compile Include="MarkupExtension\MefPartExtension.cs" />
     <Compile Include="NameValueWrapper.cs" />
-    <Compile Include="TreeListView\Converters.cs" />
-    <Compile Include="TreeListView\ITreeModel.cs" />
-    <Compile Include="TreeListView\ObservableCollectionAdv.cs" />
-    <Compile Include="TreeListView\RowExpander.cs" />
-    <Compile Include="TreeListView\TreeList.cs" />
-    <Compile Include="TreeListView\TreeListItem.cs" />
-    <Compile Include="TreeListView\TreeNode.cs" />
     <Compile Include="Utils\StringToBoolean.cs" />
     <Compile Include="Utils\StringToDateTime.cs" />
     <Compile Include="Validation\ErrorProvider.cs" />
@@ -177,6 +171,7 @@
     <Compile Include="ViewModels\Case Record\CaseRecordItemViewModel.cs" />
     <Compile Include="ViewModels\Case Record\SeparateCaseDialogViewModel.cs" />
     <Compile Include="ViewModels\Case Record\CourtPartyAdapter.cs" />
+    <Compile Include="ViewModels\CaseStatus\CourtCaseHeadingViewModel.cs" />
     <Compile Include="ViewModels\ConsolidateCasesDialogViewModel.cs" />
     <Compile Include="ViewModels\DropDismissDialogViewModel.cs" />
     <Compile Include="ViewModels\GenerateCourtOrdersDialogViewModel.cs" />
@@ -366,7 +361,7 @@
     <Compile Include="Views\OutputForms\CH130CivilHarassmentView.xaml.cs">
       <DependentUpon>CH130CivilHarassmentView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\OutputForms\CourtOrderBase.cs" />
+    <Compile Include="ViewModels\OutputForms\CourtOrderViewModelBase.cs" />
     <Compile Include="Views\OutputForms\DV110AttachDV145View.xaml.cs">
       <DependentUpon>DV110AttachDV145View.xaml</DependentUpon>
     </Compile>
