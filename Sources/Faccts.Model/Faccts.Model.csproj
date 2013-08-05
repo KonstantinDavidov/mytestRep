@@ -274,6 +274,9 @@
     <Compile Include="Entities\Reporting\DVConductChoice.cs" />
     <Compile Include="Entities\Reporting\DVPropertyRestraint.cs" />
     <Compile Include="Entities\Reporting\DVStayAwayOrders.cs" />
+    <Compile Include="Entities\Reporting\EA110.cs" />
+    <Compile Include="Entities\Reporting\EA130.cs" />
+    <Compile Include="Entities\Reporting\FL344.cs" />
     <Compile Include="Entities\Reporting\LawersFeeAndCourtCosts.cs" />
     <Compile Include="Entities\Reporting\NoServiceFee.cs" />
     <Compile Include="Entities\Reporting\OrderBase.cs" />

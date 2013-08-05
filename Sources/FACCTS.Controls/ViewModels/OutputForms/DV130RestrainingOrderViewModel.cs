@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Faccts.Model.Entities.Reporting;
 
 namespace FACCTS.Controls.ViewModels
 {
-    public class DV130RestrainingOrderViewModel : CourtOrderViewModelBase
+    public class DV130RestrainingOrderViewModel : CourtOrderBaseViewModel<DV130>
     {
         public DV130RestrainingOrderViewModel()
         {
