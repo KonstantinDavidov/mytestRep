@@ -277,6 +277,8 @@ namespace FACCTS.Controls.ViewModels
 
         public void Find()
         {
+            _courtCases = null;
+            _courtCaseModels = null;
             DataContainer.SearchCourtCases(true);
             this.NotifyOfPropertyChange(() => CourtCases);
         }
@@ -303,7 +305,8 @@ namespace FACCTS.Controls.ViewModels
                 {
                     _courtCases = CourtCaseModels.SelectMany(x => x.GetAll()).CreateDerivedCollection(x => x, 
                         filter: x => x.IsVisible,
-                        signalReset: Observable.Merge(CourtCaseModels.Select(y => y.ObservableForProperty(y1 => y1.IsExpanded)))
+                        signalReset: 
+                         Observable.Merge(CourtCaseModels.Select(y => y.ObservableForProperty(y1 => y1.IsExpanded)))
                         );
                 }
                 return _courtCases;
@@ -374,6 +377,7 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
+        private static Random random = new Random();
         private CourtCaseHeadingViewModel _selectedHeading;
         public CourtCaseHeadingViewModel SelectedHeading
         {
@@ -399,6 +403,19 @@ namespace FACCTS.Controls.ViewModels
                     _courtCases = null;
                     this.NotifyOfPropertyChange(() => CourtCases);
                 }
+            }
+        }
+
+        private double _courtCasesHeadingsChangedNotifier;
+        public double CourtCasesHeadingsChangedNotifier
+        {
+            get
+            {
+                return _courtCasesHeadingsChangedNotifier;
+            }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _courtCasesHeadingsChangedNotifier, value);
             }
         }
 

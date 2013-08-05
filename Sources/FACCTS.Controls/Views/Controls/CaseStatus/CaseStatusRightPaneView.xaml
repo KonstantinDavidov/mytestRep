@@ -70,7 +70,12 @@
     		<RowDefinition Height="Auto"/>
     	</Grid.RowDefinitions>
     	<GroupBox Header="Case Status">
-    		<DataGrid VerticalAlignment="Stretch" AutoGenerateColumns="False" ItemsSource="{Binding CourtCases, Mode=OneWay}" SelectedItem="{Binding SelectedHeading, Mode=TwoWay}">
+            <DataGrid VerticalAlignment="Stretch"
+                      AutoGenerateColumns="False"
+                      ItemsSource="{Binding CourtCases, Mode=OneWay}"
+                      SelectedItem="{Binding SelectedHeading, Mode=TwoWay}"
+                      CanUserAddRows="False"
+                      CanUserDeleteRows="False">
                 <DataGrid.RowStyle>
                     <Style BasedOn="{StaticResource RowStyle}"
                            TargetType="{x:Type DataGridRow}">
