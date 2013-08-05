@@ -24,7 +24,6 @@ namespace Faccts.Model.Entities
     [DataContract(IsReference = true)]
     [KnownType(typeof(CourtOrders))]
     [KnownType(typeof(Hearings))]
-    [KnownType(typeof(OrderBase))]
     public partial class CourtOrders: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -61,7 +60,6 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.HearingId)
     				,this.ObservableForProperty(x => x.ParentOrder.IsDirty)
     				,this.ObservableForProperty(x => x.Hearings.IsDirty)
-    				,this.ObservableForProperty(x => x.InnerOrder.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -351,24 +349,6 @@ namespace Faccts.Model.Entities
             }
         }
         private Hearings _hearings;
-    
-        [DataMember]
-        public OrderBase InnerOrder
-        {
-            get { return _innerOrder; }
-            set
-            {
-                if (!ReferenceEquals(_innerOrder, value))
-                {
-                    var previousValue = _innerOrder;
-    				OnNavigationPropertyChanging("InnerOrder");
-                    _innerOrder = value;
-                    FixupInnerOrder(previousValue);
-                    OnNavigationPropertyChanged("InnerOrder");
-                }
-            }
-        }
-        private OrderBase _innerOrder;
 
         #endregion
 
@@ -480,7 +460,6 @@ namespace Faccts.Model.Entities
             Attachments.Clear();
             ParentOrder = null;
             Hearings = null;
-            InnerOrder = null;
         }
 
         #endregion
@@ -560,54 +539,6 @@ namespace Faccts.Model.Entities
                 if (Hearings != null && !Hearings.ChangeTracker.ChangeTrackingEnabled)
                 {
                     Hearings.StartTracking();
-                }
-            }
-        }
-    
-        private void FixupInnerOrder(OrderBase previousValue)
-        {
-            // This is the principal end in an association that performs cascade deletes.
-            // Update the event listener to refer to the new dependent.
-            if (previousValue != null)
-            {
-                ChangeTracker.ObjectStateChanging -= previousValue.HandleCascadeDelete;
-            }
-    
-            if (InnerOrder != null)
-            {
-                ChangeTracker.ObjectStateChanging += InnerOrder.HandleCascadeDelete;
-            }
-    
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (InnerOrder != null)
-            {
-                InnerOrder.Id = Id;
-            }
-    
-            if (ChangeTracker.ChangeTrackingEnabled)
-            {
-                if (ChangeTracker.OriginalValues.ContainsKey("InnerOrder")
-                    && (ChangeTracker.OriginalValues["InnerOrder"] == InnerOrder))
-                {
-                    ChangeTracker.OriginalValues.Remove("InnerOrder");
-                }
-                else
-                {
-                    ChangeTracker.RecordOriginalValue("InnerOrder", previousValue);
-                    // This is the principal end of an identifying association, so the dependent must be deleted when the relationship is removed.
-                    // If the current state of the dependent is Added, the relationship can be changed without causing the dependent to be deleted.
-                    if (previousValue != null && previousValue.ChangeTracker.State != ObjectState.Added)
-                    {
-                        previousValue.MarkAsDeleted();
-                    }
-                }
-                if (InnerOrder != null && !InnerOrder.ChangeTracker.ChangeTrackingEnabled)
-                {
-                    InnerOrder.StartTracking();
                 }
             }
         }

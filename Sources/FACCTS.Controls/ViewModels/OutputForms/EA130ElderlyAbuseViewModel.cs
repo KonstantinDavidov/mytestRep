@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Controls.ViewModels
 {
-    public class EA130ElderlyAbuseViewModel : CourtOrderBase
+    public class EA130ElderlyAbuseViewModel : CourtOrderViewModelBase
     {
         public EA130ElderlyAbuseViewModel()
         {

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Controls.ViewModels
 {
-    public class FL344DebtAndPropertyControlViewModel:CourtOrderBase
+    public class FL344DebtAndPropertyControlViewModel:CourtOrderViewModelBase
     {
         public FL344DebtAndPropertyControlViewModel()
         {

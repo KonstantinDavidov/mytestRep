@@ -367,7 +367,7 @@
     <Compile Include="Views\OutputForms\CH130CivilHarassmentView.xaml.cs">
       <DependentUpon>CH130CivilHarassmentView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\OutputForms\CourtOrderBase.cs" />
+    <Compile Include="ViewModels\OutputForms\CourtOrderViewModelBase.cs" />
     <Compile Include="Views\OutputForms\DV110AttachDV145View.xaml.cs">
       <DependentUpon>DV110AttachDV145View.xaml</DependentUpon>
     </Compile>

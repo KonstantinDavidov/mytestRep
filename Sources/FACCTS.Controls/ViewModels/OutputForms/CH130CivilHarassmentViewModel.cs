@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace FACCTS.Controls.ViewModels
 {
     [Export]
-    public partial class CH130CivilHarassmentViewModel : CourtOrderBase
+    public partial class CH130CivilHarassmentViewModel : CourtOrderViewModelBase
     {
         public CH130CivilHarassmentViewModel() : base()
         {
