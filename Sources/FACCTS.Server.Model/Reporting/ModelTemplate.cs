@@ -601,11 +601,6 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
-		OrderRestrictionState StayAwayOrdersState
-		{
-			get; set;
-		}
-		
 		ICHStayAwayOrders StayAwayOrders
 		{
 			get; set;
@@ -654,11 +649,6 @@ namespace FACCTS.Server.Model.OrderModels
 		}
 		
 		public ICHConductChoice ConductSection
-		{
-			get; set;
-		}
-		
-		public OrderRestrictionState StayAwayOrdersState
 		{
 			get; set;
 		}

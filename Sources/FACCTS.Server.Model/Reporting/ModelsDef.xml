@@ -79,7 +79,6 @@
   <Model name="CH110">
     <Property name="ConductSectionState" type="OrderRestrictionState"/>
     <Property name="ConductSection" type="ICHConductChoice"/>
-    <Property name="StayAwayOrdersState" type="OrderRestrictionState"/>
     <Property name="StayAwayOrders" type="ICHStayAwayOrders"/>
     <Property name="IsNoGuns" type="bool"/>
     <Property name="CAPROSEntrySection" type="ICAPROSEntry"/>
