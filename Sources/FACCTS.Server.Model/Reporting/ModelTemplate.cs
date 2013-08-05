@@ -240,6 +240,43 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 	
 			
+	public partial interface IAttendence
+	{
+		
+		bool IsPesent
+		{
+			get; set;
+		}
+		
+		bool IsSworn
+		{
+			get; set;
+		}
+		
+		bool IsAttorneyPresent
+		{
+			get; set;
+		}
+			}
+	public partial class Attendence : IAttendence
+	{
+		public bool IsPesent
+		{
+			get; set;
+		}
+		
+		public bool IsSworn
+		{
+			get; set;
+		}
+		
+		public bool IsAttorneyPresent
+		{
+			get; set;
+		}
+			}
+	
+			
 	public partial interface ICHConductChoice
 	{
 		
@@ -5001,9 +5038,139 @@ namespace FACCTS.Server.Model.OrderModels
 			
 	public partial interface IFL340
 	{
+		
+		AvailableReportType CustodyAndVisitation
+		{
+			get; set;
+		}
+		
+		AvailableReportType ChildSupport
+		{
+			get; set;
+		}
+		
+		AvailableReportType SpousalSupport
+		{
+			get; set;
+		}
+		
+		AvailableReportType PropertyOrders
+		{
+			get; set;
+		}
+		
+		AvailableReportType AttorneyFees
+		{
+			get; set;
+		}
+		
+		bool AreOtherOrdersAttached
+		{
+			get; set;
+		}
+		
+		bool AreOtherOrdersNotApplicable
+		{
+			get; set;
+		}
+		
+		string OtherOrdersDescription
+		{
+			get; set;
+		}
+		
+		DateTime MotionFileDate
+		{
+			get; set;
+		}
+		
+		Designation MotionByPerson
+		{
+			get; set;
+		}
+		
+		string OtherPartyName
+		{
+			get; set;
+		}
+		
+		string OtherPartyDescription
+		{
+			get; set;
+		}
+		
+		IAttendence OtherPartyAttendence
+		{
+			get; set;
+		}
 			}
 	public partial class FL340 : IFL340
-	{	}
+	{
+		public AvailableReportType CustodyAndVisitation
+		{
+			get; set;
+		}
+		
+		public AvailableReportType ChildSupport
+		{
+			get; set;
+		}
+		
+		public AvailableReportType SpousalSupport
+		{
+			get; set;
+		}
+		
+		public AvailableReportType PropertyOrders
+		{
+			get; set;
+		}
+		
+		public AvailableReportType AttorneyFees
+		{
+			get; set;
+		}
+		
+		public bool AreOtherOrdersAttached
+		{
+			get; set;
+		}
+		
+		public bool AreOtherOrdersNotApplicable
+		{
+			get; set;
+		}
+		
+		public string OtherOrdersDescription
+		{
+			get; set;
+		}
+		
+		public DateTime MotionFileDate
+		{
+			get; set;
+		}
+		
+		public Designation MotionByPerson
+		{
+			get; set;
+		}
+		
+		public string OtherPartyName
+		{
+			get; set;
+		}
+		
+		public string OtherPartyDescription
+		{
+			get; set;
+		}
+		
+		public IAttendence OtherPartyAttendence
+		{
+			get; set;
+		}
+			}
 	
 }
 
