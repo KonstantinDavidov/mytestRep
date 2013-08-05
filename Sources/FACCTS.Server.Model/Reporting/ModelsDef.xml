@@ -84,6 +84,8 @@
     <Property name="IsNoGuns" type="bool"/>
     <Property name="CAPROSEntrySection" type="ICAPROSEntry"/>
     <Property name="NoServiceFeeSection" type="INoServiceFee"/>
+    <Property name="StayAwayOrdersState" type="OrderRestrictionState"/>
+    <Property name="OtherOrdersState" type="OrderRestrictionState"/>
     <Property name="IsOtherOrdersAttached" type="bool"/>
     <Property name="OtherOrderDetail" type="string"/>
   </Model>

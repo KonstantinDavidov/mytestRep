@@ -626,6 +626,16 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
+		OrderRestrictionState StayAwayOrdersState
+		{
+			get; set;
+		}
+		
+		OrderRestrictionState OtherOrdersState
+		{
+			get; set;
+		}
+		
 		bool IsOtherOrdersAttached
 		{
 			get; set;
@@ -669,6 +679,16 @@ namespace FACCTS.Server.Model.OrderModels
 		}
 		
 		public INoServiceFee NoServiceFeeSection
+		{
+			get; set;
+		}
+		
+		public OrderRestrictionState StayAwayOrdersState
+		{
+			get; set;
+		}
+		
+		public OrderRestrictionState OtherOrdersState
 		{
 			get; set;
 		}
