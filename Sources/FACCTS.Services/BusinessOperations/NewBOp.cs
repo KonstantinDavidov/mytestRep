@@ -1,4 +1,5 @@
 ﻿using Faccts.Model.Entities;
+using FACCTS.Services.Authentication;
 using FACCTS.Services.Data;
 using System;
 using System.Collections.Generic;
@@ -21,18 +22,26 @@ namespace FACCTS.Services.BusinessOperations
             _newCaseNumber = newCaseNumber;
         }
 
+
         public override Faccts.Model.Entities.CourtCase Execute(CourtCase courtCase)
         {
             CourtCase newCourtCase = new CourtCase()
             {
                 CaseNumber = _newCaseNumber,
-                CaseHistory = Faccts.Model.Entities.CaseHistory.GetHistoryCollectionForNewCase(),
                 LastAction = Server.Model.Enums.CourtAction.PendingForService,
             };
+            newCourtCase.CaseHistory.Add(new CaseHistory()
+                {
+                    Date = DateTime.Now,
+                    CaseHistoryEvent = Server.Model.Enums.CaseHistoryEvent.File,
+                    CourtClerk = AuthenticationService.CurrentUser,
+                }
+                );
             HeadingForNew = new CourtCaseHeading()
                 {
                     CaseNumber = _newCaseNumber,
                     CaseStatus = Server.Model.Enums.CaseStatus.New,
+                    CourtClerkName = AuthenticationService.CurrentUser.FullName,
                 };
             DataContainer.CourtCaseHeadings.Add(HeadingForNew);
             ((DataContainer)DataContainer).CurrentCourtCase = newCourtCase;

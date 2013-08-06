@@ -51,6 +51,7 @@ namespace FACCTS.Controls.ViewModels
             CaseNotesViewModel = caseNotesViewModel;
             CaseHistoryViewModel = caseHistoryViewModel;
             _eventAggregator = eventAggregator;
+            _eventAggregator.Subscribe(this);
             Observable.Merge(
                 this.ObservableForProperty(x => x.IsActive),
                 this.ObservableForProperty(x => x.IsAuthenticated)

@@ -26,7 +26,13 @@ namespace FACCTS.Services.BusinessOperations
                 throw new ArgumentNullException("courtCase");
             }
             DataContainer.Hearings.Add(_hearing);
-            courtCase.AssignNewHearing(_hearing);
+            courtCase.CaseHistory.Add(new CaseHistory()
+                {
+                    Date = DateTime.Now,
+                    Hearing = _hearing,
+                    CaseHistoryEvent = Server.Model.Enums.CaseHistoryEvent.Hearing,
+                    CourtClerk = this.AuthenticationService.CurrentUser,
+                });
             courtCase.LastAction = Server.Model.Enums.CourtAction.Docketed;
             return courtCase;
         }

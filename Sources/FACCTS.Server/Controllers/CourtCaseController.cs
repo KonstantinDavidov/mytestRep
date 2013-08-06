@@ -76,7 +76,7 @@ namespace FACCTS.Server.Controllers
             }
             try
             {
-                var data = DataManager.CourtCaseRepository
+                var query = DataManager.CourtCaseRepository
                 .GetAll(
                 x => x.Party1,
                 x => x.Party2,
@@ -91,12 +91,14 @@ namespace FACCTS.Server.Controllers
                         CasehistoryEvent = x.CaseHistory.OrderByDescending(y => y.Date).Select(y => y.CaseHistoryEvent).FirstOrDefault(),
                         Date = (DateTime?)null,
                         Order = (string)null,
-                        Party1Name = x.Party1.FirstName + " " +x.Party1.MiddleName + " " + x.Party1.LastName,
-                        Party2Name = x.Party2.FirstName + " " + x.Party2.MiddleName + " " + x.Party2.LastName,
+                        Party1 = x.Party1,
+                        Party2 = x.Party2,
+                        
                         CourtClerkName = x.CourtClerk.FirstName + " " + x.CourtClerk.MiddleName + " " + x.CourtClerk.LastName,
                         CCPOR_ID = x.CCPORId,
                     }
-                    )
+                    );
+                var data = query
                     .ToArray()
                 .Select(
                 x => new CourtCaseHeading()
@@ -106,8 +108,8 @@ namespace FACCTS.Server.Controllers
                     CaseStatus = CaseHistoryEventToCaseStatusConverter.Convert(x.CasehistoryEvent),
                     Date = null,
                     Order = null,
-                    Party1Name = x.Party1Name,
-                    Party2Name = x.Party2Name,
+                    Party1Name = x.Party1.FirstName + " " + x.Party1.MiddleName + " " + x.Party1.LastName,
+                    Party2Name = x.Party2.FirstName + " " + x.Party2.MiddleName + " " + x.Party2.LastName,
                     CourtClerkName = x.CourtClerkName,
                     CCPOR_ID = x.CCPOR_ID,
                 }
