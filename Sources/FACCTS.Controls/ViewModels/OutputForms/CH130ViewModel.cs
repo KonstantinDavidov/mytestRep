@@ -10,9 +10,9 @@ using Faccts.Model.Entities.Reporting;
 namespace FACCTS.Controls.ViewModels
 {
     [Export]
-    public partial class CH130CivilHarassmentViewModel : CourtOrderBaseViewModel<CH130>
+    public partial class CH130ViewModel : CourtOrderBaseViewModel<CH130>
     {
-        public CH130CivilHarassmentViewModel() : base()
+        public CH130ViewModel() : base()
         {
             this.DisplayName = "CH130 - Civil Harassment - Restraining Order";
             OrderType = Server.Model.Enums.CourtOrdersTypes.CH130;

@@ -31,6 +31,17 @@ namespace Faccts.Model.Entities.Reporting
             }
         }
 
+        public bool IsNoExpire
+        {
+            get { return !IsExpire; }
+            set
+            {
+                if (value.Equals(IsNoExpire)) return;
+                IsExpire = !value;
+                OnPropertyChanged();
+            }
+        }
+
         public DateTime? OrdersEndDate
         {
             get { return _ordersEndDate; }

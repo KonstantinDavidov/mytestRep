@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace FACCTS.Controls.Views
 {
     /// <summary>
-    /// Interaction logic for CH130CivilHarassmentView.xaml
+    /// Interaction logic for CARPOSEntrySectionView.xaml
     /// </summary>
-    public partial class CH130CivilHarassmentView : UserControl
+    public partial class CARPOSEntrySectionView : UserControl
     {
-        public CH130CivilHarassmentView()
+        public CARPOSEntrySectionView()
         {
             InitializeComponent();
         }
