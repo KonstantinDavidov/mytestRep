@@ -110,7 +110,7 @@
                 </TreeViewItem>
                 <TreeViewItem Header="CH130 - Civil Harassment - RO">
                     <TreeViewItem.DataContext>
-                        <ViewModels:CH130CivilHarassmentViewModel />
+                        <ViewModels:CH130ViewModel />
                     </TreeViewItem.DataContext>
                 </TreeViewItem>
                 <TreeViewItem Header="EA110 - Elderly Abuse - TRO">

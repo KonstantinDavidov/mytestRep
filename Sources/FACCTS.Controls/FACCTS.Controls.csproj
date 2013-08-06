@@ -192,7 +192,7 @@
     <Compile Include="ViewModels\NewCourtCaseDialogViewModel.cs" />
     <Compile Include="ViewModels\OneActiveViewModelBase.cs" />
     <Compile Include="ViewModels\OutputForms\CH110ViewModel.cs" />
-    <Compile Include="ViewModels\OutputForms\CH130CivilHarassmentViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\CH130ViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\CourtOrderWithTypeViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\DV110AttachDV145ViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\DV110ChildCustodyViewModel.cs" />
@@ -357,21 +357,21 @@
     <Compile Include="Views\Controls\ModalDialogViews\UserLoginControlView.xaml.cs">
       <DependentUpon>UserLoginControlView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OutputForms\CARPOSEntrySection.xaml.cs">
-      <DependentUpon>CARPOSEntrySection.xaml</DependentUpon>
+    <Compile Include="Views\OutputForms\CARPOSEntrySectionView.xaml.cs">
+      <DependentUpon>CARPOSEntrySectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OutputForms\CH110View.xaml.cs">
       <DependentUpon>CH110View.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OutputForms\CH130CivilHarassmentView.xaml.cs">
-      <DependentUpon>CH130CivilHarassmentView.xaml</DependentUpon>
+    <Compile Include="Views\OutputForms\CH130View.xaml.cs">
+      <DependentUpon>CH130View.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\OutputForms\CourtOrderBaseViewModel.cs" />
     <Compile Include="Views\OutputForms\CHConductSectionView.xaml.cs">
       <DependentUpon>CHConductSectionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OutputForms\CHStayAwayOrdersSection.xaml.cs">
-      <DependentUpon>CHStayAwayOrdersSection.xaml</DependentUpon>
+    <Compile Include="Views\OutputForms\CHStayAwayOrdersSectionView.xaml.cs">
+      <DependentUpon>CHStayAwayOrdersSectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OutputForms\DV110AttachDV145View.xaml.cs">
       <DependentUpon>DV110AttachDV145View.xaml</DependentUpon>
@@ -418,8 +418,14 @@
     <Compile Include="Views\OutputForms\FL344DebtAndPropertyControlView.xaml.cs">
       <DependentUpon>FL344DebtAndPropertyControlView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OutputForms\NoServiceFeeSection.xaml.cs">
-      <DependentUpon>NoServiceFeeSection.xaml</DependentUpon>
+    <Compile Include="Views\OutputForms\NoServiceFeeSectionView.xaml.cs">
+      <DependentUpon>NoServiceFeeSectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\ROExpirationSectionView.xaml.cs">
+      <DependentUpon>ROExpirationSectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\TROExpirationSectionView.xaml.cs">
+      <DependentUpon>TROExpirationSectionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
@@ -622,7 +628,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\OutputForms\CARPOSEntrySection.xaml">
+    <Page Include="Views\OutputForms\CARPOSEntrySectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -630,7 +636,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\OutputForms\CH130CivilHarassmentView.xaml">
+    <Page Include="Views\OutputForms\CH130View.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -638,7 +644,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\OutputForms\CHStayAwayOrdersSection.xaml">
+    <Page Include="Views\OutputForms\CHStayAwayOrdersSectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -702,7 +708,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\OutputForms\NoServiceFeeSection.xaml">
+    <Page Include="Views\OutputForms\NoServiceFeeSectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OutputForms\ROExpirationSectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OutputForms\TROExpirationSectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
