@@ -45,7 +45,7 @@
                 </i:Interaction.Triggers>
                 <TreeViewItem Header="DV110 - TRO" IsExpanded="True" x:Name="FirstItem">
                     <TreeViewItem.DataContext>
-                        <ViewModels:DV110TemporaryRestrainingOrderViewModel/>
+                        <ViewModels:DV110ViewModel/>
                     </TreeViewItem.DataContext>
                     <TreeViewItem Header="Property and Attorney's Fee">
                         <TreeViewItem.DataContext>

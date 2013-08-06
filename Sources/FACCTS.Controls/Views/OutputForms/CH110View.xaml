@@ -69,7 +69,7 @@
                 <Label Margin="10 5 10 5" FontWeight="Bold" Content="Other Orders" Grid.Column="0" Grid.Row="0" />
                 <ComboBox Margin="10 5 10 5" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1"
                           ItemsSource="{Binding Path=RestrictionStates, Mode=OneWay}"
-                          SelectedValue="{Binding Path=Order.StayAwayOrdersState, Mode=TwoWay}"
+                          SelectedValue="{Binding Path=Order.OtherOrdersState, Mode=TwoWay}"
                           SelectedValuePath="Value" />
                 <TextBox Margin="10 5 10 5" TextWrapping="Wrap" AcceptsReturn="True" Grid.Column="1" Grid.Row="0"
                          Grid.RowSpan="2" Text="{Binding Path=Order.OtherOrderDetail, Mode=TwoWay}" />

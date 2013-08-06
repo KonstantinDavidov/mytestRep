@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace FACCTS.Controls.Views
 {
     /// <summary>
-    /// Interaction logic for DV110TemporaryRestrainingOrderView.xaml
+    /// Interaction logic for DVStayAwayOrdersSection.xaml
     /// </summary>
-    public partial class DV110TemporaryRestrainingOrderView : UserControl
+    public partial class DVStayAwayOrdersSection : UserControl
     {
-        public DV110TemporaryRestrainingOrderView()
+        public DVStayAwayOrdersSection()
         {
             InitializeComponent();
         }
