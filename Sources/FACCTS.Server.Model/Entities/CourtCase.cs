@@ -16,6 +16,7 @@ namespace FACCTS.Server.Model.DataModel
             : base()
         {
             ParentCase = null;
+            LastAction = CourtAction.PendingForService;
         }
 
         public long Id { get; set; }
@@ -74,6 +75,8 @@ namespace FACCTS.Server.Model.DataModel
         public long? ThirdPartyDataId { get; set; }
 
         public virtual ThirdPartyData ThirdPartyData { get; set; }
+
+        public CourtAction LastAction { get; set; }
 
         public ObjectState State { get; set; }
     }

@@ -13,6 +13,8 @@ using System.ComponentModel;
 using FACCTS.Services;
 using FACCTS.Controls.Utils;
 using Caliburn.Micro;
+using FACCTS.Services.BusinessOperations;
+using FACCTS.Controls.Events;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -29,6 +31,7 @@ namespace FACCTS.Controls.ViewModels
         }
 
         private ILogger _logger = ServiceLocatorContainer.Locator.GetInstance<ILogger>();
+        private IEventAggregator _eventAggregator = ServiceLocatorContainer.Locator.GetInstance<IEventAggregator>();
 
         protected override void Authorized()
         {
@@ -46,26 +49,24 @@ namespace FACCTS.Controls.ViewModels
 
         public void CreateNewCase()
         {
-            this.TryClose(true);
             var tsk = Task.Factory.StartNew(() =>
                 {
                     ProceedCreation();
                 }, TaskCreationOptions.AttachedToParent);
+            tsk.ContinueWith(t => { this.TryClose(true); }, TaskContinuationOptions.OnlyOnRanToCompletion);
 
         }
 
         protected virtual void ProceedCreation()
         {
             _logger.Info("Start creation the new case...");
-            CourtCase cc = new CourtCase();
-            cc.CaseNumber = this.CaseNumber;
             _logger.Info("Saving the new case to the database...");
-            Faccts.Model.Entities.CourtCase newCase = new Faccts.Model.Entities.CourtCase()
+            Execute.OnUIThread(() => 
             {
-                CaseNumber = this.CaseNumber,
-                CaseHistory = Faccts.Model.Entities.CaseHistory.GetHistoryCollectionForNewCase(),
-            };
-            //Execute.OnUIThread(() => DataContainer.CourtCases.Add(newCase));
+                NewBOp op = new NewBOp(this.CaseNumber);
+                var courtCase = op.Execute(null);
+                _eventAggregator.Publish(new NewCourtCaseCreatedEvent(courtCase, op.HeadingForNew));
+            });
         }
 
         public string Error

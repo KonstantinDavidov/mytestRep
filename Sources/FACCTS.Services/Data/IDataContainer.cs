@@ -29,6 +29,7 @@ namespace FACCTS.Services.Data
         List<EnumDescript<AddressType>> AddressTypes { get; }
         CourtCase CurrentCourtCase { get; }
         void UpdateBySelection(Faccts.Model.Entities.CourtCaseHeading selectedItem);
+        List<EnumDescript<CourtAction>> CourtActions { get; }
 
         void SearchCourtCases(bool reset = false);
         void UpdateDictionaries();

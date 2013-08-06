@@ -116,6 +116,9 @@
     <Compile Include="Authentication\AuthenticationStatus.cs" />
     <Compile Include="Authentication\AuthenticationStatusChangedEventArgs.cs" />
     <Compile Include="Authentication\IAuthenticationService.cs" />
+    <Compile Include="BusinessOperations\DocketBOp.cs" />
+    <Compile Include="BusinessOperations\NewBOp.cs" />
+    <Compile Include="BusinessOperations\StrategyBase.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Data\CCPORStatuses.cs" />
     <Compile Include="Data\CourtCases.cs" />

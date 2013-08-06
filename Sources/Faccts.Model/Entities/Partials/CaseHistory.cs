@@ -62,12 +62,7 @@ namespace Faccts.Model.Entities
                 new CaseHistory()
                 {
                     Date = DateTime.Now,
-                    CaseHistoryEvent = FACCTS.Server.Model.Enums.CaseHistoryEvent.New,
-                },
-                new CaseHistory()
-                {
-                    Date = null,
-                    CaseHistoryEvent = FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing,
+                    CaseHistoryEvent = FACCTS.Server.Model.Enums.CaseHistoryEvent.File,
                 },
             };
         }

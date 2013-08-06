@@ -73,6 +73,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.RP_IDNumber)
     				,this.ObservableForProperty(x => x.RP_IssuedDate)
     				,this.ObservableForProperty(x => x.AttorneyForChild_Id)
+    				,this.ObservableForProperty(x => x.LastAction)
     				,this.ObservableForProperty(x => x.CourtClerk.IsDirty)
     				,this.ObservableForProperty(x => x.ParentCase.IsDirty)
     				,this.ObservableForProperty(x => x.CourtCounty.IsDirty)
@@ -445,6 +446,22 @@ namespace Faccts.Model.Entities
             }
         }
         private Nullable<long> _attorneyForChild_Id;
+    
+        [DataMember]
+        public FACCTS.Server.Model.Enums.CourtAction LastAction
+        {
+            get { return _lastAction; }
+            set
+            {
+                if (_lastAction != value)
+                {
+    				OnPropertyChanging("LastAction");
+                    _lastAction = value;
+                    OnPropertyChanged("LastAction");
+                }
+            }
+        }
+        private FACCTS.Server.Model.Enums.CourtAction _lastAction;
 
         #endregion
 

@@ -55,7 +55,8 @@ namespace FACCTS.Controls.ViewModels
                 this.ObservableForProperty(x => x.Party2FirstName),
                 this.ObservableForProperty(x => x.Party2MiddleName),
                 this.ObservableForProperty(x => x.Party2LastName),
-                this.ObservableForProperty(x => x.CCPORStatus)
+                this.ObservableForProperty(x => x.CCPORStatus),
+                this.ObservableForProperty(x => x.SelectedCourtAction)
                 ).Subscribe(_ =>
                 {
                     DataContainer.SearchCriteria.CaseNumber = CaseNumber;
@@ -71,6 +72,7 @@ namespace FACCTS.Controls.ViewModels
                     DataContainer.SearchCriteria.Party2MiddleName = Party2MiddleName;
                     DataContainer.SearchCriteria.Party2LastName = Party2LastName;
                     DataContainer.SearchCriteria.CCPORStatus = CCPORStatus;
+                    DataContainer.SearchCriteria.CourtAction = this.SelectedCourtAction;
                 });
         }
 
@@ -272,7 +274,8 @@ namespace FACCTS.Controls.ViewModels
             Party2MiddleName = string.Empty;
             Party2LastName = string.Empty;
             SelectedClerk = null;
-            SelectedCaseStatus = CaseStatus.New;
+            SelectedCaseStatus = null;
+            SelectedCourtAction = null;
         }
 
         public void Find()
@@ -330,8 +333,8 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-        private CaseStatus _selectedCaseStatus;
-        public CaseStatus SelectedCaseStatus
+        private CaseStatus? _selectedCaseStatus;
+        public CaseStatus? SelectedCaseStatus
         {
             get
             {
@@ -374,6 +377,19 @@ namespace FACCTS.Controls.ViewModels
             set
             {
                 this.RaiseAndSetIfChanged(ref _selectedClerk, value);
+            }
+        }
+
+        private CourtAction? _selectedCourtAction;
+        public CourtAction? SelectedCourtAction
+        {
+            get
+            {
+                return _selectedCourtAction;
+            }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _selectedCourtAction, value);
             }
         }
 

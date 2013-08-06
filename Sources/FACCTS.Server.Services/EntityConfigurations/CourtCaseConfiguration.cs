@@ -39,6 +39,7 @@ namespace FACCTS.Server.Data.EntityConfigurations
             Property(c => c.Party2Id).HasColumnName(DbConsts.COURT_CASE_PARTY2_ID_COLUMN_NAME);
             Property(c => c.AttorneyForChildId).HasColumnName(DbConsts.COURT_CASE_ATTORNEY_FOR_CHILD_ID_COLUMN_NAME);
             Property(c => c.ThirdPartyDataId).HasColumnName(DbConsts.COURT_CASE_THIRD_PARTY_DATA_ID_COLUMN_NAME);
+            Property(c => c.LastAction).HasColumnName(DbConsts.COURT_CASE_LAST_ACTION);
 
             Ignore(c => c.State);
         }

@@ -98,7 +98,7 @@ namespace Faccts.Model.Entities
             FACCTS.Server.Model.Enums.CaseStatus result;
             switch(chEvent)
             {
-                case FACCTS.Server.Model.Enums.CaseHistoryEvent.New:
+                case FACCTS.Server.Model.Enums.CaseHistoryEvent.File:
                     result = FACCTS.Server.Model.Enums.CaseStatus.New;
                     break;
                 case FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing:
@@ -109,9 +109,6 @@ namespace Faccts.Model.Entities
                     break;
                 case FACCTS.Server.Model.Enums.CaseHistoryEvent.Dropped:
                     result = FACCTS.Server.Model.Enums.CaseStatus.Dropped;
-                    break;
-                case FACCTS.Server.Model.Enums.CaseHistoryEvent.Reissued:
-                    result = FACCTS.Server.Model.Enums.CaseStatus.Reissued;
                     break;
                 default:
                     result = FACCTS.Server.Model.Enums.CaseStatus.New;
@@ -130,6 +127,7 @@ namespace Faccts.Model.Entities
 
                 this.CCPORId = dto.CCPORId;
                 this.CCPORStatus = (int?)dto.CCPORStatus;
+                this.LastAction = dto.LastAction;
                 this.Party1 = new CourtParty(dto.Party1);
                 this.Party2 = new CourtParty(dto.Party2);
                 this.CaseHistory = new TrackableCollection<Entities.CaseHistory>(dto.CaseHistory.Select(x => new CaseHistory(x)));
@@ -245,7 +243,7 @@ namespace Faccts.Model.Entities
                 {
                     return null;
                 }
-                var fileEvent = CaseHistory.FirstOrDefault(x => x.CaseHistoryEvent == (int)CaseHistoryEvent.New);
+                var fileEvent = CaseHistory.FirstOrDefault(x => x.CaseHistoryEvent == (int)CaseHistoryEvent.File);
                 if (fileEvent == null)
                     return null;
                 return fileEvent.Date;
@@ -284,6 +282,7 @@ namespace Faccts.Model.Entities
                 ThirdPartyDataId = this.ThirdPartyDataId.GetValueOrDefault(0) > 0 ? this.ThirdPartyDataId : null,
                 AttorneyForChild = ((IDataTransferConvertible<FACCTS.Server.Model.DataModel.Attorney>)this.AttorneyForChild).ConvertToDTO(),
                 AttorneyForChildId = this.AttorneyForChild_Id.GetValueOrDefault(0) > 0 ? this.AttorneyForChild_Id : null,
+                LastAction = this.LastAction,
                 //CourtClerk = this.User1.ToDTO(),
             };
         }

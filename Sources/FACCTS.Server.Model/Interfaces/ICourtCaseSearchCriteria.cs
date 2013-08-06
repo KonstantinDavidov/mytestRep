@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FACCTS.Server.Model.Enums;
+using System;
 namespace FACCTS.Server.Model.Interfaces
 {
     public interface ICourtCaseSearchCriteria
@@ -17,5 +18,6 @@ namespace FACCTS.Server.Model.Interfaces
         string Party2FirstName { get; set; }
         string Party2LastName { get; set; }
         string Party2MiddleName { get; set; }
+        CourtAction? CourtAction { get; set; }
     }
 }

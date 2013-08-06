@@ -221,7 +221,7 @@ namespace FACCTS.Services.Data
             {
                 return _currentCourtCase;
             }
-            private set
+            protected internal set
             {
                 if (value == _currentCourtCase)
                     return;
@@ -283,6 +283,19 @@ namespace FACCTS.Services.Data
             }
         }
 
+        private List<EnumDescript<CourtAction>> _courtActions;
+        public List<EnumDescript<CourtAction>> CourtActions
+        {
+            get
+            {
+                if (_courtActions == null)
+                {
+                    _courtActions = EnumDescript<CourtAction>.GetList();
+                }
+                return _courtActions;
+            }
+        }
+
         private List<EnumDescript<FACCTS.Server.Model.Enums.Designation>> _designations;
         public List<EnumDescript<FACCTS.Server.Model.Enums.Designation>> Designations 
         {
@@ -334,6 +347,10 @@ namespace FACCTS.Services.Data
             if (selectedItem == null)
             {
                 throw new ArgumentNullException("selectedItem");
+            }
+            if (this.CurrentCourtCase != null && this.CurrentCourtCase.ChangeTracker.State == ObjectState.Added)
+            {
+                return;
             }
             if (this.CurrentCourtCase != null && this.CurrentCourtCase.IsDirty)
             {
@@ -424,6 +441,7 @@ namespace FACCTS.Services.Data
         public string Party2FirstName { get; set; }
         public string Party2LastName { get; set; }
         public string Party2MiddleName { get; set; }
+        public CourtAction? CourtAction { get; set; }
         public Server.Model.Enums.CCPORStatus CCPORStatus { get; set; }
         public CaseStatus? CaseStatus
         {

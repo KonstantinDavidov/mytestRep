@@ -24,7 +24,7 @@ namespace FACCTS.Controls.ViewModels
 {
     
     [Export(typeof(CaseRecordViewModel))]
-    public class CaseRecordViewModel : OneActiveViewModelBase
+    public class CaseRecordViewModel : OneActiveViewModelBase, IHandle<NewCourtCaseCreatedEvent>
     {
         private IEventAggregator _eventAggregator;
 
@@ -284,6 +284,14 @@ namespace FACCTS.Controls.ViewModels
                 this.NotifyOfPropertyChange();
             }
         }
-       
+
+
+        public void Handle(NewCourtCaseCreatedEvent message)
+        {
+            this.NotifyOfPropertyChange(() => CourtCases);
+            this.NotifyOfPropertyChange(() => CurrentCourtCase);
+            this.SelectedHeading = message.CourtCaseHeading;
+            
+        }
     }
 }

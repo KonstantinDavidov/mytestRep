@@ -10,6 +10,7 @@ using System.Reactive.Linq;
 using System.Collections.ObjectModel;
 using Caliburn.Micro;
 using FACCTS.Services;
+using FACCTS.Services.BusinessOperations;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -106,11 +107,11 @@ namespace FACCTS.Controls.ViewModels
 
         public void AddCase()
         {
-            TryClose(true);
-            Task.Factory.StartNew(() =>
+            var tsk = Task.Factory.StartNew(() =>
             {
                 ProceedAddition();
             });
+            tsk.ContinueWith(t => { TryClose(true); }, TaskContinuationOptions.OnlyOnRanToCompletion);
            
         }
 
@@ -134,7 +135,10 @@ namespace FACCTS.Controls.ViewModels
                 }
             };
 
-            Execute.OnUIThread(() => DataContainer.Hearings.Add(cr));
+            Execute.OnUIThread(() => {
+                DocketBOp docket = new DocketBOp(cr);
+                docket.Execute(CurrentCourtCase);
+            });
         }
 
         private Faccts.Model.Entities.CourtCase _currentCourtCase;

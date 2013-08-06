@@ -127,5 +127,6 @@ namespace FACCTS.Server.Data.EntityConfigurations
         public const string RACE_RACE_NAME_COLUMN_NAME = "RaceName";
         public const string PERSON_COURT_PARTY_FOR_COLUMN_NAME = "WitnessFor";
         public static string INTERPRETER_FOR_COLUMN_NAME = "InterpreterFor";
+        public static string COURT_CASE_LAST_ACTION = "LastAction";
     }
 }

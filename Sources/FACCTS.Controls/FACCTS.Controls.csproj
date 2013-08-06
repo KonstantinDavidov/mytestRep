@@ -157,6 +157,7 @@
     <Compile Include="Converters\ObjectToBooleanConverter.cs" />
     <Compile Include="Events\CurrentCourtCaseChangedEvent.cs" />
     <Compile Include="Events\CurrentHearingChanged.cs" />
+    <Compile Include="Events\NewCourtCaseCreatedEvent.cs" />
     <Compile Include="Events\SaveDataEvent.cs" />
     <Compile Include="Events\SelectedCourtCasesChangedEvent.cs" />
     <Compile Include="ExtendedDatePicker.cs" />
@@ -164,6 +165,7 @@
     <Compile Include="IShell.cs" />
     <Compile Include="MarkupExtension\MefPartExtension.cs" />
     <Compile Include="NameValueWrapper.cs" />
+    <Compile Include="NullItemSelectorAdapter.cs" />
     <Compile Include="Utils\StringToBoolean.cs" />
     <Compile Include="Utils\StringToDateTime.cs" />
     <Compile Include="Validation\ErrorProvider.cs" />

@@ -5,8 +5,8 @@ namespace FACCTS.Server.Model.Enums
 {
     public enum CaseHistoryEvent
     {
-        [Description("New")]
-        New = 0,
+        [Description("File")]
+        File = 0,
         [Description("Hearing")]
         Hearing = 1,
         [Description("Dropped")]
@@ -15,9 +15,5 @@ namespace FACCTS.Server.Model.Enums
         Dismissed = 3,
         [Description("Merged")]
         Merged = 4,
-        [Description("Reissued")]
-        Reissued = 5,
-        [Description("Continuance")]
-        Continuance = 6,
     }
 }

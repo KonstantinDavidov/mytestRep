@@ -1732,6 +1732,7 @@
           <Property Type="DateTime" Name="RP_IssuedDate" Precision="3" />
           <Property Type="Int64" Name="AttorneyForChild_Id" />
           <NavigationProperty Name="Hearings" Relationship="FACCTS_DBModel.CourtCaseHearings" FromRole="CourtCase" ToRole="Hearings" />
+          <Property Type="FACCTS_DBModel.CourtAction" Name="LastAction" Nullable="false" />
         </EntityType>
         <EntityType Name="CourtCounty">
           <Key>
@@ -2722,6 +2723,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EnumType Name="CourtAction" a:ExternalTypeName="FACCTS.Server.Model.Enums.CourtAction" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

@@ -126,6 +126,7 @@
     <Compile Include="Entities\Witness.cs" />
     <Compile Include="Enums\AddressType.cs" />
     <Compile Include="Enums\AppearanceType.cs" />
+    <Compile Include="Enums\CourtAction.cs" />
     <Compile Include="Reporting\Contracts\IEA110.cs" />
     <Compile Include="Reporting\Contracts\IEA130.cs" />
     <Compile Include="Reporting\Entities\CARPOSEntryType.cs" />

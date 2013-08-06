@@ -27,16 +27,7 @@ namespace FACCTS.Controls.ViewModels
             _windowManager = windowManager;
             this.DisplayName = "Court Docket";
             this.CalendarDate = DateTime.Today;
-            HearingsChanged = Observable.FromEvent<System.Collections.Specialized.NotifyCollectionChangedEventHandler, System.Collections.Specialized.NotifyCollectionChangedEventArgs>(handler =>
-            {
-                System.Collections.Specialized.NotifyCollectionChangedEventHandler eh = (sender, e) =>
-                {
-                    handler(e);
-                };
-                return eh;
-            }
-            , a => DataContainer.Hearings.CollectionChanged += a, a => DataContainer.Hearings.CollectionChanged -= a);
-                
+               
         }
 
         protected override void Authorized()
@@ -62,7 +53,10 @@ namespace FACCTS.Controls.ViewModels
         {
             var vm = ServiceLocatorContainer.Locator.GetInstance<AddToCourtDocketDialogViewModel>();
             vm.CurrentCourtCase = CurrentCourtCase;
-            _windowManager.ShowDialog(vm);
+            if (_windowManager.ShowDialog(vm).GetValueOrDefault(false))
+            {
+                RefreshDocket();
+            }
         }
 
         public void Drop()
@@ -90,8 +84,6 @@ namespace FACCTS.Controls.ViewModels
             _windowManager.ShowDialog(vm);
         }
 
-        protected IObservable<System.Collections.Specialized.NotifyCollectionChangedEventArgs> HearingsChanged;
-
         private TrackableCollection<Hearings> _hearings;
         public TrackableCollection<Hearings> Hearings
         {
@@ -99,30 +91,6 @@ namespace FACCTS.Controls.ViewModels
             {
                 if (_hearings == null)
                 {
-                    
-                    HearingsChanged.Subscribe(x =>
-                        {
-                            if (IsRefreshing)
-                                return;
-                            if (x == null)
-                                return;
-                            if (x == null)
-                                return;
-                            if (CurrentCourtCase == null)
-                                return;
-                            if (x.NewItems != null)
-                            {
-                                x.NewItems.Cast<Hearings>().Aggregate(0, (index, item) =>
-                                    {
-                                        item.CourtCase = CurrentCourtCase;
-                                        CurrentCourtCase.AssignNewHearing(item);
-                                        RefreshDocket();
-                                        return ++index;
-                                    }
-                                    );
-                            }
-                        }
-                        );
                     _hearings = DataContainer.Hearings;
                 }
                 return _hearings;

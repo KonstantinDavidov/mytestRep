@@ -828,7 +828,7 @@ namespace FACCTS.Server.Data
             testCourtCase.CaseHistory.Add(new CaseHistory()
             {
                 Date = DateTime.Now,
-                CaseHistoryEvent = Model.Enums.CaseHistoryEvent.New,
+                CaseHistoryEvent = Model.Enums.CaseHistoryEvent.File,
                 Hearing = hearing
             });
 

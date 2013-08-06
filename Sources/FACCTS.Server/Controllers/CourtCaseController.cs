@@ -163,7 +163,7 @@ namespace FACCTS.Server.Controllers
                     new CaseHistory()
                     {
                         Date = DateTime.Now,
-                        CaseHistoryEvent = Model.Enums.CaseHistoryEvent.New
+                        CaseHistoryEvent = Model.Enums.CaseHistoryEvent.File
                     }
                 };
                 DataManager.CourtCaseRepository.Insert(courtCase);

@@ -34,6 +34,7 @@ namespace FACCTS.Server.Models
         public string Party2FirstName { get; set; }
         public string Party2MiddleName { get; set; }
         public string Party2LastName { get; set; }
+        public CourtAction? CourtAction { get; set; }
 
         public Expression<Func<CourtCase, bool>> GetLINQCriteria()
         {
@@ -78,6 +79,9 @@ namespace FACCTS.Server.Models
                     ) &&
                     (
                         string.IsNullOrEmpty(CCPOR_ID) || x.CCPORId == CCPOR_ID
+                    ) &&
+                    (
+                        !CourtAction.HasValue || x.LastAction == CourtAction.Value
                     )
                     
                     ;
