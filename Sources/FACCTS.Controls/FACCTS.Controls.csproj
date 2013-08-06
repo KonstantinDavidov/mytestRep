@@ -198,7 +198,7 @@
     <Compile Include="ViewModels\OutputForms\DV110ChildCustodyViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\DV110PropertyAndAttorneysFeeViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\DV110SupervisionViewModel.cs" />
-    <Compile Include="ViewModels\OutputForms\DV110TemporaryRestrainingOrderViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV110ViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\DV130AttachDV145ViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\DV130AttachFL343ViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\DV130ChildCustodyViewModel.cs" />
@@ -357,6 +357,9 @@
     <Compile Include="Views\Controls\ModalDialogViews\UserLoginControlView.xaml.cs">
       <DependentUpon>UserLoginControlView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\OutputForms\AnimalsSectionView.xaml.cs">
+      <DependentUpon>AnimalsSectionView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OutputForms\CARPOSEntrySectionView.xaml.cs">
       <DependentUpon>CARPOSEntrySectionView.xaml</DependentUpon>
     </Compile>
@@ -385,8 +388,8 @@
     <Compile Include="Views\OutputForms\DV110SupervisionView.xaml.cs">
       <DependentUpon>DV110SupervisionView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OutputForms\DV110TemporaryRestrainingOrderView.xaml.cs">
-      <DependentUpon>DV110TemporaryRestrainingOrderView.xaml</DependentUpon>
+    <Compile Include="Views\OutputForms\DV110View.xaml.cs">
+      <DependentUpon>DV110View.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OutputForms\DV130AttachDV145View.xaml.cs">
       <DependentUpon>DV130AttachDV145View.xaml</DependentUpon>
@@ -408,6 +411,12 @@
     </Compile>
     <Compile Include="Views\OutputForms\DV130SupervisionView.xaml.cs">
       <DependentUpon>DV130SupervisionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\DVConductSectionView.xaml.cs">
+      <DependentUpon>DVConductSectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\DVStayAwayOrdersSection.xaml.cs">
+      <DependentUpon>DVStayAwayOrdersSection.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OutputForms\EA110ElderlyAbuseView.xaml.cs">
       <DependentUpon>EA110ElderlyAbuseView.xaml</DependentUpon>
@@ -628,6 +637,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\OutputForms\AnimalsSectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\OutputForms\CARPOSEntrySectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -664,7 +677,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\OutputForms\DV110TemporaryRestrainingOrderView.xaml">
+    <Page Include="Views\OutputForms\DV110View.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -695,6 +708,14 @@
     <Page Include="Views\OutputForms\DV130SupervisionView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutputForms\DVConductSectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OutputForms\DVStayAwayOrdersSection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OutputForms\EA110ElderlyAbuseView.xaml">
       <Generator>MSBuild:Compile</Generator>

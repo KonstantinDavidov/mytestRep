@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="FACCTS.Controls.Views.DV110View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:viewModels="clr-namespace:FACCTS.Controls.ViewModels"
+             xmlns:views="clr-namespace:FACCTS.Controls.Views"
+             mc:Ignorable="d"
+             Background="{DynamicResource ControlBackgroundBrush}"
+             d:DataContext="{d:DesignInstance viewModels:DV110ViewModel}">
+    <StackPanel Orientation="Vertical" Grid.IsSharedSizeScope="True">
+        <Border Margin="4 4 4 2" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumn"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Label Margin="10 5 10 5" Content="Conduct" FontWeight="Bold" Grid.Column="0" Grid.Row="0"/>
+                <ComboBox Margin="10 5 10 5" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1"
+                          ItemsSource="{Binding Path=RestrictionStates, Mode=OneWay}"
+                          SelectedValue="{Binding Path=Order.ConductChoiceState, Mode=TwoWay}"
+                          SelectedValuePath="Value" />
+                <views:DVConductSectionView Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" DataContext="{Binding Path=Order.ConductChoice, Mode=TwoWay}"/>
+            </Grid>
+        </Border>
+        <Border Margin="4 2 4 2" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumn"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Label Margin="10 5 10 5" Grid.Column="0" Grid.Row="0" FontWeight="Bold" Content="Stay Away Order"/>
+                <ComboBox Margin="10 5 10 5" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1"
+                          ItemsSource="{Binding Path=RestrictionStates, Mode=OneWay}"
+                          SelectedValue="{Binding Path=Order.StayAwayOrdersState, Mode=TwoWay}"
+                          SelectedValuePath="Value" />
+                <views:DVStayAwayOrdersSection Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" DataContext="{Binding Path=Order.StayAwayOrders, Mode=TwoWay}"/>
+            </Grid>
+        </Border>
+        <Border Margin="4 2 4 2" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumn"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Label Margin="10 5 10 5" Grid.Column="0" Grid.Row="0" FontWeight="Bold" Content="Move Out Orders"/>
+                <ComboBox Margin="10 5 10 5" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1"
+                          ItemsSource="{Binding Path=RestrictionStates, Mode=OneWay}"
+                          SelectedValue="{Binding Path=Order.MoveoutState, Mode=TwoWay}"
+                          SelectedValuePath="Value" />
+                <Label Margin="10 5 10 5" Grid.Column="1" Grid.Row="1" Content="Move Out Address:"/>
+                <TextBox Margin="10 5 10 5" Grid.Column="2" Grid.Row="1" Text="{Binding Path=Order.MoveoutAddress}"/>
+            </Grid>
+        </Border>
+        <Border Margin="4 2 4 2" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Label Margin="10 5 10 5" FontWeight="Bold" Content="Communication Recording"/>
+                <ComboBox Margin="10 5 10 5" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1"
+                          ItemsSource="{Binding Path=RestrictionStates, Mode=OneWay}"
+                          SelectedValue="{Binding Path=Order.RecordUnlawfulCommunicationsAllowedState, Mode=TwoWay}"
+                          SelectedValuePath="Value" />
+            </Grid>
+        </Border>
+        <Border Margin="4 2 4 2" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumn"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Label Margin="10 5 10 5" Grid.Column="0" Grid.Row="0"  FontWeight="Bold" Content="Animals"/>
+                <ComboBox Margin="10 5 10 5" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1"
+                          ItemsSource="{Binding Path=RestrictionStates, Mode=OneWay}"
+                          SelectedValue="{Binding Path=Order.AnimalsSectionState, Mode=TwoWay}"
+                          SelectedValuePath="Value" />
+                <views:AnimalsSectionView Grid.Column="1" Grid.Row="1" DataContext="{Binding Path=Order.AnimalsSection, Mode=TwoWay}"/>
+            </Grid>
+        </Border>
+        <Border Margin="4 2 4 2" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumn"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Label Margin="10 5 10 5" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Content="Other Orders"/>
+                <ComboBox Margin="10 5 10 5" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1"
+                          ItemsSource="{Binding Path=RestrictionStates, Mode=OneWay}"
+                          SelectedValue="{Binding Path=Order.OtherOrdersState, Mode=TwoWay}"
+                          SelectedValuePath="Value" />
+                <TextBox Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Path=Order.OtherOrdersDescription}"/>
+            </Grid>
+        </Border>
+        <Border Margin="4 2 4 2" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+            <CheckBox Margin="10 5 10 5" FontWeight="Bold" Content="No Guns - Court Has Information of Firearms" IsChecked="{Binding Path=Order.IsNoGuns}"/>
+        </Border>
+        <Border Margin="4 2 4 2" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+            <views:TROExpirationSectionView/>
+        </Border>
+    </StackPanel>
+</UserControl>
