@@ -390,10 +390,15 @@ namespace FACCTS.Controls.ViewModels
                 this.RaiseAndSetIfChanged(ref _selectedHeading, value);
                 if (UpdateHistoryItems(_selectedHeading))
                 {
-                    _courtCases = null;
-                    this.NotifyOfPropertyChange(() => CourtCases);
+                    RenewCourtCases();
                 }
             }
+        }
+
+        private void RenewCourtCases()
+        {
+            _courtCases = null;
+            this.NotifyOfPropertyChange(() => CourtCases);
         }
 
         private bool UpdateHistoryItems(CourtCaseHeadingViewModel model)
@@ -439,8 +444,7 @@ namespace FACCTS.Controls.ViewModels
                 );
             if (done)
             {
-                _courtCases = null;
-                this.NotifyOfPropertyChange(() => CourtCases);
+                RenewCourtCases();
             }
         }
 

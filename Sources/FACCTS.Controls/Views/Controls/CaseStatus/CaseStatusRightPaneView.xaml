@@ -103,13 +103,47 @@
                                                   IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                   ClickMode="Press"
                                                   Visibility="{Binding HasChilds, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
-                                    <TextBlock Text="{Binding Heading.CaseNumber, Mode=OneWay}" />
+                                    <TextBlock Text="{Binding Heading.CaseNumber, Mode=OneWay}" x:Name="tbCaseNumber"/>
+                                    <TextBlock Text="{Binding Heading.CaseStatus, Mode=OneWay}"
+                                               x:Name="tbCaseEvent"
+                                               Visibility="Collapsed" 
+                                               TextAlignment="Right"/>
                                 </DockPanel>
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding Level, Mode=OneWay}"
+                                                 Value="1">
+                                        <Setter TargetName="tbCaseNumber"
+                                                Property="Visibility"
+                                                Value="Collapsed" />
+                                        <Setter TargetName="tbCaseEvent"
+                                                Property="Visibility"
+                                                Value="Visible" />
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                        <DataGridTextColumn Binding="{Binding Heading.CaseStatus, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Status" IsReadOnly="True" Width="0.1*"/>
-                    <DataGridTextColumn Binding="{Binding Heading.Date, Mode=OneWay, StringFormat=\{0:d\}}" ClipboardContentBinding="{x:Null}" Header="Date" IsReadOnly="True" Width="0.1*"/>
+                    <DataGridTemplateColumn ClipboardContentBinding="{x:Null}"
+                                            Header="Status"
+                                            IsReadOnly="True"
+                                            Width="0.1*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DockPanel>
+                                    <TextBlock Text="{Binding Heading.CaseStatus, Mode=OneWay}" x:Name="tbCaseStatus"/>
+                                </DockPanel>
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding Level, Mode=OneWay}"
+                                                 Value="1">
+                                        <Setter TargetName="tbCaseStatus"
+                                                Property="Visibility"
+                                                Value="Hidden" />
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                        <DataGridTextColumn Binding="{Binding Heading.Date, Mode=OneWay, StringFormat=\{0:d\}}" ClipboardContentBinding="{x:Null}" Header="Date" IsReadOnly="True" Width="0.1*"/>
                     <DataGridTextColumn Binding="{Binding Heading.Order, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Orders" IsReadOnly="True" Width="0.1*"/>
                     <DataGridTextColumn Binding="{Binding Heading.Party1Name, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Party 1 Name" IsReadOnly="True" Width="0.2*"/>
                     <DataGridTextColumn Binding="{Binding Heading.Party2Name, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Party 2 Name" IsReadOnly="True" Width="0.2*"/>
