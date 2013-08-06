@@ -127,8 +127,8 @@
     				<ColumnDefinition Width="10"/>
     			</Grid.ColumnDefinitions>
     			<UniformGrid VerticalAlignment="Top" Rows="1" Columns="6" HorizontalAlignment="Left">
-    				<Button Content="Expand" />
-    				<Button Content="Collapse" />
+    				<Button Content="Expand" cal:Message.Attach="Expand"/>
+    				<Button Content="Collapse" cal:Message.Attach="Collapse"/>
                 </UniformGrid>
             </Grid>
     	</Border>

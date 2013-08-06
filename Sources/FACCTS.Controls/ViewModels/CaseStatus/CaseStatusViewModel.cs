@@ -388,22 +388,31 @@ namespace FACCTS.Controls.ViewModels
             set
             {
                 this.RaiseAndSetIfChanged(ref _selectedHeading, value);
-                if (_selectedHeading != null && _selectedHeading.Heading is CourtCaseHeading && 
-                    _selectedHeading.Heading.ChangeTracker.State == ObjectState.Unchanged)
+                if (UpdateHistoryItems(_selectedHeading))
                 {
-                    _selectedHeading.Heading.CourtCaseHistoryHeadings.Clear();
-                    var data = FACCTS.Services.Data.CourtCases.GetHistoryHeadings(_selectedHeading.Heading.CourtCaseId);
-                    data.Aggregate(_selectedHeading.Heading.CourtCaseHistoryHeadings, (headings, item) =>
-                        {
-                            headings.Add(item);
-                            return headings;
-                        }
-                        );
-                    _selectedHeading.Heading.MarkAsModified();
                     _courtCases = null;
                     this.NotifyOfPropertyChange(() => CourtCases);
                 }
             }
+        }
+
+        private bool UpdateHistoryItems(CourtCaseHeadingViewModel model)
+        {
+            if (model != null && model.Heading is CourtCaseHeading &&
+                model.Heading.ChangeTracker.State == ObjectState.Unchanged)
+            {
+                model.Heading.CourtCaseHistoryHeadings.Clear();
+                var data = FACCTS.Services.Data.CourtCases.GetHistoryHeadings(model.Heading.CourtCaseId);
+                data.Aggregate(model.Heading.CourtCaseHistoryHeadings, (headings, item) =>
+                {
+                    headings.Add(item);
+                    return headings;
+                }
+                    );
+                model.Heading.MarkAsModified();
+                return data.Any();
+            }
+            return false;
         }
 
         private double _courtCasesHeadingsChangedNotifier;
@@ -417,6 +426,32 @@ namespace FACCTS.Controls.ViewModels
             {
                 this.RaiseAndSetIfChanged(ref _courtCasesHeadingsChangedNotifier, value);
             }
+        }
+
+        public void Expand()
+        {
+            bool done = this.CourtCaseModels.Aggregate(false, (flag, item) =>
+                {
+                    flag |= UpdateHistoryItems(item);
+                    item.IsExpanded = true;
+                    return flag;
+                }
+                );
+            if (done)
+            {
+                _courtCases = null;
+                this.NotifyOfPropertyChange(() => CourtCases);
+            }
+        }
+
+        public void Collapse()
+        {
+            this.CourtCaseModels.Aggregate(0, (index, item) =>
+            {
+                item.IsExpanded = false;
+                return ++index;
+            }
+                );
         }
 
     }
