@@ -8,9 +8,9 @@ using Faccts.Model.Entities.Reporting;
 
 namespace FACCTS.Controls.ViewModels
 {
-    public class DV130RestrainingOrderViewModel : CourtOrderBaseViewModel<DV130>
+    public class DV130ViewModel : CourtOrderBaseViewModel<DV130>
     {
-        public DV130RestrainingOrderViewModel()
+        public DV130ViewModel()
         {
             DisplayName = "DV130 Restraining Order";
             OrderType = Server.Model.Enums.CourtOrdersTypes.DV130;

@@ -33,7 +33,7 @@
                   IsChecked="{Binding Path=IsStayAwayFromVehicle, Mode=TwoWay}" />
         <TextBox Margin="10 5 10 5" Grid.Column="2" Grid.Row="0" Grid.RowSpan="3" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Path=OtherDescription, Mode=TwoWay}" />
         <StackPanel Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal">
-            <TextBox Margin="10 5 10 5" Text="{Binding Path=StayAwayDistance, Mode=TwoWay}"/>
+            <TextBox Margin="10 5 10 5" MinWidth="50" Text="{Binding Path=StayAwayDistance, Mode=TwoWay}"/>
             <Label Margin="10 5 10 5" Content="Yards Stay Away from Protected."/>
         </StackPanel>
         <StackPanel Grid.Column="2" Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Left">

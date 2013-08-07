@@ -206,7 +206,7 @@
     <Compile Include="ViewModels\OutputForms\DV130ChildCustodyViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\DV130FL342ChildSupportViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\DV130PropertyAndAttorneysFeesViewModel.cs" />
-    <Compile Include="ViewModels\OutputForms\DV130RestrainingOrderViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\DV130ViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\DV130SupervisionViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\EA110ElderlyAbuseViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\EA130ElderlyAbuseViewModel.cs" />
@@ -408,8 +408,8 @@
     <Compile Include="Views\OutputForms\DV130PropertyAndAttorneysFeesView.xaml.cs">
       <DependentUpon>DV130PropertyAndAttorneysFeesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OutputForms\DV130RestrainingOrderView.xaml.cs">
-      <DependentUpon>DV130RestrainingOrderView.xaml</DependentUpon>
+    <Compile Include="Views\OutputForms\DV130View.xaml.cs">
+      <DependentUpon>DV130View.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OutputForms\DV130SupervisionView.xaml.cs">
       <DependentUpon>DV130SupervisionView.xaml</DependentUpon>
@@ -703,7 +703,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\OutputForms\DV130RestrainingOrderView.xaml">
+    <Page Include="Views\OutputForms\DV130View.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

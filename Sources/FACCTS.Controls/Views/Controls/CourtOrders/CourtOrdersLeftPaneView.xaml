@@ -70,7 +70,7 @@
                 </TreeViewItem>
                 <TreeViewItem Header="DV130 - Restraining Order" IsExpanded="True">
                     <TreeViewItem.DataContext>
-                        <ViewModels:DV130RestrainingOrderViewModel/>
+                        <ViewModels:DV130ViewModel/>
                     </TreeViewItem.DataContext>
                     <TreeViewItem Header="Property and Attorney's Fees">
                         <TreeViewItem.DataContext>
