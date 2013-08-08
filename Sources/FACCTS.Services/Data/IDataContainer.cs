@@ -34,7 +34,7 @@ namespace FACCTS.Services.Data
 
         void SearchCourtCases(bool reset = false);
         void UpdateDictionaries();
-        TrackableCollection<DocketRecord> DocketRecords { get; }
+        TrackableCollection<Faccts.Model.Entities.DocketRecord> DocketRecords { get; }
         CourtCase SaveData(CourtCase courtCaseToSave);
     }
 }

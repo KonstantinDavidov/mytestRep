@@ -60,7 +60,8 @@ namespace FACCTS.Server.Controllers
                         Party2Name = string.Format("{0} {1} {2}", x.Party2.FirstName, x.Party2.MiddleName, x.Party2.LastName),
                         HasChildren = x.Children.Any(),
                         HearingIssue = x.Hearings.OrderByDescending(y => y.HearingDate).First().HearingIssues,
-                    });
+                    })
+                    .ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, data);
             }
             catch (Exception ex)

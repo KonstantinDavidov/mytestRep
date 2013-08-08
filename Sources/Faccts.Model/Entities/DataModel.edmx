@@ -1607,6 +1607,15 @@
             <End Role="CourtCaseHeading" EntitySet="CourtCaseHeadingSet" />
             <End Role="CourtCaseHistoryHeading" EntitySet="CourtCaseHeadingSet" />
           </AssociationSet>
+          <EntitySet Name="DocketRecordSet" EntityType="FACCTS_DBModel.DocketRecord" />
+          <AssociationSet Name="DocketRecordCourtrooms" Association="FACCTS_DBModel.DocketRecordCourtrooms">
+            <End Role="DocketRecord" EntitySet="DocketRecordSet" />
+            <End Role="Courtrooms" EntitySet="Courtrooms" />
+          </AssociationSet>
+          <AssociationSet Name="DocketRecordCourtDepartment" Association="FACCTS_DBModel.DocketRecordCourtDepartment">
+            <End Role="DocketRecord" EntitySet="DocketRecordSet" />
+            <End Role="CourtDepartment" EntitySet="CourtDepartments" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AdfsIntegrationConfiguration">
           <Key>
@@ -1760,6 +1769,7 @@
           <Property Type="Int64" Name="CourtCountyId" Nullable="false" />
           <NavigationProperty Name="CourtCounty" Relationship="FACCTS_DBModel.FK_dbo_CourtDepartmenets_dbo_CourtCounty_CourtCountyId" FromRole="CourtDepartmenets" ToRole="CourtCounty" />
           <NavigationProperty Name="Hearings" Relationship="FACCTS_DBModel.FK_dbo_Hearings_dbo_CourtDepartmenets_Department_Id" FromRole="CourtDepartmenets" ToRole="Hearings" />
+          <NavigationProperty Name="DocketRecord" Relationship="FACCTS_DBModel.DocketRecordCourtDepartment" FromRole="CourtDepartment" ToRole="DocketRecord" />
         </EntityType>
         <EntityType Name="CourtLocations">
           <Key>
@@ -1833,6 +1843,7 @@
           <NavigationProperty Name="CourtLocations" Relationship="FACCTS_DBModel.FK_dbo_Courtrooms_dbo_CourtLocations_CourtLocation_Id" FromRole="Courtrooms" ToRole="CourtLocations" />
           <NavigationProperty Name="Hearings" Relationship="FACCTS_DBModel.FK_dbo_Hearings_dbo_Courtrooms_Courtroom_Id" FromRole="Courtrooms" ToRole="Hearings" />
           <Property Type="String" Name="JudgeName" Nullable="false" />
+          <NavigationProperty Name="DocketRecord" Relationship="FACCTS_DBModel.DocketRecordCourtrooms" FromRole="Courtrooms" ToRole="DocketRecord" />
         </EntityType>
         <EntityType Name="Delegation">
           <Key>
@@ -2724,6 +2735,47 @@
           </ReferentialConstraint>
         </Association>
         <EnumType Name="CourtAction" a:ExternalTypeName="FACCTS.Server.Model.Enums.CourtAction" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <EntityType Name="DocketRecord">
+          <Key>
+            <PropertyRef Name="CourtCaseId" />
+          </Key>
+          <Property Type="Int64" Name="CourtCaseId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CaseNumber" Nullable="false" />
+          <Property Type="DateTime" Name="HearingDate" Nullable="false" />
+          <Property Type="String" Name="Party1Name" Nullable="false" />
+          <Property Type="String" Name="Party2Name" Nullable="false" />
+          <Property Type="Boolean" Name="HasChildren" Nullable="false" />
+          <Property Name="HearingIssue" Type="FACCTS_DBModel.HearingIssue" Nullable="false" />
+          <Property Type="FACCTS_DBModel.DocketSession" Name="Session" Nullable="false" />
+          <NavigationProperty Name="Courtroom" Relationship="FACCTS_DBModel.DocketRecordCourtrooms" FromRole="DocketRecord" ToRole="Courtrooms" />
+          <Property Type="Int64" Name="CourtroomsId" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="FACCTS_DBModel.DocketRecordCourtDepartment" FromRole="DocketRecord" ToRole="CourtDepartment" />
+          <Property Type="Int64" Name="CourtDepartmentId" Nullable="false" />
+        </EntityType>
+        <Association Name="DocketRecordCourtrooms">
+          <End Type="FACCTS_DBModel.DocketRecord" Role="DocketRecord" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.Courtrooms" Role="Courtrooms" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Courtrooms">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DocketRecord">
+              <PropertyRef Name="CourtroomsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DocketRecordCourtDepartment">
+          <End Type="FACCTS_DBModel.DocketRecord" Role="DocketRecord" Multiplicity="*" />
+          <End Type="FACCTS_DBModel.CourtDepartment" Role="CourtDepartment" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="CourtDepartment">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DocketRecord">
+              <PropertyRef Name="CourtDepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

@@ -99,6 +99,9 @@
         <EntityTypeShape EntityType="FACCTS_DBModel.CourtCaseHistoryHeading" Width="1.5" PointX="3.5" PointY="31.5" />
         <InheritanceConnector EntityType="FACCTS_DBModel.CourtCaseHistoryHeading" />
         <AssociationConnector Association="FACCTS_DBModel.CourtCaseHeadingCourtCaseHistoryHeading" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.DocketRecord" Width="1.5" PointX="1.125" PointY="34" />
+        <AssociationConnector Association="FACCTS_DBModel.DocketRecordCourtrooms" />
+        <AssociationConnector Association="FACCTS_DBModel.DocketRecordCourtDepartment" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
