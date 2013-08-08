@@ -3657,6 +3657,11 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
+		OrderRestrictionState OtherOrdersState
+		{
+			get; set;
+		}
+		
 		bool IsFirearmsGranted
 		{
 			get; set;
@@ -3720,6 +3725,11 @@ namespace FACCTS.Server.Model.OrderModels
 		}
 		
 		public string OtherOrderDetail
+		{
+			get; set;
+		}
+		
+		public OrderRestrictionState OtherOrdersState
 		{
 			get; set;
 		}

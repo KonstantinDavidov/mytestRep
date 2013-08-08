@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace FACCTS.Controls.Views
 {
     /// <summary>
-    /// Interaction logic for EA110ElderlyAbuseView.xaml
+    /// Interaction logic for EA110View.xaml
     /// </summary>
-    public partial class EA110ElderlyAbuseView : UserControl
+    public partial class EA110View : UserControl
     {
-        public EA110ElderlyAbuseView()
+        public EA110View()
         {
             InitializeComponent();
         }

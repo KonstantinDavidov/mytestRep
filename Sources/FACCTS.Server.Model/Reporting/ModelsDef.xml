@@ -440,6 +440,7 @@
     <Property name="NoServiceFee" type="INoServiceFee"/>
     <Property name="IsOtherOrdersAttached" type="bool"/>
     <Property name="OtherOrderDetail" type="string"/>
+    <Property name="OtherOrdersState" type="OrderRestrictionState"/>
     <Property name="IsFirearmsGranted" type="bool"/>
     <Property name="Firearms" type="IFirearms"/>
     <Property name="IsFinancialAbuseInvolved" type="bool"/>

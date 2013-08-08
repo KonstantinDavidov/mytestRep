@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="FACCTS.Controls.Views.EAStayAwayOrdersSection"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:reporting="clr-namespace:Faccts.Model.Entities.Reporting;assembly=Faccts.Model"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance reporting:EAStayAwayOrders}">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+            <Label Margin="10 5 10 5" Content="Stay Away Distance" />
+            <TextBox Margin="10 5 10 5" Width="100" Text="{Binding Path=StayAwayDistance, Mode=TwoWay}"/>
+            <Label Margin="10 5 10 5" Content="Yds." />
+        </StackPanel>
+        <CheckBox Margin="10 5 10 5" Grid.Column="0" Grid.Row="1" Content="Person" VerticalAlignment="Center" IsChecked="{Binding Path=IsStayAwayFromPerson, Mode=TwoWay}"/>
+        <CheckBox Margin="10 5 10 5" Grid.Column="0" Grid.Row="2" Content="Work" VerticalAlignment="Center" IsChecked="{Binding Path=IsStayAwayFromWork, Mode=TwoWay}"/>
+        <CheckBox Margin="10 5 10 5" Grid.Column="0" Grid.Row="3" Content="Other Protected" VerticalAlignment="Center" IsChecked="{Binding Path=IsStayAwayFromOtherProtected, Mode=TwoWay}"/>
+        <CheckBox Margin="10 5 10 5" Grid.Column="1" Grid.Row="1" Content="Home" VerticalAlignment="Center" IsChecked="{Binding Path=IsStayAwayFromHome, Mode=TwoWay}"/>
+        <CheckBox Margin="10 5 10 5" Grid.Column="1" Grid.Row="2" Content="Vehicle" VerticalAlignment="Center" IsChecked="{Binding Path=IsStayAwayFromVehicle, Mode=TwoWay}"/>
+        <CheckBox Margin="10 5 10 5" Grid.Column="1" Grid.Row="3" Content="Other Orders" VerticalAlignment="Center" IsChecked="{Binding Path=IsStayAwayFromOther, Mode=TwoWay}"/>
+        <TextBox Margin="10 5 10 5" TextWrapping="Wrap" AcceptsReturn="True" Grid.Column="2" Grid.Row="0" Grid.RowSpan="4" Text="{Binding Path=OtherDescription, Mode=TwoWay}"/>
+        <Button Margin="10 5 10 5" Grid.Column="3" Grid.Row="3" Content="CLEAR" VerticalAlignment="Bottom"/>
+        <DataGrid Margin="10 5 10 5" Grid.Column="0" Grid.Row="4" Grid.ColumnSpan="4">
+            <DataGrid.Columns>
+                <DataGridComboBoxColumn Header="Entity" Width="Auto"/>
+                <DataGridTextColumn Header="Name" Width="Auto"/>
+                <DataGridComboBoxColumn Header="Sex" Width="Auto"/>
+                <DataGridTextColumn Header="Age" Width="Auto"/>
+                <DataGridTextColumn Header="Household" Width="Auto"/>
+                <DataGridTextColumn Header="Relation to protected" Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Margin="10 5 10 5" Content="Add" Width="75"/>
+            <Button Margin="10 5 10 5" Content="Remove" Width="75"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

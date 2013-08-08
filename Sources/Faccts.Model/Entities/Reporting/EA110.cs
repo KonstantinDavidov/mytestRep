@@ -19,6 +19,7 @@ namespace Faccts.Model.Entities.Reporting
         private OrderRestrictionState _eaStayAwayOrdersState;
         private IEAConductChoice _eaConductChoice;
         private OrderRestrictionState _eaConductChoiceState;
+        private OrderRestrictionState _otherOrdersState;
 
         public EA110()
         {
@@ -41,6 +42,7 @@ namespace Faccts.Model.Entities.Reporting
             NoServiceFee = new NoServiceFee(order.NoServiceFee);
             IsOtherOrdersAttached = order.IsOtherOrdersAttached;
             OtherOrderDetail = order.OtherOrderDetail;
+            OtherOrdersState = order.OtherOrdersState;
             IsFirearmsGranted = order.IsFirearmsGranted;
             Firearms = new Firearms(order.Firearms);
             IsFinancialAbuseInvolved = order.IsFinancialAbuseInvolved;
@@ -152,6 +154,17 @@ namespace Faccts.Model.Entities.Reporting
             {
                 if (value == _otherOrderDetail) return;
                 _otherOrderDetail = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public OrderRestrictionState OtherOrdersState
+        {
+            get { return _otherOrdersState; }
+            set
+            {
+                if (value == _otherOrdersState) return;
+                _otherOrdersState = value;
                 OnPropertyChanged();
             }
         }

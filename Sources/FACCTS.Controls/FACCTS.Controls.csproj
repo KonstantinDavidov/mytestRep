@@ -208,7 +208,7 @@
     <Compile Include="ViewModels\OutputForms\DV130PropertyAndAttorneysFeesViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\DV130ViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\DV130SupervisionViewModel.cs" />
-    <Compile Include="ViewModels\OutputForms\EA110ElderlyAbuseViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\EA110ViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\EA130ElderlyAbuseViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\FL344DebtAndPropertyControlViewModel.cs" />
     <Compile Include="ViewModels\ReissueCaseDialogViewModel.cs" />
@@ -420,11 +420,17 @@
     <Compile Include="Views\OutputForms\DVStayAwayOrdersSection.xaml.cs">
       <DependentUpon>DVStayAwayOrdersSection.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OutputForms\EA110ElderlyAbuseView.xaml.cs">
-      <DependentUpon>EA110ElderlyAbuseView.xaml</DependentUpon>
+    <Compile Include="Views\OutputForms\EA110View.xaml.cs">
+      <DependentUpon>EA110View.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OutputForms\EA130ElderlyAbuseView.xaml.cs">
       <DependentUpon>EA130ElderlyAbuseView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\EAConductSectionView.xaml.cs">
+      <DependentUpon>EAConductSectionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OutputForms\EAStayAwayOrdersSection.xaml.cs">
+      <DependentUpon>EAStayAwayOrdersSection.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OutputForms\FL344DebtAndPropertyControlView.xaml.cs">
       <DependentUpon>FL344DebtAndPropertyControlView.xaml</DependentUpon>
@@ -719,13 +725,21 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\OutputForms\EA110ElderlyAbuseView.xaml">
+    <Page Include="Views\OutputForms\EA110View.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\OutputForms\EA130ElderlyAbuseView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\OutputForms\EAConductSectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OutputForms\EAStayAwayOrdersSection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OutputForms\FL344DebtAndPropertyControlView.xaml">
       <Generator>MSBuild:Compile</Generator>
