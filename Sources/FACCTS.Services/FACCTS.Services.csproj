@@ -125,6 +125,7 @@
     <Compile Include="Data\CourtCaseStatuses.cs" />
     <Compile Include="Data\CourtCounties.cs" />
     <Compile Include="Data\CourtDepartments.cs" />
+    <Compile Include="Data\CourtDocketSearchCriteria.cs" />
     <Compile Include="Data\CourtRooms.cs" />
     <Compile Include="Data\DataContainer.cs" />
     <Compile Include="Data\EyesColors.cs" />

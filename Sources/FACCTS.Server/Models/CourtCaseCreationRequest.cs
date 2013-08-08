@@ -6,10 +6,9 @@ using System.Web;
 
 namespace FACCTS.Server.Models
 {
-    [JsonObject]
     public class CourtCaseCreationRequest
     {
-        [JsonProperty]
         public string CaseNumber { get; set; }
+        public long CourtClerkId { get; set; }
     }
 }

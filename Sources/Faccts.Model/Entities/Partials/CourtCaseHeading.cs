@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ReactiveUI;
 
 namespace Faccts.Model.Entities
 {
@@ -10,7 +11,11 @@ namespace Faccts.Model.Entities
     {
         partial void Initialize()
         {
-            
+            this.WhenAny(x => x.CaseStatus, x => x.Value).Subscribe(_ =>
+                {
+                    this.OnPropertyChanged("HasDocket", false);
+                }
+                );
         }
 
         public CourtCaseHeading(FACCTS.Server.Model.Calculations.CourtCaseHeading dto)
@@ -28,6 +33,14 @@ namespace Faccts.Model.Entities
             this.CCPOR_ID = dto.CCPOR_ID;
 
             this.MarkAsUnchanged();
+        }
+
+        public bool HasDocket
+        {
+            get
+            {
+                return this.CaseStatus == FACCTS.Server.Model.Enums.CaseStatus.Active;
+            }
         }
     }
 }

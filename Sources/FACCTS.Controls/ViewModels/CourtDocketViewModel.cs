@@ -36,18 +36,18 @@ namespace FACCTS.Controls.ViewModels
             //this.NotifyOfPropertyChange(() => CourtCases);
         }
 
-        //private ReactiveCollection<CourtCase> _courtCases;
-        //public ReactiveCollection<CourtCase> CourtCases
-        //{
-        //    get
-        //    {
-        //        if (this.IsAuthenticated && _courtCases == null)
-        //        {
-        //            _courtCases = DataContainer.CourtCases.CreateDerivedCollection(x => x, filter: x => !x.HasDocket, signalReset: this.WhenAny(y => y.CollectionChangedNotifier, y => y));
-        //        }
-        //        return _courtCases;
-        //    }
-        //}
+        private ReactiveCollection<CourtCaseHeading> _courtCases;
+        public ReactiveCollection<CourtCaseHeading> CourtCases
+        {
+            get
+            {
+                if (this.IsAuthenticated && _courtCases == null)
+                {
+                    _courtCases = DataContainer.CourtCaseHeadings.CreateDerivedCollection(x => x, filter: x => !x.HasDocket, signalReset: this.WhenAny(y => y.CollectionChangedNotifier, y => y));
+                }
+                return _courtCases;
+            }
+        }
 
         public void AddCase()
         {
@@ -91,7 +91,7 @@ namespace FACCTS.Controls.ViewModels
             {
                 if (_hearings == null)
                 {
-                    _hearings = DataContainer.Hearings;
+                    //_hearings = DataContainer.Hearings;
                 }
                 return _hearings;
             }

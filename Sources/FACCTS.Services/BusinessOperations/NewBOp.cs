@@ -3,6 +3,7 @@ using FACCTS.Services.Authentication;
 using FACCTS.Services.Data;
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,32 +24,29 @@ namespace FACCTS.Services.BusinessOperations
         }
 
 
-        public override Faccts.Model.Entities.CourtCase Execute(CourtCase courtCase)
+        public override void Execute()
         {
-            CourtCase newCourtCase = new CourtCase()
+            dynamic courtCaseRequest = new ExpandoObject();
+            courtCaseRequest.CaseNumber = _newCaseNumber;
+            courtCaseRequest.CourtClerkId = AuthenticationService.CurrentUser.Id;
+            bool sucsessfull = false;
+            try
             {
-                CaseNumber = _newCaseNumber,
-                LastAction = Server.Model.Enums.CourtAction.PendingForService,
-            };
-            newCourtCase.CaseHistory.Add(new CaseHistory()
-                {
-                    Date = DateTime.Now,
-                    CaseHistoryEvent = Server.Model.Enums.CaseHistoryEvent.File,
-                    CourtClerk = AuthenticationService.CurrentUser,
-                }
-                );
-            HeadingForNew = new CourtCaseHeading()
-                {
-                    CaseNumber = _newCaseNumber,
-                    CaseStatus = Server.Model.Enums.CaseStatus.New,
-                    CourtClerkName = AuthenticationService.CurrentUser.FullName,
-                };
-            DataContainer.CourtCaseHeadings.Add(HeadingForNew);
-            ((DataContainer)DataContainer).CurrentCourtCase = newCourtCase;
-
-            return newCourtCase;
+                Logger.Info("NewBOp: Trying to create a new court case");
+                CourtCases.CreateNew(courtCaseRequest);
+                sucsessfull = true;
+            }
+            catch (Exception ex)
+            {
+                Logger.Fatal("Creation the new court case failed!", ex);
+            }
+            if (sucsessfull)
+            {
+                DataContainer.SearchCourtCases(true);
+            }
+            
+            
         }
 
-        public CourtCaseHeading HeadingForNew { get; private set; }
     }
 }

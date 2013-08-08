@@ -94,7 +94,7 @@ namespace FACCTS.Controls.ViewModels
 
         public TrackableCollection<Hearings> CurrentHearings
         {
-            get { return DataContainer.Hearings; }
+            get { return null; }//DataContainer.Hearings; }
         }
 
         public Hearings SelectedHearing
