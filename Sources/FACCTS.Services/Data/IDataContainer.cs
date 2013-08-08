@@ -36,5 +36,7 @@ namespace FACCTS.Services.Data
         void UpdateDictionaries();
         TrackableCollection<Faccts.Model.Entities.DocketRecord> DocketRecords { get; }
         CourtCase SaveData(CourtCase courtCaseToSave);
+        void SearchDocket();
+        void SaveDocket();
     }
 }

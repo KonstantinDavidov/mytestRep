@@ -136,29 +136,21 @@ namespace FACCTS.Controls.ViewModels
             };
 
             Execute.OnUIThread(() => {
-                //DocketBOp docket = new DocketBOp(cr);
-                //docket.Execute(CurrentCourtCase);
+                DocketBOp docket = new DocketBOp(CurrentCourtCase, cr);
+                docket.Execute();
             });
         }
 
-        private Faccts.Model.Entities.CourtCase _currentCourtCase;
-        public Faccts.Model.Entities.CourtCase CurrentCourtCase
+
+        private Faccts.Model.Entities.CourtCaseHeading _currentCourtCase;
+        public Faccts.Model.Entities.CourtCaseHeading CurrentCourtCase
         {
             get { return _currentCourtCase; }
             set
             {
-                if (_currentCourtCase != value)
-                {
-                    _currentCourtCase = value;
-                    this.RaiseAndSetIfChanged(ref _currentCourtCase, value);
-                    if (_currentCourtCase != null)
-                    {
-                        this.CaseNumber = _currentCourtCase.CaseNumber;
-                    }
-                }
+                this.RaiseAndSetIfChanged(ref _currentCourtCase, value);
             }
         }
-
        
 
         

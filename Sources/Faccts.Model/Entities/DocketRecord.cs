@@ -60,6 +60,8 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.Session)
     				,this.ObservableForProperty(x => x.CourtroomsId)
     				,this.ObservableForProperty(x => x.CourtDepartmentId)
+    				,this.ObservableForProperty(x => x.CourtClerkId)
+    				,this.ObservableForProperty(x => x.Action)
     				,this.ObservableForProperty(x => x.Courtroom.IsDirty)
     				,this.ObservableForProperty(x => x.Department.IsDirty)
     			).
@@ -307,6 +309,38 @@ namespace Faccts.Model.Entities
             }
         }
         private long _courtDepartmentId;
+    
+        [DataMember]
+        public Nullable<long> CourtClerkId
+        {
+            get { return _courtClerkId; }
+            set
+            {
+                if (_courtClerkId != value)
+                {
+    				OnPropertyChanging("CourtClerkId");
+                    _courtClerkId = value;
+                    OnPropertyChanged("CourtClerkId");
+                }
+            }
+        }
+        private Nullable<long> _courtClerkId;
+    
+        [DataMember]
+        public Nullable<FACCTS.Server.Model.Enums.CourtAction> Action
+        {
+            get { return _action; }
+            set
+            {
+                if (_action != value)
+                {
+    				OnPropertyChanging("Action");
+                    _action = value;
+                    OnPropertyChanged("Action");
+                }
+            }
+        }
+        private Nullable<FACCTS.Server.Model.Enums.CourtAction> _action;
 
         #endregion
 

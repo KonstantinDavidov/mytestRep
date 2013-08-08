@@ -333,8 +333,8 @@ namespace FACCTS.Controls.ViewModels
 			}
 		}
 		
-		private Faccts.Model.Entities.Hearings _docketItem;
-		public Faccts.Model.Entities.Hearings DocketItem
+		private Faccts.Model.Entities.DocketRecord _docketItem;
+		public Faccts.Model.Entities.DocketRecord DocketItem
 		{
 			get{return _docketItem;}
 			set{

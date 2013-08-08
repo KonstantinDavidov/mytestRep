@@ -170,6 +170,10 @@
                 <File Id="fil43188D263AEC9C83D83D1B6DCDF3D5C0" KeyPath="yes" Source="$(var.FACCTS.TargetDir)\ReactiveUI_Net45.dll" />
             </Component>
             
+            <Component Id="cmpC7EBE29087D2AB15451CE71CD06AB321" Guid="*">
+                <File Id="fil60DF05FF920AE59A2E252CE76E91F084" KeyPath="yes" Source="$(var.FACCTS.TargetDir)\Rhino.Mocks.dll" />
+            </Component>
+            
             <Component Id="cmp17C6C0CDF41FF90C8D424879A38F8051" Guid="*">
                 <File Id="fil2799732ECD4B30D3D66DF59B3CF77BBD" KeyPath="yes" Source="$(var.FACCTS.TargetDir)\System.Net.Http.Extensions.dll" />
             </Component>
@@ -417,6 +421,18 @@
                 </Component>
             </Directory>
             <Directory Id="dir62B71A57BCE70D5380BACA6AD28228A1" Name="Logs">
+                <Component Id="cmp2F1AA8AE544997DD786129E69A28DE84" Guid="*">
+                    <File Id="filEAAA38AEC0C88F80B57736FF2F43B92E" KeyPath="yes" Source="$(var.FACCTS.TargetDir)\Logs\(null)" />
+                </Component>
+                
+                
+                
+                
+                
+                
+                
+                
+                
                 
                 
                 
@@ -579,6 +595,8 @@
             
             <ComponentRef Id="cmp0A5AEC9C55ABA2C2F1954F27AC2CA750" />
             
+            <ComponentRef Id="cmpC7EBE29087D2AB15451CE71CD06AB321" />
+            
             <ComponentRef Id="cmp17C6C0CDF41FF90C8D424879A38F8051" />
             
             <ComponentRef Id="cmp8A8103B480D42FBB3EEF0ED5DF872D80" />
@@ -671,6 +689,16 @@
             <ComponentRef Id="cmpBD53113A24D2BED76A38E7FAD0700596" />
             <ComponentRef Id="cmpF3781A582B133DB400203D245236F00C" />
             <ComponentRef Id="cmp7B17D4B431864738E37D1F0EE98AF8F7" />
+            <ComponentRef Id="cmp2F1AA8AE544997DD786129E69A28DE84" />
+            
+            
+            
+            
+            
+            
+            
+            
+            
             
             
             

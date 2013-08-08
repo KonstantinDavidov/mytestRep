@@ -12,6 +12,8 @@ using System.Collections.ObjectModel;
 using System.Reactive.Linq;
 using System.ComponentModel;
 using System.Windows.Data;
+using FACCTS.Server.Model.Enums;
+using FACCTS.Server.Model.Interfaces;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -24,16 +26,31 @@ namespace FACCTS.Controls.ViewModels
             IWindowManager windowManager
             ) : base()
         {
+
+            this.WhenAny(x => x.CalendarDate
+                ,x => x.Courtroom
+                ,x => x.Session
+                ,(x1, x2, x3) => new {CalendarDate = x1.Value, Courtroom = x2.Value, Session = x3.Value}
+                ).Subscribe(x =>
+                    {
+                        ICourtDocketSearchCriteria criteria = ServiceLocatorContainer.Locator.GetInstance<ICourtDocketSearchCriteria>();
+                        criteria.Session = x.Session;
+                        criteria.Date = x.CalendarDate.GetValueOrDefault(DateTime.Now);
+                        criteria.CourtRoomId = x.Courtroom != null ? x.Courtroom.Id : (long?)null;
+                    }
+                    );
+
             _windowManager = windowManager;
             this.DisplayName = "Court Docket";
             this.CalendarDate = DateTime.Today;
+            DataContainer.SearchDocket();
                
         }
 
         protected override void Authorized()
         {
             base.Authorized();
-            //this.NotifyOfPropertyChange(() => CourtCases);
+            this.NotifyOfPropertyChange(() => CourtCases);
         }
 
         private ReactiveCollection<CourtCaseHeading> _courtCases;
@@ -73,19 +90,19 @@ namespace FACCTS.Controls.ViewModels
         {
             var vm = ServiceLocatorContainer.Locator.GetInstance<DropDismissDialogViewModel>();
             vm.Dismiss = dismiss;
-            vm.CurrentCourtCase = CurrentCourtCase;
-            _windowManager.ShowDialog(vm);
+            //vm.CurrentCourtCase = CurrentCourtCase;
+            //_windowManager.ShowDialog(vm);
         }
 
         public void Reissue()
         {
             var vm = ServiceLocatorContainer.Locator.GetInstance<ReissueCaseDialogViewModel>();
-            vm.CurrentCourtCase = CurrentCourtCase;
-            _windowManager.ShowDialog(vm);
+            //vm.CurrentCourtCase = CurrentCourtCase;
+            //_windowManager.ShowDialog(vm);
         }
 
-        private TrackableCollection<Hearings> _hearings;
-        public TrackableCollection<Hearings> Hearings
+        private TrackableCollection<DocketRecord> _hearings;
+        public TrackableCollection<DocketRecord> Hearings
         {
             get
             {
@@ -97,23 +114,11 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-        private void CourtDocketRecordsModified(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            if (e.NewItems != null)
-            {
-                
-            }
-            if (e.OldItems != null)
-            {
 
-            }
-        }
 
-        
-        
 
-        private Faccts.Model.Entities.CourtCase _currentCourtCase;
-        public Faccts.Model.Entities.CourtCase CurrentCourtCase
+        private Faccts.Model.Entities.CourtCaseHeading _currentCourtCase;
+        public Faccts.Model.Entities.CourtCaseHeading CurrentCourtCase
         {
             get { return _currentCourtCase; }
             set
@@ -122,25 +127,27 @@ namespace FACCTS.Controls.ViewModels
             }
         }
 
-        private bool FilterHistoryRecord(CaseHistory ch)
+        public void Save()
         {
-            bool result =  ch.CaseHistoryEvent == FACCTS.Server.Model.Enums.CaseHistoryEvent.Hearing;
-            result &= (ch.Hearing != null && this.CalendarDate.HasValue && ch.Hearing.HearingDate.Date == this.CalendarDate.GetValueOrDefault()) || !this.CalendarDate.HasValue;
-            result &= (this.Courtroom != null && ch.Hearing != null && ch.Hearing.Courtrooms == this.Courtroom) || this.Courtroom == null;
-            int hours = ch.Hearing.HearingDate.TimeOfDay.Hours;
-            result &= (0 <= hours && hours < 12 && (SessionType)this.SessionIndex == SessionType.AM)
-                || ((12 <= hours && hours <= 23 && (SessionType)this.SessionIndex == SessionType.PM)) || (SessionType) SessionIndex == SessionType.Both;
-            return result;
+            bool succeeded = false;
+            try
+            {
+                DataContainer.SaveDocket();
+                succeeded = true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+            if (succeeded)
+            {
+                DataContainer.SearchDocket();
+                _courtCases = null;
+                NotifyOfPropertyChange(() => CourtCases);
+            }
         }
 
-        private void CaseHistoryChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            if (e.Action != System.Collections.Specialized.NotifyCollectionChangedAction.Add)
-            {
-                NotifyCollectionUpdated();
-            }
-            
-        }
+
 
         private static Random rnd = new Random();
         private double _collectionChangedNotifier;
@@ -166,26 +173,44 @@ namespace FACCTS.Controls.ViewModels
             this.CollectionChangedNotifier = rnd.NextDouble();
         }
 
-        private List<NameValueWrapper<Courtrooms>> _courtrooms;
-        public List<NameValueWrapper<Courtrooms>> Courtrooms
+        private List<Courtrooms> _courtrooms;
+        public List<Courtrooms> Courtrooms
         {
             get
             {
                 if (_courtrooms == null)
                 {
-                    _courtrooms = DataContainer.AvailableCourtrooms.Select(x => new NameValueWrapper<Courtrooms>(x, y => y.RoomName)).ToList();
-                    _courtrooms.Insert(0, new NameValueWrapper<Courtrooms>(null, y => y.RoomName, "All"));
+                    _courtrooms = DataContainer.AvailableCourtrooms;
                 }
                 return _courtrooms;
             }
         }
 
-        protected enum SessionType
+        private List<EnumDescript<DocketSession>> _sessionList;
+        public List<EnumDescript<DocketSession>> SessionList
         {
-            AM = 0,
-            PM = 1,
-            Both = 2,
+            get
+            {
+                if (_sessionList == null)
+                {
+                    _sessionList = EnumDescript<DocketSession>.GetList();
+                }
+                return _sessionList;
+            }
         }
-   
+
+        private DocketSession? _session;
+        public DocketSession? Session
+        {
+            get
+            {
+                return _session;
+            }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _session, value);
+            }
+        }
+
     }
 }

@@ -74,21 +74,29 @@
                   CanUserDeleteRows="False"
                   SelectedItem="{Binding DocketItem, Mode=TwoWay}">
 			<DataGrid.Columns>
-				<DataGridTextColumn Binding="{Binding CourtCase.CaseNumber}" ClipboardContentBinding="{x:Null}" Header="Case Number" CanUserResize="False" Width="0.1*" IsReadOnly="True"/>
+				<DataGridTextColumn Binding="{Binding CaseNumber}" ClipboardContentBinding="{x:Null}" Header="Case Number" CanUserResize="False" Width="0.1*" IsReadOnly="True"/>
                 <DataGridTextColumn ClipboardContentBinding="{x:Null}"
                                     Header="Next Hearing Date"
                                     CanUserResize="False"
                                     Width="0.1*"
                                     IsReadOnly="True"
                                     HeaderStyle="{StaticResource WrappedColumnHeaderStyle}" Binding="{Binding HearingDate, Mode=OneWay}" />
-				<DataGridTextColumn Binding="{Binding Courtrooms.RoomName, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Courtroom" CanUserResize="False" Width="0.1*" IsReadOnly="True"/>
+				<DataGridTextColumn Binding="{Binding Courtroom.RoomName, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Courtroom" CanUserResize="False" Width="0.1*" IsReadOnly="True"/>
 				<DataGridTextColumn Binding="{Binding CourtDepartment.Room}" ClipboardContentBinding="{x:Null}" Header="Department" Width="0.1*"/>
 				<DataGridTextColumn Binding="{Binding Session, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Session" IsReadOnly="True" Width="0.1*"/>
-				<DataGridTextColumn Binding="{Binding CourtCase.Party1.FullName}" ClipboardContentBinding="{x:Null}" Header="Party 1" CanUserResize="False" Width="0.2*" IsReadOnly="True"/>
-				<DataGridTextColumn Binding="{Binding CourtCase.Party2.FullName}" ClipboardContentBinding="{x:Null}" Header="Party 2" CanUserResize="False" Width="0.2*" IsReadOnly="True"/>
-				<DataGridCheckBoxColumn Binding="{Binding CourtCase.Children.Count, ConverterParameter=0, Converter={StaticResource InvertedInt32ToBooleanConverter}, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Children" CanUserResize="False" Width="0.08*" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Party1Name, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Party 1" CanUserResize="False" Width="0.2*" IsReadOnly="True"/>
+                <DataGridTextColumn Binding="{Binding Party2Name, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Party 2" CanUserResize="False" Width="0.2*" IsReadOnly="True"/>
+                <DataGridCheckBoxColumn Binding="{Binding HasChildren, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Children" CanUserResize="False" Width="0.08*" IsReadOnly="True"/>
 				<DataGridTextColumn Binding="{Binding Judge, Mode=OneWay}" ClipboardContentBinding="{x:Null}" Header="Judge" CanUserResize="False" Width="0.12*" IsReadOnly="True"/>
-			</DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding HearingIssuesTitle, Mode=OneWay}"
+                                    Header="Hearing Issue"
+                                    Width="0.2*"
+                                    IsReadOnly="True" />
+                <DataGridTextColumn Binding="{Binding HearingIssue.OtheIssueText, Mode=OneWay}"
+                                    Header="Other"
+                                    IsReadOnly="True"
+                                    Width="80" />
+            </DataGrid.Columns>
 		</DataGrid>
 		<Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Grid.RowSpan="2" Grid.Row="2" CornerRadius="2" Style="{DynamicResource OrdinalBorder}">
 			<Grid>
@@ -98,7 +106,7 @@
 					<ColumnDefinition Width="10"/>
 				</Grid.ColumnDefinitions>
 				<UniformGrid HorizontalAlignment="Left" VerticalAlignment="Top" Rows="1" Columns="4">
-					<Button Content="Save" Width="75"/>
+					<Button Content="Save" Width="75" cal:Message.Attach="Save"/>
 					<Button Content="Drop" Width="75" cal:Message.Attach="Drop" IsEnabled="{Binding SelectedItem, Converter={StaticResource ObjectToBooleanConverter}, ElementName=dataGrid, Mode=OneWay}"/>
 					<Button Content="Dismiss" Width="75" cal:Message.Attach="Dismiss" IsEnabled="{Binding SelectedItem, Converter={StaticResource ObjectToBooleanConverter}, ElementName=dataGrid, Mode=OneWay}"/>
 					<Button Content="Reissue" Width="75" cal:Message.Attach="Reissue" IsEnabled="{Binding SelectedItem, Converter={StaticResource ObjectToBooleanConverter}, ElementName=dataGrid, Mode=OneWay}"/>

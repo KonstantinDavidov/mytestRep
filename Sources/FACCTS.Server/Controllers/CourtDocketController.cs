@@ -1,5 +1,6 @@
 ﻿using FACCTS.Server.Model.Calculations;
 using FACCTS.Server.Model.DataModel;
+using FACCTS.Server.Model.Enums;
 using FACCTS.Server.Models;
 using log4net;
 using System;
@@ -67,6 +68,58 @@ namespace FACCTS.Server.Controllers
             catch (Exception ex)
             {
                 _logger.Error("Exception while getting thcourt docket: ", ex);
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
+        }
+
+        public HttpResponseMessage Put([FromBody] IEnumerable<DocketRecord> docketRecords)
+        {
+            _logger.ErrorFormat("{0}.{1} : trying to update the court docket...", this.GetType().Name, "Put");
+            try
+            {
+                foreach (var docket in docketRecords)
+                {
+                    var courtCase = DataManager.CourtCaseRepository
+                            .GetAll(
+                            x => x.CaseHistory
+                            ).FirstOrDefault(x => x.Id == docket.CourtCaseId);
+                    if (courtCase == null)
+                    {
+                        string message = string.Format("Court case with the id = {0} was not found!", docket.CourtCaseId);
+                        _logger.Error(message);
+                        return Request.CreateErrorResponse(HttpStatusCode.NotFound, message);
+                    }
+                    courtCase.CaseHistory.Add(
+                        new CaseHistory()
+                        {
+                            CaseHistoryEvent = Model.Enums.CaseHistoryEvent.Hearing,
+                            Hearing = new Hearing()
+                            {
+                                HearingDate = docket.HearingDate,
+                                HearingIssues = docket.HearingIssue,
+                                Courtroom = DataManager.CourtroomRepository.GetById(docket.Courtroom.Id),
+                                Department = DataManager.CourtDepartmentRepository.GetById(docket.Department.Id),
+                                Session = docket.Session,
+                                CourtCase = courtCase,
+                                State = ObjectState.Added,
+                            },
+                            Date = DateTime.Now,
+                            CourtClerk = docket.CourtClerkId.HasValue ? DataManager.UserRepository.GetById(docket.CourtClerkId.Value) : null,
+                            State = ObjectState.Added,
+                        }
+                        );
+                    courtCase.LastAction = docket.Action.GetValueOrDefault(CourtAction.Docketed);
+                    courtCase.State = ObjectState.Modified;
+                    DataManager.CourtCaseRepository.ModifyByState(courtCase);
+
+                }
+
+                DataManager.Commit();
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                _logger.Error("Exception while updating the court docket: ", ex);
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
         }

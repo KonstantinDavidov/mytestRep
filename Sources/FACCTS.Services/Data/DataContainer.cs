@@ -392,6 +392,13 @@ namespace FACCTS.Services.Data
             }
         }
 
+        public void SaveDocket()
+        {
+            var docketRecords = DocketRecords.Where(x => x.ChangeTracker.State != ObjectState.Unchanged);
+            CourtDockets.SaveDocket(docketRecords);
+            
+        }
+
         private void FixupCourtDocketRecords(object sender, NotifyCollectionChangedEventArgs e)
         {
             if (IsSearching)
