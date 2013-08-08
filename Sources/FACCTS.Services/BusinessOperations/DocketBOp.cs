@@ -7,35 +7,35 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Services.BusinessOperations
 {
-    public class DocketBOp : StrategyBase
-    {
-        private Hearings _hearing;
-        public DocketBOp(Hearings hearing) : base()
-        {
-            if (hearing == null)
-            {
-                throw new ArgumentNullException("hearing");
-            }
-            _hearing = hearing;
-        }
+    //public class DocketBOp : StrategyBase
+    //{
+    //    private Hearings _hearing;
+    //    public DocketBOp(Hearings hearing) : base()
+    //    {
+    //        if (hearing == null)
+    //        {
+    //            throw new ArgumentNullException("hearing");
+    //        }
+    //        _hearing = hearing;
+    //    }
 
-        public override Faccts.Model.Entities.CourtCase Execute(Faccts.Model.Entities.CourtCase courtCase)
-        {
-            if (courtCase == null)
-            {
-                throw new ArgumentNullException("courtCase");
-            }
-            DataContainer.Hearings.Add(_hearing);
-            courtCase.CaseHistory.Add(new CaseHistory()
-                {
-                    Date = DateTime.Now,
-                    Hearing = _hearing,
-                    CaseHistoryEvent = Server.Model.Enums.CaseHistoryEvent.Hearing,
-                    CourtClerk = this.AuthenticationService.CurrentUser,
-                });
-            courtCase.LastAction = Server.Model.Enums.CourtAction.Docketed;
-            return courtCase;
-        }
+    //    public override Faccts.Model.Entities.CourtCase Execute(Faccts.Model.Entities.CourtCase courtCase)
+    //    {
+    //        if (courtCase == null)
+    //        {
+    //            throw new ArgumentNullException("courtCase");
+    //        }
+    //        DataContainer.Hearings.Add(_hearing);
+    //        courtCase.CaseHistory.Add(new CaseHistory()
+    //            {
+    //                Date = DateTime.Now,
+    //                Hearing = _hearing,
+    //                CaseHistoryEvent = Server.Model.Enums.CaseHistoryEvent.Hearing,
+    //                CourtClerk = this.AuthenticationService.CurrentUser,
+    //            });
+    //        courtCase.LastAction = Server.Model.Enums.CourtAction.Docketed;
+    //        return courtCase;
+    //    }
 
-    }
+    //}
 }

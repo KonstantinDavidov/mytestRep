@@ -1,4 +1,5 @@
 ﻿using Faccts.Model.Entities;
+using FACCTS.Server.Model.Calculations;
 using FACCTS.Server.Model.Enums;
 using ReactiveUI;
 using System;
@@ -12,7 +13,7 @@ namespace FACCTS.Services.Data
 {
     public interface IDataContainer : INotifyPropertyChanged
     {
-        TrackableCollection<CourtCaseHeading> CourtCaseHeadings { get; }
+        TrackableCollection<Faccts.Model.Entities.CourtCaseHeading> CourtCaseHeadings { get; }
         SearchCriteria SearchCriteria { get; }
         FACCTSConfiguration FacctsConfiguration { get; }
         List<CourtDepartment> AvailableDepartments { get; }
@@ -33,7 +34,7 @@ namespace FACCTS.Services.Data
 
         void SearchCourtCases(bool reset = false);
         void UpdateDictionaries();
-        TrackableCollection<Hearings> Hearings { get; }
+        TrackableCollection<DocketRecord> DocketRecords { get; }
         CourtCase SaveData(CourtCase courtCaseToSave);
     }
 }

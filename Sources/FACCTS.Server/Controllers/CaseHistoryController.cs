@@ -49,7 +49,7 @@ namespace FACCTS.Server.Controllers
                         Order = x.Hearing.CourtOrders.Select(y => y.OrderType),
                         Party1Name = (string)null,
                         Party2Name = (string)null,
-                        CourtClerkName = x.CourtClerk.FirstName + " " + x.CourtClerk.MiddleName + " " + x.CourtClerk.LastName,
+                        CourtClerk = x.CourtClerk,
                         CCPOR_ID = (string)null,
                     }
                     )
@@ -63,7 +63,7 @@ namespace FACCTS.Server.Controllers
                         Order = string.Concat(x.Order.Select(y => y.ToString()+"|")).TrimEnd('|'),
                         Party1Name = x.Party1Name,
                         Party2Name = x.Party2Name,
-                        CourtClerkName = x.CourtClerkName,
+                        CourtClerkName = x.CourtClerk != null ? x.CourtClerk.FirstName + " " + x.CourtClerk.MiddleName + " " + x.CourtClerk.LastName : null,
                         CCPOR_ID = x.CCPOR_ID,
                     }
                     );

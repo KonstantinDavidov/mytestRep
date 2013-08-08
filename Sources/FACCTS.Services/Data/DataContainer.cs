@@ -42,6 +42,13 @@ namespace FACCTS.Services.Data
             }
         }
 
+        [Import]
+        public ICourtDocketSearchCriteria CourtDocketSearchCriteria
+        {
+            get;
+            set;
+        }
+
         private TrackableCollection<Faccts.Model.Entities.CourtCaseHeading> _courtCaseheadings;
         public TrackableCollection<Faccts.Model.Entities.CourtCaseHeading> CourtCaseHeadings
         {
@@ -96,13 +103,15 @@ namespace FACCTS.Services.Data
             if (!reset && CourtCaseHeadings != null)
                 return;
             IsSearching = true;
+            ChangeTracker.ChangeTrackingEnabled = false;
             try
             {
                 CourtCaseHeadings = new TrackableCollection<Faccts.Model.Entities.CourtCaseHeading>(FACCTS.Services.Data.CourtCases.GetAll(this.SearchCriteria));
             }
             finally
             {
-                IsSearching = false;   
+                IsSearching = false;
+                ChangeTracker.ChangeTrackingEnabled = true;
             }
         }
 
@@ -309,13 +318,13 @@ namespace FACCTS.Services.Data
             } 
         }
 
-        public TrackableCollection<Hearings> Hearings
+        public TrackableCollection<DocketRecord> DocketRecords
         {
             get
             {
                 if (_hearings == null)
                 {
-                    _hearings = new TrackableCollection<Hearings>();
+                    _hearings = new TrackableCollection<DocketRecord>();
                     _hearings.CollectionChanged += FixupCourtDocketRecords;
                 }
                 return _hearings;
@@ -337,7 +346,7 @@ namespace FACCTS.Services.Data
                     {
                         _hearings.CollectionChanged += FixupCourtDocketRecords;
                     }
-                    RaisePropertyChanged(() => Hearings);
+                    RaisePropertyChanged(() => DocketRecords);
                 }
             }
         }
@@ -366,6 +375,21 @@ namespace FACCTS.Services.Data
         public CourtCase SaveData(CourtCase courtCaseToSave)
         {
             return FACCTS.Services.Data.CourtCases.SaveData(courtCaseToSave);
+        }
+
+        public void SearchDocket()
+        {
+            ChangeTracker.ChangeTrackingEnabled = false;
+            IsSearching = true;
+            try
+            {
+                
+            }
+            finally
+            {
+                IsSearching = false;
+                ChangeTracker.ChangeTrackingEnabled = true;
+            }
         }
 
         private void FixupCourtDocketRecords(object sender, NotifyCollectionChangedEventArgs e)
@@ -401,7 +425,7 @@ namespace FACCTS.Services.Data
                 }
             }
         }
-        private TrackableCollection<Hearings> _hearings;
+        private TrackableCollection<DocketRecord> _hearings;
 
         protected void RaisePropertyChanged(string propertyName)
         {

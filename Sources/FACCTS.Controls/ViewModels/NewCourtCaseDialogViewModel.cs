@@ -64,8 +64,7 @@ namespace FACCTS.Controls.ViewModels
             Execute.OnUIThread(() => 
             {
                 NewBOp op = new NewBOp(this.CaseNumber);
-                var courtCase = op.Execute(null);
-                _eventAggregator.Publish(new NewCourtCaseCreatedEvent(courtCase, op.HeadingForNew));
+                op.Execute();
             });
         }
 

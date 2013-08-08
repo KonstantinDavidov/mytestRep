@@ -136,8 +136,8 @@ namespace FACCTS.Controls.ViewModels
             };
 
             Execute.OnUIThread(() => {
-                DocketBOp docket = new DocketBOp(cr);
-                docket.Execute(CurrentCourtCase);
+                //DocketBOp docket = new DocketBOp(cr);
+                //docket.Execute(CurrentCourtCase);
             });
         }
 

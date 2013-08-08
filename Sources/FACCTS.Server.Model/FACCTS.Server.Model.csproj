@@ -70,6 +70,7 @@
   <ItemGroup>
     <Compile Include="Calculations\CourtCase.cs" />
     <Compile Include="Calculations\CourtCaseHeading.cs" />
+    <Compile Include="Calculations\DocketRecord.cs" />
     <Compile Include="CaseHistoryEventToCaseStatusConverter.cs" />
     <Compile Include="CurrentUserResponse.cs" />
     <Compile Include="Entities\AddressInfo.cs" />
@@ -127,6 +128,7 @@
     <Compile Include="Enums\AddressType.cs" />
     <Compile Include="Enums\AppearanceType.cs" />
     <Compile Include="Enums\CourtAction.cs" />
+    <Compile Include="Interfaces\ICourtDocketSearchCriteria.cs" />
     <Compile Include="Reporting\Contracts\IEA110.cs" />
     <Compile Include="Reporting\Contracts\IEA130.cs" />
     <Compile Include="Reporting\Entities\CARPOSEntryType.cs" />
