@@ -120,7 +120,7 @@
                 </TreeViewItem>
                 <TreeViewItem Header="EA130 - Elderly Abuse - RO">
                     <TreeViewItem.DataContext>
-                        <ViewModels:EA130ElderlyAbuseViewModel/>
+                        <ViewModels:EA130ViewModel/>
                     </TreeViewItem.DataContext>
                 </TreeViewItem>
                 <TreeViewItem Header="FL344 - Debt and Property Control">

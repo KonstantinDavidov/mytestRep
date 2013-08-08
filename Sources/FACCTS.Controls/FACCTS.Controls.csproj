@@ -209,7 +209,7 @@
     <Compile Include="ViewModels\OutputForms\DV130ViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\DV130SupervisionViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\EA110ViewModel.cs" />
-    <Compile Include="ViewModels\OutputForms\EA130ElderlyAbuseViewModel.cs" />
+    <Compile Include="ViewModels\OutputForms\EA130ViewModel.cs" />
     <Compile Include="ViewModels\OutputForms\FL344DebtAndPropertyControlViewModel.cs" />
     <Compile Include="ViewModels\ReissueCaseDialogViewModel.cs" />
     <Compile Include="ViewModels\UserLoginDialogViewModel.cs" />
@@ -423,8 +423,8 @@
     <Compile Include="Views\OutputForms\EA110View.xaml.cs">
       <DependentUpon>EA110View.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OutputForms\EA130ElderlyAbuseView.xaml.cs">
-      <DependentUpon>EA130ElderlyAbuseView.xaml</DependentUpon>
+    <Compile Include="Views\OutputForms\EA130View.xaml.cs">
+      <DependentUpon>EA130View.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OutputForms\EAConductSectionView.xaml.cs">
       <DependentUpon>EAConductSectionView.xaml</DependentUpon>
@@ -729,7 +729,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\OutputForms\EA130ElderlyAbuseView.xaml">
+    <Page Include="Views\OutputForms\EA130View.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
