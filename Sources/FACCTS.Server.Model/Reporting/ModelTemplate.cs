@@ -3794,6 +3794,11 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
+		bool IsOtherOrdersEnabled
+		{
+			get; set;
+		}
+		
 		bool IsOtherOrdersAttached
 		{
 			get; set;
@@ -3857,6 +3862,11 @@ namespace FACCTS.Server.Model.OrderModels
 		}
 		
 		public INoServiceFee NoServiceFeeSection
+		{
+			get; set;
+		}
+		
+		public bool IsOtherOrdersEnabled
 		{
 			get; set;
 		}

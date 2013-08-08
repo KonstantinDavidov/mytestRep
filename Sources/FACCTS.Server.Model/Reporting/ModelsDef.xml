@@ -454,6 +454,7 @@
     <Property name="MoveoutAddress" type="string"/>
     <Property name="CAPROSEntrySection" type="ICAPROSEntry"/>
     <Property name="NoServiceFeeSection" type="INoServiceFee"/>
+    <Property name="IsOtherOrdersEnabled" type="bool"/>
     <Property name="IsOtherOrdersAttached" type="bool"/>
     <Property name="OtherOrderDetail" type="string"/>
     <Property name="IsNoGuns" type="bool"/>
