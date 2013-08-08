@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<caserecord>
+  <caseheader>
+    <caseNumber>22-1251</caseNumber>
+    <caseFileDate>05/12/2013</caseFileDate>
+    <caseStatus>Active</caseStatus>
+  </caseheader>
+  <parties>
+    <party1>
+      <p1FirstName>Donna</p1FirstName>
+      <p1MiddleName>Rae</p1MiddleName>
+      <p1LastName>Smith</p1LastName>
+      <p1Role>0</p1Role>
+      <p1Designation>0</p1Designation>
+      <p1Description>Type in a description.</p1Description>
+      <p1Relationship>0</p1Relationship>
+      <p1Hair>2</p1Hair>
+      <p1Eyes>0</p1Eyes>
+      <p1Sex>1</p1Sex>
+      <p1Race>15</p1Race>
+      <p1Age>24</p1Age>
+      <p1Parentrole>0</p1Parentrole>
+      <p1Weight>98</p1Weight>
+      <p1HeightFeet>5</p1HeightFeet>
+      <p1HeightInch>2</p1HeightInch>
+      <p1DOB>07/14/1989</p1DOB>
+      <p1AddressStreet>123 Main Street #2601</p1AddressStreet>
+      <p1AddressCity>Irvine</p1AddressCity>
+      <p1AddressState>CA</p1AddressState>
+      <p1AddressPostal>92614</p1AddressPostal>
+      <p1Phone>234-234-2345</p1Phone>
+      <p1Fax>123-123-1234</p1Fax>
+      <p1Email>donna@home.com</p1Email>
+      <p1ProPer>no</p1ProPer>
+      <p1Attorney>yes</p1Attorney>
+      <p1AttorneyFirstName>Bobby</p1AttorneyFirstName>
+      <p1AttorneyLastName>Donnell</p1AttorneyLastName>
+      <p1AttorneyBarID>123-A-1234</p1AttorneyBarID>
+      <p1AttorneyFirmName>Donnell and Associates</p1AttorneyFirmName>
+      <p1AttorneyAddressStreet>234 Main Street Suite 2000</p1AttorneyAddressStreet>
+      <p1AttorneyAddressCity>Irvine</p1AttorneyAddressCity>
+      <p1AttorneyAddressState>CA</p1AttorneyAddressState>
+      <p1AttorneyAddressPostal>92614</p1AttorneyAddressPostal>
+      <p1AttorneyPhone>567-234-2345</p1AttorneyPhone>
+      <p1AttorneyFax>567-567-5678</p1AttorneyFax>
+      <p1AttorneyEmail>bobby@legal.com</p1AttorneyEmail>
+    </party1>
+    <party2>
+      <p2FirstName>Charles</p2FirstName>
+      <p2MiddleName>William</p2MiddleName>
+      <p2LastName>Smith</p2LastName>
+      <p2Role>1</p2Role>
+      <p2Designation>1</p2Designation>
+      <p2Description>Some Description of the Party</p2Description>
+      <p2Relationship>1</p2Relationship>
+      <p2Hair>3</p2Hair>
+      <p2Eyes>3</p2Eyes>
+      <p2Sex>0</p2Sex>
+      <p2Race>15</p2Race>
+      <p2Age>36</p2Age>
+      <p2Parentrole>1</p2Parentrole>
+      <p2Weight>195</p2Weight>
+      <p2HeightFeet>5</p2HeightFeet>
+      <p2HeightInch>11</p2HeightInch>
+      <p2DOB>05/24/1977</p2DOB>
+      <p2AddressStreet>240 Forth Street</p2AddressStreet>
+      <p2AddressCity>Irvine</p2AddressCity>
+      <p2AddressState>CA</p2AddressState>
+      <p2AddressPostal>92614</p2AddressPostal>
+      <p2Phone>345-345-3451</p2Phone>
+      <p2Fax>432-432-2345</p2Fax>
+      <p2Email>charles@home.com</p2Email>
+      <p2ProPer>no</p2ProPer>
+      <p2Attorney>yes</p2Attorney>
+      <p2AttorneyFirstName>Robert</p2AttorneyFirstName>
+      <p2AttorneyLastName>Shapiro</p2AttorneyLastName>
+      <p2AttorneyBarID>234-B-12345</p2AttorneyBarID>
+      <p2AttorneyFirmName>Shapiro and Sons</p2AttorneyFirmName>
+      <p2AttorneyAddressStreet>4321 South Fourth Stree Suite 400</p2AttorneyAddressStreet>
+      <p2AttorneyAddressCity>Irvine</p2AttorneyAddressCity>
+      <p2AttorneyAddressState>CA</p2AttorneyAddressState>
+      <p2AttorneyAddressPostal>92614</p2AttorneyAddressPostal>
+      <p2AttorneyPhone>678-123-1234</p2AttorneyPhone>
+      <p2AttorneyFax>678-512-1235</p2AttorneyFax>
+      <p2AttorneyEmail>robert@law.com</p2AttorneyEmail>
+    </party2>
+    <party3>
+      <p3ProPer>no</p3ProPer>
+      <p3RequestorAttorney>no</p3RequestorAttorney>
+      <p3AttorneyFirstName></p3AttorneyFirstName>
+      <p3AttorneyLastName></p3AttorneyLastName>
+      <p3AttorneyBarID></p3AttorneyBarID>
+      <p3AttorneyFirmName></p3AttorneyFirmName>
+      <p3AttorneyAddressStreet></p3AttorneyAddressStreet>
+      <p3AttorneyAddressCity></p3AttorneyAddressCity>
+      <p3AttorneyAddressState></p3AttorneyAddressState>
+      <p3AttorneyAddressPostal></p3AttorneyAddressPostal>
+      <p3AttorneyPhone></p3AttorneyPhone>
+      <p3AttorneyFax></p3AttorneyFax>
+      <p3AttorneyEmail></p3AttorneyEmail>
+    </party3>
+    <childattorney>
+      <c1AttorneyFirstName></c1AttorneyFirstName>
+      <c1AttorneyLastName></c1AttorneyLastName>
+      <c1AttorneyBarID></c1AttorneyBarID>
+      <c1AttorneyFirmName></c1AttorneyFirmName>
+      <c1AttorneyAddressStreet></c1AttorneyAddressStreet>
+      <c1AttorneyAddressCity></c1AttorneyAddressCity>
+      <c1AttorneyAddressState></c1AttorneyAddressState>
+      <c1AttorneyAddressPostal></c1AttorneyAddressPostal>
+      <c1AttorneyPhone></c1AttorneyPhone>
+      <c1AttorneyFax></c1AttorneyFax>
+      <c1AttorneyEmail></c1AttorneyEmail>
+    </childattorney>
+		<children>
+			<child1>
+				<entity>PERSON</entity>
+				<firstname>Carrie</firstname>
+				<lastname>Smith</lastname>
+				<relationship>Daughter</relationship>
+				<dateofbirth>07/30/1998</dateofbirth>
+				<sex>F</sex>
+			</child1>
+			<child2>
+				<entity>PERSON</entity>
+				<firstname>Sandra</firstname>
+				<lastname>Smith</lastname>
+				<relationship>Daughter</relationship>
+				<dateofbirth>12/20/2000</dateofbirth>
+				<sex>F</sex>
+			</child2>
+		</children>
+		<otherprotected>
+			<otherprotected1>
+				<entity>PERSON</entity>
+				<firstname>Marie</firstname>
+				<lastname>Smith</lastname>
+				<relationship>Sister</relationship>
+				<household>false</household>
+				<sex>F</sex>
+			</otherprotected1>
+		</otherprotected>
+		<witness>
+			<witness1>
+				<entity>PERSON</entity>
+				<firstname>Mark</firstname>
+				<lastname>Smith</lastname>
+				<designation>Witness</designation>
+				<witnessfor>Donna Rae Smith</witnessfor>				
+				<contactinfo>123-123-1234</contactinfo>
+			</witness1>
+			<witness2>			
+				<entity>PERSON</entity>
+				<firstname>Terry</firstname>
+				<lastname>Williams</lastname>
+				<designation>Witness</designation>
+				<witnessfor>Charles William Smith</witnessfor>				
+				<contactinfo>234-234-2345</contactinfo>
+			</witness2>
+		</witness>
+		<interpreter>
+			<interpreter1>
+				<entity>PERSON</entity>
+				<firstname>Martha</firstname>
+				<lastname>Stewart</lastname>
+				<designation>Interpreter</designation>
+				<interpreterfor>Donna Rae Smith</interpreterfor>
+				<language>Italian</language>
+			</interpreter1>			
+		</interpreter>
+  </parties>
+	<relatedcases>
+		<case1>
+			<casenumber>22-1111</casenumber>
+			<casetype>DV</casetype>
+			<county>ORANGE</county>
+			<CPOTRO>TRO</CPOTRO>
+			<expirationdate>12/20/2015</expirationdate>
+			<leadcase>22-1251</leadcase>
+		</case1>
+		<case2>
+			<casenumber>22-3344</casenumber>
+			<casetype>DV</casetype>
+			<county>ORANGE</county>
+			<CPOTRO>TRO</CPOTRO>
+			<expirationdate>06/12/2015</expirationdate>
+			<leadcase>22-1251</leadcase>
+		</case2>
+		<case3>							
+			<casenumber>32-1213</casenumber>
+			<casetype>Criminal</casetype>
+			<county>ORANGE</county>
+			<CPOTRO>CPO</CPOTRO>
+			<expirationdate>no expire</expirationdate>
+			<leadcase>22-1251</leadcase>
+		</case3>				
+	</relatedcases>
+	<casehistory>
+		<event1>
+			<date>04/28/2013</date>
+			<event>New File</event>
+			<party1present></party1present>
+			<party1sworn></party1sworn>
+			<party1atty>Yes</party1atty>
+			<party2present></party2present>
+			<party2sworn></party2sworn>
+			<party2atty>Yes</party2atty>
+			<orders></orders>
+			<mergedCase></mergedCase>
+		</event1>
+		<event2>
+			<date>04/28/2013</date>
+			<event>New File</event>
+			<party1present>Yes</party1present>
+			<party1sworn>Yes</party1sworn>
+			<party1atty>Yes</party1atty>
+			<party2present>Yes</party2present>
+			<party2sworn>Yes</party2sworn>
+			<party2atty>Yes</party2atty>
+			<orders></orders>
+			<mergedCase></mergedCase>
+		</event2>
+		<event3>
+			<date>05/03/2013</date>
+			<event>Hearing</event>
+			<party1present>Yes</party1present>
+			<party1sworn>Yes</party1sworn>
+			<party1atty>Yes</party1atty>
+			<party2present>Yes</party2present>
+			<party2sworn>Yes</party2sworn>
+			<party2atty>Yes</party2atty>
+			<orders>DV110</orders>
+			<mergedCase></mergedCase>
+		</event3>						
+		<event4>
+			<date>05/13/2013</date>
+			<event>Hearing</event>
+			<party1present>Yes</party1present>
+			<party1sworn>Yes</party1sworn>
+			<party1atty>Yes</party1atty>
+			<party2present>Yes</party2present>
+			<party2sworn>Yes</party2sworn>
+			<party2atty>Yes</party2atty>
+			<orders>DV130</orders>
+			<mergedCase></mergedCase>
+		</event4>							
+		<event5>
+			<date>06/01/2013</date>
+			<event>Dismissed</event>
+			<party1present>Yes</party1present>
+			<party1sworn>Yes</party1sworn>
+			<party1atty>Yes</party1atty>
+			<party2present></party2present>
+			<party2sworn></party2sworn>
+			<party2atty>Yes</party2atty>
+			<orders></orders>
+			<mergedCase>22-1251</mergedCase>
+		</event5>
+		<currentevent>
+			<issuedate></issuedate>
+			<expiredate></expiredate>
+			<masterorder></masterorder>
+			<attachedorders></attachedorders>
+			<overruns></overruns>
+		</currentevent>							
+	</casehistory>
+  <casenotes>
+    <user1>
+      <userid>Sophia Myles</userid>
+      <userrole>Court Admin</userrole>
+      <lastdate>07-19-2013</lastdate>
+      <publicnotes>Hi I am Sophia Myles and these are my public case notes.  I think FACCTS makes managing our Court Cases a lot easier.</publicnotes>
+      <privatenotes>I keep these notes private.</privatenotes>
+    </user1>
+    <user2>
+      <userid>Pascal Hutton</userid>
+      <userrole>Court Clerk</userrole>
+      <lastdate>07-19-2013</lastdate>
+      <publicnotes>Hi I am Pascal and I love FACCTs. Don't you love my picture !!</publicnotes>
+      <privatenotes>I keep these notes private.</privatenotes>
+    </user2>
+    <user3>
+      <userid>Ray Stevenson</userid>
+      <userrole>Court Clerk</userrole>
+      <lastdate>07-19-2013</lastdate>
+      <publicnotes>Titus Pullo was one of the great Roman soldiers.</publicnotes>
+      <privatenotes>I keep these notes private.</privatenotes>
+    </user3>
+    <user4>
+      <userid>Amy Smart</userid>
+      <userrole>Court Admin</userrole>
+      <lastdate>07-19-2013</lastdate>
+      <publicnotes>Amy keeps her notes to the point. I have private notes too. You need to talk to me to see them.</publicnotes>
+      <privatenotes>I keep these notes private.</privatenotes>
+    </user4>
+  </casenotes>
+</caserecord>
