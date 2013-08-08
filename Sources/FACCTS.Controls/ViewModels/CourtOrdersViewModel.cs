@@ -43,6 +43,43 @@ namespace FACCTS.Controls.ViewModels
                     }
                 });
             DisplayName = "Court Orders";
+            _currentHearings = new TrackableCollection<Hearings>
+            {
+                new Hearings
+                {
+                    CourtCase = new CourtCase
+                    {
+                        CaseNumber = "1234-567"
+                    },
+                    CourtOrders = new TrackableCollection<CourtOrders>
+                    {
+                        new CourtOrders
+                        {
+                            OrderType = CourtOrdersTypes.DV110
+                        },
+                        new CourtOrders
+                        {
+                            OrderType = CourtOrdersTypes.DV130
+                        },
+                        new CourtOrders
+                        {
+                            OrderType = CourtOrdersTypes.CH110
+                        },
+                        new CourtOrders
+                        {
+                            OrderType = CourtOrdersTypes.CH130
+                        },
+                        new CourtOrders
+                        {
+                            OrderType = CourtOrdersTypes.EA110
+                        },
+                        new CourtOrders
+                        {
+                            OrderType = CourtOrdersTypes.EA130
+                        }
+                    }
+                }
+            };
         }
 
 
@@ -50,7 +87,7 @@ namespace FACCTS.Controls.ViewModels
         public CourtOrdersViewModel(IAuthenticationService authenticationService
             , IDataContainer dataContainer
             , IWindowManager windowManager
-            )
+            ):this()
         {
             _reactiveHelper = new MakeObjectReactiveHelper(this);
             _authenticationService = authenticationService;
@@ -92,19 +129,16 @@ namespace FACCTS.Controls.ViewModels
             get { return DataContainer.CourtCaseHeadings; }
         }
 
+        private TrackableCollection<Hearings> _currentHearings; 
+
         public TrackableCollection<Hearings> CurrentHearings
         {
-            get { return null; }//DataContainer.Hearings; }
+            get { return _currentHearings; }
         }
 
         public Hearings SelectedHearing
         {
-            get
-            {
-                if (_selectedHearing == null)
-                    _selectedHearing = CurrentHearings.FirstOrDefault();
-                return _selectedHearing;
-            }
+            get { return _selectedHearing ?? (_selectedHearing = CurrentHearings.FirstOrDefault()); }
 
             set
             {
@@ -150,13 +184,19 @@ namespace FACCTS.Controls.ViewModels
                     PopulateOrderIfNotExists((CourtOrderBaseViewModel<CH110>) viewModel);
                     break;
                 case CourtOrdersTypes.CH130:
-                    PopulateOrderIfNotExists((CourtOrderBaseViewModel<CH130>)viewModel);
+                    PopulateOrderIfNotExists((CourtOrderBaseViewModel<CH130>) viewModel);
                     break;
                 case CourtOrdersTypes.DV110:
-                    PopulateOrderIfNotExists((CourtOrderBaseViewModel<DV110>)viewModel);
+                    PopulateOrderIfNotExists((CourtOrderBaseViewModel<DV110>) viewModel);
                     break;
                 case CourtOrdersTypes.DV130:
-                    PopulateOrderIfNotExists((CourtOrderBaseViewModel<DV130>)viewModel);
+                    PopulateOrderIfNotExists((CourtOrderBaseViewModel<DV130>) viewModel);
+                    break;
+                case CourtOrdersTypes.EA110:
+                    PopulateOrderIfNotExists((CourtOrderBaseViewModel<EA110>) viewModel);
+                    break;
+                case CourtOrdersTypes.EA130:
+                    PopulateOrderIfNotExists((CourtOrderBaseViewModel<EA130>) viewModel);
                     break;
             }
             ActivateItem(viewModel);
@@ -186,52 +226,22 @@ namespace FACCTS.Controls.ViewModels
             _windowManager.ShowDialog(vm);
         }
 
-        private void PopulateOrderIfNotExists<T>(CourtOrderBaseViewModel<T> orderViewModel) where T: OrderBase
+        private void PopulateOrderIfNotExists<T>(CourtOrderBaseViewModel<T> orderViewModel) where T: OrderBase, new()
         {
             if (SelectedHearing == null)
                 return;
             CourtOrders courtOrder =
-                SelectedHearing.CourtOrders.FirstOrDefault(o => o.OrderType == orderViewModel.OrderType);
-            if (courtOrder == null)
-            {
-                courtOrder = new CourtOrders
+                SelectedHearing.CourtOrders.FirstOrDefault(o => o.OrderType == orderViewModel.OrderType) ??
+                new CourtOrders
                 {
                     Hearings = SelectedHearing,
                     OrderType = orderViewModel.OrderType
                 };
-            }
             if (courtOrder.InnerOrder == null)
             {
-                courtOrder.InnerOrder = CreateOrder(courtOrder.OrderType);
+                courtOrder.InnerOrder = new T();
             }
             orderViewModel.Order = (T) courtOrder.InnerOrder;
-        }
-
-        private OrderBase CreateOrder(CourtOrdersTypes courtOrdersType)
-        {
-            OrderBase result = null;
-            switch (courtOrdersType)
-            {
-                case CourtOrdersTypes.DV110:
-                    result = new DV110();
-                    break;
-                case CourtOrdersTypes.DV130:
-                    result = new DV130();
-                    break;
-                case CourtOrdersTypes.CH110:
-                    result = new CH110();
-                    break;
-                case CourtOrdersTypes.CH130:
-                    result = new CH130();
-                    break;
-                /*case CourtOrdersTypes.EA110:
-                    result = new EA110TROOrder();
-                    break;
-                case CourtOrdersTypes.EA130:
-                    result = new EA110TROOrder();
-                    break;*/
-            }
-            return result;
         }
     }
 }

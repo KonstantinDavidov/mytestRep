@@ -1,131 +1,91 @@
 ﻿<UserControl x:Class="FACCTS.Controls.Views.DV110PropertyAndAttorneysFeeView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             mc:Ignorable="d" 
-             d:DesignHeight="700" d:DesignWidth="700" Background="{DynamicResource ControlBackgroundBrush}">
-    <StackPanel Orientation="Vertical">
-        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:viewModels="clr-namespace:FACCTS.Controls.ViewModels"
+             xmlns:views="clr-namespace:FACCTS.Controls.Views"
+             mc:Ignorable="d"
+             Background="{DynamicResource ControlBackgroundBrush}"
+             d:DataContext="{d:DesignInstance viewModels:DV110ViewModel}">
+    <StackPanel Orientation="Vertical" Grid.IsSharedSizeScope="True">
+        <Border Margin="4 4 4 2" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1"
+                Style="{DynamicResource OrdinalBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumns" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition />
-                    <RowDefinition />
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <CheckBox FontWeight="Bold" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Content="Property Control To Protected Person"/>
-                <ComboBox Grid.Column="0" Grid.Row="1">
-                    <ComboBoxItem>
-                        Not Requested
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        Granted
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        Denied
-                    </ComboBoxItem>
-                </ComboBox>
-                <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
-                    <DataGrid>
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Proterty Item"/>
-                            <DataGridTextColumn Header="Additional Description"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button Width="25">+</Button>
-                        <Button Width="25">-</Button>
-                    </StackPanel>
+                <Label Margin="10 5 10 5" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Content="Property Control" />
+                <ComboBox Margin="10 5 10 5" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1"
+                          ItemsSource="{Binding Path=RestrictionStates, Mode=OneWay}"
+                          SelectedValue="{Binding Path=Order.ConductChoiceState, Mode=TwoWay}"
+                          SelectedValuePath="Value" />
+                <DataGrid Margin="10 5 10 5" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" CanUserAddRows="True" CanUserDeleteRows="True" ItemsSource="{Binding Path=Order.PropertyControlItems, Mode=TwoWay}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Proterty Item" Binding="{Binding Path=Name, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="Additional Description" Binding="{Binding Path=Description, Mode=TwoWay}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Margin="10 5 10 5" Width="75">Add</Button>
+                    <Button Margin="10 5 10 5" Width="75">Remove</Button>
                 </StackPanel>
             </Grid>
         </Border>
-        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+        <Border Margin="4 2 4 2" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1"
+                Style="{DynamicResource OrdinalBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumns" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
                     <RowDefinition />
-                    <RowDefinition />
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <CheckBox FontWeight="Bold" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Content="Payments to be made by Restrained Person"/>
-                <ComboBox Grid.Column="0" Grid.Row="1">
-                    <ComboBoxItem>
-                        Not Requested
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        Granted
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        Denied
-                    </ComboBoxItem>
-                </ComboBox>
-                <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical">
-                    <DataGrid>
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Debts"/>
-                            <DataGridTextColumn Header="Pay To"/>
-                            <DataGridTextColumn Header="Payment For"/>
-                            <DataGridTextColumn Header="Pay From"/>
-                            <DataGridTextColumn Header="Date"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                        <Button Width="25">+</Button>
-                        <Button Width="25">-</Button>
-                    </StackPanel>
+                <Label Margin="10 5 10 5" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Content="Property Control" />
+                <ComboBox Margin="10 5 10 5" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1"
+                          ItemsSource="{Binding Path=RestrictionStates, Mode=OneWay}"
+                          SelectedValue="{Binding Path=Order.PropertyControlState, Mode=TwoWay}"
+                          SelectedValuePath="Value" />
+                <DataGrid Margin="10 5 10 5" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" CanUserAddRows="True" CanUserDeleteRows="True" ItemsSource="{Binding Path=Order.DebtPaymentItems, Mode=TwoWay}">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Pay to:" Binding="{Binding Path=Name, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="For:" Binding="{Binding Path=PaymentFor, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Amount: $" Binding="{Binding Path=Amount, Mode=TwoWay}"/>
+                        <DataGridTextColumn Header="Due date:" Binding="{Binding Path=PaymentDate, Mode=TwoWay}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Margin="10 5 10 5" Width="75">Add</Button>
+                    <Button Margin="10 5 10 5" Width="75">Remove</Button>
                 </StackPanel>
             </Grid>
         </Border>
-        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
+        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1"
+                Style="{DynamicResource OrdinalBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumns"/>
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
+                    <RowDefinition />
+                    <RowDefinition />
                 </Grid.RowDefinitions>
-                <CheckBox FontWeight="Bold" Grid.Column="0" Grid.Row="0">Property Restraint</CheckBox>
-                <ComboBox Grid.Column="0" Grid.Row="1">
-                    <ComboBoxItem>
-                        Not Requested
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        Granted
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        Denied
-                    </ComboBoxItem>
-                </ComboBox>
-                <CheckBox Grid.Column="1" Grid.Row="0">
-                    Protected
-                </CheckBox>
-                <CheckBox Grid.Column="1" Grid.Row="1">
-                    Restrained
-                </CheckBox>
-            </Grid>
-        </Border>
-        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1" Style="{DynamicResource OrdinalBorder}">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Label FontWeight="Bold" Grid.Column="0" Grid.Row="0">Other Orders</Label>
-                <TextBox TextWrapping="Wrap" AcceptsReturn="True" Width="250" Grid.Column="1" Grid.Row="0" Grid.RowSpan="3"></TextBox>
-                <CheckBox Grid.Column="2" Grid.Row="0">Attach</CheckBox>
-                <Button Grid.Column="2" Grid.Row="1">Clear</Button>
+                <Label Margin="10 5 10 5" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Content="Property Restraint"/>
+                <ComboBox Margin="10 5 10 5" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1"
+                          ItemsSource="{Binding Path=RestrictionStates, Mode=OneWay}"
+                          SelectedValue="{Binding Path=Order.DVPropertyRestraintState, Mode=TwoWay}"
+                          SelectedValuePath="Value" />
+                <views:DVPropertyRestraintSectionView Grid.Column="1" Grid.Row="1" DataContext="{Binding Path=Order.PropertyRestraint, Mode=TwoWay}"/>
             </Grid>
         </Border>
     </StackPanel>

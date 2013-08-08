@@ -23,6 +23,7 @@
   <Model name="DebtPaymentItem">
     <Property name="Name" type="string"/>
     <Property name="PaymentFor" type="ParticipantRole"/>
+    <Property name="Amount" type="decimal"/>
     <Property name="PaymentDate" type="DateTime"/>
   </Model>
   <Model name="PaymentItem">
