@@ -9,12 +9,14 @@ namespace Faccts.Model.Entities.Reporting
         private string _name;
         private DateTime _paymentDate;
         private ParticipantRole _paymentFor;
+        private decimal _amount;
 
         public DebtPaymentItem(IDebtPaymentItem debtPaymentItem)
         {
             Name = debtPaymentItem.Name;
             PaymentDate = debtPaymentItem.PaymentDate;
             PaymentFor = debtPaymentItem.PaymentFor;
+            Amount = debtPaymentItem.Amount;
         }
 
         public string Name
@@ -24,6 +26,17 @@ namespace Faccts.Model.Entities.Reporting
             {
                 if (value == _name) return;
                 _name = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public decimal Amount
+        {
+            get { return _amount; }
+            set
+            {
+                if (value == _amount) return;
+                _amount = value;
                 OnPropertyChanged();
             }
         }

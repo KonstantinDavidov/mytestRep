@@ -159,6 +159,11 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
+		decimal Amount
+		{
+			get; set;
+		}
+		
 		DateTime PaymentDate
 		{
 			get; set;
@@ -172,6 +177,11 @@ namespace FACCTS.Server.Model.OrderModels
 		}
 		
 		public ParticipantRole PaymentFor
+		{
+			get; set;
+		}
+		
+		public decimal Amount
 		{
 			get; set;
 		}
