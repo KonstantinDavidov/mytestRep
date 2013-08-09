@@ -54,6 +54,11 @@ namespace FACCTS.Controls.ViewModels
             base.Authorized();
             DataContainer.SearchDocket();
             this.NotifyOfPropertyChange(() => CourtCases);
+            if (this.Courtroom == null)
+            {
+                _courtroom = Faccts.Model.Entities.Courtrooms.Empty;
+                this.NotifyOfPropertyChange(() => Courtroom);
+            }
         }
 
         private ReactiveCollection<CourtCaseHeading> _courtCases;

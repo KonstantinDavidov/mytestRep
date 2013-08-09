@@ -36,10 +36,10 @@
 					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
-				<Calendar Grid.ColumnSpan="3" SelectedDate="{Binding CalendarDate, Mode=TwoWay}" x:Name="Calendar"/>
+				<Calendar Grid.ColumnSpan="3" SelectedDate="{Binding CalendarDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="Calendar"/>
 				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Filter by Courtroom" VerticalAlignment="Center" Grid.Row="1"/>
                 <Controls:NullItemSelectorAdapter ItemsSource="{Binding Courtrooms, Mode=OneWay}"
-                                                  NullItem="{x:Static MemberType={x:Type ent:Courtrooms}, Member=Empty}"
+                                                  NullItem="{x:Static ent:Courtrooms.Empty}"
                                                   Grid.Row="1"
                                                   Grid.Column="1">
                     <ComboBox
