@@ -11,7 +11,7 @@ namespace FACCTS.Services.Data
     {
         protected List<Courtrooms> GetCourtRooms(long courtCountyId)
         {
-            return this.CallServiceGet<List<FACCTS.Server.Model.DataModel.Courtroom>>(string.Format("{0}?courtCountyId={1}", "Courtrooms",courtCountyId))
+            return this.CallServiceGet<List<FACCTS.Server.Model.DataModel.CourtRoom>>(string.Format("{0}?courtCountyId={1}", "Courtrooms",courtCountyId))
                 .Select(x => new Courtrooms(x))
                 .ToList();
         }
