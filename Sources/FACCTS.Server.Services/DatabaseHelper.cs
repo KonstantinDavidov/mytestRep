@@ -1277,17 +1277,17 @@ namespace FACCTS.Server.Data
                     StreetAddress = "26323 South Alisio",
                     PostalCode = "92034",
                     City = "Alisio Viejo",
-                    Courtrooms = new List<Courtroom>()
+                    CourtRooms = new List<CourtRoom>()
                     {
-                        new Courtroom()
+                        new CourtRoom()
                         {
-                            RoomName = "Courtroom A",
-                            JudgeName = "Thomas Jefferson",
+                            Name = "Courtroom A",
+                            Judge = new CourtMember(){FirstName ="Thomas", LastName= "Jefferson"}
                         },
-                        new Courtroom()
+                        new CourtRoom()
                         {
-                            RoomName = "Courtroom B",
-                            JudgeName = "George Harrison",
+                            Name = "Courtroom B",
+                            Judge = new CourtMember(){FirstName ="George", LastName= "Harrison"}
                         }
                     }
                 },
@@ -1298,12 +1298,12 @@ namespace FACCTS.Server.Data
                     StreetAddress = "100 S Main Street",
                     City = "Orange",
                     PostalCode = "92111",
-                    Courtrooms = new List<Courtroom>()
+                    CourtRooms = new List<CourtRoom>()
                     {
-                        new Courtroom()
+                        new CourtRoom()
                         {
-                            RoomName = "Courtroom 1",
-                            JudgeName = "Clara Zetkin",
+                            Name = "Courtroom 1",
+                            Judge = new CourtMember(){FirstName ="Clara", LastName= "Zetkin"}
                         }
                     }
                 }
@@ -1322,13 +1322,13 @@ namespace FACCTS.Server.Data
                     proxy.City = x.City;
                     context.Entry(cc).Collection(y => y.CourtLocations).Load();
                     cc.CourtLocations.Add(proxy);
-                    if (x.Courtrooms != null)
+                    if (x.CourtRooms != null)
                     {
-                        proxy.Courtrooms = new HashSet<Courtroom>();
-                        foreach (var cr in x.Courtrooms)
+                        proxy.CourtRooms = new HashSet<CourtRoom>();
+                        foreach (var cr in x.CourtRooms)
                         {
                             context.Courtrooms.Add(cr);
-                            proxy.Courtrooms.Add(cr);
+                            proxy.CourtRooms.Add(cr);
                         }
                     }
                 });

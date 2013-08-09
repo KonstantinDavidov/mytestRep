@@ -21,7 +21,7 @@ namespace FACCTS.Server.Model.DataModel
 
         public long? CourtroomId { get; set; }
 
-        public virtual Courtroom Courtroom { get; set; }
+        public virtual CourtRoom Courtroom { get; set; }
 
         public long? CourtDepartmentId { get; set; }
 
