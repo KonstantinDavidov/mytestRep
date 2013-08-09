@@ -661,6 +661,15 @@ namespace FACCTS.Server.Data
             AddTestCaseRecord(context);
         }
 
+        private static string ChoisePartyName(string input)
+        {
+            switch (input)
+            {
+                case "party1": return "p1";
+                case "party2": return "p2";
+            }
+            return "";
+        }
         /// <summary>
         /// Initializing Party1 and Party2 from XML data
         /// </summary>
@@ -669,64 +678,63 @@ namespace FACCTS.Server.Data
         /// <param name="test">Court Party object</param>
         /// <param name="context">DataBaseContext object</param>
         /// <returns>return an initialized variable CourtParty</returns>
-        private static CourtParty TakeParty(string nodeName, IEnumerable<XElement> elements, CourtParty test, DatabaseContext context)
+        private static CourtParty TakeParty(string nodeName, XElement file, CourtParty test, DatabaseContext context)
         {
-            foreach (var el in elements.Descendants(nodeName))
+            string partyName = ChoisePartyName(nodeName);
+            foreach (var el in file.Elements("parties").Elements(nodeName))
             {
-                var c = el.Descendants();
-                List<XElement> l = c.ToList<XElement>();
-                if ((l.ElementAt(0).Value != "") && (l.ElementAt(1).Value != "") && (l.ElementAt(2).Value != ""))
+                if (!el.Element(partyName + "FirstName").Value.Equals(""))
                 {
                     test = new CourtParty()
                     {
-                        FirstName = l.ElementAt(0).Value,
-                        MiddleName = l.ElementAt(1).Value,
-                        LastName = l.ElementAt(2).Value,
-                        ParticipantRole = (l.ElementAt(3).Value != "") ? (ParticipantRole)Enum.Parse(typeof(ParticipantRole), l.ElementAt(3).Value) : ParticipantRole.AFS,
-                        Designation = (l.ElementAt(4).Value != "") ? (Designation)Enum.Parse(typeof(Designation), l.ElementAt(4).Value) : Designation.None,
-                        Description = l.ElementAt(5).Value,
-                        RelationToOtherParty = l.ElementAt(6).Value,//
+                        FirstName = el.Element(partyName + "FirstName").Value,
+                        MiddleName = el.Element(partyName + "MiddleName").Value,
+                        LastName = el.Element(partyName + "LastName").Value,
+                        ParticipantRole = (el.Element(partyName + "Role").Value != "") ? (ParticipantRole)Enum.Parse(typeof(ParticipantRole), el.Element(partyName + "Role").Value) : ParticipantRole.AFS,
+                        Designation = (el.Element(partyName + "Designation").Value != "") ? (Designation)Enum.Parse(typeof(Designation), el.Element(partyName + "Designation").Value) : Designation.None,
+                        Description = el.Element(partyName + "Description").Value,
+                        RelationToOtherParty = el.Element(partyName + "Relationship").Value,//
                         HairColor = context.HairColor.FirstOrDefault(),
                         EyesColor = context.EyesColor.FirstOrDefault(),
-                        Sex = (l.ElementAt(9).Value != "") ? (Gender)Enum.Parse(typeof(Gender), l.ElementAt(9).Value) : Gender.X,
-                        Race = (l.ElementAt(10).Value != "") ? context.Races.FirstOrDefault() : context.Races.FirstOrDefault(),
-                        Age = (l.ElementAt(11).Value != "") ? Convert.ToInt32(l.ElementAt(11).Value) : 0,
-                        ParentRole = l.ElementAt(12).Value,
-                        Weight = (l.ElementAt(13).Value != "") ? Convert.ToDecimal(l.ElementAt(13).Value) : 0,
-                        HeightFt = (l.ElementAt(14).Value != "") ? Convert.ToDecimal(l.ElementAt(14).Value) : 0,
-                        HeightIns = (l.ElementAt(15).Value != "") ? Convert.ToDecimal(l.ElementAt(15).Value) : 0,
-                        DateOfBirth = (l.ElementAt(16).Value != "") ? DateTime.Parse(l.ElementAt(16).Value, new System.Globalization.CultureInfo("en-US", true), System.Globalization.DateTimeStyles.AssumeLocal) : DateTime.Now,//DateTime.Now,
+                        Sex = (el.Element(partyName + "Sex").Value != "") ? (Gender)Enum.Parse(typeof(Gender), el.Element(partyName + "Sex").Value) : Gender.X,
+                        Race = (el.Element(partyName + "Race").Value != "") ? context.Races.FirstOrDefault() : context.Races.FirstOrDefault(),
+                        Age = (el.Element(partyName + "Age").Value != "") ? Convert.ToInt32(el.Element(partyName + "Age").Value) : 0,
+                        ParentRole = el.Element(partyName + "Parentrole").Value,
+                        Weight = (el.Element(partyName + "Weight").Value != "") ? Convert.ToDecimal(el.Element(partyName + "Weight").Value) : 0,
+                        HeightFt = (el.Element(partyName + "HeightFeet").Value != "") ? Convert.ToDecimal(el.Element(partyName + "HeightFeet").Value) : 0,
+                        HeightIns = (el.Element(partyName + "HeightInch").Value != "") ? Convert.ToDecimal(el.Element(partyName + "HeightInch").Value) : 0,
+                        DateOfBirth = (el.Element(partyName + "DOB").Value != "") ? DateTime.Parse(el.Element(partyName + "DOB").Value, new System.Globalization.CultureInfo("en-US", true), System.Globalization.DateTimeStyles.AssumeLocal) : DateTime.Now,//DateTime.Now,
                         AddressInfo = new AddressInfo
                         {
-                            StreetAddress = l.ElementAt(17).Value,
-                            City = l.ElementAt(18).Value,
-                            USAState = (USAState)Enum.Parse(typeof(USAState), l.ElementAt(19).Value),
-                            ZipCode = l.ElementAt(20).Value,
-                            Phone = l.ElementAt(21).Value,
-                            Fax = l.ElementAt(22).Value,
+                            StreetAddress = el.Element(partyName + "AddressStreet").Value,
+                            City = el.Element(partyName + "AddressCity").Value,
+                            USAState = (USAState)Enum.Parse(typeof(USAState), el.Element(partyName + "AddressState").Value),
+                            ZipCode = el.Element(partyName + "AddressPostal").Value,
+                            Phone = el.Element(partyName + "Phone").Value,
+                            Fax = el.Element(partyName + "Fax").Value,
                         },
-                        Email = l.ElementAt(23).Value,
-                        IsProPer = l.ElementAt(24).Value.Equals("yes") ? true : false
+                        Email = el.Element(partyName + "Email").Value,
+                        IsProPer = el.Element(partyName + "ProPer").Value.Equals("yes") ? true : false
                     };
 
-                    if (l.ElementAt(25).Value.Equals("yes"))
+                    if (el.Element(partyName + "Attorney").Value.Equals("yes"))
                     {
                         Attorney at = new Attorney()
                         {
-                            FirstName = l.ElementAt(26).Value,
-                            LastName = l.ElementAt(27).Value,
-                            StateBarId = l.ElementAt(28).Value,
-                            FirmName = l.ElementAt(29).Value,
+                            FirstName = el.Element(partyName + "AttorneyFirstName").Value,
+                            LastName = el.Element(partyName + "AttorneyLastName").Value,
+                            StateBarId = el.Element(partyName + "AttorneyBarID").Value,
+                            FirmName = el.Element(partyName + "AttorneyFirmName").Value,
                             AddressInfo = new AddressInfo()
                             {
-                                StreetAddress = l.ElementAt(30).Value,
-                                City = l.ElementAt(31).Value,
-                                USAState = (USAState)Enum.Parse(typeof(USAState), l.ElementAt(32).Value),
-                                ZipCode = l.ElementAt(33).Value,
-                                Phone = l.ElementAt(34).Value,
-                                Fax = l.ElementAt(35).Value,
+                                StreetAddress = el.Element(partyName + "AttorneyAddressStreet").Value,
+                                City = el.Element(partyName + "AttorneyAddressCity").Value,
+                                USAState = (USAState)Enum.Parse(typeof(USAState), el.Element(partyName + "AttorneyAddressState").Value),
+                                ZipCode = el.Element(partyName + "AttorneyAddressPostal").Value,
+                                Phone = el.Element(partyName + "AttorneyPhone").Value,
+                                Fax = el.Element(partyName + "AttorneyFax").Value,
                             },
-                            Email = l.ElementAt(36).Value
+                            Email = el.Element(partyName + "AttorneyEmail").Value
                         };
                         test.Attorney = at;
                     }
@@ -742,39 +750,33 @@ namespace FACCTS.Server.Data
         /// <param name="elements">list of xml-elements</param>
         /// <param name="thirdPartyData">input variable of ThirdPartyData type</param>
         /// <returns>returns an initialized variable of ThirdPartyData type</returns>
-        private static ThirdPartyData TakeThirdParty(string nodeName, IEnumerable<XElement> elements, ThirdPartyData thirdPartyData)
+        private static ThirdPartyData TakeThirdParty(string nodeName, XElement file, ThirdPartyData thirdPartyData)
         {
             ThirdPartyData test = thirdPartyData;
-            foreach (var el in elements.Descendants(nodeName))
-            {
-                
-                var c = el.Descendants();
-                List<XElement> l = c.ToList<XElement>();
-                if (l.ElementAt(1).Value.Equals("yes"))
+            foreach (var el in file.Elements("parties").Elements(nodeName))
+            {  
+                test = new ThirdPartyData()
                 {
-                    test = new ThirdPartyData()
+                    IsProPer = el.Element("p3ProPer").Value.Equals("yes") ? true : false,
+                    IsRequestorInEACase = el.Element("p3RequestorAttorney").Value.Equals("yes") ? true : false,
+                    Attorney = new Attorney()
                     {
-                        IsProPer = l.ElementAt(0).Value.Equals("yes") ? true : false,
-                        IsRequestorInEACase = l.ElementAt(1).Value.Equals("yes") ? true : false,
-                        Attorney = new Attorney()
+                        FirstName = el.Element("p3AttorneyFirstName").Value,
+                        LastName = el.Element("p3AttorneyLastName").Value,
+                        StateBarId = el.Element("p3AttorneyBarID").Value,
+                        FirmName = el.Element("p3AttorneyFirmName").Value,
+                        AddressInfo = new AddressInfo()
                         {
-                            FirstName = l.ElementAt(2).Value,
-                            LastName = l.ElementAt(3).Value,
-                            StateBarId = l.ElementAt(4).Value,
-                            FirmName = l.ElementAt(5).Value,
-                            AddressInfo = new AddressInfo()
-                            {
-                                StreetAddress = l.ElementAt(6).Value,
-                                City = l.ElementAt(7).Value,
-                                USAState = (USAState)Enum.Parse(typeof(USAState), l.ElementAt(8).Value),
-                                ZipCode = l.ElementAt(9).Value,
-                                Phone = l.ElementAt(10).Value,
-                                Fax = l.ElementAt(11).Value,
-                            },
-                            Email = l.ElementAt(12).Value
+                            StreetAddress = el.Element("p3AttorneyAddressStreet").Value,
+                            City = el.Element("p3AttorneyAddressCity").Value,
+                            USAState = (!el.Element("p3AttorneyAddressState").Value.Equals("")) ? (USAState)Enum.Parse(typeof(USAState), el.Element("p3AttorneyAddressState").Value) : USAState.AK,
+                            ZipCode = el.Element("p3AttorneyAddressPostal").Value,
+                            Phone = el.Element("p3AttorneyFax").Value,
+                            Fax = el.Element("p3AttorneyFirmName").Value,
                         },
-                    };
-                }
+                        Email = el.Element("p3AttorneyEmail").Value
+                    },
+                };
             }
             return test;
         }
@@ -786,29 +788,28 @@ namespace FACCTS.Server.Data
         /// <param name="elements">list of xml-elements</param>
         /// <param name="children">list of Children</param>
         /// <returns>returns initialized list of Children</returns>
-        private static ICollection<Child> TakeOtherInParty(string nodeName, IEnumerable<XElement> elements, ICollection<Child> children)
+        private static ICollection<Child> TakeOtherInParty(string nodeName, XElement file, ICollection<Child> children)
         {
             List<Child> test = (List<Child>)children;
-            foreach (var el in elements.Descendants(nodeName))
+            try
             {
-                var c = el.Descendants();
-                List<XElement> l = c.ToList<XElement>();
-                if ((l.ElementAt(2).Value != "") && (l.ElementAt(3).Value != ""))
+                foreach (var el in file.Elements().Descendants(nodeName).Elements())
                 {
-                    for (int i = 1; i <= l.Count - 5; i += 7)
+                    Child ch = new Child()
                     {
-                        Child ch = new Child()
-                        {
-                            EntityType = (l.ElementAt(i).Value != "") ? (FACCTS.Server.Model.Enums.FACCTSEntity)Enum.Parse(typeof(FACCTS.Server.Model.Enums.FACCTSEntity), l.ElementAt(i).Value) : FACCTSEntity.ENTITY,
-                            FirstName = l.ElementAt(i+1).Value,
-                            LastName = l.ElementAt(i+2).Value,
-                            RelationshipToProtected = (l.ElementAt(i+3).Value.Equals("Son") || l.ElementAt(i+3).Value.Equals("Daughter")) ? Model.Enums.Relationship.C : ((l.ElementAt(i+3).Value != "") ? (Model.Enums.Relationship)Enum.Parse(typeof(Model.Enums.Relationship), l.ElementAt(i+3).Value) : Relationship.S),
-                            DateOfBirth = (l.ElementAt(i+4).Value != "") ? DateTime.Parse(l.ElementAt(i+4).Value, new System.Globalization.CultureInfo("en-US", true), System.Globalization.DateTimeStyles.AssumeLocal) : DateTime.Now,//DateTime.Now,
-                            Sex = (l.ElementAt(i+5).Value != "") ? (Gender)Enum.Parse(typeof(Gender), l.ElementAt(i+5).Value) : Gender.X
-                        };
-                        test.Add(ch);
-                    }
+                        EntityType = (el.Element("entity").Value != "") ? (FACCTS.Server.Model.Enums.FACCTSEntity)Enum.Parse(typeof(FACCTS.Server.Model.Enums.FACCTSEntity), el.Element("entity").Value) : FACCTSEntity.ENTITY,
+                        FirstName = el.Element("firstname").Value,
+                        LastName = el.Element("lastname").Value,
+                        RelationshipToProtected = (el.Element("relationship").Value.Equals("Son") || el.Element("relationship").Value.Equals("Daughter")) ? Model.Enums.Relationship.C : ((el.Element("relationship").Value != "") ? (Model.Enums.Relationship)Enum.Parse(typeof(Model.Enums.Relationship), el.Element("relationship").Value) : Relationship.S),
+                        DateOfBirth = (el.Element("dateofbirth").Value != "") ? DateTime.Parse(el.Element("dateofbirth").Value, new System.Globalization.CultureInfo("en-US", true), System.Globalization.DateTimeStyles.AssumeLocal) : DateTime.Now,//DateTime.Now,
+                        Sex = (el.Element("sex").Value != "") ? (Gender)Enum.Parse(typeof(Gender), el.Element("sex").Value) : Gender.X
+                    };
+                    test.Add(ch);
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             return test;
         }
@@ -820,30 +821,28 @@ namespace FACCTS.Server.Data
         /// <param name="elements">list of xml-elements</param>
         /// <param name="otherProtected">list of OtherProtected</param>
         /// <returns>returns initialized list of OtherProtected</returns>
-        private static ICollection<OtherProtected> TakeOtherInParty(string nodeName, IEnumerable<XElement> elements, ICollection<OtherProtected> otherProtected)
+        private static ICollection<OtherProtected> TakeOtherInParty(string nodeName, XElement file, ICollection<OtherProtected> otherProtected)
         {
             List<OtherProtected> test = (List<OtherProtected>)otherProtected;
-
-            foreach (var el in elements.Descendants(nodeName))
+            try
             {
-                var c = el.Descendants();
-                List<XElement> l = c.ToList<XElement>();
-                if ((l.ElementAt(2).Value != "") && (l.ElementAt(3).Value != ""))
+                foreach (var el in file.Elements().Descendants(nodeName).Elements())
                 {
-                    for (int i = 1; i <= l.Count - 5; i += 7)
+                    OtherProtected ch = new OtherProtected()
                     {
-                        OtherProtected ch = new OtherProtected()
-                        {
-                            EntityType = (l.ElementAt(i).Value != "") ? (FACCTSEntity)Enum.Parse(typeof(FACCTSEntity), l.ElementAt(i).Value) : FACCTSEntity.ENTITY,
-                            FirstName = l.ElementAt(i+1).Value,
-                            LastName = l.ElementAt(i+2).Value,
-                            RelationshipToPlaintiff = (l.ElementAt(i+3).Value != "") ? getRelationship(l.ElementAt(i+3).Value) : Relationship.O,
-                            IsHouseHold = l.ElementAt(i+4).Value.ToString().Equals("true") ? true : false,
-                            Sex = (l.ElementAt(i+5).Value != "") ? (Gender)Enum.Parse(typeof(Gender), l.ElementAt(i+5).Value) : Gender.X
-                        };
-                        test.Add(ch);
-                    }
+                        EntityType = (el.Element("entity").Value != "") ? (FACCTSEntity)Enum.Parse(typeof(FACCTSEntity), el.Element("entity").Value) : FACCTSEntity.ENTITY,
+                        FirstName = el.Element("firstname").Value,
+                        LastName = el.Element("lastname").Value,
+                        RelationshipToPlaintiff = (el.Element("relationship").Value != "") ? getRelationship(el.Element("relationship").Value) : Relationship.O,
+                        IsHouseHold = el.Element("household").Value.ToString().Equals("true") ? true : false,
+                        Sex = (el.Element("sex").Value != "") ? (Gender)Enum.Parse(typeof(Gender), el.Element("sex").Value) : Gender.X
+                    };
+                    test.Add(ch);
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
             }
             return test;
         }
@@ -855,30 +854,22 @@ namespace FACCTS.Server.Data
         /// <param name="elements">list of xml-elements</param>
         /// <param name="otherProtected">list of Witness</param>
         /// <returns>returns initialized list of Witness</returns>
-        private static ICollection<Witness> TakeOtherInParty(string nodeName, IEnumerable<XElement> elements, ICollection<Witness> witness)
+        private static ICollection<Witness> TakeOtherInParty(string nodeName, XElement file, ICollection<Witness> witness)
         {
             List<Witness> test = (List<Witness>)witness;
 
-            foreach (var el in elements.Descendants(nodeName))
+            foreach (var el in file.Elements().Descendants(nodeName).Elements())
             {
-                var c = el.Descendants();
-                List<XElement> l = c.ToList<XElement>();
-                if ((l.ElementAt(2).Value != "") && (l.ElementAt(3).Value != ""))
+                Witness op = new Witness()
                 {
-                    for (int i = 1; i <= l.Count - 5; i += 7)
-                    {
-                        Witness op = new Witness()
-                        {
-                            EntityType = (l.ElementAt(i).Value != "") ? (FACCTSEntity)Enum.Parse(typeof(FACCTSEntity), l.ElementAt(1).Value) : FACCTSEntity.ENTITY,
-                            FirstName = l.ElementAt(i+1).Value,
-                            LastName = l.ElementAt(i+2).Value,
-                            // WitnessFor = (l.ElementAt(5).Value != "") ? (PartyFor)Enum.Parse(typeof(PartyFor), l.ElementAt(5).Value) : PartyFor.Party1,
-                            Contact = l.ElementAt(i+5).Value
-                        };
+                    EntityType = (el.Element("entity").Value != "") ? (FACCTSEntity)Enum.Parse(typeof(FACCTSEntity), el.Element("entity").Value) : FACCTSEntity.ENTITY,
+                    FirstName = el.Element("firstname").Value,
+                    LastName = el.Element("lastname").Value,
+                    // WitnessFor = (l.ElementAt(5).Value != "") ? (PartyFor)Enum.Parse(typeof(PartyFor), l.ElementAt(5).Value) : PartyFor.Party1,
+                    Contact = el.Element("contactinfo").Value
+                };
 
-                        test.Add(op);
-                    }
-                }
+                test.Add(op);
             }
             return test;
         }
@@ -890,30 +881,22 @@ namespace FACCTS.Server.Data
         /// <param name="elements">list of xml-elements</param>
         /// <param name="otherProtected">list of Interpreter</param>
         /// <returns>returns initialized list of Interpreter</returns>
-        private static ICollection<Interpreter> TakeOtherInParty(string nodeName, IEnumerable<XElement> elements, ICollection<Interpreter> interpreter)
+        private static ICollection<Interpreter> TakeOtherInParty(string nodeName, XElement file, ICollection<Interpreter> interpreter)
         {
             List<Interpreter> test = (List<Interpreter>)interpreter;
 
-            foreach (var el in elements.Descendants(nodeName))
+            foreach (var el in file.Elements().Descendants(nodeName).Elements())
             {
-                var c = el.Descendants();
-                List<XElement> l = c.ToList<XElement>();
-                if ((l.ElementAt(2).Value != "") && (l.ElementAt(3).Value != ""))
+                Interpreter op = new Interpreter()
                 {
-                    for (int i = 1; i <= l.Count - 5; i += 7)
-                    {
-                        Interpreter op = new Interpreter()
-                        {
-                            EntityType = (l.ElementAt(i).Value != "") ? (FACCTSEntity)Enum.Parse(typeof(FACCTSEntity), l.ElementAt(1).Value) : FACCTSEntity.ENTITY,
-                            FirstName = l.ElementAt(i+1).Value,
-                            LastName = l.ElementAt(i+2).Value,
-                            //  InterpreterFor = (l.ElementAt(5).Value != "") ? (PartyFor)Enum.Parse(typeof(PartyFor), l.ElementAt(5).Value) : PartyFor.Party1,
-                            Language = l.ElementAt(i+5).Value
-                        };
+                    EntityType = (el.Element("entity").Value != "") ? (FACCTSEntity)Enum.Parse(typeof(FACCTSEntity), el.Element("entity").Value) : FACCTSEntity.ENTITY,
+                    FirstName = el.Element("firstname").Value,
+                    LastName = el.Element("lastname").Value,
+                    //  InterpreterFor = (l.ElementAt(5).Value != "") ? (PartyFor)Enum.Parse(typeof(PartyFor), l.ElementAt(5).Value) : PartyFor.Party1,
+                    Language = el.Element("language").Value
+                };
 
-                        test.Add(op);
-                    }
-                }
+                test.Add(op);
             }
             return test;
         }
@@ -925,39 +908,80 @@ namespace FACCTS.Server.Data
         /// <param name="elements">list of xml-elements</param>
         /// <param name="otherProtected">list of CaseNote</param>
         /// <returns>returns initialized list of CaseNote</returns>
-        private static ICollection<CaseNote> TakeOtherInParty(string nodeName, IEnumerable<XElement> elements, ICollection<CaseNote> caseNote, CourtCase testCourtCase)
+        private static ICollection<CaseNote> TakeOtherInParty(string nodeName, XElement file, ICollection<CaseNote> caseNote, CourtCase testCourtCase)
         {
             List<CaseNote> test = (List<CaseNote>)caseNote;
-            
-            foreach (var el in elements.Descendants(nodeName))
-            {
-                var c = el.Descendants();
-                List<XElement> l = c.ToList<XElement>();
-                if ((l.ElementAt(2).Value != "") && (l.ElementAt(3).Value != ""))
-                {
-                    for (int i = 1; i <= l.Count - 4; i += 6)
-                    {
-                        CaseNote op = new CaseNote()
-                        {
-                            Author = new User()
-                            {
-                                Username = l.ElementAt(i).Value,
-                                LastLoginDate = (l.ElementAt(i+2).Value != "")
-                                                ?
-                                                DateTime.Parse(
-                                                                l.ElementAt(i+2).Value, new System.Globalization.CultureInfo("en-US", true),
-                                                                System.Globalization.DateTimeStyles.AssumeLocal
-                                                                )
-                                                : DateTime.Now,
-                                State = ObjectState.Added,
-                                
-                            },
 
-                        };
-                        Roles.AddUserToRole(op.Author.Username, l.ElementAt(i+1).Value);
-                        test.Add(op);
-                    }
+            foreach (var el in file.Elements(nodeName).Elements())
+            {
+                CaseNote op = new CaseNote()
+                {
+                    Author = new User()
+                    {
+                        Username = el.Element("userid").Value,
+                        LastLoginDate = (el.Element("lastdate").Value != "")
+                                        ?
+                                        DateTime.Parse(
+                                                        el.Element("lastdate").Value, new System.Globalization.CultureInfo("en-US", true),
+                                                        System.Globalization.DateTimeStyles.AssumeLocal
+                                                        )
+                                        : DateTime.Now,
+                        State = ObjectState.Added,      
+                    },
+                };
+                Roles.AddUserToRole(op.Author.Username, el.Element("userrole").Value);
+                test.Add(op);
+            }
+            return test;
+        }
+
+        /// <summary>
+        /// An overloaded function. Initializing of CaseHistory collection
+        /// </summary>
+        /// <param name="nodeName">current xml-node list</param>
+        /// <param name="elements">list of xml-elements</param>
+        /// <param name="otherProtected">list of CaseHistory</param>
+        /// <returns>returns initialized list of CaseHistory</returns>
+        private static ICollection<CaseHistory> TakeOtherInParty(string nodeName, XElement file, ICollection<CaseHistory> caseHistory, CourtCase courtCase)
+        {
+            List<CaseHistory> test = (List<CaseHistory>)caseHistory;
+
+            foreach (var el in file.Elements(nodeName).Elements())
+            {
+                if (el.Name.ToString().Equals("currentevent"))
+                {
+                    continue;
                 }
+                else
+                {
+                    Hearing hearing = new Hearing()
+                    {
+                        HearingDate = DateTime.Now,
+                        HearingIssues = new HearingIssue()
+                        {
+                            ChildCustodyOrChildVisitation = true,
+                            ChildSupport = false,
+                            IsOtherIssue = true,
+                            OtheIssueText = "Issue1",
+                            PermanentRO = true,
+                            SpousalSupport = true
+                        },
+                        CourtCase = courtCase
+                    };
+
+                    CaseHistory ch = new CaseHistory();
+                    ch.Date = (el.Element("date").Value != "")
+                                        ?
+                                        DateTime.Parse(
+                                                        el.Element("date").Value, new System.Globalization.CultureInfo("en-US", true),
+                                                        System.Globalization.DateTimeStyles.AssumeLocal
+                                                        )
+                                        : DateTime.Now;
+                    ch.CaseHistoryEvent = CaseHistoryEvent.Hearing;
+                    ch.CCPOR_ID = el.Element("orders").Value;
+                    ch.Hearing = hearing;
+                    test.Add(ch);
+                }                
             }
             return test;
         }
@@ -1003,67 +1027,45 @@ namespace FACCTS.Server.Data
 
             foreach (var file in files)
             {
-                IEnumerable<XElement> elements = file.Elements();
+               // IEnumerable<XElement> elements = file;
                 CourtCase testCourtCase = new CourtCase();
 
-                string fileDate = "";
-                foreach (var el in elements)
+                foreach (var el in file.Elements("caseheader"))
                 {
                     testCourtCase.CaseNumber = el.Element("caseNumber").Value;
-                    fileDate = el.Element("caseFileDate").Value;
-                    break;
                     //testCourtCase.CaseStatus = (CaseStatus)Enum.Parse(typeof(CaseStatus), el.Element("caseStatus").Value);
                 }
-
-                testCourtCase.CaseHistory = new List<CaseHistory>();
-                var hearing = new Hearing()
-                {
-                    HearingDate = DateTime.Now,
-                    HearingIssues = new HearingIssue()
-                    {
-                        ChildCustodyOrChildVisitation = true,
-                        ChildSupport = false,
-                        IsOtherIssue = true,
-                        OtheIssueText = "Issue1",
-                        PermanentRO = true,
-                        SpousalSupport = true
-                    }
-                };
-                testCourtCase.CaseHistory.Add(new CaseHistory()
-                {
-                    Date = !(fileDate.Equals("")) ? DateTime.Parse(fileDate, new System.Globalization.CultureInfo("en-US", true), System.Globalization.DateTimeStyles.AssumeLocal) : DateTime.Now,//DateTime.Now, // DateTime.Now,
-                    CaseHistoryEvent = Model.Enums.CaseHistoryEvent.File,
-                    Hearing = hearing
-                });
 
                 //take party 1
                 testCourtCase.Party1 = new CourtParty();
                 testCourtCase.Party1.Attorney = new Attorney();
-                testCourtCase.Party1 = TakeParty("party1", elements, testCourtCase.Party1, context);
+                testCourtCase.Party1 = TakeParty("party1", file, testCourtCase.Party1, context);
                 //take party2
                 testCourtCase.Party2 = new CourtParty();
                 testCourtCase.Party2.Attorney = new Attorney();
-                testCourtCase.Party2 = TakeParty("party2", elements, testCourtCase.Party2, context);
+                testCourtCase.Party2 = TakeParty("party2", file, testCourtCase.Party2, context);
                 //take party3 
                 testCourtCase.ThirdPartyData = new ThirdPartyData();
-                testCourtCase.ThirdPartyData = TakeThirdParty("party3", elements, testCourtCase.ThirdPartyData);
+                testCourtCase.ThirdPartyData = TakeThirdParty("party3", file, testCourtCase.ThirdPartyData);
 
                 //take childattorney
                 testCourtCase.Children = new List<Child>();
-                testCourtCase.Children = TakeOtherInParty("children", elements, testCourtCase.Children);
+                testCourtCase.Children = TakeOtherInParty("children", file, testCourtCase.Children);
                 
                 //take otherProtected
                 testCourtCase.OtherProtected = new List<OtherProtected>();
-                testCourtCase.OtherProtected = TakeOtherInParty("otherprotected", elements, testCourtCase.OtherProtected);
+                testCourtCase.OtherProtected = TakeOtherInParty("otherprotected", file, testCourtCase.OtherProtected);
                 
                 //take whithness
                 testCourtCase.Witnesses = new List<Witness>();
-                testCourtCase.Witnesses = TakeOtherInParty("witness", elements, testCourtCase.Witnesses);
+                testCourtCase.Witnesses = TakeOtherInParty("witness", file, testCourtCase.Witnesses);
 
                 //take interpreter
                 testCourtCase.Interpreters = new List<Interpreter>();
-                testCourtCase.Interpreters = TakeOtherInParty("interpreter", elements, testCourtCase.Interpreters);
+                testCourtCase.Interpreters = TakeOtherInParty("interpreter", file, testCourtCase.Interpreters);
                 //***************END PARTIES****************//
+                testCourtCase.CaseNotes = new List<CaseNote>();
+                testCourtCase.CaseNotes = TakeOtherInParty("casenotes", file, testCourtCase.CaseNotes, testCourtCase);
 
                 context.CourtCases.Add(testCourtCase);
                 //  context.Set<Appearance>().Add(appearance);
@@ -1073,6 +1075,9 @@ namespace FACCTS.Server.Data
                     IDType = Model.Enums.IdentificationIDType.AF,
                     IssuedDate = DateTime.Now
                 };
+                testCourtCase.LastAction = CourtAction.Docketed;
+                testCourtCase.CaseHistory = new List<CaseHistory>();
+                testCourtCase.CaseHistory = TakeOtherInParty("casehistory", file, testCourtCase.CaseHistory, testCourtCase);
                 context.SaveChanges();
             }
 
