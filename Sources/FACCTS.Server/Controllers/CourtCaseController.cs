@@ -93,8 +93,7 @@ namespace FACCTS.Server.Controllers
                         Order = (string)null,
                         Party1 = x.Party1,
                         Party2 = x.Party2,
-                        
-                        CourtClerkName = x.CourtClerk.FirstName + " " + x.CourtClerk.MiddleName + " " + x.CourtClerk.LastName,
+                        CourtClerk = x.CourtClerk,
                         CCPOR_ID = x.CCPORId,
                     }
                     );
@@ -108,9 +107,9 @@ namespace FACCTS.Server.Controllers
                     CaseStatus = CaseHistoryEventToCaseStatusConverter.Convert(x.CasehistoryEvent),
                     Date = null,
                     Order = null,
-                    Party1Name = x.Party1.FirstName + " " + x.Party1.MiddleName + " " + x.Party1.LastName,
-                    Party2Name = x.Party2.FirstName + " " + x.Party2.MiddleName + " " + x.Party2.LastName,
-                    CourtClerkName = x.CourtClerkName,
+                    Party1Name = x.Party1 != null ? x.Party1.FirstName + " " + x.Party1.MiddleName + " " + x.Party1.LastName : null,
+                    Party2Name = x.Party2 != null ? x.Party2.FirstName + " " + x.Party2.MiddleName + " " + x.Party2.LastName : null,
+                    CourtClerkName = x.CourtClerk != null ? x.CourtClerk.FirstName + " " + x.CourtClerk.MiddleName + " " + x.CourtClerk.LastName : string.Empty,
                     CCPOR_ID = x.CCPOR_ID,
                 }
                 )
@@ -126,11 +125,9 @@ namespace FACCTS.Server.Controllers
         }
 
 
-        public CourtCase Post([FromBody] CourtCaseCreationRequest courtCase)
+        public HttpResponseMessage Post([FromBody] CourtCaseCreationRequest courtCase)
         {
             return CreateNewCourtCase(courtCase);
-            //return null;
-            //return courtCase;
         }
 
         public HttpResponseMessage Put([FromBody] CourtCase courtCase)
@@ -145,12 +142,11 @@ namespace FACCTS.Server.Controllers
             {
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
-            //msg = Request.CreateErrorResponse(HttpStatusCode.NotFound, "Court Case not Found");
 
             return msg;
         }
 
-        private CourtCase CreateNewCourtCase(CourtCaseCreationRequest request)
+        private HttpResponseMessage CreateNewCourtCase(CourtCaseCreationRequest request)
         {
             CourtCase courtCase;
             try
@@ -158,35 +154,38 @@ namespace FACCTS.Server.Controllers
                 courtCase = new CourtCase()
                 {
                     CaseNumber = request.CaseNumber,
-
+                    CourtClerkId = request.CourtClerkId,
+                    RestrainingPartyIdentificationInformation = new RestrainingPartyIdentificationInformation(),
                 };
                 courtCase.CaseHistory = new List<CaseHistory>()
                 {
                     new CaseHistory()
                     {
                         Date = DateTime.Now,
-                        CaseHistoryEvent = Model.Enums.CaseHistoryEvent.File
+                        CaseHistoryEvent = Model.Enums.CaseHistoryEvent.File,
+                        CourtClerk = DataManager.UserRepository.GetById(request.CourtClerkId),
                     }
                 };
                 DataManager.CourtCaseRepository.Insert(courtCase);
 
                 DataManager.Commit();
+                return Request.CreateResponse(HttpStatusCode.OK);
 
             }
             catch (Exception ex)
             {
                 _logger.Fatal("Creating new court case failed", ex);
-                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.InternalServerError));
+                return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
-            try
-            {
-                return DataManager.CourtCaseRepository.GetById(courtCase.Id);
-            }
-            catch (Exception ex)
-            {
-                _logger.Fatal("Inserted record bot found", ex);
-                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
-            }
+            //try
+            //{
+            //    return Request.CreateResponse(HttpStatusCode.OK, DataManager.CourtCaseRepository.GetById(courtCase.Id));
+            //}
+            //catch (Exception ex)
+            //{
+            //    _logger.Fatal("Inserted record bot found", ex);
+            //    return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
+            //}
             
         }
 

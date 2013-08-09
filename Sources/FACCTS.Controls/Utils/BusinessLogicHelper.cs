@@ -13,14 +13,10 @@ namespace FACCTS.Controls.Utils
     {
         private static readonly ILogger _logger = ServiceLocatorContainer.Locator.GetInstance<ILogger>();
 
-        public static void CreateNewCase(object rootModel, IWindowManager windowManager)
+        public static bool CreateNewCase(object rootModel, IWindowManager windowManager)
         {
             _logger.InfoFormat("Creating a new case");
-            bool? dialogResult;
-            if ((dialogResult = windowManager.ShowDialog(rootModel)).GetValueOrDefault(false))
-            {
-
-            }
+            return windowManager.ShowDialog(rootModel).GetValueOrDefault(false);
         }
 
         private static string _chars = "0123456789";

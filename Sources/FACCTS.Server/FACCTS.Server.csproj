@@ -296,6 +296,7 @@
     <Compile Include="Areas\Admin\Controllers\CourtMemberBriefController.cs" />
     <Compile Include="Controllers\CourtCountiesController.cs" />
     <Compile Include="Controllers\CourtDepartmentsController.cs" />
+    <Compile Include="Controllers\CourtDocketController.cs" />
     <Compile Include="Controllers\CourtroomsController.cs" />
     <Compile Include="Controllers\DesignationController.cs" />
     <Compile Include="Controllers\EyesColorController.cs" />
@@ -320,6 +321,7 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\CourtCaseCreationRequest.cs" />
     <Compile Include="Models\CourtCaseSearchCriteria.cs" />
+    <Compile Include="Models\CourtDocketSearchCriteria.cs" />
     <Compile Include="Models\InitialConfigurationModel.cs" />
     <Compile Include="Models\SignInModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

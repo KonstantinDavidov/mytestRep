@@ -417,6 +417,9 @@
     <Compile Include="Views\OutputForms\DVConductSectionView.xaml.cs">
       <DependentUpon>DVConductSectionView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\OutputForms\DVPropertyRestraintSectionView.xaml.cs">
+      <DependentUpon>DVPropertyRestraintSectionView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\OutputForms\DVStayAwayOrdersSection.xaml.cs">
       <DependentUpon>DVStayAwayOrdersSection.xaml</DependentUpon>
     </Compile>
@@ -718,6 +721,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\OutputForms\DVConductSectionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OutputForms\DVPropertyRestraintSectionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

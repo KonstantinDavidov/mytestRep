@@ -26,22 +26,14 @@ namespace FACCTS.Services.Data
             return new CourtCases().GetAllCourtCases(criteria);
         }
 
-        protected CourtCase CreateNewCase(CourtCase courtCase)
+        protected void CreateNewCase(ExpandoObject request)
         {
-            return this.CallServicePost<CourtCase, ExpandoObject>("CourtCase", CreateCourtCaseRequest(courtCase));
+            this.CallServicePost<FACCTS.Server.Model.DataModel.CourtCase, ExpandoObject>("CourtCase", request);
         }
 
-        protected dynamic CreateCourtCaseRequest(CourtCase courtCase)
+        public static void CreateNew(ExpandoObject request)
         {
-            dynamic values = new ExpandoObject();
-            values.CaseNumber = courtCase.CaseNumber;
-
-            return values;
-        }
-
-        public static CourtCase CreateNew(CourtCase cc)
-        {
-            return new CourtCases().CreateNewCase(cc);
+            new CourtCases().CreateNewCase(request);
         }
 
         private FACCTS.Server.Model.DataModel.CourtCase Save(FACCTS.Server.Model.DataModel.CourtCase dto)

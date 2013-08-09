@@ -40,7 +40,7 @@ namespace FACCTS.Server.Data
                 FirstName = "f1",
                 LastName = "l1",
                 IsApproved = true,
-                IsAvilable = true,
+                IsAvilable = true,          
                 IsCertified = false,
                 Phone = "222222",
                 Password = "12345"
@@ -795,16 +795,16 @@ namespace FACCTS.Server.Data
                 List<XElement> l = c.ToList<XElement>();
                 if ((l.ElementAt(2).Value != "") && (l.ElementAt(3).Value != ""))
                 {
-                    for (int i = 1; i <= l.Count; i += 7)
+                    for (int i = 1; i <= l.Count - 5; i += 7)
                     {
                         Child ch = new Child()
                         {
-                            EntityType = (l.ElementAt(1).Value != "") ? (FACCTS.Server.Model.Enums.FACCTSEntity)Enum.Parse(typeof(FACCTS.Server.Model.Enums.FACCTSEntity), l.ElementAt(1).Value) : FACCTSEntity.ENTITY,
-                            FirstName = l.ElementAt(2).Value,
-                            LastName = l.ElementAt(3).Value,
-                            RelationshipToProtected = (l.ElementAt(4).Value.Equals("Son") || l.ElementAt(4).Value.Equals("Daughter")) ? Model.Enums.Relationship.C : ((l.ElementAt(4).Value != "") ? (Model.Enums.Relationship)Enum.Parse(typeof(Model.Enums.Relationship), l.ElementAt(4).Value) : Relationship.S),
-                            DateOfBirth = DateTime.Now,
-                            Sex = (l.ElementAt(6).Value != "") ? (Gender)Enum.Parse(typeof(Gender), l.ElementAt(6).Value) : Gender.X
+                            EntityType = (l.ElementAt(i).Value != "") ? (FACCTS.Server.Model.Enums.FACCTSEntity)Enum.Parse(typeof(FACCTS.Server.Model.Enums.FACCTSEntity), l.ElementAt(i).Value) : FACCTSEntity.ENTITY,
+                            FirstName = l.ElementAt(i+1).Value,
+                            LastName = l.ElementAt(i+2).Value,
+                            RelationshipToProtected = (l.ElementAt(i+3).Value.Equals("Son") || l.ElementAt(i+3).Value.Equals("Daughter")) ? Model.Enums.Relationship.C : ((l.ElementAt(i+3).Value != "") ? (Model.Enums.Relationship)Enum.Parse(typeof(Model.Enums.Relationship), l.ElementAt(i+3).Value) : Relationship.S),
+                            DateOfBirth = (l.ElementAt(i+4).Value != "") ? DateTime.Parse(l.ElementAt(i+4).Value, new System.Globalization.CultureInfo("en-US", true), System.Globalization.DateTimeStyles.AssumeLocal) : DateTime.Now,//DateTime.Now,
+                            Sex = (l.ElementAt(i+5).Value != "") ? (Gender)Enum.Parse(typeof(Gender), l.ElementAt(i+5).Value) : Gender.X
                         };
                         test.Add(ch);
                     }
@@ -830,16 +830,16 @@ namespace FACCTS.Server.Data
                 List<XElement> l = c.ToList<XElement>();
                 if ((l.ElementAt(2).Value != "") && (l.ElementAt(3).Value != ""))
                 {
-                    for (int i = 1; i <= l.Count; i += 7)
+                    for (int i = 1; i <= l.Count - 5; i += 7)
                     {
                         OtherProtected ch = new OtherProtected()
                         {
-                            EntityType = (l.ElementAt(1).Value != "") ? (FACCTSEntity)Enum.Parse(typeof(FACCTSEntity), l.ElementAt(1).Value) : FACCTSEntity.ENTITY,
-                            FirstName = l.ElementAt(2).Value,
-                            LastName = l.ElementAt(3).Value,
-                            RelationshipToPlaintiff = (l.ElementAt(4).Value != "") ? getRelationship(l.ElementAt(4).Value) : Relationship.O,
-                            IsHouseHold = l.ElementAt(5).Value.ToString().Equals("true") ? true : false,
-                            Sex = (l.ElementAt(6).Value != "") ? (Gender)Enum.Parse(typeof(Gender), l.ElementAt(6).Value) : Gender.X
+                            EntityType = (l.ElementAt(i).Value != "") ? (FACCTSEntity)Enum.Parse(typeof(FACCTSEntity), l.ElementAt(i).Value) : FACCTSEntity.ENTITY,
+                            FirstName = l.ElementAt(i+1).Value,
+                            LastName = l.ElementAt(i+2).Value,
+                            RelationshipToPlaintiff = (l.ElementAt(i+3).Value != "") ? getRelationship(l.ElementAt(i+3).Value) : Relationship.O,
+                            IsHouseHold = l.ElementAt(i+4).Value.ToString().Equals("true") ? true : false,
+                            Sex = (l.ElementAt(i+5).Value != "") ? (Gender)Enum.Parse(typeof(Gender), l.ElementAt(i+5).Value) : Gender.X
                         };
                         test.Add(ch);
                     }
@@ -865,15 +865,15 @@ namespace FACCTS.Server.Data
                 List<XElement> l = c.ToList<XElement>();
                 if ((l.ElementAt(2).Value != "") && (l.ElementAt(3).Value != ""))
                 {
-                    for (int i = 1; i <= l.Count; i += 7)
+                    for (int i = 1; i <= l.Count - 5; i += 7)
                     {
                         Witness op = new Witness()
                         {
-                            EntityType = (l.ElementAt(1).Value != "") ? (FACCTSEntity)Enum.Parse(typeof(FACCTSEntity), l.ElementAt(1).Value) : FACCTSEntity.ENTITY,
-                            FirstName = l.ElementAt(2).Value,
-                            LastName = l.ElementAt(3).Value,
+                            EntityType = (l.ElementAt(i).Value != "") ? (FACCTSEntity)Enum.Parse(typeof(FACCTSEntity), l.ElementAt(1).Value) : FACCTSEntity.ENTITY,
+                            FirstName = l.ElementAt(i+1).Value,
+                            LastName = l.ElementAt(i+2).Value,
                             // WitnessFor = (l.ElementAt(5).Value != "") ? (PartyFor)Enum.Parse(typeof(PartyFor), l.ElementAt(5).Value) : PartyFor.Party1,
-                            Contact = l.ElementAt(6).Value
+                            Contact = l.ElementAt(i+5).Value
                         };
 
                         test.Add(op);
@@ -900,17 +900,61 @@ namespace FACCTS.Server.Data
                 List<XElement> l = c.ToList<XElement>();
                 if ((l.ElementAt(2).Value != "") && (l.ElementAt(3).Value != ""))
                 {
-                    for (int i = 1; i <= l.Count; i += 7)
+                    for (int i = 1; i <= l.Count - 5; i += 7)
                     {
                         Interpreter op = new Interpreter()
                         {
-                            EntityType = (l.ElementAt(1).Value != "") ? (FACCTSEntity)Enum.Parse(typeof(FACCTSEntity), l.ElementAt(1).Value) : FACCTSEntity.ENTITY,
-                            FirstName = l.ElementAt(2).Value,
-                            LastName = l.ElementAt(3).Value,
+                            EntityType = (l.ElementAt(i).Value != "") ? (FACCTSEntity)Enum.Parse(typeof(FACCTSEntity), l.ElementAt(1).Value) : FACCTSEntity.ENTITY,
+                            FirstName = l.ElementAt(i+1).Value,
+                            LastName = l.ElementAt(i+2).Value,
                             //  InterpreterFor = (l.ElementAt(5).Value != "") ? (PartyFor)Enum.Parse(typeof(PartyFor), l.ElementAt(5).Value) : PartyFor.Party1,
-                            Language = l.ElementAt(6).Value
+                            Language = l.ElementAt(i+5).Value
                         };
 
+                        test.Add(op);
+                    }
+                }
+            }
+            return test;
+        }
+
+        /// <summary>
+        /// An overloaded function. Initializing of CaseNote collection
+        /// </summary>
+        /// <param name="nodeName">current xml-node list</param>
+        /// <param name="elements">list of xml-elements</param>
+        /// <param name="otherProtected">list of CaseNote</param>
+        /// <returns>returns initialized list of CaseNote</returns>
+        private static ICollection<CaseNote> TakeOtherInParty(string nodeName, IEnumerable<XElement> elements, ICollection<CaseNote> caseNote, CourtCase testCourtCase)
+        {
+            List<CaseNote> test = (List<CaseNote>)caseNote;
+            
+            foreach (var el in elements.Descendants(nodeName))
+            {
+                var c = el.Descendants();
+                List<XElement> l = c.ToList<XElement>();
+                if ((l.ElementAt(2).Value != "") && (l.ElementAt(3).Value != ""))
+                {
+                    for (int i = 1; i <= l.Count - 4; i += 6)
+                    {
+                        CaseNote op = new CaseNote()
+                        {
+                            Author = new User()
+                            {
+                                Username = l.ElementAt(i).Value,
+                                LastLoginDate = (l.ElementAt(i+2).Value != "")
+                                                ?
+                                                DateTime.Parse(
+                                                                l.ElementAt(i+2).Value, new System.Globalization.CultureInfo("en-US", true),
+                                                                System.Globalization.DateTimeStyles.AssumeLocal
+                                                                )
+                                                : DateTime.Now,
+                                State = ObjectState.Added,
+                                
+                            },
+
+                        };
+                        Roles.AddUserToRole(op.Author.Username, l.ElementAt(i+1).Value);
                         test.Add(op);
                     }
                 }
@@ -962,12 +1006,36 @@ namespace FACCTS.Server.Data
                 IEnumerable<XElement> elements = file.Elements();
                 CourtCase testCourtCase = new CourtCase();
 
+                string fileDate = "";
                 foreach (var el in elements)
                 {
                     testCourtCase.CaseNumber = el.Element("caseNumber").Value;
+                    fileDate = el.Element("caseFileDate").Value;
                     break;
                     //testCourtCase.CaseStatus = (CaseStatus)Enum.Parse(typeof(CaseStatus), el.Element("caseStatus").Value);
                 }
+
+                testCourtCase.CaseHistory = new List<CaseHistory>();
+                var hearing = new Hearing()
+                {
+                    HearingDate = DateTime.Now,
+                    HearingIssues = new HearingIssue()
+                    {
+                        ChildCustodyOrChildVisitation = true,
+                        ChildSupport = false,
+                        IsOtherIssue = true,
+                        OtheIssueText = "Issue1",
+                        PermanentRO = true,
+                        SpousalSupport = true
+                    }
+                };
+                testCourtCase.CaseHistory.Add(new CaseHistory()
+                {
+                    Date = !(fileDate.Equals("")) ? DateTime.Parse(fileDate, new System.Globalization.CultureInfo("en-US", true), System.Globalization.DateTimeStyles.AssumeLocal) : DateTime.Now,//DateTime.Now, // DateTime.Now,
+                    CaseHistoryEvent = Model.Enums.CaseHistoryEvent.File,
+                    Hearing = hearing
+                });
+
                 //take party 1
                 testCourtCase.Party1 = new CourtParty();
                 testCourtCase.Party1.Attorney = new Attorney();
@@ -995,8 +1063,8 @@ namespace FACCTS.Server.Data
                 //take interpreter
                 testCourtCase.Interpreters = new List<Interpreter>();
                 testCourtCase.Interpreters = TakeOtherInParty("interpreter", elements, testCourtCase.Interpreters);
-                
                 //***************END PARTIES****************//
+
                 context.CourtCases.Add(testCourtCase);
                 //  context.Set<Appearance>().Add(appearance);
                 testCourtCase.RestrainingPartyIdentificationInformation = new RestrainingPartyIdentificationInformation()
