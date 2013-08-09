@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faccts>
+	<court>
+		<county>2</county>
+		<primarycourtid>30100</primarycourtid>
+		<issuingstate>CA</issuingstate>
+		<judge>Thomas Jefferson</judge>
+		<ceo>Cynthia Smith</ceo>
+	</court>
+	<locations>
+		<location1>
+			<courtname>Orange County</courtname>
+			<division>Superior</division>
+			<streetaddress>100 S. Main Street Orange CA 90122</streetaddress>
+			<mailingaddress>PO Box 23456 Orange CA 90122</mailingaddress>
+			<courtlocationID>30100</courtlocationID>
+		</location1>
+		<location2>
+			<courtname>Orange County</courtname>
+			<division>Juvenille</division>
+			<streetaddress>1200 S. Coast Highway Newport Beach CA 92080</streetaddress>
+			<mailingaddress>PO Box 940 Newport Beach CA 92080</mailingaddress>
+			<courtlocationID>30200</courtlocationID>
+		</location2>
+	</locations>
+	<courtrooms>
+		<courtroom1>
+			<location>Orange County Superior</location>
+			<courtroomname>Courtroom A</courtroomname>
+			<judge>Harrison</judge>
+		</courtroom1>
+		<courtroom2>
+			<location>Orange County Superior</location>
+			<courtroomname>Courtroom B</courtroomname>
+			<judge>Jefferson</judge>
+		</courtroom2>
+		<courtroom3>
+			<location>Orange County Superior</location>
+			<courtroomname>Courtroom C</courtroomname>
+			<judge>Martin</judge>
+		</courtroom3>
+		<courtroom4>
+			<location>Orange County Superior</location>
+			<courtroomname>Courtroom D</courtroomname>
+			<judge>Washington</judge>
+		</courtroom4>
+	</courtrooms>
+	<departments>
+		<department1>
+			<departmentname>Family Court</departmentname>
+			<room>G2</room>
+			<branchofficer>C Smith</branchofficer>
+			<reporter>D Miller</reporter>
+		</department1>
+		<department2>
+			<departmentname>Family Court</departmentname>
+			<room>G3</room>
+			<branchofficer>C Smith</branchofficer>
+			<reporter>D Miller</reporter>
+		</department2>
+		<department3>
+			<departmentname>Family Court</departmentname>
+			<room>G4</room>
+			<branchofficer>C Smith</branchofficer>
+			<reporter>D Miller</reporter>
+		</department3>
+	</departments>	
+	<agencyori>
+		<agency1>
+			<agencyname>Orange County Sheriff</agencyname>
+			<ori>AB1234567</ori>
+		</agency1>
+		<agency2>
+			<agencyname>Irvine Police</agencyname>
+			<ori>AB2345678</ori>
+		</agency2>
+		<agency3>
+			<agencyname>Newportbeach Police</agencyname>
+			<ori>AB9876543</ori>
+		</agency3>
+	</agencyori>
+	<configuration>
+		<import>
+			<interface>3</interface>
+			<userid></userid>
+			<password></password>
+			<schedule>true</schedule>
+			<scheduletime>24:00:00</scheduletime>
+		</import>
+		<export>
+			<interface>0</interface>
+			<systemID></systemID>
+			<userid></userid>
+			<password></password>
+			<schedule>true</schedule>
+			<scheduletime>24:00:00</scheduletime>
+		</export>
+		<techcontact>
+			<techname></techname>
+			<userid></userid>
+			<phone></phone>
+			<email></email>
+			<alerts>true</alerts>
+		</techcontact>
+	</configuration>
+</faccts>
+	

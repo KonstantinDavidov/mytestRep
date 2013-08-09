@@ -13,7 +13,7 @@ namespace FACCTS.Server.Model.Calculations
         public long CourtCaseId { get; set; }
         public string CaseNumber { get; set; }
         public DateTime HearingDate { get; set; }
-        public Courtroom Courtroom { get; set; }
+        public CourtRoom Courtroom { get; set; }
         public CourtDepartment Department { get; set; }
         public DocketSession Session { get; set; }
         public string Party1Name { get; set; }

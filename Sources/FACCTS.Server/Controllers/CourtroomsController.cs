@@ -17,7 +17,7 @@ namespace FACCTS.Server.Controllers
        
 
         // GET api/courtrooms/5
-        public List<Courtroom> Get(int courtCountyId)
+        public List<CourtRoom> Get(int courtCountyId)
         {
             var courtCounty = DataManager.CourtCountyRepository.GetAll("CourtLocations").SingleOrDefault(x => x.Id == courtCountyId);
             if (courtCounty == null)

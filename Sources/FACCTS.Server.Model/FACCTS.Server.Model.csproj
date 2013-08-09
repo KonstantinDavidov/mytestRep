@@ -94,6 +94,7 @@
     <Compile Include="Entities\Configuration\SimpleHttpConfiguration.cs" />
     <Compile Include="Entities\Configuration\WSFederationConfiguration.cs" />
     <Compile Include="Entities\Configuration\WSTrustConfiguration.cs" />
+    <Compile Include="Entities\CourtAgency.cs" />
     <Compile Include="Entities\CourtCase.cs" />
     <Compile Include="Entities\CourtCounty.cs" />
     <Compile Include="Entities\CourtDepartment.cs" />
@@ -101,7 +102,8 @@
     <Compile Include="Entities\CourtMember.cs" />
     <Compile Include="Entities\CourtMemberBrief.cs" />
     <Compile Include="Entities\CourtParty.cs" />
-    <Compile Include="Entities\Courtroom.cs" />
+    <Compile Include="Entities\CourtRoom.cs" />
+    <Compile Include="Entities\CourtSettings.cs" />
     <Compile Include="Entities\Delegation.cs" />
     <Compile Include="Entities\EyesColor.cs" />
     <Compile Include="Entities\FormField.cs" />
@@ -128,6 +130,7 @@
     <Compile Include="Enums\AddressType.cs" />
     <Compile Include="Enums\AppearanceType.cs" />
     <Compile Include="Enums\CourtAction.cs" />
+    <Compile Include="Enums\CourtDivision.cs" />
     <Compile Include="Interfaces\ICourtDocketSearchCriteria.cs" />
     <Compile Include="Reporting\Contracts\IEA110.cs" />
     <Compile Include="Reporting\Contracts\IEA130.cs" />
