@@ -214,6 +214,23 @@ namespace Faccts.Model.Entities
         }
         private string _judgeName;
 
+        [DataMember]
+        public long JudgeId
+        {
+            get { return _judgeId; }
+            set
+            {
+                if (_judgeId != value)
+                {
+                    OnPropertyChanging("JudgeId");
+                    _judgeId = value;
+                    OnPropertyChanged("JudgeId");
+                }
+            }
+        }
+        private long _judgeId;
+
+
         #endregion
 
         #region Navigation Properties

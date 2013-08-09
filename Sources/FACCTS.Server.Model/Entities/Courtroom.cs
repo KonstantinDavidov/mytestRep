@@ -8,20 +8,21 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.DataModel
 {
-    [Table("Courtrooms")]
-    public partial class Courtroom : IEntityWithId, IEntityWithState
+    [Table("CourtRooms")]
+    public partial class CourtRoom : IEntityWithId, IEntityWithState
     {
 
         [StringLength(100)]
-        public string RoomName { get; set; }
+        public string Name { get; set; }
 
-        [InverseProperty("Courtrooms")]
+        [InverseProperty("CourtRooms")]
         public virtual CourtLocation CourtLocation { get; set; }
 
         public long Id { get; set; }
+        
+        public long JudgeId { get; set; }
 
-        [StringLength(250)]
-        public string JudgeName { get; set; }
+        public virtual CourtMember Judge { get; set; }
 
         [NotMapped]
         public ObjectState State { get; set; }

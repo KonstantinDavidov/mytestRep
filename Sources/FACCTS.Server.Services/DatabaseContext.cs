@@ -37,6 +37,7 @@ namespace FACCTS.Server.Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Entity<User>().Ignore(u=>u.State);
 
             //Role => Permissions m-to-m
             modelBuilder.Entity<Role>()
@@ -93,7 +94,7 @@ namespace FACCTS.Server.Data
         public DbSet<CourtLocation> CourtLocations { get; set; }
         public DbSet<FormField> FormFields { get; set; }
         public DbSet<CourtCounty> CourtCounties { get; set; }
-        public DbSet<Courtroom> Courtrooms { get; set; }
+        public DbSet<CourtRoom> Courtrooms { get; set; }
 
         #endregion
 

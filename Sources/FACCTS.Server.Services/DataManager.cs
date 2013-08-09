@@ -123,11 +123,11 @@ namespace FACCTS.Server.Data
         }
 
 
-        public IFacctsDataRepository<Courtroom> CourtroomRepository
+        public IFacctsDataRepository<CourtRoom> CourtroomRepository
         {
             get
             {
-                return GetStandardRepo<Courtroom>();
+                return GetStandardRepo<CourtRoom>();
             }
         }
 

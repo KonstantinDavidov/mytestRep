@@ -12,10 +12,15 @@ namespace FACCTS.Server.Model.DataModel
     [Table("CourtLocations")]
     public partial class CourtLocation : IEntityWithId, IEntityWithState
     {
+        [Key]
+        public long Id { get; set; }
 
         [StringLength(150)]
         [Required]
         public string Name { get; set; }
+
+        public CourtDivision CourtDivision {get; set;}
+
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
 
@@ -28,6 +33,8 @@ namespace FACCTS.Server.Model.DataModel
         [StringLength(20)]
         public string PostalCode { get; set; }
 
+        public string MailAddress {get;set;}
+
         [StringLength(100)]
         public string City { get; set; }
 
@@ -35,9 +42,7 @@ namespace FACCTS.Server.Model.DataModel
         public virtual CourtCounty CourtCounty { get; set; }
 
         [InverseProperty("CourtLocation")]
-        public virtual ICollection<Courtroom> Courtrooms { get; set; }
-
-        public long Id { get; set; }
+        public virtual ICollection<CourtRoom> CourtRooms { get; set; }
 
         [NotMapped]
         public ObjectState State { get; set; }

@@ -67,7 +67,6 @@ namespace FACCTS.Server.Model.DataModel
 
         public long Id { get; set; }
 
-        [NotMapped]
-        public ObjectState State { get; set; }
+        public virtual ObjectState State { get; set; }
     }
 }
