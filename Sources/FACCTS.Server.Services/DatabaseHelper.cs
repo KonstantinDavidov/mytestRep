@@ -942,7 +942,7 @@ namespace FACCTS.Server.Data
         /// <param name="elements">list of xml-elements</param>
         /// <param name="otherProtected">list of CaseHistory</param>
         /// <returns>returns initialized list of CaseHistory</returns>
-        private static ICollection<CaseHistory> TakeOtherInParty(string nodeName, XElement file, ICollection<CaseHistory> caseHistory)
+        private static ICollection<CaseHistory> TakeOtherInParty(string nodeName, XElement file, ICollection<CaseHistory> caseHistory, CourtCase courtCase)
         {
             List<CaseHistory> test = (List<CaseHistory>)caseHistory;
 
@@ -965,7 +965,8 @@ namespace FACCTS.Server.Data
                             OtheIssueText = "Issue1",
                             PermanentRO = true,
                             SpousalSupport = true
-                        }
+                        },
+                        CourtCase = courtCase
                     };
 
                     CaseHistory ch = new CaseHistory();
@@ -976,7 +977,7 @@ namespace FACCTS.Server.Data
                                                         System.Globalization.DateTimeStyles.AssumeLocal
                                                         )
                                         : DateTime.Now;
-                    ch.CaseHistoryEvent = CaseHistoryEvent.File;
+                    ch.CaseHistoryEvent = CaseHistoryEvent.Hearing;
                     ch.CCPOR_ID = el.Element("orders").Value;
                     ch.Hearing = hearing;
                     test.Add(ch);
@@ -1035,9 +1036,6 @@ namespace FACCTS.Server.Data
                     //testCourtCase.CaseStatus = (CaseStatus)Enum.Parse(typeof(CaseStatus), el.Element("caseStatus").Value);
                 }
 
-                testCourtCase.CaseHistory = new List<CaseHistory>();
-                testCourtCase.CaseHistory = TakeOtherInParty("casehistory", file, testCourtCase.CaseHistory);
-
                 //take party 1
                 testCourtCase.Party1 = new CourtParty();
                 testCourtCase.Party1.Attorney = new Attorney();
@@ -1077,6 +1075,9 @@ namespace FACCTS.Server.Data
                     IDType = Model.Enums.IdentificationIDType.AF,
                     IssuedDate = DateTime.Now
                 };
+                testCourtCase.LastAction = CourtAction.Docketed;
+                testCourtCase.CaseHistory = new List<CaseHistory>();
+                testCourtCase.CaseHistory = TakeOtherInParty("casehistory", file, testCourtCase.CaseHistory, testCourtCase);
                 context.SaveChanges();
             }
 
