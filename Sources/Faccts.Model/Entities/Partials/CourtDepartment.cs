@@ -11,6 +11,15 @@ namespace Faccts.Model.Entities
         public CourtDepartment(FACCTS.Server.Model.DataModel.CourtDepartment dto)
             : this()
         {
+            if (dto == null)
+            {
+                this.Id = -1;
+                this.Name = "<Not Specified>";
+                this.Room = "<Not Specified>";
+                this.BranchOfficer = "<Not Specified>";
+                this.Reporter = "<Not Specified>";
+                return;
+            }
             this.Id = dto.Id;
             this.Name = dto.Name;
             this.Room = dto.Room;

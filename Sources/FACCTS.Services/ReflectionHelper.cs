@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Reflection;
@@ -24,7 +25,16 @@ namespace FACCTS.Services
                         var value = item.GetValue(source);
                         if (value != null)
                         {
-                            builder.AppendFormat("{0}={1}&", WebUtility.UrlEncode(item.Name), WebUtility.UrlEncode(value.ToString()));
+                            string queryStringValue;
+                            if (value is IFormattable)
+                            {
+                                queryStringValue = ((IFormattable)value).ToString(null, CultureInfo.InvariantCulture);
+                            }
+                            else
+                            {
+                                queryStringValue = value.ToString();
+                            }
+                            builder.AppendFormat("{0}={1}&", WebUtility.UrlEncode(item.Name), WebUtility.UrlEncode(queryStringValue));
                         }
                     }
                 }

@@ -14,6 +14,7 @@ using System.ComponentModel;
 using System.Windows.Data;
 using FACCTS.Server.Model.Enums;
 using FACCTS.Server.Model.Interfaces;
+using FACCTS.Services.Dialog;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -21,9 +22,11 @@ namespace FACCTS.Controls.ViewModels
     public partial class CourtDocketViewModel : ViewModelBase
     {
         private IWindowManager _windowManager;
+        private IDialogService _dialogService;
         [ImportingConstructor]
         public CourtDocketViewModel(
             IWindowManager windowManager
+            , IDialogService dialogService
             ) : base()
         {
 
@@ -39,17 +42,17 @@ namespace FACCTS.Controls.ViewModels
                         criteria.CourtRoomId = x.Courtroom != null ? x.Courtroom.Id : (long?)null;
                     }
                     );
-
+            _dialogService = dialogService;
             _windowManager = windowManager;
             this.DisplayName = "Court Docket";
             this.CalendarDate = DateTime.Today;
-            DataContainer.SearchDocket();
                
         }
 
         protected override void Authorized()
         {
             base.Authorized();
+            DataContainer.SearchDocket();
             this.NotifyOfPropertyChange(() => CourtCases);
         }
 
@@ -106,9 +109,9 @@ namespace FACCTS.Controls.ViewModels
         {
             get
             {
-                if (_hearings == null)
+                if (_hearings == null && this.IsAuthenticated)
                 {
-                    //_hearings = DataContainer.Hearings;
+                    _hearings = DataContainer.DocketRecords;
                 }
                 return _hearings;
             }
@@ -165,7 +168,22 @@ namespace FACCTS.Controls.ViewModels
 
         public void RefreshDocket()
         {
-            NotifyCollectionUpdated();
+            this.NotifyCollectionUpdated();
+        }
+
+        public void ViewCases()
+        {
+            if (
+                Hearings.Any(x => x.ChangeTracker.State != ObjectState.Unchanged) &&
+                _dialogService.MessageBox("there are some docket items that just have been modified. Do you want to discard changes?", "Court Docket", System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Question) == System.Windows.MessageBoxResult.No
+                
+                )
+            {
+                return;
+            }
+            DataContainer.SearchDocket();
+            _hearings = null;
+            this.NotifyOfPropertyChange(() => Hearings);
         }
 
         private void NotifyCollectionUpdated()
@@ -209,6 +227,27 @@ namespace FACCTS.Controls.ViewModels
             set
             {
                 this.RaiseAndSetIfChanged(ref _session, value);
+            }
+        }
+
+        private Faccts.Model.Entities.Courtrooms _courtroom;
+        public Faccts.Model.Entities.Courtrooms Courtroom
+        {
+            get { return _courtroom; }
+            set
+            {
+                if (_courtroom != value)
+                {
+                    if (value == Faccts.Model.Entities.Courtrooms.Empty)
+                    {
+                        this.RaiseAndSetIfChanged(ref _courtroom, null);
+                    }
+                    else
+                    {
+                        this.RaiseAndSetIfChanged(ref _courtroom, value);
+                    }
+                    
+                }
             }
         }
 

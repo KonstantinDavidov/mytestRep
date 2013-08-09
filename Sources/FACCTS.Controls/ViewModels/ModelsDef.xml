@@ -41,7 +41,6 @@
   <Model name="CourtDocketViewModel">
     <Property name="IsRefreshing" type="bool"/>
     <Property name="CalendarDate" type="DateTime?"/>
-    <Property name="Courtroom" type="Faccts.Model.Entities.Courtrooms"/>
     <Property name="SessionIndex" type="int"/>
     <Property name="DocketItem" type="Faccts.Model.Entities.DocketRecord"/>
   </Model>

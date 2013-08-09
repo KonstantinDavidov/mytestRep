@@ -6,6 +6,7 @@
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
             xmlns:cal="http://www.caliburnproject.org"
              xmlns:Converters="clr-namespace:FACCTS.Controls.Converters" x:Class="FACCTS.Controls.Views.Controls.CourtDocketLeftPaneView"
+             xmlns:ent="clr-namespace:Faccts.Model.Entities;assembly=Faccts.Model"
              xmlns:Controls="clr-namespace:FACCTS.Controls"
              xmlns:ext="clr-namespace:FACCTS.Controls.MarkupExtension"
              xmlns:fs="clr-namespace:FACCTS.Services.Data;assembly=FACCTS.Services"
@@ -38,7 +39,7 @@
 				<Calendar Grid.ColumnSpan="3" SelectedDate="{Binding CalendarDate, Mode=TwoWay}" x:Name="Calendar"/>
 				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Filter by Courtroom" VerticalAlignment="Center" Grid.Row="1"/>
                 <Controls:NullItemSelectorAdapter ItemsSource="{Binding Courtrooms, Mode=OneWay}"
-                                                  NullItem="All"
+                                                  NullItem="{x:Static MemberType={x:Type ent:Courtrooms}, Member=Empty}"
                                                   Grid.Row="1"
                                                   Grid.Column="1">
                     <ComboBox
@@ -53,7 +54,8 @@
                                                   Grid.Row="2"
                                                   Grid.Column="1">
                     <ComboBox Margin="0"
-                              SelectedItem="{Binding Session, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, FallbackValue={x:Null}}"/>
+                              SelectedValue="{Binding Session, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedValuePath="Value"/>
                 </Controls:NullItemSelectorAdapter>
                     
             </Grid>
@@ -74,7 +76,8 @@
                         </MultiBinding>
                     </Button.IsEnabled>
                 </Button>
-				<Button Content="View Cases" cal:Message.Attach="RefreshDocket"/>
+                <Button Content="View Cases"
+                        cal:Message.Attach="ViewCases"/>
 			</UniformGrid>
     		
 		</Border>

@@ -408,7 +408,7 @@ namespace FACCTS.Services.Data
 
             if (e.NewItems != null)
             {
-                foreach (Hearings item in e.NewItems)
+                foreach (Faccts.Model.Entities.DocketRecord item in e.NewItems)
                 {
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
@@ -416,18 +416,18 @@ namespace FACCTS.Services.Data
                         {
                             item.StartTracking();
                         }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CourtDocketRecords", item);
+                        ChangeTracker.RecordAdditionToCollectionProperties("DocketRecords", item);
                     }
                 }
             }
 
             if (e.OldItems != null)
             {
-                foreach (Hearings item in e.OldItems)
+                foreach (Faccts.Model.Entities.DocketRecord item in e.OldItems)
                 {
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtDocketRecords", item);
+                        ChangeTracker.RecordRemovalFromCollectionProperties("DocketRecords", item);
                     }
                 }
             }

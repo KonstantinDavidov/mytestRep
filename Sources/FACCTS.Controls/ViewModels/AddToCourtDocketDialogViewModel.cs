@@ -21,6 +21,15 @@ namespace FACCTS.Controls.ViewModels
         public AddToCourtDocketDialogViewModel(CourtDocketViewModel vmCourtDocket) : base()
         {
            this.CourtDocketViewModel = vmCourtDocket;
+           this.WhenAny(x => x.CurrentCourtCase, x => x.Value)
+               .Subscribe(x =>
+               {
+                   if (x != null)
+                   {
+                       this.CaseNumber = x.CaseNumber;
+                   }
+               }
+               );
             this.WhenAny(
                 x => x.Courtroom,
                 x => x.Department,
