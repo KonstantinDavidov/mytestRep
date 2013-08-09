@@ -65,6 +65,21 @@ Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "FACCTS.Server.Setup", "FACC
 EndProject
 Project("{930C7802-8A8C-48F9-8165-68863BCCD9DD}") = "FACCTS.Setup", "FACCTS.Setup\FACCTS.Setup.wixproj", "{5B6203C1-9EEE-4DB4-B3C3-E7051409A5C2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestDeployData", "TestDeployData", "{6EDEDFB1-CB92-401B-92D8-23F500813F04}"
+	ProjectSection(SolutionItems) = preProject
+		TestDeployData\22-1212.xml = TestDeployData\22-1212.xml
+		TestDeployData\22-1234.xml = TestDeployData\22-1234.xml
+		TestDeployData\22-1235.xml = TestDeployData\22-1235.xml
+		TestDeployData\22-1251.xml = TestDeployData\22-1251.xml
+		TestDeployData\22-12512.xml = TestDeployData\22-12512.xml
+		TestDeployData\22-1252.xml = TestDeployData\22-1252.xml
+		TestDeployData\22-1254.xml = TestDeployData\22-1254.xml
+		TestDeployData\22-1267.xml = TestDeployData\22-1267.xml
+		TestDeployData\22-1295.xml = TestDeployData\22-1295.xml
+		TestDeployData\22-1297.xml = TestDeployData\22-1297.xml
+		TestDeployData\22-9999.xml = TestDeployData\22-9999.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Analysis (Debug)|Any CPU = Analysis (Debug)|Any CPU
