@@ -11,7 +11,7 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <CheckBox Margin="10 5 10 5" Grid.Column="0" Grid.Row="0" Content="Party 1"/>
-        <CheckBox Margin="10 5 10 5" Grid.Column="1" Grid.Row="0" Content="Party 2"/>
+        <CheckBox Margin="10 5 10 5" Grid.Column="0" Grid.Row="0" Content="Party 1" IsChecked="{Binding Path=IsProtectedHasPropertyRestraint, Mode=TwoWay}"/>
+        <CheckBox Margin="10 5 10 5" Grid.Column="1" Grid.Row="0" Content="Party 2" IsChecked="{Binding Path=IsRestrainedHasPropertyRestraint, Mode=TwoWay}"/>
     </Grid>
 </UserControl>

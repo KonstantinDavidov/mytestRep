@@ -7,13 +7,13 @@
              xmlns:views="clr-namespace:FACCTS.Controls.Views"
              mc:Ignorable="d"
              Background="{DynamicResource ControlBackgroundBrush}"
-             d:DataContext="{d:DesignInstance viewModels:DV110ViewModel}">
+             d:DataContext="{d:DesignInstance viewModels:DV110PropertyAndAttorneysFeeViewModel}">
     <StackPanel Orientation="Vertical" Grid.IsSharedSizeScope="True">
         <Border Margin="4 4 4 2" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1"
                 Style="{DynamicResource OrdinalBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumns" />
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumn" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -42,20 +42,20 @@
                 Style="{DynamicResource OrdinalBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumns" />
-                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumn"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition />
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Label Margin="10 5 10 5" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Content="Property Control" />
+                <Label Margin="10 5 10 5" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Content="Payments to be  maid by Restrained Person" />
                 <ComboBox Margin="10 5 10 5" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1"
                           ItemsSource="{Binding Path=RestrictionStates, Mode=OneWay}"
                           SelectedValue="{Binding Path=Order.PropertyControlState, Mode=TwoWay}"
                           SelectedValuePath="Value" />
-                <DataGrid Margin="10 5 10 5" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" CanUserAddRows="True" CanUserDeleteRows="True" ItemsSource="{Binding Path=Order.DebtPaymentItems, Mode=TwoWay}">
+                <DataGrid Margin="10 5 10 5" Grid.Column="1" Grid.Row="1" CanUserAddRows="True" CanUserDeleteRows="True" ItemsSource="{Binding Path=Order.DebtPaymentItems, Mode=TwoWay}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Pay to:" Binding="{Binding Path=Name, Mode=TwoWay}"/>
                         <DataGridTextColumn Header="For:" Binding="{Binding Path=PaymentFor, Mode=TwoWay}"/>
@@ -73,7 +73,7 @@
                 Style="{DynamicResource OrdinalBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumns"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumn"/>
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
