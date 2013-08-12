@@ -1,4 +1,5 @@
-﻿using FACCTS.Server.Code;
+﻿using FACCTS.Server.BusinessLogic.BusinessOperations;
+using FACCTS.Server.Code;
 using FACCTS.Server.DataContracts;
 using FACCTS.Server.Filters;
 using FACCTS.Server.Model;
@@ -6,6 +7,7 @@ using FACCTS.Server.Model.Calculations;
 using FACCTS.Server.Model.DataModel;
 using FACCTS.Server.Models;
 using log4net;
+using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
@@ -23,17 +25,16 @@ namespace FACCTS.Server.Controllers
     [Authorize]
     public class CourtCaseController : ApiControllerBase
     {
-        private DataSaver _dataSaver;
+
 
         [ImportingConstructor]
         public CourtCaseController(
             ILog log
-            , DataSaver dataSaver
+
             )
             : base()
         {
             _logger = log;
-            _dataSaver = dataSaver;
         }
 
         private ILog _logger;
@@ -135,7 +136,10 @@ namespace FACCTS.Server.Controllers
             HttpResponseMessage msg = null;
             try
             {
-                _dataSaver.SaveData(courtCase);
+                using (SaveCourtCaseStrategy strategy = new SaveCourtCaseStrategy(courtCase))
+                {
+                    strategy.Execute();
+                }
                 msg = Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception ex)
@@ -148,27 +152,12 @@ namespace FACCTS.Server.Controllers
 
         private HttpResponseMessage CreateNewCourtCase(CourtCaseCreationRequest request)
         {
-            CourtCase courtCase;
             try
             {
-                courtCase = new CourtCase()
+                using (CreateNewCourtCaseStrategy strategy = new CreateNewCourtCaseStrategy(request.CaseNumber, request.CourtClerkId))
                 {
-                    CaseNumber = request.CaseNumber,
-                    CourtClerkId = request.CourtClerkId,
-                    RestrainingPartyIdentificationInformation = new RestrainingPartyIdentificationInformation(),
-                };
-                courtCase.CaseHistory = new List<CaseHistory>()
-                {
-                    new CaseHistory()
-                    {
-                        Date = DateTime.Now,
-                        CaseHistoryEvent = Model.Enums.CaseHistoryEvent.File,
-                        CourtClerk = DataManager.UserRepository.GetById(request.CourtClerkId),
-                    }
-                };
-                DataManager.CourtCaseRepository.Insert(courtCase);
-
-                DataManager.Commit();
+                    strategy.Execute();
+                }
                 return Request.CreateResponse(HttpStatusCode.OK);
 
             }
@@ -177,26 +166,8 @@ namespace FACCTS.Server.Controllers
                 _logger.Fatal("Creating new court case failed", ex);
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
-            //try
-            //{
-            //    return Request.CreateResponse(HttpStatusCode.OK, DataManager.CourtCaseRepository.GetById(courtCase.Id));
-            //}
-            //catch (Exception ex)
-            //{
-            //    _logger.Fatal("Inserted record bot found", ex);
-            //    return Request.CreateErrorResponse(HttpStatusCode.NotFound, ex);
-            //}
             
         }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _dataSaver.Dispose();
-                _dataSaver = null;
-            }
-            base.Dispose(disposing);
-        }
+        
     }
 }

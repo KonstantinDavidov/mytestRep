@@ -1,4 +1,5 @@
-﻿using FACCTS.Server.Code;
+﻿using FACCTS.Server.BusinessLogic.BusinessOperations;
+using FACCTS.Server.Code;
 using FACCTS.Server.Model.Calculations;
 using FACCTS.Server.Model.DataModel;
 using FACCTS.Server.Model.Enums;
@@ -80,8 +81,8 @@ namespace FACCTS.Server.Controllers
                         Courtroom = x.Courtroom,
                         Department = x.Department,
                         Session = x.Session,
-                        Party1Name = string.Format("{0} {1} {2}", x.Party1.FirstName, x.Party1.MiddleName, x.Party1.LastName),
-                        Party2Name = string.Format("{0} {1} {2}", x.Party2.FirstName, x.Party2.MiddleName, x.Party2.LastName),
+                        Party1Name = x.Party1 != null ? string.Format("{0} {1} {2}", x.Party1.FirstName, x.Party1.MiddleName, x.Party1.LastName) : null,
+                        Party2Name = x.Party2 != null ? string.Format("{0} {1} {2}", x.Party2.FirstName, x.Party2.MiddleName, x.Party2.LastName) : null,
                         HasChildren = x.HasChildren,
                         HearingIssue = x.HearingIssue,
                     })
@@ -125,9 +126,6 @@ namespace FACCTS.Server.Controllers
                             DismissCourtCase(docket, courtCase);
                             break;
                     }
-                    
-                    courtCase.State = ObjectState.Modified;
-                    DataManager.CourtCaseRepository.ModifyByState(courtCase);
 
                 }
 
@@ -143,55 +141,26 @@ namespace FACCTS.Server.Controllers
 
         private void DropCourtCase(DocketRecord docket, CourtCase courtCase)
         {
-            courtCase.CaseHistory.Add(
-                new CaseHistory()
-                {
-                    CaseHistoryEvent = Model.Enums.CaseHistoryEvent.Dropped,
-                    Hearing = null,
-                    Date = DateTime.Now,
-                    CourtClerk = docket.CourtClerkId.HasValue ? DataManager.UserRepository.GetById(docket.CourtClerkId.Value) : null,
-                    State = ObjectState.Added,
-                }
-                );
+            using (DropCourtCaseStrategy s = new DropCourtCaseStrategy(DataManager, docket, courtCase))
+            {
+                s.Execute();
+            }
         }
 
         private void DismissCourtCase(DocketRecord docket, CourtCase courtCase)
         {
-            courtCase.CaseHistory.Add(
-                new CaseHistory()
-                {
-                    CaseHistoryEvent = Model.Enums.CaseHistoryEvent.Dismissed,
-                    Hearing = null,
-                    Date = DateTime.Now,
-                    CourtClerk = docket.CourtClerkId.HasValue ? DataManager.UserRepository.GetById(docket.CourtClerkId.Value) : null,
-                    State = ObjectState.Added,
-                }
-                );
+            using (DismissCourtCaseStrategy s = new DismissCourtCaseStrategy(DataManager, docket, courtCase))
+            {
+                s.Execute();
+            }
         }
 
         private void AddToDocket(DocketRecord docket, CourtCase courtCase)
         {
-            var hearing = new Hearing()
+            using (AddToCourtDocketStrategy s = new AddToCourtDocketStrategy(DataManager, docket, courtCase))
             {
-                HearingDate = docket.HearingDate,
-                HearingIssues = docket.HearingIssue,
-                Courtroom = DataManager.CourtroomRepository.GetById(docket.Courtroom.Id),
-                Department = DataManager.CourtDepartmentRepository.GetById(docket.Department.Id),
-                Session = docket.Session,
-                State = ObjectState.Added,
-            };
-            courtCase.Hearings.Add(hearing);
-            courtCase.CaseHistory.Add(
-                new CaseHistory()
-                {
-                    CaseHistoryEvent = Model.Enums.CaseHistoryEvent.Hearing,
-                    Hearing = hearing,
-                    Date = DateTime.Now,
-                    CourtClerk = docket.CourtClerkId.HasValue ? DataManager.UserRepository.GetById(docket.CourtClerkId.Value) : null,
-                    State = ObjectState.Added,
-                }
-                );
-            courtCase.LastAction = docket.Action.GetValueOrDefault(CourtAction.Docketed);
+                s.Execute();
+            }
         }
     }
 }
