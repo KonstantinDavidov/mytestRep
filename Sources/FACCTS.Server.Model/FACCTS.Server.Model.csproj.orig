@@ -69,12 +69,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calculations\CourtCase.cs" />
+    <Compile Include="Calculations\CourtCaseHeading.cs" />
+    <Compile Include="Calculations\DocketRecord.cs" />
+    <Compile Include="CaseHistoryEventToCaseStatusConverter.cs" />
     <Compile Include="CurrentUserResponse.cs" />
+    <Compile Include="Entities\AddressInfo.cs" />
     <Compile Include="Entities\Appearance.cs" />
+    <Compile Include="Entities\AppearanceWithSworn.cs" />
     <Compile Include="Entities\Attorney.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\CaseHistory.cs" />
     <Compile Include="Entities\CaseNote.cs" />
-    <Compile Include="Entities\CaseRecord.cs" />
     <Compile Include="Entities\Child.cs" />
     <Compile Include="Entities\Client.cs" />
     <Compile Include="Entities\ClientCertificates.cs" />
@@ -89,17 +94,17 @@
     <Compile Include="Entities\Configuration\SimpleHttpConfiguration.cs" />
     <Compile Include="Entities\Configuration\WSFederationConfiguration.cs" />
     <Compile Include="Entities\Configuration\WSTrustConfiguration.cs" />
+    <Compile Include="Entities\CourtAgency.cs" />
     <Compile Include="Entities\CourtCase.cs" />
-    <Compile Include="Entities\CourtCaseOrder.cs" />
     <Compile Include="Entities\CourtCounty.cs" />
     <Compile Include="Entities\CourtDepartment.cs" />
     <Compile Include="Entities\CourtLocation.cs" />
     <Compile Include="Entities\CourtMember.cs" />
     <Compile Include="Entities\CourtMemberBrief.cs" />
     <Compile Include="Entities\CourtParty.cs" />
-    <Compile Include="Entities\Courtroom.cs" />
+    <Compile Include="Entities\CourtRoom.cs" />
+    <Compile Include="Entities\CourtSettings.cs" />
     <Compile Include="Entities\Delegation.cs" />
-    <Compile Include="Entities\Designation.cs" />
     <Compile Include="Entities\EyesColor.cs" />
     <Compile Include="Entities\FormField.cs" />
     <Compile Include="Entities\HairColor.cs" />
@@ -108,8 +113,10 @@
     <Compile Include="Entities\IdentityProvider.cs" />
     <Compile Include="Entities\Interpreter.cs" />
     <Compile Include="Entities\ManualIntegrationTask.cs" />
+    <Compile Include="Entities\CourtOrder.cs" />
     <Compile Include="Entities\OtherProtected.cs" />
     <Compile Include="Entities\Permission.cs" />
+    <Compile Include="Entities\PersonBase.cs" />
     <Compile Include="Entities\Race.cs" />
     <Compile Include="Entities\RelyingParties.cs">
       <SubType>Code</SubType>
@@ -117,44 +124,73 @@
     <Compile Include="Entities\RestrainingPartyIdentificationInformation.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\ScheduledIntegrationTask.cs" />
-    <Compile Include="Entities\Sex.cs" />
+    <Compile Include="Entities\ThirdPartyData.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Witness.cs" />
     <Compile Include="Enums\AddressType.cs" />
-    <Compile Include="Enums\AttachmentOrders.cs" />
-    <Compile Include="Enums\CARPOSEntryType.cs" />
+    <Compile Include="Enums\AppearanceType.cs" />
+    <Compile Include="Enums\CourtAction.cs" />
+<<<<<<< HEAD
+    <Compile Include="Enums\CourtDivision.cs" />
+=======
+    <Compile Include="Interfaces\ICourtDocketSearchCriteria.cs" />
+>>>>>>> a22f47b8b42821a6dad7479ab9d11d69f850d16b
+    <Compile Include="Reporting\Contracts\IEA110.cs" />
+    <Compile Include="Reporting\Contracts\IEA130.cs" />
+    <Compile Include="Reporting\Entities\CARPOSEntryType.cs" />
     <Compile Include="Enums\CaseHistoryEvent.cs" />
     <Compile Include="Enums\CaseNoteStatus.cs" />
     <Compile Include="Enums\CaseStatus.cs" />
     <Compile Include="Enums\CautionAndMedicalConditions.cs" />
     <Compile Include="Enums\CCPORStatus.cs" />
     <Compile Include="Enums\Custody.cs" />
+    <Compile Include="Enums\PartyFor.cs" />
+    <Compile Include="Interfaces\ICourtCaseSearchCriteria.cs" />
+    <Compile Include="Reporting\Contracts\ICH110.cs" />
+    <Compile Include="Reporting\Contracts\ICH130.cs" />
+    <Compile Include="Reporting\Contracts\IDV110.cs" />
+    <Compile Include="Reporting\Contracts\IDV130.cs" />
+    <Compile Include="Reporting\Entities\AvailableReportType.cs" />
+    <Compile Include="Reporting\Entities\CustodyParent.cs" />
     <Compile Include="Enums\Designation.cs" />
-<<<<<<< HEAD
     <Compile Include="Enums\Firearm.cs" />
-=======
     <Compile Include="Enums\DocketSession.cs" />
->>>>>>> 98d5a182edfa620f0358236cd2510f78dae2ad46
     <Compile Include="Enums\IntegrationTaskRepeatPeriod.cs" />
     <Compile Include="Enums\IntegrationTaskState.cs" />
     <Compile Include="Enums\FACCTSEntity.cs" />
     <Compile Include="Enums\IdentificationIDType.cs" />
     <Compile Include="Enums\IssuingTerritory.cs" />
-    <Compile Include="Enums\MasterOrders.cs" />
-    <Compile Include="Enums\OrderItemState.cs" />
+    <Compile Include="Enums\CourtOrderTypes.cs" />
+    <Compile Include="Enums\OrderRestrictionState.cs" />
     <Compile Include="Enums\OverrunOrders.cs" />
     <Compile Include="Enums\ParticipantRole.cs" />
+    <Compile Include="Enums\PersonType.cs" />
     <Compile Include="Enums\Relationship.cs" />
     <Compile Include="Enums\ServiceReqState.cs" />
     <Compile Include="Enums\Gender.cs" />
     <Compile Include="Enums\StayAway.cs" />
+    <Compile Include="Enums\USAState.cs" />
     <Compile Include="Enums\Visitation.cs" />
     <Compile Include="NullStringConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reporting\Entities\CAPROSEntry.cs" />
-    <Compile Include="Reporting\Entities\CaseInfo.cs" />
-    <Compile Include="Reporting\Entities\NoServiceFee.cs" />
-    <Compile Include="Reporting\Entities\Party.cs" />
+    <Compile Include="Reporting\Entities\BaseOrder.cs" />
+    <Compile Include="Reporting\Entities\CH110.cs" />
+    <Compile Include="Reporting\Entities\CH130.cs" />
+    <Compile Include="Reporting\Entities\DataItem.cs" />
+    <Compile Include="Reporting\Entities\DV110.cs" />
+    <Compile Include="Reporting\Entities\DV130.cs" />
+    <Compile Include="Reporting\Entities\EA110.cs" />
+    <Compile Include="Reporting\Entities\EA130.cs" />
+    <Compile Include="Reporting\Entities\Hardship.cs" />
+    <Compile Include="Reporting\Contracts\IDataItem.cs" />
+    <Compile Include="Reporting\Contracts\IPermanentOrder.cs" />
+    <Compile Include="Reporting\Contracts\ITemporaryOrder.cs" />
+    <Compile Include="Reporting\Entities\PartyEnum.cs" />
+    <Compile Include="Reporting\Entities\PayableSchedule.cs" />
+    <Compile Include="Reporting\Entities\PermanentOrder.cs" />
+    <Compile Include="Reporting\Entities\SupervisionProviderType.cs" />
+    <Compile Include="Reporting\Entities\TemporaryOrder.cs" />
+    <Compile Include="Reporting\Entities\RestrainedLocations.cs" />
     <Compile Include="Reporting\ModelTemplate.cs">
       <DependentUpon>ModelTemplate.tt</DependentUpon>
       <AutoGen>True</AutoGen>

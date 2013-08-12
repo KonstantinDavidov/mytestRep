@@ -185,6 +185,7 @@
     <Compile Include="Reporting\Entities\PartyEnum.cs" />
     <Compile Include="Reporting\Entities\PayableSchedule.cs" />
     <Compile Include="Reporting\Entities\PermanentOrder.cs" />
+    <Compile Include="Reporting\Entities\ProofOfServiceType.cs" />
     <Compile Include="Reporting\Entities\SupervisionProviderType.cs" />
     <Compile Include="Reporting\Entities\TemporaryOrder.cs" />
     <Compile Include="Reporting\Entities\RestrainedLocations.cs" />

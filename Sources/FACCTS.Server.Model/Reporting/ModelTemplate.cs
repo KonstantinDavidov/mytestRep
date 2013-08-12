@@ -5212,5 +5212,223 @@ namespace FACCTS.Server.Model.OrderModels
 		}
 			}
 	
+			
+	public partial interface IPOS
+	{
+		
+		ProofOfServiceType POSType
+		{
+			get; set;
+		}
+		
+		int POSPeriodDays
+		{
+			get; set;
+		}
+			}
+	public partial class POS : IPOS
+	{
+		public ProofOfServiceType POSType
+		{
+			get; set;
+		}
+		
+		public int POSPeriodDays
+		{
+			get; set;
+		}
+			}
+	
+			
+	public partial interface IDV116
+	{
+		
+		bool IsNoPOSForRestrained
+		{
+			get; set;
+		}
+		
+		bool IsFCSRefferal
+		{
+			get; set;
+		}
+		
+		bool IsRestrainedRequestAttorney
+		{
+			get; set;
+		}
+		
+		bool IsOther
+		{
+			get; set;
+		}
+		
+		string OtherDescription
+		{
+			get; set;
+		}
+		
+		IPOS POS
+		{
+			get; set;
+		}
+		
+		OrderRestrictionState TRORequest
+		{
+			get; set;
+		}
+		
+		string TRODescription
+		{
+			get; set;
+		}
+			}
+	public partial class DV116 : IDV116
+	{
+		public bool IsNoPOSForRestrained
+		{
+			get; set;
+		}
+		
+		public bool IsFCSRefferal
+		{
+			get; set;
+		}
+		
+		public bool IsRestrainedRequestAttorney
+		{
+			get; set;
+		}
+		
+		public bool IsOther
+		{
+			get; set;
+		}
+		
+		public string OtherDescription
+		{
+			get; set;
+		}
+		
+		public IPOS POS
+		{
+			get; set;
+		}
+		
+		public OrderRestrictionState TRORequest
+		{
+			get; set;
+		}
+		
+		public string TRODescription
+		{
+			get; set;
+		}
+			}
+	
+			
+	public partial interface IDV730
+	{
+		
+		bool IsRenewGranted
+		{
+			get; set;
+		}
+		
+		bool IsFiveYears
+		{
+			get; set;
+		}
+		
+		bool IsPermanent
+		{
+			get; set;
+		}
+		
+		bool IsExactDate
+		{
+			get; set;
+		}
+		
+		DateTime ExpDateTime
+		{
+			get; set;
+		}
+		
+		bool IsMidnight
+		{
+			get; set;
+		}
+			}
+	public partial class DV730 : IDV730
+	{
+		public bool IsRenewGranted
+		{
+			get; set;
+		}
+		
+		public bool IsFiveYears
+		{
+			get; set;
+		}
+		
+		public bool IsPermanent
+		{
+			get; set;
+		}
+		
+		public bool IsExactDate
+		{
+			get; set;
+		}
+		
+		public DateTime ExpDateTime
+		{
+			get; set;
+		}
+		
+		public bool IsMidnight
+		{
+			get; set;
+		}
+			}
+	
+			
+	public partial interface IDV115
+	{
+		
+		PartyEnum RequestingParty
+		{
+			get; set;
+		}
+		
+		bool IsPOSNotMade
+		{
+			get; set;
+		}
+		
+		string OtherReasonDescription
+		{
+			get; set;
+		}
+			}
+	public partial class DV115 : IDV115
+	{
+		public PartyEnum RequestingParty
+		{
+			get; set;
+		}
+		
+		public bool IsPOSNotMade
+		{
+			get; set;
+		}
+		
+		public string OtherReasonDescription
+		{
+			get; set;
+		}
+			}
+	
 }
 

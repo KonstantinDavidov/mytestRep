@@ -612,6 +612,33 @@
     <Property name="OtherPartyDescription" type="string"/>
     <Property name="OtherPartyAttendence" type="IAttendence"/>
   </Model>
+  <Model name="POS">
+    <Property name ="POSType" type="ProofOfServiceType"/>
+    <Property name="POSPeriodDays" type="int"/>
+  </Model>
+  <Model name="DV116">
+    <Property name="IsNoPOSForRestrained" type="bool"/>
+    <Property name="IsFCSRefferal" type="bool"/>
+    <Property name="IsRestrainedRequestAttorney" type="bool"/>
+    <Property name="IsOther" type="bool"/>
+    <Property name="OtherDescription" type="string"/>
+    <Property name="POS" type="IPOS"/>
+    <Property name="TRORequest" type="OrderRestrictionState"/>
+    <Property name="TRODescription" type="string"/>
+  </Model>
+  <Model name="DV730">
+    <Property name="IsRenewGranted" type="bool"/>
+    <Property name="IsFiveYears" type="bool"/>
+    <Property name="IsPermanent" type="bool"/>
+    <Property name="IsExactDate" type="bool"/>
+    <Property name="ExpDateTime" type="DateTime"/>
+    <Property name="IsMidnight" type="bool"/>
+  </Model>
+  <Model name="DV115">
+    <Property name="RequestingParty" type="PartyEnum"/>
+    <Property name="IsPOSNotMade" type="bool"/>
+    <Property name="OtherReasonDescription" type="string"/>
+  </Model>
   <xs:schema 
     xmlns:xs="http://www.w3.org/2001/XMLSchema">
     <xs:element name="ModelsDef">
