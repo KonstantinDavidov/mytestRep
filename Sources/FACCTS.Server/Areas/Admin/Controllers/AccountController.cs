@@ -10,6 +10,7 @@ using Thinktecture.IdentityModel.Authorization.Mvc;
 using Thinktecture.IdentityServer;
 using log4net;
 using FACCTS.Server.Common;
+using Microsoft.Practices.ServiceLocation;
 
 
 namespace FACCTS.Server.Areas.Admin.Controllers

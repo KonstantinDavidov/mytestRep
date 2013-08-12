@@ -12,6 +12,7 @@ using FACCTS.Server.Model.DataModel;
 using FACCTS.Server.Model.Enums;
 using FACCTS.Server.Integration.Operations;
 using System.ComponentModel.Composition;
+using Microsoft.Practices.ServiceLocation;
 
 namespace FACCTS.Server.Integration
 {

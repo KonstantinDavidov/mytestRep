@@ -16,6 +16,7 @@ using System.ServiceModel.Activation;
 using log4net;
 using FACCTS.Server.Common;
 using Thinktecture.IdentityModel.Constants;
+using Microsoft.Practices.ServiceLocation;
 
 namespace FACCTS.Server.App_Start
 {

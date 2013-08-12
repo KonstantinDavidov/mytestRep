@@ -11,6 +11,7 @@ using FACCTS.Server.Model.DataModel;
 using log4net;
 using FACCTS.Server.Common;
 using FACCTS.Server.Data;
+using Microsoft.Practices.ServiceLocation;
 
 namespace FACCTS.Server.Filters
 {

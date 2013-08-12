@@ -1,4 +1,5 @@
 ﻿using log4net;
+using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

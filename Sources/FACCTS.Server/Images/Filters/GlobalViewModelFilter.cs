@@ -1,5 +1,6 @@
 ﻿using FACCTS.Server.Common;
 using log4net;
+using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;

@@ -21,6 +21,7 @@ using System.Web.Routing;
 using FACCTS.Server.DataContracts;
 using FACCTS.Server.Integration;
 using Thinktecture.IdentityServer.Repositories;
+using Microsoft.Practices.ServiceLocation;
 
 namespace FACCTS.Server
 {

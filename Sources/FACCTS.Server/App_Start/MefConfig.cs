@@ -17,6 +17,7 @@ using Thinktecture.IdentityServer.Protocols.OAuth2;
 using System.IO;
 using FACCTS.Server.Common;
 using Microsoft.Mef.CommonServiceLocator;
+using Microsoft.Practices.ServiceLocation;
 
 namespace FACCTS.Server
 {
@@ -41,8 +42,9 @@ namespace FACCTS.Server
             aggregateCatalog.Catalogs.Add(new AssemblyCatalog(Assembly.GetExecutingAssembly()));
             var container = new CompositionContainer(aggregateCatalog);
             Container.Current = container;
+            var sl = new MefServiceLocator(container);
             RegisterInstances(container);
-            ServiceLocator.Current = new MefServiceLocator(container);
+            ServiceLocator.SetLocatorProvider(() => sl);
             return container;
         }
 
