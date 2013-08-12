@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace FACCTS.Controls.Views
 {
     /// <summary>
-    /// Interaction logic for DV110ChildCustodyView.xaml
+    /// Interaction logic for DV140View.xaml
     /// </summary>
-    public partial class DV110ChildCustodyView : UserControl
+    public partial class DV140View : UserControl
     {
-        public DV110ChildCustodyView()
+        public DV140View()
         {
             InitializeComponent();
         }

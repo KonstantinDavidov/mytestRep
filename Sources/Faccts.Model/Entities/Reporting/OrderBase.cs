@@ -1,4 +1,5 @@
-﻿using FACCTS.Server.Model.Enums;
+﻿using FACCTS.Server.Model.DataModel;
+using FACCTS.Server.Model.Enums;
 
 namespace Faccts.Model.Entities.Reporting
 {
@@ -16,5 +17,7 @@ namespace Faccts.Model.Entities.Reporting
                 OnPropertyChanged();
             }
         }
+
+        public CourtOrders ModelOrder { get; set; }
     }
 }

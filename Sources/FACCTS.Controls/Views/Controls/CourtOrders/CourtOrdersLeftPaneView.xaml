@@ -3,14 +3,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-    xmlns:ViewModels="clr-namespace:FACCTS.Controls.ViewModels" 
+    xmlns:viewModels="clr-namespace:FACCTS.Controls.ViewModels" 
     x:Class="FACCTS.Controls.Views.Controls.CourtOrdersLeftPaneView" 
     xmlns:cal="http://www.caliburnproject.org"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:ei="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
-    xmlns:local="clr-namespace:Faccts.Model.Entities;assembly=FACCTS.Model"
     mc:Ignorable="d"
-    d:DesignHeight="480" d:DesignWidth="300" Background="{DynamicResource ControlBackgroundBrush}">    
+    d:DesignHeight="480" d:DesignWidth="300" Background="{DynamicResource ControlBackgroundBrush}"
+    d:DataContext="{d:DesignInstance viewModels:CourtOrdersViewModel}">    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -37,6 +37,7 @@
                     <i:EventTrigger EventName="SelectedItemChanged">
                         <cal:ActionMessage MethodName="Activate">
                             <cal:Parameter Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TreeView}, Path=SelectedItem.DataContext, Mode=OneWay}"/>
+                            <cal:Parameter Value="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=TreeView}, Path=SelectedItem}"/>
                         </cal:ActionMessage>
                     </i:EventTrigger>
                     <i:EventTrigger EventName="Loaded">
@@ -45,87 +46,87 @@
                 </i:Interaction.Triggers>
                 <TreeViewItem Header="DV110 - TRO" IsExpanded="True" x:Name="FirstItem">
                     <TreeViewItem.DataContext>
-                        <ViewModels:DV110ViewModel/>
+                        <viewModels:DV110ViewModel/>
                     </TreeViewItem.DataContext>
                     <TreeViewItem Header="Property and Attorney's Fee">
                         <TreeViewItem.DataContext>
-                            <ViewModels:DV110PropertyAndAttorneysFeeViewModel/>
+                            <viewModels:DV110PropertyAndAttorneysFeeViewModel/>
                         </TreeViewItem.DataContext>
                     </TreeViewItem>
                     <TreeViewItem Header="Child Custody">
                         <TreeViewItem.DataContext>
-                            <ViewModels:DV110ChildCustodyViewModel/>
+                            <viewModels:DV140ViewModel/>
                         </TreeViewItem.DataContext>
                     </TreeViewItem>
                     <TreeViewItem Header="Supervision">
                         <TreeViewItem.DataContext>
-                            <ViewModels:DV110SupervisionViewModel/>
+                            <viewModels:DV110SupervisionViewModel/>
                         </TreeViewItem.DataContext>
                     </TreeViewItem>
                     <TreeViewItem Header="Attach DV145 - Travel Restriction">
                         <TreeViewItem.DataContext>
-                            <ViewModels:DV110AttachDV145ViewModel/>
+                            <viewModels:DV110AttachDV145ViewModel/>
                         </TreeViewItem.DataContext>
                     </TreeViewItem>
                 </TreeViewItem>
                 <TreeViewItem Header="DV130 - Restraining Order" IsExpanded="True">
                     <TreeViewItem.DataContext>
-                        <ViewModels:DV130ViewModel/>
+                        <viewModels:DV130ViewModel/>
                     </TreeViewItem.DataContext>
                     <TreeViewItem Header="Property and Attorney's Fees">
                         <TreeViewItem.DataContext>
-                            <ViewModels:DV130PropertyAndAttorneysFeesViewModel/>
+                            <viewModels:DV130PropertyAndAttorneysFeesViewModel/>
                         </TreeViewItem.DataContext>
                     </TreeViewItem>
                     <TreeViewItem Header="Child Custody">
                         <TreeViewItem.DataContext>
-                            <ViewModels:DV130ChildCustodyViewModel/>
+                            <viewModels:DV130ChildCustodyViewModel/>
                         </TreeViewItem.DataContext>
                     </TreeViewItem>
                     <TreeViewItem Header="Supervision">
                         <TreeViewItem.DataContext>
-                            <ViewModels:DV130SupervisionViewModel/>
+                            <viewModels:DV130SupervisionViewModel/>
                         </TreeViewItem.DataContext>
                     </TreeViewItem>
                     <TreeViewItem Header="FL342 - Child Support">
                         <TreeViewItem.DataContext>
-                            <ViewModels:DV130FL342ChildSupportViewModel/>
+                            <viewModels:DV130FL342ChildSupportViewModel/>
                         </TreeViewItem.DataContext>
                     </TreeViewItem>
                     <TreeViewItem Header="Attach DV145 - Travel Restriction">
                         <TreeViewItem.DataContext>
-                            <ViewModels:DV130AttachDV145ViewModel/>
+                            <viewModels:DV130AttachDV145ViewModel/>
                         </TreeViewItem.DataContext>
                     </TreeViewItem>
                     <TreeViewItem Header="Attach FL343 - Spousal / Partner  Support">
                         <TreeViewItem.DataContext>
-                            <ViewModels:DV130AttachFL343ViewModel/>
+                            <viewModels:DV130AttachFL343ViewModel/>
                         </TreeViewItem.DataContext>
                     </TreeViewItem>
                 </TreeViewItem>
                 <TreeViewItem Header="CH110 - Civil Harassment - TRO">
                     <TreeViewItem.DataContext>
-                        <ViewModels:CH110ViewModel/>
+                        <viewModels:CH110ViewModel/>
                     </TreeViewItem.DataContext>
                 </TreeViewItem>
                 <TreeViewItem Header="CH130 - Civil Harassment - RO">
                     <TreeViewItem.DataContext>
-                        <ViewModels:CH130ViewModel />
+                        <viewModels:CH130ViewModel />
                     </TreeViewItem.DataContext>
                 </TreeViewItem>
                 <TreeViewItem Header="EA110 - Elderly Abuse - TRO">
                     <TreeViewItem.DataContext>
-                        <ViewModels:EA110ViewModel/>
+                        <viewModels:EA110ViewModel/>
                     </TreeViewItem.DataContext>
                 </TreeViewItem>
                 <TreeViewItem Header="EA130 - Elderly Abuse - RO">
                     <TreeViewItem.DataContext>
-                        <ViewModels:EA130ViewModel/>
+                        <viewModels:EA130ViewModel/>
                     </TreeViewItem.DataContext>
                 </TreeViewItem>
                 <TreeViewItem Header="FL344 - Debt and Property Control">
                     <TreeViewItem.DataContext>
-                        <ViewModels:FL344DebtAndPropertyControlViewModel/>
+                        <viewModels:FL344DebtAndPropertyControlViewModel/>
                     </TreeViewItem.DataContext>
                 </TreeViewItem>
             </TreeView>

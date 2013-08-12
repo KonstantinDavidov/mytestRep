@@ -7,15 +7,27 @@ using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls;
 using Caliburn.Micro;
 using Caliburn.Micro.ReactiveUI;
 using Faccts.Model.Entities;
 using Faccts.Model.Entities.Reporting;
+using FACCTS.Server.Model.DataModel;
 using FACCTS.Server.Model.Enums;
+using FACCTS.Server.Model.OrderModels;
 using FACCTS.Services;
 using FACCTS.Services.Authentication;
 using FACCTS.Services.Data;
 using ReactiveUI;
+using CH110 = Faccts.Model.Entities.Reporting.CH110;
+using CH130 = Faccts.Model.Entities.Reporting.CH130;
+using CourtCase = Faccts.Model.Entities.CourtCase;
+using CourtOrders = Faccts.Model.Entities.CourtOrders;
+using DV110 = Faccts.Model.Entities.Reporting.DV110;
+using DV130 = Faccts.Model.Entities.Reporting.DV130;
+using DV140 = Faccts.Model.Entities.Reporting.DV140;
+using EA110 = Faccts.Model.Entities.Reporting.EA110;
+using EA130 = Faccts.Model.Entities.Reporting.EA130;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -175,28 +187,31 @@ namespace FACCTS.Controls.ViewModels
             IsAuthenticated = e.AuthenticationStatus == AuthenticationStatus.Authenticated;
         }
 
-        public void Activate(CourtOrderWithTypeViewModel viewModel)
+        public void Activate(CourtOrderWithTypeViewModel viewModel, TreeViewItem selectedItem)
         {
             if (viewModel == null) return;
             switch (viewModel.OrderType)
             {
                 case CourtOrdersTypes.CH110:
-                    PopulateOrderIfNotExists((CourtOrderBaseViewModel<CH110>) viewModel);
+                    PopulateMasterOrderIfNotExists((CourtOrderBaseViewModel<CH110>) viewModel);
                     break;
                 case CourtOrdersTypes.CH130:
-                    PopulateOrderIfNotExists((CourtOrderBaseViewModel<CH130>) viewModel);
+                    PopulateMasterOrderIfNotExists((CourtOrderBaseViewModel<CH130>) viewModel);
                     break;
                 case CourtOrdersTypes.DV110:
-                    PopulateOrderIfNotExists((CourtOrderBaseViewModel<DV110>) viewModel);
+                    PopulateMasterOrderIfNotExists((CourtOrderBaseViewModel<DV110>) viewModel);
                     break;
                 case CourtOrdersTypes.DV130:
-                    PopulateOrderIfNotExists((CourtOrderBaseViewModel<DV130>) viewModel);
+                    PopulateMasterOrderIfNotExists((CourtOrderBaseViewModel<DV130>) viewModel);
                     break;
                 case CourtOrdersTypes.EA110:
-                    PopulateOrderIfNotExists((CourtOrderBaseViewModel<EA110>) viewModel);
+                    PopulateMasterOrderIfNotExists((CourtOrderBaseViewModel<EA110>) viewModel);
                     break;
                 case CourtOrdersTypes.EA130:
-                    PopulateOrderIfNotExists((CourtOrderBaseViewModel<EA130>) viewModel);
+                    PopulateMasterOrderIfNotExists((CourtOrderBaseViewModel<EA130>) viewModel);
+                    break;
+                case CourtOrdersTypes.DV140:
+                    PopulateAttachmentOrderIfNotExists((CourtOrderBaseViewModel<DV140>) viewModel, selectedItem);
                     break;
             }
             ActivateItem(viewModel);
@@ -226,7 +241,7 @@ namespace FACCTS.Controls.ViewModels
             _windowManager.ShowDialog(vm);
         }
 
-        private void PopulateOrderIfNotExists<T>(CourtOrderBaseViewModel<T> orderViewModel) where T: OrderBase, new()
+        private void PopulateMasterOrderIfNotExists<T>(CourtOrderBaseViewModel<T> orderViewModel) where T: OrderBase, new()
         {
             if (SelectedHearing == null)
                 return;
@@ -239,9 +254,48 @@ namespace FACCTS.Controls.ViewModels
                 };
             if (courtOrder.InnerOrder == null)
             {
-                courtOrder.InnerOrder = new T();
+                courtOrder.InnerOrder = new T {ModelOrder = courtOrder};
             }
             orderViewModel.Order = (T) courtOrder.InnerOrder;
+        }
+
+        private void PopulateAttachmentOrderIfNotExists<T>(CourtOrderBaseViewModel<T> orderViewModel,
+            TreeViewItem treeNode) where T : OrderBase, new()
+        {
+            if (SelectedHearing == null)
+                return;
+            if (! (treeNode.Parent is TreeViewItem))
+                return;
+            OrderBase parentOrder;
+            switch (((CourtOrderWithTypeViewModel) (treeNode.Parent as TreeViewItem).DataContext).OrderType)
+            {
+                case CourtOrdersTypes.DV110:
+                    parentOrder = ((CourtOrderBaseViewModel<DV110>) (treeNode.Parent as TreeViewItem).DataContext).Order;
+                    break;
+                case CourtOrdersTypes.DV130:
+                    parentOrder = ((CourtOrderBaseViewModel<DV130>) (treeNode.Parent as TreeViewItem).DataContext).Order;
+                    break;
+                case CourtOrdersTypes.DV140:
+                    parentOrder = ((CourtOrderBaseViewModel<DV140>) (treeNode.Parent as TreeViewItem).DataContext).Order;
+                    break;
+                default:
+                    parentOrder = null;
+                    break;
+            }
+            if (parentOrder == null)
+                return;
+            CourtOrders order =
+                parentOrder.ModelOrder.Attachments.FirstOrDefault(o => o.OrderType == orderViewModel.OrderType) ??
+                new CourtOrders
+                {
+                    Hearings = SelectedHearing,
+                    OrderType = orderViewModel.OrderType
+                };
+            if (order.InnerOrder == null)
+            {
+                order.InnerOrder = new T {ModelOrder = order};
+            }
+            orderViewModel.Order = (T) order.InnerOrder;
         }
     }
 }
