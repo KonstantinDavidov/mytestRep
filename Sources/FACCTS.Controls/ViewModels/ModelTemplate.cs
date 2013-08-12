@@ -262,13 +262,13 @@ namespace FACCTS.Controls.ViewModels
 			}
 		}
 		
-		private Faccts.Model.Entities.CourtCase _currentCourtCase;
-		public Faccts.Model.Entities.CourtCase CurrentCourtCase
+		private Faccts.Model.Entities.DocketRecord _docketRecord;
+		public Faccts.Model.Entities.DocketRecord DocketRecord
 		{
-			get{return _currentCourtCase;}
+			get{return _docketRecord;}
 			set{
-				if(_currentCourtCase!=value){
-					this.RaiseAndSetIfChanged(ref _currentCourtCase, value);
+				if(_docketRecord!=value){
+					this.RaiseAndSetIfChanged(ref _docketRecord, value);
 				}
 			}
 		}

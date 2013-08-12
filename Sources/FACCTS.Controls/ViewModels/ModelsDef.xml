@@ -34,7 +34,7 @@
 
   <Model name="DropDismissDialogViewModel">
     <Property name="CaseNumber" type="string"/>
-    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
+    <Property name="DocketRecord" type="Faccts.Model.Entities.DocketRecord"/>
     <Property name="Dismiss" type="bool"/>
   </Model>
   
