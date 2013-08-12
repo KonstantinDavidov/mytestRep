@@ -6,6 +6,8 @@
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
             xmlns:cal="http://www.caliburnproject.org"
              xmlns:Converters="clr-namespace:FACCTS.Controls.Converters" x:Class="FACCTS.Controls.Views.Controls.CourtDocketLeftPaneView"
+             xmlns:ent="clr-namespace:Faccts.Model.Entities;assembly=Faccts.Model"
+             xmlns:Controls="clr-namespace:FACCTS.Controls"
              xmlns:ext="clr-namespace:FACCTS.Controls.MarkupExtension"
              xmlns:fs="clr-namespace:FACCTS.Services.Data;assembly=FACCTS.Services"
              mc:Ignorable="d" 
@@ -34,25 +36,28 @@
 					<RowDefinition Height="Auto"/>
 					<RowDefinition Height="Auto"/>
 				</Grid.RowDefinitions>
-				<Calendar Grid.ColumnSpan="3" SelectedDate="{Binding CalendarDate, Mode=TwoWay}" x:Name="Calendar"/>
+				<Calendar Grid.ColumnSpan="3" SelectedDate="{Binding CalendarDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" x:Name="Calendar"/>
 				<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Filter by Courtroom" VerticalAlignment="Center" Grid.Row="1"/>
-                <ComboBox Grid.Row="1"
-                          Grid.Column="1"
-                          DisplayMemberPath="Name"
-                          SelectedValuePath="UnderlyingObject"
-                          SelectedIndex="0"
-                          SelectedValue="{Binding Courtroom, Mode=TwoWay}"
-                          ItemsSource="{Binding Courtrooms, Mode=OneWay}">
-                </ComboBox>
+                <Controls:NullItemSelectorAdapter ItemsSource="{Binding Courtrooms, Mode=OneWay}"
+                                                  NullItem="{x:Static ent:Courtrooms.Empty}"
+                                                  Grid.Row="1"
+                                                  Grid.Column="1">
+                    <ComboBox
+                              DisplayMemberPath="RoomName"
+                              SelectedIndex="0"
+                              SelectedItem="{Binding Courtroom, Mode=TwoWay}"/>
+                </Controls:NullItemSelectorAdapter>
+                    
 				<TextBlock TextWrapping="Wrap" VerticalAlignment="Center" Grid.Row="2"><Run Text="Filter by AM/PM" /></TextBlock>
-                <ComboBox Margin="0"
-                          Grid.Row="2"
-                          Grid.Column="1"
-                          SelectedIndex="{Binding SessionIndex, Mode=TwoWay, FallbackValue=2}">
-                    <ComboBoxItem>AM</ComboBoxItem>
-                    <ComboBoxItem>PM</ComboBoxItem>
-                    <ComboBoxItem>Both</ComboBoxItem>
-                </ComboBox>
+                <Controls:NullItemSelectorAdapter ItemsSource="{Binding SessionList, Mode=OneWay}"
+                                                  NullItem="Both"
+                                                  Grid.Row="2"
+                                                  Grid.Column="1">
+                    <ComboBox Margin="0"
+                              SelectedValue="{Binding Session, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                              SelectedValuePath="Value"/>
+                </Controls:NullItemSelectorAdapter>
+                    
             </Grid>
 		</GroupBox>
 		<Border BorderThickness="1" Grid.Row="2" Style="{DynamicResource OrdinalBorder}">
@@ -71,7 +76,8 @@
                         </MultiBinding>
                     </Button.IsEnabled>
                 </Button>
-				<Button Content="View Cases" cal:Message.Attach="RefreshDocket"/>
+                <Button Content="View Cases"
+                        cal:Message.Attach="ViewCases"/>
 			</UniformGrid>
     		
 		</Border>

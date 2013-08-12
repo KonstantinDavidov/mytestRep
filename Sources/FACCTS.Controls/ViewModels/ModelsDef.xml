@@ -41,9 +41,8 @@
   <Model name="CourtDocketViewModel">
     <Property name="IsRefreshing" type="bool"/>
     <Property name="CalendarDate" type="DateTime?"/>
-    <Property name="Courtroom" type="Faccts.Model.Entities.Courtrooms"/>
     <Property name="SessionIndex" type="int"/>
-    <Property name="DocketItem" type="Faccts.Model.Entities.Hearings"/>
+    <Property name="DocketItem" type="Faccts.Model.Entities.DocketRecord"/>
   </Model>
   
   <Model name="ReissueCaseDialogViewModel">
@@ -139,6 +138,7 @@
         <xs:enumeration value="Faccts.Model.Entities.CaseHistory"></xs:enumeration>
         <xs:enumeration value="Faccts.Model.Entities.User"></xs:enumeration>
         <xs:enumeration value="Faccts.Model.Entities.Hearings"></xs:enumeration>
+        <xs:enumeration value="Faccts.Model.Entities.DocketRecord"></xs:enumeration>
         <xs:enumeration value="Faccts.Model.Entities.HearingIssue"></xs:enumeration>
         <xs:enumeration value="FACCTS.Server.Model.Enums.MasterOrders"/>
         <xs:enumeration value="FACCTS.Server.Model.Enums.DocketSession"/>

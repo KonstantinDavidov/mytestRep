@@ -28,5 +28,10 @@ namespace FACCTS.Services.Data
             get;
             set;
         }
+
+        public override string ToString()
+        {
+            return ReflectionHelper.UriStringByPublicProperties(this);
+        }
     }
 }

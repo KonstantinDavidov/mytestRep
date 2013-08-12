@@ -38,7 +38,7 @@ namespace FACCTS.Services.Data
 
         private FACCTS.Server.Model.DataModel.CourtCase Save(FACCTS.Server.Model.DataModel.CourtCase dto)
         {
-            return this.CallServicePut<FACCTS.Server.Model.DataModel.CourtCase, FACCTS.Server.Model.DataModel.CourtCase>("CourtCase", dto);
+            return this.CallServicePut<FACCTS.Server.Model.DataModel.CourtCase, FACCTS.Server.Model.DataModel.CourtCase>(Routes.GetCourtCases.CourtCaseController, dto);
         }
 
         public static Faccts.Model.Entities.CourtCase SaveData(Faccts.Model.Entities.CourtCase courtCaseToSave)

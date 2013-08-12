@@ -311,17 +311,6 @@ namespace FACCTS.Controls.ViewModels
 			}
 		}
 		
-		private Faccts.Model.Entities.Courtrooms _courtroom;
-		public Faccts.Model.Entities.Courtrooms Courtroom
-		{
-			get{return _courtroom;}
-			set{
-				if(_courtroom!=value){
-					this.RaiseAndSetIfChanged(ref _courtroom, value);
-				}
-			}
-		}
-		
 		private int _sessionIndex;
 		public int SessionIndex
 		{
@@ -333,8 +322,8 @@ namespace FACCTS.Controls.ViewModels
 			}
 		}
 		
-		private Faccts.Model.Entities.Hearings _docketItem;
-		public Faccts.Model.Entities.Hearings DocketItem
+		private Faccts.Model.Entities.DocketRecord _docketItem;
+		public Faccts.Model.Entities.DocketRecord DocketItem
 		{
 			get{return _docketItem;}
 			set{

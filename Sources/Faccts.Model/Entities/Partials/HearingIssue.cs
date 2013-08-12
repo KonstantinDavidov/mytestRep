@@ -40,5 +40,31 @@ namespace Faccts.Model.Entities
             };
         }
 
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            if (this.PermanentRO)
+            {
+                sb.Append("Permanent RO;");
+            }
+            if (this.SpousalSupport)
+            {
+                sb.Append("SS;");
+            }
+            if (this.ChildCustodyOrChildVisitation)
+            {
+                sb.Append("CC / CV;");
+            }
+            if (this.ChildSupport)
+            {
+                sb.Append("CS;");
+            }
+            if (this.IsOtherIssue)
+            {
+                sb.Append("Other;");
+            }
+            return sb.ToString().TrimEnd(';');
+        }
+
     }
 }

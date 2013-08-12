@@ -318,13 +318,13 @@ namespace FACCTS.Services.Data
             } 
         }
 
-        public TrackableCollection<DocketRecord> DocketRecords
+        public TrackableCollection<Faccts.Model.Entities.DocketRecord> DocketRecords
         {
             get
             {
                 if (_hearings == null)
                 {
-                    _hearings = new TrackableCollection<DocketRecord>();
+                    _hearings = new TrackableCollection<Faccts.Model.Entities.DocketRecord>();
                     _hearings.CollectionChanged += FixupCourtDocketRecords;
                 }
                 return _hearings;
@@ -383,13 +383,20 @@ namespace FACCTS.Services.Data
             IsSearching = true;
             try
             {
-                
+                this.DocketRecords = new TrackableCollection<Faccts.Model.Entities.DocketRecord>(CourtDockets.GetDocket());
             }
             finally
             {
                 IsSearching = false;
                 ChangeTracker.ChangeTrackingEnabled = true;
             }
+        }
+
+        public void SaveDocket()
+        {
+            var docketRecords = DocketRecords.Where(x => x.ChangeTracker.State != ObjectState.Unchanged);
+            CourtDockets.SaveDocket(docketRecords);
+            
         }
 
         private void FixupCourtDocketRecords(object sender, NotifyCollectionChangedEventArgs e)
@@ -401,7 +408,7 @@ namespace FACCTS.Services.Data
 
             if (e.NewItems != null)
             {
-                foreach (Hearings item in e.NewItems)
+                foreach (Faccts.Model.Entities.DocketRecord item in e.NewItems)
                 {
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
@@ -409,23 +416,23 @@ namespace FACCTS.Services.Data
                         {
                             item.StartTracking();
                         }
-                        ChangeTracker.RecordAdditionToCollectionProperties("CourtDocketRecords", item);
+                        ChangeTracker.RecordAdditionToCollectionProperties("DocketRecords", item);
                     }
                 }
             }
 
             if (e.OldItems != null)
             {
-                foreach (Hearings item in e.OldItems)
+                foreach (Faccts.Model.Entities.DocketRecord item in e.OldItems)
                 {
                     if (ChangeTracker.ChangeTrackingEnabled)
                     {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("CourtDocketRecords", item);
+                        ChangeTracker.RecordRemovalFromCollectionProperties("DocketRecords", item);
                     }
                 }
             }
         }
-        private TrackableCollection<DocketRecord> _hearings;
+        private TrackableCollection<Faccts.Model.Entities.DocketRecord> _hearings;
 
         protected void RaisePropertyChanged(string propertyName)
         {
@@ -500,26 +507,7 @@ namespace FACCTS.Services.Data
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
-            var propInfos = this.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            sb = propInfos.Aggregate(sb, (builder, item) =>
-                {
-                    if (item.CanRead)
-                    {
-                        MethodInfo mget = item.GetGetMethod(false);
-                        if (mget != null)
-                        {
-                            var value = item.GetValue(this);
-                            if (value != null)
-                            {
-                                builder.AppendFormat("{0}={1}&", WebUtility.UrlEncode(item.Name), WebUtility.UrlEncode(value.ToString()));
-                            }
-                        }
-                    }
-                    return builder;
-                }
-                );
-            return sb.ToString().TrimEnd('&');
+            return ReflectionHelper.UriStringByPublicProperties(this);
         }
     }
    

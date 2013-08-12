@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Server.Model.Calculations
 {
-    public class DocketRecord
+    public class DocketRecord : IEntityWithState
     {
         public long CourtCaseId { get; set; }
         public string CaseNumber { get; set; }
@@ -20,5 +20,13 @@ namespace FACCTS.Server.Model.Calculations
         public string Party2Name { get; set; }
         public bool HasChildren { get; set; }
         public HearingIssue HearingIssue { get; set; }
+        public long? CourtClerkId { get; set; }
+        public CourtAction? Action { get; set; }
+
+        public ObjectState State
+        {
+            get;
+            set;
+        }
     }
 }

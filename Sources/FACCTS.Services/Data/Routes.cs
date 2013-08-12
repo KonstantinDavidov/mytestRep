@@ -17,5 +17,10 @@ namespace FACCTS.Services.Data
         {
             public const string CaseHistoryController = "CaseHistory";
         }
+
+        public static class CourtDocket
+        {
+            public const string CourtDocketController = "CourtDocket";
+        }
     }
 }

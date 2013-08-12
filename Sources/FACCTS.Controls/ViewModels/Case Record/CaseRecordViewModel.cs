@@ -157,8 +157,11 @@ namespace FACCTS.Controls.ViewModels
 
                 this.NotifyOfPropertyChanging();
                 _selectedHeading = value;
-                DataContainer.UpdateBySelection(_selectedHeading);
-                _eventAggregator.Publish(new CurrentCourtCaseChangedEvent(DataContainer.CurrentCourtCase));
+                if (_selectedHeading != null)
+                {
+                    DataContainer.UpdateBySelection(_selectedHeading);
+                    _eventAggregator.Publish(new CurrentCourtCaseChangedEvent(DataContainer.CurrentCourtCase));
+                }
                 this.NotifyOfPropertyChange();
 
             }
