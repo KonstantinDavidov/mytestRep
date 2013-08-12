@@ -5,9 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:viewModels="clr-namespace:FACCTS.Controls.ViewModels"
              xmlns:views="clr-namespace:FACCTS.Controls.Views"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:reporting="clr-namespace:Faccts.Model.Entities.Reporting;assembly=Faccts.Model"
              mc:Ignorable="d"
              Background="{DynamicResource ControlBackgroundBrush}"
-             d:DataContext="{d:DesignInstance viewModels:DV110PropertyAndAttorneysFeeViewModel}">
+             d:DataContext="{d:DesignInstance viewModels:DV110PropertyAndAttorneysFeeViewModel}"
+             x:Name="LayoutRoot">
     <StackPanel Orientation="Vertical" Grid.IsSharedSizeScope="True">
         <Border Margin="4 4 4 2" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1"
                 Style="{DynamicResource OrdinalBorder}">
@@ -19,22 +23,40 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition />
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Label Margin="10 5 10 5" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Content="Property Control" />
                 <ComboBox Margin="10 5 10 5" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1"
                           ItemsSource="{Binding Path=RestrictionStates, Mode=OneWay}"
                           SelectedValue="{Binding Path=Order.ConductChoiceState, Mode=TwoWay}"
                           SelectedValuePath="Value" />
-                <DataGrid Margin="10 5 10 5" Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" CanUserAddRows="True" CanUserDeleteRows="True" ItemsSource="{Binding Path=Order.PropertyControlItems, Mode=TwoWay}">
+                <DataGrid Name="PropertyControlItemsGrid" Margin="10 5 10 5" Grid.Column="1" Grid.Row="0"
+                          Grid.RowSpan="2" CanUserAddRows="True" CanUserDeleteRows="True"
+                          ItemsSource="{Binding Path=Order.PropertyControlItems, Mode=TwoWay}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Proterty Item" Binding="{Binding Path=Name, Mode=TwoWay}" />
-                        <DataGridTextColumn Header="Additional Description" Binding="{Binding Path=Description, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="Additional Description"
+                                            Binding="{Binding Path=Description, Mode=TwoWay}" />
                     </DataGrid.Columns>
                 </DataGrid>
                 <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Margin="10 5 10 5" Width="75">Add</Button>
-                    <Button Margin="10 5 10 5" Width="75">Remove</Button>
+                    <Button Margin="10 5 10 5" Width="75" Content="Add">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="AddPropertyControlItem" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button Margin="10 5 10 5" Width="75" Content="Remove">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="RemovePropertyControlItem">
+                                    <cal:Parameter
+                                        Value="{Binding ElementName=PropertyControlItemsGrid, Path=SelectedItem}" />
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
                 </StackPanel>
             </Grid>
         </Border>
@@ -42,50 +64,100 @@
                 Style="{DynamicResource OrdinalBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumn"/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumn" />
+                    <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition />
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
-                <Label Margin="10 5 10 5" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Content="Payments to be  maid by Restrained Person" />
+                <Label Margin="10 5 10 5" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2"
+                       Content="Payments to be  maid by Restrained Person" />
                 <ComboBox Margin="10 5 10 5" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1"
                           ItemsSource="{Binding Path=RestrictionStates, Mode=OneWay}"
                           SelectedValue="{Binding Path=Order.PropertyControlState, Mode=TwoWay}"
                           SelectedValuePath="Value" />
-                <DataGrid Margin="10 5 10 5" Grid.Column="1" Grid.Row="1" CanUserAddRows="True" CanUserDeleteRows="True" ItemsSource="{Binding Path=Order.DebtPaymentItems, Mode=TwoWay}">
+                <DataGrid Name="PaymentItemsGrid" Margin="10 5 10 5" Grid.Column="1" Grid.Row="1" CanUserAddRows="True"
+                          CanUserDeleteRows="True" ItemsSource="{Binding Path=Order.DebtPaymentItems, Mode=TwoWay}">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Pay to:" Binding="{Binding Path=Name, Mode=TwoWay}"/>
-                        <DataGridTextColumn Header="For:" Binding="{Binding Path=PaymentFor, Mode=TwoWay}"/>
-                        <DataGridTextColumn Header="Amount: $" Binding="{Binding Path=Amount, Mode=TwoWay}"/>
-                        <DataGridTextColumn Header="Due date:" Binding="{Binding Path=PaymentDate, Mode=TwoWay}"/>
+                        <DataGridTemplateColumn Header="Pay to:">
+                            <DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate DataType="reporting:DebtPaymentItem">
+                                    <ComboBox Margin="10 5 10 5" VerticalAlignment="Top"
+                                              ItemsSource="{Binding ElementName=LayoutRoot, Path=DataContext.ParticipantRoles, Mode=OneWay}"
+                                              SelectedValue="{Binding Path=PaymentFor}"
+                                              SelectedValuePath="Value"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate DataType="reporting:DebtPaymentItem">
+                                    <ComboBox Margin="10 5 10 5" VerticalAlignment="Top"
+                                              ItemsSource="{Binding ElementName=LayoutRoot, Path=DataContext.ParticipantRoles, Mode=OneWay}"
+                                              SelectedValue="{Binding Path=PaymentFor}"
+                                              SelectedValuePath="Value"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn Header="For:" Binding="{Binding Path=Name, Mode=TwoWay}" />
+                        <DataGridTextColumn Header="Amount: $" Binding="{Binding Path=Amount, Mode=TwoWay}" />
+                        <DataGridTemplateColumn Header="Due date:">
+                            <DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate DataType="reporting:DebtPaymentItem">
+                                    <DatePicker SelectedDate="{Binding Path=PaymentDate, Mode=TwoWay}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate DataType="reporting:DebtPaymentItem">
+                                    <TextBlock>
+                                        <TextBlock.Text>
+                                            <Binding Path="PaymentDate" StringFormat="{}{0:d}" />
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
                 <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                    <Button Margin="10 5 10 5" Width="75">Add</Button>
-                    <Button Margin="10 5 10 5" Width="75">Remove</Button>
+                    <Button Margin="10 5 10 5" Width="75" Content="Add">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="AddPaymentItem" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                    <Button Margin="10 5 10 5" Width="75" Content="Remove">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <cal:ActionMessage MethodName="RemovePaymentItem">
+                                    <cal:Parameter
+                                        Value="{Binding ElementName=PaymentItemsGrid, Path=SelectedItem}" />
+                                </cal:ActionMessage>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
                 </StackPanel>
             </Grid>
         </Border>
-        <Border BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1"
+        <Border Margin="4 2 4 4" BorderBrush="{DynamicResource ControlBorderBrush}" BorderThickness="1"
                 Style="{DynamicResource OrdinalBorder}">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumn"/>
+                    <ColumnDefinition Width="Auto" SharedSizeGroup="FirstColumn" />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition />
                     <RowDefinition />
                 </Grid.RowDefinitions>
-                <Label Margin="10 5 10 5" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Content="Property Restraint"/>
+                <Label Margin="10 5 10 5" FontWeight="Bold" Grid.Column="0" Grid.Row="0" Content="Property Restraint" />
                 <ComboBox Margin="10 5 10 5" VerticalAlignment="Top" Grid.Column="0" Grid.Row="1"
                           ItemsSource="{Binding Path=RestrictionStates, Mode=OneWay}"
                           SelectedValue="{Binding Path=Order.DVPropertyRestraintState, Mode=TwoWay}"
                           SelectedValuePath="Value" />
-                <views:DVPropertyRestraintSectionView Grid.Column="1" Grid.Row="1" DataContext="{Binding Path=Order.PropertyRestraint, Mode=TwoWay}"/>
+                <views:DVPropertyRestraintSectionView Grid.Column="1" Grid.Row="1"
+                                                      DataContext="{Binding Path=Order.PropertyRestraint, Mode=TwoWay}" />
             </Grid>
         </Border>
     </StackPanel>

@@ -128,6 +128,7 @@
     <Compile Include="Data\CourtDocketSearchCriteria.cs" />
     <Compile Include="Data\CourtRooms.cs" />
     <Compile Include="Data\DataContainer.cs" />
+    <Compile Include="Data\EnumDescriptions.cs" />
     <Compile Include="Data\EyesColors.cs" />
     <Compile Include="Data\FACCTSConfigurations.cs" />
     <Compile Include="Data\HairColors.cs" />

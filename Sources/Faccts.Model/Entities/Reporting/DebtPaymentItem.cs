@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using FACCTS.Server.Model.Enums;
 using FACCTS.Server.Model.OrderModels;
 
@@ -10,6 +12,11 @@ namespace Faccts.Model.Entities.Reporting
         private DateTime _paymentDate;
         private ParticipantRole _paymentFor;
         private decimal _amount;
+
+        public DebtPaymentItem()
+        {
+            PaymentDate = DateTime.Now.Date;
+        }
 
         public DebtPaymentItem(IDebtPaymentItem debtPaymentItem)
         {

@@ -16,5 +16,25 @@ namespace FACCTS.Controls.ViewModels
             DisplayName = "DV130 Restraining Order - Property and Attorney's Fees";
             OrderType = CourtOrdersTypes.DV130;
         }
+
+        public void AddPropertyControlItem()
+        {
+            Order.PropertyControlItems.Add(new DataItem());
+        }
+
+        public void RemovePropertyControlItem(DataItem item)
+        {
+            Order.PropertyControlItems.Remove(item);
+        }
+
+        public void AddPaymentItem()
+        {
+            Order.DebtPaymentItems.Add(new DebtPaymentItem());
+        }
+
+        public void RemovePaymentItem(DebtPaymentItem item)
+        {
+            Order.DebtPaymentItems.Remove(item);
+        }
     }
 }

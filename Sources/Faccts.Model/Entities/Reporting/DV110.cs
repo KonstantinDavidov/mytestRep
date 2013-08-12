@@ -246,7 +246,10 @@ namespace Faccts.Model.Entities.Reporting
 
         public ICollection<IDebtPaymentItem> DebtPaymentItems
         {
-            get { return _debtPaymentItems; }
+            get
+            {
+                return _debtPaymentItems;
+            }
             set
             {
                 if (Equals(value, _debtPaymentItems)) return;
