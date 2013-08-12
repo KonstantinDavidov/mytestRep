@@ -99,8 +99,12 @@ namespace FACCTS.Controls.ViewModels
         {
             var vm = ServiceLocatorContainer.Locator.GetInstance<DropDismissDialogViewModel>();
             vm.Dismiss = dismiss;
-            //vm.CurrentCourtCase = CurrentCourtCase;
-            //_windowManager.ShowDialog(vm);
+            vm.DocketRecord = this.DocketItem;
+            if (_windowManager.ShowDialog(vm).GetValueOrDefault(false))
+            {
+                RefreshDocket();
+            }
+            this.NotifyOfPropertyChange(() => CanSave);
         }
 
         public bool CanSave
@@ -173,6 +177,7 @@ namespace FACCTS.Controls.ViewModels
                 _hearings = null;
                 this.NotifyOfPropertyChange(() => Hearings);
                 this.NotifyOfPropertyChange(() => CanSave);
+                this.NotifyOfPropertyChange(() => DocketCount);
             }
         }
 

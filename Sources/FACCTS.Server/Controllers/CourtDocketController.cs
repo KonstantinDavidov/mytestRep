@@ -50,6 +50,7 @@ namespace FACCTS.Server.Controllers
                         , x => x.CourtCase.Party2
                         , x => x.CourtCase.Children
                     )
+                    .Where(x => x.CourtCase.CaseHistory.Where(x1 => x1.Date == x.CourtCase.CaseHistory.Max(x2 => x2.Date)).Any(x1 => x1.CaseHistoryEvent == CaseHistoryEvent.Hearing))
                     .Where(x => x.HearingDate >= criteria.Date.Date && x.HearingDate < nextDay)
                     .Where(x => 
                     (!criteria.Session.HasValue || x.Session == criteria.Session.Value) &&
@@ -112,27 +113,19 @@ namespace FACCTS.Server.Controllers
                         _logger.Error(message);
                         return Request.CreateErrorResponse(HttpStatusCode.NotFound, message);
                     }
-                    var hearing = new Hearing()
-                            {
-                                HearingDate = docket.HearingDate,
-                                HearingIssues = docket.HearingIssue,
-                                Courtroom = DataManager.CourtroomRepository.GetById(docket.Courtroom.Id),
-                                Department = DataManager.CourtDepartmentRepository.GetById(docket.Department.Id),
-                                Session = docket.Session,
-                                State = ObjectState.Added,
-                            };
-                    courtCase.Hearings.Add(hearing);
-                    courtCase.CaseHistory.Add(
-                        new CaseHistory()
-                        {
-                            CaseHistoryEvent = Model.Enums.CaseHistoryEvent.Hearing,
-                            Hearing = hearing,
-                            Date = DateTime.Now,
-                            CourtClerk = docket.CourtClerkId.HasValue ? DataManager.UserRepository.GetById(docket.CourtClerkId.Value) : null,
-                            State = ObjectState.Added,
-                        }
-                        );
-                    courtCase.LastAction = docket.Action.GetValueOrDefault(CourtAction.Docketed);
+                    switch (docket.Action)
+                    {
+                        case CourtAction.Docketed:
+                            AddToDocket(docket, courtCase);
+                            break;
+                        case CourtAction.Dropped:
+                            DropCourtCase(docket, courtCase);
+                            break;
+                        case CourtAction.Dismissed:
+                            DismissCourtCase(docket, courtCase);
+                            break;
+                    }
+                    
                     courtCase.State = ObjectState.Modified;
                     DataManager.CourtCaseRepository.ModifyByState(courtCase);
 
@@ -146,6 +139,59 @@ namespace FACCTS.Server.Controllers
                 _logger.Error("Exception while updating the court docket: ", ex);
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
             }
+        }
+
+        private void DropCourtCase(DocketRecord docket, CourtCase courtCase)
+        {
+            courtCase.CaseHistory.Add(
+                new CaseHistory()
+                {
+                    CaseHistoryEvent = Model.Enums.CaseHistoryEvent.Dropped,
+                    Hearing = null,
+                    Date = DateTime.Now,
+                    CourtClerk = docket.CourtClerkId.HasValue ? DataManager.UserRepository.GetById(docket.CourtClerkId.Value) : null,
+                    State = ObjectState.Added,
+                }
+                );
+        }
+
+        private void DismissCourtCase(DocketRecord docket, CourtCase courtCase)
+        {
+            courtCase.CaseHistory.Add(
+                new CaseHistory()
+                {
+                    CaseHistoryEvent = Model.Enums.CaseHistoryEvent.Dismissed,
+                    Hearing = null,
+                    Date = DateTime.Now,
+                    CourtClerk = docket.CourtClerkId.HasValue ? DataManager.UserRepository.GetById(docket.CourtClerkId.Value) : null,
+                    State = ObjectState.Added,
+                }
+                );
+        }
+
+        private void AddToDocket(DocketRecord docket, CourtCase courtCase)
+        {
+            var hearing = new Hearing()
+            {
+                HearingDate = docket.HearingDate,
+                HearingIssues = docket.HearingIssue,
+                Courtroom = DataManager.CourtroomRepository.GetById(docket.Courtroom.Id),
+                Department = DataManager.CourtDepartmentRepository.GetById(docket.Department.Id),
+                Session = docket.Session,
+                State = ObjectState.Added,
+            };
+            courtCase.Hearings.Add(hearing);
+            courtCase.CaseHistory.Add(
+                new CaseHistory()
+                {
+                    CaseHistoryEvent = Model.Enums.CaseHistoryEvent.Hearing,
+                    Hearing = hearing,
+                    Date = DateTime.Now,
+                    CourtClerk = docket.CourtClerkId.HasValue ? DataManager.UserRepository.GetById(docket.CourtClerkId.Value) : null,
+                    State = ObjectState.Added,
+                }
+                );
+            courtCase.LastAction = docket.Action.GetValueOrDefault(CourtAction.Docketed);
         }
     }
 }

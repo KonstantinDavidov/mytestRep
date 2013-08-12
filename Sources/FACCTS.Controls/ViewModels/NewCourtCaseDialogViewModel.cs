@@ -63,7 +63,7 @@ namespace FACCTS.Controls.ViewModels
             _logger.Info("Saving the new case to the database...");
             Execute.OnUIThread(() => 
             {
-                NewBOp op = new NewBOp(this.CaseNumber);
+                NewStrategy op = new NewStrategy(this.CaseNumber);
                 op.Execute();
             });
         }
