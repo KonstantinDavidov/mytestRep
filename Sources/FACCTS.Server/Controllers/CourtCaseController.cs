@@ -1,4 +1,5 @@
-﻿using FACCTS.Server.BusinessLogic.BusinessOperations;
+﻿using FACCTS.Server.BusinessLogic;
+using FACCTS.Server.BusinessLogic.BusinessOperations;
 using FACCTS.Server.Code;
 using FACCTS.Server.DataContracts;
 using FACCTS.Server.Filters;
@@ -77,45 +78,11 @@ namespace FACCTS.Server.Controllers
             }
             try
             {
-                var query = DataManager.CourtCaseRepository
-                .GetAll(
-                x => x.Party1,
-                x => x.Party2,
-                x => x.CaseHistory,
-                x => x.CourtClerk
-                )
-                .Where(searchCriteria.GetLINQCriteria())
-                .Select(x =>
-                    new {
-                        CourtCaseId = x.Id,
-                        CaseNumber = x.CaseNumber,
-                        CasehistoryEvent = x.CaseHistory.OrderByDescending(y => y.Date).Select(y => y.CaseHistoryEvent).FirstOrDefault(),
-                        Date = (DateTime?)null,
-                        Order = (string)null,
-                        Party1 = x.Party1,
-                        Party2 = x.Party2,
-                        CourtClerk = x.CourtClerk,
-                        CCPOR_ID = x.CCPORId,
-                    }
-                    );
-                var data = query
-                    .ToArray()
-                .Select(
-                x => new CourtCaseHeading()
+                using (SearchCourtCasesStrategy s = new SearchCourtCasesStrategy(searchCriteria))
                 {
-                    CourtCaseId = x.CourtCaseId,
-                    CaseNumber = x.CaseNumber,
-                    CaseStatus = CaseHistoryEventToCaseStatusConverter.Convert(x.CasehistoryEvent),
-                    Date = null,
-                    Order = null,
-                    Party1Name = x.Party1 != null ? x.Party1.FirstName + " " + x.Party1.MiddleName + " " + x.Party1.LastName : null,
-                    Party2Name = x.Party2 != null ? x.Party2.FirstName + " " + x.Party2.MiddleName + " " + x.Party2.LastName : null,
-                    CourtClerkName = x.CourtClerk != null ? x.CourtClerk.FirstName + " " + x.CourtClerk.MiddleName + " " + x.CourtClerk.LastName : string.Empty,
-                    CCPOR_ID = x.CCPOR_ID,
+                    s.Execute();
+                    return Request.CreateResponse(HttpStatusCode.OK, s.Result);
                 }
-                )
-                .ToList();
-                return Request.CreateResponse(HttpStatusCode.OK, data);
             }
             catch (Exception ex)
             {

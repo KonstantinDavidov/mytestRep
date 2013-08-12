@@ -320,7 +320,6 @@
     <Compile Include="Images\Filters\SslRedirectFilterAttribute.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\CourtCaseCreationRequest.cs" />
-    <Compile Include="Models\CourtCaseSearchCriteria.cs" />
     <Compile Include="Models\CourtDocketSearchCriteria.cs" />
     <Compile Include="Models\InitialConfigurationModel.cs" />
     <Compile Include="Models\SignInModel.cs" />

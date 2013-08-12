@@ -2,14 +2,13 @@
 using FACCTS.Server.Model.DataModel;
 using FACCTS.Server.Model.Enums;
 using FACCTS.Server.Model.Interfaces;
-using FACCTS.Server.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Web;
 
-namespace FACCTS.Server.Models
+namespace FACCTS.Server.BusinessLogic
 {
     public class CourtCaseSearchCriteria : ICourtCaseSearchCriteria
     {
