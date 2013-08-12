@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Services.BusinessOperations
 {
-    public class DocketBOp : StrategyBase
+    public class DocketStrategy : StrategyBase
     {
         private Hearings _hearing;
         private CourtCaseHeading _caseHeading;
-        public DocketBOp(CourtCaseHeading caseHeading,  Hearings hearing)
+        public DocketStrategy(CourtCaseHeading caseHeading,  Hearings hearing)
             : base()
         {
             if (caseHeading == null)

@@ -39,7 +39,7 @@ namespace FACCTS.Controls.ViewModels
                         ICourtDocketSearchCriteria criteria = ServiceLocatorContainer.Locator.GetInstance<ICourtDocketSearchCriteria>();
                         criteria.Session = x.Session;
                         criteria.Date = x.CalendarDate.GetValueOrDefault(DateTime.Now);
-                        criteria.CourtRoomId = x.Courtroom != null ? x.Courtroom.Id : (long?)null;
+                        criteria.CourtRoomId = x.Courtroom != null && x.Courtroom != Faccts.Model.Entities.Courtrooms.Empty ? x.Courtroom.Id : (long?)null;
                     }
                     );
             _dialogService = dialogService;
@@ -82,6 +82,7 @@ namespace FACCTS.Controls.ViewModels
             {
                 RefreshDocket();
             }
+            this.NotifyOfPropertyChange(() => CanSave);
         }
 
         public void Drop()
@@ -98,8 +99,20 @@ namespace FACCTS.Controls.ViewModels
         {
             var vm = ServiceLocatorContainer.Locator.GetInstance<DropDismissDialogViewModel>();
             vm.Dismiss = dismiss;
-            //vm.CurrentCourtCase = CurrentCourtCase;
-            //_windowManager.ShowDialog(vm);
+            vm.DocketRecord = this.DocketItem;
+            if (_windowManager.ShowDialog(vm).GetValueOrDefault(false))
+            {
+                RefreshDocket();
+            }
+            this.NotifyOfPropertyChange(() => CanSave);
+        }
+
+        public bool CanSave
+        {
+            get
+            {
+                return this.Hearings.Any(x => x.ChangeTracker.State != ObjectState.Unchanged);
+            }
         }
 
         public void Reissue()
@@ -117,8 +130,17 @@ namespace FACCTS.Controls.ViewModels
                 if (_hearings == null && this.IsAuthenticated)
                 {
                     _hearings = DataContainer.DocketRecords;
+                    _hearings.CollectionChanged += (s, e) => this.NotifyOfPropertyChange(() => DocketCount);
                 }
                 return _hearings;
+            }
+        }
+
+        public int DocketCount
+        {
+            get
+            {
+                return DataContainer.DocketRecords.Count;
             }
         }
 
@@ -152,6 +174,10 @@ namespace FACCTS.Controls.ViewModels
                 DataContainer.SearchDocket();
                 _courtCases = null;
                 NotifyOfPropertyChange(() => CourtCases);
+                _hearings = null;
+                this.NotifyOfPropertyChange(() => Hearings);
+                this.NotifyOfPropertyChange(() => CanSave);
+                this.NotifyOfPropertyChange(() => DocketCount);
             }
         }
 
@@ -189,6 +215,7 @@ namespace FACCTS.Controls.ViewModels
             DataContainer.SearchDocket();
             _hearings = null;
             this.NotifyOfPropertyChange(() => Hearings);
+            this.NotifyOfPropertyChange(() => DocketCount);
         }
 
         private void NotifyCollectionUpdated()

@@ -273,11 +273,14 @@
     <Compile Include="Entities\Reporting\CH110.cs" />
     <Compile Include="Entities\Reporting\CH130.cs" />
     <Compile Include="Entities\Reporting\CHConductChoice.cs" />
+    <Compile Include="Entities\Reporting\ChildCustodyItem.cs" />
+    <Compile Include="Entities\Reporting\ChildVisitation.cs" />
     <Compile Include="Entities\Reporting\CHStayAwayOrders.cs" />
     <Compile Include="Entities\Reporting\DataItem.cs" />
     <Compile Include="Entities\Reporting\DebtPaymentItem.cs" />
     <Compile Include="Entities\Reporting\DV110.cs" />
     <Compile Include="Entities\Reporting\DV130.cs" />
+    <Compile Include="Entities\Reporting\DV140.cs" />
     <Compile Include="Entities\Reporting\DVAnimals.cs" />
     <Compile Include="Entities\Reporting\DVConductChoice.cs" />
     <Compile Include="Entities\Reporting\DVPropertyRestraint.cs" />
@@ -286,6 +289,7 @@
     <Compile Include="Entities\Reporting\EA130.cs" />
     <Compile Include="Entities\Reporting\EAConductChoice.cs" />
     <Compile Include="Entities\Reporting\EAStayAwayOrders.cs" />
+    <Compile Include="Entities\Reporting\ExchangeAndRemoval.cs" />
     <Compile Include="Entities\Reporting\Firearms.cs" />
     <Compile Include="Entities\Reporting\FL344.cs" />
     <Compile Include="Entities\Reporting\LawersFeeAndCourtCosts.cs" />
@@ -296,6 +300,9 @@
     <Compile Include="Entities\Reporting\PermanentOrder.cs" />
     <Compile Include="Entities\Reporting\ReactiveBase.cs" />
     <Compile Include="Entities\Reporting\TemporaryOrder.cs" />
+    <Compile Include="Entities\Reporting\Transportation.cs" />
+    <Compile Include="Entities\Reporting\TravelRestrict.cs" />
+    <Compile Include="Entities\Reporting\VisitationSchedule.cs" />
     <Compile Include="Entities\RestrainingPartyIDInfo.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>

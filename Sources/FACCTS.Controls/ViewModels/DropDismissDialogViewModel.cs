@@ -7,6 +7,7 @@ using ReactiveUI;
 using System.ComponentModel.Composition;
 using Faccts.Model.Entities;
 using Caliburn.Micro;
+using FACCTS.Services.BusinessOperations;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -16,7 +17,7 @@ namespace FACCTS.Controls.ViewModels
         [ImportingConstructor]
         public DropDismissDialogViewModel() : base()
         {
-            this.WhenAny(x => x.CurrentCourtCase, x => x.Value)
+            this.WhenAny(x => x.DocketRecord, x => x.Value)
                 .Subscribe(x =>
                 {
                     this.IsValid = x != null;
@@ -44,8 +45,7 @@ namespace FACCTS.Controls.ViewModels
 
         public void DropDismiss()
         {
-            TryClose(true);
-            Task.Factory.StartNew(() => 
+            Task.Factory.StartNew(() =>
             {
                 if (Dismiss)
                 {
@@ -55,27 +55,24 @@ namespace FACCTS.Controls.ViewModels
                 {
                     ProceedDrop();
                 }
-            });
+            })
+            .ContinueWith(t =>
+            {
+                TryClose(true);
+            }
+            , TaskContinuationOptions.OnlyOnRanToCompletion);
         }
 
         private void ProceedDrop()
         {
-            CaseHistory ch = new CaseHistory()
-            {
-                Date = DateTime.Now,
-                CaseHistoryEvent = FACCTS.Server.Model.Enums.CaseHistoryEvent.Dropped,
-            };
-            Execute.OnUIThread(() => this.CurrentCourtCase.CaseHistory.Add(ch));
+            DropStrategy ds = new DropStrategy(DocketRecord);
+            ds.Execute();
+            
         }
 
         private void ProceedDismissal()
         {
-            CaseHistory ch = new CaseHistory()
-            {
-                Date = DateTime.Now,
-                CaseHistoryEvent = FACCTS.Server.Model.Enums.CaseHistoryEvent.Dismissed,
-            };
-            Execute.OnUIThread(() => this.CurrentCourtCase.CaseHistory.Add(ch));
+            
         }
     }
 }

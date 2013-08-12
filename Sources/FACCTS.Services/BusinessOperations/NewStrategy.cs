@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace FACCTS.Services.BusinessOperations
 {
-    public class NewBOp : StrategyBase
+    public class NewStrategy : StrategyBase
     {
         private string _newCaseNumber;
-        public NewBOp(string newCaseNumber)
+        public NewStrategy(string newCaseNumber)
             : base()
         {
             if (string.IsNullOrWhiteSpace(newCaseNumber))
