@@ -50,6 +50,7 @@ namespace FACCTS.Server.Controllers
                         , x => x.CourtCase.Party1
                         , x => x.CourtCase.Party2
                         , x => x.CourtCase.Children
+                        , x => x.Reissue
                     )
                     .Where(x => x.CourtCase.CaseHistory.Where(x1 => x1.Date == x.CourtCase.CaseHistory.Max(x2 => x2.Date)).Any(x1 => x1.CaseHistoryEvent == CaseHistoryEvent.Hearing))
                     .Where(x => x.HearingDate >= criteria.Date.Date && x.HearingDate < nextDay)
@@ -69,6 +70,7 @@ namespace FACCTS.Server.Controllers
                         Party2 = x.CourtCase.Party2,
                         HasChildren = x.CourtCase.Children.Any(),
                         HearingIssue = x.HearingIssues,
+                        HearingReissue = x.Reissue,
                     }
                     )
                     .ToArray();
@@ -85,6 +87,7 @@ namespace FACCTS.Server.Controllers
                         Party2Name = x.Party2 != null ? string.Format("{0} {1} {2}", x.Party2.FirstName, x.Party2.MiddleName, x.Party2.LastName) : null,
                         HasChildren = x.HasChildren,
                         HearingIssue = x.HearingIssue,
+                        HearingReissue = x.HearingReissue,
                     })
                     .ToList();
                 return Request.CreateResponse(HttpStatusCode.OK, data);
@@ -125,6 +128,9 @@ namespace FACCTS.Server.Controllers
                         case CourtAction.Dismissed:
                             DismissCourtCase(docket, courtCase);
                             break;
+                        case CourtAction.Reissue:
+                            ReissueCourtCase(docket, courtCase);
+                            break;
                     }
 
                 }
@@ -136,6 +142,14 @@ namespace FACCTS.Server.Controllers
             {
                 _logger.Error("Exception while updating the court docket: ", ex);
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
+        }
+
+        private void ReissueCourtCase(DocketRecord docket, CourtCase courtCase)
+        {
+            using (ReissueCourtCaseStrategy s = new ReissueCourtCaseStrategy(DataManager, docket, courtCase))
+            {
+                s.Execute();
             }
         }
 

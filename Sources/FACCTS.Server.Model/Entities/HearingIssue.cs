@@ -21,5 +21,6 @@ namespace FACCTS.Server.Model.DataModel
         public bool IsOtherIssue { get; set; }
 
         public string OtheIssueText { get; set; }
+        
     }
 }

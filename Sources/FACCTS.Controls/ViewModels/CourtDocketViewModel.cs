@@ -118,8 +118,14 @@ namespace FACCTS.Controls.ViewModels
         public void Reissue()
         {
             var vm = ServiceLocatorContainer.Locator.GetInstance<ReissueCaseDialogViewModel>();
-            //vm.CurrentCourtCase = CurrentCourtCase;
-            //_windowManager.ShowDialog(vm);
+            vm.CurrentDocketRecord = this.DocketItem;
+            if (_windowManager.ShowDialog(vm).GetValueOrDefault(false))
+            {
+                RefreshDocket();
+                _hearings = null;
+                this.NotifyOfPropertyChange(() => Hearings);
+            }
+            this.NotifyOfPropertyChange(() => CanSave);
         }
 
         private TrackableCollection<DocketRecord> _hearings;

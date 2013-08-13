@@ -36,5 +36,7 @@ namespace FACCTS.Server.Model.DataModel
         public virtual ICollection<Appearance> Appearances { get; set; }
 
         public ObjectState State { get; set; }
+
+        public HearingReissue Reissue { get; set; }
     }
 }

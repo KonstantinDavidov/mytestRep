@@ -57,6 +57,7 @@
     <Compile Include="BusinessOperations\CreateNewCourtCaseStrategy.cs" />
     <Compile Include="BusinessOperations\DismissCourtCaseStrategy.cs" />
     <Compile Include="BusinessOperations\DropCourtCaseStrategy.cs" />
+    <Compile Include="BusinessOperations\ReissueCourtCaseStrategy.cs" />
     <Compile Include="BusinessOperations\SaveCourtCaseStrategy.cs" />
     <Compile Include="BusinessOperations\SearchCourtCasesStrategy.cs" />
     <Compile Include="CourtCaseSearchCriteria.cs" />

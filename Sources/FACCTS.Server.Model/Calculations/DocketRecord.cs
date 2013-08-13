@@ -22,6 +22,7 @@ namespace FACCTS.Server.Model.Calculations
         public HearingIssue HearingIssue { get; set; }
         public long? CourtClerkId { get; set; }
         public CourtAction? Action { get; set; }
+        public HearingReissue HearingReissue { get; set; }
 
         public ObjectState State
         {
