@@ -5,6 +5,7 @@ using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.IO;
 using System.Reflection;
+using Microsoft.Practices.ServiceLocation;
 
 namespace FACCTS.WCFService
 {
@@ -14,7 +15,7 @@ namespace FACCTS.WCFService
         {
             CompositionContainer container = GetCompositionContainer(obj);
 
-            ServiceLocator.Current = new MefServiceLocator(container);
+            ServiceLocator.SetLocatorProvider(() => new MefServiceLocator(container)); 
         }
 
         private static CompositionContainer GetCompositionContainer(object obj)

@@ -5,6 +5,7 @@ using FACCTS.Server.Integration;
 using log4net;
 using System;
 using System.ComponentModel.Composition;
+using Microsoft.Practices.ServiceLocation;
 
 namespace FACCTS.WCFService
 {

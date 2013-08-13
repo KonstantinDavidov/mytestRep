@@ -12,6 +12,7 @@ using FACCTS.WCFService;
 using FACCTS.Server.Integration;
 using log4net;
 using FACCTS.Server.Common;
+using Microsoft.Practices.ServiceLocation;
 
 namespace FACCTS.WindowsService
 {
