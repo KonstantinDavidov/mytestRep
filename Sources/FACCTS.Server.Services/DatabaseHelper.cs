@@ -954,32 +954,52 @@ namespace FACCTS.Server.Data
                 }
                 else
                 {
-                    Hearing hearing = new Hearing()
-                    {
-                        HearingDate = DateTime.Now,
-                        HearingIssues = new HearingIssue()
-                        {
-                            ChildCustodyOrChildVisitation = true,
-                            ChildSupport = false,
-                            IsOtherIssue = true,
-                            OtheIssueText = "Issue1",
-                            PermanentRO = true,
-                            SpousalSupport = true
-                        },
-                        CourtCase = courtCase
-                    };
-
                     CaseHistory ch = new CaseHistory();
+                    if (el.Element("event").Value.Equals("Hearing"))
+                    {
+                        Hearing hearing = new Hearing()
+                        {
+                            HearingDate = (el.Element("date").Value != "")
+                                                        ?
+                                                            DateTime.Parse(
+                                                            el.Element("date").Value, new System.Globalization.CultureInfo("en-US", true),
+                                                            System.Globalization.DateTimeStyles.AssumeLocal
+                                                            )
+                                                        :
+                                                            DateTime.Now,
+                            HearingIssues = new HearingIssue()
+                            {
+                                ChildCustodyOrChildVisitation = true,
+                                ChildSupport = false,
+                                IsOtherIssue = true,
+                                OtheIssueText = "Issue1",
+                                PermanentRO = true,
+                                SpousalSupport = true
+                            },
+                            CourtCase = courtCase
+                        };
+                        ch.Hearing = hearing;
+                        ch.CaseHistoryEvent = CaseHistoryEvent.Hearing;
+                    }
+                    else
+                    {
+                        ch.CaseHistoryEvent = (el.Element("event").Value != "") 
+                            ? 
+                            ((el.Element("event").Value.Equals("NewFile") || el.Element("event").Value.Equals("New File")) ? CaseHistoryEvent.File : (CaseHistoryEvent)Enum.Parse(typeof(CaseHistoryEvent), el.Element("event").Value)) 
+                            : 
+                            CaseHistoryEvent.File;
+                    }
+
                     ch.Date = (el.Element("date").Value != "")
                                         ?
-                                        DateTime.Parse(
+                                            DateTime.Parse(
                                                         el.Element("date").Value, new System.Globalization.CultureInfo("en-US", true),
                                                         System.Globalization.DateTimeStyles.AssumeLocal
-                                                        )
-                                        : DateTime.Now;
-                    ch.CaseHistoryEvent = CaseHistoryEvent.Hearing;
+                                            )
+                                        : 
+                                            DateTime.Now;
+                   // ch.CaseHistoryEvent =  CaseHistoryEvent.Hearing;
                     ch.CCPOR_ID = el.Element("orders").Value;
-                    ch.Hearing = hearing;
                     test.Add(ch);
                 }                
             }
@@ -1027,13 +1047,11 @@ namespace FACCTS.Server.Data
 
             foreach (var file in files)
             {
-               // IEnumerable<XElement> elements = file;
                 CourtCase testCourtCase = new CourtCase();
 
                 foreach (var el in file.Elements("caseheader"))
                 {
                     testCourtCase.CaseNumber = el.Element("caseNumber").Value;
-                    //testCourtCase.CaseStatus = (CaseStatus)Enum.Parse(typeof(CaseStatus), el.Element("caseStatus").Value);
                 }
 
                 //take party 1
