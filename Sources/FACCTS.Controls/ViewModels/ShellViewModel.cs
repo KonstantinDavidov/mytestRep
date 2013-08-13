@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FACCTS.Services.Authentication;
+using FACCTS.Services.Dialog;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -22,9 +23,11 @@ namespace FACCTS.Controls.ViewModels
             , CaseRecordViewModel caseRecordViewModel
             , CourtDocketViewModel courtDocketViewModel
             , CourtOrdersViewModel courtOrdersViewModel
-            , IAuthenticationService authenticationService)
+            , IAuthenticationService authenticationService
+            , IDialogService dialogService)
             : base()
         {
+            _dialogService = dialogService;
             CaseStatusViewModel = caseStatusViewModel;
             CaseRecordViewModel = caseRecordViewModel;
             CourtDocketViewModel = courtDocketViewModel;
@@ -35,9 +38,35 @@ namespace FACCTS.Controls.ViewModels
                 {
                     this.NotifyOfPropertyChange(() => Name);
                 });
+            this.WhenAny(x => x.IsAuthenticated, x => x.Value)
+                .Subscribe(x =>
+                {
+                    if (x)
+                    {
+                        this.NotifyOfPropertyChange(() => CurrUser);
+                    }
+                }
+                );
             ShowCaseStatus();
         }
-        
+
+        private IDialogService _dialogService;
+
+        public string CurrUser
+        {
+            get
+            {
+                if (AuthenticationService.CurrentUser == null)
+                {
+                    return null;
+                }
+                else
+                {
+                    return AuthenticationService.CurrentUser.Username;
+                }
+            }
+        }
+
         private string _name = "Family Court Case Tracking System";
         public string Name
         {
@@ -48,7 +77,7 @@ namespace FACCTS.Controls.ViewModels
                 {
                     retValue += string.Format(" - {0}", (ActiveItem as IScreen).DisplayName);
                 }
-                return retValue; 
+                return retValue;
             }
         }
 
@@ -85,10 +114,12 @@ namespace FACCTS.Controls.ViewModels
         private bool _isAuthenticated;
         public bool IsAuthenticated
         {
-            get{
+            get
+            {
                 return _isAuthenticated;
             }
-            set{
+            set
+            {
                 if (value == _isAuthenticated)
                     return;
                 _isAuthenticated = value;
@@ -97,7 +128,8 @@ namespace FACCTS.Controls.ViewModels
         }
 
         private CaseStatusViewModel _caseStatucViewModel;
-        public CaseStatusViewModel CaseStatusViewModel {
+        public CaseStatusViewModel CaseStatusViewModel
+        {
             protected get
             {
                 return _caseStatucViewModel;
@@ -108,21 +140,20 @@ namespace FACCTS.Controls.ViewModels
                     return;
                 _caseStatucViewModel = value;
                 this.NotifyOfPropertyChange();
-            } 
+            }
         }
-
 
         public CaseRecordViewModel CaseRecordViewModel { protected get; set; }
 
-        public CourtDocketViewModel CourtDocketViewModel  { protected get; set; }
+        public CourtDocketViewModel CourtDocketViewModel { protected get; set; }
 
         public CourtOrdersViewModel CourtOrdersViewModel { protected get; set; }
-       
+
         public void ShowCaseStatus()
         {
             ActivateItem(CaseStatusViewModel);
         }
-        
+
         public void ShowCaseRecord()
         {
             ActivateItem(CaseRecordViewModel);
@@ -138,6 +169,9 @@ namespace FACCTS.Controls.ViewModels
             ActivateItem(CourtOrdersViewModel);
         }
 
-       
+        public void QuitUser()
+        {
+            _dialogService.MessageBox("Are you want to exit?", "Information", System.Windows.MessageBoxButton.YesNo);
+        }
     }
 }
