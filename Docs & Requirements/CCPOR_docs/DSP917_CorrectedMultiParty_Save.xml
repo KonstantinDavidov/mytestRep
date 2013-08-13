@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+  <soapenv:Header>
+    <wsse:Security soapenv:mustUnderstand="1">
+      <wsse:UsernameToken>
+        <wsse:Username>faccts</wsse:Username>
+        <wsse:Password Type="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-username-token-profile-1.0#PasswordText">ccp0rfaccts</wsse:Password>
+      </wsse:UsernameToken>
+    </wsse:Security>
+  </soapenv:Header>
+  <soapenv:Body>
+    <dsp917cajudreqip:DSP917CAJUDReqInput>
+      <tnshdr:ISBCommonServiceHeader>
+        <Source xmlns="">1200000000</Source>
+        <Target xmlns="">1020000000</Target>
+        <InterfaceName xmlns="">DSP917</InterfaceName>
+        <DocumentType xmlns="">DSP917</DocumentType>
+        <CorrelationId xmlns="">2147483399</CorrelationId>
+        <ISBTransactionId xmlns="">-1</ISBTransactionId>
+        <Environment xmlns="">TEST</Environment>
+        <Hostname xmlns="">dev.jamesreid.com</Hostname>
+        <TimeStamp xmlns="">2013-08-08T19:57:37</TimeStamp>
+        <CourtCd xmlns="">21</CourtCd>
+        <UserId xmlns="">facctsTest</UserId>
+      </tnshdr:ISBCommonServiceHeader>
+      <dsp917cajudreq:ProductExchangePackage>
+        <dsp917cajudreq:ProductRelatedObjects>
+          <dsp917cajudreq:ProductRelatedActivities>
+            <dsp917cajudreq:CourtCase>
+              <ncreq:ActivityDate>
+                <ncreq:Year>2013</ncreq:Year>
+              </ncreq:ActivityDate>
+              <dsp917cajudreq:CaseAugmentation>
+                <jreq:CaseOtherIdentification>
+                  <ncreq:IdentificationID>T79878798</ncreq:IdentificationID>
+                </jreq:CaseOtherIdentification>
+              </dsp917cajudreq:CaseAugmentation>
+              <ncreq:CaseDocketID>22-9999</ncreq:CaseDocketID>
+              <dsp917cajudreq:CaseRestrainingOrder>
+                <ncreq:ActivityCategoryText>DV-110</ncreq:ActivityCategoryText>
+                <dsp917cajudreq:AddUpdateCancelText>A</dsp917cajudreq:AddUpdateCancelText>
+                <dsp917cajudreq:ConfidentialCode>Y</dsp917cajudreq:ConfidentialCode>
+                <dsp917cajudreq:ContactAllowedCode>N</dsp917cajudreq:ContactAllowedCode>
+                <jreq:CourtName>MARIN COUNTY</jreq:CourtName>
+                <ncreq:ExpirationDate>
+                  <ncreq:Date>2018-08-08</ncreq:Date>
+                </ncreq:ExpirationDate>
+                <dsp917cajudreq:FirearmProvisionsCode>Y</dsp917cajudreq:FirearmProvisionsCode>
+                <ncreq:IdentificationID>DV-110</ncreq:IdentificationID>
+                <dsp917cajudreq:IssuanceStateCode>CA</dsp917cajudreq:IssuanceStateCode>
+                <dsp917cajudreq:IssuedDate>
+                  <ncreq:Date>2013-08-08</ncreq:Date>
+                </dsp917cajudreq:IssuedDate>
+                <dsp917cajudreq:NeverExpiresCode>N</dsp917cajudreq:NeverExpiresCode>
+                <dsp917cajudreq:PresentInCourtCode>Y</dsp917cajudreq:PresentInCourtCode>
+                <dsp917cajudreq:RestrainingOrderAttachment>
+                  <ncreq:DocumentBinary>
+                    <ncreq:BinaryBase64Object>objectfile_payload</ncreq:BinaryBase64Object>
+                  </ncreq:DocumentBinary>
+                  <ncreq:DocumentCategoryText>DV-110</ncreq:DocumentCategoryText>
+                  <ncreq:DocumentDescriptionText>Temporary Restraining Order</ncreq:DocumentDescriptionText>
+                  <ncreq:DocumentFormatCategoryText>MIME</ncreq:DocumentFormatCategoryText>
+                  <ncreq:DocumentTitleText>DV110_22-1251.pdf</ncreq:DocumentTitleText>
+                </dsp917cajudreq:RestrainingOrderAttachment>
+                <dsp917cajudreq:SealedCode>N</dsp917cajudreq:SealedCode>
+                <dsp917cajudreq:StayAwayText>P</dsp917cajudreq:StayAwayText>
+                <dsp917cajudreq:YardsToStayAwayQuantity>2000</dsp917cajudreq:YardsToStayAwayQuantity>
+              </dsp917cajudreq:CaseRestrainingOrder>
+              <dsp917cajudreq:OriginatingAgencyID>CA0540600</dsp917cajudreq:OriginatingAgencyID>
+              <dsp917cajudreq:ProtectedParticipant>
+                <dsp917cajudreq:ParticipantCategoryCode>PERSON</dsp917cajudreq:ParticipantCategoryCode>
+                <dsp917cajudreq:RoleOfEntity>
+                  <dsp917cajudreq:EntityRoleCode>PPSC</dsp917cajudreq:EntityRoleCode>
+                  <ncreq:RoleOfPersonReference s:ref="PRO_1"/>
+                </dsp917cajudreq:RoleOfEntity>
+              </dsp917cajudreq:ProtectedParticipant>
+              <dsp917cajudreq:ProtectedParticipant>
+                <dsp917cajudreq:ParticipantCategoryCode>PERSON</dsp917cajudreq:ParticipantCategoryCode>
+                <dsp917cajudreq:RoleOfEntity>
+                  <dsp917cajudreq:EntityRoleCode>APPSC</dsp917cajudreq:EntityRoleCode>
+                  <ncreq:RoleOfPersonReference s:ref="PRO_2"/>
+                </dsp917cajudreq:RoleOfEntity>
+              </dsp917cajudreq:ProtectedParticipant>
+              <dsp917cajudreq:ProtectedParticipant>
+                <dsp917cajudreq:ParticipantCategoryCode>PERSON</dsp917cajudreq:ParticipantCategoryCode>
+                <dsp917cajudreq:RoleOfEntity>
+                  <dsp917cajudreq:EntityRoleCode>APPSC</dsp917cajudreq:EntityRoleCode>
+                  <ncreq:RoleOfPersonReference s:ref="PRO_3"/>
+                </dsp917cajudreq:RoleOfEntity>
+              </dsp917cajudreq:ProtectedParticipant>
+              <dsp917cajudreq:RestrainedParticipant>
+                <dsp917cajudreq:ParticipantCategoryCode>PERSON</dsp917cajudreq:ParticipantCategoryCode>
+                <dsp917cajudreq:RoleOfEntity>
+                  <dsp917cajudreq:EntityRoleCode>RESPER</dsp917cajudreq:EntityRoleCode>
+                  <ncreq:RoleOfPersonReference s:ref="RES_1"/>
+                </dsp917cajudreq:RoleOfEntity>
+              </dsp917cajudreq:RestrainedParticipant>
+            </dsp917cajudreq:CourtCase>
+          </dsp917cajudreq:ProductRelatedActivities>
+          <dsp917cajudreq:ProductRelatedContactInformation>
+            <dsp917cajudreq:ContactInformation s:id="CON_1">
+              <ncreq:ContactMailingAddress>
+                <ncreq:StructuredAddress>
+                  <dsp917cajudreq:LocationStreet>
+                    <ncreq:StreetNumberText>345</ncreq:StreetNumberText>
+                    <ncreq:StreetName>Oceanside Drive</ncreq:StreetName>
+                  </dsp917cajudreq:LocationStreet>
+                  <ncreq:LocationCityName>Seaside</ncreq:LocationCityName>
+                  <dsp917cajudreq:LocationStateUSPostalServiceCode>CA</dsp917cajudreq:LocationStateUSPostalServiceCode>
+                  <ncreq:LocationPostalCode>92199</ncreq:LocationPostalCode>
+                </ncreq:StructuredAddress>
+              </ncreq:ContactMailingAddress>
+            </dsp917cajudreq:ContactInformation>
+          </dsp917cajudreq:ProductRelatedContactInformation>
+          <dsp917cajudreq:ProductRelatedOrganizations>
+            <dsp917cajudreq:Court>
+              <dsp917cajudreq:OrganizationCourtIdentification>
+                <ncreq:IdentificationID>21420</ncreq:IdentificationID>
+              </dsp917cajudreq:OrganizationCourtIdentification>
+            </dsp917cajudreq:Court>
+          </dsp917cajudreq:ProductRelatedOrganizations>
+          <dsp917cajudreq:ProductRelatedPeople>
+            <dsp917cajudreq:Person s:id="PRO_1">
+              <dsp917cajudreq:PersonBirth>
+                <ncreq:PersonBirthDate>
+                  <ncreq:Date>1981-07-23</ncreq:Date>
+                </ncreq:PersonBirthDate>
+              </dsp917cajudreq:PersonBirth>
+              <dsp917cajudreq:PersonDemographics>
+                <dsp917cajudreq:PersonEyeColorCode>BLU</dsp917cajudreq:PersonEyeColorCode>
+                <dsp917cajudreq:PersonHairColorCode>BRO</dsp917cajudreq:PersonHairColorCode>
+                <ncreq:PersonHeightMeasure>
+                  <ncreq:MeasureText>505</ncreq:MeasureText>
+                </ncreq:PersonHeightMeasure>
+                <dsp917cajudreq:PersonRaceCode></dsp917cajudreq:PersonRaceCode>
+                <dsp917cajudreq:PersonSexCode>F</dsp917cajudreq:PersonSexCode>
+                <ncreq:PersonWeightMeasure>
+                  <ncreq:MeasureText>118</ncreq:MeasureText>
+                </ncreq:PersonWeightMeasure>
+              </dsp917cajudreq:PersonDemographics>
+              <dsp917cajudreq:PersonName>
+                <dsp917cajudreq:PersonCaseNameCategoryCode>NAMEONCASE</dsp917cajudreq:PersonCaseNameCategoryCode>
+                <ncreq:PersonGivenName>Diane</ncreq:PersonGivenName>
+                <ncreq:PersonMiddleName>Carolyn</ncreq:PersonMiddleName>
+                <ncreq:PersonSurName>Beck</ncreq:PersonSurName>
+              </dsp917cajudreq:PersonName>
+            </dsp917cajudreq:Person>
+            <dsp917cajudreq:Person s:id="PRO_2">
+              <dsp917cajudreq:PersonBirth>
+                <ncreq:PersonBirthDate>
+                  <ncreq:Date>2000-02-12</ncreq:Date>
+                </ncreq:PersonBirthDate>
+              </dsp917cajudreq:PersonBirth>
+              <dsp917cajudreq:PersonDemographics>
+                <dsp917cajudreq:PersonSexCode>F</dsp917cajudreq:PersonSexCode>
+              </dsp917cajudreq:PersonDemographics>
+              <dsp917cajudreq:PersonName>
+                <dsp917cajudreq:PersonCaseNameCategoryCode>NAMEONCASE</dsp917cajudreq:PersonCaseNameCategoryCode>
+                <ncreq:PersonGivenName>Wendy</ncreq:PersonGivenName>
+                <ncreq:PersonSurName>Beck</ncreq:PersonSurName>
+              </dsp917cajudreq:PersonName>
+            </dsp917cajudreq:Person>
+            <dsp917cajudreq:Person s:id="PRO_3">
+              <dsp917cajudreq:PersonBirth>
+                <ncreq:PersonBirthDate>
+                  <ncreq:Date>1999-03-14</ncreq:Date>
+                </ncreq:PersonBirthDate>
+              </dsp917cajudreq:PersonBirth>
+              <dsp917cajudreq:PersonDemographics>
+                <dsp917cajudreq:PersonSexCode>F</dsp917cajudreq:PersonSexCode>
+              </dsp917cajudreq:PersonDemographics>
+              <dsp917cajudreq:PersonName>
+                <dsp917cajudreq:PersonCaseNameCategoryCode>NAMEONCASE</dsp917cajudreq:PersonCaseNameCategoryCode>
+                <ncreq:PersonGivenName>Marianne</ncreq:PersonGivenName>
+                <ncreq:PersonSurName>Beck</ncreq:PersonSurName>
+              </dsp917cajudreq:PersonName>
+            </dsp917cajudreq:Person>
+            <dsp917cajudreq:Person s:id="RES_1">
+              <dsp917cajudreq:PersonBirth>
+                <ncreq:PersonBirthDate>
+                  <ncreq:Date>1970-09-24</ncreq:Date>
+                </ncreq:PersonBirthDate>
+              </dsp917cajudreq:PersonBirth>
+              <dsp917cajudreq:PersonDemographics>
+                <dsp917cajudreq:PersonEyeColorCode>GRN</dsp917cajudreq:PersonEyeColorCode>
+                <dsp917cajudreq:PersonHairColorCode>BLN</dsp917cajudreq:PersonHairColorCode>
+                <ncreq:PersonHeightMeasure>
+                  <ncreq:MeasureText>601</ncreq:MeasureText>
+                </ncreq:PersonHeightMeasure>
+                <dsp917cajudreq:PersonRaceCode>W</dsp917cajudreq:PersonRaceCode>
+                <dsp917cajudreq:PersonSexCode>M</dsp917cajudreq:PersonSexCode>
+                <ncreq:PersonWeightMeasure>
+                  <ncreq:MeasureText>195</ncreq:MeasureText>
+                </ncreq:PersonWeightMeasure>
+              </dsp917cajudreq:PersonDemographics>
+              <dsp917cajudreq:PersonName>
+                <dsp917cajudreq:PersonCaseNameCategoryCode>NAMEONCASE</dsp917cajudreq:PersonCaseNameCategoryCode>
+                <ncreq:PersonGivenName>Thomas</ncreq:PersonGivenName>
+                <ncreq:PersonMiddleName>William</ncreq:PersonMiddleName>
+                <ncreq:PersonSurName>Beck</ncreq:PersonSurName>
+              </dsp917cajudreq:PersonName>
+            </dsp917cajudreq:Person>
+          </dsp917cajudreq:ProductRelatedPeople>
+        </dsp917cajudreq:ProductRelatedObjects>
+        <dsp917cajudreq:RestrainedParticipantPersonContactInformationAssociation>
+          <dsp917cajudreq:ContactInformationCategoryAddressTypeCode>HOM</dsp917cajudreq:ContactInformationCategoryAddressTypeCode>
+          <ncreq:ContactInformationReference s:ref="CON_1"/>
+          <ncreq:PersonReference s:ref="RES_1"/>
+        </dsp917cajudreq:RestrainedParticipantPersonContactInformationAssociation>
+      </dsp917cajudreq:ProductExchangePackage>
+    </dsp917cajudreqip:DSP917CAJUDReqInput>
+  </soapenv:Body>
+</soapenv:Envelope>
