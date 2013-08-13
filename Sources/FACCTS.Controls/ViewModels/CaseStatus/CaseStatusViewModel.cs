@@ -417,7 +417,7 @@ namespace FACCTS.Controls.ViewModels
             this.NotifyOfPropertyChange(() => CourtCases);
         }
 
-        private bool UpdateHistoryItems(CourtCaseHeadingViewModel model)
+        private bool UpdateHistoryItems(CourtCaseHeadingViewModel model, bool isExpanded = false)
         {
             if (model != null && model.Heading is CourtCaseHeading &&
                 model.Heading.ChangeTracker.State == ObjectState.Unchanged)
@@ -430,6 +430,7 @@ namespace FACCTS.Controls.ViewModels
                     return headings;
                 }
                     );
+                model.IsExpanded = isExpanded;
                 model.Heading.MarkAsModified();
                 return data.Any();
             }
@@ -472,6 +473,14 @@ namespace FACCTS.Controls.ViewModels
                 return ++index;
             }
                 );
+        }
+
+        public void Expanded(CourtCaseHeadingViewModel model)
+        {
+            if (UpdateHistoryItems(model, true))
+            {
+                RenewCourtCases();
+            }
         }
 
     }

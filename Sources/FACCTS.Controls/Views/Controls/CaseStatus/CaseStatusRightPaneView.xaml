@@ -102,7 +102,8 @@
                                                   Margin="{Binding Level, Converter={StaticResource LevelToIndentConverter}}"
                                                   IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                   ClickMode="Press"
-                                                  Visibility="{Binding HasChilds, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"/>
+                                                  Visibility="{Binding HasChilds, Mode=OneWay, Converter={StaticResource BoolToVisibilityConverter}}"
+                                                  cal:Message.Attach="[Event Checked] = [Action Expanded($dataContext)]"/>
                                     <TextBlock Text="{Binding Heading.CaseNumber, Mode=OneWay}" x:Name="tbCaseNumber"/>
                                     <TextBlock Text="{Binding Heading.CaseStatus, Mode=OneWay}"
                                                x:Name="tbCaseEvent"
