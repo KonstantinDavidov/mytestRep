@@ -194,6 +194,9 @@
     <Compile Include="Entities\HearingIssue.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\HearingReissue.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Hearings.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -225,6 +228,7 @@
     <Compile Include="Entities\Partials\CourtCaseHistoryHeading.cs" />
     <Compile Include="Entities\Partials\CourtOrders.cs" />
     <Compile Include="Entities\Partials\DocketRecord.cs" />
+    <Compile Include="Entities\Partials\HearingReissue.cs" />
     <Compile Include="Entities\Partials\OtherProtected.cs" />
     <Compile Include="Entities\Partials\PersonBase.cs" />
     <Compile Include="Entities\Partials\AddressInfo.cs" />
@@ -247,6 +251,7 @@
     <Compile Include="Entities\Partials\Interpreter.cs" />
     <Compile Include="Entities\Partials\Permission.cs" />
     <Compile Include="Entities\Partials\Race.cs" />
+    <Compile Include="Entities\Partials\ReissueReason.cs" />
     <Compile Include="Entities\Partials\RestrainingPartyIDInfo.cs" />
     <Compile Include="Entities\Partials\Role.cs" />
     <Compile Include="Entities\Partials\ThirdPartyData.cs" />
@@ -264,6 +269,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Race.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ReissueReason.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\RelyingParties.cs">

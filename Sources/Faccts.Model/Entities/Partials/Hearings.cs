@@ -24,8 +24,6 @@ namespace Faccts.Model.Entities
                 this.CourtDepartment = new CourtDepartment(dto.Department);
                 this.HearingIssue = new HearingIssue(dto.HearingIssues);
                 this.Session = dto.Session;
-                //this.CourtOrders = dto.CourtOrders.Select(x => new CourtOrders(x));
-                //this.Appearances = dto.Appearances.Select(x => new Appearance(x));
 
                 this.MarkAsUnchanged();
             }

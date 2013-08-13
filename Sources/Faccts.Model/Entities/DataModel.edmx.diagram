@@ -102,6 +102,8 @@
         <EntityTypeShape EntityType="FACCTS_DBModel.DocketRecord" Width="1.5" PointX="1.125" PointY="34" />
         <AssociationConnector Association="FACCTS_DBModel.DocketRecordCourtrooms" />
         <AssociationConnector Association="FACCTS_DBModel.DocketRecordCourtDepartment" />
+        <EntityTypeShape EntityType="FACCTS_DBModel.HearingReissue" Width="1.5" PointX="4" PointY="34.125" />
+        <AssociationConnector Association="FACCTS_DBModel.HearingReissueDocketRecord" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

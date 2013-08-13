@@ -1616,6 +1616,11 @@
             <End Role="DocketRecord" EntitySet="DocketRecordSet" />
             <End Role="CourtDepartment" EntitySet="CourtDepartments" />
           </AssociationSet>
+          <EntitySet Name="HearingReissueSet" EntityType="FACCTS_DBModel.HearingReissue" />
+          <AssociationSet Name="HearingReissueDocketRecord" Association="FACCTS_DBModel.HearingReissueDocketRecord">
+            <End Role="HearingReissue" EntitySet="HearingReissueSet" />
+            <End Role="DocketRecord" EntitySet="DocketRecordSet" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="AdfsIntegrationConfiguration">
           <Key>
@@ -2753,6 +2758,7 @@
           <Property Type="Int64" Name="CourtDepartmentId" Nullable="false" />
           <Property Type="Int64" Name="CourtClerkId" Nullable="true" />
           <Property Type="FACCTS_DBModel.CourtAction" Name="Action" Nullable="true" />
+          <NavigationProperty Name="HearingReissue" Relationship="FACCTS_DBModel.HearingReissueDocketRecord" FromRole="DocketRecord" ToRole="HearingReissue" />
         </EntityType>
         <Association Name="DocketRecordCourtrooms">
           <End Type="FACCTS_DBModel.DocketRecord" Role="DocketRecord" Multiplicity="*" />
@@ -2777,6 +2783,28 @@
               <PropertyRef Name="CourtDepartmentId" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="ReissueReason" >
+          <Property Type="Boolean" Name="NoPOS" Nullable="false" />
+          <Property Type="Boolean" Name="FCSReferral" Nullable="false" />
+          <Property Type="Boolean" Name="GetAttyToPrepare" Nullable="false" />
+          <Property Type="Boolean" Name="IsOtherReason" Nullable="false" />
+          <Property Type="String" Name="OtherReasonDescription" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="HearingReissue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReissueReason" Type="FACCTS_DBModel.ReissueReason" Nullable="false" />
+          <Property Type="FACCTS_DBModel.ReissueServiceSpecification" Name="ReissueServiceSpecification" Nullable="false" />
+          <Property Type="Int32" Name="DaysCount" Nullable="false" />
+          <NavigationProperty Name="DocketRecord" Relationship="FACCTS_DBModel.HearingReissueDocketRecord" FromRole="HearingReissue" ToRole="DocketRecord" />
+        </EntityType>
+        <EnumType Name="ReissueServiceSpecification" a:ExternalTypeName="FACCTS.Server.Model.Enums.ReissueServiceSpecification" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" />
+        <Association Name="HearingReissueDocketRecord">
+          <End Type="FACCTS_DBModel.HearingReissue" Role="HearingReissue" Multiplicity="0..1" />
+          <End Type="FACCTS_DBModel.DocketRecord" Role="DocketRecord" Multiplicity="1" />
         </Association>
         </Schema>
     </edmx:ConceptualModels>

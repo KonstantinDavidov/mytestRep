@@ -44,7 +44,7 @@ namespace FACCTS.Server.BusinessLogic.BusinessOperations
                     CaseHistoryEvent = Model.Enums.CaseHistoryEvent.Dismissed,
                     Hearing = null,
                     Date = DateTime.Now,
-                    CourtClerk = _docket.CourtClerkId.HasValue ? DataManager.UserRepository.GetById(_docket.CourtClerkId.Value) : null,
+                    CourtClerk = _docket.CourtClerkId.HasValue ? _dataManagerInstance.UserRepository.GetById(_docket.CourtClerkId.Value) : null,
                     State = ObjectState.Added,
                 }
                 );

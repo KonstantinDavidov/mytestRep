@@ -24,6 +24,7 @@ namespace Faccts.Model.Entities
     [DataContract(IsReference = true)]
     [KnownType(typeof(Courtrooms))]
     [KnownType(typeof(CourtDepartment))]
+    [KnownType(typeof(HearingReissue))]
     public partial class DocketRecord: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
@@ -64,6 +65,7 @@ namespace Faccts.Model.Entities
     				,this.ObservableForProperty(x => x.Action)
     				,this.ObservableForProperty(x => x.Courtroom.IsDirty)
     				,this.ObservableForProperty(x => x.Department.IsDirty)
+    				,this.ObservableForProperty(x => x.HearingReissue.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -423,6 +425,24 @@ namespace Faccts.Model.Entities
             }
         }
         private CourtDepartment _department;
+    
+        [DataMember]
+        public HearingReissue HearingReissue
+        {
+            get { return _hearingReissue; }
+            set
+            {
+                if (!ReferenceEquals(_hearingReissue, value))
+                {
+                    var previousValue = _hearingReissue;
+    				OnNavigationPropertyChanging("HearingReissue");
+                    _hearingReissue = value;
+                    FixupHearingReissue(previousValue);
+                    OnNavigationPropertyChanged("HearingReissue");
+                }
+            }
+        }
+        private HearingReissue _hearingReissue;
 
         #endregion
 
@@ -532,6 +552,7 @@ namespace Faccts.Model.Entities
         {
             Courtroom = null;
             Department = null;
+            HearingReissue = null;
         }
 
         #endregion
@@ -606,6 +627,41 @@ namespace Faccts.Model.Entities
                 if (Department != null && !Department.ChangeTracker.ChangeTrackingEnabled)
                 {
                     Department.StartTracking();
+                }
+            }
+        }
+    
+        private void FixupHearingReissue(HearingReissue previousValue)
+        {
+            if (IsDeserializing)
+            {
+                return;
+            }
+    
+            if (previousValue != null && ReferenceEquals(previousValue.DocketRecord, this))
+            {
+                previousValue.DocketRecord = null;
+            }
+    
+            if (HearingReissue != null)
+            {
+                HearingReissue.DocketRecord = this;
+            }
+    
+            if (ChangeTracker.ChangeTrackingEnabled)
+            {
+                if (ChangeTracker.OriginalValues.ContainsKey("HearingReissue")
+                    && (ChangeTracker.OriginalValues["HearingReissue"] == HearingReissue))
+                {
+                    ChangeTracker.OriginalValues.Remove("HearingReissue");
+                }
+                else
+                {
+                    ChangeTracker.RecordOriginalValue("HearingReissue", previousValue);
+                }
+                if (HearingReissue != null && !HearingReissue.ChangeTracker.ChangeTrackingEnabled)
+                {
+                    HearingReissue.StartTracking();
                 }
             }
         }

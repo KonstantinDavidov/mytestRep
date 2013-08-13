@@ -23,6 +23,7 @@ namespace FACCTS.Server.BusinessLogic.BusinessOperations
 
         public override void Execute()
         {
+            Logger.Info("SearchCourtCasesStrategy: searching courg cases...");
             var query = DataManager.CourtCaseRepository
                 .GetAll(
                 x => x.Party1,
