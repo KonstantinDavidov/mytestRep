@@ -954,54 +954,57 @@ namespace FACCTS.Server.Data
                 }
                 else
                 {
-                    CaseHistory ch = new CaseHistory();
-                    if (el.Element("event").Value.Equals("Hearing"))
+                    if (!(el.Element("date").Value == ""))
                     {
-                        Hearing hearing = new Hearing()
+                        CaseHistory ch = new CaseHistory();
+                        if (el.Element("event").Value.Equals("Hearing"))
                         {
-                            HearingDate = (el.Element("date").Value != "")
-                                                        ?
-                                                            DateTime.Parse(
+                            Hearing hearing = new Hearing()
+                            {
+                                HearingDate = (el.Element("date").Value != "")
+                                                            ?
+                                                                DateTime.Parse(
+                                                                el.Element("date").Value, new System.Globalization.CultureInfo("en-US", true),
+                                                                System.Globalization.DateTimeStyles.AssumeLocal
+                                                                )
+                                                            :
+                                                                DateTime.Now,
+                                HearingIssues = new HearingIssue()
+                                {
+                                    ChildCustodyOrChildVisitation = true,
+                                    ChildSupport = false,
+                                    IsOtherIssue = true,
+                                    OtheIssueText = "Issue1",
+                                    PermanentRO = true,
+                                    SpousalSupport = true
+                                },
+                                CourtCase = courtCase
+                            };
+                            ch.Hearing = hearing;
+                            ch.CaseHistoryEvent = CaseHistoryEvent.Hearing;
+                        }
+                        else
+                        {
+                            ch.CaseHistoryEvent = (el.Element("event").Value != "")
+                                ?
+                                ((el.Element("event").Value.Equals("NewFile") || el.Element("event").Value.Equals("New File")) ? CaseHistoryEvent.File : (CaseHistoryEvent)Enum.Parse(typeof(CaseHistoryEvent), el.Element("event").Value))
+                                :
+                                CaseHistoryEvent.File;
+                        }
+
+                        ch.Date = (el.Element("date").Value != "")
+                                            ?
+                                                DateTime.Parse(
                                                             el.Element("date").Value, new System.Globalization.CultureInfo("en-US", true),
                                                             System.Globalization.DateTimeStyles.AssumeLocal
-                                                            )
-                                                        :
-                                                            DateTime.Now,
-                            HearingIssues = new HearingIssue()
-                            {
-                                ChildCustodyOrChildVisitation = true,
-                                ChildSupport = false,
-                                IsOtherIssue = true,
-                                OtheIssueText = "Issue1",
-                                PermanentRO = true,
-                                SpousalSupport = true
-                            },
-                            CourtCase = courtCase
-                        };
-                        ch.Hearing = hearing;
-                        ch.CaseHistoryEvent = CaseHistoryEvent.Hearing;
+                                                )
+                                            :
+                                                DateTime.Now;
+                        // ch.CaseHistoryEvent =  CaseHistoryEvent.Hearing;
+                        ch.CCPOR_ID = el.Element("orders").Value;
+                        test.Add(ch);
                     }
-                    else
-                    {
-                        ch.CaseHistoryEvent = (el.Element("event").Value != "") 
-                            ? 
-                            ((el.Element("event").Value.Equals("NewFile") || el.Element("event").Value.Equals("New File")) ? CaseHistoryEvent.File : (CaseHistoryEvent)Enum.Parse(typeof(CaseHistoryEvent), el.Element("event").Value)) 
-                            : 
-                            CaseHistoryEvent.File;
-                    }
-
-                    ch.Date = (el.Element("date").Value != "")
-                                        ?
-                                            DateTime.Parse(
-                                                        el.Element("date").Value, new System.Globalization.CultureInfo("en-US", true),
-                                                        System.Globalization.DateTimeStyles.AssumeLocal
-                                            )
-                                        : 
-                                            DateTime.Now;
-                   // ch.CaseHistoryEvent =  CaseHistoryEvent.Hearing;
-                    ch.CCPOR_ID = el.Element("orders").Value;
-                    test.Add(ch);
-                }                
+                }
             }
             return test;
         }
