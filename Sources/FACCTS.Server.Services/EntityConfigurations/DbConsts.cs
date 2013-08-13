@@ -128,5 +128,9 @@ namespace FACCTS.Server.Data.EntityConfigurations
         public const string PERSON_COURT_PARTY_FOR_COLUMN_NAME = "WitnessFor";
         public static string INTERPRETER_FOR_COLUMN_NAME = "InterpreterFor";
         public static string COURT_CASE_LAST_ACTION = "LastAction";
+
+        public static string HEARING_REISSUE_TABLE_NAME = "HearingReissues";
+        public static string HEARING_REISSUE_SERICE_SPECIFICATION = "ServiceSpecification";
+        public static string HEARING_REISSUE_DAYS_COUNT = "DaysCount";
     }
 }

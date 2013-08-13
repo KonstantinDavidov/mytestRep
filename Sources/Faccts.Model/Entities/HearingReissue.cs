@@ -22,15 +22,13 @@ using System.Reflection;
 namespace Faccts.Model.Entities
 {
     [DataContract(IsReference = true)]
-    [KnownType(typeof(CourtLocations))]
-    [KnownType(typeof(Hearings))]
     [KnownType(typeof(DocketRecord))]
-    public partial class Courtrooms: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
+    public partial class HearingReissue: IObjectWithChangeTracker, IReactiveNotifyPropertyChanged, INavigationPropertiesLoadable
     {
     		
     		private MakeObjectReactiveHelper _reactiveHelper;
     
-    		public Courtrooms()
+    		public HearingReissue()
     		{
     			_reactiveHelper = new MakeObjectReactiveHelper(this);
     			Initialize();
@@ -53,10 +51,9 @@ namespace Faccts.Model.Entities
     			);
     			Observable.Merge<Object>(
     				this.ObservableForProperty(x => x.Id)
-    				,this.ObservableForProperty(x => x.RoomName)
-    				,this.ObservableForProperty(x => x.CourtLocation_Id)
-    				,this.ObservableForProperty(x => x.JudgeName)
-    				,this.ObservableForProperty(x => x.CourtLocations.IsDirty)
+    				,this.ObservableForProperty(x => x.ReissueServiceSpecification)
+    				,this.ObservableForProperty(x => x.DaysCount)
+    				,this.ObservableForProperty(x => x.DocketRecord.IsDirty)
     			).
     			Subscribe(_ =>
     			{
@@ -160,154 +157,100 @@ namespace Faccts.Model.Entities
         private long _id;
     
         [DataMember]
-        public string RoomName
+        public FACCTS.Server.Model.Enums.ReissueServiceSpecification ReissueServiceSpecification
         {
-            get { return _roomName; }
+            get { return _reissueServiceSpecification; }
             set
             {
-                if (_roomName != value)
+                if (_reissueServiceSpecification != value)
                 {
-    				OnPropertyChanging("RoomName");
-                    _roomName = value;
-                    OnPropertyChanged("RoomName");
+    				OnPropertyChanging("ReissueServiceSpecification");
+                    _reissueServiceSpecification = value;
+                    OnPropertyChanged("ReissueServiceSpecification");
                 }
             }
         }
-        private string _roomName;
+        private FACCTS.Server.Model.Enums.ReissueServiceSpecification _reissueServiceSpecification;
     
         [DataMember]
-        public Nullable<long> CourtLocation_Id
+        public int DaysCount
         {
-            get { return _courtLocation_Id; }
+            get { return _daysCount; }
             set
             {
-                if (_courtLocation_Id != value)
+                if (_daysCount != value)
                 {
-                    ChangeTracker.RecordOriginalValue("CourtLocation_Id", _courtLocation_Id);
-                    if (!IsDeserializing)
+    				OnPropertyChanging("DaysCount");
+                    _daysCount = value;
+                    OnPropertyChanged("DaysCount");
+                }
+            }
+        }
+        private int _daysCount;
+
+        #endregion
+
+        #region Complex Properties
+    
+        [DataMember]
+        public ReissueReason ReissueReason
+        {
+            get
+            {
+                if (!_reissueReasonInitialized && _reissueReason == null)
+                {
+                    _reissueReason = new ReissueReason();
+                    ((INotifyComplexPropertyChanging)_reissueReason).ComplexPropertyChanging += HandleReissueReasonChanging;
+                }
+                _reissueReasonInitialized = true;
+                return _reissueReason;
+            }
+            set
+            {
+                _reissueReasonInitialized = true;
+                if (!Equals(_reissueReason, value))
+                {
+                    if (_reissueReason != null)
                     {
-                        if (CourtLocations != null && CourtLocations.Id != value)
-                        {
-                            CourtLocations = null;
-                        }
+                        ((INotifyComplexPropertyChanging)_reissueReason).ComplexPropertyChanging -= HandleReissueReasonChanging;
                     }
-    				OnPropertyChanging("CourtLocation_Id");
-                    _courtLocation_Id = value;
-                    OnPropertyChanged("CourtLocation_Id");
-                }
-            }
-        }
-        private Nullable<long> _courtLocation_Id;
     
-        [DataMember]
-        public string JudgeName
-        {
-            get { return _judgeName; }
-            set
-            {
-                if (_judgeName != value)
-                {
-    				OnPropertyChanging("JudgeName");
-                    _judgeName = value;
-                    OnPropertyChanged("JudgeName");
+                    HandleReissueReasonChanging(this, null);
+    				OnPropertyChanging("ReissueReason");
+                    _reissueReason = value;
+                    OnPropertyChanged("ReissueReason");
+    
+                    if (value != null)
+                    {
+                        ((INotifyComplexPropertyChanging)_reissueReason).ComplexPropertyChanging += HandleReissueReasonChanging;
+                    }
                 }
             }
         }
-        private string _judgeName;
+        private ReissueReason _reissueReason;
+        private bool _reissueReasonInitialized;
 
         #endregion
 
         #region Navigation Properties
     
         [DataMember]
-        public CourtLocations CourtLocations
+        public DocketRecord DocketRecord
         {
-            get { return _courtLocations; }
-            set
-            {
-                if (!ReferenceEquals(_courtLocations, value))
-                {
-                    var previousValue = _courtLocations;
-    				OnNavigationPropertyChanging("CourtLocations");
-                    _courtLocations = value;
-                    FixupCourtLocations(previousValue);
-                    OnNavigationPropertyChanged("CourtLocations");
-                }
-            }
-        }
-        private CourtLocations _courtLocations;
-    
-        [DataMember]
-        public TrackableCollection<Hearings> Hearings
-        {
-            get
-            {
-                if (_hearings == null)
-                {
-                    _hearings = new TrackableCollection<Hearings>();
-                    _hearings.CollectionChanged += FixupHearings;
-                }
-                return _hearings;
-            }
-            set
-            {
-                if (!ReferenceEquals(_hearings, value))
-                {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
-    				OnNavigationPropertyChanging("Hearings");
-                    if (_hearings != null)
-                    {
-                        _hearings.CollectionChanged -= FixupHearings;
-                    }
-                    _hearings = value;
-                    if (_hearings != null)
-                    {
-                        _hearings.CollectionChanged += FixupHearings;
-                    }
-                    OnNavigationPropertyChanged("Hearings");
-                }
-            }
-        }
-        private TrackableCollection<Hearings> _hearings;
-    
-        [DataMember]
-        public TrackableCollection<DocketRecord> DocketRecord
-        {
-            get
-            {
-                if (_docketRecord == null)
-                {
-                    _docketRecord = new TrackableCollection<DocketRecord>();
-                    _docketRecord.CollectionChanged += FixupDocketRecord;
-                }
-                return _docketRecord;
-            }
+            get { return _docketRecord; }
             set
             {
                 if (!ReferenceEquals(_docketRecord, value))
                 {
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        throw new InvalidOperationException("Cannot set the FixupChangeTrackingCollection when ChangeTracking is enabled");
-                    }
+                    var previousValue = _docketRecord;
     				OnNavigationPropertyChanging("DocketRecord");
-                    if (_docketRecord != null)
-                    {
-                        _docketRecord.CollectionChanged -= FixupDocketRecord;
-                    }
                     _docketRecord = value;
-                    if (_docketRecord != null)
-                    {
-                        _docketRecord.CollectionChanged += FixupDocketRecord;
-                    }
+                    FixupDocketRecord(previousValue);
                     OnNavigationPropertyChanged("DocketRecord");
                 }
             }
         }
-        private TrackableCollection<DocketRecord> _docketRecord;
+        private DocketRecord _docketRecord;
 
         #endregion
 
@@ -403,134 +346,70 @@ namespace Faccts.Model.Entities
             IsDeserializing = false;
             ChangeTracker.ChangeTrackingEnabled = true;
         }
+        // Records the original values for the complex property ReissueReason
+        private void HandleReissueReasonChanging(object sender, EventArgs args)
+        {
+            if (ChangeTracker.State != ObjectState.Added && ChangeTracker.State != ObjectState.Deleted)
+            {
+                ChangeTracker.State = ObjectState.Modified;
+            }
+        }
+    
     
         protected virtual void ClearNavigationProperties()
         {
-            CourtLocations = null;
-            Hearings.Clear();
-            DocketRecord.Clear();
+            DocketRecord = null;
+            FixupDocketRecordKeys();
         }
 
         #endregion
 
         #region Association Fixup
     
-        private void FixupCourtLocations(CourtLocations previousValue, bool skipKeys = false)
+        private void FixupDocketRecord(DocketRecord previousValue)
         {
             if (IsDeserializing)
             {
                 return;
             }
     
-            if (previousValue != null && previousValue.Courtrooms.Contains(this))
+            if (previousValue != null && ReferenceEquals(previousValue.HearingReissue, this))
             {
-                previousValue.Courtrooms.Remove(this);
+                previousValue.HearingReissue = null;
             }
     
-            if (CourtLocations != null)
+            if (DocketRecord != null)
             {
-                CourtLocations.Courtrooms.Add(this);
-    
-                CourtLocation_Id = CourtLocations.Id;
-            }
-            else if (!skipKeys)
-            {
-                CourtLocation_Id = null;
+                DocketRecord.HearingReissue = this;
             }
     
             if (ChangeTracker.ChangeTrackingEnabled)
             {
-                if (ChangeTracker.OriginalValues.ContainsKey("CourtLocations")
-                    && (ChangeTracker.OriginalValues["CourtLocations"] == CourtLocations))
+                if (ChangeTracker.OriginalValues.ContainsKey("DocketRecord")
+                    && (ChangeTracker.OriginalValues["DocketRecord"] == DocketRecord))
                 {
-                    ChangeTracker.OriginalValues.Remove("CourtLocations");
+                    ChangeTracker.OriginalValues.Remove("DocketRecord");
                 }
                 else
                 {
-                    ChangeTracker.RecordOriginalValue("CourtLocations", previousValue);
+                    ChangeTracker.RecordOriginalValue("DocketRecord", previousValue);
                 }
-                if (CourtLocations != null && !CourtLocations.ChangeTracker.ChangeTrackingEnabled)
+                if (DocketRecord != null && !DocketRecord.ChangeTracker.ChangeTrackingEnabled)
                 {
-                    CourtLocations.StartTracking();
+                    DocketRecord.StartTracking();
                 }
+                FixupDocketRecordKeys();
             }
         }
     
-        private void FixupHearings(object sender, NotifyCollectionChangedEventArgs e)
+        private void FixupDocketRecordKeys()
         {
-            if (IsDeserializing)
-            {
-                return;
-            }
+            const string CourtCaseIdKeyName = "DocketRecord.CourtCaseId";
     
-            if (e.NewItems != null)
+            if(ChangeTracker.ExtendedProperties.ContainsKey(CourtCaseIdKeyName))
             {
-                foreach (Hearings item in e.NewItems)
-                {
-                    item.Courtrooms = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("Hearings", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (Hearings item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.Courtrooms, this))
-                    {
-                        item.Courtrooms = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("Hearings", item);
-                    }
-                }
-            }
-        }
-    
-        private void FixupDocketRecord(object sender, NotifyCollectionChangedEventArgs e)
-        {
-            if (IsDeserializing)
-            {
-                return;
-            }
-    
-            if (e.NewItems != null)
-            {
-                foreach (DocketRecord item in e.NewItems)
-                {
-                    item.Courtroom = this;
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        if (!item.ChangeTracker.ChangeTrackingEnabled)
-                        {
-                            item.StartTracking();
-                        }
-                        ChangeTracker.RecordAdditionToCollectionProperties("DocketRecord", item);
-                    }
-                }
-            }
-    
-            if (e.OldItems != null)
-            {
-                foreach (DocketRecord item in e.OldItems)
-                {
-                    if (ReferenceEquals(item.Courtroom, this))
-                    {
-                        item.Courtroom = null;
-                    }
-                    if (ChangeTracker.ChangeTrackingEnabled)
-                    {
-                        ChangeTracker.RecordRemovalFromCollectionProperties("DocketRecord", item);
-                    }
-                }
+                ChangeTracker.RecordOriginalValue(CourtCaseIdKeyName, ChangeTracker.ExtendedProperties[CourtCaseIdKeyName]);
+                ChangeTracker.ExtendedProperties.Remove(CourtCaseIdKeyName);
             }
         }
 

@@ -51,6 +51,10 @@ namespace Faccts.Model.Entities
             this.HearingIssue = new HearingIssue(dto.HearingIssue);
             this.CourtClerkId = dto.CourtClerkId;
             this.Action = dto.Action;
+            if (dto.HearingReissue != null)
+            {
+                this.HearingReissue = new HearingReissue(dto.HearingReissue);
+            }
 
             this.MarkAsUnchanged();
         }

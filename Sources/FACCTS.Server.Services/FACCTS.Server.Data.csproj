@@ -89,6 +89,7 @@
     <Compile Include="EntityConfigurations\EyesColorConfiguration.cs" />
     <Compile Include="EntityConfigurations\HairColorConfiguration.cs" />
     <Compile Include="EntityConfigurations\HearingConfiguration.cs" />
+    <Compile Include="EntityConfigurations\HearingReissueConfiguration.cs" />
     <Compile Include="EntityConfigurations\InterpreterConfiguration.cs" />
     <Compile Include="EntityConfigurations\ManualIntegrationTaskConfiguration.cs" />
     <Compile Include="EntityConfigurations\CourtOrderConfiguration.cs" />

@@ -8,6 +8,9 @@ using System.Reactive.Linq;
 using System.ComponentModel.Composition;
 using System.Collections.ObjectModel;
 using Faccts.Model.Entities;
+using FACCTS.Services.BusinessOperations;
+using System.Dynamic;
+using Caliburn.Micro;
 
 namespace FACCTS.Controls.ViewModels
 {
@@ -18,7 +21,7 @@ namespace FACCTS.Controls.ViewModels
         public ReissueCaseDialogViewModel() : base()
         {
             this.DisplayName = "Reissuance";
-            this.WhenAny(x => x.CurrentCourtCase, x => x.Value)
+            this.WhenAny(x => x.CurrentDocketRecord, x => x.Value)
                 .Subscribe(x => 
                 {
                     if (x != null)
@@ -77,13 +80,37 @@ namespace FACCTS.Controls.ViewModels
 
         public void Reissue()
         {
-            TryClose(true);
-            Task.Factory.StartNew(() => ProceedReissue());
+            
+            Task.Factory.StartNew(() => ProceedReissue())
+                .ContinueWith(t =>
+                {
+                    TryClose(true);
+                }
+                , TaskContinuationOptions.OnlyOnRanToCompletion);
         }
 
         private void ProceedReissue()
         {
-            //TODO: implement the reissuance ont the client and the server
+            dynamic additionalData = new ExpandoObject();
+            additionalData.NewCourtDate = this.NewCourtDate;
+            additionalData.Courtroom = this.Courtroom;
+            additionalData.Department = this.Department;
+            additionalData.NoPOS = this.NoPOS;
+            additionalData.FCSReferral = this.FCSReferral;
+            additionalData.GetAttyToPrepare = this.GetAttyToPrepare;
+            additionalData.IsOtherReason = this.IsOtherReason;
+            if (additionalData.IsOtherReason)
+            {
+                additionalData.OtherReason = this.OtherReason;
+            }
+            additionalData.NoServiceRequired = this.NoServiceRequired;
+            additionalData.ReissuanceOnSomeDaysBeforeHearing = this.ReissuanceOnSomeDaysBeforeHearing;
+            additionalData.ReissuanceAfterDays = this.ReissuanceAfterDays;
+            additionalData.DaysCount = this.ReissuanceOnSomeDaysBeforeHearing ? this.ReissuanceAfterDays : this.PaperworkOnDays;
+            ReissueStrategy s = new ReissueStrategy(this.CurrentDocketRecord,
+                additionalData
+                );
+            Execute.OnUIThread(() => s.Execute());
         }
 
 

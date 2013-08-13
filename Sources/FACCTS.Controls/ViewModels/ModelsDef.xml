@@ -61,7 +61,7 @@
     <Property name="NoServiceRequired" type="bool"/>
     <Property name="ReissuanceOnSomeDaysBeforeHearing" type="bool"/>
     <Property name="AllPaperworksOnSomeDaysBeforeHearing" type="bool"/>
-    <Property name="CurrentCourtCase" type="Faccts.Model.Entities.CourtCase"/>
+    <Property name="CurrentDocketRecord" type="Faccts.Model.Entities.DocketRecord"/>
     <Property name="Courtrooms" type="Collection" collectionType="Faccts.Model.Entities.Courtrooms"/>
     <Property name="Departments" type="Collection" collectionType="Faccts.Model.Entities.CourtDepartment"/>
   </Model>

@@ -110,6 +110,7 @@
     <Compile Include="Entities\HairColor.cs" />
     <Compile Include="Entities\Hearing.cs" />
     <Compile Include="Entities\HearingIssue.cs" />
+    <Compile Include="Entities\HearingReissue.cs" />
     <Compile Include="Entities\IdentityProvider.cs" />
     <Compile Include="Entities\Interpreter.cs" />
     <Compile Include="Entities\ManualIntegrationTask.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="Entities\Permission.cs" />
     <Compile Include="Entities\PersonBase.cs" />
     <Compile Include="Entities\Race.cs" />
+    <Compile Include="Entities\ReissueReason.cs" />
     <Compile Include="Entities\RelyingParties.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -131,6 +133,7 @@
     <Compile Include="Enums\AppearanceType.cs" />
     <Compile Include="Enums\CourtAction.cs" />
     <Compile Include="Enums\CourtDivision.cs" />
+    <Compile Include="Enums\ReissueServiceSpecification.cs" />
     <Compile Include="Interfaces\ICourtDocketSearchCriteria.cs" />
     <Compile Include="Reporting\Contracts\IEA110.cs" />
     <Compile Include="Reporting\Contracts\IEA130.cs" />
