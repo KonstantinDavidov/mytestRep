@@ -20,7 +20,18 @@ namespace FACCTS.Server.BusinessLogic
 
         public abstract void Execute();
 
-        protected virtual IDataManager DataManager { get; set; }
+        private IDataManager _dataManager;
+        protected virtual IDataManager DataManager 
+        {
+            get
+            {
+                return _dataManager;
+            }
+            set
+            {
+                _dataManager = value;
+            } 
+        }
 
         protected ILog Logger { get; set; }
 
@@ -45,10 +56,10 @@ namespace FACCTS.Server.BusinessLogic
 
             if (isDisposing)
             {
-                if (DataManager != null)
+                if (_dataManager != null)
                 {
-                    DataManager.Dispose();
-                    DataManager = null;
+                    _dataManager.Dispose();
+                    _dataManager = null;
                 }
             }
             Logger = null;

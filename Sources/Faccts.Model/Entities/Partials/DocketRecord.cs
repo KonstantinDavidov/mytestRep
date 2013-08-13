@@ -73,6 +73,7 @@ namespace Faccts.Model.Entities
                 HearingIssue = this.HearingIssue.ConvertToDTO(),
                 CourtClerkId = this.CourtClerkId,
                 Action = this.Action,
+                HearingReissue = this.HearingReissue.ConvertToDTO(),
             };
         }
 

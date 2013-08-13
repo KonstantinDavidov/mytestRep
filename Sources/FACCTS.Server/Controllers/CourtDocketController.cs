@@ -128,6 +128,9 @@ namespace FACCTS.Server.Controllers
                         case CourtAction.Dismissed:
                             DismissCourtCase(docket, courtCase);
                             break;
+                        case CourtAction.Reissue:
+                            ReissueCourtCase(docket, courtCase);
+                            break;
                     }
 
                 }
@@ -139,6 +142,14 @@ namespace FACCTS.Server.Controllers
             {
                 _logger.Error("Exception while updating the court docket: ", ex);
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex);
+            }
+        }
+
+        private void ReissueCourtCase(DocketRecord docket, CourtCase courtCase)
+        {
+            using (ReissueCourtCaseStrategy s = new ReissueCourtCaseStrategy(DataManager, docket, courtCase))
+            {
+                s.Execute();
             }
         }
 

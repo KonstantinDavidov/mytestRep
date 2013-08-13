@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Faccts.Model.Entities
 {
-    public partial class HearingReissue
+    public partial class HearingReissue : IDataTransferConvertible<FACCTS.Server.Model.DataModel.HearingReissue>
     {
         partial void Initialize()
         {
@@ -24,6 +24,17 @@ namespace Faccts.Model.Entities
             this.DaysCount = dto.DaysCount;
 
             this.MarkAsUnchanged();
+        }
+
+        public FACCTS.Server.Model.DataModel.HearingReissue ToDTO()
+        {
+            return new FACCTS.Server.Model.DataModel.HearingReissue()
+            {
+                Id = this.Id,
+                ReissueReason = this.ReissueReason.ConvertToDTO(),
+                ReissueServiceSpecification = this.ReissueServiceSpecification,
+                DaysCount = this.DaysCount,
+            };
         }
     }
 }
