@@ -246,12 +246,16 @@ namespace FACCTS.Controls.ViewModels
             if (SelectedHearing == null)
                 return;
             CourtOrders courtOrder =
-                SelectedHearing.CourtOrders.FirstOrDefault(o => o.OrderType == orderViewModel.OrderType) ??
-                new CourtOrders
+                SelectedHearing.CourtOrders.FirstOrDefault(o => o.OrderType == orderViewModel.OrderType);
+            if (courtOrder == null)
+            {
+                courtOrder = new CourtOrders
                 {
                     Hearings = SelectedHearing,
                     OrderType = orderViewModel.OrderType
                 };
+                SelectedHearing.CourtOrders.Add(courtOrder);
+            }
             if (courtOrder.InnerOrder == null)
             {
                 courtOrder.InnerOrder = new T {ModelOrder = courtOrder};
@@ -285,12 +289,16 @@ namespace FACCTS.Controls.ViewModels
             if (parentOrder == null)
                 return;
             CourtOrders order =
-                parentOrder.ModelOrder.Attachments.FirstOrDefault(o => o.OrderType == orderViewModel.OrderType) ??
-                new CourtOrders
+                parentOrder.ModelOrder.Attachments.FirstOrDefault(o => o.OrderType == orderViewModel.OrderType);
+            if (order == null)
+            {
+                order = new CourtOrders
                 {
                     Hearings = SelectedHearing,
                     OrderType = orderViewModel.OrderType
                 };
+                parentOrder.ModelOrder.Attachments.Add(order);
+            }
             if (order.InnerOrder == null)
             {
                 order.InnerOrder = new T {ModelOrder = order};
