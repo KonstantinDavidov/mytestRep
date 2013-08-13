@@ -6,6 +6,7 @@ namespace Faccts.Model.Entities.Reporting
     public class OrderBase : ReactiveBase
     {
         private CourtOrdersTypes _ordersType;
+        private CourtOrders _modelOrder;
 
         public CourtOrdersTypes OrdersType
         {
@@ -18,6 +19,18 @@ namespace Faccts.Model.Entities.Reporting
             }
         }
 
-        public CourtOrders ModelOrder { get; set; }
+        public CourtOrders ModelOrder
+        {
+            get { return _modelOrder; }
+            set
+            {
+                _modelOrder = value;
+                PopulateModelOrderData();
+            }
+        }
+
+        protected virtual void PopulateModelOrderData()
+        {
+        }
     }
 }

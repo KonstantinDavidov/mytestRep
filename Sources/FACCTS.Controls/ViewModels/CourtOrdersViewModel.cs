@@ -21,6 +21,7 @@ using FACCTS.Services.Data;
 using ReactiveUI;
 using CH110 = Faccts.Model.Entities.Reporting.CH110;
 using CH130 = Faccts.Model.Entities.Reporting.CH130;
+using Child = Faccts.Model.Entities.Child;
 using CourtCase = Faccts.Model.Entities.CourtCase;
 using CourtOrders = Faccts.Model.Entities.CourtOrders;
 using DV110 = Faccts.Model.Entities.Reporting.DV110;
@@ -55,42 +56,62 @@ namespace FACCTS.Controls.ViewModels
                     }
                 });
             DisplayName = "Court Orders";
-            _currentHearings = new TrackableCollection<Hearings>
+            var courtCase = new CourtCase
             {
-                new Hearings
+                CaseNumber = "1234-567",
+            };
+            courtCase.Persons.Add(new Child
+            {
+                FirstName = "Carrie",
+                LastName = "Smith",
+                RelationToProtected = Relationship.C,
+                DateOfBirth = DateTime.Now.AddYears(-10),
+                Sex = Gender.F,
+                PersonType = PersonType.Child
+            });
+            courtCase.Persons.Add(new Child
+            {
+                FirstName = "Sandra",
+                LastName = "Smith",
+                RelationToProtected = Relationship.C,
+                DateOfBirth = DateTime.Now.AddYears(-8),
+                Sex = Gender.F,
+                PersonType = PersonType.Child
+            });
+            var hearing = new Hearings
+            {
+                CourtCase = courtCase,
+                CourtOrders = new TrackableCollection<CourtOrders>
                 {
-                    CourtCase = new CourtCase
+                    new CourtOrders
                     {
-                        CaseNumber = "1234-567"
+                        OrderType = CourtOrdersTypes.DV110
                     },
-                    CourtOrders = new TrackableCollection<CourtOrders>
+                    new CourtOrders
                     {
-                        new CourtOrders
-                        {
-                            OrderType = CourtOrdersTypes.DV110
-                        },
-                        new CourtOrders
-                        {
-                            OrderType = CourtOrdersTypes.DV130
-                        },
-                        new CourtOrders
-                        {
-                            OrderType = CourtOrdersTypes.CH110
-                        },
-                        new CourtOrders
-                        {
-                            OrderType = CourtOrdersTypes.CH130
-                        },
-                        new CourtOrders
-                        {
-                            OrderType = CourtOrdersTypes.EA110
-                        },
-                        new CourtOrders
-                        {
-                            OrderType = CourtOrdersTypes.EA130
-                        }
+                        OrderType = CourtOrdersTypes.DV130
+                    },
+                    new CourtOrders
+                    {
+                        OrderType = CourtOrdersTypes.CH110
+                    },
+                    new CourtOrders
+                    {
+                        OrderType = CourtOrdersTypes.CH130
+                    },
+                    new CourtOrders
+                    {
+                        OrderType = CourtOrdersTypes.EA110
+                    },
+                    new CourtOrders
+                    {
+                        OrderType = CourtOrdersTypes.EA130
                     }
                 }
+            };
+            _currentHearings = new TrackableCollection<Hearings>
+            {
+                hearing
             };
         }
 

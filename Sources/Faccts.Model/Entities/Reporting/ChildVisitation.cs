@@ -13,29 +13,32 @@ namespace Faccts.Model.Entities.Reporting
         private DateTime _attachedDocumentDate;
         private int _attachedDocumentPagesCount;
         private bool _isAttachedDocumentAvilable;
-        private string _isNoVisitationForParents;
-        private string _isEnabled;
+        private IIsNoVisitationForParents _isNoVisitationForParents;
+        private bool _isEnabled;
+        private bool _isVisitationGrantedTo;
 
         public ChildVisitation()
         {
             VisitationSchedule = new VisitationSchedule();
+            IsNoVisitationForParents = new IsNoVisitationForParents();
         }
 
         public ChildVisitation(IChildVisitation visitation)
         {
             IsEnabled = visitation.IsEnabled;
-            IsNoVisitationForParents = visitation.IsNoVisitationForParents;
+            IsNoVisitationForParents = new IsNoVisitationForParents(visitation.IsNoVisitationForParents);
             IsAttachedDocumentAvilable = visitation.IsAttachedDocumentAvilable;
             AttachedDocumentPagesCount = visitation.AttachedDocumentPagesCount;
             AttachedDocumentDate = visitation.AttachedDocumentDate;
             IsPartiesMustGoToMediation = visitation.IsPartiesMustGoToMediation;
             MediationDescription = visitation.MediationDescription;
+            IsVisitationGrantedTo = visitation.IsVisitationGrantedTo;
             VisitationGrantedParent = visitation.VisitationGrantedParent;
             VisitationGrantedOtherParentDescription = visitation.VisitationGrantedOtherParentDescription;
             VisitationSchedule = new VisitationSchedule(visitation.VisitationSchedule);
         }
 
-        public string IsEnabled
+        public bool IsEnabled
         {
             get { return _isEnabled; }
             set
@@ -46,7 +49,7 @@ namespace Faccts.Model.Entities.Reporting
             }
         }
 
-        public string IsNoVisitationForParents
+        public IIsNoVisitationForParents IsNoVisitationForParents
         {
             get { return _isNoVisitationForParents; }
             set
@@ -108,6 +111,17 @@ namespace Faccts.Model.Entities.Reporting
             {
                 if (value == _mediationDescription) return;
                 _mediationDescription = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsVisitationGrantedTo
+        {
+            get { return _isVisitationGrantedTo; }
+            set
+            {
+                if (value.Equals(_isVisitationGrantedTo)) return;
+                _isVisitationGrantedTo = value;
                 OnPropertyChanged();
             }
         }

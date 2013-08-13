@@ -1584,12 +1584,12 @@ namespace FACCTS.Server.Model.OrderModels
 	public partial interface IChildVisitation
 	{
 		
-		string IsEnabled
+		bool IsEnabled
 		{
 			get; set;
 		}
 		
-		string IsNoVisitationForParents
+		IIsNoVisitationForParents IsNoVisitationForParents
 		{
 			get; set;
 		}
@@ -1619,6 +1619,11 @@ namespace FACCTS.Server.Model.OrderModels
 			get; set;
 		}
 		
+		bool IsVisitationGrantedTo
+		{
+			get; set;
+		}
+		
 		CustodyParent VisitationGrantedParent
 		{
 			get; set;
@@ -1636,12 +1641,12 @@ namespace FACCTS.Server.Model.OrderModels
 			}
 	public partial class ChildVisitation : IChildVisitation
 	{
-		public string IsEnabled
+		public bool IsEnabled
 		{
 			get; set;
 		}
 		
-		public string IsNoVisitationForParents
+		public IIsNoVisitationForParents IsNoVisitationForParents
 		{
 			get; set;
 		}
@@ -1667,6 +1672,11 @@ namespace FACCTS.Server.Model.OrderModels
 		}
 		
 		public string MediationDescription
+		{
+			get; set;
+		}
+		
+		public bool IsVisitationGrantedTo
 		{
 			get; set;
 		}

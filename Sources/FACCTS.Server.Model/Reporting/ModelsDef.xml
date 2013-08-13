@@ -196,13 +196,14 @@
     <Property name="IsOtherVisitationAvilable" type="bool"/>
   </Model>
   <Model name="ChildVisitation">
-    <Property name="IsEnabled"/>
-    <Property name="IsNoVisitationForParents"/>
+    <Property name="IsEnabled" type="bool"/>
+    <Property name="IsNoVisitationForParents" type="IIsNoVisitationForParents"/>
     <Property name="IsAttachedDocumentAvilable" type="bool"/>
     <Property name="AttachedDocumentPagesCount" type="int"/>
     <Property name="AttachedDocumentDate" type="DateTime"/>
     <Property name="IsPartiesMustGoToMediation" type="bool"/>
     <Property name="MediationDescription" type="string"/>
+    <Property name="IsVisitationGrantedTo" type="bool"/>
     <Property name="VisitationGrantedParent" type="CustodyParent"/>
     <Property name="VisitationGrantedOtherParentDescription" type="string"/>
     <Property name="VisitationSchedule" type="IVisitationSchedule"/>

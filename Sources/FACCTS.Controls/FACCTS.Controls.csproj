@@ -148,6 +148,7 @@
     <Compile Include="Converters\DataContextMultiValueConverter.cs" />
     <Compile Include="Converters\DateTimeToDateConverter.cs" />
     <Compile Include="Converters\EnumToBooleanConverter.cs" />
+    <Compile Include="Converters\EnumToDescriptionConverter.cs" />
     <Compile Include="Converters\FirstMiddleLastNameToFullNameConverter.cs" />
     <Compile Include="Converters\Int32ToBooleanConverter.cs" />
     <Compile Include="Converters\InvertedBooleanConverter.cs" />

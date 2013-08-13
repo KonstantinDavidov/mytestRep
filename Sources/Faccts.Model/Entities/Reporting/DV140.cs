@@ -29,6 +29,20 @@ namespace Faccts.Model.Entities.Reporting
             OtherOrders = new OtherOrders(order.OtherOrders);
         }
 
+        protected override void PopulateModelOrderData()
+        {
+            if (ChildCustodyItems == null || ChildCustodyItems.Count == 0)
+            {
+                ChildCustodyItems = new ObservableCollection<IChildCustodyItem>(
+                    ModelOrder.Hearings.CourtCase.Children.Select(c => new ChildCustodyItem { Child = c, ChildId = c.Id }));
+                return;
+            }
+            foreach (ChildCustodyItem item  in ChildCustodyItems)
+            {
+                item.Child = ModelOrder.Hearings.CourtCase.Children.FirstOrDefault(c => c.Id == item.ChildId);
+            }
+        }
+
         public ICollection<IChildCustodyItem> ChildCustodyItems
         {
             get { return _childCustodyItems; }

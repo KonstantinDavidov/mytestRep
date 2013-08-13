@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using FACCTS.Server.Model;
 using FACCTS.Server.Model.Enums;
+using FACCTS.Server.Model.OrderModels;
 using FACCTS.Services;
 using FACCTS.Services.Data;
 
@@ -20,6 +21,22 @@ namespace FACCTS.Controls.ViewModels
             get
             {
                 return EnumDescriptions.Instance.ParticipantRoles;
+            }
+        }
+
+        public List<EnumDescript<Relationship>> Relationships
+        {
+            get
+            {
+                return EnumDescriptions.Instance.Relationships;
+            }
+        }
+
+        public List<EnumDescript<CustodyParent>> CustodyParents
+        {
+            get
+            {
+                return EnumDescriptions.Instance.CustodyParents;
             }
         }
     }

@@ -7,6 +7,7 @@ namespace Faccts.Model.Entities.Reporting
         private CustodyParent _physicalCustodyParent;
         private CustodyParent _legalCustodyParent;
         private long _childId;
+        private Child _child;
 
         public ChildCustodyItem()
         {
@@ -17,6 +18,17 @@ namespace Faccts.Model.Entities.Reporting
             ChildId = item.ChildId;
             LegalCustodyParent = item.LegalCustodyParent;
             PhysicalCustodyParent = item.PhysicalCustodyParent;
+        }
+
+        public Child Child
+        {
+            get { return _child; }
+            set
+            {
+                if (Equals(value, _child)) return;
+                _child = value;
+                OnPropertyChanged();
+            }
         }
 
         public long ChildId
