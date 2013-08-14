@@ -3,6 +3,7 @@ using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -113,11 +114,38 @@ namespace FACCTS.Controls.ViewModels
             yield return this;
             if (HasChilds)
             {
-                foreach(var item in Childs)
+                foreach (var item in Childs)
                 {
                     yield return item;
                 }
             }
         }
+
+        private static readonly Random random = new Random();
+
+        internal void UpdateChilds(IEnumerable<CourtCaseHistoryHeading> childHeadings)
+        {
+            childHeadings.Aggregate(Heading.CourtCaseHistoryHeadings, (collection, item) =>
+                {
+                    collection.Add(item);
+                    return collection;
+                }
+                );
+            ChildsChangedNotifier = random.NextDouble();
+        }
+
+        private double _childsChangedNotifier;
+        public double ChildsChangedNotifier
+        {
+            get
+            {
+                return _childsChangedNotifier;
+            }
+            set
+            {
+                this.RaiseAndSetIfChanged(ref _childsChangedNotifier, value);
+            }
+        }
+
     }
 }

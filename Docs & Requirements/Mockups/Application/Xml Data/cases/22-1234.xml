@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<caserecord>
+  <caseheader>
+    <caseNumber>22-1234</caseNumber>
+    <caseFileDate>05-30-2013</caseFileDate>
+    <caseStatus>New</caseStatus>
+  </caseheader>
+  <parties>
+    <party1>
+      <p1FirstName>Sara</p1FirstName>
+      <p1MiddleName>Anne</p1MiddleName>
+      <p1LastName>Martin</p1LastName>
+      <p1Role>0</p1Role>
+      <p1Designation>0</p1Designation>
+      <p1Description></p1Description>
+      <p1Relationship>0</p1Relationship>
+      <p1Hair>1</p1Hair>
+      <p1Eyes>0</p1Eyes>
+      <p1Sex>1</p1Sex>
+      <p1Race>15</p1Race>
+      <p1Age>41</p1Age>
+      <p1Parentrole>0</p1Parentrole>
+      <p1Weight>110</p1Weight>
+      <p1HeightFeet>5</p1HeightFeet>
+      <p1HeightInch>4</p1HeightInch>
+      <p1DOB>06-14-1972</p1DOB>
+      <p1AddressStreet>423 Dolphin Lane</p1AddressStreet>
+      <p1AddressCity>Seaside</p1AddressCity>
+      <p1AddressState>CA </p1AddressState>
+      <p1AddressPostal>92199</p1AddressPostal>
+      <p1Phone>123-123-1234</p1Phone>
+      <p1Fax>234-234-4321</p1Fax>
+      <p1Email>sara@home.com</p1Email>
+      <p1ProPer>no</p1ProPer>
+      <p1Attorney>yes</p1Attorney>
+      <p1AttorneyFirstName>Steve</p1AttorneyFirstName>
+      <p1AttorneyLastName>Sharpe</p1AttorneyLastName>
+      <p1AttorneyBarID>123-12312241</p1AttorneyBarID>
+      <p1AttorneyFirmName>Sharpe and Sons</p1AttorneyFirmName>
+      <p1AttorneyAddressStreet>345 Forth Street</p1AttorneyAddressStreet>
+      <p1AttorneyAddressCity>Santa Ana</p1AttorneyAddressCity>
+      <p1AttorneyAddressState>CA</p1AttorneyAddressState>
+      <p1AttorneyAddressPostal>95612</p1AttorneyAddressPostal>
+      <p1AttorneyPhone>345-345-3456</p1AttorneyPhone>
+      <p1AttorneyFax>654-644-4564</p1AttorneyFax>
+      <p1AttorneyEmail>steve@law.com</p1AttorneyEmail>
+    </party1>
+    <party2>
+      <p2FirstName>John</p2FirstName>
+      <p2MiddleName>Mark</p2MiddleName>
+      <p2LastName>Martin</p2LastName>
+      <p2Role>1</p2Role>
+      <p2Designation>1</p2Designation>
+      <p2Description></p2Description>
+      <p2Relationship>0</p2Relationship>
+      <p2Hair>3</p2Hair>
+      <p2Eyes>5</p2Eyes>
+      <p2Sex>0</p2Sex>
+      <p2Race>14</p2Race>
+      <p2Age>40</p2Age>
+      <p2Parentrole>1</p2Parentrole>
+      <p2Weight></p2Weight>
+      <p2HeightFeet>6</p2HeightFeet>
+      <p2HeightInch>0</p2HeightInch>
+      <p2DOB>05-30-1973</p2DOB>
+      <p2AddressStreet>423 Dolphin Lane</p2AddressStreet>
+      <p2AddressCity>Seaside</p2AddressCity>
+      <p2AddressState>CA</p2AddressState>
+      <p2AddressPostal>92199</p2AddressPostal>
+      <p2Phone>567-567-5675</p2Phone>
+      <p2Fax>345-345-3456</p2Fax>
+      <p2Email>john@home.com</p2Email>
+      <p2ProPer>no</p2ProPer>
+      <p2Attorney>no</p2Attorney>
+      <p2AttorneyFirstName>Donald</p2AttorneyFirstName>
+      <p2AttorneyLastName>Bren</p2AttorneyLastName>
+      <p2AttorneyBarID>4544-3453345</p2AttorneyBarID>
+      <p2AttorneyFirmName>Bren and Associates</p2AttorneyFirmName>
+      <p2AttorneyAddressStreet>321 West North Street</p2AttorneyAddressStreet>
+      <p2AttorneyAddressCity>Santa Ana</p2AttorneyAddressCity>
+      <p2AttorneyAddressState>CA</p2AttorneyAddressState>
+      <p2AttorneyAddressPostal>92516</p2AttorneyAddressPostal>
+      <p2AttorneyPhone>432-424-0422</p2AttorneyPhone>
+      <p2AttorneyFax>423-422-2345</p2AttorneyFax>
+      <p2AttorneyEmail>donald@legal.com</p2AttorneyEmail>
+    </party2>
+    <party3>
+      <p3ProPer>no</p3ProPer>
+      <p3AttorneyFirstName>Rick</p3AttorneyFirstName>
+      <p3AttorneyLastName>Green</p3AttorneyLastName>
+      <p3AttorneyBarID>543-234</p3AttorneyBarID>
+      <p3AttorneyFirmName>Green partners</p3AttorneyFirmName>
+      <p3AttorneyAddressStreet>432 Whales Tail Drive</p3AttorneyAddressStreet>
+      <p3AttorneyAddressCity>SAN DIEGO</p3AttorneyAddressCity>
+      <p3AttorneyAddressState>CA</p3AttorneyAddressState>
+      <p3AttorneyAddressPostal>92345</p3AttorneyAddressPostal>
+      <p3AttorneyPhone>423-423-2344</p3AttorneyPhone>
+      <p3AttorneyFax>345-345-3455</p3AttorneyFax>
+      <p3AttorneyEmail>green@attorneys.com</p3AttorneyEmail>
+    </party3>
+    <childattorney>
+      <c1AttorneyFirstName>Donald</c1AttorneyFirstName>
+      <c1AttorneyLastName>Bren</c1AttorneyLastName>
+      <c1AttorneyBarID>4544-3453345</c1AttorneyBarID>
+      <c1AttorneyFirmName>Bren and Associates</c1AttorneyFirmName>
+      <c1AttorneyAddressStreet>321 West North Street</c1AttorneyAddressStreet>
+      <c1AttorneyAddressCity>Santa Ana</c1AttorneyAddressCity>
+      <c1AttorneyAddressState>CA</c1AttorneyAddressState>
+      <c1AttorneyAddressPostal>92516</c1AttorneyAddressPostal>
+      <c1AttorneyPhone>432-424-0422</c1AttorneyPhone>
+      <c1AttorneyFax>423-422-2345</c1AttorneyFax>
+      <c1AttorneyEmail>donald@legal.com</c1AttorneyEmail>
+    </childattorney>
+    <children>
+      <child1>
+        <entity>PERSON</entity>
+        <firstname>Tommy</firstname>
+        <lastname>Martin</lastname>
+        <relationship>Son</relationship>
+        <dateofbirth>09-08-1998</dateofbirth>
+        <sex>M</sex>
+      </child1>
+      <child2>
+        <entity></entity>
+        <firstname></firstname>
+        <lastname></lastname>
+        <relationship></relationship>
+        <dateofbirth></dateofbirth>
+        <sex></sex>
+      </child2>
+    </children>
+    <otherprotected>
+      <otherprotected1>
+        <entity>PERSON</entity>
+        <firstname>Louis</firstname>
+        <lastname>Style</lastname>
+        <relationship>Friend</relationship>
+        <household>false</household>
+        <sex>M</sex>
+      </otherprotected1>
+    </otherprotected>
+    <witness>
+      <witness1>
+        <entity></entity>
+        <firstname></firstname>
+        <lastname></lastname>
+        <designation></designation>
+        <witnessfor></witnessfor>
+        <contactinfo></contactinfo>
+      </witness1>
+    </witness>
+    <interpreter>
+      <interpreter1>
+        <entity></entity>
+        <firstname></firstname>
+        <lastname></lastname>
+        <designation></designation>
+        <interpreterfor></interpreterfor>
+        <language></language>
+      </interpreter1>
+    </interpreter>
+  </parties>
+  <relatedcases>
+    <case1>
+      <casenumber>22-1111</casenumber>
+      <casetype>RO</casetype>
+      <county>ORANGE</county>
+      <CPOTRO></CPOTRO>
+      <expirationdate>12-10-2017</expirationdate>
+      <leadcase></leadcase>
+    </case1>
+  </relatedcases>
+  <casehistory>
+    <event1>
+      <date>12-10-2012</date>
+      <event>NewFile</event>
+      <party1present>Yes</party1present>
+      <party1sworn>Yes</party1sworn>
+      <party1atty>Yes</party1atty>
+      <party2present>Yes</party2present>
+      <party2sworn>Yes</party2sworn>
+      <party2atty>Yes</party2atty>
+      <orders></orders>
+      <mergedCase></mergedCase>
+    </event1>
+    <currentevent>
+      <issuedate></issuedate>
+      <expiredate></expiredate>
+      <masterorder>DV-110</masterorder>
+      <attachedorders></attachedorders>
+      <overruns></overruns>
+    </currentevent>
+  </casehistory>
+  <casenotes>
+    <user1>
+      <userid>Sophia Myles</userid>
+      <userrole>Court Admin</userrole>
+      <lastdate>07-19-2013</lastdate>
+      <publicnotes>I input the data for this case very carefully.</publicnotes>
+      <privatenotes>I keep these notes private.</privatenotes>
+    </user1>
+    <user2>
+      <userid>Pascal Hutton</userid>
+      <userrole>Court Clerk</userrole>
+      <lastdate>07-19-2013</lastdate>
+      <publicnotes>These are my case notes</publicnotes>
+      <privatenotes>I keep these notes private.</privatenotes>
+    </user2>
+    <user3>
+      <userid>Ray Stevenson</userid>
+      <userrole>Court Clerk</userrole>
+      <lastdate>07-19-2013</lastdate>
+      <publicnotes></publicnotes>
+      <privatenotes>I keep these notes private.</privatenotes>
+    </user3>
+    <user4>
+      <userid>Amy Smart</userid>
+      <userrole>Court Admin</userrole>
+      <lastdate>07-19-2013</lastdate>
+      <publicnotes></publicnotes>
+      <privatenotes>I keep these notes private.</privatenotes>
+    </user4>
+  </casenotes>
+</caserecord>
