@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>renewCase</class>
+ <widget class="QDialog" name="renewCase">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>552</width>
+    <height>315</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>11</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QLabel" name="label_RenewCase">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>40</y>
+     <width>211</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>CONFIRMATION: RENEW CASE</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>50</y>
+     <width>476</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_2">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>230</y>
+     <width>296</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="toolButton_cancel">
+   <property name="geometry">
+    <rect>
+     <x>445</x>
+     <y>245</y>
+     <width>71</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>CANCEL</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="toolButton_renew">
+   <property name="geometry">
+    <rect>
+     <x>370</x>
+     <y>245</y>
+     <width>71</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>UPDATE</string>
+   </property>
+  </widget>
+  <widget class="QTimeEdit" name="timeEdit_hearingTime">
+   <property name="geometry">
+    <rect>
+     <x>185</x>
+     <y>120</y>
+     <width>86</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QDateEdit" name="dateEdit_hearingDate">
+   <property name="geometry">
+    <rect>
+     <x>185</x>
+     <y>95</y>
+     <width>86</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_caseNumber">
+   <property name="geometry">
+    <rect>
+     <x>165</x>
+     <y>70</y>
+     <width>106</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_Department">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>145</y>
+     <width>111</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>G1</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>G2</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>G3</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="comboBox_Courtroom">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>170</y>
+     <width>111</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Courtroom A</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Courtroom B</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Courtroom C</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="Line" name="line_3">
+   <property name="geometry">
+    <rect>
+     <x>285</x>
+     <y>65</y>
+     <width>16</width>
+     <height>166</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_renewGranted">
+   <property name="geometry">
+    <rect>
+     <x>300</x>
+     <y>65</y>
+     <width>141</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Renew Granted</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_renewDenied">
+   <property name="geometry">
+    <rect>
+     <x>305</x>
+     <y>210</y>
+     <width>141</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Renew Denied</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="radioButton">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>85</y>
+     <width>76</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>5 Years</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="radioButton_2">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>85</y>
+     <width>91</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Permanent</string>
+   </property>
+  </widget>
+  <widget class="QDateEdit" name="dateEdit_expireDate">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>340</x>
+     <y>135</y>
+     <width>86</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QTimeEdit" name="timeEdit_expireTime">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>135</y>
+     <width>86</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>430</x>
+     <y>165</y>
+     <width>87</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Midnight</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="radioButton_3">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>110</y>
+     <width>186</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Set Expiration Date</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_caseNumber">
+   <property name="geometry">
+    <rect>
+     <x>55</x>
+     <y>70</y>
+     <width>81</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Case Number</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_caseNumber_2">
+   <property name="geometry">
+    <rect>
+     <x>55</x>
+     <y>95</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>New Hearing Date</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_caseNumber_3">
+   <property name="geometry">
+    <rect>
+     <x>55</x>
+     <y>120</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>New Hearing Time</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_caseNumber_4">
+   <property name="geometry">
+    <rect>
+     <x>55</x>
+     <y>145</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Department</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_caseNumber_5">
+   <property name="geometry">
+    <rect>
+     <x>55</x>
+     <y>170</y>
+     <width>101</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Courtroom</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>radioButton_3</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>dateEdit_expireDate</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>346</x>
+     <y>120</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>344</x>
+     <y>136</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_3</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>timeEdit_expireTime</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>437</x>
+     <y>128</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>438</x>
+     <y>137</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_3</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>checkBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>420</x>
+     <y>124</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>453</x>
+     <y>166</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButton_cancel</sender>
+   <signal>clicked()</signal>
+   <receiver>renewCase</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>470</x>
+     <y>265</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>469</x>
+     <y>283</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButton_renew</sender>
+   <signal>clicked()</signal>
+   <receiver>renewCase</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>382</x>
+     <y>261</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>280</x>
+     <y>271</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

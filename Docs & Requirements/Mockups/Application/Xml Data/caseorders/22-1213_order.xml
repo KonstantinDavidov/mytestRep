@@ -1,0 +1,1073 @@
+<?xml version="1.0" encoding="UTF-8"?><?FACCTS MOCK APP 2_2 Order Data Test Flat File?>
+<caseorders>
+	<caseheader>
+		<caseComplete>20</caseComplete>
+		<caseNumber>22-1213</caseNumber>
+		<sealedCase>true</sealedCase>
+		<tempJudge>false</tempJudge>
+		<tempJudgeName></tempJudgeName>
+		<currentOrder>DV110</currentOrder>
+		<currrentExpireDate></currrentExpireDate>
+		<p1Name>Karen Lynn Black</p1Name>
+		<p1Attend>true</p1Attend>
+		<p1Sworn>true</p1Sworn>
+		<p1Attorney>true</p1Attorney>
+		<p1Parent>Mom</p1Parent>
+		<p1Role>Plaintiff</p1Role>
+		<p1Designation>Protected</p1Designation>
+		<p2Name>Justin S Black</p2Name>
+		<p2Attend>true</p2Attend>
+		<p2Sworn>true</p2Sworn>
+		<p2Attorney>false</p2Attorney>
+		<p2Parent>Dad</p2Parent>
+		<p2Role>Respondent</p2Role>
+		<p2Designation>Restrained</p2Designation>	
+	</caseheader>
+	<DV110>
+		<stack1>
+			<DV110POSProvided>false</DV110POSProvided>
+			<DV110POSNotP1Delivered>true</DV110POSNotP1Delivered>
+			<ConductOrders>
+				<DV110StatusConduct>1</DV110StatusConduct>
+				<DV110NoContact>false</DV110NoContact>
+				<DV110NoHarass>true</DV110NoHarass>
+				<DV110NoLocate>false</DV110NoLocate>
+				<DV110ConductException>false</DV110ConductException>
+			</ConductOrders>
+			<StayAwayOrders>
+				<DV110StatusStayAway>1</DV110StatusStayAway>
+				<DV110StayAwayDistance>2500</DV110StayAwayDistance>
+				<DV110NoPerson>true</DV110NoPerson>
+				<DV110NoWork>false</DV110NoWork>
+				<DV110NoSchool>false</DV110NoSchool>
+				<DV110NoHome>false</DV110NoHome>	
+				<DV110NoChildcare>true</DV110NoChildcare>
+				<DV110NoVehicle>true</DV110NoVehicle>
+				<DV110StayAwayOtherOrders>true</DV110StayAwayOtherOrders>
+				<DV110StayAwayOtherDetail>Restrained should not attempt to contact Protected on cellphone or email.</DV110StayAwayOtherDetail>
+			</StayAwayOrders>
+			<MoveOutOrders>
+				<DV110StatusMoveOut>1</DV110StatusMoveOut>
+				<DV110MoveOutAddress>432 Golf Lane, Seaside, CA 92199</DV110MoveOutAddress>				
+			</MoveOutOrders>
+			<CommunicationsOrders>
+				<DV110StatusCommunications>1</DV110StatusCommunications>								
+			</CommunicationsOrders>
+			<AnimalsOrders>
+				<DV110StatusAnimals>1</DV110StatusAnimals>
+				<DV110AnimalDistance>2500</DV110AnimalDistance>
+				<DV110AnimalDetail></DV110AnimalDetail>
+			</AnimalsOrders>
+			<FireArmsOrders>
+				<DV110FireArms>false</DV110FireArms>				
+			</FireArmsOrders>
+			<OtherOrders>
+				<DV110OtherStatusOrders>1</DV110OtherStatusOrders>
+				<DV110OtherOrdersDetail>The court orders that both parties seek court appointed counseling</DV110OtherOrdersDetail>			
+				<DV110Expiration>true</DV110Expiration>
+				<DV110ExpirationTime>24:00:00</DV110ExpirationTime>
+				<DV110ExpirationDate>07-23-2018</DV110ExpirationDate>
+			</OtherOrders>		
+			<DV110OtherProtected>
+				<OtherProtected1>
+					<entity></entity>
+					<fullname></fullname>
+				</OtherProtected1>
+				<OtherProtected2>
+					<entity></entity>
+					<fullname></fullname>
+				</OtherProtected2>
+			</DV110OtherProtected>
+		</stack1>
+		<stack2>
+			<orderPropertyControl>1</orderPropertyControl>
+			<property>
+				<item1>
+					<propertyItem>Automobile</propertyItem>
+					<propertyDescription>BMW M3 Convertible</propertyDescription>
+				</item1>
+				<item2>
+					<propertyItem>Computer</propertyItem>
+					<propertyDescription>Apple MacPro</propertyDescription>
+				</item2>
+			</property>
+			<orderDebtPayments>1</orderDebtPayments>
+			<payments>
+				<debt1>
+					<debtItem>Visa</debtItem>
+					<paymentTo>Plaintiff</paymentTo>
+					<paymentFor>CreditCard</paymentFor>	
+					<paymentFrom>Respondent</paymentFrom>				
+					<date>07/23/2013</date>	
+				</debt1>
+				<debt2>
+					<debtItem>Diners Clud Card</debtItem>
+					<paymentTo>Plaintiff</paymentTo>
+					<paymentFor>CreditCard</paymentFor>	
+					<paymentFrom>Respondent</paymentFrom>				
+					<date>07/23/2013</date>	
+				</debt2>
+			</payments>
+			<orderPropertyRestraint>1</orderPropertyRestraint>
+			<p1PropertyRestraint>false</p1PropertyRestraint>
+			<p2PropertyRestraint>true</p2PropertyRestraint>
+			<otherPropertyOrders>1</otherPropertyOrders>
+			<otherPropertyOrdersDetail>Belongings in house to Plaintiff control.</otherPropertyOrdersDetail>
+		</stack2>
+		<stack3>
+			<children>
+				<child1>
+					<entity></entity>
+					<firstname></firstname>
+					<lastname></lastname>
+					<dateofbirth></dateofbirth>
+					<legalcustody></legalcustody>
+					<physicalcustody></physicalcustody>
+				</child1>
+				<child2>
+					<entity></entity>
+					<firstname></firstname>
+					<lastname></lastname>
+					<dateofbirth></dateofbirth>
+					<legalcustody></legalcustody>
+					<physicalcustody></physicalcustody>
+				</child2>
+			</children>
+			<orderStatusChildVisitation>0</orderStatusChildVisitation>
+			<orderNoVisitionChildren>true</orderNoVisitionChildren>
+			<orderNoVisitChild>3</orderNoVisitChild>
+			<DV110VisitationMediation>false</DV110VisitationMediation>
+			<DV110VisitationMediationProvider></DV110VisitationMediationProvider>
+			<DV110VisitationAttachment>false</DV110VisitationAttachment>
+			<DV110VisitationAttachmentPages></DV110VisitationAttachmentPages>
+			<DV110VisitationAttachmentDate></DV110VisitationAttachmentDate>
+			<DV110VisitationGrantedTo>false</DV110VisitationGrantedTo>
+			<DV110VisitationParent>0</DV110VisitationParent>
+			<DV110VisitationOtherParent></DV110VisitationOtherParent>
+			<DV110ScheduleWeekends>false</DV110ScheduleWeekends>
+			<DV110ScheduleWeekendsCommenceDate>12/12/2013</DV110ScheduleWeekendsCommenceDate>
+			<DV110ScheduleWeekendMonth1>false</DV110ScheduleWeekendMonth1>
+			<DV110ScheduleWeekendMonth2>false</DV110ScheduleWeekendMonth2>
+			<DV110ScheduleWeekendMonth3>false</DV110ScheduleWeekendMonth3>
+			<DV110ScheduleWeekendMonth4>false</DV110ScheduleWeekendMonth4>
+			<DV110ScheduleWeekendMonth5>false</DV110ScheduleWeekendMonth5>
+			<DV110ScheduleWeekendStartDay></DV110ScheduleWeekendStartDay>
+			<DV110ScheduleWeekendEndDay></DV110ScheduleWeekendEndDay>
+			<DV110ScheduleWeekendVisitStartTime></DV110ScheduleWeekendVisitStartTime>
+			<DV110ScheduleWeekendVisitEndTime></DV110ScheduleWeekendVisitEndTime>
+			<DV110ScheduleWeekdays>false</DV110ScheduleWeekdays>
+			<DV110ScheduleWeekdayStartTime></DV110ScheduleWeekdayStartTime>
+			<DV110ScheduleWeekdayStartDay></DV110ScheduleWeekdayStartDay>
+			<DV110ScheduleWeekdayEndTime></DV110ScheduleWeekdayEndTime>
+			<DV110ScheduleWeekdayEndDay></DV110ScheduleWeekdayEndDay>
+			<DV110ExchangeRemove>false</DV110ExchangeRemove>
+			<DV110TransportFromParty>0</DV110TransportFromParty>
+			<DV110TransportFromPartyOther></DV110TransportFromPartyOther>
+			<DV110TransportFromLocation></DV110TransportFromLocation>
+			<DV110TransportToParty>0</DV110TransportToParty>
+			<DV110TransportToPartyOther></DV110TransportToPartyOther>
+			<DV110TransportToLocation></DV110TransportToLocation>
+			<DV110TravelRestrictProtected>false</DV110TravelRestrictProtected>
+			<DV110TravelRestrictRestrained>false</DV110TravelRestrictRestrained>	
+			<DV110TravelRestrictOther>false</DV110TravelRestrictOther>
+			<DV110TravelRestrictOtherName>Other Name</DV110TravelRestrictOtherName>
+			<DV110TravelRestrictCA>false</DV110TravelRestrictCA>
+			<DV110TravelRestrictUSA>false</DV110TravelRestrictUSA>	
+			<DV110TravelRestrictOtherPlace>false</DV110TravelRestrictOtherPlace>
+			<DV110TravelRestrictOtherDetail></DV110TravelRestrictOtherDetail>
+			<DV110HabitualResidencyUS>false</DV110HabitualResidencyUS>
+			<DV110HabitualResidencyOther>false</DV110HabitualResidencyOther>
+			<DV110HabitualResidencyOtherDetail></DV110HabitualResidencyOtherDetail>
+			<DV110ChildAbductionRisk>false</DV110ChildAbductionRisk>
+			<DV110ChildCustodyOrders></DV110ChildCustodyOrders>
+		</stack3>
+		<stack4>
+			<DV110SupervisionMediation>false</DV110SupervisionMediation>
+			<DV110SupervisionMediationLocation></DV110SupervisionMediationLocation>
+			<DV110VisitationSupervised>false</DV110VisitationSupervised>
+			<DV110ExchangesSupervised>false</DV110ExchangesSupervised>
+			<DV110PersonSupervised>0</DV110PersonSupervised>
+			<DV110PersonSupervisedOtherDetail></DV110PersonSupervisedOtherDetail>
+			<DV110SupervisedAllVisit>false</DV110SupervisedAllVisit>
+			<DV110SupervisedVisitsWeek></DV110SupervisedVisitsWeek>
+			<DV110SupervisedHoursVisit></DV110SupervisedHoursVisit>
+			<DV110SupervisedOtherSchedule>false</DV110SupervisedOtherSchedule>
+			<DV110SupervisedOtherScheduleDetail></DV110SupervisedOtherScheduleDetail>
+			<DV110SupervisedProfessional>false</DV110SupervisedProfessional>
+			<DV110SupervisedNonProfessional>false</DV110SupervisedNonProfessional>
+			<DV110SupervisedTherapeutic>false</DV110SupervisedTherapeutic>
+			<DV110SupervisedMomPays></DV110SupervisedMomPays>
+			<DV110SupervisedDadPays></DV110SupervisedDadPays>
+			<DV110SupervisedOtherPays></DV110SupervisedOtherPays>
+			<DV110SupervisedOtherPaysName></DV110SupervisedOtherPaysName>
+			<DV110SupervisedProviderName></DV110SupervisedProviderName>			
+			<DV110SupervisedProviderAddress></DV110SupervisedProviderAddress>
+			<DV110SupervisedProviderPhone></DV110SupervisedProviderPhone>
+			<DV110SupervisionOtherDetail></DV110SupervisionOtherDetail>
+		</stack4>
+		<stack5>
+			<DV110TravelRestrictParty>Restrained</DV110TravelRestrictParty>
+			<DV110TravelRestrictROViolation>true</DV110TravelRestrictROViolation>
+			<DV110TravelRestrictOutsideCA>true</DV110TravelRestrictOutsideCA>
+			<DV110TravelRestrictAction>true</DV110TravelRestrictAction>
+			<DV110TravelRestrictQuitJob>true</DV110TravelRestrictQuitJob>
+			<DV110TravelRestrictSoldHome>true</DV110TravelRestrictSoldHome>
+			<DV110TravelRestrictClosedBank>true</DV110TravelRestrictClosedBank>
+			<DV110TravelRestrictEndLease>true</DV110TravelRestrictEndLease>
+			<DV110TravelRestrictSoldAssets>true</DV110TravelRestrictSoldAssets>
+			<DV110TravelRestrictDestroyDocuments>true</DV110TravelRestrictDestroyDocuments>
+			<DV110TravelRestrictApplyPassport>true</DV110TravelRestrictApplyPassport>
+			<DV110TravelRestrictPriorHistory>true</DV110TravelRestrictPriorHistory>
+			<DV110TravelRestrictDomesticViolence>true</DV110TravelRestrictDomesticViolence>
+			<DV110TravelRestrictChildAbuse>true</DV110TravelRestrictChildAbuse>
+			<DV110TravelRestrictNoCoopParent>true</DV110TravelRestrictNoCoopParent>
+			<DV110TravelRestrictCrimeRecord>true</DV110TravelRestrictCrimeRecord>
+			<DV110TravelRestrictForiegnTies>true</DV110TravelRestrictForiegnTies>
+			<DV110PostBond>true</DV110PostBond>
+			<DV110PostBondAmount>12000</DV110PostBondAmount>
+			<DV110NoMoveChildren>true</DV110NoMoveChildren>
+			<DV110NoMoveChildrenCounty>true</DV110NoMoveChildrenCounty>
+			<DV110NoMoveChildrenState>true</DV110NoMoveChildrenState>
+			<DV110NoMoveChildrenUSA>true</DV110NoMoveChildrenUSA>
+			<DV110NoMoveChildrenOther>true</DV110NoMoveChildrenOther>
+			<DV110NoMoveChildrenOtherDetail>The Big City</DV110NoMoveChildrenOtherDetail>
+			<DV110NoTravelChildren>true</DV110NoTravelChildren>
+			<DV110NoTravelChildrenCounty>true</DV110NoTravelChildrenCounty>
+			<DV110NoTravelChildrenState>true</DV110NoTravelChildrenState>
+			<DV110NoTravelChildrenUSA>true</DV110NoTravelChildrenUSA>
+			<DV110NoTravelChildrenOther>true</DV110NoTravelChildrenOther>
+			<DV110NoTravelChildrenOtherDetail>The Little Town</DV110NoTravelChildrenOtherDetail>
+			<DV110TravelNotifyOtherState>true</DV110TravelNotifyOtherState>
+			<DV110TravelNotifyOtherStateDetail>Alabama</DV110TravelNotifyOtherStateDetail>
+			<DV110DocumentSurrender>true</DV110DocumentSurrender>
+			<DV110SurrenderTravelDoc>Airplane Coupons</DV110SurrenderTravelDoc>
+			<DV110TravelProvideOrder>true</DV110TravelProvideOrder>
+			<DV110TravelProvideChildItinerary>true</DV110TravelProvideChildItinerary>
+			<DV110TravelProvideAirplaneTickets>true</DV110TravelProvideAirplaneTickets>
+			<DV110TravelProvideAddressPhone>true</DV110TravelProvideAddressPhone>
+			<DV110TravelProvideOtherParentTicket>true</DV110TravelProvideOtherParentTicket>			
+			<DV110TravelProvideOther>true</DV110TravelProvideOther>
+			<DV110TravelProvideOtherDetail>Your Travel Coupons</DV110TravelProvideOtherDetail>
+			<DV110OtherTravelRestrictionOrder>true</DV110OtherTravelRestrictionOrder>
+			<DV110OtherTravelOrdersDetail>Any train travel must be arranged in advance of the trip.</DV110OtherTravelOrdersDetail>
+		</stack5>
+	</DV110>
+	<DV130>
+		<stack1>
+			<DV130POSDelivered>true</DV130POSDelivered>
+			<DV130POSNotDeliveredP1>false</DV130POSNotDeliveredP1>
+			<DV130Conduct>true</DV130Conduct>
+			<DV130NoContact>true</DV130NoContact>
+			<DV130NoHarass>true</DV130NoHarass>
+			<DV130NoLocate>true</DV130NoLocate>
+			<DV130ConductException>true</DV130ConductException>
+			<DV130StayAway>true</DV130StayAway>
+			<DV130StayAwayDistance>2000</DV130StayAwayDistance>
+			<DV130NoPerson>true</DV130NoPerson>
+			<DV130NoWork>true</DV130NoWork>
+			<DV130NoSchool>true</DV130NoSchool>
+			<DV130NoHome>true</DV130NoHome>	
+			<DV130NoChildCare>true</DV130NoChildCare>
+			<DV130NoVehicle>true</DV130NoVehicle>
+			<DV130NoStayAwayOther>true</DV130NoStayAwayOther>
+			<DV130StayAwayAttach>true</DV130StayAwayAttach>
+			<DV130StayAwayOtherDetail>There are new Stay Away orders on the DV130.</DV130StayAwayOtherDetail>
+			<DV130MoveOut>true</DV130MoveOut>
+			<DV130MoveOutAddress>123 Main Street Irvine CA 92614</DV130MoveOutAddress>
+			<DV130CommunicationsRecording>true</DV130CommunicationsRecording>
+			<DV130Animals>true</DV130Animals>
+			<DV130AnimalsDistance>1200</DV130AnimalsDistance>
+			<DV130AnimalsDetail>The Big Dog of All Dogs</DV130AnimalsDetail>
+			<DV130OtherOrders>true</DV130OtherOrders>
+			<DV130OtherOrdersDetail>There are more orders while the judge is signing this one.</DV130OtherOrdersDetail>
+			<DV130BatterIntervention>true</DV130BatterIntervention>
+			<DV130Firearms>true</DV130Firearms>
+			<DV130NoExpire>false</DV130NoExpire>
+			<DV130Expire>true</DV130Expire>
+			<DV130ExpireTime>24:00:00</DV130ExpireTime>
+			<DV130ExpireDate>07-22-2018</DV130ExpireDate>
+			<otherprotected>
+				<otherparty1>
+					<entity>PERSON</entity>
+					<fullname>Carrie Williams</fullname>
+				</otherparty1>
+				<otherparty2>
+					<entity>PERSON</entity>
+					<fullname>Sandra Williams</fullname>
+				</otherparty2>
+			</otherprotected>
+		</stack1>
+		<stack2>
+			<PropertyControl>true</PropertyControl>
+			<property>
+				<item1>
+					<propertyItem>Automobile</propertyItem>
+					<propertyGivenTo>Plaintiff</propertyGivenTo>
+				</item1>
+				<item2>
+					<propertyItem>Computer</propertyItem>
+					<propertyGivenTo>Plaintiff</propertyGivenTo>
+				</item2>
+				<item3>
+					<propertyItem>Stereo</propertyItem>
+					<propertyGivenTo>Respondent</propertyGivenTo>
+				</item3>
+			</property>
+			<DebtPayment>true</DebtPayment>
+			<payments>
+				<debt1>
+					<debtItem>Visa</debtItem>
+					<paymentTo>Plaintiff</paymentTo>
+					<paymentFor>CreditCard</paymentFor>	
+					<paymentFrom>Respondent</paymentFrom>				
+					<date>07/16/2013</date>	
+				</debt1>
+				<debt2>
+					<debtItem>Mastercard</debtItem>
+					<paymentTo>Plaintiff</paymentTo>
+					<paymentFor>CreditCard</paymentFor>	
+					<paymentFrom>Respondent</paymentFrom>				
+					<date>07/16/2013</date>	
+				</debt2>
+			</payments>
+			<DV130PropertyRestraint>true</DV130PropertyRestraint>
+			<DV130PropertyRestraintProtected>true</DV130PropertyRestraintProtected>
+			<DV130PropertyRestraintRestrained>true</DV130PropertyRestraintRestrained>
+		</stack2>
+		<stack3>
+			<children>
+				<child1>
+					<entity>PERSON</entity>
+					<firstname>Carrie</firstname>
+					<lastname>Smith</lastname>
+					<dateofbirth>07/30/1998</dateofbirth>
+					<legalcustody>Mom</legalcustody>
+					<physicalcustody>Mom</physicalcustody>
+				</child1>
+				<child2>
+					<entity>PERSON</entity>
+					<firstname>Sandra</firstname>
+					<lastname>Smith</lastname>
+					<dateofbirth>12/20/2000</dateofbirth>
+					<legalcustody>Mom</legalcustody>
+					<physicalcustody>Mom</physicalcustody>
+				</child2>
+			</children>
+			<DV130VisitationOrders>true</DV130VisitationOrders>
+			<DV130VisitationOtherParent>true</DV130VisitationOtherParent>
+			<DV130VisitationOtherParentName>Third Parent</DV130VisitationOtherParentName>
+			<DV130NoVisitation>true</DV130NoVisitation>
+			<DV130NoVisitationParent>2</DV130NoVisitationParent>
+			<DV130VisitationMediation>true</DV130VisitationMediation>
+			<DV130VisitationMediationProvider>Joanne's Mediation Service</DV130VisitationMediationProvider>
+			<DV130VisitationAttachment>true</DV130VisitationAttachment>
+			<DV130VisitationAttachmentPages>12</DV130VisitationAttachmentPages>
+			<DV130VisitationAttachmentDate>12/20/2012</DV130VisitationAttachmentDate>
+			<DV130VisitationGrantedTo>true</DV130VisitationGrantedTo>
+			<DV130VisitationParent>1</DV130VisitationParent>
+			<DV130VisitationGrantedOtherParentName>Other Parent</DV130VisitationGrantedOtherParentName>
+			<DV130ScheduleWeekends>true</DV130ScheduleWeekends>
+			<DV130ScheduleWeekendsCommenceDate>12-12-2013</DV130ScheduleWeekendsCommenceDate>
+			<DV130ScheduleWeekendMonth1>true</DV130ScheduleWeekendMonth1>
+			<DV130ScheduleWeekendMonth2>true</DV130ScheduleWeekendMonth2>
+			<DV130ScheduleWeekendMonth3>true</DV130ScheduleWeekendMonth3>
+			<DV130ScheduleWeekendMonth4>true</DV130ScheduleWeekendMonth4>
+			<DV130ScheduleWeekendMonth5>true</DV130ScheduleWeekendMonth5>
+			<DV130ScheduleWeekendStartDay>Friday</DV130ScheduleWeekendStartDay>
+			<DV130ScheduleWeekendEndDay>Sunday</DV130ScheduleWeekendEndDay>
+			<DV130ScheduleWeekendVisitStartTime>10:00:00</DV130ScheduleWeekendVisitStartTime>
+			<DV130ScheduleWeekendVisitEndTime>14:00:00</DV130ScheduleWeekendVisitEndTime>
+			<DV130ScheduleWeekdays>true</DV130ScheduleWeekdays>
+			<DV130ScheduleWeekdayStartDay>Monday</DV130ScheduleWeekdayStartDay>
+			<DV130ScheduleWeekdayEndDay>Tuesday</DV130ScheduleWeekdayEndDay>
+			<DV130ScheduleWeekdayStartTime>10:00:00</DV130ScheduleWeekdayStartTime>
+			<DV130ScheduleWeekdayEndTime>20:00:00</DV130ScheduleWeekdayEndTime>
+			<DV130ScheduleVisitationOther>true</DV130ScheduleVisitationOther>
+			<DV130ExchangeRemove>true</DV130ExchangeRemove>
+			<DV130TransportOrders>true</DV130TransportOrders>
+			<DV130TransportFromParty>2</DV130TransportFromParty>
+			<DV130TransportFromPartyOther>Other Parent Name</DV130TransportFromPartyOther>
+			<DV130TransportFromLocation>Irvine</DV130TransportFromLocation>
+			<DV130TransportToParty>2</DV130TransportToParty>
+			<DV130TransportToPartyOther>Other Parent Name</DV130TransportToPartyOther>
+			<DV130TransportToLocation>Newport Beach</DV130TransportToLocation>
+			<DV130TravelRestrictOrders>true</DV130TravelRestrictOrders>
+			<DV130TravelRestrictMom>true</DV130TravelRestrictMom>
+			<DV130TravelRestrictDad>true</DV130TravelRestrictDad>	
+			<DV130TravelRestrictOtherParent>true</DV130TravelRestrictOtherParent>
+			<DV130TravelRestrictOtherParentName>Other Name</DV130TravelRestrictOtherParentName>
+			<DV130TravelRestrictUSA>true</DV130TravelRestrictUSA>
+			<DV130TravelRestrictCA>true</DV130TravelRestrictCA>	
+			<DV130TravelRestrictOtherLocation>true</DV130TravelRestrictOtherLocation>
+			<DV130TravelRestrictOtherLocationDetail>Los Angeles County</DV130TravelRestrictOtherLocationDetail>
+			<DV130HabitualResidencyUS>true</DV130HabitualResidencyUS>
+			<DV130HabitualResidencyOther>true</DV130HabitualResidencyOther>
+			<DV130HabitualResidencyOtherDetail>Haiti</DV130HabitualResidencyOtherDetail>
+			<DV130ChildAbductionRisk>true</DV130ChildAbductionRisk>
+			<DV130AttacheDV145>true</DV130AttacheDV145>
+			<DV130ChildCustodyOtherOrders>true</DV130ChildCustodyOtherOrders>
+			<DV130ChildCustodyOtherOrdersDetail>Some other orders are typed in here.</DV130ChildCustodyOtherOrdersDetail>					
+		</stack3>
+		<stack4>
+			<DV130SupervisionMediation>true</DV130SupervisionMediation>
+			<DV130SupervisionMediationLocation>JoJo's Mediation Center</DV130SupervisionMediationLocation>
+			<DV130VisitationSupervised>true</DV130VisitationSupervised>
+			<DV130ExchangesSupervised>true</DV130ExchangesSupervised>
+			<DV130SupervisionOtherParent>1</DV130SupervisionOtherParent>
+			<DV130SupervisionOtherParentName>The Other Parent</DV130SupervisionOtherParentName>
+			<DV130SupervisionAllVisits>true</DV130SupervisionAllVisits>
+			<DV130SupervisionVisitsWeek>4</DV130SupervisionVisitsWeek>
+			<DV130SupervisionHoursVisit>2</DV130SupervisionHoursVisit>
+			<DV130SupervisionOtherSchedule>true</DV130SupervisionOtherSchedule>
+			<DV130SupervisionOtherScheduleDetail>Mon Weds and Fri from 2pm to 4pm</DV130SupervisionOtherScheduleDetail>			
+			<DV130SupervisionProfessional>true</DV130SupervisionProfessional>
+			<DV130SupervisionNonProfessional>false</DV130SupervisionNonProfessional>
+			<DV130SupervisionTherapeutic>false</DV130SupervisionTherapeutic>
+			<DV130SupervisionMomPays>30</DV130SupervisionMomPays>
+			<DV130SupervisionDadPays>55</DV130SupervisionDadPays>
+			<DV130SupervisionOtherPays>15</DV130SupervisionOtherPays>
+			<DV130SupervisionOtherPaysName>Joe Smith</DV130SupervisionOtherPaysName>
+			<DV130SupervisionMomPaysAmount>30</DV130SupervisionMomPaysAmount>
+			<DV130SupervisionDadPaysAmount>55</DV130SupervisionDadPaysAmount>
+			<DV130SupervisionOtherPaysAmount>15</DV130SupervisionOtherPaysAmount>
+			<DV130SupervisionMomContactDate>08-23-2013</DV130SupervisionMomContactDate>
+			<DV130SupervisionDadContactDate>08-30-2013</DV130SupervisionDadContactDate>
+			<DV130SupervisionProviderName>The Superviser Specialists</DV130SupervisionProviderName>			
+			<DV130SupervisionProviderAddress>2601 Main Street Irvine CA 92614</DV130SupervisionProviderAddress>
+			<DV130SupervisionProviderPhone>949-121-1234</DV130SupervisionProviderPhone>
+			<DV130SupervisionOtherOrdersDetail>None orders to report.</DV130SupervisionOtherOrdersDetail>			
+		</stack4>
+		<stack5>
+			<DV130CSAttachmentFOAH>true</DV130CSAttachmentFOAH>
+			<DV130CSAttachmentDVRO>true</DV130CSAttachmentDVRO>
+			<DV130CSAttachmentJudgement>true</DV130CSAttachmentJudgement>
+			<DV130CSAttachmentOther>true</DV130CSAttachmentOther>
+			<DV130CSAttachmentOtherDetail>CPO 123123</DV130CSAttachmentOtherDetail>
+			<DV130CSAttachmentComputerPrintOut>true</DV130CSAttachmentComputerPrintOut>
+			<DV130CSNonGuidelineOrder>true</DV130CSNonGuidelineOrder>
+			<DV130CSChildTable>
+				<DV130Child1>
+					<CSPaidToParent>Donna Rae Smith</CSPaidToParent>
+					<CSPaidAmount>120.00</CSPaidAmount>
+				</DV130Child1>
+				<DV130Child2>
+					<CSPaidToParent>Donna Rae Smith</CSPaidToParent>
+					<CSPaidAmount>120.00</CSPaidAmount>
+				</DV130Child2>
+			</DV130CSChildTable>
+			<DV130CSPaymentFirstMonth>false</DV130CSPaymentFirstMonth>
+			<DV130CSPaymentTwiceMonth>false</DV130CSPaymentTwiceMonth>
+			<DV130CSPaymentOther>true</DV130CSPaymentOther>
+			<DV130CSPaymentOtherDetail>Every Friday of Month</DV130CSPaymentOtherDetail>
+			<DV130CSPaymentPaidByParty>1</DV130CSPaymentPaidByParty>
+			<DV130CSPaymentPayToParty>0</DV130CSPaymentPayToParty>			
+			<DV130CSLowIncomeBasis>true</DV130CSLowIncomeBasis>	
+			<DV130CSLowIncomeNotApply>true</DV130CSLowIncomeNotApply>
+			<DV130CSLowIncomeNotApplyDetail>They Are Rich People</DV130CSLowIncomeNotApplyDetail>
+			<DV130CSIncomeBasis>true</DV130CSIncomeBasis>
+			<DV130CSIncomeTable>
+				<DV130IncomePlaintiff>
+					<CSRole>Plaintiff</CSRole>
+					<CSGrossMonth>5000.00</CSGrossMonth>
+					<CSNetMonth>2850.00</CSNetMonth>
+					<CSCalWorks></CSCalWorks>
+					<CSImputedIncome></CSImputedIncome>
+					<CSImputedPerMonth></CSImputedPerMonth>
+				</DV130IncomePlaintiff>
+				<DV130IncomeRespondent>
+					<CSRole>Respondent</CSRole>
+					<CSGrossMonth>10000.00</CSGrossMonth>
+					<CSNetMonth>6790.00</CSNetMonth>
+					<CSCalWorks></CSCalWorks>
+					<CSImputedIncome>12000.00</CSImputedIncome>
+					<CSPImputedPerMonth>1000.00</CSPImputedPerMonth>
+				</DV130IncomeRespondent>
+				<DV130IncomeOtherParty>
+					<CSRole>Other Parent</CSRole>
+					<CSGrossMonth>1000.00</CSGrossMonth>
+					<CSNetMonth>650.00</CSNetMonth>
+					<CSCalWorks>Cal Works</CSCalWorks>
+					<CSImputedIncome>1200.00</CSImputedIncome>
+					<CSPImputedPerMonth>100.00</CSPImputedPerMonth>
+				</DV130IncomeOtherParty>
+			</DV130CSIncomeTable>
+			<DV130CSTimeShareBasis>true</DV130CSTimeShareBasis>
+			<DV130CSTimeSharePetitioner>80</DV130CSTimeSharePetitioner>
+			<DV130CSTimeShareRespondent>15</DV130CSTimeShareRespondent>
+			<DV130CSTimeShareOtherParent>5</DV130CSTimeShareOtherParent>
+			<DV130CSHardshipBasis>true</DV130CSHardshipBasis>				
+			<DV130CSOtherOrdersDetail>This datastack is a real pain.</DV130CSOtherOrdersDetail>
+			<DV130CSCommenceDate>07-23-2013</DV130CSCommenceDate>
+			<DV130CSHealthCarePetitioner>true</DV130CSHealthCarePetitioner>
+			<DV130CSHealthCareRespondent>true</DV130CSHealthCareRespondent>
+			<DV130CSHealthCareOtherParent>true</DV130CSHealthCareOtherParent>
+			<DV130CSHealthCarePetitionerNone>true</DV130CSHealthCarePetitionerNone>
+			<DV130CSHealthCareRespondentNone>true</DV130CSHealthCareRespondentNone>
+			<DV130CSHealthCareOtherParentNone>true</DV130CSHealthCareOtherParentNone>
+			<DV130CSHealthCareAssignReimbursement>true</DV130CSHealthCareAssignReimbursement>
+			<DV130CSEmploySearchPetitioner>true</DV130CSEmploySearchPetitioner>
+			<DV130CSEmploySearchRespondent>true</DV130CSEmploySearchRespondent>
+			<DV130CSEmploySearchOtherParent>true</DV130CSEmploySearchOtherParent>			
+		</stack5>
+		<stack6>
+			<DV130TravelRestrictParty>Restrained</DV130TravelRestrictParty>
+			<DV130TravelRestrictROViolation>true</DV130TravelRestrictROViolation>
+			<DV130TravelRestrictOutsideCA>true</DV130TravelRestrictOutsideCA>
+			<DV130TravelRestrictAction>true</DV130TravelRestrictAction>
+			<DV130TravelRestrictQuitJob>true</DV130TravelRestrictQuitJob>
+			<DV130TravelRestrictSoldHome>true</DV130TravelRestrictSoldHome>
+			<DV130TravelRestrictClosedBank>true</DV130TravelRestrictClosedBank>
+			<DV130TravelRestrictEndLease>true</DV130TravelRestrictEndLease>
+			<DV130TravelRestrictSoldAssets>true</DV130TravelRestrictSoldAssets>
+			<DV130TravelRestrictDestroyDocuments>true</DV130TravelRestrictDestroyDocuments>
+			<DV130TravelRestrictApplyPassport>true</DV130TravelRestrictApplyPassport>
+			<DV130TravelRestrictPriorHistory>true</DV130TravelRestrictPriorHistory>
+			<DV130TravelRestrictDomesticViolence>true</DV130TravelRestrictDomesticViolence>
+			<DV130TravelRestrictChildAbuse>true</DV130TravelRestrictChildAbuse>
+			<DV130TravelRestrictNoCoopParent>true</DV130TravelRestrictNoCoopParent>
+			<DV130TravelRestrictCrimeRecord>true</DV130TravelRestrictCrimeRecord>
+			<DV130TravelRestrictForiegnTies>true</DV130TravelRestrictForiegnTies>
+			<DV130PostBond>true</DV130PostBond>
+			<DV130PostBondAmount>12000</DV130PostBondAmount>
+			<DV130NoMoveChildren>true</DV130NoMoveChildren>
+			<DV130NoMoveChildrenCounty>true</DV130NoMoveChildrenCounty>
+			<DV130NoMoveChildrenState>true</DV130NoMoveChildrenState>
+			<DV130NoMoveChildrenUSA>true</DV130NoMoveChildrenUSA>
+			<DV130NoMoveChildrenOther>true</DV130NoMoveChildrenOther>
+			<DV130NoMoveChildrenOtherDetail>The Big City</DV130NoMoveChildrenOtherDetail>
+			<DV130NoTravelChildren>true</DV130NoTravelChildren>
+			<DV130NoTravelChildrenCounty>true</DV130NoTravelChildrenCounty>
+			<DV130NoTravelChildrenState>true</DV130NoTravelChildrenState>
+			<DV130NoTravelChildrenUSA>true</DV130NoTravelChildrenUSA>
+			<DV130NoTravelChildrenOther>true</DV130NoTravelChildrenOther>
+			<DV130NoTravelChildrenOtherDetail>The Little Town</DV130NoTravelChildrenOtherDetail>
+			<DV130TravelNotifyOtherState>true</DV130TravelNotifyOtherState>
+			<DV130TravelNotifyOtherStateDetail>Alabama</DV130TravelNotifyOtherStateDetail>
+			<DV130TravelPermissionFromParent>Only On Sunday</DV130TravelPermissionFromParent>
+			<DV130DocumentSurrender>true</DV130DocumentSurrender>
+			<DV130SurrenderTravelDoc>Airplane Coupons</DV130SurrenderTravelDoc>
+			<DV130TravelProvideOrder>true</DV130TravelProvideOrder>
+			<DV130TravelProvideChildItinerary>true</DV130TravelProvideChildItinerary>
+			<DV130TravelProvideAirplaneTickets>true</DV130TravelProvideAirplaneTickets>
+			<DV130TravelProvideAddressPhone>true</DV130TravelProvideAddressPhone>
+			<DV130TravelProvideOtherParentTicket>true</DV130TravelProvideOtherParentTicket>			
+			<DV130TravelProvideOther>true</DV130TravelProvideOther>
+			<DV130TravelProvideOtherDetail>Your Travel Coupons</DV130TravelProvideOtherDetail>
+			<DV130TravelForiegnCustodyOrder>true</DV130TravelForiegnCustodyOrder>
+			<DV130TravelEnforcingCourtOrder>true</DV130TravelEnforcingCourtOrder>
+			<DV130TravelEnforcingAgencyName>FBI</DV130TravelEnforcingAgencyName>			
+			<DV130OtherTravelRestrictionOrder>true</DV130OtherTravelRestrictionOrder>
+			<DV130OtherTravelRestrictionOrdersDetail>Any oceanliner travel must be arranged in advance of the sea trip.</DV130OtherTravelRestrictionOrdersDetail>				
+		</stack6>
+		<stack7>
+			<DV130SSAttachmentFOAH>true</DV130SSAttachmentFOAH>
+			<DV130SSAttachmentDVRO>true</DV130SSAttachmentDVRO>
+			<DV130SSAttachmentJudgement>true</DV130SSAttachmentJudgement>
+			<DV130SSAttachmentJudgement>true</DV130SSAttachmentJudgement>
+			<DV130SSAttachmentStipulation>true</DV130SSAttachmentStipulation>
+			<DV130SSAttachmentOther>true</DV130SSAttachmentOther>
+			<DV130SSAttachmentOtherDetail>CPO 123423</DV130SSAttachmentOtherDetail>
+			<DV130SSAttachmentComputerPrintOut>true</DV130SSAttachmentComputerPrintOut>
+			<DV130SSModifiesJudgementOrder>true</DV130SSModifiesJudgementOrder>
+			<DV130SSModifiesJudgementOrderDate>07-20-2001</DV130SSModifiesJudgementOrderDate>			
+			<DV130SSLengthOfMarriage>true</DV130SSLengthOfMarriage>
+			<DV130SSLengthOfMarriageYears>4</DV130SSLengthOfMarriageYears>
+			<DV130SSLengthOfMarriageMonths>5</DV130SSLengthOfMarriageMonths>			
+			<DV130SSLengthOfDomesticPartnership>true</DV130SSLengthOfDomesticPartnership>
+			<DV130SSLengthOfDomesticPartnershipYears>2</DV130SSLengthOfDomesticPartnershipYears>
+			<DV130SSLengthOfDomesticPartnershipMonths>3</DV130SSLengthOfDomesticPartnershipMonths>			
+			<DV130SSPartiesSelfSupporting>true</DV130SSPartiesSelfSupporting>
+			<DV130SSMaritalSOL>true</DV130SSMaritalSOL>
+			<DV130SSMaritalSOLAttach>true</DV130SSMaritalSOLAttach>
+			<DV130SSMaritalSOLDetail>These folks spared no expense in having the greatest of great lifestyles</DV130SSMaritalSOLDetail>
+			<DV130SSReservationOfSupport>true</DV130SSReservationOfSupport>
+			<DV130SSReservationOfSupportPlaintiff>true</DV130SSReservationOfSupportPlaintiff>
+			<DV130SSReservationOfSupportRespondent>true</DV130SSReservationOfSupportRespondent>
+			<DV130SSTerminationOfSupport>true</DV130SSTerminationOfSupport>
+			<DV130SSTerminationOfSupportPlaintiff>true</DV130SSTerminationOfSupportPlaintiff>
+			<DV130SSTerminationOfSupportRespondent>true</DV130SSTerminationOfSupportRespondent>
+			<DV130SSReservationOfSupportPaidBy>1</DV130SSReservationOfSupportPaidBy>
+			<DV130SSReservationOfSupportPaidTo>0</DV130SSReservationOfSupportPaidTo>
+			<DV130SSReservationOfSupportTemporary>true</DV130SSReservationOfSupportTemporary>
+			<DV130SSReservationOfSupportSpousal>true</DV130SSReservationOfSupportSpousal>
+			<DV130SSReservationOfSupportFamily>true</DV130SSReservationOfSupportFamily>
+			<DV130SSReservationOfSupportPartner>true</DV130SSReservationOfSupportPartner>
+			<DV130SSReservationOfSupportAmount>3000.00</DV130SSReservationOfSupportAmount>
+			<DV130SSReservationOfSupportStartDate>07-22-2013</DV130SSReservationOfSupportStartDate>			
+			<DV130SSReservationOfSupportPayable>15th</DV130SSReservationOfSupportPayable>
+			<DV130SSReservationOfSupportPayableOther>true</DV130SSReservationOfSupportPayableOther>
+			<DV130SSReservationOfSupportPayableSchedule>Prorated Weekly</DV130SSReservationOfSupportPayableSchedule>
+			<DV130SSReservationOfSupportEndDate>07-22-2018</DV130SSReservationOfSupportEndDate>			
+			<DV130SSSupportPayableCash>true</DV130SSSupportPayableCash>
+			<DV130SSSupportNotifyEmployChange>true</DV130SSSupportNotifyEmployChange>
+			<DV130SSSupportCSRegistry>true</DV130SSSupportCSRegistry>
+			<DV130SSSupportSelfSupport>true</DV130SSSupportSelfSupport>
+			<DV130SSSupportSelfSupportPlaintiff>true</DV130SSSupportSelfSupportPlaintiff>
+			<DV130SSSupportSelfSupportRespondent>false</DV130SSSupportSelfSupportRespondent>
+			<DV130SSSupportEarningAssesment>true</DV130SSSupportEarningAssesment>
+			<DV130SSSupportServicedStayedLate>true</DV130SSSupportServicedStayedLate>
+			<DV130SSSupportServicedStayedLateDays>30</DV130SSSupportServicedStayedLateDays>
+			<DV130SSSupportDurationOfDVOrder>true</DV130SSSupportDurationOfDVOrder>
+			<DV130SSSupportOtherOrders>true</DV130SSSupportOtherOrders>
+			<DV130SSSupportOtherOrdersDetail>Please type it here.</DV130SSSupportOtherOrdersDetail>
+			<DV130FamilySupport>
+				<DV130IncomePlaintiff>
+					<SSDesignation>Plaintiff</SSDesignation>
+					<SSFullName>Donna Rae Smith</SSFullName>
+					<SSGrossMo>6000.00</SSGrossMo>
+					<SSDeductMo>1200.00</SSDeductMo>
+					<SSHardshipMo>1200.00</SSHardshipMo>
+					<SSCalWorks>0.00</SSCalWorks>
+					<SSNetMo>3600.00</SSNetMo>
+				</DV130IncomePlaintiff>
+				<DV130IncomeRespondent>
+					<SSDesignation>Respondent</SSDesignation>
+					<SSFullName>Charles William Smith</SSFullName>
+					<SSGrossMo>12000.00</SSGrossMo>
+					<SSDeductMo>3500.00</SSDeductMo>
+					<SSHardshipMo>1000.00</SSHardshipMo>
+					<SSCalWorks>100.00</SSCalWorks>
+					<SSNetMo>7400.00</SSNetMo>
+				</DV130IncomeRespondent>
+			</DV130FamilySupport>
+		</stack7>
+	</DV130>
+	<CH110>
+		<stack1>
+			<ConductOrders>
+				<CH110StatusConduct>1</CH110StatusConduct>
+				<CH110NoContact>true</CH110NoContact>
+				<CH110NoHarass>false</CH110NoHarass>
+				<CH110NoLocate>false</CH110NoLocate>
+				<CH110NoContactOtherProtected>true</CH110NoContactOtherProtected>
+				<CH110ConductOtherOrder>false</CH110ConductOtherOrder>
+				<CH110ConductOtherOrderDetail></CH110ConductOtherOrderDetail>
+			</ConductOrders>
+			<StayAwayOrders>
+				<CH110StayAwayDistance>3000</CH110StayAwayDistance>
+				<CH110StatusStayAway>1</CH110StatusStayAway>
+				<CH110NoPerson>true</CH110NoPerson>
+				<CH110NoWork>true</CH110NoWork>
+				<CH110NoSchool>false</CH110NoSchool>
+				<CH110NoHome>true</CH110NoHome>	
+				<CH110NoChildcare>false</CH110NoChildcare>
+				<CH110NoVehicle>true</CH110NoVehicle>
+				<CH110NoOtherProtected>true</CH110NoOtherProtected>
+				<CH110StayAwayOtherOrders>true</CH110StayAwayOtherOrders>
+				<CH110StayAwayOtherOrdersDetail>Restrained to avoid the wives book meetings and gatherings.</CH110StayAwayOtherOrdersDetail>
+				<CH110ExpirationDate>07-28-2018</CH110ExpirationDate>		
+				<CH110OtherProtected>
+					<OtherProtected1>
+						<entity>PERSON</entity>
+						<fullname>Krystal</fullname>
+						<relationship>Black</relationship>
+						<household>Yes</household>
+						<age>28</age>
+						<sex>f</sex>
+					</OtherProtected1>
+					<OtherProtected2>
+						<entity></entity>
+						<fullname></fullname>
+						<relationship></relationship>
+						<household></household>
+						<age></age>
+						<sex></sex>
+					</OtherProtected2>
+				</CH110OtherProtected>
+			</StayAwayOrders>
+			<FireArmsOrders>
+				<CH110FireArm>true</CH110FireArm>
+			</FireArmsOrders>
+			<Carpos>			
+				<CH110CarposEntryClerk>true</CH110CarposEntryClerk>
+				<CH110CarposEntryCLET>false</CH110CarposEntryCLET>
+				<CH110CarposEntryProtected>false</CH110CarposEntryProtected>
+				<CH110ServiceFeeOrdered>true</CH110ServiceFeeOrdered>
+				<CH110ServiceFeeNotOrdered>false</CH110ServiceFeeNotOrdered>
+				<CH110ServiceFeeWaiveViolence>true</CH110ServiceFeeWaiveViolence>
+				<CH110ServiceFeeWaiver>true</CH110ServiceFeeWaiver>
+				<CH110LawEnforcement>
+					<LawEnforcement1>
+						<agency>Seaside Police</agency>
+						<address>345 Oceanway, Seaside CA 92199</address>
+					</LawEnforcement1>
+					<LawEnforcement2>
+						<agency></agency>
+						<addrress></addrress>
+					</LawEnforcement2>
+				</CH110LawEnforcement>	
+			</Carpos>
+			<OtherOrders>
+				<CH110OtherStatusOrders>1</CH110OtherStatusOrders>
+				<CH110OtherOrdersDetail>The court has no order here.</CH110OtherOrdersDetail>			
+				<CH110OtherOrdersAttach>true</CH110OtherOrdersAttach>
+				<CH110Expiration>true</CH110Expiration>
+				<CH110ExpirationTime>24:00:00</CH110ExpirationTime>
+				<CH110ExpirationDate>07-21-2018</CH110ExpirationDate>
+			</OtherOrders>			
+		</stack1>
+	</CH110>
+	<CH130>
+		<stack1>
+			<CH130ServiceProvided>true</CH130ServiceProvided>
+			<CH130ServiceNotP1Provided>false</CH130ServiceNotP1Provided>
+			<ConductOrders>
+				<CH130Conduct>true</CH130Conduct>
+				<CH130NoContact>true</CH130NoContact>
+				<CH130NoHarass>true</CH130NoHarass>
+				<CH130NoLocate>true</CH130NoLocate>
+				<CH130NoContactOtherProtected>true</CH130NoContactOtherProtected>
+				<CH130ConductOtherOrders>true</CH130ConductOtherOrders>
+				<CH130ConductOtherOrdersDetail>Conduct CH130</CH130ConductOtherOrdersDetail>			
+			</ConductOrders>
+			<StayAwayOrders>
+				<CH130StayAway>true</CH130StayAway>
+				<CH130StayAwayDistance>3850</CH130StayAwayDistance>
+				<CH130NoPerson>true</CH130NoPerson>
+				<CH130NoWork>true</CH130NoWork>
+				<CH130NoHome>true</CH130NoHome>			
+				<CH130NoVehicle>true</CH130NoVehicle>
+				<CH130NoSchool>true</CH130NoSchool>	
+				<CH130NoChildcare>true</CH130NoChildcare>
+				<CH130StayAwayOthersProtected>true</CH130StayAwayOthersProtected>
+				<CH130StayAwayOtherOrders>true</CH130StayAwayOtherOrders>
+				<CH130StayAwayOtherOrdersDetail>The judge is granting more stayway CH130 orders</CH130StayAwayOtherOrdersDetail>
+				<CH130OtherProtected>
+					<OtherProtected1>
+						<entity>PERSON</entity>
+						<fullname>Jonas Hanford</fullname>
+						<relationship>Son</relationship>
+						<household>Yes</household>
+						<age>34</age>
+						<sex>M</sex>
+					</OtherProtected1>
+					<OtherProtected2>
+						<entity>PERSON</entity>
+						<fullname>Taylor Hanford</fullname>
+						<relationship>Daughter</relationship>
+						<household>Yes</household>
+						<age>30</age>
+						<sex>F</sex>
+					</OtherProtected2>
+				</CH130OtherProtected>
+			</StayAwayOrders>
+			<FireArmsOrders>
+				<CH130FireArms>true</CH130FireArms>		
+			</FireArmsOrders>
+			<Carpos>
+				<CH130CarposEntryClerk>false</CH130CarposEntryClerk>
+				<CH130CarposEntryCLET>true</CH130CarposEntryCLET>
+				<CH130CarposEntryProtected>false</CH130CarposEntryProtected>
+				<CH130ServiceFeeOrdered>true</CH130ServiceFeeOrdered>
+				<CH130ServiceFeeNotOrdered>false</CH130ServiceFeeNotOrdered>
+				<CH130ServiceFeeWaivedViolence>true</CH130ServiceFeeWaivedViolence>
+				<CH130ServiceFeeWaiver>true</CH130ServiceFeeWaiver>
+				<CH130LawEnforcement>
+					<LawEnforcement1>
+						<agency>Irvine Police</agency>
+						<address>1234 Aldon Street Irvine, CA 92615</address>
+					</LawEnforcement1>
+					<LawEnforcement2>
+						<agency>Orange Cty Sherriff</agency>
+						<addrress>121 Center Street Orange CA 91234</addrress>
+					</LawEnforcement2>
+				</CH130LawEnforcement>
+			</Carpos>
+			<OtherOrders>
+				<CH130OtherOrders>true</CH130OtherOrders>
+				<CH130OtherOrdersDetail>Type some CH130 other orders here</CH130OtherOrdersDetail>
+				<CH130NoExpire>true</CH130NoExpire>
+				<CH130Expiration>true</CH130Expiration>
+				<CH130ExpirationTime>22:00:00</CH130ExpirationTime>
+				<CH130ExpirationDate>07-27-2018</CH130ExpirationDate>
+			</OtherOrders>								
+		</stack1>
+		<stack2>
+			<AttorneyFees>
+				<CH130AttorneysFeesOrder>true</CH130AttorneysFeesOrder>
+				<CH130AttorneysFeesPaidBy>1</CH130AttorneysFeesPaidBy>
+				<CH130AttorneysFeesPaidTo>0</CH130AttorneysFeesPaidTo>
+				<CH130LawyersFeesPaid>true</CH130LawyersFeesPaid>
+				<CH130CourtCostsPaid>true</CH130CourtCostsPaid>
+				<CH130Payments>
+					<Payment1>
+						<item>Laywers Fees</item>
+						<amount>1200.00</amount>
+					</Payment1>
+					<Payment2>
+						<item>Interpreter Fees</item>
+						<amount>300.00</amount>
+					</Payment2>
+					<Payment3>
+						<item>Court Costs</item>
+						<amount>3000.00</amount>
+					</Payment3>
+				</CH130Payments>	
+			</AttorneyFees>
+		</stack2>				
+	</CH130>
+	<EA110>
+		<EA110ElderlyPresent>true</EA110ElderlyPresent>
+		<EA110ElderlyProtectedName>Miles Hanford</EA110ElderlyProtectedName>
+		<ConductOrders>
+			<EA110ConductStatus>1</EA110ConductStatus>
+			<EA110NoContact>true</EA110NoContact>
+			<EA110NoHarass>true</EA110NoHarass>
+			<EA110NoLocate>true</EA110NoLocate>
+			<EA110NoContactOtherProtected>true</EA110NoContactOtherProtected>
+			<EA110ConductOtherOrder>true</EA110ConductOtherOrder>
+			<EA110ConductOtherOrderDetail>Some more orders here.</EA110ConductOtherOrderDetail>
+		</ConductOrders>
+		<StayAwayOrders>
+			<EA110StayAwayStatus>1</EA110StayAwayStatus>
+			<EA110StayAwayDistance>4000</EA110StayAwayDistance>
+			<EA110NoPerson>true</EA110NoPerson>
+			<EA110NoWork>true</EA110NoWork>
+			<EA110NoHome>true</EA110NoHome>			
+			<EA110NoVehicle>true</EA110NoVehicle>
+			<EA110NoSchool>true</EA110NoSchool>	
+			<EA110NoChildcare>true</EA110NoChildcare>
+			<EA110StayAwayOtherProtected>true</EA110StayAwayOtherProtected>
+			<EA110StayAwayOtherOrders>true</EA110StayAwayOtherOrders>
+			<EA110StayAwayOtherOrdersDetail>The judge is granted more stayway EA110 orders</EA110StayAwayOtherOrdersDetail>
+			<EA110OtherProtected>
+				<OtherProtected1>
+					<entity>PERSON</entity>
+					<fullname>Jonas Hanford</fullname>
+					<relationship>Son</relationship>
+					<household>Yes</household>
+					<age>34</age>
+					<sex>M</sex>
+				</OtherProtected1>
+				<OtherProtected2>
+					<entity>PERSON</entity>
+					<fullname>Taylor Hanford</fullname>
+					<relationship>Daughter</relationship>
+					<household>Yes</household>
+					<age>30</age>
+					<sex>F</sex>
+				</OtherProtected2>
+			</EA110OtherProtected>
+		</StayAwayOrders>			
+		<MoveOutOrders>
+			<EA110MoveOutStatus>1</EA110MoveOutStatus>
+			<EA110MoveOutAddress>345 South Center Drive Tustin CA, 92134</EA110MoveOutAddress>
+		</MoveOutOrders>
+		<FireArmsOrders>
+			<EA110FireArmsNotIssued>true</EA110FireArmsNotIssued>		
+			<EA110FireArmsNoGuns>true</EA110FireArmsNoGuns>		
+			<EA110FireArmsCourtInformed>true</EA110FireArmsCourtInformed>
+			<EA110FinancialAbuseOnly>true</EA110FinancialAbuseOnly>	
+			<EA110FinancialAbuseNotSoley>true</EA110FinancialAbuseNotSoley>
+		</FireArmsOrders>
+		<Carpos>
+			<EA110CarposEntryClerk>false</EA110CarposEntryClerk>
+			<EA110CarposEntryCLET>true</EA110CarposEntryCLET>
+			<EA110CarposEntryProtected>false</EA110CarposEntryProtected>
+			<EA110ServiceFeeOrdered>true</EA110ServiceFeeOrdered>
+			<EA110ServiceFeeNotOrdered>false</EA110ServiceFeeNotOrdered>
+			<EA110ServiceFeeWaiveViolence>true</EA110ServiceFeeWaiveViolence>
+			<EA110ServiceFeeWaiver>true</EA110ServiceFeeWaiver>
+			<EA110LawEnforcement>
+				<LawEnforcement1>
+					<agency>Irvine Police</agency>
+					<address>1234 Aldon Street Irvine, CA 92615</address>
+				</LawEnforcement1>
+				<LawEnforcement2>
+					<agency>Orange Cty Sherriff</agency>
+					<addrress>121 Center Street Orange CA 91234</addrress>
+				</LawEnforcement2>
+			</EA110LawEnforcement>
+		</Carpos>
+		<OtherOrders>
+			<EA110OtherOrderStatus>1</EA110OtherOrderStatus>
+			<EA110OtherOrderDetail>Type some EA110 other orders here</EA110OtherOrderDetail>
+			<EA110Expiration>true</EA110Expiration>
+			<EA110ExpirationTime>24:00:00</EA110ExpirationTime>
+			<EA110ExpirationDate>07-28-2018</EA110ExpirationDate>
+		</OtherOrders>		
+	</EA110>
+	<EA130>
+		<EA130ElderlyPresent>true</EA130ElderlyPresent>
+		<EA130ElderlyProtectedName>James Franco</EA130ElderlyProtectedName>
+		<EA130ServiceProvided>true</EA130ServiceProvided>
+		<EA130ServiceNotP1Provide>false</EA130ServiceNotP1Provide>
+		<ConductOrders>
+			<EA130Conduct>true</EA130Conduct>
+			<EA130NoContact>true</EA130NoContact>
+			<EA130NoHarass>true</EA130NoHarass>
+			<EA130NoLocate>true</EA130NoLocate>
+			<EA130NoContactOtherProtected>true</EA130NoContactOtherProtected>
+			<EA130ConductOtherOrder>true</EA130ConductOtherOrder>
+			<EA130ConductOtherOrderDetail>Some more orders here.</EA130ConductOtherOrderDetail>
+		</ConductOrders>
+		<StayAwayOrders>
+			<EA130StayAway>true</EA130StayAway>
+			<EA130StayAwayDistance>4000</EA130StayAwayDistance>
+			<EA130NoPerson>true</EA130NoPerson>
+			<EA130NoWork>true</EA130NoWork>
+			<EA130NoHome>true</EA130NoHome>			
+			<EA130NoVehicle>true</EA130NoVehicle>
+			<EA130NoSchool>true</EA130NoSchool>	
+			<EA130NoChildcare>true</EA130NoChildcare>
+			<EA130StayAwayOtherProtected>true</EA130StayAwayOtherProtected>
+			<EA130StayAwayOtherOrders>true</EA130StayAwayOtherOrders>
+			<EA130StayAwayOtherOrdersDetail>Tying some order here.</EA130StayAwayOtherOrdersDetail>
+			<EA130OtherProtected>
+				<OtherProtected1>
+					<entity>PERSON</entity>
+					<fullname>Carrie Smith</fullname>
+				</OtherProtected1>
+				<OtherProtected2>
+					<entity>PERSON</entity>
+					<fullname>Sandra Smith</fullname>
+				</OtherProtected2>
+			</EA130OtherProtected>
+		</StayAwayOrders>
+		<MoveOutOrders>
+			<EA130MoveOut>true</EA130MoveOut>
+			<EA130MoveOutAddress>345 South Center Drive Tustin CA, 92134</EA130MoveOutAddress>
+		</MoveOutOrders>
+		<FireArmsOrders>
+			<EA130FireArms>true</EA130FireArms>		
+			<EA130FireArmsNotIssued>true</EA130FireArmsNotIssued>		
+			<EA130FireArmsNoGuns>true</EA130FireArmsNoGuns>		
+			<EA130FireArmsCourtInformed>true</EA130FireArmsCourtInformed>
+			<EA130FinancialAbuseOnly>true</EA130FinancialAbuseOnly>	
+			<EA130FinancialAbuseNotSoley>true</EA130FinancialAbuseNotSoley>
+		</FireArmsOrders>
+		<Carpos>
+			<EA130CarposEntryClerk>false</EA130CarposEntryClerk>
+			<EA130CarposEntryCLET>true</EA130CarposEntryCLET>
+			<EA130CarposEntryProtected>false</EA130CarposEntryProtected>
+			<EA130ServiceFeeOrdered>true</EA130ServiceFeeOrdered>
+			<EA130ServiceFeeNotOrdered>false</EA130ServiceFeeNotOrdered>
+			<EA130ServiceFeeWaiveViolence>true</EA130ServiceFeeWaiveViolence>
+			<EA130ServiceFeeWaiver>true</EA130ServiceFeeWaiver>
+			<EA130LawEnforcement>
+				<LawEnforcement1>
+					<agency>Irvine Police</agency>
+					<address>1234 Aldon Street Irvine, CA 92615</address>
+				</LawEnforcement1>
+				<LawEnforcement2>
+					<agency>Orange Cty Sherriff</agency>
+					<addrress>121 Center Street Orange CA 91234</addrress>
+				</LawEnforcement2>
+			</EA130LawEnforcement>
+		</Carpos>
+		<OtherOrders>
+			<EA130OtherOrders>true</EA130OtherOrders>
+			<EA130OtherOrderDetail>Type some EA130 other orders here</EA130OtherOrderDetail>
+			<EA130NoExpire>true</EA130NoExpire>
+			<EA130Expiration>true</EA130Expiration>
+			<EA130ExpirationTime>24:00:00</EA130ExpirationTime>
+			<EA130ExpirationDate>07-28-2018</EA130ExpirationDate>
+		</OtherOrders>				
+	</EA130>
+	<FL340>
+		<CourtOrderSummary>
+			<FL340ChildCustodyVisitation>true</FL340ChildCustodyVisitation>
+			<FL340ChildCustodyForm>0</FL340ChildCustodyForm>
+			<FL340ChildSupport>true</FL340ChildSupport>
+			<FL340ChildSupportForm>1</FL340ChildSupportForm>			
+			<FL340FamilySupport>true</FL340FamilySupport>
+			<FL340FamilySupportForm>2</FL340FamilySupportForm>			
+			<FL340PropertyOrders>true</FL340PropertyOrders>
+			<FL340PropertyForm>0</FL340PropertyForm>			
+			<FL340AttorneysFees>true</FL340AttorneysFees>
+			<FL340AttorneysFeesForm>2</FL340AttorneysFeesForm>
+			<FL340OtherOrders>true</FL340OtherOrders>
+			<FL340OtherOrdersAttach>true</FL340OtherOrdersAttach>
+			<FL340OtherOrdersDescribe>the other orders are over 500 characters.</FL340OtherOrdersDescribe>			
+		</CourtOrderSummary>
+		<ShowCauseMotion>
+			<FL340ThirdPartyName>Thomas Paine</FL340ThirdPartyName>
+			<FL340ThirdPartyDescription>Great Guy</FL340ThirdPartyDescription>
+			<FL340ThirdPartyPresent>true</FL340ThirdPartyPresent>
+			<FL340ThirdPartySworn>true</FL340ThirdPartySworn>
+			<FL340ThirdPartyAttorney>true</FL340ThirdPartyAttorney>			
+		</ShowCauseMotion>
+	</FL340>
+	<FL341>
+		<CourtFindings>
+			<FL341CourtFindingsParty>1</FL341CourtFindingsParty>
+			<FL341FindingsChildAbduction>true</FL341FindingsChildAbduction>
+			<FL341FindingsChildSexAbuse>true</FL341FindingsChildSexAbuse>
+			<FL341FindingsChildPhysicalAbuse>true</FL341FindingsChildPhysicalAbuse>
+			<FL341FindingsChildDomesticViolence>true</FL341FindingsChildDomesticViolence>
+			<FL341FindingsChildDrugAbuse>true</FL341FindingsChildDrugAbuse>
+			<FL341FindingsChildAlcoholAbuse>true</FL341FindingsChildAlcoholAbuse>
+			<FL341FindingsChildNeglect>true</FL341FindingsChildNeglect>			
+			<FL341FindingsOther>true</FL341FindingsOther>			
+			<FL341FindingsSpecify>Steals Money</FL341FindingsSpecify>
+			<FL341FindingsAddSpecify>Non Coop Parent</FL341FindingsAddSpecify>			
+			<FL341FindingsDisputePetitioner>true</FL341FindingsDisputePetitioner>
+			<FL341FindingsDisputeRespondent>true</FL341FindingsDisputeRespondent>			
+			<FL341FindingsForPetitioner>true</FL341FindingsForPetitioner>
+			<FL341FindingsForRespondent>true</FL341FindingsForRespondent>				
+		</CourtFindings>
+	</FL341>
+	<FL344>
+		<PropertyControl>
+			<FL344PropertyControlOrder>true</FL344PropertyControlOrder>
+			<FL344PropertyControlList>
+				<item1>
+					<item>Ford Auto</item>
+					<propertygivento>Plaintiff</propertygivento>
+				</item1>
+				<item2>
+					<item>Apple Computer</item>
+					<propertygivento>Plaintiff</propertygivento>
+				</item2>
+				<item3>
+					<item>Ski Boat</item>
+					<propertygivento>Respondent</propertygivento>
+				</item3>
+			</FL344PropertyControlList>
+			<FL344PropertyControlAttachments>false</FL344PropertyControlAttachments>
+		</PropertyControl>
+		<DebtPayment>
+			<FL344DebtPaymentOrders>true</FL344DebtPaymentOrders>
+			<FL344DebtPaymentList>
+				<item1>
+					<totaldebt>1200.00</totaldebt>
+					<debtpayment>120.00</debtpayment>
+					<debtpaidby>Respondent</debtpaidby>
+					<debtpaidto>Credit Card Visa</debtpaidto>
+				</item1>
+				<item2>
+					<totaldebt>5500.00</totaldebt>
+					<debtpayment>50.00</debtpayment>
+					<debtpaidby>Respondent</debtpaidby>
+					<debtpaidto>Credit Card Mastercard</debtpaidto>
+				</item2>
+			</FL344DebtPaymentList>
+			<FL344DebtPaymentAttachments>false</FL344DebtPaymentAttachments>
+		</DebtPayment>
+		<FL344PropertyRestraint>
+			<FL344PropertyRestrainedParty>2</FL344PropertyRestrainedParty>
+			<FL344NoTransfer>true</FL344NoTransfer>
+			<FL344NoCancel>true</FL344NoCancel>
+			<FL344NoDebt>true</FL344NoDebt>
+			<FL344NoticeToOtherParty>true</FL344NoticeToOtherParty>
+		</FL344PropertyRestraint>
+		<FL344TemporaryOrders>true</FL344TemporaryOrders>
+		<FL344OtherOrders>true</FL344OtherOrders>
+		<FL344OtherOrdersDetail>These are the other FL344 orders.</FL344OtherOrdersDetail>
+	</FL344>
+	<GenerateStack>
+		<masterorder>0</masterorder>
+		<DV140>yes</DV140>
+		<DV145>yes</DV145>
+		<DV150>yes</DV150>
+		<FL340>no</FL340>
+		<FL341>no</FL341>
+		<FL342>no</FL342>
+		<FL343>no</FL343>
+		<OtherAttachment1>Computer Printout Attached</OtherAttachment1>
+		<OtherAttachment2>Financial Statement Attached</OtherAttachment2>
+		<DV730>no</DV730>
+		<DV115>no</DV115>
+		<DV116>yes</DV116>		
+	</GenerateStack>
+</caseorders>

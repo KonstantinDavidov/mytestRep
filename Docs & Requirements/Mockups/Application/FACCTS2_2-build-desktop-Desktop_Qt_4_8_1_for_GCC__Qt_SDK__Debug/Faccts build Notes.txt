@@ -1,0 +1,10 @@
+
+FACCTS 2.2 Build
+===============
+Date  5/20/2013
+James Reid
+
+
+Crash when opening Add User - Court Staff
+Crash when exporting Case - CCPOR
+Crash when creating New Case - Case Record

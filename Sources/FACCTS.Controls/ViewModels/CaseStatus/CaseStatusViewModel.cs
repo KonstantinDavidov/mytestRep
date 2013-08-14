@@ -308,8 +308,8 @@ namespace FACCTS.Controls.ViewModels
                 {
                     _courtCases = CourtCaseModels.SelectMany(x => x.GetAll()).CreateDerivedCollection(x => x, 
                         filter: x => x.IsVisible,
-                        signalReset: 
-                         Observable.Merge(CourtCaseModels.Select(y => y.ObservableForProperty(y1 => y1.IsExpanded)))
+                        signalReset:
+                         Observable.Merge(this.CourtCaseModels.Select(y => y.WhenAny(z => z.IsExpanded, z1 => z1.Value)))
                         );
                 }
                 return _courtCases;
@@ -417,20 +417,14 @@ namespace FACCTS.Controls.ViewModels
             this.NotifyOfPropertyChange(() => CourtCases);
         }
 
-        private bool UpdateHistoryItems(CourtCaseHeadingViewModel model, bool isExpanded = false)
+        private bool UpdateHistoryItems(CourtCaseHeadingViewModel model)
         {
             if (model != null && model.Heading is CourtCaseHeading &&
                 model.Heading.ChangeTracker.State == ObjectState.Unchanged)
             {
                 model.Heading.CourtCaseHistoryHeadings.Clear();
                 var data = FACCTS.Services.Data.CourtCases.GetHistoryHeadings(model.Heading.CourtCaseId);
-                data.Aggregate(model.Heading.CourtCaseHistoryHeadings, (headings, item) =>
-                {
-                    headings.Add(item);
-                    return headings;
-                }
-                    );
-                model.IsExpanded = isExpanded;
+                model.UpdateChilds(data);
                 model.Heading.MarkAsModified();
                 return data.Any();
             }
@@ -477,11 +471,13 @@ namespace FACCTS.Controls.ViewModels
 
         public void Expanded(CourtCaseHeadingViewModel model)
         {
-            if (UpdateHistoryItems(model, true))
+            if (UpdateHistoryItems(model))
             {
                 RenewCourtCases();
             }
         }
+
+       
 
     }
 }

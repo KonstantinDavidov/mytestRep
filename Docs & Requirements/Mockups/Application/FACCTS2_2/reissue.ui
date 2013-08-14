@@ -1,0 +1,680 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Reissue</class>
+ <widget class="QDialog" name="Reissue">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>664</width>
+    <height>384</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>11</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Reissuance</string>
+  </property>
+  <widget class="QToolButton" name="toolButton_docketAddCase">
+   <property name="geometry">
+    <rect>
+     <x>475</x>
+     <y>340</y>
+     <width>85</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>REISSUE</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_docketAddCaseTitle">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>40</y>
+     <width>226</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>CONFIRMATION:  REISSUE CASE</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line_lowerAddCaseDocket">
+   <property name="geometry">
+    <rect>
+     <x>310</x>
+     <y>325</y>
+     <width>346</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>295</x>
+     <y>65</y>
+     <width>176</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Reasons</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="toolButton_docketAddCaseCancel">
+   <property name="geometry">
+    <rect>
+     <x>565</x>
+     <y>340</y>
+     <width>85</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>CANCEL</string>
+   </property>
+  </widget>
+  <widget class="Line" name="line_mainAddCaseDocket">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>55</y>
+     <width>601</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>270</x>
+     <y>70</y>
+     <width>21</width>
+     <height>156</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>240</y>
+     <width>401</width>
+     <height>96</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QRadioButton" name="radioButton_noService">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>20</y>
+      <width>146</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>No Service Required</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_7">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>161</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Service</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_p1Required">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>45</y>
+      <width>166</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Service Required to Party 1 </string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_p2Required">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>70</y>
+      <width>171</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Service Required to Party 2</string>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_p1Days">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>45</y>
+      <width>26</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_p2Days">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>70</y>
+      <width>26</width>
+      <height>21</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_8">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>45</y>
+      <width>141</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>days before the hearing.</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_9">
+    <property name="geometry">
+     <rect>
+      <x>210</x>
+      <y>70</y>
+      <width>141</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>days before the hearing.</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="Line" name="line_mainAddCaseDocket_2">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>230</y>
+     <width>581</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_2">
+   <property name="geometry">
+    <rect>
+     <x>455</x>
+     <y>70</y>
+     <width>31</width>
+     <height>156</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Vertical</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_11">
+   <property name="geometry">
+    <rect>
+     <x>485</x>
+     <y>65</y>
+     <width>176</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Reissue TRO</string>
+   </property>
+  </widget>
+  <widget class="QFrame" name="frame_2">
+   <property name="geometry">
+    <rect>
+     <x>475</x>
+     <y>90</y>
+     <width>166</width>
+     <height>141</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QRadioButton" name="radioButton_troNo">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>0</y>
+      <width>136</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>No TRO was Issued</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_troGranted">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>25</y>
+      <width>102</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TRO Granted</string>
+    </property>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_troDenied">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>50</y>
+      <width>102</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>TRO Denied</string>
+    </property>
+   </widget>
+   <widget class="QTextEdit" name="textEdit_deniedReason">
+    <property name="geometry">
+     <rect>
+      <x>5</x>
+      <y>80</y>
+      <width>156</width>
+      <height>51</height>
+     </rect>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_5">
+   <property name="geometry">
+    <rect>
+     <x>285</x>
+     <y>163</y>
+     <width>156</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Other Reason</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_3">
+   <property name="geometry">
+    <rect>
+     <x>285</x>
+     <y>140</y>
+     <width>176</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>P2 Request Attorney</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_2">
+   <property name="geometry">
+    <rect>
+     <x>285</x>
+     <y>117</y>
+     <width>90</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>FCS Referral</string>
+   </property>
+  </widget>
+  <widget class="QCheckBox" name="checkBox_p2NotServed">
+   <property name="geometry">
+    <rect>
+     <x>285</x>
+     <y>94</y>
+     <width>166</width>
+     <height>18</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>No POS to Party 2</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>287</x>
+     <y>191</y>
+     <width>176</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>51</x>
+     <y>81</y>
+     <width>72</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Case Number</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_10">
+   <property name="geometry">
+    <rect>
+     <x>51</x>
+     <y>111</y>
+     <width>88</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>New Court Date:</string>
+   </property>
+  </widget>
+  <widget class="QDateEdit" name="dateEdit_hearingDate">
+   <property name="geometry">
+    <rect>
+     <x>165</x>
+     <y>111</y>
+     <width>88</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <property name="dateTime">
+    <datetime>
+     <hour>0</hour>
+     <minute>0</minute>
+     <second>0</second>
+     <year>2013</year>
+     <month>6</month>
+     <day>14</day>
+    </datetime>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>51</x>
+     <y>141</y>
+     <width>27</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Time</string>
+   </property>
+  </widget>
+  <widget class="QTimeEdit" name="timeEdit_hearingTime">
+   <property name="geometry">
+    <rect>
+     <x>165</x>
+     <y>141</y>
+     <width>86</width>
+     <height>24</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>51</x>
+     <y>172</y>
+     <width>59</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Courtroom</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_Courtroom">
+   <property name="geometry">
+    <rect>
+     <x>147</x>
+     <y>170</y>
+     <width>124</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Courtroom A</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Courtroom B</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Courtroom C</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>51</x>
+     <y>202</y>
+     <width>64</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Department</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_Department">
+   <property name="geometry">
+    <rect>
+     <x>161</x>
+     <y>200</y>
+     <width>104</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>G1</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>G2</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>G3</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>New Item</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_caseNumber">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>80</y>
+     <width>113</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>checkBox_5</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>lineEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>329</x>
+     <y>171</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>349</x>
+     <y>197</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButton_docketAddCaseCancel</sender>
+   <signal>clicked()</signal>
+   <receiver>Reissue</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>585</x>
+     <y>358</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>611</x>
+     <y>383</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButton_docketAddCase</sender>
+   <signal>clicked()</signal>
+   <receiver>Reissue</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>471</x>
+     <y>362</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>381</x>
+     <y>373</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_troDenied</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>textEdit_deniedReason</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>539</x>
+     <y>152</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>540</x>
+     <y>171</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

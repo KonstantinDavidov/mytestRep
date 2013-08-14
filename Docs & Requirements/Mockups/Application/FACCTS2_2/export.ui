@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Export</class>
+ <widget class="QDialog" name="Export">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>453</width>
+    <height>267</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>11</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>CCPOR Export</string>
+  </property>
+  <widget class="QToolButton" name="toolButton_exportCancel">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>225</y>
+     <width>85</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>CANCEL</string>
+   </property>
+  </widget>
+  <widget class="QToolButton" name="toolButton_exportAccept">
+   <property name="geometry">
+    <rect>
+     <x>255</x>
+     <y>225</y>
+     <width>85</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>EXPORT</string>
+   </property>
+  </widget>
+  <widget class="QFrame" name="frame_CASE_NUM_EXPORT">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>130</y>
+     <width>406</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLineEdit" name="lineEdit_Export_CaseNumber">
+    <property name="geometry">
+     <rect>
+      <x>145</x>
+      <y>10</y>
+      <width>161</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="toolButton_exportCaseNumberEdit">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>10</y>
+      <width>66</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>EDIT</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_exportCaseNumber">
+    <property name="geometry">
+     <rect>
+      <x>15</x>
+      <y>10</y>
+      <width>121</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="text">
+     <string>Originating Case #</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QFrame" name="frame_AGENCY_EXPORT">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>175</y>
+     <width>406</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::StyledPanel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLineEdit" name="lineEdit_ORINumber">
+    <property name="geometry">
+     <rect>
+      <x>215</x>
+      <y>5</y>
+      <width>161</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>CA0540600</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="comboBox_AgencyORISelect">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>5</y>
+      <width>201</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>Test Environment</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Orange County Sheriffs Office</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Irvine Police Department</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Newport Beach Police Department</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Santa Ana Police Department</string>
+     </property>
+    </item>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="label_ExportInstructions">
+   <property name="geometry">
+    <rect>
+     <x>75</x>
+     <y>75</y>
+     <width>366</width>
+     <height>46</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Export to CCPOR Requires Agency ORI information and originating case number please confirm the FACCTS case number will be used or edit the case number and select the Agency ORI</string>
+   </property>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="Line" name="line_lowerExportCase">
+   <property name="geometry">
+    <rect>
+     <x>235</x>
+     <y>210</y>
+     <width>211</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_mainExportCase">
+   <property name="geometry">
+    <rect>
+     <x>35</x>
+     <y>65</y>
+     <width>396</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_exportTitle">
+   <property name="geometry">
+    <rect>
+     <x>35</x>
+     <y>50</y>
+     <width>371</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>11</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>EXPORT CASE TO CCPOR - CASE ORIGINATION DATA INPUT</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>toolButton_exportCancel</sender>
+   <signal>clicked()</signal>
+   <receiver>Export</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>60</x>
+     <y>127</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>103</x>
+     <y>129</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolButton_exportAccept</sender>
+   <signal>clicked()</signal>
+   <receiver>Export</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>251</x>
+     <y>129</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>181</x>
+     <y>129</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

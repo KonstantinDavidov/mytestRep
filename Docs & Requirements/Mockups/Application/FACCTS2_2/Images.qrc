@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>_images/AmyS_thumb.png</file>
+        <file>_images/AmyS.png</file>
+        <file>_images/RayS.png</file>
+        <file>_images/SophiaM.png</file>
+        <file>_images/RayS_thumb.png</file>
+        <file>_images/PascaleH.png</file>
+        <file>_images/Pascal_thumb.png</file>
+        <file>_images/Sophia_thumb.png</file>
+        <file>_images/warning_1.png</file>
+        <file>_images/FACCTS_BAR3.png</file>
+        <file>_images/fwd.png</file>
+        <file>_images/rev.png</file>
+    </qresource>
+</RCC>
